@@ -1,0 +1,27 @@
+{
+  "name": "yaopai-mobile",
+  "version": "1.0.0",
+  "description": "use for web app with CI for YAOPAI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2remote/yaopai-mobile.git"
+  },
+  "keywords": [
+    "ci",
+    "web",
+    "app",
+    "react",
+    "yaopai",
+    "mobile"
+  ],
+  "author": "2remote",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2remote/yaopai-mobile/issues"
+  },
+  "homepage": "https://github.com/2remote/yaopai-mobile#readme"
+}
