@@ -2,6 +2,7 @@ var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
+var Clean = require('clean-webpack-plugin');
 
 var pkg = require('./package.json');
 
@@ -78,6 +79,7 @@ if(TARGET === 'build') {
       ]
     },
     plugins: [
+      new Clean(['build']),
       /* important! */
       new webpack.optimize.CommonsChunkPlugin(
         'vendor',
