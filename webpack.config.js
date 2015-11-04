@@ -10,6 +10,15 @@ module.exports = {
     path: path.resolve(ROOT_PATH, 'build'),
     filename: 'bundle.js'
   },
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        include: path.resolve(ROOT_PATH, 'app')
+      }
+    ]
+  },
   devServer: {
     histroyApiFallback: true,
     hot: true,
