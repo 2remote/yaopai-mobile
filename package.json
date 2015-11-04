@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/2remote/yaopai-mobile#readme",
   "devDependencies": {
-    "babel-core": "^6.0.20",
-    "babel-loader": "^6.0.1",
+    "babel-core": "^5.8.23",
+    "babel-loader": "^5.3.2",
     "css-loader": "^0.21.0",
     "html-webpack-plugin": "^1.6.2",
     "node-libs-browser": "^0.5.3",
@@ -35,5 +35,8 @@
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1",
     "webpack-merge": "^0.2.0"
+  },
+  "dependencies": {
+    "react": "^0.13.3"
   }
 }
