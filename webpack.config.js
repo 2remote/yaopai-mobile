@@ -54,3 +54,18 @@ if(TARGET === 'start' || !TARGET) {
     ]
   });
 }
+
+if(TARGET === 'build') {
+  module.exports = merge(common, {
+    devtool: 'source-map',
+    module: {
+      loaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: ['babel'],
+          include: path.resolve(ROOT_PATH, 'app')
+        }
+      ]
+    }
+  });
+}

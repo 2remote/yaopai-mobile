@@ -4,6 +4,7 @@
   "description": "use for web app with CI for YAOPAI",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
