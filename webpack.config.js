@@ -3,6 +3,8 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 
+var pkg = require('./package.json');
+
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
 
@@ -57,6 +59,14 @@ if(TARGET === 'start' || !TARGET) {
 
 if(TARGET === 'build') {
   module.exports = merge(common, {
+    entry: {
+      app: path.resolve(ROOT_PATH, 'app'),
+      vendor: Object.keys(pkg.dependencies)
+    },
+    output: {
+      path: path.resolve(ROOT_PATH, 'build'),
+      filename: '[name].js?[chunkhash]'
+    },
     devtool: 'source-map',
     module: {
       loaders: [
