@@ -4,6 +4,7 @@
   "description": "use for web app with CI for YAOPAI",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +28,7 @@
   "devDependencies": {
     "html-webpack-plugin": "^1.6.2",
     "node-libs-browser": "^0.5.3",
-    "webpack": "^1.12.2"
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
   }
 }
