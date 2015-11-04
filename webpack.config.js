@@ -66,6 +66,13 @@ if(TARGET === 'build') {
           include: path.resolve(ROOT_PATH, 'app')
         }
       ]
-    }
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    ]
   });
 }
