@@ -68,6 +68,12 @@ if(TARGET === 'build') {
       ]
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          // This affects react lib size
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false
