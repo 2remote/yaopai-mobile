@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/2remote/yaopai-mobile/issues"
   },
-  "homepage": "https://github.com/2remote/yaopai-mobile#readme"
+  "homepage": "https://github.com/2remote/yaopai-mobile#readme",
+  "devDependencies": {
+    "node-libs-browser": "^0.5.3",
+    "webpack": "^1.12.2"
+  }
 }
