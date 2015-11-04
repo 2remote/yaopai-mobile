@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/2remote/yaopai-mobile#readme",
   "devDependencies": {
+    "html-webpack-plugin": "^1.6.2",
     "node-libs-browser": "^0.5.3",
     "webpack": "^1.12.2"
   }
