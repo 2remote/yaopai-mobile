@@ -78,6 +78,11 @@ if(TARGET === 'build') {
       ]
     },
     plugins: [
+      /* important! */
+      new webpack.optimize.CommonsChunkPlugin(
+        'vendor',
+        '[name].js?[chunkhash'
+      ),
       new webpack.DefinePlugin({
         'process.env': {
           // This affects react lib size
