@@ -1,0 +1,88 @@
+.grapherRow {
+  width: 100%;
+  position: relative;
+}
+
+.grapherRow a {
+  display: block;
+}
+
+.grapherAvatar {
+  width: 50%;
+  margin-bottom: -7.9px;
+}
+
+.grapherRow:nth-child(odd) .grapherAvatar {
+  float: left;
+}
+
+.grapherRow:nth-child(even) .grapherAvatar {
+  float: right;
+}
+
+.grapherRow:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.grapherAvatar:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.grapherPageIntro {
+  float: right;
+  position: relative;
+}
+
+.grapherPageIntro {
+  width: 50%;
+}
+
+/*.grapherPageIntro:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+}*/
+
+.grapherAvatar img {
+  width: 100%;
+}
+
+.grapherIntroContainer {
+  width: 135px;
+  height: 135px;
+  position: absolute;
+  left: 50%;
+  margin-left: -65px;
+  top: 50%;
+  margin-top: -69px;
+}
+
+.grapherIntroContainer>div:nth-child(1) {
+  font-size: 1.3em;
+}
+
+
+/*
+.grapherIntroContainer>div:nth-child(2) {
+  margin: -4px 0 5px 0;
+}*/
+
+.grapherIntroContainer>:nth-child(5) {
+  position: relative;
+  /*top: -6px;*/
+}
+
+.grapherIntroContainer button {
+  border: 1px solid #232323;
+  padding: 7px 17px;
+  background-color: inherit;
+  font-size: 0.9em;
+  margin-left: 59px;
+}

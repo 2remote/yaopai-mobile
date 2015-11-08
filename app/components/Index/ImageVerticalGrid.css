@@ -1,0 +1,17 @@
+.imageVerticalGrid>div {
+  width: 22.6666667%;
+  float: left;
+}
+.imageVerticalGrid>div:nth-child(4){
+  width: 32%!important;
+}
+.imageVerticalGrid img {
+  width: 100%;
+}
+
+.imageVerticalGrid:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+}

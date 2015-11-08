@@ -1,0 +1,169 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  background: #f9f9f9;
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  min-height: 100%;
+  cursor: pointer;
+}
+
+a {
+  line-height: 0;
+}
+
+#app {
+  min-height: 100%;
+  width: 100%;
+  /*position: absolute;*/
+}
+
+a:link {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
+:focus {
+  outline: transparent none 0;
+}
+
+.index {
+  text-align: center;
+}
+
+/*走马灯*/
+
+.sliderBox {
+  margin-bottom: -7px;
+}
+
+.sliderButtonsLine {
+  position: absolute;
+  margin: -44px auto 18px;
+  width: 100%;
+}
+
+.sliderButtons {
+  /*  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;*/
+  /*width: 103px;*/
+  margin: 0 auto;
+  z-index: 100;
+}
+
+.sliderButtons>img {
+  height: 100%;
+  width: 6px;
+  margin: 0 9px;
+}
+
+.currentCarousel {
+  margin: -1px 8px 0 8px!important;
+  width: 8px!important;
+}
+
+
+/* 分割线 */
+
+.splitContent {
+  color: #191919;
+}
+
+.splitLine {
+  margin: -25px 0 -8px;
+}
+
+.splitContent>:first-child {
+  margin-bottom: -8px;
+  padding-left: 19px;
+  letter-spacing: 19px;
+}
+
+
+/*暂时隐藏活动和访谈*/
+
+.spliterWork,
+.spliterGrapher,
+.spliterInterview,
+.spliterActivity {
+  margin: 17px 0;
+}
+
+
+/*.spliterInterview,
+.spliterActivity {
+  display: none;
+}*/
+
+
+/*Footer*/
+
+.footer {
+  background: #373737;
+  /*margin-top: 75px;*/
+  /*position: absolute;*/
+  height: 46px;
+  width: 100%;
+  font-size: 0.7em;
+  bottom: 0;
+  color: #fff;
+}
+
+.footer>span {
+  display: block;
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+}
+
+.footer>span>:first-child {
+  padding: 8px 0 1px;
+}
+
+.footer>span>:nth-child(2) {
+  line-height: 14px;
+}
+
+.footerAddr>:nth-child(2) {
+  font-size: 0.6em;
+}
+
+
+/*访谈活动DEMO*/
+
+.imageCircleGrid>img,
+.imageRectGrid>img {
+  width: 100%;
+}
+
+.imageCircleGrid {
+  margin-bottom: 115px;
+}
+
+
+.active-item:active {
+  color:white!important;
+  background-color: #3c3c3c!important;
+}
