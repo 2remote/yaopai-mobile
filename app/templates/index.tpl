@@ -34,5 +34,7 @@
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry%}"></script>
     {% } %}
+
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     </body>
 </html>
