@@ -88,7 +88,7 @@ if(TARGET === 'build') {
       /* important! */
       new webpack.optimize.CommonsChunkPlugin(
         'vendor',
-        '[name].js?[chunkhash'
+        '[name].js?[chunkhash]'
       ),
       new webpack.DefinePlugin({
         'process.env': {
@@ -100,6 +100,10 @@ if(TARGET === 'build') {
         compress: {
           warnings: false
         }
+      }),
+      new HtmlwebpackPlugin({
+        title: APP_TITLE,
+        template: 'app/templates/index.tpl'
       })
     ]
   });
