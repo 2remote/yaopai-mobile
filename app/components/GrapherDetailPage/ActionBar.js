@@ -49,7 +49,7 @@ var ShareGuide = React.createClass({
 
 var ActionBar = React.createClass({
   _handleShare: function () {
-   this.refs.shareGuide.showGuide();
+    this.refs.shareGuide.showGuide();
   },
   render: function() {
     return (
