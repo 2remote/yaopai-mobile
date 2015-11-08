@@ -20,6 +20,13 @@ var common = {
     filename: 'bundle.js'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['eslint'],
+        include: path.resolve(ROOT_PATH, 'app')
+      }
+    ],
     loaders: [
       {
         test: /\.css$/,
