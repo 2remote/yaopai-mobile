@@ -8,6 +8,7 @@ var pkg = require('./package.json');
 
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
+const APP_TITLE = 'YAOPAI：一个全球预约摄影师平台';
 
 var common = {
   entry: path.resolve(ROOT_PATH, 'app'),
@@ -53,7 +54,11 @@ if(TARGET === 'start' || !TARGET) {
       progress: true
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new HtmlwebpackPlugin({
+        title: APP_TITLE,
+        template: 'app/templates/index.tpl'
+      })
     ]
   });
 }
