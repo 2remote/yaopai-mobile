@@ -8,7 +8,9 @@
     "start": "webpack-dev-server",
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
-    "lint": "eslint . --ext .js --ext .jsx"
+    "lint": "eslint . --ext .js --ext .jsx",
+    "server": "node server.js",
+    "deploy": "npm run build && npm run server"
   },
   "repository": {
     "type": "git",
@@ -56,10 +58,10 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1",
-    "webpack-merge": "^0.2.0"
+    "webpack-merge": "^0.2.0",
+    "express": "^4.13.3"
   },
   "dependencies": {
-    "express": "^4.13.3",
     "jquery": "^2.1.4",
     "react": "^0.13.3",
     "react-document-title": "^2.0.1",
