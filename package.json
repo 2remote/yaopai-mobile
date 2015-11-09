@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "use for web app with CI for YAOPAI",
   "main": "index.js",
+  "engines":{"node": "0.12.7"},
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
