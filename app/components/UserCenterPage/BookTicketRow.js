@@ -263,7 +263,7 @@ var BookTicketRow = React.createClass({
           <div 
             style={style.contactBox}
             className="contactBox">
-            <a href={"tel:" + this.props.data.BuyerTel}>
+            <a href={"tel:" + this.props.data.Photographer.BusinessPhone}>
             <img ref="contactImage"
                 src="imgs/userCenterPage/contact-image.png"
                 srcSet="imgs/userCenterPage/contact-image@2X.png 2x" />

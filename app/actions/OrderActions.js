@@ -29,7 +29,7 @@ OrderActions.list.listen(function(type,state){
   };
   var data = {
     State : s,
-    Fields : 'Id,UserId,BuyerName,BuyerTel,Price,AppointedTime,PhotographerId,IsSpecifiesAlbums,AlbumsId,CreationTime,State,Photographer.UserId,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.UserId',
+    Fields : 'Id,UserId,BuyerName,BuyerTel,Price,AppointedTime,PhotographerId,Photographer.BusinessPhone,IsSpecifiesAlbums,AlbumsId,CreationTime,State,Photographer.UserId,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.UserId',
   };
   if(type == 'out')
     HttpFactory.post(API.ORDER.outSearch,data,this.success,this.failed);
