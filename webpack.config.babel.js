@@ -58,7 +58,8 @@ if(TARGET === 'start' || !TARGET) {
       histroyApiFallback: true,
       hot: true,
       inline: true,
-      progress: true
+      progress: true,
+      proxy: { '/imgs/*' : 'http://localhost:5000/' }
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
