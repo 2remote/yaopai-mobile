@@ -1,1 +1,1 @@
-web: node server.js
+worker: npm run deploy
