@@ -2,4 +2,8 @@ deployment:
   prod:
     branch: master
     heroku:
-      appname: murmuring-sea-7564
+      appname: yaopai-mobile
+  dev:
+    branch: dev
+    heroku:
+      appname: yaopai-mobile-dev
