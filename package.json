@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "use for web app with CI for YAOPAI",
   "main": "index.js",
-  "engines":{"node": "0.12.7"},
+  "engines": {
+    "node": "0.12.7"
+  },
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
@@ -62,12 +64,13 @@
     "express": "^4.13.3"
   },
   "dependencies": {
-    "reflux": "^0.3.0",
     "jquery": "^2.1.4",
     "react": "^0.13.3",
     "react-document-title": "^2.0.1",
     "react-router": "^1.0.0-rc1",
+    "react-swipe": "^2.3.0",
     "react-tappable": "^0.6.0",
+    "reflux": "^0.3.0",
     "underscore": "^1.8.3",
     "validator": "^4.0.5",
     "web-storage": "^1.0.0"
