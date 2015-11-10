@@ -1,5 +1,5 @@
 deployment:
   prod:
     branch: master
-      heroku:
-        appname: murmuring-sea-7564
+    heroku:
+      appname: murmuring-sea-7564
