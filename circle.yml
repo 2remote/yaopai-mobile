@@ -3,3 +3,7 @@ deployment:
     branch: master
     heroku:
       appname: yaopai-mobile
+  dev:
+    branch: dev
+    heroku:
+      appname: yaopai-mobile-dev
