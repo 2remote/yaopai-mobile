@@ -20,4 +20,15 @@ describe('用户注册页面 SignupPage', () => {
     // 获取textContent内容，简单判断是否成功
     assert.equal(signupPage.getDOMNode().textContent, '获取验证码创建账号');
   });
+
+  it('手机号输入框。。。存在', ()=> {
+    it('should has right mobileNumber', ()=> {
+      // 获取手机号输入框DOM
+      var mobileNumber = React.findDOMNode(component.refs.mobileNumber);
+      // 检测是否为text属性
+      expect(mobileNumber.getAttribute('type')).to.equal('text');
+      // 检测placeholder是否为 手机号
+      expect(mobileNumber.getAttribute('placeholder')).to.equal('手机号');
+    });
+  });
 });
