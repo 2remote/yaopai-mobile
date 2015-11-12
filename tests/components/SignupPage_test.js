@@ -22,7 +22,7 @@ describe('用户注册页面 SignupPage', () => {
     assert.equal(signupPage.getDOMNode().textContent, '获取验证码创建账号');
   });
 
-  describe('测试 手机号 输入框 组件', ()=> {
+  describe('手机号输入框 组件', ()=> {
     // 获取手机号输入框DOM
     const mobileNumber = React.findDOMNode(component.refs.mobileNumber);
 
@@ -49,7 +49,7 @@ describe('用户注册页面 SignupPage', () => {
     });
   });
 
-  describe('测试 获取验证码 组件', ()=> {
+  describe('获取验证码 组件', ()=> {
     it('getVerificationCode 组件存在', ()=> {
       const getVerificationCode = React.findDOMNode(component.refs.getVerificationCode);
       assert.equal(getVerificationCode.textContent, '获取验证码');
