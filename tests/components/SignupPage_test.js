@@ -17,7 +17,7 @@ describe('用户注册页面 SignupPage', () => {
   // 通过Class获取组件
   const signupPage = findRenderedDOMComponentWithClass(component, 'signupPage');
 
-  it('检测页面是否渲染成功', () => {
+  it('React渲染页面成功', () => {
     // 获取textContent内容，简单判断是否成功
     assert.equal(signupPage.getDOMNode().textContent, '获取验证码创建账号');
   });
