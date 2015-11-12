@@ -21,8 +21,8 @@ describe('用户注册页面 SignupPage', () => {
     assert.equal(signupPage.getDOMNode().textContent, '获取验证码创建账号');
   });
 
-  it('手机号输入框。。。存在', ()=> {
-    it('should has right mobileNumber', ()=> {
+  it('测试 手机号 输入框 组件', ()=> {
+    it('mobileNumber 存在', ()=> {
       // 获取手机号输入框DOM
       var mobileNumber = React.findDOMNode(component.refs.mobileNumber);
       // 检测是否为text属性
