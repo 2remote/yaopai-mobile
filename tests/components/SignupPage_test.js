@@ -6,6 +6,7 @@ import SignupPage from '../../app/components/SignupPage.js';
 const {
   renderIntoDocument,
   findRenderedDOMComponentWithClass,
+  Simulate
 } = React.addons.TestUtils;
 
 describe('用户注册页面 SignupPage', () => {
@@ -22,13 +23,29 @@ describe('用户注册页面 SignupPage', () => {
   });
 
   describe('测试 手机号 输入框 组件', ()=> {
+    // 获取手机号输入框DOM
+    const mobileNumber = React.findDOMNode(component.refs.mobileNumber);
+
     it('mobileNumber 组件存在', ()=> {
-      // 获取手机号输入框DOM
-      const mobileNumber = React.findDOMNode(component.refs.mobileNumber);
       // 检测是否为text属性
       assert.equal(mobileNumber.getAttribute('type'), 'text');
       // 检测placeholder是否为 手机号
       assert.equal(mobileNumber.getAttribute('placeholder'), '手机号');
+    });
+
+    it('输入号码后，会更新state', ()=> {
+      // 获得初始state
+      const initialPhone = component.state.phone;
+      // 初始号码为空
+      assert.equal(initialPhone, '');
+      // 模拟进入控件
+      Simulate.click(mobileNumber);
+      // 修改输入框内容
+      mobileNumber.value = '13552987637';
+      Simulate.change(mobileNumber);
+      const changedPhone = component.state.phone;
+      // 测试输入前后的state不一样
+      assert.notEqual(changedPhone, initialPhone);
     });
   });
 
