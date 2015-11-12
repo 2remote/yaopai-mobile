@@ -21,14 +21,15 @@ describe('用户注册页面 SignupPage', () => {
     assert.equal(signupPage.getDOMNode().textContent, '获取验证码创建账号');
   });
 
-  it('测试 手机号 输入框 组件', ()=> {
-    it('mobileNumber 存在', ()=> {
+  describe('测试 手机号 输入框 组件', ()=> {
+    it('mobileNumber 组件存在', ()=> {
       // 获取手机号输入框DOM
       var mobileNumber = React.findDOMNode(component.refs.mobileNumber);
       // 检测是否为text属性
-      expect(mobileNumber.getAttribute('type')).to.equal('text');
+      assert.equal(mobileNumber.getAttribute('type'), 'text');
       // 检测placeholder是否为 手机号
-      expect(mobileNumber.getAttribute('placeholder')).to.equal('手机号');
+      console.log("placeholder", mobileNumber.getAttribute('placeholder'));
+      assert.equal(mobileNumber.getAttribute('placeholder'), '手机号');
     });
   });
 });
