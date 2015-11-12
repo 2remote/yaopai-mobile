@@ -5,7 +5,7 @@ module.exports = function karmaConfig (config) {
   config.set({
     frameworks: [
       // Set framework to mocha
-      'mocha'
+      'mocha', 'sinon'
     ],
 
     reporters: [
