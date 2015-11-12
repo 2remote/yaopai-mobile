@@ -28,8 +28,14 @@ describe('用户注册页面 SignupPage', () => {
       // 检测是否为text属性
       assert.equal(mobileNumber.getAttribute('type'), 'text');
       // 检测placeholder是否为 手机号
-      console.log("placeholder", mobileNumber.getAttribute('placeholder'));
       assert.equal(mobileNumber.getAttribute('placeholder'), '手机号');
     });
   });
+
+  describe('测试 获取验证码 组件', ()=> {
+    it('getVerificationCode 组件存在', ()=> {
+      var getVerificationCode = React.findDOMNode(component.refs.getVerificationCode);
+      assert.equal(getVerificationCode.textContent, '获取验证码');
+    });
+  }); 
 });
