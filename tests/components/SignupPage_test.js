@@ -54,5 +54,18 @@ describe('用户注册页面 SignupPage', () => {
       const getVerificationCode = React.findDOMNode(component.refs.getVerificationCode);
       assert.equal(getVerificationCode.textContent, '获取验证码');
     });
+
+    it('点击后激活 _handleGetCode', ()=> {
+      let spyGetCode = sinon.spy(SignupPage.prototype.__reactAutoBindMap, "_handleGetCode");
+      const component = renderIntoDocument(
+        <SignupPage />
+      );
+      
+      // 模拟点击
+      const getVerificationCode = React.findDOMNode(component.refs.getVerificationCode);
+      Simulate.click(getVerificationCode);
+      // 验证
+      assert.equal(spyGetCode.called, true);
+    });
   }); 
 });
