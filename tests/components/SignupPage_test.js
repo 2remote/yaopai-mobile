@@ -86,8 +86,31 @@ describe('用户注册页面 SignupPage', () => {
         // 直接返回的函数是undefined
         assert.equal(re, false);
       });
-      //     手机号符合
-      //     手机号不符合
+
+      it('手机号符合/不符合', ()=> {
+        let spyShowMessage = sinon.spy(SignupPage.prototype.__reactAutoBindMap, 'showMessage');
+        const component = renderIntoDocument( <SignupPage /> );
+        const validatedMobile = '13552987637';
+        component.state.phone = validatedMobile;
+        const forceState = component.state.phone;
+        const re = component._handleGetCode();
+        // 进入验证环节
+        assert.equal(re, false);
+        // 手机号符合，不会调用showMessage
+        assert.equal(spyShowMessage.called, false);
+        
+        const inValidatedMobile = '1355298763777';
+        component.state.phone = inValidatedMobile;
+        const forceState2 = component.state.phone;
+        spyShowMessage.withArgs('请输入正确的手机号码');
+        const reInvalidate = component._handleGetCode();
+        // 进入验证环节
+        assert.equal(reInvalidate, false);
+        // 手机号不符合，会调用showMessage
+        assert.equal(spyShowMessage.called, true);
+        // 以正确提示信息调用
+        assert.equal(spyShowMessage.withArgs('请输入正确的手机号码').calledOnce, true);
+      });
     });
   }); 
 });
