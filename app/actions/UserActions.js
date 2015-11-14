@@ -40,7 +40,7 @@ UserActions.loginWithToken.listen(function(data){
 */
 
 UserActions.openLogin.listen(function(data){
-  window.location.href = API.USER.open_login;
+  window.location.href = API.USER.weixin_login;
 });
 /*
   得到当前用户
