@@ -14,7 +14,7 @@ var API_CONST = {
     verifyTelResetPassWord: API_URL + 'User.VerifyTelResetPassWord',
     receiveTelResetPassWord: API_URL + 'User.ReceiveTelResetPassWord',
     logout : API_URL + "User.Logout",
-    open_login : API_URL + "openuser.login&serviceid=openweixin&redirecturl="+Local_Host,
+    weixin_login : API_URL + "openuser.login&serviceid=weixin&redirecturl="+Local_Host,
     current_user : API_URL + 'User.CurrentUser',
     currentUserDetail : API_URL + 'User.CurrentUserDetail',
     changeAvatar : API_URL + 'User.ChangeAvatar',
