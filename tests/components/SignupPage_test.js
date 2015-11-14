@@ -67,5 +67,20 @@ describe('用户注册页面 SignupPage', () => {
       // 验证
       assert.equal(spyGetCode.called, true);
     });
+
+    describe('_handleGetCode', ()=> {
+      it('codeLeft > 0 直接返回', ()=> {
+        component.state.codeLeft = 8;
+        // 马上取值，强制state更新
+        const forceState = component.state.codeLeft;
+        const re = component._handleGetCode();
+        // 直接返回的函数是undefined
+        assert.equal(typeof re, 'undefined');
+      });
+
+      //  codeLeft <= 0 进入函数
+      //     手机号符合
+      //     手机号不符合
+    });
   }); 
 });
