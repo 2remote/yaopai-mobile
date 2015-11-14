@@ -69,7 +69,7 @@ describe('用户注册页面 SignupPage', () => {
     });
 
     describe('_handleGetCode', ()=> {
-      it('codeLeft > 0 直接返回', ()=> {
+      it('等待验证码时，直接返回', ()=> {
         component.state.codeLeft = 8;
         // 马上取值，强制state更新
         const forceState = component.state.codeLeft;
@@ -78,7 +78,7 @@ describe('用户注册页面 SignupPage', () => {
         assert.equal(typeof re, 'undefined');
       });
 
-      it('codeLeft = 0 进入函数', ()=> {
+      it('初始化时，进入函数，判断手机', ()=> {
         component.state.codeLeft = 0;
         // 马上取值，强制state更新
         const forceState = component.state.codeLeft;
