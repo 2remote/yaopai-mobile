@@ -22,23 +22,23 @@ var Index = React.createClass({
       imgs: [
         { src: "slider-furui.jpg", 
           srcset: "slider-furui.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208614841&idx=1&sn=836f0d5ee6dfe2faffb8e1b050224cdc#rd" },  
+          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208614841&idx=1&sn=836f0d5ee6dfe2faffb8e1b050224cdc" },  
         {
           src: "slider-hedaxun.gif", 
           srcset: "slider-hedaxun.gif 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208598870&idx=1&sn=431cf10eccd393d158a862b8df936c1a#rd" },  
+          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208598870&idx=1&sn=431cf10eccd393d158a862b8df936c1a" },  
         { 
           src: "slider-jiran.jpg", 
           srcset: "slider-jiran.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208321425&idx=1&sn=ca3c63684cd62f5477fc82b575d795f2#rd" },  
+          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208321425&idx=1&sn=ca3c63684cd62f5477fc82b575d795f2" },  
         {
           src: "slider-xiaoweixuezhang.jpg", 
           srcset: "slider-xiaoweixuezhang.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208744868&idx=2&sn=be7d83600a079a70bbb266d23b7f09df#rd" },
+          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208744868&idx=2&sn=be7d83600a079a70bbb266d23b7f09df" },
         {
           src: "slider-yexiaokui.jpg", 
           srcset: "slider-yexiaokui.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208697675&idx=1&sn=7b4ad41ae6d6d659b9b79fe6505ce244#rd" }
+          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208697675&idx=1&sn=7b4ad41ae6d6d659b9b79fe6505ce244" }
       ]
     };
   },
