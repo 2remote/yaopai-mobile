@@ -87,7 +87,6 @@ var DoubleCheckInfo = React.createClass({
         color:'#ababab',
         padding: '3px 0',
         margin: '18px 0 0 15px',
-        backgroundColor: 'inherit',
         width: '170px',
         lineHeight: '19px',
         fontSize: '1em',
