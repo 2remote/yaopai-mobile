@@ -10,6 +10,8 @@ const {
 } = React.addons.TestUtils;
 
 describe('用户注册页面 SignupPage', () => {
+  // sinon绑定 showMessage
+  let spyShowMessage = sinon.spy(SignupPage.prototype.__reactAutoBindMap, 'showMessage');
   // 渲染被调用的模块
   const component = renderIntoDocument(
     <SignupPage />
@@ -88,7 +90,8 @@ describe('用户注册页面 SignupPage', () => {
       });
 
       it('手机号符合/不符合', ()=> {
-        let spyShowMessage = sinon.spy(SignupPage.prototype.__reactAutoBindMap, 'showMessage');
+        // 初始化spy
+        spyShowMessage.reset();
         const component = renderIntoDocument( <SignupPage /> );
         const validatedMobile = '13552987637';
         component.state.phone = validatedMobile;
@@ -102,7 +105,6 @@ describe('用户注册页面 SignupPage', () => {
         const inValidatedMobile = '1355298763777';
         component.state.phone = inValidatedMobile;
         const forceState2 = component.state.phone;
-        spyShowMessage.withArgs('请输入正确的手机号码');
         const reInvalidate = component._handleGetCode();
         // 进入验证环节
         assert.equal(reInvalidate, false);
@@ -159,6 +161,32 @@ describe('用户注册页面 SignupPage', () => {
     it('signupButton 组件存在', ()=> {
       const signupButton = React.findDOMNode(component.refs.signupButton);
       assert.equal(signupButton.textContent, '创建账号');
+    });
+
+    describe('_handleRegister', ()=>{
+      // 初始化spy
+      const component = renderIntoDocument( <SignupPage /> );
+
+      // spyShowMessage.withArgs('请输入正确的手机号码');
+      it('手机号 验证', ()=> {
+        // 错误手机号码
+        component.state.phone = '12345678';
+        let forceState = component.state.phone;
+        // 运行测试
+        spyShowMessage.reset();
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs('请输入正确的手机号码').calledOnce, true);
+
+        // 正确手机号
+        component.state.phone = '13552987637';
+        forceState = component.state.phone;
+        // 运行测试
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs('请输入正确的手机号码').calledOnce, true);
+
+      });
     });
   });
 });
