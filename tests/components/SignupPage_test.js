@@ -136,9 +136,22 @@ describe('用户注册页面 SignupPage', () => {
   });
 
   describe('验证码输入框 组件', ()=> {
+    const verificationCode = React.findDOMNode(component.refs.verificationCode);
     it('verificationCode 组件存在', ()=> {
-      const verificationCode = React.findDOMNode(component.refs.verificationCode);
       assert.equal(verificationCode.placeholder, '验证码')
+    });
+
+    it('_handleCodeChange', ()=> {
+      // 修改注册码前
+      let vCode = component.state.code;
+      assert.equal(vCode, '');
+      // 修改注册码
+      const testCode = 'asldfjoewf';
+      verificationCode.value = testCode;
+      Simulate.change(verificationCode);
+      const forceState = component.state.code;
+      // 修改注册码后
+      assert.equal(component.state.code, testCode);
     });
   });
 });
