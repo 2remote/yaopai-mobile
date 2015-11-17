@@ -154,4 +154,11 @@ describe('用户注册页面 SignupPage', () => {
       assert.equal(component.state.code, testCode);
     });
   });
+
+  describe('创建账号 组件', ()=> {
+    it('signupButton 组件存在', ()=> {
+      const signupButton = React.findDOMNode(component.refs.signupButton);
+      assert.equal(signupButton.textContent, '创建账号');
+    });
+  });
 });
