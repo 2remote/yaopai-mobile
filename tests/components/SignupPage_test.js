@@ -187,6 +187,25 @@ describe('用户注册页面 SignupPage', () => {
         assert.equal(spyShowMessage.withArgs('请输入正确的手机号码').calledOnce, true);
 
       });
+
+      it('密码不为空 验证', ()=> {
+        // 空密码
+        component.state.password1 = '';
+        let forceState = component.state.password1;
+        // 运行测试
+        spyShowMessage.reset();
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs('请输入密码').calledOnce, true);
+
+        // 有内容的密码
+        component.state.password1 = 'asdfwfd';
+        forceState = component.state.password1;
+        // 运行测试
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs('请输入密码').calledOnce, true);
+      });
     });
   });
 });
