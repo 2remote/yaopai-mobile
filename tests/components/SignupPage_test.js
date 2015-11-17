@@ -119,6 +119,19 @@ describe('用户注册页面 SignupPage', () => {
       const passWord = React.findDOMNode(component.refs.passWord);
       assert.equal(passWord.placeholder, '输入密码');
     });
+
+    it('_handlePassword1Change', ()=> {
+       // 密码修改前
+       let password1 = component.state.password1;
+       assert.equal(password1, '');
+       // 修改密码
+       const passWord = React.findDOMNode(component.refs.passWord);
+       const testPass = "testing password";
+       passWord.value = testPass;
+       Simulate.change(passWord);
+       const forceState = component.state.password1;
+       // 密码修改后
+       assert.equal(component.state.password1, testPass);
+    });
   });
-  // _handlePassword1Change
 });
