@@ -134,4 +134,11 @@ describe('用户注册页面 SignupPage', () => {
        assert.equal(component.state.password1, testPass);
     });
   });
+
+  describe('验证码输入框 组件', ()=> {
+    it('verificationCode 组件存在', ()=> {
+      const verificationCode = React.findDOMNode(component.refs.verificationCode);
+      assert.equal(verificationCode.placeholder, '验证码')
+    });
+  });
 });
