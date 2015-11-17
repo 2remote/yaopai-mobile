@@ -113,4 +113,12 @@ describe('用户注册页面 SignupPage', () => {
       });
     });
   }); 
+
+  describe('密码输入框 组件', () => {
+    it('passWord 组件存在', ()=> {
+      const passWord = React.findDOMNode(component.refs.passWord);
+      assert.equal(passWord.placeholder, '输入密码');
+    });
+  });
+  // _handlePassword1Change
 });
