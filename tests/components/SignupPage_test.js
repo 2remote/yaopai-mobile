@@ -189,6 +189,8 @@ describe('用户注册页面 SignupPage', () => {
       });
 
       it('密码不为空 验证', ()=> {
+        // spy参数
+        const spyArg = '请输入密码';
         // 空密码
         component.state.password1 = '';
         let forceState = component.state.password1;
@@ -196,7 +198,7 @@ describe('用户注册页面 SignupPage', () => {
         spyShowMessage.reset();
         component._handleRegister();
 
-        assert.equal(spyShowMessage.withArgs('请输入密码').calledOnce, true);
+        assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
 
         // 有内容的密码
         component.state.password1 = 'asdfwfd';
@@ -204,7 +206,7 @@ describe('用户注册页面 SignupPage', () => {
         // 运行测试
         component._handleRegister();
 
-        assert.equal(spyShowMessage.withArgs('请输入密码').calledOnce, true);
+        assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
       });
     });
   });
