@@ -242,6 +242,25 @@ describe('用户注册页面 SignupPage', () => {
 
         assert.equal(spyShowMessage.withArgs(spyArg).calledThrice, true);
       });
+
+      it('验证码不为空', ()=> {
+        const spyArg = '请输入验证码';
+        component.state.password1 = '12345678';
+        // 空验证码
+        component.state.code = '';
+        let forceState = component.state.code;
+        spyShowMessage.reset();
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
+
+        // 有效验证码
+        component.state.code='1234';
+        forceState = component.state.code;
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
+      });
     });
   });
 });
