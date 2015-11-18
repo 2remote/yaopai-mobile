@@ -208,6 +208,40 @@ describe('用户注册页面 SignupPage', () => {
 
         assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
       });
+
+
+      it('密码长度应在6-18之间', ()=> {
+        const spyArg = '密码长度应在6-18之间';
+
+        // 1位密码
+        component.state.password1 = '1';
+        let forceState = component.state.password1;
+        spyShowMessage.reset();
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
+
+        // 4位密码
+        component.state.password1 = '1234';
+        forceState = component.state.password1;
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledTwice, true);
+
+        // 8位密码
+        component.state.password1 = '12345678';
+        forceState = component.state.password1;
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledTwice, true);
+
+        // 19位密码
+        component.state.password1 = '1234567890123456789';
+        forceState = component.state.password1;
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledThrice, true);
+      });
     });
   });
 });
