@@ -33,7 +33,6 @@ var BookTicketRow = React.createClass({
     this.toggleCancelDialog();
   },
   render: function() {
-    console.log(this.props.data);
     let deviceHeight = parseInt(window.innerHeight);
     let heightRatio = deviceHeight/627;
     var style = {

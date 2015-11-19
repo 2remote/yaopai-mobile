@@ -100,7 +100,19 @@ var SignupPage = React.createClass({
       borderWidth: '0 0 2px',
       borderRadius: 0,
       borderColor: 'transparent transparent #c4c4c4',
-    }
+    };
+    var mobileNumber = {
+      padding: '8px 10px',
+      marginTop: '48px',
+      backgroundColor: 'inherit',
+      width: 200,
+      fontSize: '1.2em',
+      lineHeight: '19px',
+      borderWidth: '0 0 2px',
+      borderRadius: 0,
+      borderColor: 'transparent transparent #c4c4c4',
+      float: 'left'
+    };
     return (
       <div 
         style={{
@@ -123,7 +135,7 @@ var SignupPage = React.createClass({
           <input
             value = {this.state.phone}
             onChange = {this._handlePhoneChange}
-            style={inputStyle}
+            style={mobileNumber}
             ref="mobileNumber"
             type="text" 
             placeholder="手机号" />
