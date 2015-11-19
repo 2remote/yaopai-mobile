@@ -12,6 +12,9 @@ const {
 describe('用户注册页面 SignupPage', () => {
   // sinon绑定 showMessage
   let spyShowMessage = sinon.spy(SignupPage.prototype.__reactAutoBindMap, 'showMessage');
+  beforeEach(() => {
+    spyShowMessage.reset();
+  });
   // 渲染被调用的模块
   const component = renderIntoDocument(
     <SignupPage />
@@ -90,8 +93,6 @@ describe('用户注册页面 SignupPage', () => {
       });
 
       it('手机号符合/不符合', () => {
-        // 初始化spy
-        spyShowMessage.reset();
         const component = renderIntoDocument(<SignupPage />);
         const validatedMobile = '13552987637';
         component.state.phone = validatedMobile;
@@ -172,8 +173,6 @@ describe('用户注册页面 SignupPage', () => {
         // 错误手机号码
         component.state.phone = '12345678';
         let forceState = component.state.phone;
-        // 运行测试
-        spyShowMessage.reset();
         component._handleRegister();
 
         assert.equal(spyShowMessage.withArgs('请输入正确的手机号码').calledOnce, true);
@@ -194,8 +193,6 @@ describe('用户注册页面 SignupPage', () => {
         // 空密码
         component.state.password1 = '';
         let forceState = component.state.password1;
-        // 运行测试
-        spyShowMessage.reset();
         component._handleRegister();
 
         assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
@@ -216,7 +213,6 @@ describe('用户注册页面 SignupPage', () => {
         // 1位密码
         component.state.password1 = '1';
         let forceState = component.state.password1;
-        spyShowMessage.reset();
         component._handleRegister();
 
         assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
@@ -250,7 +246,6 @@ describe('用户注册页面 SignupPage', () => {
         // 空验证码
         component.state.code = '';
         let forceState = component.state.code;
-        spyShowMessage.reset();
         component._handleRegister();
 
         assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
@@ -270,7 +265,6 @@ describe('用户注册页面 SignupPage', () => {
         // 2位无效验证码
         component.state.code = '12';
         let forceState = component.state.code;
-        spyShowMessage.reset();
         component._handleRegister();
 
         assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
