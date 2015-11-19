@@ -77,13 +77,10 @@ exports.dateFormat = function(date, format) {
 }
 
 // 页面调取数据接口
-
-const host = 'http://dev.api.aiyaopai.com/';
-const api = '?API=';
-
-
-
-export const API = host + api;
+const DEV_ENV = '//dev.api.aiyaopai.com/';
+const PRODUCTION_ENV = '//api.aiyaopai.com/';
+let API_URL = DEV_ENV + '?api=';
+export const API = API_URL;
 
 // 调取 作品二级列表页面信息
 const listAllWorks = 'Albums.Search';
