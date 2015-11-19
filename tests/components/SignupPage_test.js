@@ -262,6 +262,33 @@ describe('用户注册页面 SignupPage', () => {
 
         assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
       });
+
+      it('验证码必须4位数', ()=> {
+        const spyArg = '请输入4位数字验证码';
+        // 设置符合的密码，让验证码可以继续测试
+        component.state.password1 = '12345678';
+        // 2位无效验证码
+        component.state.code = '12';
+        let forceState = component.state.code;
+        spyShowMessage.reset();
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
+
+        // 有效验证码
+        component.state.code = '7890';
+        forceState = component.state.code;
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledOnce, true);
+
+        // 8位无效验证码
+        component.state.code = '12345678';
+        forceState = component.state.code;
+        component._handleRegister();
+
+        assert.equal(spyShowMessage.withArgs(spyArg).calledTwice, true);
+      });
     });
   });
 });
