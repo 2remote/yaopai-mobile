@@ -245,6 +245,8 @@ describe('用户注册页面 SignupPage', () => {
 
       it('验证码不为空', () => {
         const spyArg = '请输入验证码';
+        // 设置符合的密码，让验证码可以继续测试
+        component.state.password1 = '12345678';
         // 空验证码
         component.state.code = '';
         let forceState = component.state.code;
