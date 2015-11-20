@@ -1,9 +1,21 @@
 // var API_URL = 'http://localhost:3000';
-var API_URL = 'http://dev.api.aiyaopai.com/?api=';
+const DEV_ENV = '//dev.api.aiyaopai.com/';
+const PRODUCTION_ENV = '//api.aiyaopai.com/';
+
+let DOMAIN = DEV_ENV;
+//根据npm环境切换api
+// console.log('NODE_ENV', process.env.NODE_ENV);
+if(process.env.NODE_ENV === 'production'){
+  DOMAIN = PRODUCTION_ENV;
+}
+
+const API_URL = DOMAIN + '?api=';
+
 //获取当前网站的根目录
 var Local_Host = window.location.href;
 
 var API_CONST = {
+  API_URL: API_URL,
   USER : {
     login : API_URL + 'User.Login',
     login_with_token : API_URL + 'User.LoginWithToken',
@@ -47,8 +59,8 @@ var API_CONST = {
   },
   FILE : {
     getToken : API_URL + 'File.Token',
-    user_token_url : 'http://dev.api.aiyaopai.com/file/token?type=user',
-    work_token_url : 'http://dev.api.aiyaopai.com/file/token?type=work',
+    user_token_url : DOMAIN + 'file/token?type=user',
+    work_token_url : DOMAIN + 'file/token?type=work',
   },
   COMMON : {
     area_list : API_URL + 'Area.List',
