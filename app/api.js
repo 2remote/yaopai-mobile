@@ -4,7 +4,7 @@ const PRODUCTION_ENV = '//api.aiyaopai.com/';
 
 let DOMAIN = DEV_ENV;
 //根据npm环境切换api
-// console.log('NODE_ENV', process.env.NODE_ENV);
+console.log('NODE_ENV', process.env.NODE_ENV);
 if(process.env.NODE_ENV === 'production'){
   DOMAIN = PRODUCTION_ENV;
 }
