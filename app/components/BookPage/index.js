@@ -16,6 +16,7 @@ var AlbumsStore = require('../../stores/AlbumsStore');
 var AlbumsActions = require('../../actions/AlbumsActions');
 var PhotographerActions = require('../../actions/PhotographerActions');
 var PhotographerStore = require('../../stores/PhotographerStore');
+var Toaster = require('../Toast');
 
 import BookIntro from './WorkBookIntro';
 import BookForm from './WorkBookForm';
@@ -74,7 +75,7 @@ var BookPage = React.createClass({
         var orderID = data.order.Id;
         this.history.pushState(null,'/book_success_dialog/'+orderID);
       }else{
-        console.log(data.hintMessage);
+        this.showMessage(data.hintMessage);
       }
     }
   },
@@ -84,7 +85,7 @@ var BookPage = React.createClass({
   _handleAlbumsStoreChange: function(data){
     if(data.flag == 'get'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        this.showMessage(data.hintMessage);
       }else{
         this.setState({albums : data.workData,photographer : data.workData.User});
       }
@@ -97,12 +98,15 @@ var BookPage = React.createClass({
   _handlePhotographerStoreChange : function(data){
     if(data.flag == 'get'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        this.showMessage(data.hintMessage);
       }else{
         console.log(data);
         this.setState({albums : '',photographer : data.photographer.User});
       }
     }
+  },
+  showMessage: function (content) {
+    this.refs.toast.show(content)
   },
   render: function() {
     var bookInfo = '';
@@ -128,6 +132,7 @@ var BookPage = React.createClass({
             backgroundImage:'url(imgs/bookPageBg.png)'
           }}
           className="bookPage">
+          <Toaster ref="toast"/>
           <HamburgMenu />
           {bookInfo}
           <BookForm onSubmit={this.HandleBookWorkFormSubmit} subValue="提交订单"/>
