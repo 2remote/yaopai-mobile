@@ -23,7 +23,7 @@ var SignupPage = React.createClass({
   _onUserStoreChange : function(data){
     if(data.flag == 'register'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        this.showMessage(data.hintMessage);
       }else{
         //注册成功
         this.history.pushState('/login_page');
