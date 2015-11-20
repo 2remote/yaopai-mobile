@@ -7,6 +7,7 @@ const $ = require('jquery');
 var GrapherIntro = require('./GrapherIntro');
 var WorkIntroList = require('./WorkIntroList');
 var ActionBar = require('./ActionBar');
+import { API_URL } from '../../api';
 
 // will remove after server configured
 let grapher = {
@@ -30,9 +31,6 @@ var GrapherDetailPage = React.createClass({
   },
   componentDidMount: function() {
     const id = this.props.params.Id;
-    const DEV_ENV = '//dev.api.aiyaopai.com/';
-    const PRODUCTION_ENV = '//api.aiyaopai.com/';
-    let API_URL = DEV_ENV + '?api=';
     const grapherInfo = 'Photographer.Get';
     const listWorkDetail = 'Albums.Search';
     const fields = '&Fields=Id,RealName,CityName,User.Avatar';

@@ -1,3 +1,5 @@
+import { API_URL } from '../api';
+
 exports.imgModifier = function  (img, mode) {
   let modifies;
   if(img === null || img === undefined ){
@@ -77,9 +79,6 @@ exports.dateFormat = function(date, format) {
 }
 
 // 页面调取数据接口
-const DEV_ENV = '//dev.api.aiyaopai.com/';
-const PRODUCTION_ENV = '//api.aiyaopai.com/';
-let API_URL = DEV_ENV + '?api=';
 export const API = API_URL;
 
 // 调取 作品二级列表页面信息
