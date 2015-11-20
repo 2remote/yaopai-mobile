@@ -3,16 +3,18 @@ const DEV_ENV = '//dev.api.aiyaopai.com/';
 const PRODUCTION_ENV = '//api.aiyaopai.com/';
 
 let DOMAIN = DEV_ENV;
-//根据npm环境切换api
-console.log('NODE_ENV', process.env.NODE_ENV);
-if(process.env.NODE_ENV === 'production'){
-  DOMAIN = PRODUCTION_ENV;
-}
 
-const API_URL = DOMAIN + '?api=';
+
 
 //获取当前网站的根目录
 var Local_Host = window.location.href;
+
+//根据local host切换api
+const re = /mobile\./i;
+if(Local_Host.match(re) != null ){
+  DOMAIN = PRODUCTION_ENV;
+}
+const API_URL = DOMAIN + '?api=';
 
 var API_CONST = {
   API_URL: API_URL,
