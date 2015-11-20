@@ -4,10 +4,6 @@ web app for YAOPAI
 CircleCI 
 [![Circle CI](https://circleci.com/gh/2remote/yaopai-mobile/tree/master.svg?style=svg&circle-token=1cc3f1e118023c56b38a5ab98154fcd893baaf06)](https://circleci.com/gh/2remote/yaopai-mobile/tree/master)
 
-Travis CI
-[![Build Status](https://magnum.travis-ci.com/2remote/yaopai-mobile.svg?token=kypfurdfJbN2L1tzq7xC)](https://magnum.travis-ci.com/2remote/yaopai-mobile)
-
-
 ## 分支说明
 
 - master 为部署分支，所有 master 分支的内容都应当是可部署的，只允许从 dev 分支 pull request 到 master。

@@ -7,6 +7,7 @@ const $ = require('jquery');
 var GrapherIntro = require('./GrapherIntro');
 var WorkIntroList = require('./WorkIntroList');
 var ActionBar = require('./ActionBar');
+import { API_URL } from '../../api';
 
 // will remove after server configured
 let grapher = {
@@ -30,14 +31,12 @@ var GrapherDetailPage = React.createClass({
   },
   componentDidMount: function() {
     const id = this.props.params.Id;
-    const host = 'http://dev.api.aiyaopai.com/';
-    const api = '?API=';
     const grapherInfo = 'Photographer.Get';
     const listWorkDetail = 'Albums.Search';
     const fields = '&Fields=Id,RealName,CityName,User.Avatar';
     const filter = '&Id='+id;
-    const url = host + api + grapherInfo + fields + filter;
-
+    const url = API_URL + grapherInfo + fields + filter;
+    
     $.ajax ({
       url: url,
       dataType: 'json',
@@ -50,7 +49,7 @@ var GrapherDetailPage = React.createClass({
       }.bind(this)
     });
 
-    const worksUrl = host + api + listWorkDetail + '&Fields=Id,Cover,Title' + '&UserId=' + id;
+    const worksUrl = API_URL + listWorkDetail + '&Fields=Id,Cover,Title' + '&UserId=' + id;
 
     if(id){
       $.ajax ({

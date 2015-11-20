@@ -1,3 +1,5 @@
+import { API_URL } from '../api';
+
 exports.imgModifier = function  (img, mode) {
   let modifies;
   if(img === null || img === undefined ){
@@ -77,13 +79,7 @@ exports.dateFormat = function(date, format) {
 }
 
 // 页面调取数据接口
-
-const host = 'http://dev.api.aiyaopai.com/';
-const api = '?API=';
-
-
-
-export const API = host + api;
+export const API = API_URL;
 
 // 调取 作品二级列表页面信息
 const listAllWorks = 'Albums.Search';
