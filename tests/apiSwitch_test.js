@@ -16,12 +16,15 @@ describe('API switch', () => {
     const pro_host = 'http://yaopai-mobile.heroku.com/#/work?_k=gn36vo';
 
     const re = /dev\./i;
-    expect(dev_host.match(re)).to.not.equal(null);
-    expect(pro_host.match(re)).to.equal(null);
-    expect('m.aiyaopai.com/'.match(re)).to.equal(null);
-    expect('dev.m.aiyaopai.com/'.match(re)).to.not.equal(null);
-    expect('dev.manage.aiyaopai.com'.match(re)).to.not.equal(null);
-    expect('manage.aiyaopai.com'.match(re)).to.equal(null);
+    expect(dev_host).to.match(re);
+    expect(pro_host).to.not.match(re);
+    expect('m.aiyaopai.com/').to.not.match(re);
+    expect('dev.m.aiyaopai.com/').to.match(re);
+    expect('dev.manage.aiyaopai.com').to.match(re);
+    expect('manage.aiyaopai.com').to.not.match(re);
+    expect('localhost:8080').to.not.match(re);
+    expect('192.168.3.2:5000/#/login_page').to.not.match(re);
+
 
   });
 });
