@@ -15,7 +15,7 @@ describe('API switch', () => {
     const dev_host = 'http://yaopai-mobile-dev.heroku.com/#/work?_k=gn36vo';
     const pro_host = 'http://yaopai-mobile.heroku.com/#/work?_k=gn36vo';
 
-    const re = /dev\./i;
+    const re = /dev\.|192\.|localhost/i;
     expect(dev_host).to.match(re);
     expect(pro_host).to.not.match(re);
     expect('m.aiyaopai.com/').to.not.match(re);

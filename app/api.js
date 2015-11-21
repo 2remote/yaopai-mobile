@@ -5,10 +5,10 @@ const PRODUCTION_ENV = '//api.aiyaopai.com/';
 let DOMAIN = DEV_ENV;
 
 //获取当前网站的根目录
-var Local_Host = window.location.href;
+var Local_Host = window.location.host;
 
 //根据local host切换api
-const re = /dev\./i;
+const re = /dev\.|192\.|localhost/i;
 if (!Local_Host && Local_Host.match(re) === null) {
   DOMAIN = PRODUCTION_ENV;
 }
