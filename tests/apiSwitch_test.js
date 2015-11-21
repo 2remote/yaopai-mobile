@@ -22,8 +22,8 @@ describe('API switch', () => {
     expect('dev.m.aiyaopai.com/').to.match(re);
     expect('dev.manage.aiyaopai.com').to.match(re);
     expect('manage.aiyaopai.com').to.not.match(re);
-    expect('localhost:8080').to.not.match(re);
-    expect('192.168.3.2:5000/#/login_page').to.not.match(re);
+    expect('localhost:8080').to.match(re);
+    expect('192.168.3.2:5000/#/login_page').to.match(re);
 
 
   });
