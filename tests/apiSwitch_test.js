@@ -10,6 +10,11 @@ describe('API switch', () => {
     '192.168.3.2:5000/#/login_page'
   ];
 
+  const prodHosts = [
+    'm.aiyaopai.com/',
+    'manage.aiyaopai.com'
+  ];
+
   it('will get right local host', ()=> {
     const dev_host = 'http://yaopai-mobile-dev.heroku.com/#/work?_k=gn36vo';
     const pro_host = 'http://yaopai-mobile.heroku.com/#/work?_k=gn36vo';
@@ -42,11 +47,30 @@ describe('API switch', () => {
       expect(hasHost(host) && isDevHost(host)).to.equal(true);
     });
   });
+
+  it('is production host, but not dev host', ()=> {
+    devHosts.forEach((host) => {
+      expect(isProdHost(host)).to.equal(false);
+    });
+
+    prodHosts.forEach((host) =>{
+      expect(isProdHost(host)).to.equal(true);
+    });
+  });
 });
+
+function isProdHost (host) {
+  return !isDevHost(host);
+}
 
 function isDevHost (host) {
   const re = /dev\.|192\.|localhost/i;
-  return host.match(re).length > 0;
+  const founds = host.match(re);
+  if(founds !=  null){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 function hasHost (host) {
