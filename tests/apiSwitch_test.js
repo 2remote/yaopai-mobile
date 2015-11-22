@@ -31,7 +31,18 @@ describe('API switch', () => {
       expect(hasHost(host)).to.equal(true);   
     });
   });
+
+  it('is dev host', ()=> {
+    devHosts.forEach((host, i) => {
+      expect(isDevHost(host)).to.equal(true);
+    });
+  });
 });
+
+function isDevHost (host) {
+  const re = /dev\.|192\.|localhost/i;
+  return host.match(re).length > 0;
+}
 
 function hasHost (host) {
   return host.length > 0;
