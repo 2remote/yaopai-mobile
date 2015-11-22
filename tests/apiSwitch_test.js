@@ -1,5 +1,11 @@
-import { expect } from 'chai';
-import { USER, FILE } from '../app/api';
+import {
+  expect
+}
+from 'chai';
+import {
+  USER, FILE
+}
+from '../app/api';
 import _ from 'underscore';
 
 describe('API switch', () => {
@@ -17,7 +23,7 @@ describe('API switch', () => {
     'http://yaopai-mobile.herokuapp.com/'
   ];
 
-  it('will get right local host', ()=> {
+  it('will get right local host', () => {
     const dev_host = 'http://yaopai-mobile-dev.heroku.com/#/work?_k=gn36vo';
     const pro_host = 'http://yaopai-mobile.heroku.com/#/work?_k=gn36vo';
 
@@ -32,59 +38,59 @@ describe('API switch', () => {
     expect('192.168.3.2:5000/#/login_page').to.match(re);
   });
 
-  it('has hosts', ()=> {
+  it('has hosts', () => {
     devHosts.forEach((host, i) => {
-      expect(hasHost(host)).to.equal(true);   
+      expect(hasHost(host)).to.equal(true);
     });
   });
 
-  it('is dev host', ()=> {
+  it('is dev host', () => {
     devHosts.forEach((host) => {
       expect(isDevHost(host)).to.equal(true);
     });
   });
 
-  it('had hosts and is dev host', ()=> {
+  it('had hosts and is dev host', () => {
     devHosts.forEach((host) => {
       expect(hasHost(host) && isDevHost(host)).to.equal(true);
     });
   });
 
-  it('is production host, but not dev host', ()=> {
+  it('is production host, but not dev host', () => {
     devHosts.forEach((host) => {
       expect(isProdHost(host)).to.equal(false);
     });
 
-    prodHosts.forEach((host) =>{
+    prodHosts.forEach((host) => {
       expect(isProdHost(host)).to.equal(true);
     });
   });
 
-  it('has host and is production host', ()=> {
-    devHosts.forEach((host) =>{
+  it('has host and is production host', () => {
+    devHosts.forEach((host) => {
       expect(hasHost(host) && isProdHost(host)).to.equal(false);
     });
 
-    prodHosts.forEach((host) =>{
+    prodHosts.forEach((host) => {
       expect(hasHost(host) && isProdHost(host)).to.equal(true);
     });
   });
 });
 
-function isProdHost (host) {
+function isProdHost(host) {
   return !isDevHost(host);
 }
 
-function isDevHost (host) {
+function isDevHost(host) {
   const re = /dev\.|192\.|localhost/i;
   const founds = host.match(re);
-  if(founds !=  null){
+  if (founds != null) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
 
-function hasHost (host) {
+function hasHost(host) {
   return host.length > 0;
 }
