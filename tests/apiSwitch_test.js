@@ -27,14 +27,19 @@ describe('API switch', () => {
 
   it('has hosts', ()=> {
     devHosts.forEach((host, i) => {
-      // console.log('testing host i', i);
       expect(hasHost(host)).to.equal(true);   
     });
   });
 
   it('is dev host', ()=> {
-    devHosts.forEach((host, i) => {
+    devHosts.forEach((host) => {
       expect(isDevHost(host)).to.equal(true);
+    });
+  });
+
+  it('had hosts and is dev host', ()=> {
+    devHosts.forEach((host) => {
+      expect(hasHost(host) && isDevHost(host)).to.equal(true);
     });
   });
 });
