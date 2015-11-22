@@ -8,10 +8,28 @@ let DOMAIN = DEV_ENV;
 var Local_Host = window.location.host;
 
 //根据local host切换api
-const re = /dev\.|192\.|localhost/i;
-if (!Local_Host && Local_Host.match(re) === null) {
+function hasHost(host) {
+  return host.length > 0;
+}
+
+function isDevHost(host) {
+  const re = /dev\.|192\.|localhost/i;
+  const founds = host.match(re);
+  if (founds != null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function isProdHost(host) {
+  return !isDevHost(host);
+}
+
+if (hasHost(Local_Host) && isProdHost(Local_Host)) {
   DOMAIN = PRODUCTION_ENV;
 }
+
 const API_URL = DOMAIN + '?api=';
 
 var API_CONST = {
