@@ -1,15 +1,14 @@
 import { expect } from 'chai';
 import { USER, FILE } from '../app/api';
+import _ from 'underscore';
 
 describe('API switch', () => {
-  it('in dev mode(default)', ()=> {
-
-    expect(USER.login).to.be.a('string');
-    expect(USER.login).to.equal('//dev.api.aiyaopai.com/?api=User.Login');
-
-    expect(FILE.user_token_url).to.equal('//dev.api.aiyaopai.com/file/token?type=user');
-    expect(FILE.work_token_url).to.equal('//dev.api.aiyaopai.com/file/token?type=work');
-  });
+  const devHosts = [
+    'dev.m.aiyaopai.com/',
+    'dev.manage.aiyaopai.com',
+    'localhost:8080',
+    '192.168.3.2:5000/#/login_page'
+  ];
 
   it('will get right local host', ()=> {
     const dev_host = 'http://yaopai-mobile-dev.heroku.com/#/work?_k=gn36vo';
@@ -24,7 +23,16 @@ describe('API switch', () => {
     expect('manage.aiyaopai.com').to.not.match(re);
     expect('localhost:8080').to.match(re);
     expect('192.168.3.2:5000/#/login_page').to.match(re);
+  });
 
-
+  it('has hosts', ()=> {
+    devHosts.forEach((host, i) => {
+      // console.log('testing host i', i);
+      expect(hasHost(host)).to.equal(true);   
+    });
   });
 });
+
+function hasHost (host) {
+  return host.length > 0;
+}
