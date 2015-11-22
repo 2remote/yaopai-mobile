@@ -57,6 +57,16 @@ describe('API switch', () => {
       expect(isProdHost(host)).to.equal(true);
     });
   });
+
+  it('has host and is production host', ()=> {
+    devHosts.forEach((host) =>{
+      expect(hasHost(host) && isProdHost(host)).to.equal(false);
+    });
+
+    prodHosts.forEach((host) =>{
+      expect(hasHost(host) && isProdHost(host)).to.equal(true);
+    });
+  });
 });
 
 function isProdHost (host) {
