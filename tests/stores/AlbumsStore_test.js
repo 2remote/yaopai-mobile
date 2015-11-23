@@ -11,9 +11,15 @@ from 'chai';
 import AlbumsStore from '../../app/stores/AlbumsStore';
 
 describe('Albums Store Test', () => {
+  let res = {};
+  const errorMsg = 'error message';
+
   beforeEach(() => {
     AlbumsStore.data.hintMessage = '';
     AlbumsStore.data.flag = '';
+    res = {
+      Success: true
+    }
   });
 
   it('has store', () => {
@@ -49,14 +55,10 @@ describe('Albums Store Test', () => {
   });
 
   it('works on add success', () => {
-    let res = {
-      Success: true
-    };
     AlbumsStore.onAddSuccess(res);
     expect(AlbumsStore.data.hintMessage).is.empty;
     expect(AlbumsStore.data.flag).to.equal('add');
 
-    const errorMsg = 'error message';
     res = {
       Success: false,
       ErrorMsg: errorMsg
