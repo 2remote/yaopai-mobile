@@ -14,13 +14,15 @@ describe('API switch', () => {
     'dev.manage.aiyaopai.com',
     'localhost:8080',
     '192.168.3.2:5000/#/login_page',
-    'http://yaopai-mobile-dev.herokuapp.com/'
+    'http://yaopai-mobile-dev.herokuapp.com/',
+    'dev.p.aiyaopai.com'
   ];
 
   const prodHosts = [
     'm.aiyaopai.com/',
     'manage.aiyaopai.com',
-    'http://yaopai-mobile.herokuapp.com/'
+    'http://yaopai-mobile.herokuapp.com/',
+    'p.aiyaopai.com'
   ];
 
   it('will get right local host', () => {
