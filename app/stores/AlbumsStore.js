@@ -39,7 +39,7 @@ var AlbumsStore = Reflux.createStore({
   },
   onFailed : function(res){
     this.data.hintMessage = '网络错误';
-    this.data.flag == 'failed';
+    this.data.flag = 'failed';
     this.trigger(this.data);
   },
   onAddSuccess : function(res){

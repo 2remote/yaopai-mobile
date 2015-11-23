@@ -27,4 +27,12 @@ describe('Albums Store Test', () => {
       storeHasMethod(AlbumsStore, method);  
     })
   });
+
+  it('works on failed', ()=> {
+    expect(AlbumsStore.data.hintMessage).is.empty;
+    expect(AlbumsStore.data.flag).is.empty;
+    AlbumsStore.onFailed();
+    expect(AlbumsStore.data.hintMessage).to.equal('网络错误');
+    expect(AlbumsStore.data.flag).to.equal('failed');
+  });
 });
