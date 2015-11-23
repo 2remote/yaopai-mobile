@@ -14,4 +14,10 @@ exports.storeHasData = (store, key = "NA") => {
       expect(store.data[key]).to.exist;
     });
   }
+};
+
+exports.storeHasMethod = (store, method) => {
+  it('has method << #{methold} >>', ()=> {
+    expect(sotre[method]).to.exist;
+  });
 }
