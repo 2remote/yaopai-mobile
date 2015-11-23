@@ -11,16 +11,20 @@ from 'chai';
 import AlbumsStore from '../../app/stores/AlbumsStore';
 
 describe('Albums Store Test', () => {
-  let res = {};
+  const successfulRes = {
+    Success: true
+  };
+
   const errorMsg = 'error message';
+
+  const failedRes = {
+    Success: false,
+    ErrorMsg: errorMsg
+  };
 
   beforeEach(() => {
     AlbumsStore.data.hintMessage = '';
     AlbumsStore.data.flag = '';
-
-    res = {
-      Success: true
-    }
   });
 
   it('has store', () => {
@@ -54,48 +58,33 @@ describe('Albums Store Test', () => {
   });
 
   it('works on add success', () => {
-    AlbumsStore.onAddSuccess(res);
+    AlbumsStore.onAddSuccess(successfulRes);
     expect(AlbumsStore.data.hintMessage).is.empty;
     expect(AlbumsStore.data.flag).to.equal('add');
 
-    res = {
-      Success: false,
-      ErrorMsg: errorMsg
-    };
-
-    AlbumsStore.onAddSuccess(res);
+    AlbumsStore.onAddSuccess(failedRes);
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.flag).to.equal('add');
   });
 
   it('works on get success', () => {
-    AlbumsStore.onGetSuccess(res);
+    AlbumsStore.onGetSuccess(successfulRes);
     expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.workData).to.equal(res);
+    expect(AlbumsStore.data.workData).to.equal(successfulRes);
     expect(AlbumsStore.data.flag).to.equal('get');
 
-    res = {
-      Success: false,
-      ErrorMsg: errorMsg
-    };
-
-    AlbumsStore.onGetSuccess(res);
+    AlbumsStore.onGetSuccess(failedRes);
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.workData).is.empty;
     expect(AlbumsStore.data.flag).to.equal('get');
   });
 
-  it('works on update success', ()=> {
-    AlbumsStore.onUpdateSuccess(res);
+  it('works on update success', () => {
+    AlbumsStore.onUpdateSuccess(successfulRes);
     expect(AlbumsStore.data.hintMessage).is.empty;
     expect(AlbumsStore.data.flag).to.equal('update');
 
-    res = {
-      Success: false,
-      ErrorMsg: errorMsg
-    };
-
-    AlbumsStore.onUpdateSuccess(res);
+    AlbumsStore.onUpdateSuccess(failedRes);
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.flag).to.equal('update');
   });
