@@ -24,4 +24,26 @@ describe('登陆页 loginPage', () => {
     let loginForm = scryRenderedDOMComponentsWithClass(component, 'loginForm');
     expect(loginForm.length).to.above(0);
   });
+  it ('弹出层组件是否存在', () => {
+    // 获取弹出层组件
+    let toaster = component.refs.toast;
+    expect(toaster).to.exist;
+  });
+  it ('link跳转组件是否正确', () => {
+    // 获取Link组件
+    let linkSignup = component.refs.link;
+    expect(linkSignup.props.to).to.equal('/signupPage');
+    // 获取Link的子节点span
+    let childSpan = component.refs.signupButton.getDOMNode();
+    expect(childSpan.textContent).to.equal('新建帐号');
+  });
+  it ('内容OR的阶段是否正确', () => {
+    // 获取节点
+    let splitText = findRenderedDOMComponentWithClass(component, 'splitText').getDOMNode();
+    expect(splitText.textContent).to.exist;
+  });
+  it ('ActionBar组件是否存在', () => {
+    let actionBar = component.refs.actionBar;
+    expect(actionBar).to.exist;
+  });
 });

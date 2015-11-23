@@ -56,7 +56,7 @@ var LoginPage = React.createClass({
           <LoginForm showMessage={this.showMessage}/>
           <Toaster ref="toast"/>
           <div style={{margin: '44px 0 5px'}}>
-            <Link to="/signupPage">
+            <Link ref="link" to="/signupPage">
               <span 
               style={{
                 color: '#636363',
@@ -65,7 +65,7 @@ var LoginPage = React.createClass({
               ref="signupButton">新建帐号</span>
             </Link>
           </div>
-          <span ref="splitText">
+          <div className="splitText">
             <img 
               src="imgs/common/spliter-line.png"
               srcSet="imgs/common/spliter-line@2X.png 2x" />
@@ -75,8 +75,8 @@ var LoginPage = React.createClass({
               marginTop: -21,
               color: '#c4c4c4'
             }}>OR</div>
-          </span>
-          <ActionBar />
+          </div>
+          <ActionBar ref="actionBar"/>
         </div>
       </DocumentTitle>
     );
