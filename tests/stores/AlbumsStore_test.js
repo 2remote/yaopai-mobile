@@ -68,4 +68,21 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.flag).to.equal('add');
   });
+
+  it('works on get success', () => {
+    AlbumsStore.onGetSuccess(res);
+    expect(AlbumsStore.data.hintMessage).is.empty;
+    expect(AlbumsStore.data.workData).to.equal(res);
+    expect(AlbumsStore.data.flag).to.equal('get');
+
+    res = {
+      Success: false,
+      ErrorMsg: errorMsg
+    };
+
+    AlbumsStore.onGetSuccess(res);
+    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
+    expect(AlbumsStore.data.workData).is.empty;
+    expect(AlbumsStore.data.flag).to.equal('get');
+  });
 });
