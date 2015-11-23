@@ -20,7 +20,8 @@ describe('登陆页 loginPage', () => {
     expect(yaopaiLogo.src).to.have.string('imgs/loginPage/yaopai-logo.png');
   });
   it ('登陆表单组件是否存在', () => {
+    // 是否存在loginForm类的组件
     let loginForm = scryRenderedDOMComponentsWithClass(component, 'loginForm');
-    expect(scryRenderedDOMComponentsWithClass(component, 'loginForm').length).to.above(0);
+    expect(loginForm.length).to.above(0);
   });
 });
