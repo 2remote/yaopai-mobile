@@ -6,18 +6,24 @@ exports.storeIsDefined = (store) => {
 
 exports.storeHasData = (store, key = "NA") => {
   if (key == "NA"){
-    it('has data object', ()=> {
-      expect(store.data).to.exist;
+    describe('has data object', () => {
+      it('has data object', ()=> {
+        expect(store.data).to.exist;
+      });
     });
   }else{
-    it('has data element << #{key} >>', ()=> {
-      expect(store.data[key]).to.exist;
-    });
+    describe('has data element', () => {
+      it(`has data element << ${key} >>`, ()=> {
+        expect(store.data[key]).to.exist;
+      });
+    })
   }
 };
 
-exports.storeHasMethod = (store, method) => {
-  it('has method << #{methold} >>', ()=> {
-    expect(sotre[method]).to.exist;
-  });
-}
+exports.storeHasMethod = function (store, method) {
+  describe('store has method', () => {
+    it(`has method methold  << ${method} >>`, ()=> {
+      expect(store[method]).to.exist;
+    });  
+  })
+};
