@@ -70,4 +70,12 @@ describe('登陆页 LoginForm组件', () => {
       expect(textContext.value).to.equal('忘记密码');
     });
   });
+
+  describe('登陆按钮组件存在', () => {
+    // 获取登陆按钮虚拟DOM
+    let loginButton = component.refs.loginButton;
+    it ('登陆内容是否存在', () => {
+      expect(loginButton.getDOMNode().textContent).to.exist;
+    });
+  });
 });
