@@ -35,7 +35,7 @@ describe('Albums Store Test', () => {
   it('has methods', () => {
     const methods = [
       'onFailed',
-      'onAddsuccess',
+      'onAddSuccess',
       'onGetSuccess',
       'onUpdateSuccess',
       'onDeleteSuccess',
