@@ -77,5 +77,9 @@ describe('登陆页 LoginForm组件', () => {
     it ('登陆内容是否存在', () => {
       expect(loginButton.getDOMNode().textContent).to.exist;
     });
+
+    it ('_handleLogin', () => {
+      expect(1).to.equal(1);
+    });
   });
 });
