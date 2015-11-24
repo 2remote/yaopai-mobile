@@ -35,7 +35,6 @@ var LoginForm = React.createClass({
       //autologin : this.state.rememberMe, //记住我的登录需要加上
       autoexpires : 10000
     };
-    console.log(loginData);
     UserActions.login(loginData);
     return false;
   },

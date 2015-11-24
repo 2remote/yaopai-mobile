@@ -124,7 +124,7 @@ describe('登陆页 LoginForm组件', () => {
         // 确认函数没有被调用
         expect(spyShowMessage.withArgs('请输入正确的密码格式').callCount).to.equal(1);
 
-        // 密码符合时
+        // 密码大于18位时
          component.state.password = '12345678901234567890';
         // 模拟登录点击
         Simulate.click(loginButton.getDOMNode());
