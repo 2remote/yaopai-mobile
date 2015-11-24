@@ -42,7 +42,7 @@ describe('Albums Store Test', () => {
       'onDeleteSuccess',
       'onSearchSuccess',
       'onGetMyAlbumsSuccess',
-      'onGetCategoiesSuccess',
+      'onGetCategoriesSuccess',
       'onSaleSuccess',
       'offSaleSuccess',
       'onRecommendListSuccess'
@@ -140,5 +140,16 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.workList).is.empty;
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
+  });
+
+  it('works on get catagoies success', () => {
+    AlbumsStore.onGetCategoriesSuccess(successfulRes);
+    expect(AlbumsStore.data.categories).to.equal(successfulRes.Result);
+    expect(AlbumsStore.data.hintMessage).is.empty;
+    expect(AlbumsStore.data.flag).to.equal('getCategories');
+
+    AlbumsStore.onGetCategoriesSuccess(failedRes);
+    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
+    expect(AlbumsStore.data.flag).to.equal('getCategories');
   });
 });
