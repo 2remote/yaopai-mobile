@@ -16,10 +16,6 @@ var style={
   loginBox: {
     position: 'relative',
   },
-  logoutIcon:{
-    // float: 'left',
-    // margin: '2px -73px 0 33px'
-  },
   logout:{
     position: 'absolute',
     top: '58px',
@@ -88,7 +84,6 @@ var SidePage = React.createClass({
   render: function() {
     var accountContent = '';
     if(this.props.userData && this.props.userData.isLogin){
-      //这个link应该指向用户中心
       accountContent = (
         <div className="loginBox" style={style.loginBox}>
           <Link style={style.link} to={this.props.userData.userType==0?"/user_center":"/grapher_center"}>
@@ -123,7 +118,6 @@ var SidePage = React.createClass({
     }
     return(
       <div
-        // style={style.menu}
         className="menu">
         <div className={(this.state.visible ? "visible " : "") + 'left'}>
           <div
@@ -144,20 +138,6 @@ var SidePage = React.createClass({
                 srcSet="imgs/sidePage/grapher-icon@2X.png 2x" />
               <div>摄影师</div>
             </Link>
-            <div style={style.spliterLine} className="spliterLine" />
-            <div style={style.link}>
-              <img  style={style.commonIcon} ref="interviewIcon" 
-                src="imgs/sidePage/interview-icon.png"
-                srcSet="imgs/sidePage/interview-icon@2X.png 2x" />
-              <div>访谈</div>
-            </div>
-            <div style={style.spliterLine} className="spliterLine" />
-            <div style={style.link}>
-              <img style={style.commonIcon} ref="activityIcon" 
-                src="imgs/sidePage/activity-icon.png"
-                srcSet="imgs/sidePage/activity-icon@2X.png 2x" />
-              <div>活动</div>
-            </div>
             <div style={style.spliterLine} className="spliterLine" />
           </div>
         </div>
