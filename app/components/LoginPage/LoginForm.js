@@ -103,7 +103,7 @@ var LoginForm = React.createClass({
               placeholder="密码" />
           </div>
           <div>
-            <Link to="/find_my_pass_page1">
+            <Link ref="linkFind" to="/find_my_pass_page1">
               <input 
                 style={style.findPass}
                 ref="findMyPassButton"
@@ -111,7 +111,6 @@ var LoginForm = React.createClass({
                 value="忘记密码" />
             </Link>
           </div>
-
           <div
             style={style.login}
             onClick={this._handleLogin}

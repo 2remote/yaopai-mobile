@@ -43,7 +43,7 @@ describe('登陆页 LoginForm组件', () => {
     // 获取密码框虚拟DOM
     let passWord = component.refs.passWord;
     it ('密码框DOM存在', () => {
-      expect(passWord).to.exist;
+      expect(passWord.getDOMNode().placeholder).to.equal('密码');
     });
 
     it ('输入密码后，改变state', () => {
@@ -54,6 +54,20 @@ describe('登陆页 LoginForm组件', () => {
       Simulate.change(passWord.getDOMNode(), {target: {value: '123456'}});
       // 验证密码是否改变
       expect(component.state.password).to.equal('123456');
+    });
+  });
+
+  describe('忘记密码组件', () => {
+    // 获取忘记密码虚拟DOM
+    let linkFind = component.refs.linkFind;
+    it ('验证连接是否正确', () => {
+      expect(linkFind.props.to).to.equal('/find_my_pass_page1');
+    });
+
+    it ('忘记密码是否存在', () => {
+      // 获取内容DOM节点
+      let textContext = component.refs.findMyPassButton.getDOMNode();
+      expect(textContext.value).to.equal('忘记密码');
     });
   });
 });
