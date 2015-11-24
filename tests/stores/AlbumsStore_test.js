@@ -172,4 +172,14 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.flag).to.equal('offSale');
   });
+
+  it('works on recommend list success', () => {
+    AlbumsStore.onRecommendListSuccess(successfulRes);
+    expect(AlbumsStore.data.hintMessage).is.empty;
+    expect(AlbumsStore.data.workList).to.equal(successfulRes.Result);
+
+    AlbumsStore.onRecommendListSuccess(failedRes);
+    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
+    expect(AlbumsStore.data.flag).to.equal('recommendList');
+  });
 });
