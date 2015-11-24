@@ -78,8 +78,59 @@ describe('登陆页 LoginForm组件', () => {
       expect(loginButton.getDOMNode().textContent).to.exist;
     });
 
-    it ('_handleLogin', () => {
-      expect(1).to.equal(1);
+    describe ('_handleLogin', () => {
+      const component = renderIntoDocument(
+        <LoginForm showMessage={function (info) {
+          return;
+        }}/>
+      );
+      // 重新获取登陆按钮虚拟DOM
+      let loginButton = component.refs.loginButton;
+      // 函数绑定 把showMessage绑定在spy上，但是使用的是props上的函数，因此这样写，待确认
+      let spyShowMessage = sinon.spy(component.props, 'showMessage');
+
+      // 每次it之前进行函数重置
+      beforeEach(function () {
+        spyShowMessage.reset();
+      });
+      it ('手机号是否符合', () => {
+        // 手机号码错误时
+        component.state.userName = '12';
+        // 模拟登录点击
+        Simulate.click(loginButton.getDOMNode());
+        // 确认函数被调用一次
+        expect(spyShowMessage.withArgs('请输入正确的手机号码').callCount).to.equal(1);
+
+        // 手机号码正确时
+        component.state.userName = '18883283605';
+        // 模拟登录点击
+        Simulate.click(loginButton.getDOMNode());
+        // 确认y函数没有被调用
+        expect(spyShowMessage.withArgs('请输入正确的手机号码').callCount).to.equal(1);
+      });
+
+      it ('密码是否符合', () => {
+        // 密码少于6位时
+        component.state.password = '1234';
+        // 模拟登录点击
+        Simulate.click(loginButton.getDOMNode());
+        // 确认函数被调用一次
+        expect(spyShowMessage.withArgs('请输入正确的密码格式').callCount).to.equal(1);
+
+        // 密码符合时
+         component.state.password = '123456';
+        // 模拟登录点击
+        Simulate.click(loginButton.getDOMNode());
+        // 确认函数没有被调用
+        expect(spyShowMessage.withArgs('请输入正确的密码格式').callCount).to.equal(1);
+
+        // 密码符合时
+         component.state.password = '12345678901234567890';
+        // 模拟登录点击
+        Simulate.click(loginButton.getDOMNode());
+        // 确认函数被调用一次
+        expect(spyShowMessage.withArgs('请输入正确的密码格式').callCount).to.equal(2);
+      });
     });
   });
 });

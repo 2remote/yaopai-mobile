@@ -20,9 +20,13 @@ var LoginForm = React.createClass({
   _handleLogin : function(){
     var phone = this.state.userName;
     var password = this.state.password;
-    if(!validator.isMobilePhone(phone, 'zh-CN') || !validator.isLength(password,6,18)) {
-      this.props.showMessage('请输入正确的手机号码和密码格式');
-      return false;
+    if(!validator.isMobilePhone(phone, 'zh-CN')) {
+      this.props.showMessage('请输入正确的手机号码');
+      return;
+    }
+    if (!validator.isLength(password,6,18)) {
+       this.props.showMessage('请输入正确的密码格式');
+      return;
     }
     //登录数据
     var loginData = {
