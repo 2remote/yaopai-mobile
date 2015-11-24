@@ -79,8 +79,6 @@ var LoginForm = React.createClass({
         marginTop: 15
       }
     };
-
-
     return (
       <div 
         style={style.loginForm}

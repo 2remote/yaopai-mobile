@@ -38,4 +38,22 @@ describe('登陆页 LoginForm组件', () => {
       expect(component.state.userName).to.equal('18883283605');
     });
   });
+
+  describe('密码输入框组件', () => {
+    // 获取密码框虚拟DOM
+    let passWord = component.refs.passWord;
+    it ('密码框DOM存在', () => {
+      expect(passWord).to.exist;
+    });
+
+    it ('输入密码后，改变state', () => {
+      let initNumber = component.state.password;
+      // 验证密码的初始值是不是为空
+      expect(initNumber).to.be.empty;
+      // 模拟输入事件
+      Simulate.change(passWord.getDOMNode(), {target: {value: '123456'}});
+      // 验证密码是否改变
+      expect(component.state.password).to.equal('123456');
+    });
+  });
 });
