@@ -126,6 +126,7 @@ describe('Albums Store Test', () => {
     console.log(AlbumsStore.data);
     AlbumsStore.onSearchSuccess(failedRes);
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
+    expect(AlbumsStore.data.workList).is.empty;
     expect(AlbumsStore.data.flag).to.equal('search');
   });
 });
