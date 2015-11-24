@@ -98,4 +98,34 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.flag).to.equal('delete');
   });
+
+  it('works on search success', ()=> {
+    // 有数据的时候
+    let res = {
+      Success: true,
+      Count: 1,
+      PageIndex: 1,
+      PageCount: 1,
+      PageSize: 1,
+      Total: 1,
+      Result: [1,2,3]
+    };
+
+    AlbumsStore.onSearchSuccess(res);
+    expect(AlbumsStore.data.hintMessage).is.empty;
+    expect(AlbumsStore.data.flag).to.equal('search');
+
+    storeHasData(AlbumsStore, 'count');
+    storeHasData(AlbumsStore, 'pageCount');
+    storeHasData(AlbumsStore, 'pageIndex');
+    storeHasData(AlbumsStore, 'pageSize');
+    storeHasData(AlbumsStore, 'total');
+    storeHasData(AlbumsStore, 'workList');
+
+    // 没有数据的时候
+    console.log(AlbumsStore.data);
+    AlbumsStore.onSearchSuccess(failedRes);
+    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
+    expect(AlbumsStore.data.flag).to.equal('search');
+  });
 });
