@@ -89,7 +89,7 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('update');
   });
 
-  it('works on delete success', ()=> {
+  it('works on delete success', () => {
     AlbumsStore.onDeleteSuccess(successfulRes);
     expect(AlbumsStore.data.hintMessage).is.empty;
     expect(AlbumsStore.data.flag).to.equal('delete');
