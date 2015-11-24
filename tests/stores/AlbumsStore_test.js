@@ -124,7 +124,6 @@ describe('Albums Store Test', () => {
     storeHasData(AlbumsStore, 'workList');
 
     // 没有数据的时候
-    console.log(AlbumsStore.data);
     AlbumsStore.onSearchSuccess(failedRes);
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.workList).is.empty;
