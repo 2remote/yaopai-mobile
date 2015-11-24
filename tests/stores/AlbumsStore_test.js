@@ -12,7 +12,8 @@ import AlbumsStore from '../../app/stores/AlbumsStore';
 
 describe('Albums Store Test', () => {
   const successfulRes = {
-    Success: true
+    Success: true,
+    Result: [1,2,3]
   };
 
   const errorMsg = 'error message';
@@ -128,5 +129,17 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.workList).is.empty;
     expect(AlbumsStore.data.flag).to.equal('search');
+  });
+
+  it('works on get my albums success', ()=> {
+    AlbumsStore.onGetMyAlbumsSuccess(successfulRes);
+    expect(AlbumsStore.data.workList).to.equal(successfulRes.Result);
+    expect(AlbumsStore.data.hintMessage).is.empty;
+    expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
+    
+    AlbumsStore.onGetMyAlbumsSuccess(failedRes);
+    expect(AlbumsStore.data.workList).is.empty;
+    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
+    expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
   });
 });
