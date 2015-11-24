@@ -13,7 +13,7 @@ import AlbumsStore from '../../app/stores/AlbumsStore';
 describe('Albums Store Test', () => {
   const successfulRes = {
     Success: true,
-    Result: [1,2,3]
+    Result: [1, 2, 3]
   };
 
   const errorMsg = 'error message';
@@ -100,7 +100,7 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('delete');
   });
 
-  it('works on search success', ()=> {
+  it('works on search success', () => {
     // 有数据的时候
     let res = {
       Success: true,
@@ -109,7 +109,7 @@ describe('Albums Store Test', () => {
       PageCount: 1,
       PageSize: 1,
       Total: 1,
-      Result: [1,2,3]
+      Result: [1, 2, 3]
     };
 
     AlbumsStore.onSearchSuccess(res);
@@ -130,12 +130,12 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('search');
   });
 
-  it('works on get my albums success', ()=> {
+  it('works on get my albums success', () => {
     AlbumsStore.onGetMyAlbumsSuccess(successfulRes);
     expect(AlbumsStore.data.workList).to.equal(successfulRes.Result);
     expect(AlbumsStore.data.hintMessage).is.empty;
     expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
-    
+
     AlbumsStore.onGetMyAlbumsSuccess(failedRes);
     expect(AlbumsStore.data.workList).is.empty;
     expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
