@@ -1,5 +1,5 @@
 import {
-  storeIsDefined, storeHasMethod
+  storeIsDefined, storeHasMethod, storeHasData
 }
 from './refluxTestHelpers';
 
@@ -14,5 +14,15 @@ describe('test helpers', () => {
       demoMethod: () => {}
     };
     storeHasMethod(store, 'demoMethod');
+  });
+
+  it('has a data', ()=> {
+    let store = {
+      data: {
+        demo: 1,
+      }
+    }
+    storeHasData(store);
+    storeHasData(store, 'demo');
   });
 })
