@@ -72,15 +72,7 @@ describe('Albums Store Test', () => {
 
   storeCheckCommonUsage(AlbumsStore, 'onUpdateSuccess', 'update');
 
-  it('works on delete success', () => {
-    AlbumsStore.onDeleteSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('delete');
-
-    AlbumsStore.onDeleteSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('delete');
-  });
+  storeCheckCommonUsage(AlbumsStore, 'onDeleteSuccess', 'delete');
 
   it('works on search success', () => {
     // 有数据的时候
