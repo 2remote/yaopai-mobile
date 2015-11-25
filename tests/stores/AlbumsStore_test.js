@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 import {
-  storeIsDefined, storeHasData, storeHasMethod
+  storeIsDefined, storeHasData, storeHasMethod, storeCheckCommonUsage
 }
 from '../refluxTestHelpers';
 import {
@@ -58,15 +58,7 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('failed');
   });
 
-  it('works on add success', () => {
-    AlbumsStore.onAddSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('add');
-
-    AlbumsStore.onAddSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('add');
-  });
+  storeCheckCommonUsage(AlbumsStore, 'onAddSuccess', 'add')
 
   it('works on get success', () => {
     AlbumsStore.onGetSuccess(successfulRes);
