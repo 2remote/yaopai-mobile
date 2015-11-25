@@ -74,7 +74,7 @@ describe('Albums Store Test', () => {
 
   storeCheckCommonUsage(AlbumsStore, 'onDeleteSuccess', 'delete');
 
-  it('works on search success', () => {
+  describe('works on search success', () => {
     // 有数据的时候
     let res = {
       Success: true,
