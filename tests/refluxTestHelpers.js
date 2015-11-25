@@ -54,6 +54,7 @@ exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
   describe(`store check common usage for method << ${method} >>`, () => {
     it(`will work when success`, () => {
       store[method](successfulRes);
+      // console.log('data show:', store.data);
       expect(store.data.hintMessage, '提示信息设定为空，不显示提示。').to.equal('');
       if( result != 'NA'){
         expect(store['data'][result], '赋值检测').to.deep.equal(successfulRes);
