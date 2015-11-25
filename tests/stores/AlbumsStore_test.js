@@ -33,7 +33,7 @@ describe('Albums Store Test', () => {
     storeHasData(AlbumsStore);
   });
 
-  it('has methods', () => {
+  describe('has methods', () => {
     const methods = [
       'onFailed',
       'onAddSuccess',
