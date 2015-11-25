@@ -51,14 +51,14 @@ exports.storeCheckCommonUsage = function (store, method, flag) {
     ErrorMsg: errorMsg
   };
 
-  describe(`store << ${store.name} >> check common method`, () => {
-    it(`will work on << ${method} >> success`, () => {
+  describe(`store check common usage for method << ${method} >>`, () => {
+    it(`will work when success`, () => {
       store[method](successfulRes);
       expect(store.data.hintMessage).to.equal('');
       expect(store.data.flag).to.equal(flag);
     });
 
-    it(`will work on << ${method} >> failed`, () => {
+    it(`will work when failed`, () => {
       store[method](failedRes);
       expect(store.data.hintMessage).to.equal(errorMsg);
       expect(store.data.flag).to.equal(flag);
