@@ -7,7 +7,7 @@ var WechatLogin = React.createClass({
   },
   render: function() {
     return (
-      <div onClick={this._weChatLogin} className="wechatLogin">
+      <div onClick={this._weChatLogin} className="weichatLogin">
         <img
           ref="wechatLogo"
           src="imgs/common/wechat-logo.png"
