@@ -116,15 +116,7 @@ describe('Albums Store Test', () => {
   
   storeCheckCommonUsage(AlbumsStore, 'onSaleSuccess', 'onSale');
   
-  it('works off sale success', () => {
-    AlbumsStore.offSaleSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('offSale');
-
-    AlbumsStore.offSaleSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('offSale');
-  });
+  storeCheckCommonUsage(AlbumsStore, 'offSaleSuccess', 'offSale');
 
   it('works on recommend list success', () => {
     AlbumsStore.onRecommendListSuccess(successfulRes);
