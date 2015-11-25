@@ -104,16 +104,12 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('search');
   });
 
-  it('works on get my albums success', () => {
-    AlbumsStore.onGetMyAlbumsSuccess(successfulRes);
-    expect(AlbumsStore.data.workList).to.equal(successfulRes.Result);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
 
+  describe('works on get my albums success', () => {
+    storeCheckCommonUsage(AlbumsStore, 'onGetMyAlbumsSuccess', 'getMyAlbums', 'workList');
+    
     AlbumsStore.onGetMyAlbumsSuccess(failedRes);
     expect(AlbumsStore.data.workList).is.empty;
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
   });
 
   it('works on get catagoies success', () => {
