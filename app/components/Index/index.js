@@ -119,22 +119,6 @@ var Index = React.createClass({
       <DocumentTitle title="YAOPAI：一个全球预约摄影师平台">
       <div className="index">
         <HamburgMenu />
-        <div className="sliderBox" >
-          <ReactSwipe 
-            continuous={true} 
-            auto={3000}
-            speed={500}
-            stopPropagation={false}
-            callback = {this.updateSliderButtons}
-            transitionEnd = {this.autoNextPageOnSwiped} >
-            {ImgNodes}
-          </ReactSwipe>
-          <div className="sliderButtonsLine" >
-             <div className="sliderButtons" >
-              {sliderButtons}
-            </div>
-          </div>
-        </div>
       
         <div className="indexContent">
           <div className="spliterWork" >
@@ -170,49 +154,6 @@ var Index = React.createClass({
 
           <ImageVerticalGrid works={this.state.recommendGraphers}/>
 
-          <div className="spliterInterview" >
-              <img 
-                src="imgs/indexPage/icon-interview.png"
-                srcSet="imgs/indexPage/icon-interview@2X.png 2x" />
-              <div className="splitLine" >
-                <img 
-                  src="imgs/common/spliter-line.png"
-                  srcSet="imgs/common/spliter-line@2X.png 2x" />
-              </div>
-              <div className="splitContent">
-                <div>访谈</div>
-                <div>INTERVIEW</div>
-              </div>
-          </div>
-
-          <div className="imageRectGrid">
-            <img 
-              src="imgs/indexPage/interview-demo.jpg"
-              srcSet="imgs/indexPage/interview-demo@2X.jpg 2x" />
-          </div>
-
-          <div className="spliterActivity" >
-              <img 
-                src="imgs/indexPage/icon-activity.png"
-                srcSet="imgs/indexPage/icon-activity@2X.png 2x" />
-              <div className="splitLine" >
-                <img 
-                  src="imgs/common/spliter-line.png"
-                  srcSet="imgs/common/spliter-line@2X.png 2x" />
-              </div>
-              <div className="splitContent">
-                <div>活动</div>
-                <div>ACTIVITY</div>
-              </div>
-          </div>
-
-          <div className="imageCircleGrid">
-            <img 
-              src="imgs/indexPage/activity-demo.jpg"
-              srcSet="imgs/indexPage/activity-demo@2X.jpg 2x" />
-          </div>
-
-          <Footer />
 
         </div>
 

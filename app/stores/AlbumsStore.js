@@ -28,7 +28,7 @@ var AlbumsStore = Reflux.createStore({
     this.listenTo(AlbumsActions.search.failed,this.onFailed);
     this.listenTo(AlbumsActions.getMyAlbums.success,this.onGetMyAlbumsSuccess);
     this.listenTo(AlbumsActions.getMyAlbums.failed,this.onFailed);
-    this.listenTo(AlbumsActions.getCategories.success,this.onGetCategoiesSuccess);
+    this.listenTo(AlbumsActions.getCategories.success,this.onGetCategoriesSuccess);
     this.listenTo(AlbumsActions.getCategories.failed,this.onFailed);
     this.listenTo(AlbumsActions.onSale.success,this.onSaleSuccess);
     this.listenTo(AlbumsActions.onSale.failed,this.onFailed);
@@ -39,7 +39,7 @@ var AlbumsStore = Reflux.createStore({
   },
   onFailed : function(res){
     this.data.hintMessage = '网络错误';
-    this.data.flag == 'failed';
+    this.data.flag = 'failed';
     this.trigger(this.data);
   },
   onAddSuccess : function(res){
@@ -107,7 +107,7 @@ var AlbumsStore = Reflux.createStore({
     this.data.flag = 'getMyAlbums';
     this.trigger(this.data);
   },
-  onGetCategoiesSuccess : function(res){
+  onGetCategoriesSuccess : function(res){
     if(res.Success){
       this.data.categories = res.Result;
       this.hintMessage = '';
