@@ -33,7 +33,7 @@ describe('Photographer Store Test', () => {
     storeHasData(PhotographerStore);
   });
 
-  it('has methods', () => {
+  describe('has methods', () => {
     const methods = [
       'onGetSuccess',
       'onListSuccess',
@@ -45,7 +45,7 @@ describe('Photographer Store Test', () => {
     })
   });
 
-  it('works on get success', () => {
+  describe('works on get success', () => {
     storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get');  
     PhotographerStore.onGetSuccess(successfulRes);
     expect(PhotographerStore.data.photographer).to.equal(successfulRes);  
