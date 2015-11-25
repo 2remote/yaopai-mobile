@@ -58,18 +58,16 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('failed');
   });
 
-  storeCheckCommonUsage(AlbumsStore, 'onAddSuccess', 'add')
+  storeCheckCommonUsage(AlbumsStore, 'onAddSuccess', 'add');
+
 
   it('works on get success', () => {
-    AlbumsStore.onGetSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
+    storeCheckCommonUsage(AlbumsStore, 'onGetSuccess', 'get');
+    AlbumsStore.onGetSuccess(successfulRes);    
     expect(AlbumsStore.data.workData).to.equal(successfulRes);
-    expect(AlbumsStore.data.flag).to.equal('get');
 
     AlbumsStore.onGetSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.workData).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('get');
   });
 
   it('works on update success', () => {
