@@ -58,14 +58,7 @@ describe('Photographer Store Test', () => {
 
   it('works on list success', () => {
     PhotographerStore.onListSuccess(successfulRes);
-    expect(PhotographerStore.data.hintMessage).to.equal('');
     expect(PhotographerStore.data.photographer).to.equal(successfulRes);
-    expect(PhotographerStore.data.flag).to.equal('list');
-
-    PhotographerStore.onListSuccess(failedRes);
-    expect(PhotographerStore.data.hintMessage).to.equal(errorMsg);
-    expect(PhotographerStore.data.flag).to.equal('list');
-
     storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list');
   });
 
