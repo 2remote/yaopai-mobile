@@ -6,17 +6,13 @@ exports.storeIsDefined = (store) => {
 
 exports.storeHasData = (store, key = "NA") => {
   if (key == "NA"){
-    describe('has data object', () => {
       it('has data object', ()=> {
         expect(store.data).to.exist;
       });
-    });
   }else{
-    describe('has data element', () => {
       it(`has data element << ${key} >>`, ()=> {
         expect(store.data[key]).to.exist;
       });
-    })
   }
 };
 
