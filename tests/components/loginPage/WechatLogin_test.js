@@ -25,15 +25,15 @@ describe('登陆页 微信登陆组件', () => {
     expect(wechatLogo.getDOMNode().src).to.have.string('imgs/common/wechat-logo.png');
   });
   it ('_weChatLogin', () => {
+    // 绑定登陆函数
+    let spyWeChatLogin = sinon.spy(WeichatLogin.prototype.__reactAutoBindMap, '_weChatLogin');
     const component = renderIntoDocument(
       <WeichatLogin />
     );
-    // 模拟微信点击阻塞，望松涛help
-    // let spyWeChatLogin = sinon.spy(WeichatLogin.prototype.__reactAutoBindMap,_weChatLogin);
-    // let weichatLogin = findRenderedDOMComponentWithClass(component, 'weichatLogin');
-    // // 模拟微信点击登陆
-    // ///Simulate.click(weichatLogin.getDOMNode());
-    // component._weChatLogin();
-    // expect(spyWeChatLogin.callCount).to.equal(1);
+
+    let weichatLogin = findRenderedDOMComponentWithClass(component, 'weichatLogin');
+    // 模拟微信点击登陆
+    Simulate.click(weichatLogin.getDOMNode());
+    expect(spyWeChatLogin.callCount).to.equal(1);
   });
 });
