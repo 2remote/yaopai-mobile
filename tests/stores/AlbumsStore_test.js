@@ -70,15 +70,7 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.workData).is.empty;
   });
 
-  it('works on update success', () => {
-    AlbumsStore.onUpdateSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('update');
-
-    AlbumsStore.onUpdateSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('update');
-  });
+  storeCheckCommonUsage(AlbumsStore, 'onUpdateSuccess', 'update');
 
   it('works on delete success', () => {
     AlbumsStore.onDeleteSuccess(successfulRes);
