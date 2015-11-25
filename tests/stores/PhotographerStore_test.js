@@ -52,5 +52,11 @@ describe('Photographer Store Test', () => {
     PhotographerStore.onListSuccess(successfulRes);
     expect(PhotographerStore.data.photographers).to.equal(successfulRes.Result);  
   });
+
+  it('works on recommend list success', () => {
+    storeCheckCommonUsage(PhotographerStore, 'onRecommendListSuccess', 'recommendList');
+    PhotographerStore.onRecommendListSuccess(successfulRes);
+    expect(PhotographerStore.data.photographers).to.equal(successfulRes.Result);
+  });
   
 });
