@@ -21,10 +21,10 @@ exports.storeHasData = (store, key = "NA") => {
 };
 
 exports.storeHasMethod = function (store, method) {
-  describe('store has method', () => {
-    it(`has method methold  << ${method} >>`, ()=> {
+  it(`store has method << ${method} >>`, () => {
+    
       expect(store[method]).to.exist;
-    });  
+  
   })
 };
 
