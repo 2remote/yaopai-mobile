@@ -45,18 +45,13 @@ describe('Photographer Store Test', () => {
     })
   });
 
-  storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get', 'photographer');
-  
-  it('works on list success', () => {
-    storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list');
-    PhotographerStore.onListSuccess(successfulRes);
-    expect(PhotographerStore.data.photographers).to.equal(successfulRes.Result);  
-  });
-
-  it('works on recommend list success', () => {
-    storeCheckCommonUsage(PhotographerStore, 'onRecommendListSuccess', 'recommendList');
-    PhotographerStore.onRecommendListSuccess(successfulRes);
-    expect(PhotographerStore.data.photographers).to.equal(successfulRes.Result);
+  it('works on get success', () => {
+    storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get');  
+    PhotographerStore.onGetSuccess(successfulRes);
+    expect(PhotographerStore.data.photographer).to.equal(successfulRes);  
   });
   
+  storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list', 'photographers');
+  
+  storeCheckCommonUsage(PhotographerStore, 'onRecommendListSuccess', 'recommendList', 'photographers');
 });

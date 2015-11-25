@@ -57,7 +57,7 @@ exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
       // console.log('data show:', store.data);
       expect(store.data.hintMessage, '提示信息设定为空，不显示提示。').to.equal('');
       if( result != 'NA'){
-        expect(store['data'][result], '赋值检测').to.deep.equal(successfulRes);
+        expect(store['data'][result], '赋值检测').to.deep.equal(successfulRes.Result);
       }
       expect(store.data.flag, '指定旗标').to.equal(flag);
     });
