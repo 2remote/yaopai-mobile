@@ -3,7 +3,7 @@ import {
 }
 from './refluxTestHelpers';
 
-describe('test helpers', () => {
+describe('test helpers test', () => {
   it('is a defined store', ()=> {
     let store = {};
     storeIsDefined(store);
@@ -30,7 +30,7 @@ describe('test helpers', () => {
     const store = {
       name: 'testDemoStore',
       data: {},
-      onGetSuccess: function (res) {
+      onGetDemoSuccess: function (res) {
         if(res.Success){
           this.data.photographer = res;
           this.data.hintMessage = '';
@@ -41,6 +41,6 @@ describe('test helpers', () => {
       }
     };
 
-    storeCheckCommonUsage(store, 'onGetSuccess', 'get');
+    storeCheckCommonUsage(store, 'onGetDemoSuccess', 'get');
   });
 })

@@ -60,7 +60,7 @@ describe('Albums Store Test', () => {
 
   storeCheckCommonUsage(AlbumsStore, 'onAddSuccess', 'add');
 
-  it('works on get success', () => {
+  describe('works on get success', () => {
     storeCheckCommonUsage(AlbumsStore, 'onGetSuccess', 'get');
     AlbumsStore.onGetSuccess(successfulRes);    
     expect(AlbumsStore.data.workData).to.equal(successfulRes);
