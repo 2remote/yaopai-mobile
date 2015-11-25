@@ -19,11 +19,14 @@ var FindByMobileForm = React.createClass({
     }
   },
   _onGetCodeStoreChange: function (data) {
-    if (data.left <= 0) {
-      this.setState({codeLeft: 0});
-      this.showMessage(data.result);
-    } else {
-      this.setState({codeLeft: data.left});
+    if (data.flag == 'resetCode') {
+      if (data.left <= 0) {
+        console.log(data.result);
+        this.setState({codeLeft: 0});
+        this.showMessage(data.result);
+      } else {
+        this.setState({codeLeft: data.left});
+      }
     }
   },
   _onverifyTel: function (data) {
