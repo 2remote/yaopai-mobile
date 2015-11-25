@@ -21,11 +21,9 @@ exports.storeHasData = (store, key = "NA") => {
 };
 
 exports.storeHasMethod = function (store, method) {
-  it(`store has method << ${method} >>`, () => {
-    
+    it(`has method methold  << ${method} >>`, ()=> {
       expect(store[method]).to.exist;
-  
-  })
+    });  
 };
 
 exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
