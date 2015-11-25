@@ -9,14 +9,14 @@ describe('test helpers', () => {
     storeIsDefined(store);
   });
 
-  it('has a defined method', ()=> {
+  describe('has a defined method', ()=> {
     let store = {
       demoMethod: () => {}
     };
     storeHasMethod(store, 'demoMethod');
   });
 
-  it('has a data', ()=> {
+  describe('has a data', ()=> {
     let store = {
       data: {
         demo: 1,
@@ -26,7 +26,7 @@ describe('test helpers', () => {
     storeHasData(store, 'demo');
   });
 
-  it('will check a method for common usage', () => {
+  describe('will check a method for common usage', () => {
     const store = {
       name: 'testDemoStore',
       data: {},
