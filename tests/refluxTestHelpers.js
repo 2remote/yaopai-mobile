@@ -28,7 +28,7 @@ exports.storeHasMethod = function (store, method) {
   })
 };
 
-exports.storeCheckCommonUsage = function (store, method, flag) {
+exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
   // 测试如下模式的函数
   // onGetSuccess : function(res){
   //   if(res.Success){
@@ -54,14 +54,17 @@ exports.storeCheckCommonUsage = function (store, method, flag) {
   describe(`store check common usage for method << ${method} >>`, () => {
     it(`will work when success`, () => {
       store[method](successfulRes);
-      expect(store.data.hintMessage).to.equal('');
-      expect(store.data.flag).to.equal(flag);
+      expect(store.data.hintMessage, '提示信息设定为空，不显示提示。').to.equal('');
+      if( result != 'NA'){
+        expect(store['data'][result], '赋值检测').to.deep.equal(successfulRes);
+      }
+      expect(store.data.flag, '指定旗标').to.equal(flag);
     });
 
     it(`will work when failed`, () => {
       store[method](failedRes);
-      expect(store.data.hintMessage).to.equal(errorMsg);
-      expect(store.data.flag).to.equal(flag);
+      expect(store.data.hintMessage, '提示信息设定为错误信息').to.equal(errorMsg);
+      expect(store.data.flag, '指定旗标').to.equal(flag);
     });
   });
 }
