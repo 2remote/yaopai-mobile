@@ -47,5 +47,10 @@ describe('Photographer Store Test', () => {
 
   storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get', 'photographer');
   
-  storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list');
+  it('works on list success', () => {
+    storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list');
+    PhotographerStore.onListSuccess(successfulRes);
+    expect(PhotographerStore.data.photographers).to.equal(successfulRes.Result);  
+  });
+  
 });
