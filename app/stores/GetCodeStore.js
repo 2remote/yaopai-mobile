@@ -13,6 +13,7 @@ var GetCodeStore = Reflux.createStore({
     console.log('GetCodeStore initialized');
     //记录发送验证码的时间
     this.getCode = {
+      flag: '',
       left : 0,
       result : '',
     }
@@ -31,11 +32,11 @@ var GetCodeStore = Reflux.createStore({
     countLeft();
   },
   onTelRegisterSucess : function(data){
-    console.log(data);
+    this.getCode.flag = 'registerCode';
     if(data.Success){
       this.getCode.result = '验证码已发送';
     }else{
-      this.getCode.result = '验证码发送失败';
+      this.getCode.result = data.ErrorMsg;
       this.getCode.left = 0;
     }
     this.trigger(this.getCode);
@@ -54,7 +55,7 @@ var GetCodeStore = Reflux.createStore({
     countLeft();
   },
   onTelRestPasswordSuccess: function (data) {
-    console.log(data);
+    this.getCode.flag = 'resetCode';
     if(data.Success){
       this.getCode.result = '验证码已发送';
     }else{

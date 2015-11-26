@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 import {
-  storeIsDefined, storeHasData, storeHasMethod
+  storeIsDefined, storeHasData, storeHasMethod, storeCheckCommonUsage
 }
 from '../refluxTestHelpers';
 import {
@@ -33,7 +33,7 @@ describe('Albums Store Test', () => {
     storeHasData(AlbumsStore);
   });
 
-  it('has methods', () => {
+  describe('has methods', () => {
     const methods = [
       'onFailed',
       'onAddSuccess',
@@ -58,49 +58,22 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('failed');
   });
 
-  it('works on add success', () => {
-    AlbumsStore.onAddSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('add');
+  storeCheckCommonUsage(AlbumsStore, 'onAddSuccess', 'add');
 
-    AlbumsStore.onAddSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('add');
-  });
-
-  it('works on get success', () => {
-    AlbumsStore.onGetSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
+  describe('works on get success', () => {
+    storeCheckCommonUsage(AlbumsStore, 'onGetSuccess', 'get');
+    AlbumsStore.onGetSuccess(successfulRes);    
     expect(AlbumsStore.data.workData).to.equal(successfulRes);
-    expect(AlbumsStore.data.flag).to.equal('get');
 
     AlbumsStore.onGetSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
     expect(AlbumsStore.data.workData).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('get');
   });
 
-  it('works on update success', () => {
-    AlbumsStore.onUpdateSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('update');
+  storeCheckCommonUsage(AlbumsStore, 'onUpdateSuccess', 'update');
 
-    AlbumsStore.onUpdateSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('update');
-  });
+  storeCheckCommonUsage(AlbumsStore, 'onDeleteSuccess', 'delete');
 
-  it('works on delete success', () => {
-    AlbumsStore.onDeleteSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('delete');
-
-    AlbumsStore.onDeleteSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('delete');
-  });
-
-  it('works on search success', () => {
+  describe('works on search success', () => {
     // 有数据的时候
     let res = {
       Success: true,
@@ -130,56 +103,18 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.flag).to.equal('search');
   });
 
-  it('works on get my albums success', () => {
-    AlbumsStore.onGetMyAlbumsSuccess(successfulRes);
-    expect(AlbumsStore.data.workList).to.equal(successfulRes.Result);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
-
+  describe('works on get my albums success', () => {
+    storeCheckCommonUsage(AlbumsStore, 'onGetMyAlbumsSuccess', 'getMyAlbums', 'workList');
+    
     AlbumsStore.onGetMyAlbumsSuccess(failedRes);
     expect(AlbumsStore.data.workList).is.empty;
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('getMyAlbums');
   });
 
-  it('works on get catagoies success', () => {
-    AlbumsStore.onGetCategoriesSuccess(successfulRes);
-    expect(AlbumsStore.data.categories).to.equal(successfulRes.Result);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('getCategories');
+  storeCheckCommonUsage(AlbumsStore, 'onGetCategoriesSuccess', 'getCategories', 'categories');
+  
+  storeCheckCommonUsage(AlbumsStore, 'onSaleSuccess', 'onSale');
+  
+  storeCheckCommonUsage(AlbumsStore, 'offSaleSuccess', 'offSale');
 
-    AlbumsStore.onGetCategoriesSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('getCategories');
-  });
-
-  it('works on sale success', () => {
-    AlbumsStore.onSaleSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('onSale');
-
-    AlbumsStore.onSaleSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('onSale');    
-  });
-
-  it('works off sale success', () => {
-    AlbumsStore.offSaleSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('offSale');
-
-    AlbumsStore.offSaleSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('offSale');
-  });
-
-  it('works on recommend list success', () => {
-    AlbumsStore.onRecommendListSuccess(successfulRes);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.workList).to.equal(successfulRes.Result);
-
-    AlbumsStore.onRecommendListSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.flag).to.equal('recommendList');
-  });
+  storeCheckCommonUsage(AlbumsStore, 'onRecommendListSuccess', 'recommendList', 'workList');
 });
