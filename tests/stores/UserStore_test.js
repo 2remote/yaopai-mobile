@@ -72,8 +72,6 @@ describe('User Store Test', () => {
     });
   });
 
-  describe('onreceiveTelResetPassWordSuccess', () => {
-    storeCheckCommonUsage(UserStore, 'onreceiveTelResetPassWordSuccess', 'resetPassword')
-  });
+  storeCheckCommonUsage(UserStore, 'onreceiveTelResetPassWordSuccess', 'resetPassword');
 
 });
