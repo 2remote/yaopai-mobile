@@ -4,7 +4,8 @@ import {
   storeHasData, 
   storeHasMethod, 
   storeCheckCommonUsage,
-  storeHasDefaultValue
+  storeHasDefaultValue,
+  makeCheckStoreData
 }
 from '../refluxTestHelpers';
 import {
@@ -27,9 +28,22 @@ describe('User Store Test', () => {
     ErrorMsg: errorMsg
   };
 
+  const checkUserStoreData = makeCheckStoreData(UserStore);
+
   beforeEach(() => {
     UserStore.data.hintMessage = '';
     UserStore.data.flag = '';
+    UserStore.data = {
+      userId: '',
+      userName: '',
+      loginToken : '',//用户选择rememberme的时候返回
+      userType: '',
+      userState: '',
+      isLogin: false,
+      hintMessage: '',
+      flag : '',
+      loginDate : '',
+    };
   });
 
   it('has store', () => {
@@ -83,4 +97,60 @@ describe('User Store Test', () => {
   });
 
   storeCheckCommonUsage(UserStore, 'onTelResetPassWordSuccess', 'check');
+  
+  describe('setCurrentUser', () => {
+    describe('set default vars when data is false', () => {
+      
+      const data = false;
+      storeHasData(UserStore, 'userId');
+
+      expect(!data).to.equal(true);
+      UserStore.setCurrentUser(data);
+      checkUserStoreData('userId', '');
+
+      checkUserStoreData('userName', '');
+      checkUserStoreData('local', true);
+      checkUserStoreData('isLogin', false);
+      checkUserStoreData('userType', '');
+      checkUserStoreData('avatar', '');
+      checkUserStoreData('loginDate', '');
+    });
+
+    describe('set data when data is true', () => {
+      let data = {
+        Id: '12',
+        Name: 'fox',
+        Type: 'user',
+        Local: 'beijing'
+      };
+
+      
+      it('will set normal props', () => {
+        expect(!data).to.equal(false);
+        UserStore.setCurrentUser(data);
+        checkUserStoreData('userId', '12');
+        checkUserStoreData('userName', 'fox');
+        checkUserStoreData('userType', 'user');
+        checkUserStoreData('local', 'beijing');
+        checkUserStoreData('isLogin', true);
+        storeHasData(UserStore, 'loginDate');
+      });
+
+      it('will give default avatar when does not return Avatar ', () => {
+        expect(!data).to.equal(false);
+        UserStore.setCurrentUser(data);
+
+        expect(UserStore.data.avatar).to.match(/_randomAvatar/);
+      });
+
+      it('will load avatar when has Avatar', () => {
+        data.Avatar = 'fox.png';
+        expect(!data).to.equal(false);
+        UserStore.setCurrentUser(data);
+
+        checkUserStoreData('avatar', 'fox.png');
+      });
+      
+    });
+  });
 });
