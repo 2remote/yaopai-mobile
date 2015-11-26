@@ -56,4 +56,17 @@ describe('User Store Test', () => {
       storeHasMethod(UserStore, method);
     })
   });
+
+  describe('onreceiveTelResetPassWordFailed', () => {
+    it('has right default value', () => {
+      expect(UserStore.userData.hintMessage).to.equal('');
+      expect(UserStore.userData.flag).to.equal('');  
+    });
+    it('has right value after run', () => {
+      UserStore.onreceiveTelResetPassWordFailed();
+      expect(UserStore.userData.hintMessage).to.equal('网络出错啦！');
+      expect(UserStore.userData.flag).to.equal('resetPassword');  
+    });
+  });
+
 });
