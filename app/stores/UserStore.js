@@ -240,7 +240,6 @@ var UserStore = Reflux.createStore({
     this.data.flag = 'check'
   },
   onreceiveTelResetPassWordSuccess: function (data) {
-    console.log(data);
     this.data.flag = 'resetPassword';
     if (data.Success) {
       this.data.hintMessage = '';
