@@ -82,4 +82,5 @@ describe('User Store Test', () => {
     expect(UserStore.data.flag).to.equal('check');
   });
 
+  storeCheckCommonUsage(UserStore, 'onTelResetPassWordSuccess', 'check');
 });
