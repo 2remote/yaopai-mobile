@@ -236,7 +236,7 @@ var UserStore = Reflux.createStore({
   },
   onTelResetPassWordFailed: function (data) {
     this.data.hintMessage = '网络出错啦！';
-    this.data.flag = 'check'
+    this.data.flag = 'check';
   },
   onreceiveTelResetPassWordSuccess: function (data) {
     this.data.flag = 'resetPassword';
