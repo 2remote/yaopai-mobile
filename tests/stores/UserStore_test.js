@@ -1,6 +1,10 @@
 import Reflux from 'reflux';
 import {
-  storeIsDefined, storeHasData, storeHasMethod, storeCheckCommonUsage
+  storeIsDefined, 
+  storeHasData, 
+  storeHasMethod, 
+  storeCheckCommonUsage,
+  userStoreHasDefaultValue
 }
 from '../refluxTestHelpers';
 import {
@@ -58,10 +62,9 @@ describe('User Store Test', () => {
   });
 
   describe('onreceiveTelResetPassWordFailed', () => {
-    it('has right default value', () => {
-      expect(UserStore.userData.hintMessage).to.equal('');
-      expect(UserStore.userData.flag).to.equal('');  
-    });
+
+    userStoreHasDefaultValue(UserStore);
+
     it('has right value after run', () => {
       UserStore.onreceiveTelResetPassWordFailed();
       expect(UserStore.userData.hintMessage).to.equal('网络出错啦！');

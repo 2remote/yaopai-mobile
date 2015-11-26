@@ -62,4 +62,11 @@ exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
       expect(store.data.flag, '指定旗标').to.equal(flag);
     });
   });
+};
+
+exports.userStoreHasDefaultValue = function (store) {
+  it('userStore has right default value', () => {
+    expect(store.userData.hintMessage).to.equal('');
+    expect(store.userData.flag).to.equal('');  
+  });
 }
