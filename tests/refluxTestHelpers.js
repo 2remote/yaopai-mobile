@@ -64,9 +64,9 @@ exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
   });
 };
 
-exports.userStoreHasDefaultValue = function (store) {
-  it('userStore has right default value', () => {
-    expect(store.userData.hintMessage).to.equal('');
-    expect(store.userData.flag).to.equal('');  
+exports.storeHasDefaultValue = function (store) {
+  it('store has right default value', () => {
+    expect(store.data.hintMessage).to.equal('');
+    expect(store.data.flag).to.equal('');  
   });
 }

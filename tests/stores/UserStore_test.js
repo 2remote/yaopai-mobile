@@ -4,7 +4,7 @@ import {
   storeHasData, 
   storeHasMethod, 
   storeCheckCommonUsage,
-  userStoreHasDefaultValue
+  storeHasDefaultValue
 }
 from '../refluxTestHelpers';
 import {
@@ -28,7 +28,7 @@ describe('User Store Test', () => {
   };
 
   beforeEach(() => {
-    UserStore.userData.hintMessage = '';
+    UserStore.data.hintMessage = '';
   });
 
   it('has store', () => {
@@ -63,12 +63,12 @@ describe('User Store Test', () => {
 
   describe('onreceiveTelResetPassWordFailed', () => {
 
-    userStoreHasDefaultValue(UserStore);
+    storeHasDefaultValue(UserStore);
 
     it('has right value after run', () => {
       UserStore.onreceiveTelResetPassWordFailed();
-      expect(UserStore.userData.hintMessage).to.equal('网络出错啦！');
-      expect(UserStore.userData.flag).to.equal('resetPassword');  
+      expect(UserStore.data.hintMessage).to.equal('网络出错啦！');
+      expect(UserStore.data.flag).to.equal('resetPassword');  
     });
   });
 
