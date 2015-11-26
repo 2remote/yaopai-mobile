@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import fjs from 'functional.js';
 
 exports.storeIsDefined = (store) => {
   expect(store).to.exist;
@@ -63,6 +64,26 @@ exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
     });
   });
 };
+
+function valueIsEqual (a, b) {
+  expect(a, 'compare two value is equal.').to.equal(b);
+};
+
+// makeCheckStoreData
+//
+// 创建CheckStoreData的function factory
+// store - store obj
+// targetKey - store.data.key
+// checkValue - 期望数值
+// 
+// 例子：
+// const checkUserStoreData = makeCheckStoreData(UserStore);
+// checkUserStoreData('userId', '');
+// 结果：
+// expect(UserStore.data.userId).to.equal('');
+exports.makeCheckStoreData = fjs.curry(function (store, targetKey, checkValue) {
+  return valueIsEqual(store.data[targetKey], checkValue);
+});
 
 exports.storeHasDefaultValue = function (store) {
   it('store has right default value', () => {
