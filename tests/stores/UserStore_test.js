@@ -29,6 +29,7 @@ describe('User Store Test', () => {
 
   beforeEach(() => {
     UserStore.data.hintMessage = '';
+    UserStore.data.flag = '';
   });
 
   it('has store', () => {
@@ -73,5 +74,12 @@ describe('User Store Test', () => {
   });
 
   storeCheckCommonUsage(UserStore, 'onreceiveTelResetPassWordSuccess', 'resetPassword');
+
+  describe('onTelResetPassWordFailed', () => {
+    storeHasDefaultValue(UserStore);
+    UserStore.onTelResetPassWordFailed();
+    expect(UserStore.data.hintMessage).to.equal('网络出错啦！');
+    expect(UserStore.data.flag).to.equal('check');
+  });
 
 });
