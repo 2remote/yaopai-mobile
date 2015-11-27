@@ -103,21 +103,28 @@ describe('User Store Test', () => {
   storeCheckCommonUsage(UserStore, 'onTelResetPassWordSuccess', 'check');
 
   describe('setCurrentUser', () => {
-    describe('set default vars when data is false', () => {
+    it('set default vars when data is false', () => {
 
       const data = false;
       storeHasData(UserStore, 'userId');
 
       expect(!data).to.equal(true);
       UserStore.setCurrentUser(data);
-      checkUserStoreData('userId', '');
 
-      checkUserStoreData('userName', '');
-      checkUserStoreData('local', true);
-      checkUserStoreData('isLogin', false);
-      checkUserStoreData('userType', '');
-      checkUserStoreData('avatar', '');
-      checkUserStoreData('loginDate', '');
+      const datas = {
+        userId: '',
+        userName: '',
+        local: true,
+        isLogin: false,
+        userType: '',
+        avatar: '',
+        loginDate: ''
+      };
+      
+      const keys = Object.keys(datas);
+      keys.map(function (key) {
+        checkUserStoreData(key, datas[key]);
+      })
     });
 
     describe('set data when data is true', () => {
@@ -127,7 +134,6 @@ describe('User Store Test', () => {
         Type: 'user',
         Local: 'beijing'
       };
-
 
       it('will set normal props', () => {
         expect(!data).to.equal(false);
