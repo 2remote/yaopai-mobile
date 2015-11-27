@@ -1,11 +1,12 @@
 import Reflux from 'reflux';
 import {
-  storeIsDefined, 
-  storeHasData, 
-  storeHasMethod, 
+  storeIsDefined,
+  storeHasData,
+  storeHasMethod,
   storeCheckCommonUsage,
   storeHasDefaultValue,
-  makeCheckStoreData
+  makeCheckStoreData,
+  makeStoreHasMethod
 }
 from '../refluxTestHelpers';
 import {
@@ -29,6 +30,7 @@ describe('User Store Test', () => {
   };
 
   const checkUserStoreData = makeCheckStoreData(UserStore);
+  const userStoreHasMethod = makeStoreHasMethod(UserStore);
 
   beforeEach(() => {
     UserStore.data.hintMessage = '';
@@ -36,13 +38,13 @@ describe('User Store Test', () => {
     UserStore.data = {
       userId: '',
       userName: '',
-      loginToken : '',//用户选择rememberme的时候返回
+      loginToken: '', //用户选择rememberme的时候返回
       userType: '',
       userState: '',
       isLogin: false,
       hintMessage: '',
-      flag : '',
-      loginDate : '',
+      flag: '',
+      loginDate: '',
     };
   });
 
@@ -51,7 +53,9 @@ describe('User Store Test', () => {
     storeHasData(UserStore);
   });
 
-  describe('has methods', () => {
+
+
+  it('store has methods', () => {
     const methods = [
       'getTokenToLogin',
       'onLoginSuccess',
@@ -72,7 +76,7 @@ describe('User Store Test', () => {
       'onreceiveTelResetPassWordFailed'
     ];
     methods.forEach((method) => {
-      storeHasMethod(UserStore, method);
+      userStoreHasMethod(method);
     })
   });
 
@@ -83,7 +87,7 @@ describe('User Store Test', () => {
     it('has right value after run', () => {
       UserStore.onreceiveTelResetPassWordFailed();
       expect(UserStore.data.hintMessage).to.equal('网络出错啦！');
-      expect(UserStore.data.flag).to.equal('resetPassword');  
+      expect(UserStore.data.flag).to.equal('resetPassword');
     });
   });
 
@@ -97,10 +101,10 @@ describe('User Store Test', () => {
   });
 
   storeCheckCommonUsage(UserStore, 'onTelResetPassWordSuccess', 'check');
-  
+
   describe('setCurrentUser', () => {
     describe('set default vars when data is false', () => {
-      
+
       const data = false;
       storeHasData(UserStore, 'userId');
 
@@ -124,7 +128,7 @@ describe('User Store Test', () => {
         Local: 'beijing'
       };
 
-      
+
       it('will set normal props', () => {
         expect(!data).to.equal(false);
         UserStore.setCurrentUser(data);
@@ -150,7 +154,7 @@ describe('User Store Test', () => {
 
         checkUserStoreData('avatar', 'fox.png');
       });
-      
+
     });
   });
 });
