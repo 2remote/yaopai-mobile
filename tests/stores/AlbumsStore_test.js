@@ -95,12 +95,19 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.hintMessage).is.empty;
     expect(AlbumsStore.data.flag).to.equal('search');
 
-    storeHasData(AlbumsStore, 'count');
-    storeHasData(AlbumsStore, 'pageCount');
-    storeHasData(AlbumsStore, 'pageIndex');
-    storeHasData(AlbumsStore, 'pageSize');
-    storeHasData(AlbumsStore, 'total');
-    storeHasData(AlbumsStore, 'workList');
+    it('has datas', () => {
+      const keys = [
+        'count',
+        'pageCount',
+        'pageIndex',
+        'pageSize',
+        'total',
+        'workList'
+      ];
+      keys.map(function (key) {
+        storeHasData(AlbumsStore, key);
+      })
+    });
 
     // 没有数据的时候
     AlbumsStore.onSearchSuccess(failedRes);
