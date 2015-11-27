@@ -3,7 +3,8 @@ import {
   storeIsDefined,
   storeHasData,
   storeHasMethod,
-  storeCheckCommonUsage
+  storeCheckCommonUsage,
+  makeStoreHasMethod
 }
 from '../refluxTestHelpers';
 import {
@@ -12,6 +13,8 @@ import {
 from 'chai';
 
 import AlbumsStore from '../../app/stores/AlbumsStore';
+
+const albumsStoreHasMethod = makeStoreHasMethod(AlbumsStore);
 
 describe('Albums Store Test', () => {
   const successfulRes = {
@@ -51,7 +54,7 @@ describe('Albums Store Test', () => {
       'onRecommendListSuccess'
     ];
     methods.forEach((method) => {
-      storeHasMethod(AlbumsStore, method);
+      albumsStoreHasMethod(method);
     })
   });
 
