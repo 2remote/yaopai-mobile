@@ -17,11 +17,42 @@ exports.storeHasData = (store, key = "NA") => {
   }
 };
 
-exports.storeHasMethod = function (store, method) {
-    it(`has method << ${method} >>`, ()=> {
-      expect(store[method]).to.exist;
-    });  
+exports.storeHasMethod = function (store, method) {  
+  expect(store[method], `has method << ${method} >>`).to.exist;
 };
+
+// methodExist
+// 
+// 测试method是否存在的helper
+// 
+// 参数：
+// method  - func
+// comment - string, method名称
+
+// 例子：
+//   const re = methodExist(UserStore.setCurrentUser);
+// 结果：
+//   re = true/false 
+function methodExist (method, comment) {
+  expect(method, `has method << ${comment} >>`).to.exist;
+}
+
+// makeStoreHasMethod
+//
+// 创建storeHasMethod的function factory
+
+// 参数：
+// store  - obj, store
+// method - string, store.method
+// 
+// 例子：
+//   const userStoreHasMethod  = makeStoreHasMethod(UserStore);
+//   userStoreHasMethod('setCurrentUser');
+// 结果：
+//   expect(UserStore.setCurrentUser).to.exist;
+exports.makeStoreHasMethod = fjs.curry(function(store, method) {  
+  return methodExist(store[method], method);
+});
 
 exports.storeCheckCommonUsage = function (store, method, flag, result='NA') {
   // 测试如下模式的函数
