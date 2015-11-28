@@ -199,4 +199,10 @@ describe('User Store Test', () => {
     expect(localStorage.getItem(currentUserKey)).to.not.exist;
     checkUserStoreData('flag', 'logout');
   });
+
+  it('onRegisterFailed', () => {
+    UserStore.onRegisterFailed();
+    checkUserStoreData('hintMessage', '网络出错啦！');
+    checkUserStoreData('flag', 'register');
+  });
 });
