@@ -2,6 +2,7 @@ var React = require('react');
 import { Router, Route, Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
+import LazyLoad from 'react-lazy-load';
 
 var WorkIntroGrapherRow = React.createClass({
   getDefaultProps: function() {
@@ -26,10 +27,12 @@ var WorkIntroGrapherRow = React.createClass({
         style={{width:'100%',textAlign:'center',color:'#0f0f0f'}}
         className="workIntroGrapherRow">
         <Link to={"/workDetail/" + this.props.data.Id}>
-          <img
-            style={{width:'100%',height:260/375*innerWidth,marginBottom: -36}}
-            ref="workImage"
-            src={cover}/>
+          <LazyLoad threshold={100}>
+            <img
+              style={{width:'100%',height:260/375*innerWidth,marginBottom: -36}}
+              ref="workImage"
+              src={cover}/>
+          </LazyLoad>
         </Link>
         <Link style={{lineHeight:'inherit'}} to={"/grapherDetail/" + this.props.data.User.Id}>
         <img

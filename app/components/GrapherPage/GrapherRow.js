@@ -2,6 +2,7 @@ var React = require('react');
 import { Router, Route, Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
+import LazyLoad from 'react-lazy-load';
 
 var deviceWidth = parseInt(window.innerWidth);
 
@@ -34,9 +35,11 @@ var GrapherRow = React.createClass({
       <div className="grapherRow">
         <div className="grapherAvatar">
         <Link to={"/grapherDetail/"+this.props.data.Id} >
-          <img 
-            ref="avatar"
-            src={grapherAvatar} />
+          <LazyLoad threshold={100}>
+            <img
+              ref="avatar"
+              src={grapherAvatar} />
+          </LazyLoad>
         </Link>
         </div>
         <div className="grapherPageIntro" style={grapherPageIntro}>
