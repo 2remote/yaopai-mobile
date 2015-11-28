@@ -238,4 +238,10 @@ describe('User Store Test', () => {
     checkUserStoreData('flag', 'currentUser');
   });
 
+  it('onGetCurrentUser', () => {
+    UserStore.onGetCurrentUser(successfulRes);
+    checkUserStoreData('isLogin', true);
+    checkUserStoreData('flag', 'currentUser');
+  });
+
 });
