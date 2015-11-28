@@ -205,4 +205,7 @@ describe('User Store Test', () => {
     checkUserStoreData('hintMessage', '网络出错啦！');
     checkUserStoreData('flag', 'register');
   });
+
+  storeCheckCommonUsage(UserStore, 'onRegisterSuccess', 'register');
+
 });
