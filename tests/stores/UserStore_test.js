@@ -32,19 +32,20 @@ describe('User Store Test', () => {
   const checkUserStoreData = makeCheckStoreData(UserStore);
   const userStoreHasMethod = makeStoreHasMethod(UserStore);
 
+  const currentUserKey = 'yaopai_user';
+
   beforeEach(() => {
-    UserStore.data.hintMessage = '';
-    UserStore.data.flag = '';
     UserStore.data = {
+      hintMessage: '',
+      flag: '',
       userId: '',
       userName: '',
       loginToken: '', //用户选择rememberme的时候返回
       userType: '',
       userState: '',
       isLogin: false,
-      hintMessage: '',
-      flag: '',
       loginDate: '',
+      userKey: currentUserKey
     };
   });
 
@@ -189,8 +190,6 @@ describe('User Store Test', () => {
 
   it('onLogoutSuccess', () => {
     // 设定虚拟LS的数据
-    const currentUserKey = 'yaopai_user';
-    UserStore.data.userKey = currentUserKey;
     localStorage.setItem(currentUserKey, JSON.stringify({
       userName: 'fox name'
     }));
@@ -214,6 +213,23 @@ describe('User Store Test', () => {
     UserStore.onLoginWithTokenFailed();
     checkUserStoreData('hintMessage', '网络出错啦！');
     checkUserStoreData('flag', 'loginToken');
+  });
+
+  describe('onLoginWithTokenSuccess', () => {
+    it('works on successfulRes', () => {
+      expect(localStorage.getItem(currentUserKey)).to.not.exist;
+      UserStore.onLoginWithTokenSuccess(successfulRes);
+      expect(localStorage.getItem(currentUserKey)).to.exist;
+    });
+
+    it('works on failedRes', () => {
+      expect(localStorage.getItem(currentUserKey)).to.exist;
+
+      UserStore.onLoginWithTokenSuccess(failedRes);
+      checkUserStoreData('isLogin', false);
+      checkUserStoreData('loginToken', '')
+      expect(localStorage.getItem(currentUserKey)).to.not.exist;
+    });
   });
 
 });
