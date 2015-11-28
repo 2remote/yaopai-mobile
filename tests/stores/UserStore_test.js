@@ -136,13 +136,22 @@ describe('User Store Test', () => {
       };
 
       it('will set normal props', () => {
+        const datas = {
+          userId: '12',
+          userName: 'fox',
+          userType: 'user',
+          local: 'beijing',
+          isLogin: true,
+        };
+
         expect(!data).to.equal(false);
         UserStore.setCurrentUser(data);
-        checkUserStoreData('userId', '12');
-        checkUserStoreData('userName', 'fox');
-        checkUserStoreData('userType', 'user');
-        checkUserStoreData('local', 'beijing');
-        checkUserStoreData('isLogin', true);
+
+        const keys = Object.keys(datas);
+        keys.map((key) => {
+          checkUserStoreData(key, datas[key]);
+        });
+        
         storeHasData(UserStore, 'loginDate');
       });
 
