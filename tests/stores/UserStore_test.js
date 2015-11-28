@@ -265,4 +265,10 @@ describe('User Store Test', () => {
     expect(spy.callCount).to.equal(2);
   });
 
+  it('onLoginFailed', () => {
+    UserStore.onLoginFailed();
+    checkUserStoreData('hintMessage', '网络出错啦！');
+    checkUserStoreData('flag', 'login');
+  });
+
 });
