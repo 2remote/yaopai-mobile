@@ -186,4 +186,17 @@ describe('User Store Test', () => {
       checkUserStoreData('flag', 'modifyPassword');
     });
   });
+
+  it('onLogoutSuccess', () => {
+    // 设定虚拟LS的数据
+    const currentUserKey = 'yaopai_user';
+    UserStore.data.userKey = currentUserKey;
+    localStorage.setItem(currentUserKey, JSON.stringify({userName: 'fox name'}));
+    expect(localStorage.getItem(currentUserKey)).to.exist;
+    // 运行方法
+    UserStore.onLogoutSuccess();
+    checkUserStoreData('isLogin', false);
+    expect(localStorage.getItem(currentUserKey)).to.not.exist;
+    checkUserStoreData('flag', 'logout');
+  });
 });

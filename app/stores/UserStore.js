@@ -179,6 +179,7 @@ var UserStore = Reflux.createStore({
   onLogoutSuccess: function() {
     this.setCurrentUser(null);
     localStorage.removeItem(this.userKey);
+    console.log('removeItem', this.userKey);
     this.data.flag = "logout";
     this.trigger(this.data);
   },
