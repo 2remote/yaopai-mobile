@@ -232,4 +232,10 @@ describe('User Store Test', () => {
     });
   });
 
+  it('onGetCurrentUserFailed', () => {
+    UserStore.onGetCurrentUserFailed();
+    checkUserStoreData('hintMessage', '网络出错啦！');
+    checkUserStoreData('flag', 'currentUser');
+  });
+
 });
