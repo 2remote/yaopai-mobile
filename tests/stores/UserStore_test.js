@@ -120,9 +120,9 @@ describe('User Store Test', () => {
         avatar: '',
         loginDate: ''
       };
-      
+
       const keys = Object.keys(datas);
-      keys.map(function (key) {
+      keys.map(function(key) {
         checkUserStoreData(key, datas[key]);
       })
     });
@@ -191,7 +191,9 @@ describe('User Store Test', () => {
     // 设定虚拟LS的数据
     const currentUserKey = 'yaopai_user';
     UserStore.data.userKey = currentUserKey;
-    localStorage.setItem(currentUserKey, JSON.stringify({userName: 'fox name'}));
+    localStorage.setItem(currentUserKey, JSON.stringify({
+      userName: 'fox name'
+    }));
     expect(localStorage.getItem(currentUserKey)).to.exist;
     // 运行方法
     UserStore.onLogoutSuccess();
