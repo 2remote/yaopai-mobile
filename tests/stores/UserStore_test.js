@@ -151,7 +151,7 @@ describe('User Store Test', () => {
         keys.map((key) => {
           checkUserStoreData(key, datas[key]);
         });
-        
+
         storeHasData(UserStore, 'loginDate');
       });
 
@@ -170,6 +170,20 @@ describe('User Store Test', () => {
         checkUserStoreData('avatar', 'fox.png');
       });
 
+    });
+  });
+
+  describe('onModifyPasswordSuccess', () => {
+    it('works on successfulRes', () => {
+      UserStore.onModifyPasswordSuccess(successfulRes);
+      checkUserStoreData('hintMessage', '修改密码成功');
+      checkUserStoreData('flag', 'modifyPassword');
+    });
+
+    it('works on failedRes', () => {
+      UserStore.onModifyPasswordSuccess(failedRes);
+      checkUserStoreData('hintMessage', errorMsg);
+      checkUserStoreData('flag', 'modifyPassword');
     });
   });
 });
