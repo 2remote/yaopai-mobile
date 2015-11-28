@@ -208,4 +208,10 @@ describe('User Store Test', () => {
 
   storeCheckCommonUsage(UserStore, 'onRegisterSuccess', 'register');
 
+  it('onLoginWithTokenFailed', () => {
+    UserStore.onLoginWithTokenFailed();
+    checkUserStoreData('hintMessage', '网络出错啦！');
+    checkUserStoreData('flag', 'loginToken');
+  });
+
 });
