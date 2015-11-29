@@ -285,4 +285,26 @@ describe('User Store Test', () => {
       checkUserStoreData('flag', 'login');
     });
   });
+
+  describe('getTokenToLogin', () => {
+    it('works on no localStorage', () => {
+      localStorage.removeItem(currentUserKey);
+      UserStore.getTokenToLogin();
+
+      checkUserStoreData('isLogin', false);
+      checkUserStoreData('hintMessage', '没有登录！');
+      checkUserStoreData('flag', 'currentUser');
+    });
+
+    describe('works on has localStorage', () => {
+      it('works on loginToken exist', () => {
+        checkUserStoreData('loginToken', '');
+        checkUserStoreData('flag', '');
+        UserStore.data.loginToken = 'asdfasdf';
+
+        UserStore.getTokenToLogin();
+        // ［阻塞］这里要询问曾琦逻辑，再继续。
+      });
+    });
+  });
 });
