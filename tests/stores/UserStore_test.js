@@ -271,4 +271,20 @@ describe('User Store Test', () => {
     checkUserStoreData('flag', 'login');
   });
 
+  describe('onLoginSuccess', () => {
+    it('works on successfulRes', () => {
+      expect(localStorage.getItem(currentUserKey)).to.equal(null);
+      UserStore.onLoginSuccess(successfulRes);
+      expect(localStorage.getItem(currentUserKey)).to.not.equal(null);
+      checkUserStoreData('hintMessage', '');
+    });
+
+    it('works on failedRes', () => {
+      UserStore.onLoginSuccess(failedRes);
+      checkUserStoreData('hintMessage', errorMsg);
+      checkUserStoreData('flag', 'login');
+    });
+  });
+
+
 });
