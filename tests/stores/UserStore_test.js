@@ -245,8 +245,9 @@ describe('User Store Test', () => {
     UserStore.onGetCurrentUser(successfulRes);
     checkUserStoreData('isLogin', true);
     checkUserStoreData('flag', 'currentUser');
-    // expect(spy.callCount).to.equal(1);
-    // ［阻塞］这里要询问曾琦逻辑，再继续。
+
+    UserStore.onGetCurrentUser(failedRes);
+    expect(spy.callCount).to.equal(1);
   });
 
   describe('onCurrentUser', () => {
