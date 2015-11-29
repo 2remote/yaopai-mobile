@@ -250,16 +250,16 @@ describe('User Store Test', () => {
     const orgTime = new Date();
 
     // 6分钟后
-    const sixMinsBefore = new Date().setTime(orgTime.getTime() - 6*60*1000);
+    const sixMinsBefore = new Date().setTime(orgTime.getTime() - 6 * 60 * 1000);
     UserStore.data.loginDate = sixMinsBefore;
-    expect(parseInt((orgTime - sixMinsBefore)/60000) <= 10).to.equal(true);
+    expect(parseInt((orgTime - sixMinsBefore) / 60000) <= 10).to.equal(true);
     checkUserStoreData('flag', 'check');
     UserStore.onCurrentUser();
     checkUserStoreData('flag', 'currentUser');
     expect(spy.callCount).to.equal(1);
 
     // 15分钟后
-    const fifteenMinsBefore = new Date().setTime(orgTime.getTime() - 15*60*1000);
+    const fifteenMinsBefore = new Date().setTime(orgTime.getTime() - 15 * 60 * 1000);
     UserStore.data.loginDate = fifteenMinsBefore;
     UserStore.onCurrentUser();
     expect(spy.callCount).to.equal(2);
@@ -285,6 +285,4 @@ describe('User Store Test', () => {
       checkUserStoreData('flag', 'login');
     });
   });
-
-
 });
