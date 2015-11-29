@@ -239,9 +239,14 @@ describe('User Store Test', () => {
   });
 
   it('onGetCurrentUser', () => {
+    let spy = sinon.spy(UserStore, 'getTokenToLogin');
+    expect(spy.callCount).to.equal(0);
+
     UserStore.onGetCurrentUser(successfulRes);
     checkUserStoreData('isLogin', true);
     checkUserStoreData('flag', 'currentUser');
+    // expect(spy.callCount).to.equal(1);
+    // ［阻塞］这里要询问曾琦逻辑，再继续。
   });
 
   describe('onCurrentUser', () => {
