@@ -21,7 +21,8 @@ exports.imgModifier = function  (img, mode) {
     modifies = 'imageView2/1/w/160/h/160/interlace/1';
     break;
   default:
-    modifies = 'imageMogr2/gravity/Center/thumbnail/!600x600r/crop/600x600/interlace/1';    
+    /*首页裁切函数，先不做修改*/
+    modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';    
   }
   
   return img + '?' + modifies;
