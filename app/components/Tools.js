@@ -9,10 +9,10 @@ exports.imgModifier = function  (img, mode) {
 
   switch(mode){
   case "work":
-    modifies = 'imageMogr2/auto-orient/interlace/1';    
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/interlace/1';
     break;
   case "workCover":
-    modifies = 'imageMogr2/auto-orient/thumbnail/750x/gravity/north/crop/!750x500a0a80/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x400a0a80/interlace/1';
     break;
   case "avatar":
     modifies = 'imageView2/1/w/52/h/52/interlace/1';
@@ -21,7 +21,8 @@ exports.imgModifier = function  (img, mode) {
     modifies = 'imageView2/1/w/160/h/160/interlace/1';
     break;
   default:
-    modifies = 'imageMogr2/gravity/Center/thumbnail/!750x750r/crop/750x750/interlace/1';    
+    /*首页裁切函数，先不做修改*/
+    modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';
   }
   
   return img + '?' + modifies;
