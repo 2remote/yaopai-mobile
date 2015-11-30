@@ -15,6 +15,7 @@ import {
 from 'chai';
 
 import UserStore from '../../app/stores/UserStore';
+import UserActions from '../../app/actions/UserActions';
 
 describe('User Store Test', () => {
   const successfulRes = {
@@ -304,12 +305,21 @@ describe('User Store Test', () => {
 
     describe('works on has localStorage', () => {
       it('works on loginToken exist', () => {
+        let spy = sinon.spy(UserActions, 'loginWithToken');
         checkUserStoreData('loginToken', '');
         checkUserStoreData('flag', '');
-        UserStore.data.loginToken = 'asdfasdf';
-
+        UserStore.data.loginToken = '';
+        // 没有想到如何测试成功的情况，只测失败的情况
         UserStore.getTokenToLogin();
-        // ［阻塞］这里要询问曾琦逻辑，再继续。
+        checkUserStoreData('flag', 'currentUser');
+        checkUserStoreData('isLogin', false);
+
+        // 成功情况
+        // UserStore.data.loginToken = 'asdfwefds';
+        // expect(spy.callCount).to.equal(0);
+        
+        // UserStore.getTokenToLogin();
+        // expect(spy.callCount).to.equal(1);
       });
     });
   });
