@@ -16,7 +16,8 @@ describe('API switch', () => {
     '192.168.3.2:5000/#/login_page',
     'http://yaopai-mobile-dev.herokuapp.com/',
     'http://0.0.0.0:5000',
-    'dev.p.aiyaopai.com'
+    'dev.p.aiyaopai.com',
+    'http://yaopai-mobile-pr.herokuapp.com/'
   ];
 
   const prodHosts = [
@@ -70,7 +71,7 @@ function isProdHost(host) {
 }
 
 function isDevHost(host) {
-  const re = /dev\.|192\.|localhost|0\./i;
+  const re = /mobile-pr\.|dev\.|192\.|localhost|0\./i;
   const founds = host.match(re);
   if (founds != null) {
     return true;
