@@ -9,7 +9,7 @@ exports.imgModifier = function  (img, mode) {
 
   switch(mode){
   case "work":
-    modifies = 'imageMogr2/auto-orient/interlace/1';    
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/interlace/1';
     break;
   case "workCover":
     modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x400a0a80/interlace/1';
@@ -22,7 +22,7 @@ exports.imgModifier = function  (img, mode) {
     break;
   default:
     /*首页裁切函数，先不做修改*/
-    modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';    
+    modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';
   }
   
   return img + '?' + modifies;
