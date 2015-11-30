@@ -21,7 +21,7 @@ exports.imgModifier = function  (img, mode) {
     modifies = 'imageView2/1/w/160/h/160/interlace/1';
     break;
   default:
-    modifies = 'imageMogr2/gravity/Center/thumbnail/!750x750r/crop/750x750/interlace/1';    
+    modifies = 'imageMogr2/gravity/Center/thumbnail/!600x600r/crop/600x600/interlace/1';    
   }
   
   return img + '?' + modifies;
