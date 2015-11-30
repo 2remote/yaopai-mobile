@@ -11,3 +11,5 @@ CircleCI
 - master、dev 是保护分支，不能强制 push，只能用 pull request 的方式合并，且必须同时满足以下两个条件
   - 至少一个管理员审核
   - ci 显示为 pass
+
+
