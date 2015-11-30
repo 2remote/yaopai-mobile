@@ -27,7 +27,7 @@ var WorkIntroGrapherRow = React.createClass({
         className="workIntroGrapherRow">
         <Link to={"/workDetail/" + this.props.data.Id}>
           <img
-            style={{width:'100%',height:260/375*innerWidth,marginBottom: -36}}
+            style={{width:'100%',height:210/375*innerWidth,marginBottom: -36}}
             ref="workImage"
             src={cover}/>
         </Link>
