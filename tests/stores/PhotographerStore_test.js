@@ -1,6 +1,10 @@
 import Reflux from 'reflux';
 import {
-  storeIsDefined, storeHasData, storeHasMethod, storeCheckCommonUsage
+  storeIsDefined,
+  storeHasData,
+  storeHasMethod,
+  storeCheckCommonUsage,
+  makeStoreHasMethod
 }
 from '../refluxTestHelpers';
 import {
@@ -9,6 +13,8 @@ import {
 from 'chai';
 
 import PhotographerStore from '../../app/stores/PhotographerStore';
+
+const photographerStoreHasMethod = makeStoreHasMethod(PhotographerStore);
 
 describe('Photographer Store Test', () => {
   const successfulRes = {
@@ -41,17 +47,17 @@ describe('Photographer Store Test', () => {
       'onRecommendListSuccess'
     ];
     methods.forEach((method) => {
-      storeHasMethod(PhotographerStore, method);
+      photographerStoreHasMethod(method);
     })
   });
 
   describe('works on get success', () => {
-    storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get');  
+    storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get');
     PhotographerStore.onGetSuccess(successfulRes);
-    expect(PhotographerStore.data.photographer).to.equal(successfulRes);  
+    expect(PhotographerStore.data.photographer).to.equal(successfulRes);
   });
-  
+
   storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list', 'photographers');
-  
+
   storeCheckCommonUsage(PhotographerStore, 'onRecommendListSuccess', 'recommendList', 'photographers');
 });

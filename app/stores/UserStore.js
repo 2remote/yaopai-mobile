@@ -7,9 +7,9 @@ var UserStore = Reflux.createStore({
     console.log('UserStore initialized');
 
     /*
-        需要增加从localStorage读取用户信息的方法来初始化userData
+        需要增加从localStorage读取用户信息的方法来初始化data
     */
-    this.userData = {
+    this.data = {
       userId: '',
       userName: '',
       loginToken : '',//用户选择rememberme的时候返回
@@ -48,7 +48,7 @@ var UserStore = Reflux.createStore({
   },
   //！！！这个方法只在从服务器得到不到当前用户的状态下调用！！！
   getTokenToLogin : function(){
-    //从localStorage读取UserData
+    //从localStorage读取Data
     var temp = localStorage.getItem(this.userKey);
     if(temp){
       temp = eval('('+temp+')');
@@ -57,14 +57,14 @@ var UserStore = Reflux.createStore({
         UserActions.loginWithToken({token : temp.loginToken});
       }else{
         this.setCurrentUser(null);
-        this.userData.flag = 'currentUser';
-        this.trigger(this.userData);
+        this.data.flag = 'currentUser';
+        this.trigger(this.data);
       }
     }else{
       this.setCurrentUser(null);
-      this.userData.hintMessage = '没有登录！';
-      this.userData.flag = 'currentUser';
-      this.trigger(this.userData);
+      this.data.hintMessage = '没有登录！';
+      this.data.flag = 'currentUser';
+      this.trigger(this.data);
     }
   },
   onLoginSuccess: function(data) {
@@ -74,29 +74,29 @@ var UserStore = Reflux.createStore({
     if (data.Success) {
       //用户登录成功，需要获得用户信息
       UserActions.currentUser();
-      localStorage.setItem(this.userKey,JSON.stringify(this.userData));
-      this.userData.hintMessage = '';
+      localStorage.setItem(this.userKey,JSON.stringify(this.data));
+      this.data.hintMessage = '';
     } else {
-      this.userData.hintMessage = data.ErrorMsg;
-      this.userData.flag = "login";
-      this.trigger(this.userData);
+      this.data.hintMessage = data.ErrorMsg;
+      this.data.flag = "login";
+      this.trigger(this.data);
     }
   },
   /*
     onLoginFailed 主要监听网络访问错误
   */
   onLoginFailed: function(data) {
-    this.userData.hintMessage = "网络出错啦！";
-    this.userData.flag = "login";
-    this.trigger(this.userData);
+    this.data.hintMessage = "网络出错啦！";
+    this.data.flag = "login";
+    this.trigger(this.data);
   },
   /*
     避免重复读取服务器api
   */
   onCurrentUser : function(){
     var now = new Date();
-    var loginDate = this.userData.loginDate;
-    if(this.userData.isLogin && this.userData.loginDate){
+    var loginDate = this.data.loginDate;
+    if(this.data.isLogin && this.data.loginDate){
       if(typeof loginDate == 'string'){
         loginDate = StringToDate(loginDate);
       }
@@ -104,8 +104,8 @@ var UserStore = Reflux.createStore({
       //console.log('inteval is :'+inteval);
       if(parseInt((now - loginDate)/60000) <= 10){
         //小于十分钟之内的登录，不再向服务器请求当前用户
-        this.userData.flag = 'currentUser';
-        return this.trigger(this.userData);
+        this.data.flag = 'currentUser';
+        return this.trigger(this.data);
       }else{
         this.setCurrentUser(null);
         return UserActions.currentServerUser();
@@ -116,8 +116,8 @@ var UserStore = Reflux.createStore({
   onGetCurrentUser : function(data){
     if(data.Success){
       this.setCurrentUser(data);
-      this.userData.flag = 'currentUser';
-      this.trigger(this.userData);
+      this.data.flag = 'currentUser';
+      this.trigger(this.data);
     }else{
       console.log(data.ErrorMsg);
       //若未得到当前用户，尝试loginwithtoken
@@ -125,9 +125,9 @@ var UserStore = Reflux.createStore({
     }
   },
   onGetCurrentUserFailed : function(data){
-    this.userData.hintMessage = '网络出错啦！';
-    this.userData.flag = 'currentUser';
-    this.trigger(this.userData);
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'currentUser';
+    this.trigger(this.data);
   },
   /*
     自动登录，如果用了loginToken，是否不用存user的其他信息？
@@ -136,51 +136,52 @@ var UserStore = Reflux.createStore({
     console.log(data);
     if(data.Success){
       console.log('login with token success');
-      localStorage.setItem(this.userKey,JSON.stringify(this.userData));
+      localStorage.setItem(this.userKey,JSON.stringify(this.data));
     }else{
       console.log('login with token failed');
       this.setCurrentUser(null);
-      this.userData.LoginToken = '';
+      this.data.LoginToken = '';
       localStorage.removeItem(this.userKey);
     }
     UserActions.currentUser();
-    //this.userData.flag = "loginToken";
-    //this.trigger(this.userData);
+    //this.data.flag = "loginToken";
+    //this.trigger(this.data);
   },
   onLoginWithTokenFailed : function(data){
-    this.userData.hintMessage = '网络出错啦！';
-    this.userData.flag = 'loginToken';
-    this.trigger(this.userData);
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'loginToken';
+    this.trigger(this.data);
   },
   /*
     监听注册action，根据返回的data.success判断是否注册成功
   */
   onRegisterSuccess: function(data) {
     if (data.Success) {
-      this.userData.hintMessage = '';
+      this.data.hintMessage = '';
       this.setCurrentUser(data.User);
     } else {
-      this.userData.hintMessage = data.ErrorMsg;
+      this.data.hintMessage = data.ErrorMsg;
     }
-    this.userData.flag = "register";
-    this.trigger(this.userData);
+    this.data.flag = "register";
+    this.trigger(this.data);
   },
   /*
     onRegisterFailed 主要监听网络访问错误
   */
   onRegisterFailed: function(data) {
-    this.userData.hintMessage = '网络出错啦！';
-    this.userData.flag = "register"
-    this.trigger(this.userData);
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = "register"
+    this.trigger(this.data);
   },
   /*
-    登出后清空userData的用户信息
+    登出后清空data的用户信息
   */
   onLogoutSuccess: function() {
     this.setCurrentUser(null);
     localStorage.removeItem(this.userKey);
-    this.userData.flag = "logout";
-    this.trigger(this.userData);
+    console.log('removeItem', this.userKey);
+    this.data.flag = "logout";
+    this.trigger(this.data);
   },
 
   /*
@@ -188,12 +189,12 @@ var UserStore = Reflux.createStore({
   */
   onModifyPasswordSuccess : function(data){
     if(data.Success){
-      this.userData.hintMessage = "修改密码成功";
+      this.data.hintMessage = "修改密码成功";
     }else{
-      this.userData.hintMessage = data.ErrorMsg;
+      this.data.hintMessage = data.ErrorMsg;
     }
-    this.userData.flag="modifyPassword";
-    this.trigger(this.userData);
+    this.data.flag="modifyPassword";
+    this.trigger(this.data);
   },
   onModifyPasswordFailed : function(data){
     console.log('网络出错，无法连接服务器！');
@@ -202,56 +203,54 @@ var UserStore = Reflux.createStore({
   /*
     设定当前用户信息
   */
-  setCurrentUser: function(userData) {
-    if (!userData) {
-      this.userData.userId = '';
-      this.userData.userName = '';
-      this.userData.local = true;
-      this.userData.isLogin = false;
-      this.userData.userType = '';
-      this.userData.avatar = '';
-      this.userData.loginDate = '';
+  setCurrentUser: function(data) {
+    if (!data) {
+      this.data.userId = '';
+      this.data.userName = '';
+      this.data.local = true;
+      this.data.isLogin = false;
+      this.data.userType = '';
+      this.data.avatar = '';
+      this.data.loginDate = '';
     } else {
-      this.userData.userId = userData.Id;
-      this.userData.userName = userData.Name;
-      this.userData.userType = userData.Type;
-      if (userData.Avatar) {
-        this.userData.avatar = userData.Avatar;
+      this.data.userId = data.Id;
+      this.data.userName = data.Name;
+      this.data.userType = data.Type;
+      if (data.Avatar) {
+        this.data.avatar = data.Avatar;
       } else {
-        this.userData.avatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(userData.Id) % 47 + 1 ) + '.png';
+        this.data.avatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(data.Id) % 47 + 1 ) + '.png';
       };
-      this.userData.local = userData.Local;
-      this.userData.isLogin = true;
-      this.userData.loginDate = new Date();
+      this.data.local = data.Local;
+      this.data.isLogin = true;
+      this.data.loginDate = new Date();
     }
   },
   onTelResetPassWordSuccess: function (data) {
-    console.log(data);
-    this.userData.flag = 'check';
+    this.data.flag = 'check';
     if (data.Success) {
-      this.userData.hintMessage = '';
+      this.data.hintMessage = '';
     } else {
-      this.userData.hintMessage = data.ErrorMsg;
+      this.data.hintMessage = data.ErrorMsg;
     }
-    this.trigger(this.userData);
+    this.trigger(this.data);
   },
   onTelResetPassWordFailed: function (data) {
-    this.userData.hintMessage = '网络出错啦！';
-    this.userData.flag = 'check'
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'check';
   },
   onreceiveTelResetPassWordSuccess: function (data) {
-    console.log(data);
-    this.userData.flag = 'resetPassword';
+    this.data.flag = 'resetPassword';
     if (data.Success) {
-      this.userData.hintMessage = '';
+      this.data.hintMessage = '';
     } else {
-      this.userData.hintMessage = data.ErrorMsg;
+      this.data.hintMessage = data.ErrorMsg;
     }
-    this.trigger(this.userData);
+    this.trigger(this.data);
   },
   onreceiveTelResetPassWordFailed: function (data) {
-    this.userData.hintMessage = '网络出错啦！';
-    this.userData.flag = 'resetPassword';
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'resetPassword';
   }
 
 });
