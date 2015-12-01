@@ -63,15 +63,15 @@ describe('Get Code Store Test', () => {
     it('works on successfulRes', () => {
       GetCodeStore.onTelRegisterSucess(successfulRes);
       checkGetCodeStoreData('flag', 'registerCode');
-      checkGetCodeStoreData('result', '验证码已发送');  
+      checkGetCodeStoreData('result', '验证码已发送');
     });
-    
+
     it('works on failedRes', () => {
       GetCodeStore.onTelRegisterSucess(failedRes);
       checkGetCodeStoreData('flag', 'registerCode');
-      checkGetCodeStoreData('result', errorMsg);  
+      checkGetCodeStoreData('result', errorMsg);
       checkGetCodeStoreData('left', 0);
-    });   
+    });
   });
 
 });
