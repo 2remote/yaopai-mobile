@@ -95,4 +95,13 @@ describe('Get Code Store Test', () => {
       checkGetCodeStoreData('left', 0);
     });
   });
+
+  it('onBeginTelRestPassword', () => {
+    GetCodeStore.onBeginTelRestPassword();
+    expect(GetCodeStore.data.left <= 60).to.equal(true);
+    expect(GetCodeStore.data.left > 0).to.equal(true);
+    // 倒数函数存在，所以从60会变到59
+    // 针对 left <=0 目前无法测试
+  });
+
 });
