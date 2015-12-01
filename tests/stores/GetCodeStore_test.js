@@ -81,4 +81,18 @@ describe('Get Code Store Test', () => {
     // 倒数函数存在，所以从60会变到59
   });
 
+  describe('onTelRestPasswordSuccess', () => {
+    it('works on successfulRes', () => {
+      GetCodeStore.onTelRestPasswordSuccess(successfulRes);
+      checkGetCodeStoreData('flag', 'resetCode');
+      checkGetCodeStoreData('result', '验证码已发送');
+    });
+
+    it('works on failedRes', () => {
+      GetCodeStore.onTelRestPasswordSuccess(failedRes);
+      checkGetCodeStoreData('flag', 'resetCode');
+      checkGetCodeStoreData('result', errorMsg);
+      checkGetCodeStoreData('left', 0);
+    });
+  });
 });
