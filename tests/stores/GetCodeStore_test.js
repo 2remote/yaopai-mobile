@@ -32,20 +32,12 @@ describe('Get Code Store Test', () => {
   const checkGetCodeStoreData = makeCheckStoreData(GetCodeStore);
   const getCodeStoreHasMethod = makeStoreHasMethod(GetCodeStore);
 
-  const currentUserKey = 'yaopai_user';
-
   beforeEach(() => {
     GetCodeStore.data = {
       hintMessage: '',
       flag: '',
-      userId: '',
-      userName: '',
-      loginToken: '', //用户选择rememberme的时候返回
-      userType: '',
-      userState: '',
-      isLogin: false,
-      loginDate: '',
-      userKey: currentUserKey
+      left: 0,
+      result: ''
     };
   });
 
