@@ -14,10 +14,10 @@ var WorkIntroRow = React.createClass({
   render: function() {
     const cover = imgModifier(this.props.data.Cover,"workCover");
     return (
-      <div className="workIntroRow" style={{width:'100%',height:260/375*innerWidth+80,textAlign:'center'}}>
+      <div className="workIntroRow" style={{width:'100%',height:210/375*innerWidth+80,textAlign:'center'}}>
         <Link to={"/workDetail/" + this.props.data.Id}>
           <img 
-            style={{width:'100%',height:260/375*innerWidth}}
+            style={{width:'100%',height:210/375*innerWidth}}
             ref="workImage"
             src={cover} />
         </Link>

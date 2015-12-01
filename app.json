@@ -1,0 +1,11 @@
+{
+  "name": "yaopai-mobile",
+  "description": "mobile web app for PR real test",
+  "scripts": {},
+  "env": {
+    "NPM_CONFIG_PRODUCTION": "false"
+  },
+  "addons": [
+    "papertrail"
+  ]
+}

@@ -27,10 +27,10 @@ var WorkIntroGrapherRow = React.createClass({
         style={{width:'100%',textAlign:'center',color:'#0f0f0f'}}
         className="workIntroGrapherRow">
         <Link to={"/workDetail/" + this.props.data.Id}>
-          <div style={{width:'100%',height:260/375*innerWidth,marginBottom: -36,backgroundColor:'#eeedeb'}}>
+          <div style={{width:'100%',height:210/375*innerWidth,marginBottom: -36,backgroundColor:'#eeedeb'}}>
             <LazyLoad threshold={100}>
               <img
-                style={{width:'100%',height:260/375*innerWidth,marginBottom: -36}}
+                style={{width:'100%',height:210/375*innerWidth,marginBottom: -36}}
                 ref="workImage"
                 src={cover}/>
             </LazyLoad>
