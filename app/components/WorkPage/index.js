@@ -64,7 +64,7 @@ var WorkPage = React.createClass({
     }
   },
   onChangeCategory : function(category){
-    this.setState({category : category});
+    this.setState({works : [],category : category});
     AlbumsActions.search(category);
   },
   onChangePage : function(pageIndex){
