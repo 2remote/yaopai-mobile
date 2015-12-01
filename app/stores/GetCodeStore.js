@@ -23,10 +23,10 @@ var GetCodeStore = Reflux.createStore({
     this.listenTo(GetCodeActions.sendTelRestPassword, this.onBeginTelRestPassword);
   },
   onBeginTelRegister : function(){
-    this.getCode.left = 60;
+    this.data.left = 60;
     var countLeft = function(){
-      this.getCode.left = this.getCode.left -1;
-      this.trigger(this.getCode);
+      this.data.left = this.data.left -1;
+      this.trigger(this.data);
       setTimeout(countLeft, 1000);
     }.bind(this);
     countLeft();
