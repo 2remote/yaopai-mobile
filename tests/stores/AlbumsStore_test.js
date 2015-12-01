@@ -1,6 +1,10 @@
 import Reflux from 'reflux';
 import {
-  storeIsDefined, storeHasData, storeHasMethod, storeCheckCommonUsage
+  storeIsDefined,
+  storeHasData,
+  storeHasMethod,
+  storeCheckCommonUsage,
+  makeStoreHasMethod
 }
 from '../refluxTestHelpers';
 import {
@@ -9,6 +13,8 @@ import {
 from 'chai';
 
 import AlbumsStore from '../../app/stores/AlbumsStore';
+
+const albumsStoreHasMethod = makeStoreHasMethod(AlbumsStore);
 
 describe('Albums Store Test', () => {
   const successfulRes = {
@@ -48,7 +54,7 @@ describe('Albums Store Test', () => {
       'onRecommendListSuccess'
     ];
     methods.forEach((method) => {
-      storeHasMethod(AlbumsStore, method);
+      albumsStoreHasMethod(method);
     })
   });
 
@@ -62,7 +68,7 @@ describe('Albums Store Test', () => {
 
   describe('works on get success', () => {
     storeCheckCommonUsage(AlbumsStore, 'onGetSuccess', 'get');
-    AlbumsStore.onGetSuccess(successfulRes);    
+    AlbumsStore.onGetSuccess(successfulRes);
     expect(AlbumsStore.data.workData).to.equal(successfulRes);
 
     AlbumsStore.onGetSuccess(failedRes);
@@ -89,12 +95,19 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.hintMessage).is.empty;
     expect(AlbumsStore.data.flag).to.equal('search');
 
-    storeHasData(AlbumsStore, 'count');
-    storeHasData(AlbumsStore, 'pageCount');
-    storeHasData(AlbumsStore, 'pageIndex');
-    storeHasData(AlbumsStore, 'pageSize');
-    storeHasData(AlbumsStore, 'total');
-    storeHasData(AlbumsStore, 'workList');
+    it('has datas', () => {
+      const keys = [
+        'count',
+        'pageCount',
+        'pageIndex',
+        'pageSize',
+        'total',
+        'workList'
+      ];
+      keys.map(function (key) {
+        storeHasData(AlbumsStore, key);
+      })
+    });
 
     // 没有数据的时候
     AlbumsStore.onSearchSuccess(failedRes);
@@ -105,15 +118,15 @@ describe('Albums Store Test', () => {
 
   describe('works on get my albums success', () => {
     storeCheckCommonUsage(AlbumsStore, 'onGetMyAlbumsSuccess', 'getMyAlbums', 'workList');
-    
+
     AlbumsStore.onGetMyAlbumsSuccess(failedRes);
     expect(AlbumsStore.data.workList).is.empty;
   });
 
   storeCheckCommonUsage(AlbumsStore, 'onGetCategoriesSuccess', 'getCategories', 'categories');
-  
+
   storeCheckCommonUsage(AlbumsStore, 'onSaleSuccess', 'onSale');
-  
+
   storeCheckCommonUsage(AlbumsStore, 'offSaleSuccess', 'offSale');
 
   storeCheckCommonUsage(AlbumsStore, 'onRecommendListSuccess', 'recommendList', 'workList');
