@@ -12,7 +12,7 @@ var GetCodeStore = Reflux.createStore({
   init: function() {
     console.log('GetCodeStore initialized');
     //记录发送验证码的时间
-    this.getCode = {
+    this.data = {
       flag: '',
       left : 0,
       result : '',
@@ -32,38 +32,38 @@ var GetCodeStore = Reflux.createStore({
     countLeft();
   },
   onTelRegisterSucess : function(data){
-    this.getCode.flag = 'registerCode';
+    this.data.flag = 'registerCode';
     if(data.Success){
-      this.getCode.result = '验证码已发送';
+      this.data.result = '验证码已发送';
     }else{
-      this.getCode.result = data.ErrorMsg;
-      this.getCode.left = 0;
+      this.data.result = data.ErrorMsg;
+      this.data.left = 0;
     }
-    this.trigger(this.getCode);
+    this.trigger(this.data);
   },
   onBeginTelRestPassword: function () {
-    this.getCode.left = 60;
+    this.data.left = 60;
     var countLeft = function () {
-      this.getCode.left -= 1;
-      this.trigger(this.getCode);
+      this.data.left -= 1;
+      this.trigger(this.data);
       timer = setTimeout(countLeft, 1000);
       /*清除定时器*/
-      if (this.getCode.left <= 0) {
+      if (this.data.left <= 0) {
         clearTimeout(timer);
       }
     }.bind(this);
     countLeft();
   },
   onTelRestPasswordSuccess: function (data) {
-    this.getCode.flag = 'resetCode';
+    this.data.flag = 'resetCode';
     if(data.Success){
-      this.getCode.result = '验证码已发送';
+      this.data.result = '验证码已发送';
     }else{
       clearTimeout(timer)
-      this.getCode.result = data.ErrorMsg;
-      this.getCode.left = 0;
+      this.data.result = data.ErrorMsg;
+      this.data.left = 0;
     }
-    this.trigger(this.getCode);
+    this.trigger(this.data);
   },
 });
 

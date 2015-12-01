@@ -54,8 +54,6 @@ describe('Get Code Store Test', () => {
     storeHasData(GetCodeStore);
   });
 
-
-
   it('store has methods', () => {
     const methods = [
       'init',
@@ -67,6 +65,17 @@ describe('Get Code Store Test', () => {
     methods.forEach((method) => {
       getCodeStoreHasMethod(method);
     })
+  });
+
+  describe('onTelRegisterSucess', () => {
+    GetCodeStore.onTelRegisterSucess(successfulRes);
+    checkGetCodeStoreData('flag', 'registerCode');
+    checkGetCodeStoreData('result', '验证码已发送');
+
+    GetCodeStore.onTelRegisterSucess(failedRes);
+    checkGetCodeStoreData('flag', 'registerCode');
+    checkGetCodeStoreData('result', errorMsg);
+    checkGetCodeStoreData('left', 0);
   });
 
 });
