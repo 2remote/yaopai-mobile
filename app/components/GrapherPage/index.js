@@ -6,13 +6,15 @@ var HamburgMenu = require('../HamburgMenu');
 var GrapherList = require('./GrapherList');
 var PhotographerStore = require('../../stores/PhotographerStore');
 var PhotographerActions = require('../../actions/PhotographerActions');
+var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 require('./GrapherPage.css');
 
 var GrapherPage = React.createClass({
-  mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange')],
+  mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange') ,AutoLoadPageMixin],
   getInitialState: function() {
     return {
-      pageIndex : 0,
+      pageIndex : 1,
+      pageCount :0,
       graphers: []
     };
   },
@@ -25,11 +27,13 @@ var GrapherPage = React.createClass({
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({graphers : data.photographers});
+        this.setState({graphers : this.state.graphers.concat(data.photographers) ,pageCount : data.pageCount});
       }
     }
   },
-
+  onChangePage : function (pageIndex) {
+    PhotographerActions.list(pageIndex);
+  },
   render: function() {
     return (
       <DocumentTitle title="摄影师">
