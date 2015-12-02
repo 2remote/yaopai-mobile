@@ -73,10 +73,10 @@ var Menu = React.createClass({
         height: '30px',
       }
     }
-    var lis = this.props.categories.map(function (item) {
+    var lis = this.props.categories.map(function (item,key) {
       console.log(item);
       return (
-        <li data-key={item.Id} onClick={this.changeCategory.bind(this, item.Id)} style={style.li}><a style={(item.Id == this.state.activeItem?style.aActive: style.aStyle)}>{item.Name}</a></li>
+        <li key={key} data-key={item.Id} onClick={this.changeCategory.bind(this, item.Id)} style={style.li}><a style={(item.Id == this.state.activeItem?style.aActive: style.aStyle)}>{item.Name}</a></li>
       )
     }.bind(this));
     return (
