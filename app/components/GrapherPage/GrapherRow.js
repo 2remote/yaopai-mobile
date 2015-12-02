@@ -2,7 +2,6 @@ var React = require('react');
 import { Router, Route, Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
-import LazyLoad from 'react-lazy-load';
 
 var deviceWidth = parseInt(window.innerWidth);
 
@@ -30,18 +29,14 @@ var GrapherRow = React.createClass({
     const rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.User.Id) % 47 + 1 ) + '.png';
     const grapherAvatar = imgModifier(this.props.data.User.Avatar||rondomAvatar, "grapherAvatar");
 
-
+    
     return (
       <div className="grapherRow">
         <div className="grapherAvatar">
         <Link to={"/grapherDetail/"+this.props.data.Id} >
-          <div style={{width : '100%' ,height : deviceWidth/2 ,backgroundColor : '#eeedeb'}}>
-            <LazyLoad threshold={100}>
-              <img
-                ref="avatar"
-                src={grapherAvatar} />
-            </LazyLoad>
-          </div>
+          <img 
+            ref="avatar"
+            src={grapherAvatar} />
         </Link>
         </div>
         <div className="grapherPageIntro" style={grapherPageIntro}>

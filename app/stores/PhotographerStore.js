@@ -29,7 +29,6 @@ var PhotographerStore = Reflux.createStore({
   },
   onListSuccess : function(res){
     if(res.Success){
-      this.data.pageCount = res.PageCount;
       this.data.photographers = res.Result;
       this.data.hintMessage = '';
     }else{
