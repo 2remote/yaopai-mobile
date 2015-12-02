@@ -13,11 +13,12 @@ var HamburgMenu = React.createClass({
     }
   },
   showLeft: function() {
-    this.refs.mask.getDOMNode().style.display = 'block';
+    //this.refs.mask.getDOMNode().style.display react@0.13.3
+    this.refs.mask.style.display = 'block';
     this.refs.left.show();
   },
   handleMask: function () {
-    this.refs.mask.getDOMNode().style.display = 'none';
+    this.refs.mask.style.display = 'none';
     this.refs.left.hide();
   },
   _onUserStoreChange : function  (userData) {
