@@ -31,10 +31,8 @@ AlbumsActions.update.listen(function(data){
 AlbumsActions.delete.listen(function(data){
   HttpFactory.post(API.ALBUMS.delete,data,this.success,this.failed);
 });
-AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize = 10){
+AlbumsActions.search.listen(function(categoryId){
   var data = {
-    PageIndex:pageIndex,
-    PageSize:pageSize,
     CategoryId : categoryId,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar'
   }

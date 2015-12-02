@@ -69,17 +69,13 @@
     "webpack-merge": "^0.2.0"
   },
   "dependencies": {
-    "history": "^1.13.1",
     "jquery": "^2.1.4",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "react": "^0.13.3",
     "react-document-title": "^2.0.1",
-    "react-lazy-load": "^2.0.1",
     "react-router": "^1.0.0-rc1",
     "react-swipe": "^2.3.0",
     "react-tappable": "^0.6.0",
     "reflux": "^0.3.0",
-    "swipe-js-iso": "^2.0.1",
     "underscore": "^1.8.3",
     "validator": "^4.0.5",
     "web-storage": "^1.0.0"
