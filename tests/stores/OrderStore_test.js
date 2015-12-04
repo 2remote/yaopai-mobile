@@ -77,4 +77,22 @@ describe('Order Store Test', () => {
       checkOrderStoreData('flag', 'list');
     });
   });
+
+  describe('onGetOrder', () => {
+    it('works on successfulRes', () => {
+      OrderStore.onGetOrder(successfulRes);
+      checkOrderStoreData('order', successfulRes);
+      checkOrderStoreData('hintMessage', '');
+      checkOrderStoreData('success', true);
+      checkOrderStoreData('flag', 'get');
+    });
+
+    it('works on failedRes', () => {
+      OrderStore.onGetOrder(failedRes);
+      expect(OrderStore.data.order).is.empty;
+      checkOrderStoreData('hintMessage', errorMsg);
+      checkOrderStoreData('success', false);
+      checkOrderStoreData('flag', 'get');
+    });
+  });
 });
