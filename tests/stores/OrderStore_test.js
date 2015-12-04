@@ -76,6 +76,5 @@ describe('Order Store Test', () => {
       checkOrderStoreData('success', false);
       checkOrderStoreData('flag', 'list');
     });
-
   });
 });
