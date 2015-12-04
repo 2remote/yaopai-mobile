@@ -36,7 +36,7 @@ var Menu = React.createClass({
         zIndex: '9999',
         padding: '27px 0 19px',
         background: '#fff',
-        webkitTransition:'top ease .5s',
+        WebkitTransition:'top ease .5s',
         transition: 'top ease .5s',
       },
       ul: {
