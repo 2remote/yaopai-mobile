@@ -59,4 +59,23 @@ describe('Order Store Test', () => {
       orderStoreHasMethod(method);
     })
   });
+
+  describe('onListOrders', () => {
+    it('works on successfulRes', () => {
+      OrderStore.onListOrders(successfulRes);
+      checkOrderStoreData('orders', successfulRes.Result);
+      checkOrderStoreData('hintMessage', '');
+      checkOrderStoreData('success', true);
+      checkOrderStoreData('flag', 'list');
+    });
+
+    it('works on failedRes', () => {
+      OrderStore.onListOrders(failedRes);
+      expect(OrderStore.data.orders).is.empty;
+      checkOrderStoreData('hintMessage', errorMsg);
+      checkOrderStoreData('success', false);
+      checkOrderStoreData('flag', 'list');
+    });
+
+  });
 });
