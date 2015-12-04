@@ -95,4 +95,20 @@ describe('Order Store Test', () => {
       checkOrderStoreData('flag', 'get');
     });
   });
+
+  describe('onComfirmOrder', () => {
+    it('work on successfulRes', () => {
+      OrderStore.onComfirmOrder(successfulRes);
+      checkOrderStoreData('hintMessage', '确认订单成功！');
+      checkOrderStoreData('success', true);
+      checkOrderStoreData('flag', 'confirm');
+    });
+
+    it('works on failedRes', () => {
+      OrderStore.onComfirmOrder(failedRes);
+      checkOrderStoreData('hintMessage', errorMsg);
+      checkOrderStoreData('success', false);
+      checkOrderStoreData('flag', 'confirm');
+    });
+  });
 });
