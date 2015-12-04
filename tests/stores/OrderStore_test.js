@@ -144,4 +144,10 @@ describe('Order Store Test', () => {
       checkOrderStoreData('flag', 'close');
     });
   });
+
+  it('onFailed', () => {
+    OrderStore.onFailed();
+    checkOrderStoreData('hintMessage', '网络错误！');
+    checkOrderStoreData('flag', 'failed');
+  });
 });
