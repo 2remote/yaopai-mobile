@@ -20,7 +20,7 @@ PhotographerActions.get.listen(function(id){
 /*
   list动作，查询摄影师
 */
-PhotographerActions.list.listen(function(pageIndex = 0,pageSize =0, city = null){
+PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = null){
   var data = {
     Fields : 'Id,BusinessPhone,ProvinceId,ProvinceName,RealName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
     PageIndex : pageIndex,

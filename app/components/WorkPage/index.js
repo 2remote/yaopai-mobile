@@ -9,15 +9,17 @@ var AlbumsActions = require('../../actions/AlbumsActions');
 var AlbumsStore = require('../../stores/AlbumsStore');
 var WorkIntroGrapherList = require('./WorkIntroGrapherList');
 var HamburgMenu = require('../HamburgMenu');
+var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { LIST_ALL_WORKS } from '../Tools';
 import Menu from './Menu';
 import ShowMenu from './ShowMenu';
 
 var WorkPage = React.createClass({
-  mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange')],
+  mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange') ,AutoLoadPageMixin],
   getInitialState: function() {
     return {
       pageIndex : 1,
+      pageCount :0,
       total : 0,
       works: [],
       categories : [],
@@ -42,7 +44,7 @@ var WorkPage = React.createClass({
       }.bind(this)
     });
     */
-    AlbumsActions.search(null);
+    AlbumsActions.search();
     AlbumsActions.getCategories();
   },
   _onAlbumsStoreChange : function(data){
@@ -50,7 +52,7 @@ var WorkPage = React.createClass({
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({works : data.workList,pageIndex: data.pageIndex,total : data.total});
+        this.setState({works : this.state.works.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
       }
     }
     if(data.flag == 'getCategories'){
@@ -64,6 +66,9 @@ var WorkPage = React.createClass({
   onChangeCategory : function(category){
     this.setState({works : [],category : category});
     AlbumsActions.search(category);
+  },
+  onChangePage : function(pageIndex){
+    AlbumsActions.search(this.state.category,pageIndex);
   },
   render: function() {
     return (

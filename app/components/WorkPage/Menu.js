@@ -36,7 +36,7 @@ var Menu = React.createClass({
         zIndex: '9999',
         padding: '27px 0 19px',
         background: '#fff',
-        webkitTransition:'top ease .5s',
+        WebkitTransition:'top ease .5s',
         transition: 'top ease .5s',
       },
       ul: {
@@ -73,10 +73,10 @@ var Menu = React.createClass({
         height: '30px',
       }
     }
-    var lis = this.props.categories.map(function (item) {
+    var lis = this.props.categories.map(function (item,key) {
       console.log(item);
       return (
-        <li data-key={item.Id} onClick={this.changeCategory.bind(this, item.Id)} style={style.li}><a style={(item.Id == this.state.activeItem?style.aActive: style.aStyle)}>{item.Name}</a></li>
+        <li key={key} data-key={item.Id} onClick={this.changeCategory.bind(this, item.Id)} style={style.li}><a style={(item.Id == this.state.activeItem?style.aActive: style.aStyle)}>{item.Name}</a></li>
       )
     }.bind(this));
     return (
