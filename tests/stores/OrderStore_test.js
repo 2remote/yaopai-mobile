@@ -111,4 +111,21 @@ describe('Order Store Test', () => {
       checkOrderStoreData('flag', 'confirm');
     });
   });
+
+  describe('onBookOrder', () => {
+    it('works on successfulRes', () => {
+      OrderStore.onBookOrder(successfulRes);
+      checkOrderStoreData('hintMessage', '预订成功！');
+      expect(OrderStore.data.order).is.deep.equal({Id: successfulRes.Result});
+      checkOrderStoreData('success', true);
+      checkOrderStoreData('flag', 'add');
+    });
+
+    it('works on failedRes', () => {
+      OrderStore.onBookOrder(failedRes);
+      checkOrderStoreData('hintMessage', errorMsg);
+      checkOrderStoreData('success', false);
+      checkOrderStoreData('flag', 'add');
+    });
+  });
 });
