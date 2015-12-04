@@ -128,4 +128,20 @@ describe('Order Store Test', () => {
       checkOrderStoreData('flag', 'add');
     });
   });
+
+  describe('onCloseOrder', () => {
+    it('works on successfulRes', () => {
+      OrderStore.onCloseOrder(successfulRes);
+      checkOrderStoreData('hintMessage', '关闭订单成功！');
+      checkOrderStoreData('success', true);
+      checkOrderStoreData('flag', 'close');
+    });
+
+    it('works on failedRes', () => {
+      OrderStore.onCloseOrder(failedRes);
+      checkOrderStoreData('hintMessage', errorMsg);
+      checkOrderStoreData('success', false);
+      checkOrderStoreData('flag', 'close');
+    });
+  });
 });
