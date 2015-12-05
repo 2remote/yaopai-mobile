@@ -8,6 +8,10 @@ import {
 }
 from 'chai';
 
+var request = require('superagent');
+// var prefix = require('superagent-prefix')('http://dev.api.aiyaopai.com');
+import API from '../../app/api';
+
 import AlbumsActions from '../../app/actions/AlbumsActions';
 
 const albumsActionsHasMethod = makeStoreHasMethod(AlbumsActions);
@@ -34,39 +38,21 @@ describe('Albums Actions Test', () => {
   });
 
   describe('getCategories', () => {
-    let store = Reflux.createStore({
-      init: function() {
-        console.log('test store initialized');
-        this.listenTo(AlbumsActions.getCategories.success, this.onSuccess);
-        this.listenTo(AlbumsActions.getCategories.failed, this.onFailed);
-      },
-      onSuccess: function(data) {
-        console.log('store data success', data);
-        this.data = 'success';
-        this.trigger(this.data);
-      },
-      onFailed: function(data) {
-        console.log('store data failed', data);
-        this.data = 'failed';
-        this.trigger(this.data);
-      }
-    });
-
-    function ConsoleComponent() {
-      store.listen(function(status) {
-        console.log('status: ', status);
-      });
-    };
-
-    var consoleComponent = new ConsoleComponent();
-
     it('works on success', (done) => {
-      try {
-        AlbumsActions.getCategories.success.trigger(4);
-        done();
-      } catch (e) {
-        done(e);
-      }
+      request
+        .post(API.ALBUMS.categories)
+        .set('Content-Type', 'application/json')
+        .send('{"Fields":"Id,Name,Sorting,Display,Views"}')
+        .withCredentials()
+
+        .end(function(err, res) {
+          // 保证err为null，可以初步证明api可用
+          expect(err).to.equal(null); 
+          // 保证Result大于0，证明数据库有分类数据
+          const results = eval('(' + res.text + ')');
+          expect(results.Result.length > 0).to.equal(true);
+          done();
+        });
     });
   });
 });
