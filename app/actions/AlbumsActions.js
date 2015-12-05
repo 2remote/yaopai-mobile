@@ -43,12 +43,14 @@ AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize 
 AlbumsActions.getMyAlbums.listen(function(data){
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 });
+
 AlbumsActions.getCategories.listen(function(){
   var data = {
     Fields : 'Id,Name,Sorting,Display,Views'
   };
   HttpFactory.post(API.ALBUMS.categories,data,this.success,this.failed);
 });
+
 AlbumsActions.onSale.listen(function(data){
   HttpFactory.post(API.ALBUMS.onSale,data,this.success,this.failed);
 });
