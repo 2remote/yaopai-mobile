@@ -40,14 +40,6 @@ AlbumsActions.getCategories.listen(function(){
   HttpFactory.post(API.ALBUMS.categories,data,this.success,this.failed);
 });
 
-AlbumsActions.onSale.listen(function(data){
-  HttpFactory.post(API.ALBUMS.onSale,data,this.success,this.failed);
-});
-
-AlbumsActions.offSale.listen(function(data){
-  HttpFactory.post(API.ALBUMS.offSale,data,this.success,this.failed);
-});
-
 AlbumsActions.recommendList.listen(function(count = 8){
   var data ={
     HomeRecommended : true,
