@@ -30,9 +30,11 @@ AlbumsActions.get.listen(function(id){
 AlbumsActions.update.listen(function(data){
   HttpFactory.post(API.ALBUMS.update,data,this.success,this.failed);
 });
+
 AlbumsActions.delete.listen(function(data){
   HttpFactory.post(API.ALBUMS.delete,data,this.success,this.failed);
 });
+
 AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize = 10){
   var data = {
     PageIndex:pageIndex,
