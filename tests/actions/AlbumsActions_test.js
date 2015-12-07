@@ -74,4 +74,15 @@ describe('Albums Actions Test', () => {
     };
     apiOk(API.ALBUMS.search, data, 'Success', 'search返回成功');
   });
+
+  describe('API.recommendList', () => {
+    const data ={
+      HomeRecommended : true,
+      HomeSortingDesc : true,
+      PageIndex : 1,
+      PageSize : 8,
+      Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar',
+    };
+    apiOk(API.ALBUMS.search, data, 'Success', 'recommend list返回成功');
+  });
 });
