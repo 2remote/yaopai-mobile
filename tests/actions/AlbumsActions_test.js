@@ -64,4 +64,14 @@ describe('Albums Actions Test', () => {
     };
     apiOk(API.ALBUMS.get, data, 'Success', '使用ID＝2的作品测试get功能');
   });
+
+  describe('API.search', () => {
+    const data = {
+      PageIndex:1,
+      PageSize:10,
+      CategoryId : null,
+      Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar'
+    };
+    apiOk(API.ALBUMS.search, data, 'Success', 'search返回成功');
+  });
 });
