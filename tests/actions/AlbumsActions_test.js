@@ -72,20 +72,4 @@ describe('Albums Actions Test', () => {
       });
     });
   });
-
-  it('add', () => {
-    expect(true, '跳过add，移动端没有添加作品功能。').to.equal(true);
-  });
-
-  it('update', () => {
-    expect(true, '跳过update，移动端没有更新作品功能。').to.equal(true);
-  });
-
-  it('delete', () => {
-    expect(true, '跳过delete，移动端没有删除作品功能。').to.equal(true);
-  });
-
-  it('getMyAlbums', () => {
-    expect(true, '跳过getMyAlbums，移动端没有获得我的作品列表功能。').to.equal(true);
-  });
 });
