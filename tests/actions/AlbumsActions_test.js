@@ -64,10 +64,9 @@ describe('Albums Actions Test', () => {
         .send('{"Id":2,"Fields":"Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar"}')
         .withCredentials()
 
-      .end(function(err, res){
+      .end(function(err, res) {
         expect(err).to.equal(null);
         const results = eval('(' + res.text + ')');
-        // console.log('Results:', results);
         expect(results.Success, "使用ID＝2的作品测试get功能").to.equal(true);
         done();
       });
