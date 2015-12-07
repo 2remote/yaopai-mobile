@@ -50,4 +50,5 @@ AlbumsActions.recommendList.listen(function(count = 8){
   };
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 });
+
 module.exports = AlbumsActions;
