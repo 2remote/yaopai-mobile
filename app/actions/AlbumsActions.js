@@ -44,6 +44,7 @@ AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize 
   }
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 });
+
 AlbumsActions.getMyAlbums.listen(function(data){
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 });

@@ -84,4 +84,8 @@ describe('Albums Actions Test', () => {
   it('delete', () => {
     expect(true, '跳过delete，移动端没有添加作品功能。').to.equal(true);
   });
+
+  it('getMyAlbums', () => {
+    expect(true, '跳过getMyAlbums，移动端没有获得我的作品列表功能。').to.equal(true);
+  });
 });
