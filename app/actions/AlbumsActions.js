@@ -18,6 +18,7 @@ var AlbumsActions = Reflux.createActions({
 AlbumsActions.add.listen(function(data){
   HttpFactory.post(API.ALBUMS.add,data,this.success,this.failed);
 });
+
 AlbumsActions.get.listen(function(id){
   var data = {
     Id : id,
@@ -25,6 +26,7 @@ AlbumsActions.get.listen(function(id){
   };
   HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
 });
+
 AlbumsActions.update.listen(function(data){
   HttpFactory.post(API.ALBUMS.update,data,this.success,this.failed);
 });
