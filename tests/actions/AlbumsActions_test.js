@@ -36,11 +36,11 @@ describe('Albums Actions Test', () => {
     })
   });
 
-  describe('API.getCategories test', () => {
+  describe('API.getCategories', () => {
     const data = {
       Fields : 'Id,Name,Sorting,Display,Views'
     };
-    apiOk(API.ALBUMS.categories, data, 'Success', '获取分类列表');
+    apiOk(API.ALBUMS.categories, data, '获取分类列表');
   });
 
   describe('API.get', () => {
@@ -48,7 +48,7 @@ describe('Albums Actions Test', () => {
       Id: 2,
       Fields: "Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar"
     };
-    apiOk(API.ALBUMS.get, data, 'Success', '使用ID＝2的作品测试get功能');
+    apiOk(API.ALBUMS.get, data, '使用ID＝2的作品测试get功能');
   });
 
   describe('API.search', () => {
@@ -58,7 +58,7 @@ describe('Albums Actions Test', () => {
       CategoryId : null,
       Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar'
     };
-    apiOk(API.ALBUMS.search, data, 'Success', 'search返回成功');
+    apiOk(API.ALBUMS.search, data, 'search返回成功');
   });
 
   describe('API.recommendList', () => {
@@ -69,6 +69,6 @@ describe('Albums Actions Test', () => {
       PageSize : 8,
       Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar',
     };
-    apiOk(API.ALBUMS.search, data, 'Success', 'recommend list返回成功');
+    apiOk(API.ALBUMS.search, data, 'recommend list返回成功');
   });
 });

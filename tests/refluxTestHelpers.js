@@ -10,7 +10,6 @@ var request = require('superagent');
 // 参数：
 // api        - string, API.ALBUMS.searc
 // data       - obj, { Id:2, Fields: 'Id, Title'}
-// checKey    - string, key in results for checking
 // describe   - string, describe test
 // 
 // 例子：
@@ -22,8 +21,8 @@ var request = require('superagent');
 // 结果：
 // 取得results.Success的数值，并查看是否为true
 
-exports.apiOk = function (api, data, checKey, describe) {
-  it('works on success', (done) => {
+exports.apiOk = function (api, data, describe) {
+  it(`${describe}`, (done) => {
     
     request
       .post(api)
@@ -34,7 +33,7 @@ exports.apiOk = function (api, data, checKey, describe) {
     .end(function(err, res) {
       expect(err).to.equal(null);
       const results = eval('(' + res.text + ')');
-      expect(results[checKey], describe).to.equal(true);
+      expect(results.Success, describe).to.equal(true);
       done();
     });
   });
