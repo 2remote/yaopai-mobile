@@ -31,7 +31,13 @@ var SignupPage = React.createClass({
     }
   },
   _onGetCodeStoreChange : function(data){
-    this.setState({codeLeft : data.left});
+    if (data.flag == 'registerCode') {
+      if (data.left == 0) {
+        this.showMessage(data.result);
+        return;
+      }
+      this.setState({codeLeft : data.left});
+    }
   },
   _handlePhoneChange : function(event){
     this.setState({phone : event.target.value});

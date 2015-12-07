@@ -14,7 +14,7 @@ function hasHost(host) {
 }
 
 function isDevHost(host) {
-  const re = /dev\.|192\.|localhost|0\./i;
+  const re = /mobile-pr|dev\.|192\.|localhost|0\./i;
   const founds = host.match(re);
   if (founds != null) {
     return true;

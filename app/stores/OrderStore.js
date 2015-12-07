@@ -30,7 +30,7 @@ var OrderStore = Reflux.createStore({
     //从服务器api接口获得定单的列表
     if(data.Success){
       this.data.orders = data.Result;
-      this.data.hintMessage = '',
+      this.data.hintMessage = '';
       this.data.success = true;
     }else{
       this.data.orders = [];

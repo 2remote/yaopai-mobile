@@ -13,6 +13,7 @@ var SignupPage = require('./components/SignupPage');
 var FindMyPassPage1 = require('./components/FindMyPassPage/FindByMobileForm');
 var FindMyPassPage2 = require('./components/FindMyPassPage/ChangePassWordForm');
 var WorkBookPage = require('./components/BookPage');
+var ReactDOM = require('react-dom');
 import BookSuccessDialog from './components/BookPage/BookSuccessDialog';
 import BookModify from './components/BookPage/BookModify';
 import UserCenterPage from './components/UserCenterPage';
@@ -26,9 +27,9 @@ import ViewOrder from './components/UserCenterPage/ViewOrder'
 main();
 
 function main(){
-  React.render((
+  ReactDOM.render((
     <Router>
-      <Route path="/" component={App} />
+      <Route path="/" component={WorkPage} />
       <Route path="/work" component={WorkPage} />
       <Route path="/workDetail/:Id" component={WorkDetailPage} />
       <Route path="/grapher" component={GrapherPage} />
