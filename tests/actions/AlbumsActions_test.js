@@ -37,6 +37,8 @@ describe('Albums Actions Test', () => {
       albumsActionsHasMethod(method);
     })
   });
+  
+  console.log('log api url:', API.ALBUMS.get);
 
   data = {
     Fields : 'Id,Name,Sorting,Display,Views'
