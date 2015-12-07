@@ -9,8 +9,6 @@ import {
 }
 from 'chai';
 
-var request = require('superagent');
-
 import API from '../../app/api';
 
 import AlbumsActions from '../../app/actions/AlbumsActions';
@@ -38,23 +36,11 @@ describe('Albums Actions Test', () => {
     })
   });
 
-  describe('API.getCategories', () => {
-    it('works on success', (done) => {
-      request
-        .post(API.ALBUMS.categories)
-        .set('Content-Type', 'application/json')
-        .send('{"Fields":"Id,Name,Sorting,Display,Views"}')
-        .withCredentials()
-
-      .end(function(err, res) {
-        // 保证err为null，可以初步证明api可用
-        expect(err).to.equal(null);
-        // 保证Result大于0，证明数据库有分类数据
-        const results = eval('(' + res.text + ')');
-        expect(results.Result.length > 0).to.equal(true);
-        done();
-      });
-    });
+  describe('API.getCategories test', () => {
+    const data = {
+      Fields : 'Id,Name,Sorting,Display,Views'
+    };
+    apiOk(API.ALBUMS.categories, data, 'Success', '获取分类列表');
   });
 
   describe('API.get', () => {
