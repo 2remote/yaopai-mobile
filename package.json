@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "webpack -p",
+    "postinstall": "npm run build",
     "start": "webpack-dev-server",
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
