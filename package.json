@@ -8,12 +8,13 @@
   },
   "scripts": {
     "build": "webpack -p",
+    "postinstall": "npm run build",
     "start": "webpack-dev-server",
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
     "lint": "eslint . --ext .js --ext .jsx",
     "server": "node server.js",
-    "deploy": "npm run server && npm run build"
+    "deploy": "npm run server"
   },
   "repository": {
     "type": "git",
