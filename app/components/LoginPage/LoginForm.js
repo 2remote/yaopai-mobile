@@ -20,9 +20,13 @@ var LoginForm = React.createClass({
   _handleLogin : function(){
     var phone = this.state.userName;
     var password = this.state.password;
-    if(!validator.isMobilePhone(phone, 'zh-CN') || !validator.isLength(password,6,18)) {
-      this.props.showMessage('请输入正确的手机号码和密码格式');
-      return false;
+    if(!validator.isMobilePhone(phone, 'zh-CN')) {
+      this.props.showMessage('请输入正确的手机号码');
+      return;
+    }
+    if (!validator.isLength(password,6,18)) {
+       this.props.showMessage('请输入正确的密码格式');
+      return;
     }
     //登录数据
     var loginData = {
@@ -31,7 +35,6 @@ var LoginForm = React.createClass({
       //autologin : this.state.rememberMe, //记住我的登录需要加上
       autoexpires : 10000
     };
-    console.log(loginData);
     UserActions.login(loginData);
     return false;
   },
@@ -79,8 +82,6 @@ var LoginForm = React.createClass({
         marginTop: 15
       }
     };
-
-
     return (
       <div 
         style={style.loginForm}
@@ -105,7 +106,7 @@ var LoginForm = React.createClass({
               placeholder="密码" />
           </div>
           <div>
-            <Link to="/find_my_pass_page1">
+            <Link ref="linkFind" to="/find_my_pass_page1">
               <input 
                 style={style.findPass}
                 ref="findMyPassButton"
@@ -113,7 +114,6 @@ var LoginForm = React.createClass({
                 value="忘记密码" />
             </Link>
           </div>
-
           <div
             style={style.login}
             onClick={this._handleLogin}

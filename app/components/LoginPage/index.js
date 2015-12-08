@@ -50,33 +50,33 @@ var LoginPage = React.createClass({
           padding: '60px 0 30px'
         }}
         className="loginPage">
-        <img ref="yaopaiLogo"
-          src="imgs/loginPage/yaopai-logo.png"
-          srcSet="imgs/loginPage/yaopai-logo@2X.png 2x" />
-        <LoginForm showMessage={this.showMessage}/>
-        <Toaster ref="toast"/>
-        <div style={{margin: '44px 0 5px'}}>
-          <Link to="/signupPage">
-            <span 
+          <img ref="yaopaiLogo"
+            src="imgs/loginPage/yaopai-logo.png"
+            srcSet="imgs/loginPage/yaopai-logo@2X.png 2x" />
+          <LoginForm showMessage={this.showMessage}/>
+          <Toaster ref="toast"/>
+          <div style={{margin: '44px 0 5px'}}>
+            <Link ref="link" to="/signupPage">
+              <span 
+              style={{
+                color: '#636363',
+                fontSize: '1.2em'
+              }}
+              ref="signupButton">新建帐号</span>
+            </Link>
+          </div>
+          <div className="splitText">
+            <img 
+              src="imgs/common/spliter-line.png"
+              srcSet="imgs/common/spliter-line@2X.png 2x" />
+            <div 
             style={{
-              color: '#636363',
-              fontSize: '1.2em'
-            }}
-            ref="signupButton">新建帐号</span>
-          </Link>
-        </div>
-        <span ref="splitText">
-          <img 
-            src="imgs/common/spliter-line.png"
-            srcSet="imgs/common/spliter-line@2X.png 2x" />
-          <div 
-          style={{
-            position: 'relative',
-            marginTop: -21,
-            color: '#c4c4c4'
-          }}>OR</div>
-        </span>
-          <ActionBar />
+              position: 'relative',
+              marginTop: -21,
+              color: '#c4c4c4'
+            }}>OR</div>
+          </div>
+          <ActionBar ref="actionBar"/>
         </div>
       </DocumentTitle>
     );
