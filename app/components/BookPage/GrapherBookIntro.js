@@ -22,8 +22,8 @@ var BookIntro = React.createClass({
         <img 
           style={{width:52}}
           ref="grapherAvatar"
-          src="imgs/default/chenmingqiao-small.jpg" />
-        <div ref="grapherName">陈明乔</div>
+          src="" />
+        <div ref="grapherName"></div>
       </div>
     );
   }
