@@ -19,7 +19,6 @@ import BookModify from './components/BookPage/BookModify';
 import UserCenterPage from './components/UserCenterPage';
 import GrapherCenterPage from './components/UserCenterPage/GrapherCenterPage';
 import GrapherBookSuccessDialog from './components/BookPage/GrapherBookSuccessDialog';
-import GrapherBookPage from './components/GrapherBookPage';
 import ConfirmBookDialog from './components/UserCenterPage/ConfirmBookDialog';
 import SidePage from './components/SidePage';
 import ViewOrder from './components/UserCenterPage/ViewOrder'
@@ -40,7 +39,7 @@ function main(){
       <Route path="/find_my_pass_page2" component={FindMyPassPage2} />
       <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
       <Route path="/book_success_dialog/:orderId" component={BookSuccessDialog} />
-      <Route path="/grapher_book_page" component={GrapherBookPage} />
+    
       <Route path="/grapher_book_success_dialog" component={GrapherBookSuccessDialog} />
       
       <Route path="/user_center" component={UserCenterPage} />
