@@ -31,4 +31,12 @@ describe('Photographer Actions Test', () => {
     })
   });
   
+  const apiFlag = true;
+  if ( apiFlag == true ){
+    data = {
+      Id: 2,
+      Fields : 'Id,BusinessPhone,User.Id,User.NickName,User.Avatar'
+    };
+    apiOk(API.PHOTOGRAPHER.get, data, 'API.get 获取摄影师信息');
+  }
 });
