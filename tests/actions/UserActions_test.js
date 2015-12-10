@@ -54,7 +54,17 @@ describe('User Actions Test', () => {
     apiOk(API.USER.current_user, data, 'API.USER.current_user 获得用户信息');
   }
 
-  
+  // register目前没有好方法测试
 
-
+  data = {
+    rawPassword: 'woshifox',
+    newPassword: 'woshifox2013'
+  };
+  apiOk(API.USER.modify_password, data, 'API.USER.modify_password 用户修改密码');
+  // 修改密码后，需要密码，保证下次运行正确
+  data = {
+    rawPassword: 'woshifox2013',
+    newPassword: 'woshifox'
+  };
+  apiOk(API.USER.modify_password, data, 'API.USER.modify_password 恢复密码');
 });
