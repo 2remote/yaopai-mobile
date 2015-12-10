@@ -38,5 +38,13 @@ describe('Photographer Actions Test', () => {
       Fields : 'Id,BusinessPhone,User.Id,User.NickName,User.Avatar'
     };
     apiOk(API.PHOTOGRAPHER.get, data, 'API.get 获取摄影师信息');
+
+    data = {
+      Fields : 'Id,BusinessPhone,ProvinceId,ProvinceName,RealName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
+      PageIndex : 1,
+      PageSize : 10,
+      city : null
+    };
+    apiOk(API.PHOTOGRAPHER.list, data, 'API.list 查询摄影师');
   }
 });
