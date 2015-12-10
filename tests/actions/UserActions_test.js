@@ -44,6 +44,17 @@ describe('User Actions Test', () => {
       loginname: '13552987637',
       password: 'woshifox',
     };
-    apiOk(API.USER.login, data, 'API.login 用户登录');
+    apiOk(API.USER.login, data, 'API.USER.login 用户登录');
+
+    // token登录目前没有好方法测试
+
+    // wechat登陆目前没有好方法测试
+
+    data = {};
+    apiOk(API.USER.current_user, data, 'API.USER.current_user 获得用户信息');
   }
+
+  
+
+
 });
