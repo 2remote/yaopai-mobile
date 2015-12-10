@@ -36,15 +36,15 @@ var FindByMobileForm = React.createClass({
         this.showMessage(data.hintMessage);
         return;
       } else {
-        var phone = this.refs.mobileNumber.getDOMNode().value.trim();
-        var code = this.refs.vertificationCode.getDOMNode().value.trim();
+        var phone = this.refs.mobileNumber.value.trim();
+        var code = this.refs.vertificationCode.value.trim();
         this.history.pushState({phone: phone, code: code}, '/find_my_pass_page2')
       }
     }
   },
   _handleCheck: function () {
     if (this.state.codeLeft > 0) return;
-    var phone = this.refs.mobileNumber.getDOMNode().value.trim();
+    var phone = this.refs.mobileNumber.value.trim();
     if (phone) {
       var isMobile = validator.isMobilePhone(phone,['zh-CN']);
       if (isMobile) {
@@ -61,8 +61,8 @@ var FindByMobileForm = React.createClass({
   },
   _handleNextStep: function (e) {
     e.preventDefault();
-    var phone = this.refs.mobileNumber.getDOMNode().value.trim();
-    var code = this.refs.vertificationCode.getDOMNode().value.trim();
+    var phone = this.refs.mobileNumber.value.trim();
+    var code = this.refs.vertificationCode.value.trim();
     if (!phone) {
       this.showMessage('手机号不能为空');
       return;
