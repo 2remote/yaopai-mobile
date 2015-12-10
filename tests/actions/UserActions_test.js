@@ -67,4 +67,11 @@ describe('User Actions Test', () => {
     newPassword: 'woshifox'
   };
   apiOk(API.USER.modify_password, data, 'API.USER.modify_password 恢复密码');
+
+  //verifyTelResetPassWord目前不使用，跳过。
+
+  //receiveTelResetPassWord需要结合手机验证吗，目前没有好方法测试
+
+  data = {};
+  apiOk(API.USER.logout, data, 'API.USER.logout 登出用户');  
 });
