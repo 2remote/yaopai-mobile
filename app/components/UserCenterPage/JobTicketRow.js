@@ -32,14 +32,14 @@ var JobTicketRow = React.createClass({
     this.setState({showConfirmDialog: state});
   },
   confirm : function () {
-    var newDate = new Date(this.refs.userBookDate.getDOMNode().value);
+    var newDate = new Date(this.refs.userBookDate.value);
     var now = new Date();
     now = new Date(dateFormat(now,'yyyy-MM-dd'));
     if(newDate < now){
       console.log('不能预定之前的日期！');
       return ;
     }
-    OrderActions.confirm(this.props.data.Id,this.refs.userBookDate.getDOMNode().value);
+    OrderActions.confirm(this.props.data.Id,this.refs.userBookDate.value);
     this.toggleConfirmDialog();
     this.history.pushState(null,'/viewOrder/p/'+this.props.data.Id);
   },
