@@ -8,6 +8,7 @@ var WorkPage = require('./components/WorkPage');
 var WorkDetailPage = require('./components/WorkDetailPage');
 var GrapherPage = require('./components/GrapherPage');
 var GrapherDetailPage = require('./components/GrapherDetailPage');
+var InterviewPage = require('./components/InterviewPage');
 var LoginPage = require('./components/LoginPage');
 var SignupPage = require('./components/SignupPage');
 var FindMyPassPage1 = require('./components/FindMyPassPage/FindByMobileForm');
@@ -30,6 +31,7 @@ function main(){
     <Router>
       <Route path="/" component={App} />
       <Route path="/work" component={WorkPage} />
+      <Route path="/interview" component={InterviewPage} />
       <Route path="/workDetail/:Id" component={WorkDetailPage} />
       <Route path="/grapher" component={GrapherPage} />
       <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />

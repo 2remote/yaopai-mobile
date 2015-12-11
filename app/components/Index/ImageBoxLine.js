@@ -11,7 +11,7 @@ var ImageBoxGrid = React.createClass({
       workCover:  [{
         src: "imgs/indexPage/interview-image.jpg", 
         srcset: "imgs/indexPage/interview-image@2X.jpg 2x", 
-        url: "/work"}],
+        url: "/interview"}],
       works: []
     };
   },
