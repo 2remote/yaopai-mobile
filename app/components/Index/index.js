@@ -17,7 +17,11 @@ var ImageBoxGrid = require('./ImageBoxGrid');
 var ImageBoxLine = require('./ImageBoxLine');
 var ImageVerticalGrid = require('./ImageVerticalGrid');
 var Index = React.createClass({
-  mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange')],
+  mixins : [
+    Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),
+    Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange')
+  ],
+  
   getDefaultProps: function() {
     return {
       imgs: [
