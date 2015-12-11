@@ -1,5 +1,5 @@
 var React = require('react');
-import { Router, Route } from 'react-router';
+import { Router, Route,Link } from 'react-router';
 require('./ImageBoxGrid.css');
 import {imgModifier} from '../Tools'
 
@@ -29,11 +29,11 @@ var ImageBoxGrid = React.createClass({
     var workCover = this.props.workCover.map(function(img){
       return (
         <li style={coverStyle} className="imageCell">
-          <a href={img.url} style={coverStyle} >
+          <Link to={img.url} style={coverStyle} >
             <img style={{width: deviceWidth/3,height: deviceWidth/3}} 
               src={img.src} 
               srcSet={img.srcSet} />
-          </a>
+          </Link>
         </li>
       );
     });
