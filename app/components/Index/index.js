@@ -14,6 +14,7 @@ require('./index.css');
 var HamburgMenu = require('../HamburgMenu');
 var Footer = require('./Footer');
 var ImageBoxGrid = require('./ImageBoxGrid');
+var ImageBoxLine = require('./ImageBoxLine');
 var ImageVerticalGrid = require('./ImageVerticalGrid');
 var Index = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange')],
@@ -169,6 +170,7 @@ var Index = React.createClass({
             </div>
           </div>
 
+          <ImageBoxLine works={this.state.recommendWorks} />
         </div>
 
       </div>
