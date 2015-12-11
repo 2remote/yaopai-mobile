@@ -55,7 +55,7 @@ var WorkDetailPage = React.createClass({
     return (
       <div className="workDetailPage">
         <HamburgMenu />
-        <DocumentTitle title={this.state.data.Title} />
+        <DocumentTitle title={this.state.data.Title || '作品'} />
         <WorkTitle data={{header: this.state.data.Title}} />
         <WorkPieceList workPieces={this.state.data.Photos} />
         <div style={{textAlign:'center',margin: '34px 0 13px'}}>
