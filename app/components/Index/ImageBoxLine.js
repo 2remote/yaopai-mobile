@@ -11,7 +11,7 @@ var ImageBoxGrid = React.createClass({
       workCover:  [{
         src: "imgs/indexPage/view-picture-image.jpg", 
         srcset: "imgs/indexPage/view-picture-image@2X.jpg 2x", 
-        url: "/work"}],
+        url: "/interview"}],
       works: []
     };
   },
@@ -41,9 +41,9 @@ var ImageBoxGrid = React.createClass({
     var imgNodes = this.props.works.map(function(work, i){
       return (
         <li style={style} className="imageCell">
-          <Link to={"/workDetail/"+work.Id} style={{display:'block'}} >
+          <a href={work.Link} style={{display:'block'}} >
             <img style={style} src={imgModifier(work.Cover)} />
-          </Link>
+          </a>
         </li>
       );  
     });
