@@ -38,7 +38,7 @@ describe('User Actions Test', () => {
     })
   });
 
-  const apiFlag = true;
+  const apiFlag = false;
   if ( apiFlag == true ){
     data = {
       loginname: '13552987637',
