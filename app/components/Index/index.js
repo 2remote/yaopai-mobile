@@ -154,6 +154,20 @@ var Index = React.createClass({
 
           <ImageVerticalGrid works={this.state.recommendGraphers}/>
 
+          <div className="spliterInterview" >
+            <img 
+              src="imgs/indexPage/icon-interview.png"
+              srcSet="imgs/indexPage/icon-interview@2X.png 2x" />
+            <div className="splitLine" >
+              <img 
+                src="imgs/common/spliter-line.png"
+                srcSet="imgs/common/spliter-line@2X.png 2x" />
+            </div>
+            <div className="splitContent">
+              <div>访谈</div>
+              <div>INTERVIEW</div>
+            </div>
+          </div>
 
         </div>
 
