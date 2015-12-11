@@ -13,7 +13,6 @@ var HamburgMenu = React.createClass({
     }
   },
   showLeft: function() {
-    //this.refs.mask.getDOMNode().style.display react@0.13.3
     this.refs.mask.style.display = 'block';
     this.refs.left.show();
   },

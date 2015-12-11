@@ -22,8 +22,8 @@ var ChangePassWordForm = React.createClass({
   },
   _handleSubmit: function (e) {
     e.preventDefault();
-    var newPassword = this.refs.newPassword.getDOMNode().value.trim();
-    var confirmPassword = this.refs.confirmPassword.getDOMNode().value.trim();
+    var newPassword = this.refs.newPassword.value.trim();
+    var confirmPassword = this.refs.confirmPassword.value.trim();
     if (!newPassword) {
       this.showMessage("新密码不能为空！");
       return;
