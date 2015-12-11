@@ -31,7 +31,7 @@ describe('Photographer Actions Test', () => {
     })
   });
   
-  const apiFlag = true;
+  const apiFlag = false;
   if ( apiFlag == true ){
     data = {
       Id: 2,
