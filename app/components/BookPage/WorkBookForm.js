@@ -93,9 +93,9 @@ var BookForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     // 获得用户输入
-    const BuyerName     = this.refs.bookName.getDOMNode().value.trim();
-    const BuyerTel      = this.refs.bookPhone.getDOMNode().value.trim();
-    const AppointedTime = this.refs.bookDate.getDOMNode().value.trim();
+    const BuyerName     = this.refs.bookName.value.trim();
+    const BuyerTel      = this.refs.bookPhone.value.trim();
+    const AppointedTime = this.refs.bookDate.value.trim();
     console.log();
     console.log();
     if (!BuyerName) {
