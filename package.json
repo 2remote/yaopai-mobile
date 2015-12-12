@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "webpack -p",
+    "postinstall": "npm run build",
     "start": "webpack-dev-server",
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
@@ -64,6 +65,7 @@
     "react-hot-loader": "^1.3.0",
     "sinon": "^1.17.2",
     "style-loader": "^0.13.0",
+    "superagent": "^1.5.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1",
     "webpack-merge": "^0.2.0"
@@ -75,7 +77,7 @@
     "react-dom": "^0.14.0",
     "react-document-title": "^2.0.1",
     "react-lazy-load": "^2.0.1",
-    "react-router": "^1.0.0-rc1",
+    "react-router": "^1.0.0",
     "react-swipe": "^2.3.0",
     "react-tappable": "^0.6.0",
     "reflux": "^0.3.0",

@@ -1,6 +1,44 @@
 import { expect } from 'chai';
 import fjs from 'functional.js';
 
+var request = require('superagent');
+
+// apiOk
+// 
+// 测试 api 是否正常
+// 
+// 参数：
+// api        - string, API.ALBUMS.searc
+// data       - obj, { Id:2, Fields: 'Id, Title'}
+// describe   - string, describe test
+// 
+// 例子：
+// const data = {
+//   Id: 2,
+//   Fields: "Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar"
+// };
+// apiOk(API.ALBUMS.get, data, 'Success', '使用ID＝2的作品测试get功能');
+// 结果：
+// 取得results.Success的数值，并查看是否为true
+
+exports.apiOk = function (api, data, describe) {
+  it(`${describe}`, (done) => {
+    
+    request
+      .post(api)
+      .set('Content-Type', 'application/json')
+      .send(data)
+      .withCredentials()
+
+    .end(function(err, res) {
+      expect(err).to.equal(null);
+      const results = eval('(' + res.text + ')');
+      expect(results.Success, describe).to.equal(true);
+      done();
+    });
+  });
+};
+
 exports.storeIsDefined = (store) => {
   expect(store).to.exist;
 };

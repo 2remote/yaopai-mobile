@@ -12,15 +12,7 @@ var JobTicketRow = React.createClass({
   mixins :[History],
   getDefaultProps: function() {
     return {
-      data: {
-        grapherAvatar: 'imgs/default/chenmingqiao-small.jpg',
-        grapherName: '陈明乔',
-        userName: '马晓驰',
-        userAvatar: 'imgs/default/maxiaochi-small.jpg',
-        userPhone: '13113658516',
-        userBookDate: '2015/10/19',
-        suggestPrice: 3000
-      }
+      data: {}
     };
   },
 
@@ -40,14 +32,14 @@ var JobTicketRow = React.createClass({
     this.setState({showConfirmDialog: state});
   },
   confirm : function () {
-    var newDate = new Date(this.refs.userBookDate.getDOMNode().value);
+    var newDate = new Date(this.refs.userBookDate.value);
     var now = new Date();
     now = new Date(dateFormat(now,'yyyy-MM-dd'));
     if(newDate < now){
       console.log('不能预定之前的日期！');
       return ;
     }
-    OrderActions.confirm(this.props.data.Id,this.refs.userBookDate.getDOMNode().value);
+    OrderActions.confirm(this.props.data.Id,this.refs.userBookDate.value);
     this.toggleConfirmDialog();
     this.history.pushState(null,'/viewOrder/p/'+this.props.data.Id);
   },

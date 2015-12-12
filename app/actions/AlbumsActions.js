@@ -15,9 +15,6 @@ var AlbumsActions = Reflux.createActions({
   'recommendList' : {children:['success','failed']},
 });
 
-AlbumsActions.add.listen(function(data){
-  HttpFactory.post(API.ALBUMS.add,data,this.success,this.failed);
-});
 AlbumsActions.get.listen(function(id){
   var data = {
     Id : id,
@@ -25,12 +22,7 @@ AlbumsActions.get.listen(function(id){
   };
   HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
 });
-AlbumsActions.update.listen(function(data){
-  HttpFactory.post(API.ALBUMS.update,data,this.success,this.failed);
-});
-AlbumsActions.delete.listen(function(data){
-  HttpFactory.post(API.ALBUMS.delete,data,this.success,this.failed);
-});
+
 AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize = 10){
   var data = {
     PageIndex:pageIndex,
@@ -40,20 +32,12 @@ AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize 
   }
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 });
-AlbumsActions.getMyAlbums.listen(function(data){
-  HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
-});
+
 AlbumsActions.getCategories.listen(function(){
   var data = {
     Fields : 'Id,Name,Sorting,Display,Views'
   };
   HttpFactory.post(API.ALBUMS.categories,data,this.success,this.failed);
-});
-AlbumsActions.onSale.listen(function(data){
-  HttpFactory.post(API.ALBUMS.onSale,data,this.success,this.failed);
-});
-AlbumsActions.offSale.listen(function(data){
-  HttpFactory.post(API.ALBUMS.offSale,data,this.success,this.failed);
 });
 
 AlbumsActions.recommendList.listen(function(count = 8){
@@ -66,4 +50,5 @@ AlbumsActions.recommendList.listen(function(count = 8){
   };
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 });
+
 module.exports = AlbumsActions;

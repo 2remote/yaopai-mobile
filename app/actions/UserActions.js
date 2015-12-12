@@ -16,7 +16,9 @@ var UserActions = Reflux.createActions({
 });
 
 /*
-  id  string  Y 用户手机或邮箱号码
+  https://xiattst.gitbooks.io/yaopai/content/API/User/Login.html
+  
+  loginname  string  Y 用户手机或邮箱号码
   password  string  Y 用户密码
   autologin boolean N 是否自动登录
   autoexpires integer N 自动登录过期时间，单位（分钟）

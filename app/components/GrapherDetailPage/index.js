@@ -9,20 +9,6 @@ var WorkIntroList = require('./WorkIntroList');
 var ActionBar = require('./ActionBar');
 import { API_URL } from '../../api';
 
-// will remove after server configured
-let grapher = {
-  name: "陈明乔", 
-  nick: "CHEN MINGQIAO", 
-  location: "深圳", 
-  img: "imgs/default/chenmingqiao-small.jpg"
-};
-
-let works =[
-  {img: "imgs/default/work1.jpg", title: "可以拍摄的水果"},
-  {img: "imgs/default/work1.jpg", title: "可以拍摄的水果a"},
-  {img: "imgs/default/work1.jpg", title: "可以拍摄的水果b"},
-];
-
 var GrapherDetailPage = React.createClass({
   getInitialState: function() {
     return {
