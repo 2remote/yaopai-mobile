@@ -38,7 +38,7 @@ describe('User Actions Test', () => {
     })
   });
 
-  const apiFlag = true;
+  const apiFlag = false;
   if ( apiFlag == true ){
     data = {
       loginname: '13552987637',
@@ -52,26 +52,26 @@ describe('User Actions Test', () => {
 
     data = {};
     apiOk(API.USER.current_user, data, 'API.USER.current_user 获得用户信息');
+
+    // register目前没有好方法测试
+
+    data = {
+      rawPassword: 'woshifox',
+      newPassword: 'woshifox2013'
+    };
+    apiOk(API.USER.modify_password, data, 'API.USER.modify_password 用户修改密码');
+    // 修改密码后，需要密码，保证下次运行正确
+    data = {
+      rawPassword: 'woshifox2013',
+      newPassword: 'woshifox'
+    };
+    apiOk(API.USER.modify_password, data, 'API.USER.modify_password 恢复密码');
+
+    //verifyTelResetPassWord目前不使用，跳过。
+
+    //receiveTelResetPassWord需要结合手机验证吗，目前没有好方法测试
+
+    data = {};
+    apiOk(API.USER.logout, data, 'API.USER.logout 登出用户'); 
   }
-
-  // register目前没有好方法测试
-
-  data = {
-    rawPassword: 'woshifox',
-    newPassword: 'woshifox2013'
-  };
-  apiOk(API.USER.modify_password, data, 'API.USER.modify_password 用户修改密码');
-  // 修改密码后，需要密码，保证下次运行正确
-  data = {
-    rawPassword: 'woshifox2013',
-    newPassword: 'woshifox'
-  };
-  apiOk(API.USER.modify_password, data, 'API.USER.modify_password 恢复密码');
-
-  //verifyTelResetPassWord目前不使用，跳过。
-
-  //receiveTelResetPassWord需要结合手机验证吗，目前没有好方法测试
-
-  data = {};
-  apiOk(API.USER.logout, data, 'API.USER.logout 登出用户');  
 });

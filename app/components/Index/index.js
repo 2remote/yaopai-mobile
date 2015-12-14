@@ -9,14 +9,22 @@ var PhotographerActions = require('../../actions/PhotographerActions');
 var PhotographerStore = require('../../stores/PhotographerStore');
 var AlbumsActions = require('../../actions/AlbumsActions');
 var AlbumsStore = require('../../stores/AlbumsStore');
+var InterviewActions = require('../../actions/InterviewActions');
+var InterviewStore = require('../../stores/InterviewStore');
 require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
 var Footer = require('./Footer');
 var ImageBoxGrid = require('./ImageBoxGrid');
+var ImageBoxLine = require('./ImageBoxLine');
 var ImageVerticalGrid = require('./ImageVerticalGrid');
 var Index = React.createClass({
-  mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange')],
+  mixins : [
+    Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),
+    Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'),
+    Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),
+  ],
+
   getDefaultProps: function() {
     return {
       imgs: [
@@ -48,6 +56,7 @@ var Index = React.createClass({
       userData : {},
       recommendGraphers : [],
       recommendWorks : [],
+      recommendInterviews: []
     };
   },
   componentDidMount : function () {
@@ -56,7 +65,20 @@ var Index = React.createClass({
     PhotographerActions.recommendList();
     //得到推荐作品
     AlbumsActions.recommendList();
+    // 得到推荐访谈
+    InterviewActions.recommendList();
   },
+
+  _onInterviewStoreChange : function (data) {
+    if(data.flag == 'recommendList'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+        this.setState({recommendInterviews : data.workList});
+      }
+    }
+  },
+
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'recommendList'){
       if(data.hintMessage){
@@ -154,7 +176,22 @@ var Index = React.createClass({
 
           <ImageVerticalGrid works={this.state.recommendGraphers}/>
 
+          <div className="spliterInterview" >
+            <img 
+              src="imgs/indexPage/icon-interview.png"
+              srcSet="imgs/indexPage/icon-interview@2X.png 2x" />
+            <div className="splitLine" >
+              <img 
+                src="imgs/common/spliter-line.png"
+                srcSet="imgs/common/spliter-line@2X.png 2x" />
+            </div>
+            <div className="splitContent">
+              <div>访谈</div>
+              <div>INTERVIEW</div>
+            </div>
+          </div>
 
+          <ImageBoxLine works={this.state.recommendInterviews} />
         </div>
 
       </div>
