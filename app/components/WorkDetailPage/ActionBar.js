@@ -37,11 +37,15 @@ var ShareGuide = React.createClass({
         left: 0,
         background: 'rgba(0,0,0,.8)',
         zIndex: 9999,
+        fontFamily: 'iconfont'
       }
     }
     return (
       <div style={style.mask} onClick={this.hideGuide}>
-        <img width="100%" src="imgs/workDetailPage/share-guide@2x.png" srcSet="imgs/workDetailPage/share-guide@2x.png" />
+        <img width="100%" 
+          src="imgs/workDetailPage/share-guide@2x.png" 
+          srcSet="imgs/workDetailPage/share-guide@2x.png" />
+          &#xe60b;
       </div>
     );
   }
