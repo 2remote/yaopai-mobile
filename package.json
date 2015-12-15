@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "webpack -p",
+    "preinstall": "npm install history@1.13.1",
     "postinstall": "npm run build",
     "start": "webpack-dev-server",
     "test": "karma start",
@@ -71,7 +72,6 @@
     "webpack-merge": "^0.2.0"
   },
   "dependencies": {
-    "history": "^1.13.1",
     "jquery": "^2.1.4",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
