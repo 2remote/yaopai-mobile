@@ -19,7 +19,20 @@
     </script>
 
     <title>{%=o.htmlWebpackPlugin.options.title %}</title>
+    <style>
+      @font-face {
+        font-family: 'iconfont';
+        src: url('//at.alicdn.com/t/font_1450152487_3929503.eot'); /* IE9*/
+        src: url('//at.alicdn.com/t/font_1450152487_3929503.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('//at.alicdn.com/t/font_1450152487_3929503.woff') format('woff'), /* chrome、firefox */
+        url('//at.alicdn.com/t/font_1450152487_3929503.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+        url('//at.alicdn.com/t/font_1450152487_3929503.svg#iconfont') format('svg'); /* iOS 4.1- */
+      }
 
+      body {
+        font-family: 'iconfont', Fallback, sans-serif;
+      }
+    </style>
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
     {% } %}
