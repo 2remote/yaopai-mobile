@@ -59,11 +59,11 @@ var WorkDetailPage = React.createClass({
         <WorkTitle data={{header: this.state.data.Title}} />
         <WorkPieceList workPieces={this.state.data.Photos} />
         <div style={{textAlign:'center',margin: '34px 0 13px'}}>
-          <img 
-            style={{margin:'0 8px -3px 0'}}
+        
+          <span
             ref="workPriceIcon"
-            src="imgs/common/work-price.png"
-            srcSet="imgs/common/work-price@2X.png 2x" />
+            className="icon price_icon" 
+            style={{fontSize:18,marginRight: 8}} />
 
           {this.renderPrice()}
 
