@@ -37,7 +37,6 @@ var ShareGuide = React.createClass({
         left: 0,
         background: 'rgba(0,0,0,.8)',
         zIndex: 9999,
-        fontFamily: 'iconfont'
       }
     }
     return (
@@ -45,7 +44,6 @@ var ShareGuide = React.createClass({
         <img width="100%" 
           src="imgs/workDetailPage/share-guide@2x.png" 
           srcSet="imgs/workDetailPage/share-guide@2x.png" />
-          &#xe60b;
       </div>
     );
   }
@@ -65,10 +63,10 @@ var ActionBar = React.createClass({
         <ShareGuide ref="shareGuide" />
         <div style={{float:'left',marginLeft: '22.666666%'}}>
            <Link to={"/work_book_page/" + this.props.workId +'/0'} style={{lineHeight: 'inherit'}} >
-            <img 
+            <span
               ref="bookIcon"
-              src="imgs/workDetailPage/book-icon.png"
-              srcSet="imgs/workDetailPage/book-icon@2X.png 2x" />
+              className="icon order_icon" 
+              style={{fontSize:55}} />
             <div
               ref="bookOption">
               预约
@@ -76,10 +74,10 @@ var ActionBar = React.createClass({
           </Link>
         </div>
         <div onClick={this._handleShare} style={{float:'right',marginRight: '22.666666%'}}>
-          <img 
+          <span
             ref="shareIcon"
-            src="imgs/workDetailPage/share-icon.png"
-            srcSet="imgs/workDetailPage/share-icon@2X.png 2x" />
+            className="icon share_icon" 
+            style={{fontSize:55}} />
           <div
             ref="shareOption" >分享</div>
         </div>
