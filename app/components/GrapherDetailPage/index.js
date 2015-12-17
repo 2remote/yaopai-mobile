@@ -52,7 +52,7 @@ var GrapherDetailPage = React.createClass({
     }
   },
   render: function() {
-    let pageTitle = this.state.grapherInfo.RealName;
+    let pageTitle = this.state.grapherInfo.RealName || '摄影师';
     return (
       <DocumentTitle title={pageTitle}>
         <div className="grapherDetailPage">
