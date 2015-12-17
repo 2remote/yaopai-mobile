@@ -51,9 +51,9 @@ var HamburgMenu = React.createClass({
           zIndex: 99,
         }}
         className="hamburgMenu">
-        <img 
-          src="imgs/indexPage/hamburg-icon.png"
-          srcSet="imgs/indexPage/hamburg-icon@2X.png 2x" />
+        <span
+          className="icon menu_icon"
+          style={{fontSize:45} />
         <div>
           <SidePage ref="left" userData={this.state.userData}/>
         </div>
