@@ -60,7 +60,7 @@ var ActionBar = React.createClass({
             <span 
               ref="bookIcon"
                 className="icon book_icon"
-                style={{fontSize:55}}
+                style={{fontSize:55}} />
             <div
               ref="bookOption">
               预约
