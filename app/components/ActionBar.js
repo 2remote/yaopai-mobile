@@ -57,10 +57,10 @@ var ActionBar = React.createClass({
         <ShareGuide ref="shareGuide" />
         <div style={{float:'left',marginLeft: '22.666666%'}}>
           <Link to="/login_page" style={{lineHeight: 'inherit'}} >
-            <img 
+            <span 
               ref="bookIcon"
-                src="imgs/grapherDetailPage/book-icon.png"
-                srcSet="imgs/grapherDetailPage/book-icon@2X.png 2x" />
+                className="icon book_icon"
+                style={{fontSize:55}}
             <div
               ref="bookOption">
               预约
