@@ -31,6 +31,7 @@ var style={
   },
   avatar:{
     margin: '34px 0 19px',
+    fontSize:'55px'
   },
   loginIcon:{
     float: 'right',
@@ -106,12 +107,11 @@ var SidePage = React.createClass({
     }else{
       accountContent= (<div className="loginBox" style={style.loginBox}>
         <Link style={style.link} to="/login_page">
-              <img
-                style={style.avatar}
-                ref="defaultAvatar"
-                src="imgs/sidePage/default-avatar.png"
-                srcSet="imgs/sidePage/default-avatar@2X.png 2x" />
-              <div style={style.loginName} ref="pleaseLoginText">请登录</div>
+          <span
+            className="icon default_avatar"
+            style={style.avatar}
+            ref="defaultAvatar" />
+          <div style={style.loginName} ref="pleaseLoginText">请登录</div>
         </Link>
       </div>
       )
