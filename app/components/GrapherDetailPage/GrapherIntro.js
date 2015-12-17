@@ -29,11 +29,10 @@ var GrapherIntro = React.createClass({
         <div 
           style={{fontSize: '1.3em'}}
           ref="name">{this.props.data.RealName}</div>
-        <img 
-          style={{marginRight:6, marginLeft:-4}}
-          ref="locationIcon"
-          src="imgs/grapherDetailPage/location-icon.png"
-          srcSet="imgs/grapherDetailPage/location-icon@2X.png 2x" />
+        <span
+          className="icon location_icon"
+          style={{marginRight:6, marginLeft:-4, fontSize:22}}
+          ref="locationIcon" />
         <span
           ref="location">{this.props.data.CityName}</span>
       </div>
