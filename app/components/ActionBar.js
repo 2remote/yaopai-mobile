@@ -41,7 +41,10 @@ var ShareGuide = React.createClass({
     }
     return (
       <div style={style.mask} onClick={this.hideGuide}>
-        <img width="100%" src="imgs/workDetailPage/share-guide@2x.png" srcSet="imgs/workDetailPage/share-guide@2x.png" />
+        <span 
+          width="100%"
+          className="icon share_guide"
+          style={{fontSize:55}} />
       </div>
     );
   }
@@ -68,10 +71,10 @@ var ActionBar = React.createClass({
           </Link>
         </div>
         <div onClick={this._handleShare} style={{float:'right',marginRight: '22.666666%'}}>
-          <img 
+          <span 
             ref="shareIcon"
-              src="imgs/grapherDetailPage/share-icon.png"
-              srcSet="imgs/grapherDetailPage/share-icon@2X.png 2x" />
+            className="icon share_icon"
+            style={{fontSize:55}} />
           <div
             ref="shareOption">分享</div>
         </div>
