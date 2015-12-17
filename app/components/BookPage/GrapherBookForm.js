@@ -10,7 +10,8 @@ var BookForm = React.createClass({
   render: function() {
     var iconStyle={
       marginBottom: -8,
-      marginRight: 23
+      marginRight: 23,
+      fontSize: 55
     };
     var inputStyle={
       padding: '1px 0',
@@ -27,11 +28,10 @@ var BookForm = React.createClass({
       <div className="bookForm">
         <form ref="bookForm" >
           <div>
-            <img 
+            <span 
               style={iconStyle}
               ref="nameImage"
-              src="imgs/bookPage/name-image.png"
-              srcSet="imgs/bookPage/name-image@2X.png 2x" />
+              className="icon name_icon" />
             <input 
               style={inputStyle}
               ref="bookName"
@@ -39,11 +39,10 @@ var BookForm = React.createClass({
               placeholder="填写预约姓名" />
           </div>
           <div>
-            <img 
+            <span 
               style={iconStyle}
               ref="phoneImage"
-              src="imgs/bookPage/phone-image.png"
-              srcSet="imgs/bookPage/phone-image@2X.png 2x" />
+              className="icon phone_icon" />
             <input 
               style={inputStyle}
               ref="bookPhone"
@@ -51,11 +50,10 @@ var BookForm = React.createClass({
               placeholder="填写预约电话" />
           </div>
           <div>
-            <img 
+            <span 
               style={iconStyle}
               ref="dateImage"
-              src="imgs/bookPage/date-image.png"
-              srcSet="imgs/bookPage/date-image@2X.png 2x" />
+              className="icon calendar_icon" />
             <input 
               style={inputStyle}
               ref="bookDate"
