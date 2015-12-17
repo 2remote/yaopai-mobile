@@ -27,11 +27,10 @@ var BookForm = React.createClass({
       <div className="bookForm">
         <form ref="bookForm" >
           <div>
-            <img 
-              style={iconStyle}
+            <span 
               ref="nameImage"
-              src="imgs/bookPage/name-image.png"
-              srcSet="imgs/bookPage/name-image@2X.png 2x" />
+              className="icon name_icon"
+              style={{iconStyle}} />
             <input 
               style={inputStyle}
               ref="bookName"
@@ -39,11 +38,10 @@ var BookForm = React.createClass({
               placeholder="姓名" />
           </div>
           <div>
-            <img 
-              style={iconStyle}
+            <span 
               ref="phoneImage"
-              src="imgs/bookPage/phone-image.png"
-              srcSet="imgs/bookPage/phone-image@2X.png 2x" />
+              className="icon phone_icon"
+              style={{iconStyle}} />
             <input 
               style={inputStyle}
               ref="bookPhone"
@@ -51,11 +49,10 @@ var BookForm = React.createClass({
               placeholder="联系电话" />
           </div>
           <div>
-            <img 
-              style={iconStyle}
+            <span 
               ref="dateImage"
-              src="imgs/bookPage/date-image.png"
-              srcSet="imgs/bookPage/date-image@2X.png 2x" />
+              className="icon date_icon"
+              style={{iconStyle}} />
             <input 
               style={inputStyle}
               ref="bookDate"
