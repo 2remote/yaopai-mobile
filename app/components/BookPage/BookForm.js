@@ -51,7 +51,7 @@ var BookForm = React.createClass({
           <div>
             <span 
               ref="dateImage"
-              className="icon date_icon"
+              className="icon calendar_icon"
               style={{iconStyle}} />
             <input 
               style={inputStyle}
