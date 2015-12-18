@@ -83,6 +83,7 @@ var JobTicketRow = React.createClass({
       maskTurn: {
         float: 'right',
         marginTop: '63.5px',
+        fontSize: 55
       },
       hide: {
         display: 'none',
@@ -131,6 +132,7 @@ var JobTicketRow = React.createClass({
         position: 'relative',
         right: '8%',
         float: 'right',
+        fontSize: 55
       },
       actionBox: {
         float: 'right',
@@ -266,13 +268,14 @@ var JobTicketRow = React.createClass({
             <span style={style.label} ref="suggestPriceLabel" >参考金额：</span>
             <span style={style.userInfo} ref="suggestPrice" >{this.props.data.IsSpecifiesAlbums?this.props.data.Price:'面议'}</span>
             <Link style={style.link} to={"/viewOrder/p/"+this.props.data.Id}>
-              <img style={style.toDetial}
-                src="imgs/userCenterPage/detail-icon.png"
-                srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+              <span
+                className="icon detail_icon"
+                style={style.toDetial} />
             </Link>
           </div>
         </div>
       </div>
+      fontSize: 55
     );
     return (
       <div 
@@ -285,9 +288,9 @@ var JobTicketRow = React.createClass({
               className={"icon " + mask_icon_src}
               style={style.maskIcon} />
             <span style={style.cancelWord}>{maskText}</span>
-            <img style={style.maskTurn}
-              src="imgs/userCenterPage/detail-icon.png"
-              srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+            <span
+              className="icon detail_icon"
+              style={style.maskTurn} />
           </div>
         </Link>
 
@@ -311,9 +314,11 @@ var JobTicketRow = React.createClass({
             <div 
               style={style.confirmBox}
               className="confirmBox">
-              <img ref="confirmImage"
-                  src="imgs/userCenterPage/confirm-image.png"
-                  srcSet="imgs/userCenterPage/confirm-image@2X.png 2x" />
+              <span 
+                className="icon confirm_icon"
+                ref="confirmImage"
+                style={{fontSize:55}} />
+                
               <div style={style.buttonText} ref="confirmText" >确认</div>
             </div>
           </Tappable>
@@ -334,18 +339,22 @@ var JobTicketRow = React.createClass({
               <Tappable 
                   onTap={this.confirm}>
                 <div style={style.confirmBox1} className="confirmBox">
-                  <img ref="confirmImage"
-                      src="imgs/userCenterPage/confirm-circle-image.png"
-                      srcSet="imgs/userCenterPage/confirm-circle-image@2X.png 2x" />
+                  <span 
+                    className="icon confirm_circle_icon"
+                    ref="confirmImage"
+                    style={{fontSize:55}} />
+                    
                   <div ref="confirmText">确定</div>
                 </div>
               </Tappable>
               <Tappable 
                 onTap={this.toggleConfirmDialog}>
                 <div style={style.cancelFrame} className="cancelFrame">
-                  <img ref="cancelImage"
-                      src="imgs/userCenterPage/cancel-circle-image.png"
-                      srcSet="imgs/userCenterPage/cancel-circle-image@2X.png 2x" />
+                  <span 
+                    className="icon cancel_circle_icon"
+                    ref="cancelImage"
+                    style={{fontSize:55}} />
+                    
                   <div ref="cancelText">取消</div>
                 </div>
               </Tappable>
