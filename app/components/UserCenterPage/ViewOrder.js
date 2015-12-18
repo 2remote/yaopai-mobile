@@ -229,7 +229,8 @@ var ViewOrder = React.createClass({
         right: 29,
         top: 25,
         margin: -15,
-        padding: 15
+        padding: 15,
+        fontSize:55
       },
       doubleCheckTicket: {
         backgroundColor: 'white',
@@ -279,12 +280,11 @@ var ViewOrder = React.createClass({
         <DocumentTitle title="订单详情"/> 
         <div style={style.headText} ref="headText" >{title}</div>
         <div style={style.subText}>{information}</div>
-        <img 
+        <span 
+          className="icon close_icon"
           style={style.close}
           onClick={this.handleClose}
-          ref="closeImage"
-          src="imgs/common/close-image.png"
-          srcSet="imgs/common/close-image@2X.png 2x" />
+          ref="closeImage" />
         <div 
           style={style.doubleCheckTicket}
           className="doubleCheckTicket">
