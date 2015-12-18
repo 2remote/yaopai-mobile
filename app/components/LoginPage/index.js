@@ -53,7 +53,7 @@ var LoginPage = React.createClass({
         <span
           className="icon yaopai_logo"
           ref="yaopaiLogo"
-          style={{fontSize:33}} />
+          style={{fontSize:140,lineHeight:0.3,display:'block'}} />
         <LoginForm showMessage={this.showMessage}/>
         <Toaster ref="toast"/>
         <div style={{margin: '44px 0 5px'}}>
