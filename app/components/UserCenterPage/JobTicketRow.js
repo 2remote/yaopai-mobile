@@ -275,7 +275,6 @@ var JobTicketRow = React.createClass({
           </div>
         </div>
       </div>
-      fontSize: 55
     );
     return (
       <div 
