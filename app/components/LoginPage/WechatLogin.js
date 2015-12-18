@@ -8,10 +8,10 @@ var WechatLogin = React.createClass({
   render: function() {
     return (
       <div onClick={this._weChatLogin} className="wechatLogin">
-        <img
+        <span 
+          className="icon wechat_circle_icon"
           ref="wechatLogo"
-          src="imgs/common/wechat-logo.png"
-          srcSet="imgs/common/wechat-logo@2X.png 2x" />
+          style={{fontSize:55}} />
         <div ref="wechatText">微信帐号登录</div>
       </div>
     );
