@@ -125,10 +125,7 @@ var DoubleCheckInfo = React.createClass({
         <span
           className="icon price_icon"
           style={style.priceImage}
-          ref="priceImage" />,
-          fontSize: 22
-,
-fontSize: 22
+          ref="priceImage" />
         <span 
           style={style.grapherPrice}
           ref="grapherPrice" >{this.props.order.Albums?this.props.order.Albums.Price:'面议'}</span>
