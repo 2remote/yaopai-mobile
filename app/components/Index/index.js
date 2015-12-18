@@ -12,7 +12,6 @@ var AlbumsStore = require('../../stores/AlbumsStore');
 require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
-var Footer = require('./Footer');
 var ImageBoxGrid = require('./ImageBoxGrid');
 var ImageVerticalGrid = require('./ImageVerticalGrid');
 var Index = React.createClass({
