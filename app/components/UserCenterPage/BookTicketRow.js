@@ -274,9 +274,10 @@ var BookTicketRow = React.createClass({
             <div
               style={style.cancelBox}
               className="cancelBox">
-              <img ref="cancelImage"
-                  src="imgs/userCenterPage/cancel-image.png"
-                  srcSet="imgs/userCenterPage/cancel-image@2X.png 2x" />
+              <span 
+                className="icon cancel_icon"
+                style={{fontSize:55}}
+                ref="cancelImage" />
               <div 
                 style={style.buttonText} 
                 ref="cancelText" >取消</div>
