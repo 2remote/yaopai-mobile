@@ -259,9 +259,10 @@ var BookTicketRow = React.createClass({
             style={style.contactBox}
             className="contactBox">
             <a href={"tel:" + this.props.data.Photographer.BusinessPhone}>
-            <img ref="contactImage"
-                src="imgs/userCenterPage/contact-image.png"
-                srcSet="imgs/userCenterPage/contact-image@2X.png 2x" />
+            <span
+              className="icon contact_icon"
+              style={{fontSize:55}}
+              ref="contactImage" />
             <div 
               style={style.buttonText} 
               ref="contactText" >联系</div>

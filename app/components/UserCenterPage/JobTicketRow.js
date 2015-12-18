@@ -297,9 +297,10 @@ var JobTicketRow = React.createClass({
             style={style.editBox}
             className="editBox">
             <a href={"tel:" + this.props.data.BuyerTel}>
-            <img ref="editImage"
-                src="imgs/userCenterPage/contact-image.png"
-                srcSet="imgs/userCenterPage/contact-image@2X.png 2x" />
+            <span 
+              className="icon contact_icon"
+              style={{fontSize:55}}
+              ref="editImage" />
             <div style={style.buttonText} ref="editText" >{this.props.data.State===0?'联系':this.props.data.State===1?'已完成':'已关闭'}</div>
             </a>
           </div>
