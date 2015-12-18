@@ -17,11 +17,10 @@ var CallBox = React.createClass({
         <div 
           style={{color:'#3c3c3c'}}
           className="callBox">
-          <img 
-            style={{width:55}}
-            ref="callImage"
-            src="imgs/common/call-logo.png"
-            srcSet="imgs/common/call-logo@2X.png 2x" />
+          <span
+             className="icon phone_circle_icon" 
+            style={{width:55, fontSize:55}}
+            ref="callImage" />
           <div ref="callText" >致电咨询</div>
         </div>
       </a>
