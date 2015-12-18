@@ -59,10 +59,12 @@ var BookTicketRow = React.createClass({
       maskIcon: {
         verticalAlign: 'middle',
         marginRight: '15%',
+        fontSize: 55
       },
       maskTurn: {
         float: 'right',
         marginTop: '63.5px',
+        fontSize: 55
       },
       avatar: {
         width: 66,
@@ -183,13 +185,11 @@ var BookTicketRow = React.createClass({
     let maskIconSrcSet = '';
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      maskIconSrc = 'imgs/userCenterPage/order-cancel.png'; 
-      maskIconSrcSet = 'imgs/userCenterPage/order-cancel@2X.png 2x';
+      mask_icon_src = 'failed_icon'; 
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
-      maskIconSrc = 'imgs/userCenterPage/order-confirm.png';
-      maskIconSrcSet = 'imgs/userCenterPage/order-confirm@2X.png 2x';
+      mask_icon_src = 'success_icon';
     }
     let rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.UserId) % 47 + 1 ) + '.png';
     
@@ -241,11 +241,13 @@ var BookTicketRow = React.createClass({
         className="bookTicketRow">
         <Link to={"/viewOrder/u/"+this.props.data.Id}>
           <div className="cancel-mask" style={maskStyle}>
-            <img style={style.maskIcon} src={maskIconSrc} srcSet={maskIconSrcSet} />
+            <span
+              className={"icon " + mask_icon_src}
+              style={style.maskIcon} />
             <span style={style.cancelWord}>{maskText}</span>
-            <img style={style.maskTurn}
-              src="imgs/userCenterPage/detail-icon.png"
-              srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+            <span
+              className={"icon " + mask_icon_src}
+              style={style.maskTurn} />
           </div>
         </Link>
 
