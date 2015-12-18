@@ -107,10 +107,11 @@ var SidePage = React.createClass({
     }else{
       accountContent= (<div className="loginBox" style={style.loginBox}>
         <Link style={style.link} to="/login_page">
-          <span
-            className="icon default_avatar"
+          <img
             style={style.avatar}
-            ref="defaultAvatar" />
+            ref="defaultAvatar"
+            src="imgs/sidePage/default-avatar.png"
+            srcSet="imgs/sidePage/default-avatar@2X.png 2x" />
           <div style={style.loginName} ref="pleaseLoginText">请登录</div>
         </Link>
       </div>
