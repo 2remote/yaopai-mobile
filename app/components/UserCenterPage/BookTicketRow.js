@@ -299,18 +299,20 @@ var BookTicketRow = React.createClass({
               <Tappable 
                   onTap={this.cancelOrder}>
                 <div style={style.cancelOrder} className="cancelOrder">
-                  <img ref="confirmImage"
-                      src="imgs/userCenterPage/cancel-circle-image.png"
-                      srcSet="imgs/userCenterPage/cancel-circle-image@2X.png 2x" />
+                  <span 
+                    className="icon cancel_circle_icon"
+                    style={{fontSize:22}}
+                    ref="confirmImage" />
                   <div ref="confirmText">取消订单</div>
                 </div>
               </Tappable>
               <Tappable 
                 onTap={this.toggleCancelDialog}>
                 <div style={style.cancelFrame} className="cancelFrame">
-                  <img ref="cancelImage"
-                      src="imgs/userCenterPage/cancel-circle-image.png"
-                      srcSet="imgs/userCenterPage/cancel-circle-image@2X.png 2x" />
+                  <span 
+                    ref="cancelImage"
+                    className="icon cancel_circle_icon"
+                    style={{fontSize:22}} />
                   <div ref="cancelText">关闭</div>
                 </div>
               </Tappable>
