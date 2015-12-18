@@ -101,6 +101,7 @@ var BookTicketRow = React.createClass({
         position: 'relative',
         right: '8%',
         float: 'right',
+        fontSize: 55
       },
       actionBox: {
         float: 'right',
@@ -226,9 +227,9 @@ var BookTicketRow = React.createClass({
             <div >
               <span style={style.label} ref="suggestPriceLabel" >参考金额：</span>
               <span style={style.userInfo} ref="suggestPrice" >{this.props.data.IsSpecifiesAlbums?this.props.data.Price:'面议'}</span>
-              <img style={style.toDetial}
-                src="imgs/userCenterPage/detail-icon.png"
-                srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+              <span
+                className="icon detail_icon"
+                style={style.toDetial} />
             </div>
           </div>
           </Link>
