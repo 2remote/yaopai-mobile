@@ -43,7 +43,6 @@ var style={
   },
   commonIcon: {
     marginTop: '15px',
-    fontSize: '55px',
   },
 };
 
@@ -98,8 +97,9 @@ var SidePage = React.createClass({
                 <div style={style.loginName} ref="pleaseLoginText">{this.props.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
-            <span style={style.logoutIcon} ref="logoutIcon" 
-              className="icon logout_icon"
+             <img style={style.logoutIcon} ref="logoutIcon" 
+               src="imgs/sidePage/logout.png"  
+               srcSet="imgs/sidePage/logout@2X.png 2x"           
               onClick={this.logout} />
           </div>
         </div>
@@ -126,16 +126,16 @@ var SidePage = React.createClass({
               {accountContent}
             <div style={style.spliterLine} className="spliterLine" />
             <Link style={style.link} to="/work">
-              <span 
-                style={style.commonIcon} 
-                ref="workIcon"
-                className="icon work_icon" />
+               <img style={style.commonIcon} ref="workIcon"
+                 src="imgs/sidePage/work-icon.png"
+                 srcSet="imgs/sidePage/work-icon@2X.png 2x" />
               <div>作品</div>
             </Link>
             <div style={style.spliterLine} className="spliterLine" />
             <Link style={style.link} to="/grapher">
-              <span style={style.commonIcon} ref="grapherIcon" 
-                className="icon grapher_icon" />
+               <img style={style.commonIcon} ref="grapherIcon" 
+                 src="imgs/sidePage/grapher-icon.png"
+                 srcSet="imgs/sidePage/grapher-icon@2X.png 2x" />
               <div>摄影师</div>
             </Link>
             <div style={style.spliterLine} className="spliterLine" />
