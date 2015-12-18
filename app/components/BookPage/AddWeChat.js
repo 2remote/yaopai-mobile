@@ -6,11 +6,11 @@ var AddWeChat = React.createClass({
       <div 
         style={{float:'left',width:'50%',color:'#3c3c3c'}}
         className="addWeChat">
-        <img 
+        <span 
           style={{width:55}}
           ref="weChatImage"
-          src="imgs/common/wechat-logo.png"
-          srcSet="imgs/common/wechat-logo@2X.png 2x" />
+          className="icon wechat_logo"
+          style={{fontSize:55}} />
         <div ref="weChatText" >添加微信</div>
       </div>
     );

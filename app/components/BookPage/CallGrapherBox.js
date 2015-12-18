@@ -14,11 +14,10 @@ var CallGrapherBox = React.createClass({
         <div 
           style={{color:'#3c3c3c'}}
           className="callGrapherBox">
-          <img 
-            style={{width:55}}
+          <span 
             ref="callImage"
-            src="imgs/common/call-logo.png"
-            srcSet="imgs/common/call-logo@2X.png 2x" />
+            className="icon phone_circle_icon"
+            style={{fontSize:55}} />
           <div ref="callText" >致电摄影师</div>
         </div>
       </a>

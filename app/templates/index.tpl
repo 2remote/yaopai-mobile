@@ -8,18 +8,9 @@
     <meta content="telephone=no" name="format-detection" />
     <meta content="email=no" name="format-detection" />
 
-    <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?729720ed3583c74c1baf6772758369f3";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
     <title>{%=o.htmlWebpackPlugin.options.title %}</title>
-
+    
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1450237472_5042548.css">
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
     {% } %}
@@ -34,7 +25,17 @@
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry%}"></script>
     {% } %}
+    
 
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?729720ed3583c74c1baf6772758369f3";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
     <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     </body>
 </html>

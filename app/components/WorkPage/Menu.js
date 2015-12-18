@@ -66,11 +66,11 @@ var Menu = React.createClass({
       },
       close: {
         position: 'absolute',
-        top: '15px',
-        right: '20px',
-        background: 'url(imgs/common/close-image.png) no-repeat right top',
+        top: '-5px',
+        right: '25px',
         width: '30px',
         height: '30px',
+        fontSize: '40px'
       }
     }
     var lis = this.props.categories.map(function (item,key) {
@@ -84,7 +84,10 @@ var Menu = React.createClass({
         <ul style={style.ul}>
           {lis}
         </ul>
-        <div style={style.close} onClick={this.handleClose}></div>
+        <div 
+          style={style.close} 
+          onClick={this.handleClose} 
+          className="icon cancel_circle_icon"></div>
       </div>
     );
   }

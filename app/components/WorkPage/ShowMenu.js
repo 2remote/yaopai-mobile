@@ -21,9 +21,9 @@ var ShowMenu = React.createClass({
     return (
       <div>
         <div style={style} onClick={this.handleClick}>
-          <img 
-            src="imgs/workPage/sifting.png"
-            srcSet="imgs/workPage/sifting@2X.png 2x" />
+          <span
+            className="icon filter_icon" 
+            style={{fontSize:25, backgroundColor:'black', color:'white', padding:'10'}} />
         </div>
         <Menu ref="menu" categories={this.props.categories} category={this.props.category} onChangeCategory={this.props.onChangeCategory}/>
       </div>
