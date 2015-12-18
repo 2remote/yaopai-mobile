@@ -97,9 +97,10 @@ var SidePage = React.createClass({
                 <div style={style.loginName} ref="pleaseLoginText">{this.props.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
-             <img style={style.logoutIcon} ref="logoutIcon" 
-               src="imgs/sidePage/logout.png"  
-               srcSet="imgs/sidePage/logout@2X.png 2x"           
+            <span 
+              style={style.logoutIcon} 
+              ref="logoutIcon" 
+              className="icon logout_icon"
               onClick={this.logout} />
           </div>
         </div>
