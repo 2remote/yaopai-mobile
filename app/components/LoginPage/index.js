@@ -50,9 +50,10 @@ var LoginPage = React.createClass({
           padding: '60px 0 30px'
         }}
         className="loginPage">
-        <img ref="yaopaiLogo"
-          src="imgs/loginPage/yaopai-logo.png"
-          srcSet="imgs/loginPage/yaopai-logo@2X.png 2x" />
+        <span
+          className="icon yaopai_logo"
+          ref="yaopaiLogo"
+          style={{fontSize:33}} />
         <LoginForm showMessage={this.showMessage}/>
         <Toaster ref="toast"/>
         <div style={{margin: '44px 0 5px'}}>
