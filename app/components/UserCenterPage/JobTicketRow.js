@@ -220,11 +220,11 @@ var JobTicketRow = React.createClass({
     let maskIconSrcSet = '';
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      mask_icon_src = 'failed_icon';
+      maskIconSrc = 'failed_icon';
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
-      mask_icon_src = 'confirm_circle_icon';
+      maskIconSrc = 'confirm_circle_icon';
     }
 
     var jobTicket = (
@@ -284,7 +284,7 @@ var JobTicketRow = React.createClass({
         <Link to={"/viewOrder/p/"+this.props.data.Id}>
           <div className="cancel-mask" style={maskStyle}>
             <span
-              className={"icon " + mask_icon_src}
+              className={"icon" + maskIconSrc}
               style={style.maskIcon} />
             <span style={style.cancelWord}>{maskText}</span>
             <span

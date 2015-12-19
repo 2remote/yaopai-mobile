@@ -186,11 +186,11 @@ var BookTicketRow = React.createClass({
     let maskIconSrcSet = '';
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      mask_icon_src = 'failed_icon'; 
+      maskIconSrc = 'failed_icon'; 
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
-      mask_icon_src = 'success_icon';
+      maskIconSrc = 'success_icon';
     }
     let rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.UserId) % 47 + 1 ) + '.png';
     
@@ -243,11 +243,11 @@ var BookTicketRow = React.createClass({
         <Link to={"/viewOrder/u/"+this.props.data.Id}>
           <div className="cancel-mask" style={maskStyle}>
             <span
-              className={"icon " + mask_icon_src}
+              className={"icon " + maskIconSrc}
               style={style.maskIcon} />
             <span style={style.cancelWord}>{maskText}</span>
             <span
-              className={"icon " + mask_icon_src}
+              className="icon detail_icon"
               style={style.maskTurn} />
           </div>
         </Link>
