@@ -41,11 +41,9 @@ var ShareGuide = React.createClass({
     }
     return (
       <div style={style.mask} onClick={this.hideGuide}>
-        <span 
-          className="icon share_icon"
-          width="100%" 
-          style={{fontSize:55}} />
-          
+        <img width="100%" 
+          src="imgs/workDetailPage/share-guide@2x.png" 
+          srcSet="imgs/workDetailPage/share-guide@2x.png" />
       </div>
     );
   }
