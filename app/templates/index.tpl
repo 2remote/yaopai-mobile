@@ -10,7 +10,7 @@
 
     <title>{%=o.htmlWebpackPlugin.options.title %}</title>
     
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1450237472_5042548.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1450498112_8514779.css">
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
     {% } %}

@@ -21,11 +21,10 @@ var WorkIntroRow = React.createClass({
             ref="workImage"
             src={cover} />
         </Link>
-        <img 
-          style={{marginBottom:1}}
+        <span 
+          style={{marginBottom:1, color:'green'}}
           ref="workArrow"
-          src="imgs/grapherDetailPage/work-arrow.png"
-          srcSet="imgs/grapherDetailPage/work-arrow@2X.png 2x" />
+          className='icon up_icon' />
         <div
           style={{marginTop:-6}}
           ref="workTitle">{this.props.data.Title}</div>

@@ -220,11 +220,11 @@ var JobTicketRow = React.createClass({
     let maskIconSrcSet = '';
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      maskIconSrc = 'failed_icon';
+      maskIconSrc = ' fail_icon ';
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
-      maskIconSrc = 'confirm_circle_icon';
+      maskIconSrc = ' success_icon ';
     }
 
     var jobTicket = (

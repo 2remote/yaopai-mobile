@@ -186,11 +186,11 @@ var BookTicketRow = React.createClass({
     let maskIconSrcSet = '';
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      maskIconSrc = 'failed_icon'; 
+      maskIconSrc = ' fail_icon '; 
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
-      maskIconSrc = 'success_icon';
+      maskIconSrc = ' success_icon ';
     }
     let rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.UserId) % 47 + 1 ) + '.png';
     

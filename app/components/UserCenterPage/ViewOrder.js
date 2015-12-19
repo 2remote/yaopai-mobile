@@ -227,7 +227,7 @@ var ViewOrder = React.createClass({
         top: 25,
         margin: -15,
         padding: 15,
-        fontSize:55
+        fontSize: 22
       },
       doubleCheckTicket: {
         backgroundColor: 'white',
@@ -278,7 +278,7 @@ var ViewOrder = React.createClass({
         <div style={style.headText} ref="headText" >{title}</div>
         <div style={style.subText}>{information}</div>
         <span 
-          className="icon close_icon"
+          className="icon cancel_circle_icon"
           style={style.close}
           onClick={this.handleClose}
           ref="closeImage" />

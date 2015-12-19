@@ -34,7 +34,7 @@ var BookSuccessDialog = React.createClass({
         top: 25,
         margin: -15,
         padding: 15,
-        fontSize: 55
+        fontSize: 22
       },
       doubleCheckTicket: {
         backgroundColor: 'white',
@@ -62,7 +62,7 @@ var BookSuccessDialog = React.createClass({
           style={style.close}
           onClick={this.handleClose}
           ref="closeImage"
-          className="icon close_icon" />
+          className="icon cancel_circle_icon" />
         <div 
           style={style.doubleCheckTicket}
           className="doubleCheckTicket">
