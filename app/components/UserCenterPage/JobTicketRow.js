@@ -78,7 +78,8 @@ var JobTicketRow = React.createClass({
       maskIcon: {
         verticalAlign: 'middle',
         marginRight: '15%',
-        fontSize: 55
+        fontSize: 55,
+        color: 'red'
       },
       maskTurn: {
         float: 'right',
