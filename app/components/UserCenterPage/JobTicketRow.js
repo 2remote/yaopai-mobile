@@ -219,7 +219,7 @@ var JobTicketRow = React.createClass({
     let linkToStyle= maskShow ? style.hide : style.toDetial;
     let maskText = '';
     let maskIconSrc = '';
-    let maskIconSrcSet = '';
+    
     if (this.props.data.State === 2){
       maskText ='订单取消';
       maskIconSrc = ' fail_icon ';
