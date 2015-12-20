@@ -60,7 +60,7 @@ var BookTicketRow = React.createClass({
         verticalAlign: 'middle',
         marginRight: '15%',
         fontSize: 72,
-        color: 'red'
+        color: 'green'
       },
       maskTurn: {
         float: 'right',
@@ -190,10 +190,12 @@ var BookTicketRow = React.createClass({
     if (this.props.data.State === 2){
       maskText ='订单取消';
       maskIconSrc = ' fail_icon '; 
+      style.maskIcon.color = 'red';
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
       maskIconSrc = ' success_icon ';
+      style.maskIcon.color = 'green';
     }
     let rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.UserId) % 47 + 1 ) + '.png';
     
