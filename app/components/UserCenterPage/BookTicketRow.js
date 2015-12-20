@@ -100,8 +100,9 @@ var BookTicketRow = React.createClass({
         verticalAlign: 'bottom',
         position: 'relative',
         right: '8%',
+        top: '-8px',
         float: 'right',
-        fontSize: 55
+        fontSize: 25
       },
       actionBox: {
         float: 'right',
