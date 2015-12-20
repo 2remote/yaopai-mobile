@@ -82,8 +82,9 @@ var JobTicketRow = React.createClass({
       },
       maskTurn: {
         float: 'right',
-        marginTop: '63.5px',
-        fontSize: 55
+        marginTop: '4px',
+        fontSize: 25,
+        color: 'gray'
       },
       hide: {
         display: 'none',
@@ -131,8 +132,9 @@ var JobTicketRow = React.createClass({
         verticalAlign: 'bottom',
         position: 'relative',
         right: '8%',
+        top: '-8px',
         float: 'right',
-        fontSize: 55
+        fontSize: 25
       },
       actionBox: {
         float: 'right',
