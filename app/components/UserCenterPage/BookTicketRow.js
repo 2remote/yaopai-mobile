@@ -303,7 +303,7 @@ var BookTicketRow = React.createClass({
                 <div style={style.cancelOrder} className="cancelOrder">
                   <span 
                     className="icon cancel_circle_icon"
-                    style={{fontSize:22}}
+                    style={{fontSize:55}}
                     ref="confirmImage" />
                   <div ref="confirmText">取消订单</div>
                 </div>
@@ -314,7 +314,7 @@ var BookTicketRow = React.createClass({
                   <span 
                     ref="cancelImage"
                     className="icon cancel_circle_icon"
-                    style={{fontSize:22}} />
+                    style={{fontSize:55}} />
                   <div ref="cancelText">关闭</div>
                 </div>
               </Tappable>
