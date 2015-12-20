@@ -304,8 +304,8 @@ var JobTicketRow = React.createClass({
             className="editBox">
             <a href={"tel:" + this.props.data.BuyerTel}>
             <span 
-              className="icon contact_icon"
-              style={{fontSize:55}}
+              className="icon phone_icon"
+              style={{fontSize:22}}
               ref="editImage" />
             <div style={style.buttonText} ref="editText" >{this.props.data.State===0?'联系':this.props.data.State===1?'已完成':'已关闭'}</div>
             </a>
@@ -317,9 +317,9 @@ var JobTicketRow = React.createClass({
               style={style.confirmBox}
               className="confirmBox">
               <span 
-                className="icon confirm_icon"
+                className="icon success_icon"
                 ref="confirmImage"
-                style={{fontSize:55}} />
+                style={{fontSize:22}} />
                 
               <div style={style.buttonText} ref="confirmText" >确认</div>
             </div>
