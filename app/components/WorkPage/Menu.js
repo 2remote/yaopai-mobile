@@ -70,7 +70,7 @@ var Menu = React.createClass({
         right: '25px',
         width: '30px',
         height: '30px',
-        fontSize: '40px'
+        fontSize: 22
       }
     }
     var lis = this.props.categories.map(function (item,key) {

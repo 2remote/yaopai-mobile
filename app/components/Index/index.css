@@ -118,39 +118,6 @@ a:active {
 }*/
 
 
-/*Footer*/
-
-.footer {
-  background: #373737;
-  /*margin-top: 75px;*/
-  /*position: absolute;*/
-  height: 46px;
-  width: 100%;
-  font-size: 0.7em;
-  bottom: 0;
-  color: #fff;
-}
-
-.footer>span {
-  display: block;
-  position: relative;
-  float: left;
-  width: 33.33333333%;
-}
-
-.footer>span>:first-child {
-  padding: 8px 0 1px;
-}
-
-.footer>span>:nth-child(2) {
-  line-height: 14px;
-}
-
-.footerAddr>:nth-child(2) {
-  font-size: 0.6em;
-}
-
-
 /*访谈活动DEMO*/
 
 .imageCircleGrid>img,

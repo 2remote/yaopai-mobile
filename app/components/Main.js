@@ -2,7 +2,6 @@
 
 var React = require ('react');
 var Header = require('./Header/Header');
-var Footer = require('./Footer/Footer');
 var MainContent = require('./Content/MainContent');
 
 var Main = React.createClass({
@@ -11,7 +10,6 @@ var Main = React.createClass({
       <div className="container">
         <Header /> 
         <MainContent />
-        <Footer />
       </div>
     );
   }

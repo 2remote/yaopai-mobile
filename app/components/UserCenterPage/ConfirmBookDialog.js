@@ -48,16 +48,19 @@ var ConfirmBookDialog = React.createClass({
 
         <div style={style.actionBar} className="actionBar">
           <div style={style.confirmBox} className="confirmBox">
-            <img ref="confirmImage"
-                src="imgs/userCenterPage/confirm-circle-image.png"
-                srcSet="imgs/userCenterPage/confirm-circle-image@2X.png 2x" />
+            <span
+              ref="confirmImage" 
+              className="icon confirm_circle_icon"
+              style={{fontSize:22}} />
             <span ref="confirmText">确定</span>
           </div>
 
           <div style={style.cancelFrame} className="cancelFrame">
-            <img ref="cancelImage"
-                src="imgs/userCenterPage/cancel-circle-image.png"
-                srcSet="imgs/userCenterPage/cancel-circle-image@2X.png 2x" />
+            <span 
+              className="icon cancel_circle_icon"
+              ref="cancelImage"
+              style={{fontSize:22}} />
+              
             <span ref="cancelText">取消</span>
           </div>
         </div>

@@ -59,10 +59,13 @@ var BookTicketRow = React.createClass({
       maskIcon: {
         verticalAlign: 'middle',
         marginRight: '15%',
+        fontSize: 72,
+        color: 'red'
       },
       maskTurn: {
         float: 'right',
-        marginTop: '63.5px',
+        marginTop: '4px',
+        fontSize: 25
       },
       avatar: {
         width: 66,
@@ -98,7 +101,10 @@ var BookTicketRow = React.createClass({
         verticalAlign: 'bottom',
         position: 'relative',
         right: '8%',
+        top: '-8px',
         float: 'right',
+        fontSize: 25,
+        color: 'gray'
       },
       actionBox: {
         float: 'right',
@@ -180,16 +186,14 @@ var BookTicketRow = React.createClass({
     let linkToStyle= maskShow ? style.hide : style.toDetial;
     let maskText = '';
     let maskIconSrc = '';
-    let maskIconSrcSet = '';
+    
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      maskIconSrc = 'imgs/userCenterPage/order-cancel.png'; 
-      maskIconSrcSet = 'imgs/userCenterPage/order-cancel@2X.png 2x';
+      maskIconSrc = ' fail_icon '; 
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
-      maskIconSrc = 'imgs/userCenterPage/order-confirm.png';
-      maskIconSrcSet = 'imgs/userCenterPage/order-confirm@2X.png 2x';
+      maskIconSrc = ' success_icon ';
     }
     let rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.UserId) % 47 + 1 ) + '.png';
     
@@ -226,9 +230,9 @@ var BookTicketRow = React.createClass({
             <div >
               <span style={style.label} ref="suggestPriceLabel" >参考金额：</span>
               <span style={style.userInfo} ref="suggestPrice" >{this.props.data.IsSpecifiesAlbums?this.props.data.Price:'面议'}</span>
-              <img style={style.toDetial}
-                src="imgs/userCenterPage/detail-icon.png"
-                srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+              <span
+                className="icon detail_icon"
+                style={style.toDetial} />
             </div>
           </div>
           </Link>
@@ -241,11 +245,13 @@ var BookTicketRow = React.createClass({
         className="bookTicketRow">
         <Link to={"/viewOrder/u/"+this.props.data.Id}>
           <div className="cancel-mask" style={maskStyle}>
-            <img style={style.maskIcon} src={maskIconSrc} srcSet={maskIconSrcSet} />
+            <span
+              className={"icon " + maskIconSrc}
+              style={style.maskIcon} />
             <span style={style.cancelWord}>{maskText}</span>
-            <img style={style.maskTurn}
-              src="imgs/userCenterPage/detail-icon.png"
-              srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+            <span
+              className="icon detail_icon"
+              style={style.maskTurn} />
           </div>
         </Link>
 
@@ -256,9 +262,10 @@ var BookTicketRow = React.createClass({
             style={style.contactBox}
             className="contactBox">
             <a href={"tel:" + this.props.data.Photographer.BusinessPhone}>
-            <img ref="contactImage"
-                src="imgs/userCenterPage/contact-image.png"
-                srcSet="imgs/userCenterPage/contact-image@2X.png 2x" />
+            <span
+              className="icon phone_icon"
+              style={{fontSize:22, color:'gray'}}
+              ref="contactImage" />
             <div 
               style={style.buttonText} 
               ref="contactText" >联系</div>
@@ -270,9 +277,10 @@ var BookTicketRow = React.createClass({
             <div
               style={style.cancelBox}
               className="cancelBox">
-              <img ref="cancelImage"
-                  src="imgs/userCenterPage/cancel-image.png"
-                  srcSet="imgs/userCenterPage/cancel-image@2X.png 2x" />
+              <span 
+                className="icon fail_icon"
+                style={{fontSize:22, color:'gray'}}
+                ref="cancelImage" />
               <div 
                 style={style.buttonText} 
                 ref="cancelText" >取消</div>
@@ -294,18 +302,20 @@ var BookTicketRow = React.createClass({
               <Tappable 
                   onTap={this.cancelOrder}>
                 <div style={style.cancelOrder} className="cancelOrder">
-                  <img ref="confirmImage"
-                      src="imgs/userCenterPage/cancel-circle-image.png"
-                      srcSet="imgs/userCenterPage/cancel-circle-image@2X.png 2x" />
+                  <span 
+                    className="icon cancel_circle_icon"
+                    style={{fontSize:55}}
+                    ref="confirmImage" />
                   <div ref="confirmText">取消订单</div>
                 </div>
               </Tappable>
               <Tappable 
                 onTap={this.toggleCancelDialog}>
                 <div style={style.cancelFrame} className="cancelFrame">
-                  <img ref="cancelImage"
-                      src="imgs/userCenterPage/cancel-circle-image.png"
-                      srcSet="imgs/userCenterPage/cancel-circle-image@2X.png 2x" />
+                  <span 
+                    ref="cancelImage"
+                    className="icon cancel_circle_icon"
+                    style={{fontSize:55}} />
                   <div ref="cancelText">关闭</div>
                 </div>
               </Tappable>
