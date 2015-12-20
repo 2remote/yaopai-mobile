@@ -261,8 +261,8 @@ var BookTicketRow = React.createClass({
             className="contactBox">
             <a href={"tel:" + this.props.data.Photographer.BusinessPhone}>
             <span
-              className="icon contact_icon"
-              style={{fontSize:55}}
+              className="icon phone_icon"
+              style={{fontSize:22}}
               ref="contactImage" />
             <div 
               style={style.buttonText} 
@@ -276,8 +276,8 @@ var BookTicketRow = React.createClass({
               style={style.cancelBox}
               className="cancelBox">
               <span 
-                className="icon cancel_icon"
-                style={{fontSize:55}}
+                className="icon fail_icon"
+                style={{fontSize:22}}
                 ref="cancelImage" />
               <div 
                 style={style.buttonText} 
