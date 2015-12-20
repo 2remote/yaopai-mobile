@@ -64,8 +64,8 @@ var BookTicketRow = React.createClass({
       },
       maskTurn: {
         float: 'right',
-        marginTop: '63.5px',
-        fontSize: 55
+        marginTop: '4px',
+        fontSize: 25
       },
       avatar: {
         width: 66,
