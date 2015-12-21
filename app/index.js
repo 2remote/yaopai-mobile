@@ -28,7 +28,7 @@ main();
 function main(){
   ReactDOM.render((
     <Router>
-      <Route path="/" component={WorkPage} />
+      <Route path="/" component={App} />
       <Route path="/work" component={WorkPage} />
       <Route path="/workDetail/:Id" component={WorkDetailPage} />
       <Route path="/grapher" component={GrapherPage} />
