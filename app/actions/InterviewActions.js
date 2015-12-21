@@ -14,7 +14,7 @@ InterviewActions.list.listen(function(pageIndex = 1,pageSize = 10){
     PageIndex : pageIndex,
     PageSize : pageSize,
   }
-  HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed);
+  HttpFactory.post(API.INTERVIEW.list,data,this.success,this.failed);
 });
 
 InterviewActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize = 10){
