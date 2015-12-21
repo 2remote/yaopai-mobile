@@ -1,3 +1,16 @@
+// ImageBoxLine 组件
+// 
+// 显示以方块构成的图片列表
+// 
+// 输入：
+// filter - 过滤关键字，参考：https://xiattst.gitbooks.io/yaopai/content/API/Ad/LIst.html 的广告位说明
+// number - 显示的图片数目
+// works - 图片列表
+// 
+// 范例：
+// var ImageBoxLine = require('./ImageBoxLine');
+// <ImageBoxLine filter={"HomeAlbums"} number={6} works={this.state.recommendInterviews} />
+
 var React = require('react');
 import { Router, Route, Link } from 'react-router';
 require('./ImageBoxGrid.css');
@@ -22,7 +35,7 @@ var ImageBoxGrid = React.createClass({
 
     var initNodes = [];
     for (var i = 0; i < this.props.number; i++) {
-      // 每次load
+      // 每次load生成不同颜色
       style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
       initNodes.push((<li style={style} className="imageCell"></li>));
     };
