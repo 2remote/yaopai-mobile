@@ -73,6 +73,10 @@ var API_CONST = {
     search: API_URL + 'Interview.Search',
   },
   
+  AD: {
+    search: API_URL + 'Ad.List',
+  },
+  
   ORDER: {
     outSearch: API_URL + 'Order.OutSearch',
     inSearch: API_URL + 'Order.InSearch',
