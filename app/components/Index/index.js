@@ -76,7 +76,7 @@ var Index = React.createClass({
 
   _onAdStoreChange : function (data) {
     console.log('_onAdStoreChange.data', data);
-    if(data.flag == 'recommendList'){
+    if(data.flag == 'list'){
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{

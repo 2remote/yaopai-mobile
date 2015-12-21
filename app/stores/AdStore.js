@@ -28,18 +28,16 @@ var AdStore = Reflux.createStore({
 
   onSearchSuccess : function(res){
     if(res.Success){
-      this.data.count = res.Count;
-      this.data.pageCount = res.PageCount;
       this.data.pageIndex = res.PageIndex;
       this.data.pageSize = res.PageSize;
-      this.data.total = res.Total;
+  
       this.data.workList = res.Result;
       this.data.hintMessage = '';
     }else{
       this.data.workList = [];
       this.data.hintMessage = res.ErrorMsg;
     }
-    this.data.flag = 'search';
+    this.data.flag = 'list';
     this.trigger(this.data);
   },
 });
