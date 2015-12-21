@@ -133,13 +133,25 @@ var SidePage = React.createClass({
                  srcSet="imgs/sidePage/work-icon@2X.png 2x" />
               <div>作品</div>
             </Link>
+
             <div style={style.spliterLine} className="spliterLine" />
+
             <Link style={style.link} to="/grapher">
                <img style={style.commonIcon} ref="grapherIcon" 
                  src="imgs/sidePage/grapher-icon.png"
                  srcSet="imgs/sidePage/grapher-icon@2X.png 2x" />
               <div>摄影师</div>
             </Link>
+
+            <div style={style.spliterLine} className="spliterLine" />
+
+            <Link style={style.link} to="/interview">
+              <img  style={style.commonIcon} ref="interviewIcon" 
+                src="imgs/sidePage/interview-icon.png"
+                srcSet="imgs/sidePage/interview-icon@2X.png 2x" />
+              <div>访谈</div>
+            </Link>
+
             <div style={style.spliterLine} className="spliterLine" />
           </div>
         </div>
