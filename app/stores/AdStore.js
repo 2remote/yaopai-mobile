@@ -8,15 +8,13 @@ var AdStore = Reflux.createStore({
     workData : {},
     categories : [],
     workList : [],
-    count : 0,  //当前查询条件下的列表总数
-    pageCount : 0, //当前查询条件下的总页数
     pageIndex : 0, //当前页
     pageSize : 0, //companent设置页面大小
-    total : 0, //当前查询条件下的作品总数
   },
   
   init: function() {
     console.log('Ad Store initialized');
+    this.listenTo(AdActions.list.success,this.onListSuccess);
     this.listenTo(AdActions.list.failed,this.onFailed);
   },
   
@@ -26,7 +24,7 @@ var AdStore = Reflux.createStore({
     this.trigger(this.data);
   },
 
-  onSearchSuccess : function(res){
+  onListSuccess : function(res){
     if(res.Success){
       this.data.pageIndex = res.PageIndex;
       this.data.pageSize = res.PageSize;
