@@ -18,14 +18,17 @@ var ImageBoxGrid = React.createClass({
       height: deviceWidth/3
     };
 
+    var filter = this.props.filter;
     var imgNodes = this.props.works.map(function(work, i){
-      return (
-        <li style={style} className="imageCell">
-          <a href={work.Link} style={{display:'block'}} >
-            <img style={style} src={imgModifier(work.Cover)} />
-          </a>
-        </li>
-      );  
+      if(filter == work.Position){
+        return (
+          <li style={style} className="imageCell">
+            <a href={work.Url} style={{display:'block'}} >
+              <img style={style} src={imgModifier(work.Image)} />
+            </a>
+          </li>
+        );  
+      }
     });
 
     return (

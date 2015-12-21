@@ -206,7 +206,7 @@ var Index = React.createClass({
             </div>
           </div>
         
-          <ImageBoxLine works={this.state.recommendInterviews} />
+          <ImageBoxLine filter="HomeAlbums" works={this.state.recommendInterviews} />
 
         </div>
 

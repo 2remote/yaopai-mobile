@@ -8,7 +8,7 @@ var AdActions = Reflux.createActions({
 
 AdActions.list.listen(function(pageIndex = 1,pageSize = 10){
   var data = {
-    Fields : 'Id,Image,Url',
+    Fields : 'Id,Image,Url,Position',
     PageIndex : pageIndex,
     PageSize : pageSize,
   }
