@@ -19,11 +19,30 @@ var AlbumsStore = Reflux.createStore({
     console.log('Interview Store initialized');
     this.listenTo(InterviewActions.recommendList.success,this.onRecommendListSuccess);
     this.listenTo(InterviewActions.recommendList.failed,this.onFailed);
+    this.listenTo(InterviewActions.search.success,this.onSearchSuccess);
+    this.listenTo(InterviewActions.search.failed,this.onFailed);
   },
   
   onFailed : function(res){
     this.data.hintMessage = '网络错误';
     this.data.flag = 'failed';
+    this.trigger(this.data);
+  },
+
+  onSearchSuccess : function(res){
+    if(res.Success){
+      this.data.count = res.Count;
+      this.data.pageCount = res.PageCount;
+      this.data.pageIndex = res.PageIndex;
+      this.data.pageSize = res.PageSize;
+      this.data.total = res.Total;
+      this.data.workList = res.Result;
+      this.data.hintMessage = '';
+    }else{
+      this.data.workList = [];
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    this.data.flag = 'search';
     this.trigger(this.data);
   },
 

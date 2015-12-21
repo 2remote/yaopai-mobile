@@ -88,6 +88,12 @@ const workGeneralFields = '&Fields=Title,Cover,user.nickname,userid,user.Avatar,
 
 export const LIST_ALL_WORKS = API + listAllWorks + workGeneralFields;
 
+// 调取 访谈二级列表页面信息
+const listAllInterviews = 'Interview.Search';
+const interviewGeneralFields = '&Fields=Id,Cover,Link';
+
+export const LIST_ALL_INTERVIEWS = API + listAllInterviews + interviewGeneralFields;
+
 // 调取 作品详情 信息
 const listWorkDetail = 'Albums.get';
 const workDetailFields = ',photos.url,Negotiable,Price,Service';
