@@ -18,17 +18,13 @@ var ImageBoxGrid = React.createClass({
       height: deviceWidth/3
     };
 
-    var styleEmpty = {
-      width: deviceWidth/3,
-      height: deviceWidth/3,
-      backgroundColor: 'gray'
-    };
-
     var filter = this.props.filter;
 
     var initNodes = [];
     for (var i = 0; i < this.props.number; i++) {
-      initNodes.push((<li style={styleEmpty} className="imageCell"></li>));
+      // 每次load
+      style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      initNodes.push((<li style={style} className="imageCell"></li>));
     };
     
     var imgNodes = this.props.works.map(function(work, i){
