@@ -1,7 +1,7 @@
 var Reflux = require('reflux');
 var InterviewActions = require('../actions/InterviewActions');
 
-var AlbumsStore = Reflux.createStore({
+var InterviewStore = Reflux.createStore({
   data : {
     flag : '',
     hintMessage : '',
@@ -58,4 +58,4 @@ var AlbumsStore = Reflux.createStore({
   },
 });
 
-module.exports = AlbumsStore;
+module.exports = InterviewStore;
