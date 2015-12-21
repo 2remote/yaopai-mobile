@@ -11,6 +11,8 @@ var AlbumsActions = require('../../actions/AlbumsActions');
 var AlbumsStore = require('../../stores/AlbumsStore');
 var InterviewActions = require('../../actions/InterviewActions');
 var InterviewStore = require('../../stores/InterviewStore');
+var AdActions = require('../../actions/AdActions');
+var AdStore = require('../../stores/AdStore');
 require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
@@ -22,7 +24,8 @@ var Index = React.createClass({
   mixins : [
     Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),
     Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'),
-    Reflux.listenTo(InterviewStore,'_onInterviewStoreChange')
+    Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),
+    Reflux.listenTo(AdStore,'_onAdStoreChange'),
   ],
   getDefaultProps: function() {
     return {
@@ -66,6 +69,20 @@ var Index = React.createClass({
     AlbumsActions.recommendList();
     // 得到推荐访谈
     InterviewActions.recommendList();
+
+    // 获得Ad 
+    AdActions.list();
+  },
+
+  _onAdStoreChange : function (data) {
+    console.log('_onAdStoreChange.data', data);
+    if(data.flag == 'recommendList'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+        this.setState({recommendInterviews : data.workList});
+      }
+    }
   },
 
   _onInterviewStoreChange : function (data) {

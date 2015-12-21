@@ -74,7 +74,7 @@ var API_CONST = {
   },
   
   AD: {
-    search: API_URL + 'Ad.List',
+    list: API_URL + 'Ad.List',
   },
   
   ORDER: {

@@ -17,7 +17,7 @@ var AdStore = Reflux.createStore({
   
   init: function() {
     console.log('Ad Store initialized');
-    this.listenTo(AdActions.search.failed,this.onFailed);
+    this.listenTo(AdActions.list.failed,this.onFailed);
   },
   
   onFailed : function(res){

@@ -3,7 +3,7 @@ var HttpFactory = require('../HttpFactory');
 var API = require('../api');
 
 var AdActions = Reflux.createActions({
-  'search':{children : ['success','failed']},
+  'list':{children : ['success','failed']},
 });
 
 AdActions.list.listen(function(pageIndex = 1,pageSize = 10){
