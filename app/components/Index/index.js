@@ -9,8 +9,6 @@ var PhotographerActions = require('../../actions/PhotographerActions');
 var PhotographerStore = require('../../stores/PhotographerStore');
 var AlbumsActions = require('../../actions/AlbumsActions');
 var AlbumsStore = require('../../stores/AlbumsStore');
-var InterviewActions = require('../../actions/InterviewActions');
-var InterviewStore = require('../../stores/InterviewStore');
 var AdActions = require('../../actions/AdActions');
 var AdStore = require('../../stores/AdStore');
 require('./index.css');
@@ -24,7 +22,6 @@ var Index = React.createClass({
   mixins : [
     Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),
     Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'),
-    Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),
     Reflux.listenTo(AdStore,'_onAdStoreChange'),
   ],
   getDefaultProps: function() {
@@ -77,16 +74,6 @@ var Index = React.createClass({
   _onAdStoreChange : function (data) {
     console.log('_onAdStoreChange.data', data);
     if(data.flag == 'list'){
-      if(data.hintMessage){
-        console.log(data.hintMessage);
-      }else{
-        this.setState({recommendInterviews : data.workList});
-      }
-    }
-  },
-
-  _onInterviewStoreChange : function (data) {
-    if(data.flag == 'recommendList'){
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
