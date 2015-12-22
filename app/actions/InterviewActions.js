@@ -4,7 +4,7 @@ var API = require('../api');
 
 var InterviewActions = Reflux.createActions({
   'list':{children : ['success','failed']},
-  'recommendList' : {children:['success','failed']},
+  'get' : {children:['success','failed']},
   'search':{children : ['success','failed']},
 });
 
@@ -27,15 +27,12 @@ InterviewActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSi
   HttpFactory.post(API.INTERVIEW.search,data,this.success,this.failed);
 });
 
-InterviewActions.recommendList.listen(function(count = 5){
+InterviewActions.get.listen(function(Id){
   var data ={
-    HomeRecommended : true,
-    HomeSortingDesc : true,
-    PageIndex : 1,
-    PageSize : count,
-    Fields : 'Id,Cover,Link',
+    Id: Id,
+    Fields : 'Id,Title,Cover,Content,User',
   };
-  HttpFactory.post(API.INTERVIEW.search,data,this.success,this.failed);
+  HttpFactory.post(API.INTERVIEW.get,data,this.success,this.failed);
 });
 
 module.exports = InterviewActions;

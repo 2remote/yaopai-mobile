@@ -71,6 +71,7 @@ var API_CONST = {
 
   INTERVIEW: {
     search: API_URL + 'Interview.Search',
+    get: API_URL + 'Interview.Get',
   },
   
   AD: {

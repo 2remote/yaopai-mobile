@@ -17,8 +17,8 @@ var InterviewStore = Reflux.createStore({
   
   init: function() {
     console.log('Interview Store initialized');
-    this.listenTo(InterviewActions.recommendList.success,this.onRecommendListSuccess);
-    this.listenTo(InterviewActions.recommendList.failed,this.onFailed);
+    this.listenTo(InterviewActions.get.success,this.onGetListSuccess);
+    this.listenTo(InterviewActions.get.failed,this.onFailed);
     this.listenTo(InterviewActions.search.success,this.onSearchSuccess);
     this.listenTo(InterviewActions.search.failed,this.onFailed);
   },
@@ -46,14 +46,15 @@ var InterviewStore = Reflux.createStore({
     this.trigger(this.data);
   },
 
-  onRecommendListSuccess : function(res){
+  onGetListSuccess : function(res){
     if(res.Success){
       this.data.hintMessage = '';
-      this.data.workList = res.Result;
+      this.data.workData = res;
     }else{
       this.data.hintMessage = res.ErrorMsg;
+      this.data.workData = [];
     }
-    this.data.flag = 'recommendList';
+    this.data.flag = 'get';
     this.trigger(this.data);
   },
 });
