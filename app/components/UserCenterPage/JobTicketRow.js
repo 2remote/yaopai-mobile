@@ -66,27 +66,31 @@ var JobTicketRow = React.createClass({
         position: 'absolute',
         left: '0',
         top: '0',
-        background: 'rgba(255,255,255,.7)',
+        background: 'rgba(255,255,255,.85)',
         width: '100%',
         height: 150,
         backgroundSize: '100% 150px',
         zIndex: '9',
         lineHeight: '150px',
         textAlign: 'left',
-        padding: '0 26% 0 14%',
+        padding: '0 14%',
         boxSizing: 'border-box',
+        color: 'green'
       },
       maskIcon: {
         verticalAlign: 'middle',
-        marginRight: '15%',
+        marginRight: '13%',
         fontSize: 72,
-        color: 'green'
+      },
+      maskText: {
+        fontSize: '2em',
+        verticalAlign: 'middle',
+        fontWeight: 'bold'
       },
       maskTurn: {
         float: 'right',
         marginTop: '4px',
         fontSize: 25,
-        color: 'gray'
       },
       hide: {
         display: 'none',
@@ -225,12 +229,12 @@ var JobTicketRow = React.createClass({
     if (this.props.data.State === 2){
       maskText ='订单取消';
       maskIconSrc = ' fail_icon ';
-      style.maskIcon.color = 'red';
+      style.mask.color = 'red';
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
       maskIconSrc = ' success_icon ';
-      style.maskIcon.color = 'green';
+      style.mask.color = 'green';
     }
 
     var jobTicket = (
@@ -292,7 +296,7 @@ var JobTicketRow = React.createClass({
             <span
               className={"icon" + maskIconSrc}
               style={style.maskIcon} />
-            <span style={style.cancelWord}>{maskText}</span>
+            <span style={style.maskText}>{maskText}</span>
             <span
               className="icon detail_icon"
               style={style.maskTurn} />
