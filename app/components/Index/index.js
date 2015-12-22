@@ -52,7 +52,7 @@ var Index = React.createClass({
       userData : {},
       recommendGraphers : [],
       recommendWorks : [],
-      recommendInterviews:[]
+      adWorks:[]
     };
   },
   componentDidMount : function () {
@@ -70,7 +70,7 @@ var Index = React.createClass({
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({recommendInterviews : data.workList});
+        this.setState({adWorks : data.workList});
       }
     }
   },
@@ -177,7 +177,7 @@ var Index = React.createClass({
             </div>
           </div>
         
-          <ImageBoxLine filter={"HomeInterview"} number={6} works={this.state.recommendInterviews} />
+          <ImageBoxLine filter={"HomeInterview"} number={6} works={this.state.adWorks} />
 
         </div>
 
