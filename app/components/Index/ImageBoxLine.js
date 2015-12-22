@@ -6,10 +6,11 @@
 // filter - 过滤关键字，参考：https://xiattst.gitbooks.io/yaopai/content/API/Ad/LIst.html 的广告位说明
 // number - 显示的图片数目
 // works - 图片列表
+// picsInRow - 单行图片数量
 // 
 // 范例：
 // var ImageBoxLine = require('./ImageBoxLine');
-// <ImageBoxLine filter={"HomeAlbums"} number={6} works={this.state.recommendInterviews} />
+// <ImageBoxLine filter={"HomeAlbums"} number={6} picsInRow={3} works={this.state.recommendInterviews} />
 
 var React = require('react');
 import { Router, Route, Link } from 'react-router';
@@ -27,8 +28,8 @@ var ImageBoxGrid = React.createClass({
   render: function() {
     var deviceWidth = this.props.deviceWidth;
     var style = {
-      width: deviceWidth/3,
-      height: deviceWidth/3
+      width: deviceWidth/this.props.picsInRow,
+      height: deviceWidth/this.props.picsInRow
     };
 
     var filter = this.props.filter;

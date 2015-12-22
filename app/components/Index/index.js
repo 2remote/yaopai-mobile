@@ -144,6 +144,7 @@ var Index = React.createClass({
           </div>
 
           <ImageBoxGrid works={this.state.recommendWorks}/>
+          <ImageBoxLine filter={"HomeAlbums"} number={12} picsInRow={4} works={this.state.adWorks} />
 
           <div className="spliterGrapher" >
               <img 
@@ -177,7 +178,7 @@ var Index = React.createClass({
             </div>
           </div>
         
-          <ImageBoxLine filter={"HomeInterview"} number={6} works={this.state.adWorks} />
+          <ImageBoxLine filter={"HomeInterview"} number={6} picsInRow={3} works={this.state.adWorks} />
 
         </div>
 
