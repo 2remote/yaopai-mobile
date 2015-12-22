@@ -27,9 +27,10 @@ var ImageBoxGrid = React.createClass({
   },
   render: function() {
     var deviceWidth = this.props.deviceWidth;
+    var borderSize = deviceWidth/this.props.picsInRow;
     var style = {
-      width: deviceWidth/this.props.picsInRow,
-      height: deviceWidth/this.props.picsInRow
+      width:  borderSize,
+      height: borderSize
     };
 
     var filter = this.props.filter;
@@ -37,8 +38,12 @@ var ImageBoxGrid = React.createClass({
     var initNodes = [];
     for (var i = 0; i < this.props.number; i++) {
       // 每次load生成不同颜色
-      style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-      initNodes.push((<li style={style} className="imageCell"></li>));
+      var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      initNodes.push((<li style={{
+        width: borderSize,
+        height: borderSize,
+        backgroundColor: bkColor
+      }} className="imageCell"></li>));
     };
     
     var imgNodes = this.props.works.map(function(work, i){

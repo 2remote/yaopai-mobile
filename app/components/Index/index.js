@@ -12,7 +12,6 @@ var AdStore = require('../../stores/AdStore');
 require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
-var ImageBoxGrid = require('./ImageBoxGrid');
 var ImageBoxLine = require('./ImageBoxLine');
 var ImageVerticalGrid = require('./ImageVerticalGrid');
 
@@ -143,7 +142,6 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageBoxGrid works={this.state.recommendWorks}/>
           <ImageBoxLine filter={"HomeAlbums"} number={12} picsInRow={4} works={this.state.adWorks} />
 
           <div className="spliterGrapher" >
