@@ -133,7 +133,7 @@ var DoubleCheckInfo = React.createClass({
         <div>
           <span 
             style={style.label}
-            ref="userNameLabel">{this.props.type == 'p' ? '预约用户姓名':'摄影师'}</span>
+            ref="userNameLabel">{this.props.type == 'p' ? '预约姓名':'摄 影 师'}</span>
           <input 
             style={style.input}
             ref="usernameInput"
@@ -278,7 +278,7 @@ var ViewOrder = React.createClass({
         <div style={style.headText} ref="headText" >{title}</div>
         <div style={style.subText}>{information}</div>
         <span 
-          className="icon cancel_circle_icon"
+          className="icon close_icon"
           style={style.close}
           onClick={this.handleClose}
           ref="closeImage" />
