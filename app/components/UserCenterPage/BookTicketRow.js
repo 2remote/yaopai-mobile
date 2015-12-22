@@ -61,7 +61,6 @@ var BookTicketRow = React.createClass({
         verticalAlign: 'middle',
         marginRight: '13%',
         fontSize: 72,
-        color: 'green'
       },
       maskText: {
         fontSize: '2em',
