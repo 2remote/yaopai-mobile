@@ -66,8 +66,8 @@ var Menu = React.createClass({
       },
       close: {
         position: 'absolute',
-        top: '-5px',
-        right: '25px',
+        top: 7,
+        right: 10,
         width: '30px',
         height: '30px',
         fontSize: 22
@@ -87,7 +87,7 @@ var Menu = React.createClass({
         <div 
           style={style.close} 
           onClick={this.handleClose} 
-          className="icon cancel_circle_icon"></div>
+          className="icon close_icon"></div>
       </div>
     );
   }
