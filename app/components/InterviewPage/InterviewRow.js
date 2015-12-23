@@ -20,10 +20,10 @@ var InterviewRow = React.createClass({
         style={{width:'100%',textAlign:'center',color:'#0f0f0f'}}
         className="interviewIntroGrapherRow">
         <Link to={"/interviewDetail/" + this.props.data.Id}>
-          <div style={{width:'100%',height:210/375*innerWidth,marginBottom: -36,backgroundColor:'#eeedeb'}}>
+          <div style={{width:'100%',height:210/375*innerWidth,backgroundColor:'#eeedeb'}}>
             <LazyLoad threshold={100}>
               <img
-                style={{width:'100%',height:210/375*innerWidth,marginBottom: -36}}
+                style={{width:'100%',height:210/375*innerWidth}}
                 ref="interviewImage"
                 src={cover}/>
             </LazyLoad>
