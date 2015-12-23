@@ -62,7 +62,7 @@ var ActionBar = React.createClass({
       <div className="actionBar" style={{paddingTop:22.5,height: 103.5,textAlign:'center'}}>
         <ShareGuide ref="shareGuide" />
         <div>
-           <Link to={"/work_book_page/" + this.props.workId +'/0'} style={{lineHeight: 'inherit'}} >
+           <Link to="/interview" style={{lineHeight: 'inherit'}} >
             <span
               ref="bookIcon"
               className="icon order_icon" 

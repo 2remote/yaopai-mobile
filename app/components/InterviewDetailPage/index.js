@@ -3,14 +3,13 @@ var Reflux = require('reflux');
 const $ = require('jquery');
 var DocumentTitle = require('react-document-title');
 
-
 var GrapherAvatar = require('../common/GrapherAvatar');
 var ActionBar = require('./ActionBar');
 var HamburgMenu = require('../HamburgMenu');
 var UserActions = require('../../actions/UserActions');
 var InterviewStore = require('../../stores/InterviewStore');
 var InterviewActions = require('../../actions/InterviewActions');
-import { GET_WORK_DETAIL } from '../Tools';
+import { GET_WORK_DETAIL, imgModifier } from '../Tools';
 import {History} from 'react-router'
 
 var interviewDetailPage = React.createClass({
@@ -51,10 +50,38 @@ var interviewDetailPage = React.createClass({
     )
   },
   render: function() {
+    const contentText = this.state.data.Content;
+    function makeContent() {return {__html: contentText};};
+
+    let coverSoruce = this.state.data.Cover;
+    const cover = imgModifier(coverSoruce, "workCover");
     return (
       <div className="interviewDetailPage">
         <HamburgMenu />
-        <DocumentTitle title={this.state.data.Title || '作品'} />
+        <DocumentTitle title={this.state.data.Title || '访谈'} />
+
+        <span className="icon share_icon"
+          style={{fontSize: 22}} />
+
+        <h2>{this.state.data.Title}</h2>
+
+        <img
+          src="imgs/grapherPage/grapher-spliter-line.png"
+          srcSet="imgs/grapherPage/grapher-spliter-line@2X.png 2x" />
+
+        <div className="interviewCover" >
+          <img 
+            src={this.state.data.Cover} />
+        </div>
+
+        <div 
+          className="interviewContent"
+          dangerouslySetInnerHTML={makeContent()} />
+
+        END<br />
+        <img
+          src="imgs/grapherPage/grapher-spliter-line.png"
+          srcSet="imgs/grapherPage/grapher-spliter-line@2X.png 2x" />
         
         <GrapherAvatar data={this.state.data.User} />
         <ActionBar workId={this.state.data.Id} />
