@@ -1,4 +1,4 @@
-// ImageBoxLine 组件
+// ImageBoxGrid 组件
 // 
 // 显示以方块构成的图片列表
 // 
@@ -9,8 +9,8 @@
 // picsInRow - 单行图片数量
 // 
 // 范例：
-// var ImageBoxLine = require('./ImageBoxLine');
-// <ImageBoxLine filter={"HomeAlbums"} number={6} picsInRow={3} works={this.state.recommendInterviews} />
+// var ImageBoxGrid = require('./ImageBoxGrid');
+// <ImageBoxGrid filter={"HomeAlbums"} number={6} picsInRow={3} works={this.state.recommendInterviews} />
 
 var React = require('react');
 import { Router, Route, Link } from 'react-router';

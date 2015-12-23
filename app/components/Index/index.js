@@ -12,7 +12,7 @@ var AdStore = require('../../stores/AdStore');
 require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
-var ImageBoxLine = require('./ImageBoxLine');
+var ImageBoxGrid = require('./ImageBoxGrid');
 
 var Index = React.createClass({
   mixins : [
@@ -141,7 +141,7 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageBoxLine filter={"HomeAlbums"} number={12} picsInRow={4} works={this.state.adWorks} />
+          <ImageBoxGrid filter={"HomeAlbums"} number={12} picsInRow={4} works={this.state.adWorks} />
 
           <div className="spliterGrapher" >
               <img 
@@ -158,7 +158,7 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageBoxLine filter={"HomeGrapher"} number={12} picsInRow={4} works={this.state.adWorks} />
+          <ImageBoxGrid filter={"HomeGrapher"} number={12} picsInRow={4} works={this.state.adWorks} />
 
           <div className="spliterInterview" >
             <img 
@@ -175,7 +175,7 @@ var Index = React.createClass({
             </div>
           </div>
         
-          <ImageBoxLine filter={"HomeInterview"} number={6} picsInRow={3} works={this.state.adWorks} />
+          <ImageBoxGrid filter={"HomeInterview"} number={6} picsInRow={3} works={this.state.adWorks} />
 
         </div>
 
