@@ -13,7 +13,6 @@ require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
 var ImageBoxLine = require('./ImageBoxLine');
-var ImageVerticalGrid = require('./ImageVerticalGrid');
 
 var Index = React.createClass({
   mixins : [
@@ -159,7 +158,7 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageVerticalGrid works={this.state.recommendGraphers}/>
+          <ImageBoxLine filter={"HomeGrapher"} number={12} picsInRow={4} works={this.state.adWorks} />
 
           <div className="spliterInterview" >
             <img 
