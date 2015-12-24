@@ -10,7 +10,7 @@ var UserActions = require('../../actions/UserActions');
 var InterviewStore = require('../../stores/InterviewStore');
 var InterviewActions = require('../../actions/InterviewActions');
 import { GET_WORK_DETAIL, imgModifier } from '../Tools';
-import {History} from 'react-router'
+import {History} from 'react-router';
 
 var interviewDetailPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),History],
@@ -71,7 +71,8 @@ var interviewDetailPage = React.createClass({
 
         <div className="interviewCover" >
           <img 
-            src={this.state.data.Cover} />
+            style={{width:'100%',height:210/375*innerWidth}}
+            src={cover} />
         </div>
 
         <div 
