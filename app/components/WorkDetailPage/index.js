@@ -5,7 +5,7 @@ var DocumentTitle = require('react-document-title');
 
 var WorkTitle = require('./WorkTitle');
 var WorkPieceList = require('./WorkPieceList');
-var GrapherAvatar = require('./GrapherAvatar');
+var GrapherAvatar = require('../common/GrapherAvatar');
 var ActionBar = require('./ActionBar');
 var HamburgMenu = require('../HamburgMenu');
 var UserActions = require('../../actions/UserActions');

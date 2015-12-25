@@ -7,15 +7,18 @@ var DocumentTitle = require('react-document-title');
 var UserActions = require('../../actions/UserActions');
 var PhotographerActions = require('../../actions/PhotographerActions');
 var PhotographerStore = require('../../stores/PhotographerStore');
-var AlbumsActions = require('../../actions/AlbumsActions');
-var AlbumsStore = require('../../stores/AlbumsStore');
+var AdActions = require('../../actions/AdActions');
+var AdStore = require('../../stores/AdStore');
 require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
 var ImageBoxGrid = require('./ImageBoxGrid');
-var ImageVerticalGrid = require('./ImageVerticalGrid');
+
 var Index = React.createClass({
-  mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange')],
+  mixins : [
+    Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),
+    Reflux.listenTo(AdStore,'_onAdStoreChange'),
+  ],
   getDefaultProps: function() {
     return {
       imgs: [
@@ -47,21 +50,25 @@ var Index = React.createClass({
       userData : {},
       recommendGraphers : [],
       recommendWorks : [],
+      adWorks:[]
     };
   },
   componentDidMount : function () {
     UserActions.currentUser();
     //得到推荐摄影师
     PhotographerActions.recommendList();
-    //得到推荐作品
-    AlbumsActions.recommendList();
+
+    // 获得Ad 
+    AdActions.list();
   },
-  _onAlbumsStoreChange : function(data){
-    if(data.flag == 'recommendList'){
+
+  _onAdStoreChange : function (data) {
+    console.log('_onAdStoreChange.data', data);
+    if(data.flag == 'list'){
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({recommendWorks : data.workList});
+        this.setState({adWorks : data.workList});
       }
     }
   },
@@ -134,7 +141,7 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageBoxGrid works={this.state.recommendWorks}/>
+          <ImageBoxGrid filter={"HomeAlbums"} number={12} picsInRow={4} works={this.state.adWorks} />
 
           <div className="spliterGrapher" >
               <img 
@@ -151,8 +158,24 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageVerticalGrid works={this.state.recommendGraphers}/>
+          <ImageBoxGrid filter={"HomeGrapher"} number={12} picsInRow={4} works={this.state.adWorks} />
 
+          <div className="spliterInterview" >
+            <img 
+              src="imgs/indexPage/icon-interview.png"
+              srcSet="imgs/indexPage/icon-interview@2X.png 2x" />
+            <div className="splitLine" >
+              <img 
+                src="imgs/common/spliter-line.png"
+                srcSet="imgs/common/spliter-line@2X.png 2x" />
+            </div>
+            <div className="splitContent">
+              <div>访谈</div>
+              <div>INTERVIEW</div>
+            </div>
+          </div>
+        
+          <ImageBoxGrid filter={"HomeInterview"} number={6} picsInRow={3} works={this.state.adWorks} />
 
         </div>
 

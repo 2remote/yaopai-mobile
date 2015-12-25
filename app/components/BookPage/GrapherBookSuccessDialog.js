@@ -62,7 +62,7 @@ var BookSuccessDialog = React.createClass({
           style={style.close}
           onClick={this.handleClose}
           ref="closeImage"
-          className="icon cancel_circle_icon" />
+          className="icon close_icon" />
         <div 
           style={style.doubleCheckTicket}
           className="doubleCheckTicket">
