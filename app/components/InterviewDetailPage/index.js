@@ -4,13 +4,12 @@ const $ = require('jquery');
 var DocumentTitle = require('react-document-title');
 
 var GrapherIntro = require('../GrapherDetailPage/GrapherIntro');
-var ActionBar = require('./ActionBar');
 var HamburgMenu = require('../HamburgMenu');
 var UserActions = require('../../actions/UserActions');
 var InterviewStore = require('../../stores/InterviewStore');
 var InterviewActions = require('../../actions/InterviewActions');
 import { GET_WORK_DETAIL, imgModifier } from '../Tools';
-import {History} from 'react-router';
+import {History, Link} from 'react-router';
 
 var interviewDetailPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),History],
@@ -55,6 +54,11 @@ var interviewDetailPage = React.createClass({
 
     let coverSoruce = this.state.data.Cover;
     const cover = imgModifier(coverSoruce, "workCover");
+
+    let grapherId = '';
+    if (this.state.data.User) {
+      grapherId = this.state.data.User.Id;
+    }
     return (
       <div className="interviewDetailPage">
         <HamburgMenu />
@@ -80,14 +84,33 @@ var interviewDetailPage = React.createClass({
           className="interviewContent"
           dangerouslySetInnerHTML={makeContent()} />
 
-        <div style={{textAlign:'center',color:'gray'}}>END</div>
+        <div style={{textAlign:'center',color:'gray',fontSize:18}}>END</div>
         <img
           style={{width: '70%', marginLeft: '15%'}}
           src="imgs/workDetailPage/work-split-line.png"
           srcSet="imgs/workDetailPage/work-split-line@2X.png 2x" />
-        
-        <GrapherIntro data={this.state.data.User} />
-        <ActionBar workId={this.state.data.Id} />
+
+        <Link style={{lineHeight: 'inherit'}} to={'/grapherDetail/'+grapherId}>
+          <GrapherIntro 
+            data={this.state.data} 
+            from={'interview'}
+            style={{
+              textAlign: 'center',
+              height: 200,
+              paddingTop: 40
+            }}/>
+          <div 
+            style={{
+              textAlign: 'center',
+              width: 85,
+              padding: 1,
+              marginTop: 10,
+              borderRadius: 20,
+              border: '1px solid',
+              fontSize: '1.5em',
+              margin: '0 auto 30px'
+            }}>预约</div>
+        </Link>
       </div>
     );
   }

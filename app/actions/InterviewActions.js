@@ -30,7 +30,7 @@ InterviewActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSi
 InterviewActions.get.listen(function(Id){
   var data ={
     Id: Id,
-    Fields : 'Id,Title,Cover,Content',
+    Fields : 'Id,Title,Cover,Content,User.NickName,CityName,User.Avatar,User.Id',
   };
   HttpFactory.post(API.INTERVIEW.get,data,this.success,this.failed);
 });
