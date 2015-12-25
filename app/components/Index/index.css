@@ -11,6 +11,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   min-height: 100%;
   cursor: pointer;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -133,4 +135,10 @@ a:active {
 .active-item:active {
   color:white!important;
   background-color: #3c3c3c!important;
+}
+
+
+/*访谈活动详情页*/
+.interviewContent p img{
+  max-width: 100%;
 }
