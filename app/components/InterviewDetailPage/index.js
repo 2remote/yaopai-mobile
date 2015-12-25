@@ -3,7 +3,7 @@ var Reflux = require('reflux');
 const $ = require('jquery');
 var DocumentTitle = require('react-document-title');
 
-var GrapherAvatar = require('../common/GrapherAvatar');
+var GrapherIntro = require('../GrapherDetailPage/GrapherIntro');
 var ActionBar = require('./ActionBar');
 var HamburgMenu = require('../HamburgMenu');
 var UserActions = require('../../actions/UserActions');
@@ -60,18 +60,19 @@ var interviewDetailPage = React.createClass({
         <HamburgMenu />
         <DocumentTitle title={this.state.data.Title || '访谈'} />
 
-        <span className="icon share_icon"
-          style={{fontSize: 22}} />
-
-        <h2>{this.state.data.Title}</h2>
+        <div style={{margin:'56px 20% 0 11%'}}>
+          <span style={{color:'green',float:'left',fontSize:'2em',mariginRight:3}}>-</span>
+          <h1>{this.state.data.Title}</h1>
+        </div>
 
         <img
-          src="imgs/grapherPage/grapher-spliter-line.png"
-          srcSet="imgs/grapherPage/grapher-spliter-line@2X.png 2x" />
+          style={{width: '70%', margin: '-10px 0 20px 8%'}}
+          src="imgs/workDetailPage/work-split-line.png"
+          srcSet="imgs/workDetailPage/work-split-line@2X.png 2x" />
 
         <div className="interviewCover" >
           <img 
-            style={{width:'100%',height:210/375*innerWidth}}
+            style={{width:'100%',height:210/375*innerWidth, marginBottom: 15}}
             src={cover} />
         </div>
 
@@ -79,12 +80,13 @@ var interviewDetailPage = React.createClass({
           className="interviewContent"
           dangerouslySetInnerHTML={makeContent()} />
 
-        END<br />
+        <div style={{textAlign:'center',color:'gray'}}>END</div>
         <img
-          src="imgs/grapherPage/grapher-spliter-line.png"
-          srcSet="imgs/grapherPage/grapher-spliter-line@2X.png 2x" />
+          style={{width: '70%', marginLeft: '15%'}}
+          src="imgs/workDetailPage/work-split-line.png"
+          srcSet="imgs/workDetailPage/work-split-line@2X.png 2x" />
         
-        <GrapherAvatar data={this.state.data.User} />
+        <GrapherIntro data={this.state.data.User} />
         <ActionBar workId={this.state.data.Id} />
       </div>
     );
