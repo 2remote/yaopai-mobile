@@ -6,7 +6,7 @@ var GrapherAvatar = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
-        Avatar: "imgs/default/chenmingqiao-small.jpg", NickName: "Chen Mingqiao"
+        
       }
     };
   },

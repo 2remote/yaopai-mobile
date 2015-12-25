@@ -9,8 +9,8 @@ var WorkIntroList = React.createClass({
     };
   },
   render: function() {
-    var workIntroNodes = this.props.data.map(function(work){
-      return (<WorkIntroRow data={work} />);
+    var workIntroNodes = this.props.data.map(function(work,i){
+      return (<WorkIntroRow data={work} key={i}/>);
     });
     return (
       <div className="workIntroList">
