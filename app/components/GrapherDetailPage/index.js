@@ -58,8 +58,8 @@ var GrapherDetailPage = React.createClass({
         <div className="grapherDetailPage">
           <HamburgMenu />
           <GrapherIntro data={this.state.grapherInfo} />
-          <ActionBar data={this.state.grapherInfo}/>
           <WorkIntroList data={this.state.works}/>
+          <ActionBar data={this.state.grapherInfo}/>
         </div>
       </DocumentTitle>
     );
