@@ -60,7 +60,7 @@ var interviewDetailPage = React.createClass({
       grapherId = this.state.data.User.Id;
     }
     return (
-      <div className="interviewDetailPage">
+      <div style={{height: '100%'}} className="interviewDetailPage">
         <HamburgMenu />
         <DocumentTitle title={this.state.data.Title || '访谈'} />
 
