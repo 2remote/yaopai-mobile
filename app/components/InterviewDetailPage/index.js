@@ -10,6 +10,7 @@ var InterviewStore = require('../../stores/InterviewStore');
 var InterviewActions = require('../../actions/InterviewActions');
 import { GET_WORK_DETAIL, imgModifier } from '../Tools';
 import {History, Link} from 'react-router';
+import Share from '../Share';
 
 var interviewDetailPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),History],
@@ -111,6 +112,7 @@ var interviewDetailPage = React.createClass({
               margin: '0 auto 30px'
             }}>预约</div>
         </Link>
+        <Share />
       </div>
     );
   }
