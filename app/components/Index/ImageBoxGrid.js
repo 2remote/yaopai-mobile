@@ -11,6 +11,36 @@
 // 范例：
 // var ImageBoxGrid = require('./ImageBoxGrid');
 // <ImageBoxGrid filter={"HomeAlbums"} number={6} picsInRow={3} works={this.state.recommendInterviews} />
+// works - data demo
+//   [{
+//         "Id": 4,
+//         "Position": "HomeInterview",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/73e072f3-70cb-4c2b-a00b-309db1216a8a.png",
+//         "Action": "Link",
+//         "ExtraId": 0,
+//         "Url": "http://www.baidu.com"
+//     }, {
+//         "Id": 2,
+//         "Position": "HomeAlbums",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/83075f25-7d11-436c-9510-43899578208f.jpg",
+//         "Action": "GrapherList",
+//         "ExtraId": 31,
+//         "Url": "http://localhost:8082/Advertisement/Create1"
+//     }, {
+//         "Id": 3,
+//         "Position": "HomeGrapher",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/83075f25-7d11-436c-9510-43899578208f.jpg",
+//         "Action": "GrapherId",
+//         "ExtraId": 4,
+//         "Url": ""
+//     }, {
+//         "Id": 1,
+//         "Position": "HomeSlide",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/c48f682b-3342-48e2-9058-df99f7f5e45e.jpg",
+//         "Action": "Link",
+//         "ExtraId": 0,
+//         "Url": ""
+//    }]
 
 var React = require('react');
 import { Router, Route, Link } from 'react-router';
