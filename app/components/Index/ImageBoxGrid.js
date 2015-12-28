@@ -45,7 +45,7 @@
 var React = require('react');
 import { Router, Route, Link } from 'react-router';
 require('./ImageBoxGrid.css');
-import {imgModifier} from '../Tools'
+import {imgModifier, actionLinkMaker } from '../Tools'
 
 var ImageBoxGrid = React.createClass({
   getDefaultProps: function() {
@@ -78,54 +78,19 @@ var ImageBoxGrid = React.createClass({
     
     var imgNodes = this.props.works.map(function(work, i){
       var extraId = work.ExtraId;
-      var url = '';
-      switch (work.Action){
-      case 'Link':
-        url = work.Url;
-        break;
-      case 'GrapherId':
-        url = '/grapherDetail/'+extraId;
-        break;
-      case 'GrapherList':
-        url = '/grapher';
-        break;
-      case 'AlbumsId':
-        url = '/workDetail/'+extraId;
-        break;
-      case 'AlbumsList':
-        url = '/work';
-        break;
-      case 'ActivityId':
-        url = '/activityDetail/'+extraId;
-        break;
-      case 'ActivityList':
-        url = '/activity';
-        break;
-      case 'InterviewId':
-        url = '/interviewDetail/'+extraId;
-        break;
-      case 'InterviewList':
-        url = '/interview';
-        break;
+      
+      var url = work.Url;
+      if (work.Action !== 'Link'){
+        url = "#" + actionLinkMaker(work.Action, work.ExtraId); 
       }
       if(filter == work.Position ){
-        if(work.Action == 'Link'){
-          initNodes[i] = (
-            <li style={style} className="imageCell">
-              <a href={url} style={{display:'block'}} >
-                <img style={style} src={imgModifier(work.Image)} />
-              </a>
-            </li>
-          );
-        }else{
-          initNodes[i] = (
-            <li style={style} className="imageCell">
-              <Link style={{display:'block'}} to={url} href={url}>
-                <img style={style} src={imgModifier(work.Image)} />
-              </Link>
-            </li>
-          );
-        }
+        initNodes[i] = (
+          <li style={style} className="imageCell">
+            <a href={url} style={{display:'block'}} >
+              <img style={style} src={imgModifier(work.Image)} />
+            </a>
+          </li>
+        );  
       }
     });
 
