@@ -120,7 +120,7 @@ var ImageBoxGrid = React.createClass({
         }else{
           initNodes[i] = (
             <li style={style} className="imageCell">
-              <Link style={{display:'block'}} to={url}>
+              <Link style={{display:'block'}} to={url} href={url}>
                 <img style={style} src={imgModifier(work.Image)} />
               </Link>
             </li>
