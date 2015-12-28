@@ -13,6 +13,7 @@ var AlbumsStore = require('../../stores/AlbumsStore');
 var AlbumsActions = require('../../actions/AlbumsActions');
 import { GET_WORK_DETAIL } from '../Tools';
 import {History} from 'react-router'
+import Share from '../Share';
 
 var WorkDetailPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'),History],
@@ -91,6 +92,7 @@ var WorkDetailPage = React.createClass({
         </div>
         <GrapherAvatar data={this.state.data.User} />
         <ActionBar workId={this.state.data.Id} />
+        <Share />
       </div>
     );
   }
