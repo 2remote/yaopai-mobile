@@ -47,14 +47,55 @@ var ImageBoxGrid = React.createClass({
     };
     
     var imgNodes = this.props.works.map(function(work, i){
+      var extraId = work.ExtraId;
+      var url = '';
+      switch (work.Action){
+      case 'Link':
+        url = work.Url;
+        break;
+      case 'GrapherId':
+        url = '/grapherDetail/'+extraId;
+        break;
+      case 'GrapherList':
+        url = '/grapher';
+        break;
+      case 'AlbumsId':
+        url = '/workDetail/'+extraId;
+        break;
+      case 'AlbumsList':
+        url = '/work';
+        break;
+      case 'ActivityId':
+        url = '/activityDetail/'+extraId;
+        break;
+      case 'ActivityList':
+        url = '/activity';
+        break;
+      case 'InterviewId':
+        url = '/interviewDetail/'+extraId;
+        break;
+      case 'InterviewList':
+        url = '/interview';
+        break;
+      }
       if(filter == work.Position ){
-        initNodes[i] = (
-          <li style={style} className="imageCell">
-            <a href={work.Url} style={{display:'block'}} >
-              <img style={style} src={imgModifier(work.Image)} />
-            </a>
-          </li>
-        );  
+        if(work.Action == 'Link'){
+          initNodes[i] = (
+            <li style={style} className="imageCell">
+              <a href={url} style={{display:'block'}} >
+                <img style={style} src={imgModifier(work.Image)} />
+              </a>
+            </li>
+          );
+        }else{
+          initNodes[i] = (
+            <li style={style} className="imageCell">
+              <Link style={{display:'block'}} to={url}>
+                <img style={style} src={imgModifier(work.Image)} />
+              </Link>
+            </li>
+          );
+        }
       }
     });
 
