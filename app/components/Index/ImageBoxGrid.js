@@ -4,13 +4,14 @@
 // 
 // 输入：
 // filter - 过滤关键字，参考：https://xiattst.gitbooks.io/yaopai/content/API/Ad/LIst.html 的广告位说明
-// number - 显示的图片数目
+// cols - 图片列数
+// rows - 图片行数
 // works - 图片列表
-// picsInRow - 单行图片数量
 // 
 // 范例：
 // var ImageBoxGrid = require('./ImageBoxGrid');
-// <ImageBoxGrid filter={"HomeAlbums"} number={6} picsInRow={3} works={this.state.recommendInterviews} />
+// <ImageBoxGrid filter={"HomeAlbums"} cols={3} rows={4} works={this.state.recommendInterviews} />
+// 
 // works - data demo
 //   [{
 //         "Id": 4,
@@ -57,7 +58,7 @@ var ImageBoxGrid = React.createClass({
   },
   render: function() {
     var deviceWidth = this.props.deviceWidth;
-    var borderSize = deviceWidth/this.props.picsInRow;
+    var borderSize = deviceWidth/this.props.cols;
     var style = {
       width:  borderSize,
       height: borderSize
@@ -66,7 +67,8 @@ var ImageBoxGrid = React.createClass({
     var filter = this.props.filter;
 
     var initNodes = [];
-    for (var i = 0; i < this.props.number; i++) {
+    const number = this.props.cols * this.props.rows;
+    for (var i = 0; i < number; i++) {
       // 每次load生成不同颜色
       var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16);
       initNodes.push((<li style={{
@@ -83,6 +85,7 @@ var ImageBoxGrid = React.createClass({
       if (work.Action !== 'Link'){
         url = "#" + actionLinkMaker(work.Action, work.ExtraId); 
       }
+
       if(filter == work.Position ){
         initNodes[i] = (
           <li style={style} className="imageCell">
