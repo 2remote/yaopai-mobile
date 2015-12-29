@@ -30,7 +30,7 @@ ActivityActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSiz
 ActivityActions.get.listen(function(Id){
   var data ={
     Id: Id,
-    Fields : 'Id,Title,Cover,Content,User.NickName,CityName,User.Avatar,User.Id',
+    Fields : 'Id,Title,Cover,Content',
   };
   HttpFactory.post(API.ACTIVITY.get,data,this.success,this.failed);
 });

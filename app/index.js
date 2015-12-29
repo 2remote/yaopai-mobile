@@ -13,6 +13,7 @@ var InterviewPage = require('./components/InterviewPage');
 var InterviewDetailPage = require('./components/InterviewDetailPage');
 
 var ActivityPage = require('./components/ActivityPage');
+var ActivityDetailPage = require('./components/ActivityDetailPage');
 
 var LoginPage = require('./components/LoginPage');
 var SignupPage = require('./components/SignupPage');
@@ -41,7 +42,8 @@ function main(){
       <Route path="/interview" component={InterviewPage} />      
       <Route path="/interviewDetail/:Id" component={InterviewDetailPage} />
 
-      <Route path="/activity" component={ActivityPage} />      
+      <Route path="/activity" component={ActivityPage} />
+      <Route path="/activityDetail/:Id" component={ActivityDetailPage} />
 
       <Route path="/grapher" component={GrapherPage} />
       <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />
