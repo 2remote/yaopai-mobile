@@ -13,37 +13,13 @@ require('./index.css');
 
 var HamburgMenu = require('../HamburgMenu');
 var ImageBoxGrid = require('./ImageBoxGrid');
+import Slider from './Slider';
 
 var Index = React.createClass({
   mixins : [
     Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),
     Reflux.listenTo(AdStore,'_onAdStoreChange'),
   ],
-  getDefaultProps: function() {
-    return {
-      imgs: [
-        { src: "slider-furui.jpg", 
-          srcset: "slider-furui.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208614841&idx=1&sn=836f0d5ee6dfe2faffb8e1b050224cdc" },  
-        {
-          src: "slider-hedaxun.gif", 
-          srcset: "slider-hedaxun.gif 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208598870&idx=1&sn=431cf10eccd393d158a862b8df936c1a" },  
-        { 
-          src: "slider-jiran.jpg", 
-          srcset: "slider-jiran.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208321425&idx=1&sn=ca3c63684cd62f5477fc82b575d795f2" },  
-        {
-          src: "slider-xiaoweixuezhang.jpg", 
-          srcset: "slider-xiaoweixuezhang.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208744868&idx=2&sn=be7d83600a079a70bbb266d23b7f09df" },
-        {
-          src: "slider-yexiaokui.jpg", 
-          srcset: "slider-yexiaokui.jpg 2x", 
-          url: "http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=208697675&idx=1&sn=7b4ad41ae6d6d659b9b79fe6505ce244" }
-      ]
-    };
-  },
   getInitialState: function() {
     return {
       currentSlider: 0,
@@ -81,51 +57,15 @@ var Index = React.createClass({
       }
     }
   },
-  updateSliderButtons: function(position){
-    // console.log(position);
-    this.setState({currentSlider: position});
-  },
 
-  autoNextPageOnSwiped: function(index, elem){
-    // console.log("to next page",this);
-  },
-
-  render: function() {
-    var ImgNodes = this.props.imgs.map(function(img, i){
-      return (
-        <div>
-          <a href={img.url} >
-            <img 
-              src={"imgs/indexPage/" + img.src} 
-              srcSet={"imgs/indexPage/" + img.srcset} 
-              width="100%" />
-          </a>
-        </div>
-      ); 
-    });
-
-    var currentSlider = this.state.currentSlider;
-    var sliderButtons = this.props.imgs.map(function(img, i){
-      if (i == currentSlider){
-        return ( 
-          <img className="currentCarousel" 
-            src="imgs/indexPage/current-carousel.png"
-            srcSet="imgs/indexPage/current-carousel@2X.png 2x" />
-          );
-      } else {
-        return (
-          <img 
-            src="imgs/indexPage/normal-carousel.png"
-            srcSet="imgs/indexPage/normal-carousel@2X.png 2x" />
-        );  
-      }
-      
-    });
+  render: function() {    
     return (
       <DocumentTitle title="YAOPAI：一个全球预约摄影师平台">
       <div className="index">
         <HamburgMenu />
-      
+        
+        <Slider />
+        
         <div className="indexContent">
           <div className="spliterWork" >
               <img src="imgs/indexPage/icon-works.png"
