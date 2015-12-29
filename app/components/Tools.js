@@ -79,6 +79,37 @@ exports.dateFormat = function(date, format) {
   return format;
 }
 
+exports.actionLinkMaker = function (action, extraId) {
+  switch (action){
+  case 'Link':
+    return;
+
+  case 'GrapherId':
+    return '/grapherDetail/'+extraId;
+
+  case 'GrapherList':
+    return'/grapher';
+
+  case 'AlbumsId':
+    return'/workDetail/'+extraId;
+
+  case 'AlbumsList':
+    return'/work';
+
+  case 'ActivityId':
+    return'/activityDetail/'+extraId;
+
+  case 'ActivityList':
+    return'/activity';
+
+  case 'InterviewId':
+    return'/interviewDetail/'+extraId;
+
+  case 'InterviewList':
+    return'/interview';
+  }
+}
+
 // 页面调取数据接口
 export const API = API_URL;
 

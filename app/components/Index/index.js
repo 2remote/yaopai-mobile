@@ -81,7 +81,7 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageBoxGrid filter={"HomeAlbums"} number={12} picsInRow={4} works={this.state.adWorks} />
+          <ImageBoxGrid filter={"HomeAlbums"} cols={4} rows={3} works={this.state.adWorks} />
 
           <div className="spliterGrapher" >
               <img 
@@ -98,7 +98,7 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageBoxGrid filter={"HomeGrapher"} number={12} picsInRow={4} works={this.state.adWorks} />
+          <ImageBoxGrid filter={"HomeGrapher"} cols={4} rows={3} works={this.state.adWorks} />
 
           <div className="spliterInterview" >
             <img 
@@ -115,7 +115,7 @@ var Index = React.createClass({
             </div>
           </div>
         
-          <ImageBoxGrid filter={"HomeInterview"} number={6} picsInRow={3} works={this.state.adWorks} />
+          <ImageBoxGrid filter={"HomeInterview"} cols={3} rows={2} works={this.state.adWorks} />
 
         </div>
 
