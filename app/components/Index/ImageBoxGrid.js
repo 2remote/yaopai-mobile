@@ -68,34 +68,46 @@ var ImageBoxGrid = React.createClass({
 
     var initNodes = [];
     const number = this.props.cols * this.props.rows;
+    // console.log('imageBoxGrid number', number);
     for (var i = 0; i < number; i++) {
       // 每次load生成不同颜色
       var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-      initNodes.push((<li style={{
+      initNodes[i] = ((<li style={{
         width: borderSize,
         height: borderSize,
         backgroundColor: bkColor
       }} className="imageCell"></li>));
     };
-    
-    var imgNodes = this.props.works.map(function(work, i){
-      var extraId = work.ExtraId;
-      
-      var url = work.Url;
-      if (work.Action !== 'Link'){
-        url = "#" + actionLinkMaker(work.Action, work.ExtraId); 
-      }
 
-      if(filter == work.Position ){
-        initNodes[i] = (
-          <li style={style} className="imageCell">
-            <a href={url} style={{display:'block'}} >
-              <img style={style} src={imgModifier(work.Image)} />
-            </a>
-          </li>
-        );  
+    var filtered_works = this.props.works.filter(function (work) {
+      if (work.Position == filter){
+        return work;
       }
     });
+    
+    // console.log('filtered_works', filtered_works);
+
+    if ( filtered_works.length > 0 ){
+      var imgNodes = initNodes.map(function(node, i){
+        var extraId = filtered_works[i].ExtraId;
+        
+        var url = filtered_works[i].Url;
+        if (filtered_works[i].Action !== 'Link'){
+          url = "#" + actionLinkMaker(filtered_works[i].Action, filtered_works[i].ExtraId); 
+        }
+
+        if(filter == filtered_works[i].Position ){
+          // console.log('found position:', filter, 'with i:', i);
+          initNodes[i] = ((
+            <li style={style} className="imageCell">
+              <a href={url} style={{display:'block'}} >
+                <img style={style} src={imgModifier(filtered_works[i].Image)} />
+              </a>
+            </li>
+          ));  
+        }
+      });
+    }
 
     return (
       <ul className="imageBoxGrid">
