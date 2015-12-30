@@ -11,6 +11,7 @@
     <title>{%=o.htmlWebpackPlugin.options.title %}</title>
     
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1450498112_8514779.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
     {% } %}

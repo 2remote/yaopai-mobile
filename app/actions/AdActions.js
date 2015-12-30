@@ -6,7 +6,7 @@ var AdActions = Reflux.createActions({
   'list':{children : ['success','failed']},
 });
 
-AdActions.list.listen(function(pageIndex = 1,pageSize = 36){
+AdActions.list.listen(function(pageIndex = 0,pageSize = 0){
   var data = {
     Fields : 'Id,Image,Url,Position,Action,ExtraId',
     PageIndex : pageIndex,
