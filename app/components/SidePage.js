@@ -126,8 +126,10 @@ var SidePage = React.createClass({
           <div
             style={style.sidePage}
             className="sidePage">
-              {accountContent}
+            
+            {accountContent}
 
+            <SidePageIcon name={'index'} text={'首页'} />
             <SidePageIcon name={'work'} text={'作品'} />
             <SidePageIcon name={'grapher'} text={'摄影师'} />
             <SidePageIcon name={'interview'} text={'访谈'} />
