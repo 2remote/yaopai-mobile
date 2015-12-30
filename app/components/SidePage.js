@@ -126,6 +126,15 @@ var SidePage = React.createClass({
             style={style.sidePage}
             className="sidePage">
               {accountContent}
+
+            <div style={style.spliterLine} className="spliterLine" />
+            <Link style={style.link} to=''>
+               <img style={style.commonIcon} ref="workIcon"
+                 src="imgs/sidePage/index-icon.jpg"
+                 srcSet="imgs/sidePage/index-icon@2X.jpg 2x" />
+              <div>首页</div>
+            </Link>
+   
             <div style={style.spliterLine} className="spliterLine" />
             <Link style={style.link} to="/work">
                <img style={style.commonIcon} ref="workIcon"
