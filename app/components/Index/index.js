@@ -64,7 +64,7 @@ var Index = React.createClass({
       <div className="index">
         <HamburgMenu />
         
-        <Slider />
+        <Slider works={this.state.adWorks} />
         
         <div className="indexContent">
           <div className="spliterWork" >

@@ -71,14 +71,17 @@ var ImageBoxGrid = React.createClass({
     for (var i = 0; i < number; i++) {
       // 每次load生成不同颜色
       var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-      initNodes.push((<li style={{
+      initNodes.push((<li key={i} style={{
         width: borderSize,
         height: borderSize,
         backgroundColor: bkColor
       }} className="imageCell"></li>));
     };
-    
-    var imgNodes = this.props.works.map(function(work, i){
+
+    var work = this.props.works.filter(function(item){
+      return item.Position == filter
+    }).slice(0,number)
+    var imgNodes = work.map(function(work, i){
       var extraId = work.ExtraId;
       
       var url = work.Url;
@@ -86,15 +89,13 @@ var ImageBoxGrid = React.createClass({
         url = "#" + actionLinkMaker(work.Action, work.ExtraId); 
       }
 
-      if(filter == work.Position ){
-        initNodes[i] = (
-          <li style={style} className="imageCell">
-            <a href={url} style={{display:'block'}} >
-              <img style={style} src={imgModifier(work.Image)} />
-            </a>
-          </li>
-        );  
-      }
+      initNodes[i] = (
+        <li key={i} style={style} className="imageCell">
+          <a href={url} style={{display:'block'}} >
+            <img style={style} src={imgModifier(work.Image)} />
+          </a>
+        </li>
+      );
     });
 
     return (

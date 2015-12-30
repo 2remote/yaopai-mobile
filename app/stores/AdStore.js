@@ -5,8 +5,6 @@ var AdStore = Reflux.createStore({
   data : {
     flag : '',
     hintMessage : '',
-    workData : {},
-    categories : [],
     workList : [],
     pageIndex : 0, //当前页
     pageSize : 0, //companent设置页面大小
