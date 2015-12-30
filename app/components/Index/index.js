@@ -119,8 +119,8 @@ var Index = React.createClass({
 
           <div className="spliterActivity" >
             <img 
-              src="imgs/indexPage/icon-Activity.png"
-              srcSet="imgs/indexPage/icon-Activity@2X.png 2x" />
+              src="imgs/indexPage/icon-activity.png"
+              srcSet="imgs/indexPage/icon-activity@2X.png 2x" />
             <div className="splitLine" >
               <img 
                 src="imgs/common/spliter-line.png"
