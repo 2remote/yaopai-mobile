@@ -23,7 +23,7 @@ export default class Share extends React.Component {
         onClick={ this.handleShare.bind(this) }
         style={ {position: 'fixed', right: 10, bottom: '14%'} }>
         <span
-          className="icon share_icon"
+          className="icon default_avatar"
           ref="shareIcon"
           style={ {fontSize:40} } />
         <div style={ this.state.showShareGuide ? {display:'block'} : {display:'none'} }>
