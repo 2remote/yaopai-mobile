@@ -80,7 +80,7 @@ const Results = [{
 describe('首页广告模块 ImageBoxGrid', () => {
   // 渲染被调用的模块
   const component = renderIntoDocument(
-    <ImageBoxGrid filter={'HomeInterview'} number={6} works={Results} />
+    <ImageBoxGrid filter={'HomeInterview'} cols={4} rows={3} works={Results} />
   );
 
   // 通过Class获取组件
