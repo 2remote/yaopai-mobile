@@ -12,6 +12,7 @@ body {
   min-height: 100%;
   cursor: pointer;
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -52,6 +53,7 @@ a:active {
 .index {
   text-align: center;
 }
+
 
 /*走马灯*/
 
@@ -131,14 +133,15 @@ a:active {
   margin-bottom: 115px;
 }
 
-
 .active-item:active {
-  color:white!important;
+  color: white!important;
   background-color: #3c3c3c!important;
 }
 
 
 /*访谈活动详情页*/
-.interviewContent p img{
+
+.interviewContent p img,
+.ActivityContent p img {
   max-width: 100%;
 }

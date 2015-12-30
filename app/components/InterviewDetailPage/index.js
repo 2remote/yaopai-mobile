@@ -105,7 +105,6 @@ var interviewDetailPage = React.createClass({
               textAlign: 'center',
               width: 85,
               padding: 1,
-              marginTop: 10,
               borderRadius: 20,
               border: '1px solid',
               fontSize: '1.5em',
