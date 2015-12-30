@@ -47,9 +47,6 @@ var ActivityPage = React.createClass({
       }
     }
   },
-  onChangePage : function (pageIndex) {
-    ActivityActions.list(pageIndex);
-  },
   render: function() {
     return (
       <DocumentTitle title="全部活动">
