@@ -64,7 +64,7 @@ var Index = React.createClass({
       <div className="index">
         <HamburgMenu />
         
-        <Slider />
+        <Slider works={this.state.adWorks} />
         
         <div className="indexContent">
           <div className="spliterWork" >
@@ -114,8 +114,25 @@ var Index = React.createClass({
               <div>INTERVIEW</div>
             </div>
           </div>
-        
+
           <ImageBoxGrid filter={"HomeInterview"} cols={3} rows={2} works={this.state.adWorks} />
+
+          <div className="spliterActivity" >
+            <img 
+              src="imgs/indexPage/icon-Activity.png"
+              srcSet="imgs/indexPage/icon-Activity@2X.png 2x" />
+            <div className="splitLine" >
+              <img 
+                src="imgs/common/spliter-line.png"
+                srcSet="imgs/common/spliter-line@2X.png 2x" />
+            </div>
+            <div className="splitContent">
+              <div>活动</div>
+              <div>ACTIVITY</div>
+            </div>
+          </div>
+
+          <ImageBoxGrid filter={"HomeActivity"} cols={3} rows={2} works={this.state.adWorks} />
 
         </div>
 

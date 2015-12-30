@@ -73,6 +73,11 @@ var API_CONST = {
     search: API_URL + 'Interview.Search',
     get: API_URL + 'Interview.Get',
   },
+
+  ACTIVITY: {
+    search: API_URL + 'Activity.Search',
+    get: API_URL + 'Activity.Get',
+  },
   
   AD: {
     list: API_URL + 'Ad.List',

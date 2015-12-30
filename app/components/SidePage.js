@@ -4,6 +4,7 @@ import { Link, History,Location } from 'react-router';
 
 var UserActions = require('../actions/UserActions');
 require('./SidePage.css');
+import SidePageIcon from './SidePageIcon';
 
 var style={
   sidePage:{
@@ -125,42 +126,15 @@ var SidePage = React.createClass({
           <div
             style={style.sidePage}
             className="sidePage">
-              {accountContent}
+            
+            {accountContent}
 
-            <div style={style.spliterLine} className="spliterLine" />
-            <Link style={style.link} to=''>
-               <img style={style.commonIcon} ref="workIcon"
-                 src="imgs/sidePage/index-icon.jpg"
-                 srcSet="imgs/sidePage/index-icon@2X.jpg 2x" />
-              <div>首页</div>
-            </Link>
-   
-            <div style={style.spliterLine} className="spliterLine" />
-            <Link style={style.link} to="/work">
-               <img style={style.commonIcon} ref="workIcon"
-                 src="imgs/sidePage/work-icon.png"
-                 srcSet="imgs/sidePage/work-icon@2X.png 2x" />
-              <div>作品</div>
-            </Link>
-
-            <div style={style.spliterLine} className="spliterLine" />
-
-            <Link style={style.link} to="/grapher">
-               <img style={style.commonIcon} ref="grapherIcon" 
-                 src="imgs/sidePage/grapher-icon.png"
-                 srcSet="imgs/sidePage/grapher-icon@2X.png 2x" />
-              <div>摄影师</div>
-            </Link>
-
-            <div style={style.spliterLine} className="spliterLine" />
-
-            <Link style={style.link} to="/interview">
-              <img  style={style.commonIcon} ref="interviewIcon" 
-                src="imgs/sidePage/interview-icon.png"
-                srcSet="imgs/sidePage/interview-icon@2X.png 2x" />
-              <div>访谈</div>
-            </Link>
-
+            <SidePageIcon name={'index'} text={'首页'} />
+            <SidePageIcon name={'work'} text={'作品'} />
+            <SidePageIcon name={'grapher'} text={'摄影师'} />
+            <SidePageIcon name={'interview'} text={'访谈'} />
+            <SidePageIcon name={'activity'} text={'活动'} />
+            
             <div style={style.spliterLine} className="spliterLine" />
           </div>
         </div>
@@ -168,6 +142,5 @@ var SidePage = React.createClass({
     );
   },
 });
-
 
 module.exports = SidePage;
