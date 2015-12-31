@@ -17,6 +17,8 @@ export default class Share extends React.Component {
       top: 0,
       left: 0,
       zIndex: 999,
+      backgroundColor: 'black',
+      opacity: 0.8,
     }
     return(
       <div 
