@@ -14,6 +14,10 @@ exports.imgModifier = function  (img, mode) {
   case "workCover":
     modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x400a0a80/interlace/1';
     break;
+  case "ad":
+    // 首页走马灯，访谈活动列表页裁剪规则
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x336/interlace/1';
+    break;
   case "avatar":
     modifies = 'imageView2/1/w/52/h/52/interlace/1';
     break;
@@ -21,7 +25,7 @@ exports.imgModifier = function  (img, mode) {
     modifies = 'imageView2/1/w/160/h/160/interlace/1';
     break;
   default:
-    /*首页裁切函数，先不做修改*/
+    /*首页方块裁切函数，先不做修改*/
     modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';
   }
   

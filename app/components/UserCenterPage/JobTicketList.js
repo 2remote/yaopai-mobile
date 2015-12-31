@@ -10,8 +10,8 @@ var JobTicketList = React.createClass({
   },
 
   render: function() {
-    var jobTicketNodes = this.props.data.map(function(jobTicket){
-      return (<JobTicketRow data={jobTicket} />);
+    var jobTicketNodes = this.props.data.map(function(jobTicket,i){
+      return (<JobTicketRow key={i} data={jobTicket} />);
     });
     return (
       <div className="jobTicketList">
