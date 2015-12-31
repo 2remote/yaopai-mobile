@@ -145,3 +145,11 @@ a:active {
 .ActivityContent p img {
   max-width: 100%;
 }
+
+.interviewContent,
+.ActivityContent,
+.slick-slider {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
