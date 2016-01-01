@@ -29,7 +29,7 @@ export default class Share extends React.Component {
           ref="shareIcon"
           style={ {fontSize:40} } />
         <div style={ this.state.showShareGuide ? {display:'block'} : {display:'none'} }>
-          <img src="../imgs/common/shareGuide.jpg" style={imgStyle} />
+          <img src="../imgs/common/share-guide.jpg" style={imgStyle} />
         </div>
       </div>
     );
