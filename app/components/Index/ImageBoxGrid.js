@@ -1,73 +1,106 @@
+// ImageBoxGrid 组件
+// 
+// 显示以方块构成的图片列表
+// 
+// 输入：
+// filter - 过滤关键字，参考：https://xiattst.gitbooks.io/yaopai/content/API/Ad/LIst.html 的广告位说明
+// cols - 图片列数
+// rows - 图片行数
+// works - 图片列表
+// 
+// 范例：
+// var ImageBoxGrid = require('./ImageBoxGrid');
+// <ImageBoxGrid filter={"HomeAlbums"} cols={3} rows={4} works={this.state.recommendInterviews} />
+// 
+// works - data demo
+//   [{
+//         "Id": 4,
+//         "Position": "HomeInterview",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/73e072f3-70cb-4c2b-a00b-309db1216a8a.png",
+//         "Action": "Link",
+//         "ExtraId": 0,
+//         "Url": "http://www.baidu.com"
+//     }, {
+//         "Id": 2,
+//         "Position": "HomeAlbums",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/83075f25-7d11-436c-9510-43899578208f.jpg",
+//         "Action": "GrapherList",
+//         "ExtraId": 31,
+//         "Url": "http://localhost:8082/Advertisement/Create1"
+//     }, {
+//         "Id": 3,
+//         "Position": "HomeGrapher",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/83075f25-7d11-436c-9510-43899578208f.jpg",
+//         "Action": "GrapherId",
+//         "ExtraId": 4,
+//         "Url": ""
+//     }, {
+//         "Id": 1,
+//         "Position": "HomeSlide",
+//         "Image": "http://7xlxnz.com1.z0.glb.clouddn.com/ad/c48f682b-3342-48e2-9058-df99f7f5e45e.jpg",
+//         "Action": "Link",
+//         "ExtraId": 0,
+//         "Url": ""
+//    }]
+
 var React = require('react');
 import { Router, Route, Link } from 'react-router';
 require('./ImageBoxGrid.css');
-import {imgModifier} from '../Tools'
+import {imgModifier, actionLinkMaker } from '../Tools'
 
 var ImageBoxGrid = React.createClass({
   getDefaultProps: function() {
-    /* @松涛
-      不知道写这里还是componentWillMount更合适。
-      另外这个最好写到公共的地方，以后很多页面都需要用到这个参数。
-      我先这样写着用了。
-      @海涛
-      应该写在componentWillMount更合适。
-    */
     var deviceWidth = parseInt(window.innerWidth);
     return {
       deviceWidth: deviceWidth,
-      workCover:  [{
-        src: "imgs/indexPage/view-picture-image.jpg", 
-        srcset: "imgs/indexPage/view-picture-image@2X.jpg 2x", 
-        url: "/work"}],
-      works: [
-        {src: "imgs/cell3.png", url: "http://www.baidu.com"},
-        {src: "imgs/cell6.png", url: "http://www.baidu.com"},
-        {src: "imgs/cell7.png", url: "http://www.baidu.com"},
-        {src: "imgs/cell8.png", url: "http://www.baidu.com"},
-        {src: "imgs/cell9.png", url: "http://www.baidu.com"},
-        {src: "imgs/cell10.png", url: "http://www.baidu.com"},
-        {src: "imgs/cell11.png", url: "http://www.baidu.com"},
-        {src: "imgs/cell12.png", url: "http://www.baidu.com"},
-
-      ]
+      works: []
     };
   },
   render: function() {
     var deviceWidth = this.props.deviceWidth;
+    var borderSize = deviceWidth/this.props.cols;
     var style = {
-      width: deviceWidth/4,
-      height: deviceWidth/4
+      width:  borderSize,
+      height: borderSize
     };
-    var coverStyle = {
-      width: deviceWidth/2,
-      height: deviceWidth/2-0.9
+
+    var filter = this.props.filter;
+
+    var initNodes = [];
+    const number = this.props.cols * this.props.rows;
+    for (var i = 0; i < number; i++) {
+      // 每次load生成不同颜色
+      var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      initNodes.push((<li key={i} style={{
+        width: borderSize,
+        height: borderSize,
+        backgroundColor: bkColor
+      }} className="imageCell"></li>));
     };
-    // 就这一个，不应该用map的，我直接照搬你的先测试一下。
-    // @可以先这么放着，等我们把别的页面写完，再弄不迟。
-    var workCover = this.props.workCover.map(function(img){
-      return (
-        <li style={coverStyle} className="imageCell">
-          <Link style={coverStyle} to={img.url} >
-            <img style={{width: deviceWidth/2,height: deviceWidth/2}} 
-              src={img.src} 
-              srcSet={img.srcSet} />
-          </Link>
+
+    var work = this.props.works.filter(function(item){
+      return item.Position == filter
+    }).slice(0,number)
+    var imgNodes = work.map(function(work, i){
+      var extraId = work.ExtraId;
+      
+      var url = work.Url;
+      if (work.Action !== 'Link'){
+        url = "#" + actionLinkMaker(work.Action, work.ExtraId); 
+      }
+
+      initNodes[i] = (
+        <li key={i} style={style} className="imageCell">
+          <a href={url} style={{display:'block'}} >
+            <img style={style} src={imgModifier(work.Image)} />
+          </a>
         </li>
       );
     });
-    var imgNodes = this.props.works.map(function(work){
-      return (
-        <li style={style} className="imageCell">
-          <Link to={"/workDetail/"+work.Id} style={{display:'block'}} >
-            <img style={style} src={imgModifier(work.Cover)} />
-          </Link>
-        </li>
-      );
-    });
+
     return (
       <ul className="imageBoxGrid">
-        {workCover}
-        {imgNodes}
+        {initNodes}
       </ul>
     );
   }

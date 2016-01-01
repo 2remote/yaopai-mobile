@@ -14,6 +14,10 @@ exports.imgModifier = function  (img, mode) {
   case "workCover":
     modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x400a0a80/interlace/1';
     break;
+  case "ad":
+    // 首页走马灯，访谈活动列表页裁剪规则
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x336/interlace/1';
+    break;
   case "avatar":
     modifies = 'imageView2/1/w/52/h/52/interlace/1';
     break;
@@ -21,7 +25,7 @@ exports.imgModifier = function  (img, mode) {
     modifies = 'imageView2/1/w/160/h/160/interlace/1';
     break;
   default:
-    /*首页裁切函数，先不做修改*/
+    /*首页方块裁切函数，先不做修改*/
     modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';
   }
   
@@ -79,6 +83,37 @@ exports.dateFormat = function(date, format) {
   return format;
 }
 
+exports.actionLinkMaker = function (action, extraId) {
+  switch (action){
+  case 'Link':
+    return;
+
+  case 'GrapherId':
+    return '/grapherDetail/'+extraId;
+
+  case 'GrapherList':
+    return'/grapher';
+
+  case 'AlbumsId':
+    return'/workDetail/'+extraId;
+
+  case 'AlbumsList':
+    return'/work';
+
+  case 'ActivityId':
+    return'/activityDetail/'+extraId;
+
+  case 'ActivityList':
+    return'/activity';
+
+  case 'InterviewId':
+    return'/interviewDetail/'+extraId;
+
+  case 'InterviewList':
+    return'/interview';
+  }
+}
+
 // 页面调取数据接口
 export const API = API_URL;
 
@@ -87,6 +122,12 @@ const listAllWorks = 'Albums.Search';
 const workGeneralFields = '&Fields=Title,Cover,user.nickname,userid,user.Avatar,ID';
 
 export const LIST_ALL_WORKS = API + listAllWorks + workGeneralFields;
+
+// 调取 访谈二级列表页面信息
+const listAllInterviews = 'Interview.Search';
+const interviewGeneralFields = '&Fields=Id,Cover,Link';
+
+export const LIST_ALL_INTERVIEWS = API + listAllInterviews + interviewGeneralFields;
 
 // 调取 作品详情 信息
 const listWorkDetail = 'Albums.get';

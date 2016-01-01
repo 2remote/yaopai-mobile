@@ -4,6 +4,7 @@ import { Link, History,Location } from 'react-router';
 
 var UserActions = require('../actions/UserActions');
 require('./SidePage.css');
+import SidePageIcon from './SidePageIcon';
 
 var style={
   sidePage:{
@@ -19,7 +20,7 @@ var style={
   logout:{
     position: 'absolute',
     top: '58px',
-    right: '0px',
+    right: '0px'
   },
   loginName: {
     marginBottom: '15px',
@@ -31,6 +32,7 @@ var style={
   },
   avatar:{
     margin: '34px 0 19px',
+    fontSize:'55px'
   },
   loginIcon:{
     float: 'right',
@@ -96,9 +98,10 @@ var SidePage = React.createClass({
                 <div style={style.loginName} ref="pleaseLoginText">{this.props.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
-            <img style={style.logoutIcon} ref="logoutIcon" 
-              src="imgs/sidePage/logout.png"  
-              srcSet="imgs/sidePage/logout@2X.png 2x" 
+            <span 
+              style={style.logoutIcon} 
+              ref="logoutIcon" 
+              className="icon logout_icon"
               onClick={this.logout} />
           </div>
         </div>
@@ -106,12 +109,12 @@ var SidePage = React.createClass({
     }else{
       accountContent= (<div className="loginBox" style={style.loginBox}>
         <Link style={style.link} to="/login_page">
-              <img
-                style={style.avatar}
-                ref="defaultAvatar"
-                src="imgs/sidePage/default-avatar.png"
-                srcSet="imgs/sidePage/default-avatar@2X.png 2x" />
-              <div style={style.loginName} ref="pleaseLoginText">请登录</div>
+          <img
+            style={style.avatar}
+            ref="defaultAvatar"
+            src="imgs/sidePage/default-avatar.png"
+            srcSet="imgs/sidePage/default-avatar@2X.png 2x" />
+          <div style={style.loginName} ref="pleaseLoginText">请登录</div>
         </Link>
       </div>
       )
@@ -123,21 +126,15 @@ var SidePage = React.createClass({
           <div
             style={style.sidePage}
             className="sidePage">
-              {accountContent}
-            <div style={style.spliterLine} className="spliterLine" />
-            <Link style={style.link} to="/work">
-              <img style={style.commonIcon} ref="workIcon"
-                src="imgs/sidePage/work-icon.png"
-                srcSet="imgs/sidePage/work-icon@2X.png 2x" />
-              <div>作品</div>
-            </Link>
-            <div style={style.spliterLine} className="spliterLine" />
-            <Link style={style.link} to="/grapher">
-              <img style={style.commonIcon} ref="grapherIcon" 
-                src="imgs/sidePage/grapher-icon.png"
-                srcSet="imgs/sidePage/grapher-icon@2X.png 2x" />
-              <div>摄影师</div>
-            </Link>
+            
+            {accountContent}
+
+            <SidePageIcon name={'index'} text={'首页'} to={'/'} />
+            <SidePageIcon name={'work'} text={'作品'} />
+            <SidePageIcon name={'grapher'} text={'摄影师'} />
+            <SidePageIcon name={'interview'} text={'访谈'} />
+            <SidePageIcon name={'activity'} text={'活动'} />
+            
             <div style={style.spliterLine} className="spliterLine" />
           </div>
         </div>
@@ -145,6 +142,5 @@ var SidePage = React.createClass({
     );
   },
 });
-
 
 module.exports = SidePage;

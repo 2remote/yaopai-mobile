@@ -8,6 +8,7 @@ var GrapherIntro = require('./GrapherIntro');
 var WorkIntroList = require('./WorkIntroList');
 var ActionBar = require('./ActionBar');
 import { API_URL } from '../../api';
+import Share from '../Share';
 
 var GrapherDetailPage = React.createClass({
   getInitialState: function() {
@@ -52,14 +53,15 @@ var GrapherDetailPage = React.createClass({
     }
   },
   render: function() {
-    let pageTitle = this.state.grapherInfo.RealName;
+    let pageTitle = this.state.grapherInfo.RealName || '摄影师';
     return (
       <DocumentTitle title={pageTitle}>
         <div className="grapherDetailPage">
           <HamburgMenu />
           <GrapherIntro data={this.state.grapherInfo} />
-          <ActionBar data={this.state.grapherInfo}/>
           <WorkIntroList data={this.state.works}/>
+          <ActionBar data={this.state.grapherInfo}/>
+          <Share />
         </div>
       </DocumentTitle>
     );

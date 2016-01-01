@@ -41,7 +41,10 @@ var ShareGuide = React.createClass({
     }
     return (
       <div style={style.mask} onClick={this.hideGuide}>
-        <img width="100%" src="imgs/workDetailPage/share-guide@2x.png" srcSet="imgs/workDetailPage/share-guide@2x.png" />
+        <span 
+          width="100%"
+          className="icon share_guide"
+          style={{fontSize:55}} />
       </div>
     );
   }
@@ -53,14 +56,15 @@ var ActionBar = React.createClass({
   },
   render: function() {
     return (
+      console.info('If you see this, plz just delete the console.info in components/ActionBar.js. If nobody see this, plz delete the whole file');
       <div className="actionBar" style={{paddingTop:22.5,height: 103.5,textAlign:'center'}}>
         <ShareGuide ref="shareGuide" />
         <div style={{float:'left',marginLeft: '22.666666%'}}>
           <Link to="/login_page" style={{lineHeight: 'inherit'}} >
-            <img 
+            <span 
               ref="bookIcon"
-                src="imgs/grapherDetailPage/book-icon.png"
-                srcSet="imgs/grapherDetailPage/book-icon@2X.png 2x" />
+                className="icon book_icon"
+                style={{fontSize:55}} />
             <div
               ref="bookOption">
               预约
@@ -68,10 +72,10 @@ var ActionBar = React.createClass({
           </Link>
         </div>
         <div onClick={this._handleShare} style={{float:'right',marginRight: '22.666666%'}}>
-          <img 
+          <span 
             ref="shareIcon"
-              src="imgs/grapherDetailPage/share-icon.png"
-              srcSet="imgs/grapherDetailPage/share-icon@2X.png 2x" />
+            className="icon share_icon"
+            style={{fontSize:55}} />
           <div
             ref="shareOption">分享</div>
         </div>

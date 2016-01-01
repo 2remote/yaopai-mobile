@@ -51,11 +51,10 @@ var GrapherRow = React.createClass({
             <div 
               style={nickStyle}
               ref="nick">{this.props.data.nick}</div>
-            <img 
-              style={{marginRight:6}}
-              ref="locationIcon"
-              src="imgs/grapherPage/location-icon.png"
-              srcSet="imgs/grapherPage/location-icon@2X.png 2x" />
+            <span
+              className="icon location_icon"  
+              style={{marginRight:6, fontSize:22}}
+              ref="locationIcon" />
             <span
               ref="location">{this.props.data.CityName}</span>     
             <img 
