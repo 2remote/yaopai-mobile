@@ -14,6 +14,26 @@ import { LIST_ALL_WORKS } from '../Tools';
 
 import ShowMenu from './ShowMenu';
 
+var YaopaiLogo = React.createClass({
+  render: function () {
+    var style = {
+      fontSize:105, 
+      backgroundColor:'black', 
+      color:'white', 
+      lineHeight:0.3,
+      display:'block',
+      textAlign: 'center',
+      paddingTop:'30px',
+      paddingBottom: '15px',
+      zIndex: '98',
+    };
+
+    return (
+      <div className="icon yaopai_logo" style={style} />
+    );
+  }
+});
+
 var WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange') ,AutoLoadPageMixin],
   getInitialState: function() {
@@ -80,6 +100,7 @@ var WorkPage = React.createClass({
       <DocumentTitle title="全部作品">
         <div className="workPage">
           <HamburgMenu />
+          <YaopaiLogo />
           <ShowMenu cities={cities} catas={catas} />
 
           <WorkIntroGrapherList data={this.state.works} />
