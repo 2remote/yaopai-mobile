@@ -17,6 +17,7 @@ var ShowMenu = React.createClass({
       position: 'fixed',
       top: '22px',
       right: '22px',
+      zIndex: '99',
     }
     return (
       <div>
