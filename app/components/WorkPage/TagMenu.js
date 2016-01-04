@@ -3,7 +3,7 @@ var React = require('react');
 var TagCol = React.createClass({
   render: function () {
     return (
-      <div className="tagColBox">
+      <div className="tagColBox" style={{display: 'inline'}}>
         {this.props.name}
       </div>
     );
