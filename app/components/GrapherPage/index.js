@@ -28,7 +28,10 @@ var GrapherPage = React.createClass({
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({graphers : this.state.graphers.concat(_.shuffle(data.photographers)) ,pageCount : data.pageCount});
+        this.setState({
+          graphers: this.state.graphers.concat(_.shuffle(data.photographers)),
+          pageCount: data.pageCount
+        });
       }
     }
   },
