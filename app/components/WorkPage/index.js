@@ -72,8 +72,8 @@ var WorkPage = React.createClass({
     var cities = [];
     var catas = [];
     if ( this.state.tags.length > 1 ){
-      cities = this.state.tags[0].Tags;
-      catas = this.state.tags[1].Tags;  
+      cities = this.state.tags[1].Tags;
+      catas = this.state.tags[0].Tags;  
     }
     
     return (
