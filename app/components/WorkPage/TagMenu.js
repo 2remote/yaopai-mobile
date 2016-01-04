@@ -2,8 +2,15 @@ var React = require('react');
 
 var TagCol = React.createClass({
   render: function () {
-    return (
-      <div className="tagColBox" style={{display: 'inline'}}>
+    var style = {
+      display: 'inline',
+      margin: '20px',
+      fontSize: 18,
+      color: 'gray'
+    };
+
+    return (      
+      <div className="tagColBox" style={style}>
         {this.props.name}
       </div>
     );
