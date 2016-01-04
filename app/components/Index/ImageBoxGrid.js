@@ -57,14 +57,26 @@ var ImageBoxGrid = React.createClass({
     };
   },
   render: function() {
-    var deviceWidth = this.props.deviceWidth;
-    var borderSize = deviceWidth/this.props.cols;
-    var style = {
-      width:  borderSize,
-      height: borderSize
-    };
+    let filter = this.props.filter;
+    let deviceWidth = this.props.deviceWidth;
 
-    var filter = this.props.filter;
+    let borderWidth;
+    let borderHeight;
+    if (filter == 'HomeGrapher') {
+      borderWidth = '22.8%';
+      borderHeight = 398/750*deviceWidth;
+    } 
+    
+    let borderSize = deviceWidth/this.props.cols;
+    let style = {
+      width:  borderWidth || borderSize,
+      height: borderHeight || borderSize
+    };
+    let homeGrapherLastStyle = {
+      width:  '31.6%',
+      height: borderHeight
+    };
+  
 
     var initNodes = [];
     const number = this.props.cols * this.props.rows;
@@ -72,8 +84,8 @@ var ImageBoxGrid = React.createClass({
       // 每次load生成不同颜色
       var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16);
       initNodes.push((<li key={i} style={{
-        width: borderSize,
-        height: borderSize,
+        width: borderWidth || borderSize,
+        height: borderHeight || borderSize,
         backgroundColor: bkColor
       }} className="imageCell"></li>));
     };
@@ -90,9 +102,13 @@ var ImageBoxGrid = React.createClass({
       }
 
       initNodes[i] = (
-        <li key={i} style={style} className="imageCell">
+        <li key={i} 
+            style={ (i === 3 & filter == 'HomeGrapher') ? homeGrapherLastStyle : style }
+            className="imageCell">
           <a href={url} style={{display:'block'}} >
-            <img style={style} src={imgModifier(work.Image, 'ImageBoxGrid', borderSize*window.devicePixelRatio)} />
+            <img 
+              style={ (i === 3 & filter == 'HomeGrapher') ? homeGrapherLastStyle : style }
+              src={imgModifier(work.Image, 'ImageBoxGrid', borderSize*window.devicePixelRatio)} />
           </a>
         </li>
       );
