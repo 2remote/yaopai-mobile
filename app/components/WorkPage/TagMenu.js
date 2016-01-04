@@ -3,7 +3,7 @@ var React = require('react');
 var TagCol = React.createClass({
   render: function () {
     var style = {
-      display: 'inline',
+      display: 'inline-block',
       margin: '20px',
       fontSize: 18,
       color: 'gray'
@@ -21,6 +21,10 @@ var TagRow = React.createClass({
 
   
   render: function () {
+    var style={
+      overflow: 'scroll'
+    };
+
     var tagNodes = (<div />);
     if (typeof this.props.data != 'undefined'){
       tagNodes = this.props.data.map(function(tag, i){
@@ -33,7 +37,7 @@ var TagRow = React.createClass({
     }
 
     return (
-      <div className="tagRowBox" >
+      <div className="tagRowBox" style={style}>
         {tagNodes}
       </div>
     );
