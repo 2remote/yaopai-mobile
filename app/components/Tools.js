@@ -28,7 +28,7 @@ exports.imgModifier = function  (img, mode, width) {
     modifies = 'imageMogr2/gravity/Center/thumbnail/!' + width + 'x' + width + 'r/crop/' + width + 'x' + width + '/interlace/1';
     break;
   case "HomeGrapher":
-    modifies = 'imageMogr2/gravity/Center/thumbnail/!' + width + 'x' + width*2.3 + 'r/crop/' + width + 'x' + width*2.3 + '/interlace/1';
+    modifies = 'imageMogr2/gravity/Center/thumbnail/!188x398r/crop/188x398/interlace/1'
     break;
   default:
     /*首页方块裁切函数，先不做修改*/
