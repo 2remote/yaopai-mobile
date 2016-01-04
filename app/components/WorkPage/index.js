@@ -11,36 +11,8 @@ var WorkIntroGrapherList = require('./WorkIntroGrapherList');
 var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { LIST_ALL_WORKS } from '../Tools';
-import Menu from './Menu';
+
 import ShowMenu from './ShowMenu';
-
-var TagCol = React.createClass({
-  render: function () {
-    return (
-      <div className="tagColBox">
-        {this.props.name}
-      </div>
-    );
-  }
-});
-
-var TagRow = React.createClass({
-  render: function () {
-    var tagNodes = this.props.data.map(function(tag, i){
-      if(tag.Display){
-        return (
-          <TagCol name={tag.Name} key={i} />
-        );
-      }
-    });
-
-    return (
-      <div className="tagRowBox">
-        {tagNodes}
-      </div>
-    );
-  }
-});
 
 var WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange') ,AutoLoadPageMixin],
@@ -97,29 +69,19 @@ var WorkPage = React.createClass({
     AlbumsActions.search(this.state.category,pageIndex);
   },
   render: function() {
-    // console.log('workPage tags', this.state.tags[0].Tags);
-    var TagsBar = (<div />);
     var cities = [];
     var catas = [];
     if ( this.state.tags.length > 1 ){
       cities = this.state.tags[0].Tags;
       catas = this.state.tags[1].Tags;  
-      TagsBar = (
-        <div >
-          <TagRow data={cities} />
-          <TagRow data={catas} />
-        </div>
-      );
     }
     
-
     return (
       <DocumentTitle title="全部作品">
         <div className="workPage">
           <HamburgMenu />
-          <ShowMenu categories={this.state.categories} category={this.state.category} onChangeCategory={this.onChangeCategory}/>
+          <ShowMenu cities={cities} catas={catas} />
 
-          {TagsBar}
           <WorkIntroGrapherList data={this.state.works} />
         </div>
       </DocumentTitle>
