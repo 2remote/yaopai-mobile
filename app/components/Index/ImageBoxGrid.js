@@ -63,7 +63,7 @@ var ImageBoxGrid = React.createClass({
     let borderWidth;
     let borderHeight;
     if (filter == 'HomeGrapher') {
-      borderWidth = '22.8%';
+      borderWidth = 171/750*deviceWidth;
       borderHeight = 398/750*deviceWidth;
     } 
     
@@ -73,7 +73,7 @@ var ImageBoxGrid = React.createClass({
       height: borderHeight || borderSize
     };
     let homeGrapherLastStyle = {
-      width:  '31.6%',
+      width:  237/750*deviceWidth,
       height: borderHeight
     };
   
@@ -108,7 +108,7 @@ var ImageBoxGrid = React.createClass({
           <a href={url} style={{display:'block'}} >
             <img 
               style={ (i === 3 & filter == 'HomeGrapher') ? homeGrapherLastStyle : style }
-              src={imgModifier(work.Image, 'ImageBoxGrid', borderSize*window.devicePixelRatio)} />
+              src={imgModifier(work.Image, (filter == 'HomeGrapher')?'HomeGrapher':'ImageBoxGrid', borderSize*window.devicePixelRatio)} />
           </a>
         </li>
       );
