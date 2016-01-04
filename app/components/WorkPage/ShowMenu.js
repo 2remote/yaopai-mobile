@@ -11,6 +11,7 @@ var ShowMenu = React.createClass({
   },
   handleClick: function () {
     this.refs.tagMenu.toggle();
+    this.setState({showState: !this.state.showState});
   },
   render: function () {
     var style = {
@@ -18,13 +19,15 @@ var ShowMenu = React.createClass({
       top: '22px',
       right: '22px',
       zIndex: '99',
-    }
+    };
+    var font_color = this.state.showState ? 'yellow' : 'white';
+
     return (
       <div>
         <div style={style} onClick={this.handleClick}>
           <span
             className="icon filter_icon" 
-            style={{fontSize:25, backgroundColor:'black', color:'white', padding:'10'}} />
+            style={{fontSize:25, backgroundColor:'black', color: font_color, padding:'10'}} />
         </div>
         <TagMenu ref="tagMenu" cities={this.props.cities} catas={this.props.catas} />
       </div>
