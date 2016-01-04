@@ -13,6 +13,7 @@ var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { LIST_ALL_WORKS } from '../Tools';
 import Menu from './Menu';
 import ShowMenu from './ShowMenu';
+import _ from 'underscore';
 
 var WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange') ,AutoLoadPageMixin],
@@ -52,7 +53,13 @@ var WorkPage = React.createClass({
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({works : this.state.works.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
+        this.setState({
+          works: this.state.works.concat(_.shuffle(data.workList)),
+          pageIndex: data.pageIndex,
+          total: data.total,
+          pageCount: data.pageCount
+        });
+
       }
     }
     if(data.flag == 'getCategories'){
