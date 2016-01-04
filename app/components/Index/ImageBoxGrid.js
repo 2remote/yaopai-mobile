@@ -92,7 +92,7 @@ var ImageBoxGrid = React.createClass({
       initNodes[i] = (
         <li key={i} style={style} className="imageCell">
           <a href={url} style={{display:'block'}} >
-            <img style={style} src={imgModifier(work.Image)} />
+            <img style={style} src={imgModifier(work.Image, 'ImageBoxGrid', borderSize*window.devicePixelRatio)} />
           </a>
         </li>
       );
