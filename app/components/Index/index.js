@@ -98,7 +98,7 @@ var Index = React.createClass({
               </div>
           </div>
 
-          <ImageBoxGrid filter={"HomeGrapher"} cols={4} rows={3} works={this.state.adWorks} />
+          <ImageBoxGrid filter={"HomeGrapher"} cols={4} rows={1} works={this.state.adWorks} />
 
           <div className="spliterInterview" >
             <img 
