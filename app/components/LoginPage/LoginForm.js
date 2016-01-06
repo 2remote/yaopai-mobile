@@ -1,15 +1,19 @@
 var React = require('react');
 var Reflux = require('reflux');
 var validator = require('validator');
-import { Router, Route, Link, History,Location } from 'react-router';
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
+
+import { Router, Route, Link, History, Location } from 'react-router';
+import ServiceTerms from '../common/ServiceTerms';
+
+const UserActions  = require('../../actions/UserActions');
+const UserStore    = require('../../stores/UserStore');
 
 var LoginForm = React.createClass({
   getInitialState : function(){
     return {
-      userName : '',
-      password : ''
+      userName  : '',
+      password  : '',
+      showTerms : false
     }
   },
   componentWillMount : function () {
@@ -40,6 +44,12 @@ var LoginForm = React.createClass({
   },
   _handlePasswordChange : function(event){
     this.setState({password : event.target.value});
+  },
+  showTerms: function() {
+    this.setState({ showTerms: true });
+  },
+  hideTerms: function() {
+    this.setState({ showTerms: false });
   },
   render: function() {
     var style = {
@@ -105,6 +115,13 @@ var LoginForm = React.createClass({
               placeholder="密码" />
           </div>
           <div>
+            <a onClick={this.showTerms}>
+              <input
+                style={style.findPass}
+                ref="serviceTerms"
+                type="button"
+                value="服务条款" />
+            </a>
             <Link to="/find_my_pass_page1">
               <input
                 style={style.findPass}
@@ -122,6 +139,8 @@ var LoginForm = React.createClass({
           </div>
 
         </form>
+
+        <ServiceTerms show={this.state.showTerms} onButtonClick={this.hideTerms} />
       </div>
     );
   }
