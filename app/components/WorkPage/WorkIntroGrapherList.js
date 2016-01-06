@@ -38,14 +38,14 @@ var WorkIntroGrapherList = React.createClass({
     var workNodes = this.props.data.map(function(work, i){
       if(work.User !== null){
         return(
-          <WorkIntroGrapherRow 
+          <WorkIntroGrapherRow
             key={i}
             data={work} />
-        );  
+        );
       }else{
         console.warn('User data should not be null, checkout back-end database!');
       }
-      
+
     });
 
     return (

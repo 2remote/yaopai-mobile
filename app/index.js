@@ -39,7 +39,7 @@ function main(){
       <Route path="/work" component={WorkPage} />
       <Route path="/workDetail/:Id" component={WorkDetailPage} />
 
-      <Route path="/interview" component={InterviewPage} />      
+      <Route path="/interview" component={InterviewPage} />
       <Route path="/interviewDetail/:Id" component={InterviewDetailPage} />
 
       <Route path="/activity" component={ActivityPage} />
@@ -53,9 +53,9 @@ function main(){
       <Route path="/find_my_pass_page2" component={FindMyPassPage2} />
       <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
       <Route path="/book_success_dialog/:orderId" component={BookSuccessDialog} />
-    
+
       <Route path="/grapher_book_success_dialog" component={GrapherBookSuccessDialog} />
-      
+
       <Route path="/user_center" component={UserCenterPage} />
       <Route path="/viewOrder/:type/:orderId" component={ViewOrder} />
       <Route path="/grapher_center" component={GrapherCenterPage} />

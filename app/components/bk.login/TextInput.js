@@ -12,9 +12,9 @@ let TextInput = React.createClass({
   render: function() {
     return (
       <input
-        type="text" 
+        type="text"
         className="textInput"
-        placeholder="手机号" 
+        placeholder="手机号"
         value={this.props.phoneNumber}
         onChange={this.handleChange}
         onBlur={this.handleBlur} />

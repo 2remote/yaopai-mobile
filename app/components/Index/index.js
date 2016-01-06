@@ -34,7 +34,7 @@ var Index = React.createClass({
     //得到推荐摄影师
     PhotographerActions.recommendList();
 
-    // 获得Ad 
+    // 获得Ad
     AdActions.list();
   },
 
@@ -58,20 +58,20 @@ var Index = React.createClass({
     }
   },
 
-  render: function() {    
+  render: function() {
     return (
       <DocumentTitle title="YAOPAI：一个全球预约摄影师平台">
       <div className="index">
         <HamburgMenu />
-        
+
         <Slider works={this.state.adWorks} />
-        
+
         <div className="indexContent">
           <div className="spliterWork" >
               <img src="imgs/indexPage/icon-works.png"
                 srcSet="imgs/indexPage/icon-works@2X.png 2x" />
               <div className="splitLine" >
-                <img 
+                <img
                   src="imgs/common/spliter-line.png"
                   srcSet="imgs/common/spliter-line@2X.png 2x" />
               </div>
@@ -84,11 +84,11 @@ var Index = React.createClass({
           <ImageBoxGrid filter={"HomeAlbums"} cols={4} rows={3} works={this.state.adWorks} />
 
           <div className="spliterGrapher" >
-              <img 
+              <img
                 src="imgs/indexPage/icon-grapher.png"
                 srcSet="imgs/indexPage/icon-grapher@2X.png 2x" />
               <div className="splitLine" >
-                <img 
+                <img
                   src="imgs/common/spliter-line.png"
                   srcSet="imgs/common/spliter-line@2X.png 2x" />
               </div>
@@ -101,11 +101,11 @@ var Index = React.createClass({
           <ImageBoxGrid filter={"HomeGrapher"} cols={4} rows={1} works={this.state.adWorks} />
 
           <div className="spliterInterview" >
-            <img 
+            <img
               src="imgs/indexPage/icon-interview.png"
               srcSet="imgs/indexPage/icon-interview@2X.png 2x" />
             <div className="splitLine" >
-              <img 
+              <img
                 src="imgs/common/spliter-line.png"
                 srcSet="imgs/common/spliter-line@2X.png 2x" />
             </div>
@@ -118,11 +118,11 @@ var Index = React.createClass({
           <ImageBoxGrid filter={"HomeInterview"} cols={3} rows={2} works={this.state.adWorks} />
 
           <div className="spliterActivity" >
-            <img 
+            <img
               src="imgs/indexPage/icon-activity.png"
               srcSet="imgs/indexPage/icon-activity@2X.png 2x" />
             <div className="splitLine" >
-              <img 
+              <img
                 src="imgs/common/spliter-line.png"
                 srcSet="imgs/common/spliter-line@2X.png 2x" />
             </div>

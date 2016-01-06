@@ -10,7 +10,7 @@ export default class Share extends React.Component {
     });
   }
   render() {
-    var imgStyle = { 
+    var imgStyle = {
       width: '100%',
       height: '101%',
       position: 'fixed',
@@ -21,7 +21,7 @@ export default class Share extends React.Component {
       opacity: 0.8,
     }
     return(
-      <div 
+      <div
         onClick={ this.handleShare.bind(this) }
         style={ {position: 'fixed', right: 10, bottom: '14%'} }>
         <span

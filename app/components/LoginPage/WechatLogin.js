@@ -8,7 +8,7 @@ var WechatLogin = React.createClass({
   render: function() {
     return (
       <div onClick={this._weChatLogin} className="wechatLogin">
-        <span 
+        <span
           className="icon wechat_circle_icon"
           ref="wechatLogo"
           style={{fontSize:55}} />

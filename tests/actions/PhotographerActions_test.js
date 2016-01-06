@@ -30,7 +30,7 @@ describe('Photographer Actions Test', () => {
       photographerActionsHasMethod(method);
     })
   });
-  
+
   const apiFlag = false;
   if ( apiFlag == true ){
     data = {

@@ -9,7 +9,7 @@ var ActionBar = React.createClass({
         <div>
           <Link to={"/work_book_page/0/"+this.props.data.Id} style={{lineHeight: 'inherit'}} >
             <span
-              className="icon order_icon" 
+              className="icon order_icon"
               ref="bookIcon"
               style={{fontSize:55}} />
             <div

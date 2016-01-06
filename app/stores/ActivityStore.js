@@ -14,7 +14,7 @@ var ActivityStore = Reflux.createStore({
     pageSize : 0, //companent设置页面大小
     total : 0, //当前查询条件下的作品总数
   },
-  
+
   init: function() {
     console.log('Activity Store initialized');
     this.listenTo(ActivityActions.get.success,this.onGetListSuccess);
@@ -22,7 +22,7 @@ var ActivityStore = Reflux.createStore({
     this.listenTo(ActivityActions.search.success,this.onSearchSuccess);
     this.listenTo(ActivityActions.search.failed,this.onFailed);
   },
-  
+
   onFailed : function(res){
     this.data.hintMessage = '网络错误';
     this.data.flag = 'failed';

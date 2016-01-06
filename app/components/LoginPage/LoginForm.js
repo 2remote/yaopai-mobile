@@ -82,17 +82,17 @@ var LoginForm = React.createClass({
 
 
     return (
-      <div 
+      <div
         style={style.loginForm}
         className="loginForm">
         <form ref="loginForm">
           <div>
-            <input 
+            <input
               value={this.state.userName}
               onChange={this._handleUserNameChange}
               style={style.input}
               ref="mobileNumber"
-              type="text" 
+              type="text"
               placeholder="手机号" />
           </div>
           <div>
@@ -106,10 +106,10 @@ var LoginForm = React.createClass({
           </div>
           <div>
             <Link to="/find_my_pass_page1">
-              <input 
+              <input
                 style={style.findPass}
                 ref="findMyPassButton"
-                type="button" 
+                type="button"
                 value="忘记密码" />
             </Link>
           </div>
@@ -118,7 +118,7 @@ var LoginForm = React.createClass({
             style={style.login}
             onClick={this._handleLogin}
             ref="loginButton">
-            登录 
+            登录
           </div>
 
         </form>

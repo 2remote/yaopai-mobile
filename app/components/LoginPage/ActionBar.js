@@ -6,7 +6,7 @@ var WeiboLogin = require('./WeiboLogin');
 var ActionBar = React.createClass({
   render: function() {
     return (
-      <div 
+      <div
         style={{margin: '15px 0'}}
         className="actionBar">
         <WechatLogin />

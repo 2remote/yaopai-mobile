@@ -37,7 +37,7 @@ var ConfirmBookDialog = React.createClass({
 
     return (
       <DocumentTitle title="个人中心">
-      <div 
+      <div
         style={style.confirmBookDialog}
         className="confirmBookDialog">
         <span style={style.confirmHint} ref="confirmHint">请您再次确认预约信息，核对拍摄时间！</span>
@@ -49,18 +49,18 @@ var ConfirmBookDialog = React.createClass({
         <div style={style.actionBar} className="actionBar">
           <div style={style.confirmBox} className="confirmBox">
             <span
-              ref="confirmImage" 
+              ref="confirmImage"
               className="icon confirm_circle_icon"
               style={{fontSize:22}} />
             <span ref="confirmText">确定</span>
           </div>
 
           <div style={style.cancelFrame} className="cancelFrame">
-            <span 
+            <span
               className="icon cancel_circle_icon"
               ref="cancelImage"
               style={{fontSize:22}} />
-              
+
             <span ref="cancelText">取消</span>
           </div>
         </div>

@@ -28,10 +28,10 @@ var UserAvatarBox = React.createClass({
     };
 
     return (
-      <div 
+      <div
         style={this.props.background?style.background:{}}
         className="userAvatarBox">
-        <img 
+        <img
           style={style.avatar}
           ref="userAvatar"
           src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}

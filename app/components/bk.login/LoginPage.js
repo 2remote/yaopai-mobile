@@ -59,7 +59,7 @@ var LoginPage = React.createClass({
     var passwordValid = !validator.equals(this.state.password, '');
     var message = classnames({
       '密码不能为空！'  : !passwordValid,
-      ''              :  passwordValid 
+      ''              :  passwordValid
     });
     this.setState({message: message});
   },
@@ -113,22 +113,22 @@ var LoginPage = React.createClass({
         <div className="loginBox" >
           <img src="../imgs/logo.png" />
           <HintBox message={this.state.message} /> <br />
-          <TextInput 
+          <TextInput
             phoneNumber={this.state.phoneNumber}
             onUserInput={this.handleUserInput}
             onUserBlur={this.handleCheckPhoneNumber} /> <br />
-          <PasswordInput 
-            password={this.state.password} 
+          <PasswordInput
+            password={this.state.password}
             onPassInput={this.handlePassInput}
             onUserBlur={this.handleCheckPass} /> <br />
-          <button 
+          <button
             className="loginButton"
             onClick={this.handleLogin} >
             登陆
           </button>
           <a
             className="registerButton"
-            onClick={this.handleRegister} > 
+            onClick={this.handleRegister} >
             新建帐号
           </a>
         </div>
@@ -139,7 +139,7 @@ var LoginPage = React.createClass({
         <div className="snsBox">
           <span className="wechat">
             <img src="../imgs/wechat.png" />
-            <div className="snsBoxContent">微信帐号登录</div> 
+            <div className="snsBoxContent">微信帐号登录</div>
             <Link to="/" >Index</Link>
           </span>
         </div>

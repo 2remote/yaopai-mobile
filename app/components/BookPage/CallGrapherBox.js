@@ -9,12 +9,12 @@ var CallGrapherBox = React.createClass({
   render: function() {
     return (
       <a
-        style={{lineHeight:'inherit'}} 
+        style={{lineHeight:'inherit'}}
         href={"tel:" + this.props.data}>
-        <div 
+        <div
           style={{color:'#3c3c3c'}}
           className="callGrapherBox">
-          <span 
+          <span
             ref="callImage"
             className="icon phone_circle_icon"
             style={{fontSize:55}} />
