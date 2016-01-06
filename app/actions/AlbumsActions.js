@@ -24,11 +24,12 @@ AlbumsActions.get.listen(function(id){
   HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
 });
 
-AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize = 10){
+AlbumsActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null){
   var data = {
     PageIndex:pageIndex,
     PageSize:pageSize,
     CategoryId : categoryId,
+    Tags: tags,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar'
   }
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
