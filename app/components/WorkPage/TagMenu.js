@@ -1,17 +1,30 @@
 var React = require('react');
 
 var TagCol = React.createClass({
+  getInitialState: function () {
+    return {
+      clicked: false
+    }
+  },
+
+  handleClick: function () {
+    this.setState({clicked: !this.state.clicked});
+  },
+  
   render: function () {
+
     var style = {
       display: 'inline-block',
       margin: '20px',
       fontSize: 18,
-      color: 'gray'
+      color: this.state.clicked ? 'yellow' :'gray'
     };
 
     return (      
-      <div className="tagColBox" style={style}>
-        {this.props.name}
+      <div className="tagColBox" 
+        style={style}
+        onClick={this.handleClick}  >
+        {this.props.name}.{this.props.id}
       </div>
     );
   }
@@ -30,7 +43,7 @@ var TagRow = React.createClass({
       tagNodes = this.props.data.map(function(tag, i){
         if(tag.Display){
           return (
-            <TagCol name={tag.Name} key={i} />
+            <TagCol name={tag.Name} key={i} id={tag.Id} />
           );
         }
       });
