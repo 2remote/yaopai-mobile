@@ -8,7 +8,7 @@ var AlbumsActions = Reflux.createActions({
   'update':{children : ['success','failed']},
   'delete':{children : ['success','failed']},
   'search':{children : ['success','failed']},
-  // 'searchByTags':{children : ['success','failed']},
+  'searchByTags':{children : ['success','failed']},
   'getMyAlbums' : {children : ['success','failed']},
   'getCategories' :{children:['success','failed']},
   'onSale' : {children:['success','failed']},
@@ -25,7 +25,8 @@ AlbumsActions.get.listen(function(id){
   HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
 });
 
-AlbumsActions.search.listen( aaSearch);
+AlbumsActions.search.listen( aaSearch );
+AlbumsActions.searchByTags.listen( aaSearch );
 
 function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null){
   var data = {

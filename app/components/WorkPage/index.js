@@ -72,8 +72,13 @@ var WorkPage = React.createClass({
     }
     
     this.setState({selectedTags: tags}, function () {
-      console.warn(this.state.selectedTags);
+      console.log(this.state.selectedTags);
     });
+    // 读取tag过滤的数据
+    AlbumsActions.searchByTags(null, 
+      this.state.pageIndex,
+      10,
+      this.state.selectedTags);
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
@@ -82,6 +87,19 @@ var WorkPage = React.createClass({
       }else{
         this.setState({
           works: this.state.works.concat(_.shuffle(data.workList)),
+          pageIndex: data.pageIndex,
+          total: data.total,
+          pageCount: data.pageCount
+        });
+
+      }
+    }
+    if(data.flag == 'searchByTags'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+        this.setState({
+          works: _.shuffle(data.workList),
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
