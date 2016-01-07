@@ -190,35 +190,35 @@ var BookTicketRow = React.createClass({
     let linkToStyle= maskShow ? style.hide : style.toDetial;
     let maskText = '';
     let maskIconSrc = '';
-
+    
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      maskIconSrc = ' fail_icon ';
+      maskIconSrc = ' fail_icon '; 
       style.mask.color = 'red';
-    }
+    }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
       maskIconSrc = ' success_icon ';
       style.mask.color = 'green';
     }
     let rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.UserId) % 47 + 1 ) + '.png';
-
+    
     var jobTicket = (
       <div style={style.bookTicket} className="jobTicket">
-          <div
+          <div 
             style={style.box}
             className="userBox">
-            <img
+            <img 
               style={style.avatar}
               ref="userAvatar"
               src={this.props.data.Photographer.Avatar || rondomAvatar} />
-            <div
+            <div 
               style={style.userName}
               ref="userName" >{this.props.data.Photographer.NickName}</div>
           </div>
 
           <Link style={style.link} to={"/viewOrder/u/"+this.props.data.Id}>
-          <div
+          <div 
             style={style.userInfoBox}
             className="userInfoBox" >
             <div style={style.userInfoLine}>
@@ -246,7 +246,7 @@ var BookTicketRow = React.createClass({
     );
 
     return (
-      <div
+      <div 
         style={style.row}
         className="bookTicketRow">
         <Link to={"/viewOrder/u/"+this.props.data.Id}>
@@ -261,10 +261,10 @@ var BookTicketRow = React.createClass({
           </div>
         </Link>
 
-        {jobTicket}
+        {jobTicket} 
 
         <div style={style.actionBox} className="actionBox">
-          <div
+          <div 
             style={style.contactBox}
             className="contactBox">
             <a href={"tel:" + this.props.data.Photographer.BusinessPhone}>
@@ -272,23 +272,23 @@ var BookTicketRow = React.createClass({
               className="icon phone_icon"
               style={{fontSize:22, color:'gray'}}
               ref="contactImage" />
-            <div
-              style={style.buttonText}
+            <div 
+              style={style.buttonText} 
               ref="contactText" >联系</div>
               </a>
           </div>
 
-          <Tappable
+          <Tappable 
             onTap={this.toggleCancelDialog}>
             <div
               style={style.cancelBox}
               className="cancelBox">
-              <span
+              <span 
                 className="icon fail_icon"
                 style={{fontSize:22, color:'gray'}}
                 ref="cancelImage" />
-              <div
-                style={style.buttonText}
+              <div 
+                style={style.buttonText} 
                 ref="cancelText" >取消</div>
             </div>
           </Tappable>
@@ -296,7 +296,7 @@ var BookTicketRow = React.createClass({
         </div>
 
         {this.state.showCancelDialog ? <DocumentTitle title="取消订单" /> : ''}
-          <div
+          <div 
             style={this.state.showCancelDialog ?style.showCancelBookDialog:style.hide } >
             <div style={style.confirmHint} ref="confirmHint">您确认要取消这个订单吗？</div>
             <br />
@@ -305,20 +305,20 @@ var BookTicketRow = React.createClass({
               {jobTicket}
             </div>
             <div style={style.actionBar} className="actionBar">
-              <Tappable
+              <Tappable 
                   onTap={this.cancelOrder}>
                 <div style={style.cancelOrder} className="cancelOrder">
-                  <span
+                  <span 
                     className="icon cancel_circle_icon"
                     style={{fontSize:55}}
                     ref="confirmImage" />
                   <div ref="confirmText">取消订单</div>
                 </div>
               </Tappable>
-              <Tappable
+              <Tappable 
                 onTap={this.toggleCancelDialog}>
                 <div style={style.cancelFrame} className="cancelFrame">
-                  <span
+                  <span 
                     ref="cancelImage"
                     className="icon cancel_circle_icon"
                     style={{fontSize:55}} />

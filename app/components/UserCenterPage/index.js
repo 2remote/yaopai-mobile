@@ -69,21 +69,21 @@ var UserCenterPage = React.createClass({
         margin: '24px 0 12px 0'
       }
     };
-
+    
     return (
-      <div
+      <div 
         style={style.page}
         className="userCenterPage">
         <HamburgMenu />
         <DocumentTitle title="个人中心" />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
-        <div
+        <div 
           style={style.splitLine}
           ref="myBookTicketsLabel">
-          <img
+          <img 
             src="imgs/common/spliter-line.png"
             srcSet="imgs/common/spliter-line@2X.png 2x" />
-          <div
+          <div 
           style={{
             position: 'relative',
             marginTop: -21,

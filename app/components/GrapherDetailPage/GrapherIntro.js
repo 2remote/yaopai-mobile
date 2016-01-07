@@ -6,7 +6,7 @@ var GrapherIntro = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
-
+       
       }
     };
   },
@@ -30,11 +30,11 @@ var GrapherIntro = React.createClass({
     return (
 
       <div ref="grapherIntro"  style={this.props.style || style} className="grapherIntro">
-        <img
+        <img 
           style={{width:98,height:98,marginBottom:13}}
           ref="avatar"
           src={avatar} />
-        <div
+        <div 
           style={{fontSize: '1.3em'}}
           ref="name">{name}</div>
         <span

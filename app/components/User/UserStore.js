@@ -10,7 +10,7 @@ var UserStore = Reflux.createStore({
     userState : '',
     isLogin : false
   },
-
+  
   hintMsg : '',
 
   listenables: UserAction,
@@ -22,7 +22,7 @@ var UserStore = Reflux.createStore({
       errMessage : ''  //登录失败时返回失败信息提醒
     }
   */
-
+  
   onLoginCompleted: function(data) {
     if(data.success == '1'){
       this.setCurrentUser(data.userData);

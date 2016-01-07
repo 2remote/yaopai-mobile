@@ -98,9 +98,9 @@ var SidePage = React.createClass({
                 <div style={style.loginName} ref="pleaseLoginText">{this.props.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
-            <span
-              style={style.logoutIcon}
-              ref="logoutIcon"
+            <span 
+              style={style.logoutIcon} 
+              ref="logoutIcon" 
               className="icon logout_icon"
               onClick={this.logout} />
           </div>
@@ -126,7 +126,7 @@ var SidePage = React.createClass({
           <div
             style={style.sidePage}
             className="sidePage">
-
+            
             {accountContent}
 
             <SidePageIcon name={'index'} text={'首页'} to={'/'} />
@@ -134,7 +134,7 @@ var SidePage = React.createClass({
             <SidePageIcon name={'grapher'} text={'摄影师'} />
             <SidePageIcon name={'interview'} text={'访谈'} />
             <SidePageIcon name={'activity'} text={'活动'} />
-
+            
             <div style={style.spliterLine} className="spliterLine" />
           </div>
         </div>

@@ -52,7 +52,7 @@ describe('User Actions Test', () => {
 
     data = {};
     apiOk(API.USER.current_user, data, 'API.USER.current_user 获得用户信息');
-
+  
 
     // register目前没有好方法测试
 
@@ -73,6 +73,6 @@ describe('User Actions Test', () => {
     //receiveTelResetPassWord需要结合手机验证吗，目前没有好方法测试
 
     data = {};
-    apiOk(API.USER.logout, data, 'API.USER.logout 登出用户');
+    apiOk(API.USER.logout, data, 'API.USER.logout 登出用户');  
   }
 });

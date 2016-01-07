@@ -17,7 +17,7 @@ var ActionBar = React.createClass({
       }
     };
     return (
-      <div
+      <div 
         style={style.actionBar}
         className="actionBar">
         <CallGrapherBox data={this.props.data} />

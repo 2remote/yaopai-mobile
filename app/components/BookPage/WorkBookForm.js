@@ -34,25 +34,25 @@ var BookForm = React.createClass({
         <Toaster ref="toast"/>
         <form ref="bookForm" >
           <div>
-            <span
+            <span 
               className="icon name_icon"
               style={iconStyle}
               ref="nameImage" />
-            <input
+            <input 
               style={inputStyle}
               ref="bookName"
-              type="text"
+              type="text" 
               placeholder="填写预约姓名" />
           </div>
           <div>
-            <span
-              className="icon phone_icon"
+            <span 
+              className="icon phone_icon" 
               style={iconStyle}
               ref="phoneImage" />
-            <input
+            <input 
               style={inputStyle}
               ref="bookPhone"
-              type="text"
+              type="text" 
               placeholder="填写预约电话" />
           </div>
           <div>
@@ -60,15 +60,15 @@ var BookForm = React.createClass({
               className="icon calendar_icon"
               style={iconStyle}
               ref="dateImage" />
-            <input
+            <input 
               style={inputStyle}
               ref="bookDate"
-              type="date"
+              type="date" 
               defaultValue={this.props.userInput}
               placeholder="选择拍照日期" />
           </div>
-          <div
-            style={{
+          <div 
+            style={{  
               width: 126,
               height: 37,
               border: '2px solid',

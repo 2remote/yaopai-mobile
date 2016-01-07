@@ -53,17 +53,17 @@ var BookSuccessDialog = React.createClass({
 
 
     return (
-      <div
+      <div 
         style={style.bookSuccessDialog}
         className="bookSuccessDialog">
         <div style={style.headText} ref="headText" >订单成功！</div>
         <div style={style.subText}>请尽快与摄影师取得联系，方便您更好的摄影服务</div>
-        <span
+        <span 
           style={style.close}
           onClick={this.handleClose}
           ref="closeImage"
           className="icon close_icon" />
-        <div
+        <div 
           style={style.doubleCheckTicket}
           className="doubleCheckTicket">
           <DoubleCheckInfo />

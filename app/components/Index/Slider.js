@@ -34,12 +34,12 @@ export default class Slider extends React.Component {
       return (
         <div key={i}>
           <a href={url} >
-            <img
+            <img 
               src={imgModifier(work.Image,'ad')}
               style={{width:'100%',height:210/375*innerWidth}} />
           </a>
         </div>
-      );
+      ); 
     });
 
     return (

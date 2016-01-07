@@ -14,9 +14,9 @@ var ActivityRow = React.createClass({
   render: function() {
 
     const cover = imgModifier(this.props.data.Cover, "workCover");
-
+    
     return (
-      <div
+      <div 
         style={{width:'100%',textAlign:'center',color:'#0f0f0f'}}
         className="ActivityIntroGrapherRow">
         <Link to={"/ActivityDetail/" + this.props.data.Id}>

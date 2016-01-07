@@ -6,7 +6,7 @@ var GrapherAvatar = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
-
+        
       }
     };
   },
@@ -15,11 +15,11 @@ var GrapherAvatar = React.createClass({
     const avatar = this.props.data?imgModifier(this.props.data.Avatar, 'avatar'):'';
 
     return (
-      <div
+      <div 
         style={{textAlign:'center',margin:0,width:'100%'}}
         className="grapherAvatar">
         <Link style={{lineHeight:'inherit'}} to={"/grapherDetail/" + this.props.data.Id}>
-        <img
+        <img 
           style={{width:52,height:52}}
           ref="grapherIcon"
           src={avatar}/>

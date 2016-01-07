@@ -11,7 +11,7 @@ var GetCodeActions = Reflux.createActions({
 
 /*
   发送注册手机号码
-  request :
+  request : 
   {tel : string}
   response:
   {

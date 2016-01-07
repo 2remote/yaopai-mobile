@@ -14,9 +14,9 @@ var InterviewRow = React.createClass({
   render: function() {
 
     const cover = imgModifier(this.props.data.Cover, "ad");
-
+    
     return (
-      <div
+      <div 
         style={{width:'100%',textAlign:'center',color:'#0f0f0f'}}
         className="interviewIntroGrapherRow">
         <Link to={"/interviewDetail/" + this.props.data.Id}>

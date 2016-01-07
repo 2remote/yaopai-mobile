@@ -84,9 +84,9 @@ var Menu = React.createClass({
         <ul style={style.ul}>
           {lis}
         </ul>
-        <div
-          style={style.close}
-          onClick={this.handleClose}
+        <div 
+          style={style.close} 
+          onClick={this.handleClose} 
           className="icon close_icon"></div>
       </div>
     );

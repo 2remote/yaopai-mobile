@@ -3,10 +3,10 @@ var React = require('react');
 var CallBox = React.createClass({
   render: function() {
     return (
-      <div
+      <div 
         style={{color:'#3c3c3c'}}
         className="callBox">
-        <span
+        <span 
           ref="callImage"
           className="icon phone_icon"
           style={{fontSize:55}} />

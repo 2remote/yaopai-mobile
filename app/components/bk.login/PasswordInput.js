@@ -11,7 +11,7 @@ var PasswordInput = React.createClass({
 
   render: function(){
     return (
-      <input
+      <input 
         className="passwordInput"
         type="password"
         placeholder="密码"

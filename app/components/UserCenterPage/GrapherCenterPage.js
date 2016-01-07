@@ -64,26 +64,26 @@ var GrapherCenterPage = React.createClass({
       }
     };
     return (
-      <div
+      <div 
         style={style.page}
         className="grapherCenterPage">
         <HamburgMenu />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
 
-        <div
+        <div 
           style={style.splitLine}
           ref="myJobTicketsLabel">
-          <img
+          <img 
             src="imgs/common/spliter-line.png"
             srcSet="imgs/common/spliter-line@2X.png 2x" />
-          <div
+          <div 
             style={{
               position: 'relative',
               marginTop: -21,
               color: '#4D4D4D'
             }}>我的预约</div>
         </div>
-
+        
         <JobTicketList data={this.state.orders}/>
       </div>
     );
