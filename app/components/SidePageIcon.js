@@ -54,7 +54,7 @@ export default class SidePageIcon extends React.Component {
         <div style={style.spliterLine} className="spliterLine" />
 
         <Link style={style.link} to={this.props.to || `/${this.props.name}`} >
-          <img  style={style.commonIcon} ref="interviewIcon" 
+          <img  style={style.commonIcon} ref="interviewIcon"
             src={`imgs/sidePage/${this.props.name}-icon.png`}
             srcSet={`imgs/sidePage/${this.props.name}-icon@2X.png 2x`} />
           <div>{this.props.text}</div>

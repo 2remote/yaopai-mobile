@@ -11,7 +11,7 @@ var WorkTitle = React.createClass({
   },
   render: function() {
     return (
-      <div 
+      <div
         style={{padding:'50px 0 0 11px',marginBottom:-5,width:265}}
         className="workTitle">
         <div

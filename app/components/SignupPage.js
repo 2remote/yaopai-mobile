@@ -120,7 +120,7 @@ var SignupPage = React.createClass({
       float: 'left'
     };
     return (
-      <div 
+      <div
         style={{
           width: '100%',
           textAlign: 'center',
@@ -130,7 +130,7 @@ var SignupPage = React.createClass({
         className="signupPage">
         <DocumentTitle title="新建帐号" />
         <Toaster ref="toast"/>
-        <div 
+        <div
           style={{
             position: 'relative',
             textAlign: 'center',
@@ -143,7 +143,7 @@ var SignupPage = React.createClass({
             onChange = {this._handlePhoneChange}
             style={mobileNumber}
             ref="mobileNumber"
-            type="text" 
+            type="text"
             placeholder="手机号" />
 
           <div
@@ -167,18 +167,18 @@ var SignupPage = React.createClass({
             onChange = {this._handlePassword1Change}
             style={inputStyle}
             ref="passWord"
-            type="password" 
+            type="password"
             placeholder="输入密码" />
 
-          <input 
+          <input
             style={inputStyle}
             value = {this.state.code}
             onChange = {this._handleCodeChange}
             ref="verificationCode"
-            type="text" 
+            type="text"
             placeholder="验证码" />
-            <div 
-              style={{  
+            <div
+              style={{
                 width: '212px',
                 padding : '5px',
                 height : '40px',

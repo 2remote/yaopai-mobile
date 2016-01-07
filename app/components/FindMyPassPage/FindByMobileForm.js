@@ -140,24 +140,24 @@ var FindByMobileForm = React.createClass({
         <div className="findMyPassPage">
           <div className="findByMobileForm">
             <Toaster ref="toast" />
-            <form 
+            <form
               style={style.form}
               ref="mobileForm" >
-              <input 
+              <input
                 style={style.mobileNumber}
                 ref="mobileNumber"
                 type="text" placeholder="输入手机号" />
               <input
-                style={style.captcha} 
+                style={style.captcha}
                 ref="getVertificationCode"
                 onClick={this._handleCheck}
-                type="button" 
+                type="button"
                 value={(this.state.codeLeft>0 ? '( '+this.state.codeLeft+' )' : '获取验证码')} />
-              <input 
+              <input
                 style={style.input}
                 ref="vertificationCode"
                 type="text" placeholder="输入验证码" />
-              <input 
+              <input
                 style={style.submit}
                 ref="submitButton"
                 onClick={this._handleNextStep}
@@ -166,7 +166,7 @@ var FindByMobileForm = React.createClass({
           </div>
         </div>
       </DocumentTitle>
-      
+
     );
   }
 });

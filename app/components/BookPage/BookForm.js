@@ -27,41 +27,41 @@ var BookForm = React.createClass({
       <div className="bookForm">
         <form ref="bookForm" >
           <div>
-            <span 
+            <span
               ref="nameImage"
               className="icon name_icon"
               style={{iconStyle}} />
-            <input 
+            <input
               style={inputStyle}
               ref="bookName"
-              type="text" 
+              type="text"
               placeholder="姓名" />
           </div>
           <div>
-            <span 
+            <span
               ref="phoneImage"
               className="icon phone_icon"
               style={{iconStyle}} />
-            <input 
+            <input
               style={inputStyle}
               ref="bookPhone"
-              type="text" 
+              type="text"
               placeholder="联系电话" />
           </div>
           <div>
-            <span 
+            <span
               ref="dateImage"
               className="icon calendar_icon"
               style={{iconStyle}} />
-            <input 
+            <input
               style={inputStyle}
               ref="bookDate"
-              type="date" 
+              type="date"
               defaultValue={this.state.userInput}
               placeholder="预约拍照日期" />
           </div>
-            <div 
-              style={{  
+            <div
+              style={{
                 width: 126,
                 height: 37,
                 marginTop: '54px',

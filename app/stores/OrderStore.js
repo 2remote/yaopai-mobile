@@ -13,7 +13,7 @@ var OrderStore = Reflux.createStore({
   },
   init : function(){
     this.orders = [];
-    
+
     //listen to the OrderActions
     this.listenTo(OrderActions.list.success,this.onListOrders);
     this.listenTo(OrderActions.list.failed,this.onFailed);

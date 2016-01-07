@@ -181,7 +181,7 @@ var JobTicketRow = React.createClass({
       confirmBookDialog: {
         display: 'none',
       },
-      
+
       confirmHint: {
 
       },
@@ -225,12 +225,12 @@ var JobTicketRow = React.createClass({
     let linkToStyle= maskShow ? style.hide : style.toDetial;
     let maskText = '';
     let maskIconSrc = '';
-    
+
     if (this.props.data.State === 2){
       maskText ='订单取消';
       maskIconSrc = ' fail_icon ';
       style.mask.color = 'red';
-    }  
+    }
     if (this.props.data.State === 1){
       maskText = '订单成功';
       maskIconSrc = ' success_icon ';
@@ -239,20 +239,20 @@ var JobTicketRow = React.createClass({
 
     var jobTicket = (
       <div style={style.jobTicket} className="jobTicket">
-        <div 
+        <div
           style={style.box}
           className="userBox">
-          <img 
+          <img
             style={style.avatar}
             ref="userAvatar"
             src={this.props.data.User.Avatar || rondomAvatar} />
-          <div 
+          <div
             style={style.userName}
             ref="userName" >{this.props.data.User.NickName}</div>
         </div>
 
-        
-        <div 
+
+        <div
           style={style.userInfoBox}
           className="userInfoBox" >
           <div style={style.userInfoLine}>
@@ -265,13 +265,13 @@ var JobTicketRow = React.createClass({
           </div>
           <div style={style.userInfoLine}>
             <span style={style.label} ref="userBookDateLabel" >时间：</span>
-            { this.state.showConfirmDialog ? 
-              <input 
-                style={style.inputStyle} 
-                ref="userBookDate" 
-                type="date" 
+            { this.state.showConfirmDialog ?
+              <input
+                style={style.inputStyle}
+                ref="userBookDate"
+                type="date"
                 defaultValue={dateFormat(new Date(this.props.data.AppointedTime),'yyyy-MM-dd')}/> :
-              <span style={style.userInfo} ref="userBookDate" >{this.props.data.AppointedTime.slice(0,10)}</span> 
+              <span style={style.userInfo} ref="userBookDate" >{this.props.data.AppointedTime.slice(0,10)}</span>
             }
           </div>
           <div >
@@ -287,7 +287,7 @@ var JobTicketRow = React.createClass({
       </div>
     );
     return (
-      <div 
+      <div
         style={style.row}
         className="jobTicketRow">
 
@@ -306,11 +306,11 @@ var JobTicketRow = React.createClass({
         {jobTicket}
 
         <div style={style.actionBox} className="actionBox">
-          <div 
+          <div
             style={style.editBox}
             className="editBox">
             <a href={"tel:" + this.props.data.BuyerTel}>
-            <span 
+            <span
               className="icon phone_icon"
               style={{fontSize:22}}
               ref="editImage" />
@@ -318,16 +318,16 @@ var JobTicketRow = React.createClass({
             </a>
           </div>
 
-          <Tappable 
+          <Tappable
             onTap={this.toggleConfirmDialog}>
-            <div 
+            <div
               style={style.confirmBox}
               className="confirmBox">
-              <span 
+              <span
                 className="icon success_icon"
                 ref="confirmImage"
                 style={{fontSize:22}} />
-                
+
               <div style={style.buttonText} ref="confirmText" >确认</div>
             </div>
           </Tappable>
@@ -335,7 +335,7 @@ var JobTicketRow = React.createClass({
         </div>
 
         <DocumentTitle title="个人中心">
-          <div 
+          <div
             style={this.state.showConfirmDialog ?style.showConfirmBookDialog:style.confirmBookDialog }
             className="confirmBookDialog">
             <div style={style.confirmHint} ref="confirmHint">请您再次确认预约信息，核对拍摄时间！</div>
@@ -345,25 +345,25 @@ var JobTicketRow = React.createClass({
             {jobTicket}
             </div>
             <div style={style.actionBar} className="actionBar">
-              <Tappable 
+              <Tappable
                   onTap={this.confirm}>
                 <div style={style.confirmBox1} className="confirmBox">
-                  <span 
+                  <span
                     className="icon confirm_circle_icon"
                     ref="confirmImage"
                     style={{fontSize:55}} />
-                    
+
                   <div ref="confirmText">确定</div>
                 </div>
               </Tappable>
-              <Tappable 
+              <Tappable
                 onTap={this.toggleConfirmDialog}>
                 <div style={style.cancelFrame} className="cancelFrame">
-                  <span 
+                  <span
                     className="icon cancel_circle_icon"
                     ref="cancelImage"
                     style={{fontSize:55}} />
-                    
+
                   <div ref="cancelText">取消</div>
                 </div>
               </Tappable>

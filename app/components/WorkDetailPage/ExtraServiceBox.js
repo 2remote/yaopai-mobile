@@ -26,10 +26,10 @@ var ExtraServiceBox = React.createClass({
     };
     let showExtraService = this.state.showExtraService;
     return (
-      
-      <Tappable onTap={this.swapShowExtraService} 
+
+      <Tappable onTap={this.swapShowExtraService}
         style={style.box}
-        className="extraServiceBox" 
+        className="extraServiceBox"
         >
         <div
           style={style.header}
@@ -46,10 +46,10 @@ var ExtraServiceBox = React.createClass({
 // <Tappable onTap={this.swapShowExtraService}>
 // </Tappable>);
   renderHint: function() {
-    return ( 
-      
+    return (
+
         <div>（点击查看）</div> );
-      
+
   },
 
   renderExtraSevice: function() {
@@ -69,7 +69,7 @@ var ExtraServiceBox = React.createClass({
       <div>
         <div style={style.hr} />
         <div
-          style={style.text} 
+          style={style.text}
           ref="extraServices" >
             {this.props.services}
         </div>

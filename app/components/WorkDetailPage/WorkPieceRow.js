@@ -5,11 +5,11 @@ import {imgModifier} from '../Tools';
 var WorkPieceRow = React.createClass({
 
   render: function() {
-    
+
     const workImage = imgModifier(this.props.data.Url, "work");
 
     return (
-      <div 
+      <div
         style={{lineHeight: 0}}
         className="workPieceRow">
         <img

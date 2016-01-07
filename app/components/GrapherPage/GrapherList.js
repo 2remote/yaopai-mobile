@@ -12,14 +12,14 @@ var GrapherList = React.createClass({
     var grapherNodes = this.props.data.map(function(grapher, i){
       if (grapher.User !== null){
         return (
-          <GrapherRow 
+          <GrapherRow
             data={grapher}
             key={i} />
-        );  
+        );
       }else{
         console.warn('User ' + grapher.Id + " don't have an User info!");
       }
-      
+
     });
 
     return (

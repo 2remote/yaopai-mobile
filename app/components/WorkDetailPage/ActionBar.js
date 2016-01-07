@@ -14,7 +14,7 @@ var ActionBar = React.createClass({
            <Link to={"/work_book_page/" + this.props.workId +'/0'} style={{lineHeight: 'inherit'}} >
             <span
               ref="bookIcon"
-              className="icon order_icon" 
+              className="icon order_icon"
               style={{fontSize:55}} />
             <div
               style={{letterSpacing: 10, marginLeft: 5, marginTop: -14, fontWeight: 'bold'}}

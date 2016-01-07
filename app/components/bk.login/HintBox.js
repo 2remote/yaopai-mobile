@@ -8,7 +8,7 @@ let HintBox = React.createClass({
     }
   },
 
-  render: function() {   
+  render: function() {
     return (
       <div className = {classnames({
         hintBox: true,
@@ -16,7 +16,7 @@ let HintBox = React.createClass({
       })} >
         {this.props.message}
       </div>
-    );  
+    );
   }
 });
 

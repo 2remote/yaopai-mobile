@@ -17,7 +17,7 @@ var UserActions = Reflux.createActions({
 
 /*
   https://xiattst.gitbooks.io/yaopai/content/API/User/Login.html
-  
+
   loginname  string  Y 用户手机或邮箱号码
   password  string  Y 用户密码
   autologin boolean N 是否自动登录

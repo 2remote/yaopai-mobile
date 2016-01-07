@@ -13,14 +13,14 @@ var InterviewList = React.createClass({
     var workNodes = this.props.data.map(function(work, i){
       if(work.User !== null){
         return(
-          <InterviewRow 
+          <InterviewRow
             key={i}
             data={work} />
-        );  
+        );
       }else{
         console.warn('User data should not be null, checkout back-end database!');
       }
-      
+
     });
 
     return (

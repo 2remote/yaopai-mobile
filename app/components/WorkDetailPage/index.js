@@ -22,7 +22,7 @@ var WorkDetailPage = React.createClass({
       data:[],
     };
   },
-  
+
   componentDidMount: function() {
     if(!this.props.params.Id)
       return this.history.pushState(null,'/work');
@@ -41,14 +41,14 @@ var WorkDetailPage = React.createClass({
     const negotiable = this.state.data.Negotiable;
     const price = this.state.data.Price;
     let priceResult = "面议";
-    
+
     if(!negotiable){
       priceResult = price;
     }
     return (
-    <span 
+    <span
       style={{color:'#050505',fontWeight:'bold'}}
-      ref="workPrice" 
+      ref="workPrice"
       className="workPrice">{priceResult}</span>
     )
   },
@@ -60,19 +60,19 @@ var WorkDetailPage = React.createClass({
         <WorkTitle data={{header: this.state.data.Title}} />
         <WorkPieceList workPieces={this.state.data.Photos} />
         <div style={{textAlign:'center',margin: '34px 0 13px'}}>
-        
+
           <span
             ref="workPriceIcon"
-            className="icon price_icon" 
+            className="icon price_icon"
             style={{fontSize:18,marginRight: 8}} />
 
           {this.renderPrice()}
 
-          <div 
+          <div
             style={{marginTop:20,color:'#373737',fontWeight:'bold'}}>
             包含服务
-          </div>  
-          <div 
+          </div>
+          <div
             style={{
               height: 1,
               width: '84%',
@@ -81,7 +81,7 @@ var WorkDetailPage = React.createClass({
               margin:'13px 0 14px 8%'
             }}>
           </div>
-          <div 
+          <div
             style={{color:'#a7a7a7',marginBottom:-8}}>
             {this.state.data.Service}
           </div>

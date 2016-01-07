@@ -10,11 +10,11 @@ var GrapherRow = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
-       
+
       }
     };
   },
-  
+
   render: function() {
     var grapherPageIntro = {
       height: deviceWidth/2
@@ -46,25 +46,25 @@ var GrapherRow = React.createClass({
         </div>
         <div className="grapherPageIntro" style={grapherPageIntro}>
           <div className="grapherIntroContainer">
-            <div 
+            <div
               ref="name">{this.props.data.RealName}</div>
-            <div 
+            <div
               style={nickStyle}
               ref="nick">{this.props.data.nick}</div>
             <span
-              className="icon location_icon"  
+              className="icon location_icon"
               style={{marginRight:6, fontSize:22}}
               ref="locationIcon" />
             <span
-              ref="location">{this.props.data.CityName}</span>     
-            <img 
+              ref="location">{this.props.data.CityName}</span>
+            <img
               ref="grapherSpliterLine"
               style={grapherSpliterLineStyle}
               src="imgs/grapherPage/grapher-spliter-line.png"
-              srcSet="imgs/grapherPage/grapher-spliter-line@2X.png 2x" />     
-            <Link to={"/work_book_page/0/"+this.props.data.Id} >  
+              srcSet="imgs/grapherPage/grapher-spliter-line@2X.png 2x" />
+            <Link to={"/work_book_page/0/"+this.props.data.Id} >
               <button ref="grapherBook">预约</button>
-            </Link> 
+            </Link>
           </div>
         </div>
       </div>

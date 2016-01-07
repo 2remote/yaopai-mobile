@@ -40,7 +40,7 @@ var LoginPage = React.createClass({
   render: function() {
     return (
       <DocumentTitle title="登录">
-        <div  
+        <div
         style={{
           position: 'absolute',
           width: '100%',
@@ -58,7 +58,7 @@ var LoginPage = React.createClass({
         <Toaster ref="toast"/>
         <div style={{margin: '44px 0 5px'}}>
           <Link to="/signupPage">
-            <span 
+            <span
             style={{
               color: '#636363',
               fontSize: '1.2em'
@@ -67,10 +67,10 @@ var LoginPage = React.createClass({
           </Link>
         </div>
         <span ref="splitText">
-          <img 
+          <img
             src="imgs/common/spliter-line.png"
             srcSet="imgs/common/spliter-line@2X.png 2x" />
-          <div 
+          <div
           style={{
             position: 'relative',
             marginTop: -21,

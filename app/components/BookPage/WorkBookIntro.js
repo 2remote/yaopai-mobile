@@ -13,7 +13,7 @@ var BookIntro = React.createClass({
 
   render: function() {
     return (
-      <div 
+      <div
         style={{
           paddingTop: 15,
           backgroundImage: 'url(imgs/bookIntroBg.png)',
@@ -23,14 +23,14 @@ var BookIntro = React.createClass({
         }}
         className="bookIntro">
         <span ref="currentTitle" >当前订单</span>
-        <div 
+        <div
           style={{margin: '-25px 0 19px'}}
           className="splitLine" >
           <img
           src="imgs/common/spliter-line.png"
           srcSet="imgs/common/spliter-line@2X.png 2x" />
         </div>
-        <img 
+        <img
           style={{width:52}}
           ref="grapherAvatar"
           src={imgModifier(this.props.albums?this.props.albums.Cover:this.props.photographer.Avatar, "avatar")} />

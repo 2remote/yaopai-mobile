@@ -37,14 +37,14 @@ describe('Albums Actions Test', () => {
       albumsActionsHasMethod(method);
     })
   });
-  
+
   const apiFlag = false;
   if ( apiFlag == true ){
     data = {
       Fields : 'Id,Name,Sorting,Display,Views'
     };
     apiOk(API.ALBUMS.categories, data, 'API.getCategories 获取分类列表');
-    
+
     data = {
       Id: 2,
       Fields: "Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar"

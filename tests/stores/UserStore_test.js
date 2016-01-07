@@ -317,7 +317,7 @@ describe('User Store Test', () => {
         // 成功情况
         // UserStore.data.loginToken = 'asdfwefds';
         // expect(spy.callCount).to.equal(0);
-        
+
         // UserStore.getTokenToLogin();
         // expect(spy.callCount).to.equal(1);
       });

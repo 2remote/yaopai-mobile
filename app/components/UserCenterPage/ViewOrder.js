@@ -11,14 +11,14 @@ var OrderStore = require('../../stores/OrderStore');
 var CallBox = React.createClass({
   render: function() {
     return (
-      <a 
+      <a
         style={{lineHeight:'inherit'}}
         href={"tel:" + this.props.data}>
-        <div 
+        <div
           style={{color:'#3c3c3c'}}
           className="callBox">
           <span
-             className="icon phone_circle_icon" 
+             className="icon phone_circle_icon"
             style={{width:55, fontSize:55}}
             ref="callImage" />
           <div ref="callText" >致电咨询</div>
@@ -42,7 +42,7 @@ var ActionBar = React.createClass({
       }
     };
     return (
-      <div 
+      <div
         style={style.actionBar}
         className="actionBar">
         <CallBox data={this.props.data} />
@@ -113,12 +113,12 @@ var DoubleCheckInfo = React.createClass({
     }
     return (
       <div className="doubleCheckInfo">
-        <img 
+        <img
           style={style.grapherImage}
           ref="grapherImage"
           src={mainImage} />
 
-        <div 
+        <div
           style={style.grapherName}
           ref="grapherName" >{mainText}</div>
 
@@ -126,41 +126,41 @@ var DoubleCheckInfo = React.createClass({
           className="icon price_icon"
           style={style.priceImage}
           ref="priceImage" />
-        <span 
+        <span
           style={style.grapherPrice}
           ref="grapherPrice" >{this.props.order.Albums?this.props.order.Albums.Price:'面议'}</span>
 
         <div>
-          <span 
+          <span
             style={style.label}
             ref="userNameLabel">{this.props.type == 'p' ? '预约姓名':'摄 影 师'}</span>
-          <input 
+          <input
             style={style.input}
             ref="usernameInput"
             type="text"
-            disabled
+            disabled={true}
             value={showName}/>
         </div>
         <div>
-          <span 
+          <span
             style={style.label}
             ref="mobilePhoneLabel">{this.props.type == 'p' ? '预约电话':'联系电话'}</span>
-          <input 
+          <input
             style={style.input}
             ref="mobilePhoneInput"
             type="text"
-            disabled
+            disabled={true}
             value={showPhone} />
         </div>
         <div>
-          <span 
+          <span
             style={style.label}
             ref="dateLabel">拍摄日期</span>
-          <input 
+          <input
             style={style.input}
             ref="dateInput"
             type="text"
-            disabled
+            disabled={true}
             value={(this.props.order.AppointedTime + '').slice(0,10)}
             placeholder="将显示您的拍摄日期" />
         </div>
@@ -271,18 +271,18 @@ var ViewOrder = React.createClass({
       }
     }
     return (
-      <div 
+      <div
         style={style.bookSuccessDialog}
         className="bookSuccessDialog">
-        <DocumentTitle title="订单详情"/> 
+        <DocumentTitle title="订单详情"/>
         <div style={style.headText} ref="headText" >{title}</div>
         <div style={style.subText}>{information}</div>
-        <span 
+        <span
           className="icon close_icon"
           style={style.close}
           onClick={this.handleClose}
           ref="closeImage" />
-        <div 
+        <div
           style={style.doubleCheckTicket}
           className="doubleCheckTicket">
           <DoubleCheckInfo type={this.props.params.type}

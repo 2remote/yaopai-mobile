@@ -19,7 +19,7 @@ var interviewDetailPage = React.createClass({
       data:[],
     };
   },
-  
+
   componentDidMount: function() {
     if(!this.props.params.Id)
       return this.history.pushState(null,'/interview');
@@ -38,14 +38,14 @@ var interviewDetailPage = React.createClass({
     const negotiable = this.state.data.Negotiable;
     const price = this.state.data.Price;
     let priceResult = "面议";
-    
+
     if(!negotiable){
       priceResult = price;
     }
     return (
-    <span 
+    <span
       style={{color:'#050505',fontWeight:'bold'}}
-      ref="workPrice" 
+      ref="workPrice"
       className="workPrice">{priceResult}</span>
     )
   },
@@ -76,12 +76,12 @@ var interviewDetailPage = React.createClass({
           srcSet="imgs/workDetailPage/work-split-line@2X.png 2x" />
 
         <div className="interviewCover" >
-          <img 
+          <img
             style={{width:'100%',height:210/375*innerWidth, marginBottom: 15}}
             src={cover} />
         </div>
 
-        <div 
+        <div
           className="interviewContent"
           dangerouslySetInnerHTML={makeContent()} />
 
@@ -92,15 +92,15 @@ var interviewDetailPage = React.createClass({
           srcSet="imgs/workDetailPage/work-split-line@2X.png 2x" />
 
         <Link style={{lineHeight: 'inherit'}} to={'/grapherDetail/'+grapherId}>
-          <GrapherIntro 
-            data={this.state.data} 
+          <GrapherIntro
+            data={this.state.data}
             from={'interview'}
             style={{
               textAlign: 'center',
               height: 200,
               paddingTop: 40
             }}/>
-          <div 
+          <div
             style={{
               textAlign: 'center',
               width: 85,

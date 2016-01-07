@@ -13,7 +13,7 @@ import Share from '../Share';
 var GrapherDetailPage = React.createClass({
   getInitialState: function() {
     return {
-      grapherInfo:{} 
+      grapherInfo:{}
     };
   },
   componentDidMount: function() {
@@ -23,7 +23,7 @@ var GrapherDetailPage = React.createClass({
     const fields = '&Fields=Id,RealName,CityName,User.Avatar';
     const filter = '&Id='+id;
     const url = API_URL + grapherInfo + fields + filter;
-    
+
     $.ajax ({
       url: url,
       dataType: 'json',

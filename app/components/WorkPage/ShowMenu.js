@@ -22,7 +22,7 @@ var ShowMenu = React.createClass({
       <div>
         <div style={style} onClick={this.handleClick}>
           <span
-            className="icon filter_icon" 
+            className="icon filter_icon"
             style={{fontSize:25, backgroundColor:'black', color:'white', padding:'10'}} />
         </div>
         <Menu ref="menu" categories={this.props.categories} category={this.props.category} onChangeCategory={this.props.onChangeCategory}/>

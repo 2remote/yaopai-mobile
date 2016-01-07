@@ -8,14 +8,14 @@ var ActivityActions = Reflux.createActions({
   'search':{children : ['success','failed']},
 });
 
-ActivityActions.list.listen(function(pageIndex = 1,pageSize = 10){   
-  var data = {    
-    Fields : 'Id,Cover,Link',   
-    PageIndex : pageIndex,    
-    PageSize : pageSize,    
-  }   
-  HttpFactory.post(API.ACTIVITY.list,data,this.success,this.failed);    
-});   
+ActivityActions.list.listen(function(pageIndex = 1,pageSize = 10){
+  var data = {
+    Fields : 'Id,Cover,Link',
+    PageIndex : pageIndex,
+    PageSize : pageSize,
+  }
+  HttpFactory.post(API.ACTIVITY.list,data,this.success,this.failed);
+});
 
 ActivityActions.search.listen(function(categoryId = null ,pageIndex = 1 ,pageSize = 10){
   var data = {
