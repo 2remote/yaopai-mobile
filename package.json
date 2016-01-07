@@ -77,7 +77,7 @@
     "react-document-title": "^2.0.1",
     "react-dom": "^0.14.0",
     "react-lazy-load": "^2.0.1",
-    "react-router": "^1.0.0",
+    "react-router": "^1.0.3",
     "react-slick": "^0.9.3",
     "react-swipe": "^2.3.0",
     "react-tappable": "^0.6.0",
