@@ -63,7 +63,14 @@ var WorkPage = React.createClass({
   },
   handleUpdateTags: function (tag) {
     var tags = this.state.selectedTags;
-    tags.push(tag);
+    var foundTagLocation = _.indexOf(this.state.selectedTags,tag);
+    if(  foundTagLocation >= 0 ){
+      // 发现tag存在于选中tags中，判定用户反选该tag
+      tags.splice(foundTagLocation, 1);
+    }else{
+      tags.push(tag);  
+    }
+    
     this.setState({selectedTags: tags}, function () {
       console.warn(this.state.selectedTags);
     });
