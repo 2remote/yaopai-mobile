@@ -34,7 +34,7 @@ exports.imgModifier = function  (img, mode, width) {
     /*首页方块裁切函数，先不做修改*/
     modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';
   }
-
+  
   return img + '?' + modifies;
 }
 
@@ -64,13 +64,13 @@ exports.dateFormat = function(date, format) {
     date = new Date();
   }
   var map = {
-    "M": date.getMonth() + 1, //月份
-    "d": date.getDate(), //日
-    "h": date.getHours(), //小时
-    "m": date.getMinutes(), //分
-    "s": date.getSeconds(), //秒
-    "q": Math.floor((date.getMonth() + 3) / 3), //季度
-    "S": date.getMilliseconds() //毫秒
+    "M": date.getMonth() + 1, //月份 
+    "d": date.getDate(), //日 
+    "h": date.getHours(), //小时 
+    "m": date.getMinutes(), //分 
+    "s": date.getSeconds(), //秒 
+    "q": Math.floor((date.getMonth() + 3) / 3), //季度 
+    "S": date.getMilliseconds() //毫秒 
   };
   format = format.replace(/([yMdhmsqS])+/g, function(all, t){
     var v = map[t];

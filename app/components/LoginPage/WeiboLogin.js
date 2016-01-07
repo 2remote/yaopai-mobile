@@ -4,7 +4,7 @@ var WeiboLogin = React.createClass({
   render: function() {
     return (
       <div className="weiboLogin">
-        <span
+        <span 
           className="icon weibo_icon"
           style={{fontSize:55}}
           ref="weiboLogo" />

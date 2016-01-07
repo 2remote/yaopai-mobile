@@ -19,7 +19,6 @@
     "jsx-quotes": 1,
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1,
-    "react/jsx-boolean-value": [1, "always"]
+    "react/jsx-uses-vars": 1
   }
 }

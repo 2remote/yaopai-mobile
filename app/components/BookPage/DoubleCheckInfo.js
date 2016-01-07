@@ -11,7 +11,7 @@ var DoubleCheckInfo = React.createClass({
       }
     };
   },
-
+  
   render: function() {
     var style = {
       grapherImage:{
@@ -52,57 +52,57 @@ var DoubleCheckInfo = React.createClass({
 
     return (
       <div className="doubleCheckInfo">
-        <img
+        <img 
           style={style.grapherImage}
           ref="grapherImage"
           src={this.props.order.Albums?this.props.order.Albums.Cover:this.props.order.Photographer?this.props.order.Photographer.Avatar:''} />
 
-        <div
+        <div 
           style={style.grapherName}
           ref="grapherName" >{this.props.order.Albums?this.props.order.Albums.Title:this.props.order.Photographer?this.props.order.Photographer.NickName:''}</div>
 
-        <span
+        <span 
           ref="priceImage"
           className="icon price_icon"
           style={style.priceImage} />
 
-        <span
+        <span 
           style={style.grapherPrice}
           ref="grapherPrice" >{this.props.order.Price?this.order.Price:'面议'}</span>
 
         <div>
-          <span
+          <span 
             style={style.label}
             ref="userNameLabel">预约姓名</span>
-          <input
+          <input 
             style={style.input}
             ref="usernameInput"
             type="text"
-            disabled={true}
+            disabled
             value={this.props.order.BuyerName}
             placeholder="将显示您的预订姓名" />
         </div>
         <div>
-          <span
+          <span 
             style={style.label}
             ref="mobilePhoneLabel">预约电话</span>
-          <input
+          <input 
             style={style.input}
             ref="mobilePhoneInput"
             type="text"
-            disabled={true}
+            disabled
             value={this.props.order.BuyerTel}
             placeholder="将显示您的联系电话" />
         </div>
         <div>
-          <span
+          <span 
             style={style.label}
             ref="dateLabel">拍摄日期</span>
-          <input
+          <input 
             style={style.input}
             ref="dateInput"
             type="text"
-            disabled={true}
+            disabled
             value={(this.props.order.AppointedTime + '').slice(0,10)}
             placeholder="将显示您的拍摄日期" />
         </div>
@@ -112,4 +112,4 @@ var DoubleCheckInfo = React.createClass({
   }
 });
 
-module.exports = DoubleCheckInfo;
+module.exports = DoubleCheckInfo; 

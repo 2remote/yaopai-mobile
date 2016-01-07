@@ -3,10 +3,10 @@ var React = require('react');
 var AddWeChat = React.createClass({
   render: function() {
     return (
-      <div
+      <div 
         style={{float:'left',width:'50%',color:'#3c3c3c'}}
         className="addWeChat">
-        <span
+        <span 
           ref="weChatImage"
           className="icon wechat_logo"
           style={{fontSize:55}} />

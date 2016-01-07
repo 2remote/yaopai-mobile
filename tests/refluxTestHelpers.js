@@ -4,14 +4,14 @@ import fjs from 'functional.js';
 var request = require('superagent');
 
 // apiOk
-//
+// 
 // 测试 api 是否正常
-//
+// 
 // 参数：
 // api        - string, API.ALBUMS.searc
 // data       - obj, { Id:2, Fields: 'Id, Title'}
 // describe   - string, describe test
-//
+// 
 // 例子：
 // const data = {
 //   Id: 2,
@@ -23,7 +23,7 @@ var request = require('superagent');
 
 exports.apiOk = function (api, data, describe) {
   it(`${describe}`, (done) => {
-
+    
     request
       .post(api)
       .set('Content-Type', 'application/json')
@@ -46,19 +46,19 @@ exports.storeIsDefined = (store) => {
 exports.storeHasData = (store, key = "NA") => {
   if (key == "NA"){
     expect(store.data, 'has data obj').to.exist;
-  }else{
+  }else{  
     expect(store.data[key], `has data element << ${key} >>.`).to.exist;
   }
 };
 
-exports.storeHasMethod = function (store, method) {
+exports.storeHasMethod = function (store, method) {  
   expect(store[method], `has method << ${method} >>`).to.exist;
 };
 
 // methodExist
-//
+// 
 // 测试method是否存在的helper
-//
+// 
 // 参数：
 // method  - func
 // comment - string, method名称
@@ -66,7 +66,7 @@ exports.storeHasMethod = function (store, method) {
 // 例子：
 //   const re = methodExist(UserStore.setCurrentUser);
 // 结果：
-//   re = true/false
+//   re = true/false 
 function methodExist (method, comment) {
   expect(method, `has method << ${comment} >>`).to.exist;
 }
@@ -78,13 +78,13 @@ function methodExist (method, comment) {
 // 参数：
 // store  - obj, store
 // method - string, store.method
-//
+// 
 // 例子：
 //   const userStoreHasMethod  = makeStoreHasMethod(UserStore);
 //   userStoreHasMethod('setCurrentUser');
 // 结果：
 //   expect(UserStore.setCurrentUser).to.exist;
-exports.makeStoreHasMethod = fjs.curry(function(store, method) {
+exports.makeStoreHasMethod = fjs.curry(function(store, method) {  
   return methodExist(store[method], method);
 });
 
@@ -140,7 +140,7 @@ function valueIsEqual (a, b) {
 // store - store obj
 // targetKey - store.data.key
 // checkValue - 期望数值
-//
+// 
 // 例子：
 // const checkUserStoreData = makeCheckStoreData(UserStore);
 // checkUserStoreData('userId', '');
@@ -153,6 +153,6 @@ exports.makeCheckStoreData = fjs.curry(function (store, targetKey, checkValue) {
 exports.storeHasDefaultValue = function (store) {
   it('store has right default value', () => {
     expect(store.data.hintMessage).to.equal('');
-    expect(store.data.flag).to.equal('');
+    expect(store.data.flag).to.equal('');  
   });
 }

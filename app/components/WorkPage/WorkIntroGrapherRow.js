@@ -23,7 +23,7 @@ var WorkIntroGrapherRow = React.createClass({
     const cover = imgModifier(this.props.data.Cover, "workCover");
     const avatar = imgModifier(this.props.data.User.Avatar, "avatar");
     return (
-      <div
+      <div 
         style={{width:'100%',textAlign:'center',color:'#0f0f0f'}}
         className="workIntroGrapherRow">
         <Link to={"/workDetail/" + this.props.data.Id}>

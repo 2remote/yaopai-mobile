@@ -78,11 +78,11 @@ var API_CONST = {
     search: API_URL + 'Activity.Search',
     get: API_URL + 'Activity.Get',
   },
-
+  
   AD: {
     list: API_URL + 'Ad.List',
   },
-
+  
   ORDER: {
     outSearch: API_URL + 'Order.OutSearch',
     inSearch: API_URL + 'Order.InSearch',

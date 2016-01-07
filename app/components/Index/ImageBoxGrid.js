@@ -1,17 +1,17 @@
 // ImageBoxGrid 组件
-//
+// 
 // 显示以方块构成的图片列表
-//
+// 
 // 输入：
 // filter - 过滤关键字，参考：https://xiattst.gitbooks.io/yaopai/content/API/Ad/LIst.html 的广告位说明
 // cols - 图片列数
 // rows - 图片行数
 // works - 图片列表
-//
+// 
 // 范例：
 // var ImageBoxGrid = require('./ImageBoxGrid');
 // <ImageBoxGrid filter={"HomeAlbums"} cols={3} rows={4} works={this.state.recommendInterviews} />
-//
+// 
 // works - data demo
 //   [{
 //         "Id": 4,
@@ -65,8 +65,8 @@ var ImageBoxGrid = React.createClass({
     if (filter == 'HomeGrapher') {
       borderWidth = 171/750*deviceWidth;
       borderHeight = 398/750*deviceWidth;
-    }
-
+    } 
+    
     let borderSize = deviceWidth/this.props.cols;
     let style = {
       width:  borderWidth || borderSize,
@@ -76,7 +76,7 @@ var ImageBoxGrid = React.createClass({
       width:  237/750*deviceWidth,
       height: borderHeight
     };
-
+  
 
     var initNodes = [];
     const number = this.props.cols * this.props.rows;
@@ -95,18 +95,18 @@ var ImageBoxGrid = React.createClass({
     }).slice(0,number)
     var imgNodes = work.map(function(work, i){
       var extraId = work.ExtraId;
-
+      
       var url = work.Url;
       if (work.Action !== 'Link'){
-        url = "#" + actionLinkMaker(work.Action, work.ExtraId);
+        url = "#" + actionLinkMaker(work.Action, work.ExtraId); 
       }
 
       initNodes[i] = (
-        <li key={i}
+        <li key={i} 
             style={ (i === 3 & filter == 'HomeGrapher') ? homeGrapherLastStyle : style }
             className="imageCell">
           <a href={url} style={{display:'block'}} >
-            <img
+            <img 
               style={ (i === 3 & filter == 'HomeGrapher') ? homeGrapherLastStyle : style }
               src={imgModifier(work.Image, (filter == 'HomeGrapher')?'HomeGrapher':'ImageBoxGrid', borderSize*window.devicePixelRatio)} />
           </a>

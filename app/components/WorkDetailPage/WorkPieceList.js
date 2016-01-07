@@ -15,7 +15,7 @@ var WorkPieceList = React.createClass({
 
     return (
       <div className="workPieceList">
-        <div
+        <div 
           style={{fontSize: '4em',fontWeight: 'lighter',color: '#a7a7a7',margin:'0 0 10px 28px'}}
           ref="pieceCount">{this.props.workPieces.length+"P"}</div>
         {workNodes}

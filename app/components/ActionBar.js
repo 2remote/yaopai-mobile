@@ -41,7 +41,7 @@ var ShareGuide = React.createClass({
     }
     return (
       <div style={style.mask} onClick={this.hideGuide}>
-        <span
+        <span 
           width="100%"
           className="icon share_guide"
           style={{fontSize:55}} />
@@ -61,7 +61,7 @@ var ActionBar = React.createClass({
         <ShareGuide ref="shareGuide" />
         <div style={{float:'left',marginLeft: '22.666666%'}}>
           <Link to="/login_page" style={{lineHeight: 'inherit'}} >
-            <span
+            <span 
               ref="bookIcon"
                 className="icon book_icon"
                 style={{fontSize:55}} />
@@ -72,7 +72,7 @@ var ActionBar = React.createClass({
           </Link>
         </div>
         <div onClick={this._handleShare} style={{float:'right',marginRight: '22.666666%'}}>
-          <span
+          <span 
             ref="shareIcon"
             className="icon share_icon"
             style={{fontSize:55}} />

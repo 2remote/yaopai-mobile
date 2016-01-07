@@ -32,10 +32,7 @@ var common = {
       {
         test: /\.css$/,
         loaders: ['style', 'css'],
-        include: [
-          path.resolve(ROOT_PATH, 'app'),
-          path.resolve(ROOT_PATH, 'node_modules', 'weui')
-        ]
+        include: path.resolve(ROOT_PATH, 'app')
       }
     ]
   },
