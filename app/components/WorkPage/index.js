@@ -46,6 +46,7 @@ var WorkPage = React.createClass({
       total : 0,
       works: [],
       tags: [],
+      selectedTags: [],
       categories : [],
       category : ''
     };
@@ -59,6 +60,13 @@ var WorkPage = React.createClass({
     AlbumsActions.search();
     AlbumsActions.getCategories();
     AlbumsActions.getTagList();
+  },
+  handleUpdateTags: function (tag) {
+    var tags = this.state.selectedTags;
+    tags.push(tag);
+    this.setState({selectedTags: tags}, function () {
+      console.warn(this.state.selectedTags);
+    });
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
@@ -110,7 +118,10 @@ var WorkPage = React.createClass({
         <div className="workPage">
           <HamburgMenu />
           <YaopaiLogo />
-          <ShowMenu cities={cities} catas={catas} />
+          <ShowMenu 
+            cities={cities} 
+            catas={catas} 
+            onSelectedTag={this.handleUpdateTags} />
 
           <WorkIntroGrapherList data={this.state.works} />
         </div>

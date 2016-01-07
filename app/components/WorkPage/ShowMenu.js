@@ -29,7 +29,10 @@ var ShowMenu = React.createClass({
             className="icon filter_icon" 
             style={{fontSize:25, backgroundColor:'black', color: font_color, padding:'10'}} />
         </div>
-        <TagMenu ref="tagMenu" cities={this.props.cities} catas={this.props.catas} />
+        <TagMenu ref="tagMenu" 
+          cities={this.props.cities} 
+          catas={this.props.catas} 
+          onSelectedTag={this.props.onSelectedTag} />
       </div>
     );
   }

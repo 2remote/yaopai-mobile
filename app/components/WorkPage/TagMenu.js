@@ -9,8 +9,10 @@ var TagCol = React.createClass({
 
   handleClick: function () {
     this.setState({clicked: !this.state.clicked});
+    var tag = this.props.id;
+    this.props.onSelectedTag(tag);
   },
-  
+
   render: function () {
 
     var style = {
@@ -40,10 +42,11 @@ var TagRow = React.createClass({
 
     var tagNodes = (<div />);
     if (typeof this.props.data != 'undefined'){
+      var onSelectedTag = this.props.onSelectedTag;
       tagNodes = this.props.data.map(function(tag, i){
         if(tag.Display){
           return (
-            <TagCol name={tag.Name} key={i} id={tag.Id} />
+            <TagCol name={tag.Name} key={i} id={tag.Id} onSelectedTag={onSelectedTag} />
           );
         }
       });
@@ -89,8 +92,8 @@ var TagMenu = React.createClass({
 
     return (
       <div className="tagMenu" style={style.tab}>
-        <TagRow data={this.props.cities}/>
-        <TagRow data={this.props.catas}/>
+        <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
+        <TagRow data={this.props.catas} onSelectedTag={this.props.onSelectedTag}/>
       </div>
     );
   }
