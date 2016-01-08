@@ -32,14 +32,10 @@ var AlbumsStore = Reflux.createStore({
 
     this.listenTo(AlbumsActions.getMyAlbums.success,this.onGetMyAlbumsSuccess);
     this.listenTo(AlbumsActions.getMyAlbums.failed,this.onFailed);
-    this.listenTo(AlbumsActions.getCategories.success,this.onGetCategoriesSuccess);
-    this.listenTo(AlbumsActions.getCategories.failed,this.onFailed);
     this.listenTo(AlbumsActions.onSale.success,this.onSaleSuccess);
     this.listenTo(AlbumsActions.onSale.failed,this.onFailed);
     this.listenTo(AlbumsActions.offSale.success,this.offSaleSuccess);
     this.listenTo(AlbumsActions.offSale.failed,this.onFailed);
-    this.listenTo(AlbumsActions.recommendList.success,this.onRecommendListSuccess);
-    this.listenTo(AlbumsActions.recommendList.failed,this.onFailed);
     this.listenTo(AlbumsActions.getTagList.success,this.onTagListSuccess);
     this.listenTo(AlbumsActions.getTagList.failed,this.onFailed);
   },
@@ -127,16 +123,6 @@ var AlbumsStore = Reflux.createStore({
       this.data.hintMessage = res.ErrorMsg;
     }
     this.data.flag = 'getMyAlbums';
-    this.trigger(this.data);
-  },
-  onGetCategoriesSuccess : function(res){
-    if(res.Success){
-      this.data.categories = res.Result;
-      this.hintMessage = '';
-    }else{
-      this.data.hintMessage = res.ErrorMsg;
-    }
-    this.data.flag = 'getCategories';
     this.trigger(this.data);
   },
   onSaleSuccess : function(res){

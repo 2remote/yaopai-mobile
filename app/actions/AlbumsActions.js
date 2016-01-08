@@ -10,10 +10,8 @@ var AlbumsActions = Reflux.createActions({
   'search':{children : ['success','failed']},
   'searchByTags':{children : ['success','failed']},
   'getMyAlbums' : {children : ['success','failed']},
-  'getCategories' :{children:['success','failed']},
   'onSale' : {children:['success','failed']},
   'offSale' : {children:['success','failed']},
-  'recommendList' : {children:['success','failed']},
   'getTagList' : {children:['success','failed']},
 });
 
@@ -38,24 +36,6 @@ function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null){
   }
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 };
-
-AlbumsActions.getCategories.listen(function(){
-  var data = {
-    Fields : 'Id,Name,Sorting,Display,Views'
-  };
-  HttpFactory.post(API.ALBUMS.categories,data,this.success,this.failed);
-});
-
-AlbumsActions.recommendList.listen(function(count = 8){
-  var data ={
-    HomeRecommended : true,
-    HomeSortingDesc : true,
-    PageIndex : 1,
-    PageSize : count,
-    Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar',
-  };
-  HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
-});
 
 // http://api.aiyaopai.com/?api=Tag.List&fields=id,name,display,tags.id,tags.name,tags.display
 AlbumsActions.getTagList.listen(function () {

@@ -46,9 +46,7 @@ var WorkPage = React.createClass({
       total : 0,
       works: [],
       tags: [],
-      selectedTags: [],
-      categories : [],
-      category : ''
+      selectedTags: []
     };
   },
   getDefaultProps: function() {
@@ -58,7 +56,6 @@ var WorkPage = React.createClass({
   },
   componentDidMount: function() {
     AlbumsActions.search();
-    AlbumsActions.getCategories();
     AlbumsActions.getTagList();
   },
   handleUpdateTags: function (tag) {
@@ -105,13 +102,6 @@ var WorkPage = React.createClass({
           pageCount: data.pageCount
         });
 
-      }
-    }
-    if(data.flag == 'getCategories'){
-      if(data.hintMessage){
-        console.log(data.hintMessage);
-      }else{
-        this.setState({categories : data.categories});
       }
     }
     if(data.flag == 'getTagList'){
