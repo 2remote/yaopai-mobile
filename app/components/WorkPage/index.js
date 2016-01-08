@@ -88,7 +88,6 @@ var WorkPage = React.createClass({
           total: data.total,
           pageCount: data.pageCount
         });
-
       }
     }
     if(data.flag == 'searchByTags'){
@@ -118,7 +117,7 @@ var WorkPage = React.createClass({
     AlbumsActions.search(category);
   },
   onChangePage : function(pageIndex){
-    AlbumsActions.search(this.state.category,pageIndex);
+    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
   },
   render: function() {
     var cities = [];
