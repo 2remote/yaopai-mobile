@@ -78,7 +78,7 @@ var WorkPage = React.createClass({
     AlbumsActions.searchByTags(null, 
       this.state.pageIndex,
       10,
-      this.state.selectedTags);
+      this.state.selectedTags.join(","));
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
