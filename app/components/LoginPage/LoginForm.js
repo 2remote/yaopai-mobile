@@ -77,6 +77,13 @@ var LoginForm = React.createClass({
         float: 'right',
         marginRight: 5,
         marginTop: 15
+      },
+      provision: {
+        border: 0,
+        backgroundColor: 'inherit',
+        float: 'left',
+        marginRight: 5,
+        marginTop: 15
       }
     };
 
@@ -112,6 +119,14 @@ var LoginForm = React.createClass({
                 type="button" 
                 value="忘记密码" />
             </Link>
+          </div>
+          <div>
+            <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed">
+              <input 
+                style={style.provision}
+                type="button" 
+                value="YAOPAI 服务条款" />
+            </a>
           </div>
 
           <div
