@@ -14,20 +14,22 @@ var ShowMenu = React.createClass({
     this.setState({showState: !this.state.showState});
   },
   render: function () {
+    var transform = this.state.showState ? 'rotateX(180deg)' : 'rotateX(0deg)';
     var style = {
       position: 'fixed',
       top: '22px',
       right: '22px',
       zIndex: '99',
+      transform: transform,
+      transition: '1s',
     };
-    var font_color = this.state.showState ? 'yellow' : 'white';
 
     return (
       <div>
         <div style={style} onClick={this.handleClick}>
           <span
             className="icon filter_icon" 
-            style={{fontSize:25, backgroundColor:'black', color: font_color, padding:'10'}} />
+            style={{fontSize:25, backgroundColor:'black', padding:'10', color: 'white'}} />
         </div>
         <TagMenu ref="tagMenu" 
           cities={this.props.cities} 
