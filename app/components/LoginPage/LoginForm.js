@@ -82,7 +82,7 @@ var LoginForm = React.createClass({
         border: 0,
         backgroundColor: 'inherit',
         float: 'left',
-        marginRight: 5,
+        marginLeft: 5,
         marginTop: 15
       }
     };
