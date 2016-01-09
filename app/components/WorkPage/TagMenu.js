@@ -28,7 +28,7 @@ var TagCol = React.createClass({
       <div className="tagColBox" 
         style={style}
         onClick={this.handleClick}  >
-        {this.props.name}.{this.props.id}
+        {this.props.name}
       </div>
     );
   }
@@ -75,7 +75,7 @@ var TagMenu = React.createClass({
   },
   
   render: function () {
-    var top = this.state.showTags ? 70: '-340px';
+    var top = this.state.showTags ? 65 : '-340px';
     var style = {
       tab: {
         position: 'fixed',
@@ -89,6 +89,7 @@ var TagMenu = React.createClass({
         color: '#fff',
         WebkitTransition:'top ease .5s',
         transition: 'top ease .5s',
+        opacity: 0.8,
       }
     };
 

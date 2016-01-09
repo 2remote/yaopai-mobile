@@ -25,10 +25,12 @@ var YaopaiLogo = React.createClass({
       display:'block',
       textAlign: 'center',
       paddingTop:'30px',
-      paddingBottom: '15px',
+      paddingBottom: '5px',
       position: 'fixed',
       width:'100%',
       zIndex: '98',
+      top:0,
+      left:0,
     };
 
     return (
