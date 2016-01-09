@@ -39,13 +39,6 @@ var ActivityPage = React.createClass({
         this.setState({Activitys : this.state.Activitys.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
       }
     }
-    if(data.flag == 'getCategories'){
-      if(data.hintMessage){
-        console.log(data.hintMessage);
-      }else{
-        this.setState({categories : data.categories});
-      }
-    }
   },
   onChangePage : function (pageIndex) {    
     ActivityActions.list(pageIndex);    
