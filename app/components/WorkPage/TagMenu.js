@@ -14,12 +14,14 @@ var TagCol = React.createClass({
   },
 
   render: function () {
-
+    var border_color = this.state.clicked ? 'gray' :'black';
     var style = {
       display: 'inline-block',
-      margin: '20px',
+      padding: '5px 10px 5px 10px',
+      margin: '5px',
       fontSize: 18,
-      color: this.state.clicked ? 'yellow' :'gray'
+      borderRadius: '4px',
+      border: '1px solid ' + border_color
     };
 
     return (      
