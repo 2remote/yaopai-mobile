@@ -61,9 +61,9 @@ var LoginForm = React.createClass({
         borderColor: 'transparent transparent #c4c4c4'
       },
       login: {
-        width: 228,
+        width: 222,
         padding: '5px',
-        marginTop: 39,
+        marginTop: 46,
         borderRadius: 30,
         border: 0,
         fontSize: '1.5em',
