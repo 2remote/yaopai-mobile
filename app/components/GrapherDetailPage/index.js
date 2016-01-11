@@ -13,14 +13,18 @@ import Share from '../Share';
 var GrapherDetailPage = React.createClass({
   getInitialState: function() {
     return {
-      grapherInfo:{} 
+      grapherInfo:{
+        User: {
+          NickName: '读取中...'
+        }
+      } 
     };
   },
   componentDidMount: function() {
     const id = this.props.params.Id;
     const grapherInfo = 'Photographer.Get';
     const listWorkDetail = 'Albums.Search';
-    const fields = '&Fields=Id,RealName,CityName,User.Avatar';
+    const fields = '&Fields=Id,User.NickName,CityName,User.Avatar';
     const filter = '&Id='+id;
     const url = API_URL + grapherInfo + fields + filter;
     
@@ -53,7 +57,7 @@ var GrapherDetailPage = React.createClass({
     }
   },
   render: function() {
-    let pageTitle = this.state.grapherInfo.RealName || '摄影师';
+    let pageTitle = this.state.grapherInfo.User.NickName || '摄影师';
     return (
       <DocumentTitle title={pageTitle}>
         <div className="grapherDetailPage">

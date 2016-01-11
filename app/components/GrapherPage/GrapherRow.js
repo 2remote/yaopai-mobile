@@ -47,7 +47,7 @@ var GrapherRow = React.createClass({
         <div className="grapherPageIntro" style={grapherPageIntro}>
           <div className="grapherIntroContainer">
             <div 
-              ref="name">{this.props.data.RealName}</div>
+              ref="name">{this.props.data.User.NickName}</div>
             <div 
               style={nickStyle}
               ref="nick">{this.props.data.nick}</div>
