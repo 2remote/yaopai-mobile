@@ -22,7 +22,7 @@ PhotographerActions.get.listen(function(id){
 */
 PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = null){
   var data = {
-    Fields : 'Id,BusinessPhone,ProvinceId,ProvinceName,User.NickName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
+    Fields : 'Id,BusinessPhone,ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
     PageIndex : pageIndex,
     PageSize : pageSize,
     city : city
