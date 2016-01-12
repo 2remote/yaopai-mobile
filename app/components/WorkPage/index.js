@@ -75,7 +75,7 @@ var WorkPage = React.createClass({
     });
     // 读取tag过滤的数据
     AlbumsActions.searchByTags(null, 
-      this.state.pageIndex,
+      1,
       10,
       this.state.selectedTags.join(","));
   },
