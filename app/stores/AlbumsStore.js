@@ -26,16 +26,18 @@ var AlbumsStore = Reflux.createStore({
     this.listenTo(AlbumsActions.delete.failed,this.onFailed);
     this.listenTo(AlbumsActions.search.success,this.onSearchSuccess);
     this.listenTo(AlbumsActions.search.failed,this.onFailed);
+    
+    this.listenTo(AlbumsActions.searchByTags.success,this.onSearchByTagsSuccess);
+    this.listenTo(AlbumsActions.searchByTags.failed,this.onFailed);
+
     this.listenTo(AlbumsActions.getMyAlbums.success,this.onGetMyAlbumsSuccess);
     this.listenTo(AlbumsActions.getMyAlbums.failed,this.onFailed);
-    this.listenTo(AlbumsActions.getCategories.success,this.onGetCategoriesSuccess);
-    this.listenTo(AlbumsActions.getCategories.failed,this.onFailed);
     this.listenTo(AlbumsActions.onSale.success,this.onSaleSuccess);
     this.listenTo(AlbumsActions.onSale.failed,this.onFailed);
     this.listenTo(AlbumsActions.offSale.success,this.offSaleSuccess);
     this.listenTo(AlbumsActions.offSale.failed,this.onFailed);
-    this.listenTo(AlbumsActions.recommendList.success,this.onRecommendListSuccess);
-    this.listenTo(AlbumsActions.recommendList.failed,this.onFailed);
+    this.listenTo(AlbumsActions.getTagList.success,this.onTagListSuccess);
+    this.listenTo(AlbumsActions.getTagList.failed,this.onFailed);
   },
   onFailed : function(res){
     this.data.hintMessage = '网络错误';
@@ -80,6 +82,22 @@ var AlbumsStore = Reflux.createStore({
     this.data.flag = 'delete';
     this.trigger(this.data);
   },
+  onSearchByTagsSuccess : function(res){
+    if(res.Success){
+      this.data.count = res.Count;
+      this.data.pageCount = res.PageCount;
+      this.data.pageIndex = res.PageIndex;
+      this.data.pageSize = res.PageSize;
+      this.data.total = res.Total;
+      this.data.workList = res.Result;
+      this.data.hintMessage = '';
+    }else{
+      this.data.workList = [];
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    this.data.flag = 'searchByTags';
+    this.trigger(this.data);
+  },
   onSearchSuccess : function(res){
     if(res.Success){
       this.data.count = res.Count;
@@ -105,16 +123,6 @@ var AlbumsStore = Reflux.createStore({
       this.data.hintMessage = res.ErrorMsg;
     }
     this.data.flag = 'getMyAlbums';
-    this.trigger(this.data);
-  },
-  onGetCategoriesSuccess : function(res){
-    if(res.Success){
-      this.data.categories = res.Result;
-      this.hintMessage = '';
-    }else{
-      this.data.hintMessage = res.ErrorMsg;
-    }
-    this.data.flag = 'getCategories';
     this.trigger(this.data);
   },
   onSaleSuccess : function(res){
@@ -145,6 +153,18 @@ var AlbumsStore = Reflux.createStore({
     this.data.flag = 'recommendList';
     this.trigger(this.data);
   },
+
+  onTagListSuccess: function (res) {
+    if(res.Success){
+      this.data.hintMessage = '';
+      this.data.tags = res.Result;
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+      this.data.tags = [];
+    }
+    this.data.flag = 'getTagList';
+    this.trigger(this.data);
+  }
 });
 
 module.exports = AlbumsStore;

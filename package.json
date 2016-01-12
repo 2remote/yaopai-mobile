@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "webpack -p",
-    "preinstall": "npm install history@1.13.1",
+    "preinstall": "npm install history@1.17.0",
     "postinstall": "npm run build",
     "start": "webpack-dev-server",
     "test": "karma start",

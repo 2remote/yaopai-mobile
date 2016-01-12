@@ -8,6 +8,7 @@ var PhotographerStore = require('../../stores/PhotographerStore');
 var PhotographerActions = require('../../actions/PhotographerActions');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 require('./GrapherPage.css');
+import _ from 'underscore';
 
 var GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange') ,AutoLoadPageMixin],
@@ -27,7 +28,10 @@ var GrapherPage = React.createClass({
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({graphers : this.state.graphers.concat(data.photographers) ,pageCount : data.pageCount});
+        this.setState({
+          graphers: this.state.graphers.concat(_.shuffle(data.photographers)),
+          pageCount: data.pageCount
+        });
       }
     }
   },

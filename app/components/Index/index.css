@@ -153,3 +153,9 @@ a:active {
   overflow-x: hidden;
 }
 
+.interviewContent,
+.ActivityContent,
+.interviewCover,
+.ActivityCover {
+  margin: auto 10px;
+}

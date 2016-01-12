@@ -18,7 +18,7 @@ var GrapherIntro = React.createClass({
       paddingTop: 70
     };
     let avatarSoruce = this.props.data.User ? avatarSoruce = this.props.data.User.Avatar : null;
-    let name = this.props.data.RealName;
+    let name = this.props.data.User.NickName;
     let cityName = this.props.data.CityName;
 
     if(this.props.from === 'interview'){

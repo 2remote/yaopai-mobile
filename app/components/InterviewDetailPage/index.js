@@ -54,7 +54,7 @@ var interviewDetailPage = React.createClass({
     function makeContent() {return {__html: contentText};};
 
     let coverSoruce = this.state.data.Cover;
-    const cover = imgModifier(coverSoruce, "workCover");
+    const cover = imgModifier(coverSoruce, "ad");
 
     let grapherId = '';
     if (this.state.data.User) {

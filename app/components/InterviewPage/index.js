@@ -36,13 +36,6 @@ var InterviewPage = React.createClass({
         this.setState({interviews : this.state.interviews.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
       }
     }
-    if(data.flag == 'getCategories'){
-      if(data.hintMessage){
-        console.log(data.hintMessage);
-      }else{
-        this.setState({categories : data.categories});
-      }
-    }
   },
   onChangePage : function (pageIndex) {
     InterviewActions.list(pageIndex);
