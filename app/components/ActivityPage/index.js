@@ -40,8 +40,8 @@ var ActivityPage = React.createClass({
       }
     }
   },
-  onChangePage : function (pageIndex) {    
-    ActivityActions.list(pageIndex);    
+  onChangePage : function (pageIndex) {
+    ActivityActions.search(pageIndex);
   },
   render: function() {
     return (

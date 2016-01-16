@@ -38,7 +38,7 @@ var InterviewPage = React.createClass({
     }
   },
   onChangePage : function (pageIndex) {
-    InterviewActions.list(pageIndex);
+    InterviewActions.search(pageIndex);
   },
   render: function() {
     return (
