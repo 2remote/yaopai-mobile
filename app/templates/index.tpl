@@ -10,6 +10,63 @@
 
     <title>{%=o.htmlWebpackPlugin.options.title %}</title>
     
+    <style>
+      @keyframes rotate {
+        0% {
+          -webkit-transform: rotate(0deg) scale(1);
+                  transform: rotate(0deg) scale(1); }
+        50% {
+          -webkit-transform: rotate(180deg) scale(0.6);
+                  transform: rotate(180deg) scale(0.6); }
+        100% {
+          -webkit-transform: rotate(360deg) scale(1);
+                  transform: rotate(360deg) scale(1); } }
+
+      .ball-clip-rotate-multiple {
+        position: relative; }
+        .ball-clip-rotate-multiple > div {
+          -webkit-animation-fill-mode: both;
+                  animation-fill-mode: both;
+          position: absolute;
+          left: -20px;
+          top: -20px;
+          border: 2px solid #fff;
+          border-bottom-color: transparent;
+          border-top-color: transparent;
+          border-radius: 100%;
+          height: 35px;
+          width: 35px;
+          -webkit-animation: rotate 1s 0s ease-in-out infinite;
+                  animation: rotate 1s 0s ease-in-out infinite; }
+          .ball-clip-rotate-multiple > div:last-child {
+            display: inline-block;
+            top: -10px;
+            left: -10px;
+            width: 15px;
+            height: 15px;
+            -webkit-animation-duration: 0.5s;
+                    animation-duration: 0.5s;
+            border-color: #fff transparent #fff transparent;
+            -webkit-animation-direction: reverse;
+                    animation-direction: reverse; }
+
+      .loader-container {   
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        -webkit-transition: 1s;
+        transition: 1s;
+        z-index: 999; }
+
+      .loader-active {
+        position: relative;
+        left: 50%;
+        top: 50%; }
+    </style>
+
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1450498112_8514779.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
@@ -21,6 +78,24 @@
     {% } %}
   </head>
   <body>
+    
+    <div class="loader-container">
+      <div class="loader loader-active">
+        <div class="loader-inner ball-clip-rotate-multiple" >
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      setTimeout(function(){
+        document.querySelector('.loader-container').style.opacity=0;
+        setTimeout(function(){
+          document.querySelector('.loader-container').style.display='none';
+        },1000);
+      },3000);
+    </script>
+
     <div id="app"></div>
 
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}

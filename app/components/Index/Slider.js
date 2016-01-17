@@ -10,8 +10,7 @@ const settings = {
   autoplaySpeed: 4500,
   centerMode: true,
   slidesToShow: 1,
-  slidesToScroll: 1,
-  lazyLoad: true
+  slidesToScroll: 1
 };
 
 
