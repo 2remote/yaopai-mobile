@@ -26,7 +26,8 @@ var AutoLoadPageMixin = {
     if(this.state.pageCount != 0 && this.state.pageCount <= pageIndex){
       window.removeEventListener('scroll', this.onWindowScroll);
       window.removeEventListener('resize', this.onWindowScroll);
-      return;
+      if(this.state.pageCount < pageIndex)
+        return;
     }
     this.setState({pageIndex :pageIndex });
     this.onChangePage(pageIndex)
