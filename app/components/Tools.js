@@ -148,3 +148,7 @@ export const GET_WORK_INTRO = API + listWorkDetail + workIntroFileds;
 // 调取 预约作品 接口
 const bookWork = 'Order.Add';
 export const BOOK_A_WORK = API + bookWork ;
+
+export const TITLE = {
+  workPage: 'YAOPAI 作品库'
+}

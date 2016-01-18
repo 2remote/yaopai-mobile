@@ -10,7 +10,7 @@ var AlbumsStore = require('../../stores/AlbumsStore');
 var WorkIntroGrapherList = require('./WorkIntroGrapherList');
 var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
-import { LIST_ALL_WORKS } from '../Tools';
+import { LIST_ALL_WORKS, TITLE } from '../Tools';
 
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
@@ -130,7 +130,7 @@ var WorkPage = React.createClass({
     }
     
     return (
-      <DocumentTitle title="全部作品">
+      <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
           <HamburgMenu />
           <YaopaiLogo />
