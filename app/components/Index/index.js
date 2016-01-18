@@ -10,6 +10,7 @@ var PhotographerStore = require('../../stores/PhotographerStore');
 var AdActions = require('../../actions/AdActions');
 var AdStore = require('../../stores/AdStore');
 require('./index.css');
+import { TITLE } from '../Tools';
 
 var HamburgMenu = require('../HamburgMenu');
 var ImageBoxGrid = require('./ImageBoxGrid');
@@ -60,7 +61,7 @@ var Index = React.createClass({
 
   render: function() {    
     return (
-      <DocumentTitle title="YAOPAI：一个全球预约摄影师平台">
+      <DocumentTitle title={TITLE.indexPage}>
       <div className="index">
         <HamburgMenu />
         

@@ -11,7 +11,7 @@ var ActivityList = require('./ActivityList');
 
 var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
-import { LIST_ALL_ACTIVITIES } from '../Tools';
+import { LIST_ALL_ACTIVITIES, TITLE } from '../Tools';
 
 var ActivityPage = React.createClass({
   mixins : [Reflux.listenTo(ActivityStore,'_onActivityStoreChange') ,AutoLoadPageMixin],
@@ -45,7 +45,7 @@ var ActivityPage = React.createClass({
   },
   render: function() {
     return (
-      <DocumentTitle title="全部活动">
+      <DocumentTitle title={TITLE.activityPage}>
         <div className="activityPage">
           <HamburgMenu />
           <ActivityList data={this.state.Activitys} />
