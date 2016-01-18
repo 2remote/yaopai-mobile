@@ -7,6 +7,7 @@ var GrapherList = require('./GrapherList');
 var PhotographerStore = require('../../stores/PhotographerStore');
 var PhotographerActions = require('../../actions/PhotographerActions');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
+import { TITLE } from '../Tools';
 require('./GrapherPage.css');
 import _ from 'underscore';
 
@@ -40,7 +41,7 @@ var GrapherPage = React.createClass({
   },
   render: function() {
     return (
-      <DocumentTitle title="摄影师">
+      <DocumentTitle title={TITLE.grapherPage}>
         <div className="grapherPage">
           <HamburgMenu />
           <GrapherList data={this.state.graphers} />

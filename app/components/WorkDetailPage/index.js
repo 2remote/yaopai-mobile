@@ -11,7 +11,7 @@ var HamburgMenu = require('../HamburgMenu');
 var UserActions = require('../../actions/UserActions');
 var AlbumsStore = require('../../stores/AlbumsStore');
 var AlbumsActions = require('../../actions/AlbumsActions');
-import { GET_WORK_DETAIL } from '../Tools';
+import { GET_WORK_DETAIL, TITLE } from '../Tools';
 import {History} from 'react-router'
 import Share from '../Share';
 
@@ -56,7 +56,7 @@ var WorkDetailPage = React.createClass({
     return (
       <div className="workDetailPage">
         <HamburgMenu />
-        <DocumentTitle title={this.state.data.Title || '作品'} />
+        <DocumentTitle title={this.state.data.Title + TITLE.workDetailPage} />
         <WorkTitle data={{header: this.state.data.Title}} />
         <WorkPieceList workPieces={this.state.data.Photos} />
         <div style={{textAlign:'center',margin: '34px 0 13px'}}>

@@ -8,7 +8,7 @@ var HamburgMenu = require('../HamburgMenu');
 var UserActions = require('../../actions/UserActions');
 var InterviewStore = require('../../stores/InterviewStore');
 var InterviewActions = require('../../actions/InterviewActions');
-import { GET_WORK_DETAIL, imgModifier } from '../Tools';
+import { GET_WORK_DETAIL, imgModifier, TITLE } from '../Tools';
 import {History, Link} from 'react-router';
 import Share from '../Share';
 
@@ -63,7 +63,7 @@ var interviewDetailPage = React.createClass({
     return (
       <div style={{height: '100%'}} className="interviewDetailPage">
         <HamburgMenu />
-        <DocumentTitle title={this.state.data.Title || '访谈'} />
+        <DocumentTitle title={this.state.data.Title + TITLE.interviewDetailPage} />
 
         <div style={{margin:'56px 20% 0 11%'}}>
           <span style={{color:'green',float:'left',fontSize:'2em',mariginRight:3}}>-</span>

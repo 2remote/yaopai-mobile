@@ -9,6 +9,7 @@ var WorkIntroList = require('./WorkIntroList');
 var ActionBar = require('./ActionBar');
 import { API_URL } from '../../api';
 import Share from '../Share';
+import { TITLE } from '../Tools';
 
 var GrapherDetailPage = React.createClass({
   getInitialState: function() {
@@ -59,7 +60,7 @@ var GrapherDetailPage = React.createClass({
   render: function() {
     let pageTitle = this.state.grapherInfo.User.NickName || '摄影师';
     return (
-      <DocumentTitle title={pageTitle}>
+      <DocumentTitle title={TITLE.grapherDetailPage + pageTitle}>
         <div className="grapherDetailPage">
           <HamburgMenu />
           <GrapherIntro data={this.state.grapherInfo} />

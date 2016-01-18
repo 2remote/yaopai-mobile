@@ -148,3 +148,16 @@ export const GET_WORK_INTRO = API + listWorkDetail + workIntroFileds;
 // 调取 预约作品 接口
 const bookWork = 'Order.Add';
 export const BOOK_A_WORK = API + bookWork ;
+
+// 页面标题
+export const TITLE = {
+  indexPage: 'YAOPAI，一个全球预约摄影师的平台',
+  workPage: 'YAOPAI 作品库',
+  grapherPage: 'YAOPAI 摄影师精选',
+  workDetailPage: '_YAOPAI',
+  grapherDetailPage: 'YAOPAI 认证摄影师_',
+  interviewPage: 'YAOPAI 全部访谈',
+  interviewDetailPage: '_YAOPAI',
+  activityPage: 'YAOPAI 全部活动',
+  activityDetailPage: '_YAOPAI'
+}
