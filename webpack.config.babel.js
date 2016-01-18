@@ -3,7 +3,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var Clean = require('clean-webpack-plugin');
-var TITLE = require('./app/componets/Tools');
+import { TITLE } from './app/components/Tools.js';
 var pkg = require('./package.json');
 
 var TARGET = process.env.npm_lifecycle_event;
