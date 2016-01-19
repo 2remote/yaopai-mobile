@@ -3,13 +3,13 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var Clean = require('clean-webpack-plugin');
-
+import { TITLE } from './app/components/Tools.js';
 var pkg = require('./package.json');
 
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
 
-const APP_TITLE = 'YAOPAI：一个全球预约摄影师平台';
+const APP_TITLE = TITLE.indexPage;
 
 var common = {
   entry: path.resolve(ROOT_PATH, 'app'),
@@ -38,7 +38,7 @@ var common = {
   },
   plugins: [
     new HtmlwebpackPlugin({
-      title: 'YAOPAI Mobile'
+      title: APP_TITLE
     })
   ]
 };

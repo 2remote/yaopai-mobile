@@ -5,8 +5,13 @@ const PRODUCTION_ENV = '//api.aiyaopai.com/';
 let DOMAIN = DEV_ENV;
 
 //获取当前网站的根目录
-var Local_Host = window.location.host;
-var Local_Href = window.location.href;
+var Local_Host = "";
+var Local_Href="";
+
+if(typeof window != 'undefined'){
+  Local_Host = window.location.host;
+  Local_Href = window.location.href;  
+}
 
 //根据local host切换api
 function hasHost(host) {

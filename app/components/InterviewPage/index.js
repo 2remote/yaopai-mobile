@@ -8,7 +8,7 @@ var InterviewStore = require('../../stores/InterviewStore');
 var InterviewList = require('./InterviewList');
 var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
-import { LIST_ALL_INTERVIEWS } from '../Tools';
+import { LIST_ALL_INTERVIEWS, TITLE } from '../Tools';
 
 var InterviewPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange') ,AutoLoadPageMixin],
@@ -38,11 +38,11 @@ var InterviewPage = React.createClass({
     }
   },
   onChangePage : function (pageIndex) {
-    InterviewActions.list(pageIndex);
+    InterviewActions.search(pageIndex);
   },
   render: function() {
     return (
-      <DocumentTitle title="全部访谈">
+      <DocumentTitle title={TITLE.interviewPage}>
         <div className="interviewPage">
           <HamburgMenu />
           <InterviewList data={this.state.interviews} />
