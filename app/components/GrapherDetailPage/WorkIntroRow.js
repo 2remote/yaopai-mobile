@@ -16,6 +16,7 @@ var WorkIntroRow = React.createClass({
     return (
       <div className="workIntroRow" style={{width:'100%',height:210/375*innerWidth+80,textAlign:'center'}}>
         <Link to={"/workDetail/" + this.props.data.Id}>
+          <span>{"¥ "+this.props.data.Price}</span>
           <img 
             style={{width:'100%',height:210/375*innerWidth}}
             ref="workImage"
@@ -24,7 +25,7 @@ var WorkIntroRow = React.createClass({
         <span 
           style={{marginBottom:1, color:'green'}}
           ref="workArrow"
-          className='icon up_icon' />
+          className="icon up_icon" />
         <div
           style={{marginTop:-6}}
           ref="workTitle">{this.props.data.Title}</div>

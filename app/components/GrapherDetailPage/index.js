@@ -41,7 +41,7 @@ var GrapherDetailPage = React.createClass({
       }.bind(this)
     });
 
-    const worksUrl = API_URL + listWorkDetail + '&Fields=Id,Cover,Title' + '&UserId=' + id;
+    const worksUrl = API_URL + listWorkDetail + '&Fields=Id,Cover,Title,Price' + '&UserId=' + id;
 
     if(id){
       $.ajax ({
