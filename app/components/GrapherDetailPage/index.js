@@ -25,7 +25,7 @@ var GrapherDetailPage = React.createClass({
     const id = this.props.params.Id;
     const grapherInfo = 'Photographer.Get';
     const listWorkDetail = 'Albums.Search';
-    const fields = '&Fields=Id,User.NickName,CityName,User.Avatar';
+    const fields = '&Fields=Id,User.NickName,CityName,User.Avatar,Signature';
     const filter = '&Id='+id;
     const url = API_URL + grapherInfo + fields + filter;
     
