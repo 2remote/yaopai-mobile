@@ -21,6 +21,7 @@ var WorkIntroRow = React.createClass({
             style={{width:'100%',height:210/375*innerWidth}}
             ref="workImage"
             src={cover} />
+          <span>{this.props.data.Photos.length + "P"}</span>
         </Link>
         <span 
           style={{marginBottom:1, color:'green'}}
