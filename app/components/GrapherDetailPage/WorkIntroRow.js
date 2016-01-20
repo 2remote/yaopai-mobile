@@ -22,7 +22,7 @@ var WorkIntroRow = React.createClass({
       photoAmount: {
         position: 'absolute',
         right: 20,
-        bottom: 20,
+        bottom: 15,
         color: 'white'
       },
       topMask: {
