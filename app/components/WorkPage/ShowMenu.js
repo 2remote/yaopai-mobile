@@ -17,7 +17,7 @@ var ShowMenu = React.createClass({
     var transform = this.state.showState ? 'scaleY(-1)' : 'none';
     var style = {
       position: 'fixed',
-      top: '22px',
+      top: 5,
       right: '22px',
       zIndex: '99',
       transform: transform,

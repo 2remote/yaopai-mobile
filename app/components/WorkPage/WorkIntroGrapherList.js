@@ -49,7 +49,7 @@ var WorkIntroGrapherList = React.createClass({
     });
 
     return (
-      <div className="workIntroGrapherList" style={{marginTop:66}}>
+      <div className="workIntroGrapherList" style={{marginTop:49}}>
         {workNodes}
       </div>
     );
