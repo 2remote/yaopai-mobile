@@ -24,7 +24,7 @@ var YaopaiLogo = React.createClass({
       lineHeight:0.3,
       display:'block',
       textAlign: 'center',
-      paddingTop:'30px',
+      paddingTop: 13,
       paddingBottom: '5px',
       position: 'fixed',
       width:'100%',
@@ -132,7 +132,13 @@ var WorkPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
-          <HamburgMenu />
+          <HamburgMenu style={{
+            position: 'fixed',
+            top: 5,
+            padding: 10,
+            margin: -10,
+            left: 22,
+            zIndex: 99}}/>
           <YaopaiLogo />
           <ShowMenu 
             cities={cities} 

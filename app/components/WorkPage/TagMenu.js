@@ -75,7 +75,7 @@ var TagMenu = React.createClass({
   },
   
   render: function () {
-    var top = this.state.showTags ? 65 : '-340px';
+    var top = this.state.showTags ? 49 : '-340px';
     var style = {
       tab: {
         position: 'fixed',
@@ -84,7 +84,7 @@ var TagMenu = React.createClass({
         left: 0,
         top: top,
         zIndex: '0',
-        padding: '27px 0 19px',
+        padding: '10px 0',
         background: '#000',
         color: '#fff',
         WebkitTransition:'top ease .5s',
