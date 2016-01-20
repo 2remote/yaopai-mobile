@@ -48,6 +48,8 @@ var GrapherIntro = React.createClass({
           ref="locationIcon" />
         <span
           ref="location">{cityName}</span>
+        <div 
+          ref="signature">{this.props.data.Signature}</div>
       </div>
     );
   }
