@@ -1,6 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
-import {History,Location} from 'react-router';
+import {History,Location, Link} from 'react-router';
 var Reflux = require('reflux');
 var HamburgMenu = require('../HamburgMenu');
 import UserAvatarBox from '../UserAvatarBox' ;
@@ -37,7 +37,7 @@ var GrapherCenterPage = React.createClass({
         //将订单按照状态排序，优先显示为完成订单
         var orders = _.sortBy(data.orders,function(order){return order.State})
         this.setState({orders : orders});
-        console.log(data.orders);
+        // console.log(data.orders);
       }
     }
     if(data.flag == 'confirm'){
@@ -50,6 +50,7 @@ var GrapherCenterPage = React.createClass({
       }
     }
   },
+
   render: function() {
     var style = {
       page: {
@@ -64,23 +65,40 @@ var GrapherCenterPage = React.createClass({
       }
     };
 
-    var makeUiButton = function (icon, title, link="javascript:;") {
-      return (
-        <div className="weui_cells weui_cells_access">
-          <a className="weui_cell" href={link}>
-              <div className="weui_cell_hd">
-                  <div className={"icon " + icon}
-                      style={{fontSize:25,  color:'red', padding:'10'}} />
-              </div>
-              <div className="weui_cell_bd weui_cell_primary">
-                  <p>{title}</p>
-              </div>
-              <div className="weui_cell_ft" />
-          </a>
-      </div>
-      )
+    var makeUiButton = function (icon, title, link="javascript:;", router="normalLink") {
+      if(router == 'normalLink'){
+        return (
+          <div className="weui_cells weui_cells_access" >
+            <a className="weui_cell" href={link} >
+                <div className="weui_cell_hd">
+                    <div className={"icon " + icon}
+                        style={{fontSize:25,  color:'red', padding:'10'}} />
+                </div>
+                <div className="weui_cell_bd weui_cell_primary">
+                    <p className="titleDemo">{title}</p>
+                </div>
+                <div className="weui_cell_ft" />
+            </a>
+          </div>
+        )
+      }else{
+        return (
+          <div className="weui_cells weui_cells_access" >
+            <Link className="weui_cell" to={link} >
+                <div className="weui_cell_hd">
+                    <div className={"icon " + icon}
+                        style={{fontSize:25,  color:'red', padding:'10'}} />
+                </div>
+                <div className="weui_cell_bd weui_cell_primary">
+                    <p className="titleDemo">{title}</p>
+                </div>
+                <div className="weui_cell_ft" />
+            </Link>
+          </div>
+        )
+      }
     };
-   
+
     return (
       <div 
         style={style.page}
@@ -88,7 +106,7 @@ var GrapherCenterPage = React.createClass({
         <HamburgMenu />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
         {makeUiButton('edit_icon', '订单管理')}
-        {makeUiButton('edit_icon', '我的主页')}
+        {makeUiButton('edit_icon', '我的主页', 'grapherDetail/'+ this.state.userInfo.userId, 'react-router')}
         {makeUiButton('phone_circle_icon', '联系客服', 'tel:+86-400-000-0000')}  
       </div>
     );
