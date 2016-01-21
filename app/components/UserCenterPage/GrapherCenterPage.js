@@ -107,7 +107,7 @@ var GrapherCenterPage = React.createClass({
         <UserAvatarBox background={true} data={this.state.userInfo}/>
         {makeUiButton('edit_icon', '订单管理', 'grapher_tickets', 'react-router')}
         {makeUiButton('edit_icon', '我的主页', 'grapherDetail/'+ this.state.userInfo.userId, 'react-router')}
-        {makeUiButton('phone_circle_icon', '联系客服', 'tel:+86-400-000-0000')}  
+        {makeUiButton('phone_circle_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
       </div>
     );
   }
