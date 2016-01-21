@@ -63,28 +63,33 @@ var GrapherCenterPage = React.createClass({
         margin: '24px 0 12px 0'
       }
     };
+
+    var makeUiButton = function (icon, title, link="javascript:;") {
+      return (
+        <div className="weui_cells weui_cells_access">
+          <a className="weui_cell" href={link}>
+              <div className="weui_cell_hd">
+                  <div className={"icon " + icon}
+                      style={{fontSize:25,  color:'red', padding:'10'}} />
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                  <p>{title}</p>
+              </div>
+              <div className="weui_cell_ft" />
+          </a>
+      </div>
+      )
+    };
+   
     return (
       <div 
         style={style.page}
         className="grapherCenterPage">
         <HamburgMenu />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
-
-        <div 
-          style={style.splitLine}
-          ref="myJobTicketsLabel">
-          <img 
-            src="imgs/common/spliter-line.png"
-            srcSet="imgs/common/spliter-line@2X.png 2x" />
-          <div 
-            style={{
-              position: 'relative',
-              marginTop: -21,
-              color: '#4D4D4D'
-            }}>我的预约</div>
-        </div>
-        
-        <JobTicketList data={this.state.orders}/>
+        {makeUiButton('edit_icon', '订单管理')}
+        {makeUiButton('edit_icon', '我的主页')}
+        {makeUiButton('phone_circle_icon', '联系客服', 'tel:+86-400-000-0000')}  
       </div>
     );
   }
