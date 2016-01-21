@@ -68,7 +68,6 @@ var GrapherTicketsPage = React.createClass({
         style={style.page}
         className="grapherTicketsPage">
         <HamburgMenu />
-        <UserAvatarBox background={true} data={this.state.userInfo}/>
 
         <div 
           style={style.splitLine}
@@ -81,7 +80,7 @@ var GrapherTicketsPage = React.createClass({
               position: 'relative',
               marginTop: -21,
               color: '#4D4D4D'
-            }}>我的预约</div>
+            }}>订单管理</div>
         </div>
         
         <JobTicketList data={this.state.orders}/>
