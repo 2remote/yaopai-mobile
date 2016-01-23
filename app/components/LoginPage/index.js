@@ -34,6 +34,11 @@ var LoginPage = React.createClass({
       }
     }
   },
+
+  handleLoginPost: function (data) {
+    UserActions.login(data);
+  },
+
   showMessage: function (content) {
     this.refs.toast.show(content)
   },
@@ -54,7 +59,7 @@ var LoginPage = React.createClass({
           className="icon yaopai_logo"
           ref="yaopaiLogo"
           style={{fontSize:140,lineHeight:0.3,display:'block'}} />
-        <LoginForm showMessage={this.showMessage}/>
+        <LoginForm showMessage={this.showMessage} onLogin={this.handleLoginPost} />
         <Toaster ref="toast"/>
         <div style={{margin: '44px 0 5px'}}>
           <Link to="/signupPage">

@@ -3,6 +3,8 @@ var Tappable = require('react-tappable');
 var DocumentTitle = require('react-document-title');
 var OrderActions = require('../../actions/OrderActions');
 
+var assert = require('assert');
+
 import { Link, History,Location } from 'react-router';
 
 // import ConfirmBookDialog from './ConfirmBookDialog';
@@ -237,6 +239,17 @@ var JobTicketRow = React.createClass({
       style.mask.color = 'green';
     }
 
+    var avatar = rondomAvatar;    
+    if(this.props.data.User != null){
+      assert(this.props.data.User != null, 'data.User should exist');
+      avatar = this.props.data.User.Avatar ;  
+    }
+
+    var nickName = '读取中...';
+    if(this.props.data.User != null){
+      nickName = this.props.data.User.NickName;
+    }
+    
     var jobTicket = (
       <div style={style.jobTicket} className="jobTicket">
         <div 
@@ -245,10 +258,10 @@ var JobTicketRow = React.createClass({
           <img 
             style={style.avatar}
             ref="userAvatar"
-            src={this.props.data.User.Avatar || rondomAvatar} />
+            src={avatar} />
           <div 
             style={style.userName}
-            ref="userName" >{this.props.data.User.NickName}</div>
+            ref="userName" >{nickName}</div>
         </div>
 
         
