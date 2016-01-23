@@ -13,6 +13,7 @@ var UserStore = require('../../stores/UserStore');
 var OrderActions = require('../../actions/OrderActions');
 var OrderStore = require('../../stores/OrderStore');
 var _ = require('underscore');
+import { makeUiButton } from '../Tools';
 
 var UserCenterPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(OrderStore,'_onOrderStoreChange'),History],
@@ -77,21 +78,9 @@ var UserCenterPage = React.createClass({
         <HamburgMenu />
         <DocumentTitle title="个人中心" />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
-        <div 
-          style={style.splitLine}
-          ref="myBookTicketsLabel">
-          <img 
-            src="imgs/common/spliter-line.png"
-            srcSet="imgs/common/spliter-line@2X.png 2x" />
-          <div 
-          style={{
-            position: 'relative',
-            marginTop: -21,
-            color: '#4D4D4D'
-          }}>我的订单</div>
-        </div>
-
-        <BookTicketList data={this.state.orders} />
+        
+        {makeUiButton('order_icon', '我的订单', 'user_tickets', 'react-router')}
+        {makeUiButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
       </div>
     );
   }
