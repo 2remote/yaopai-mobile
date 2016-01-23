@@ -72,7 +72,7 @@ var GrapherCenterPage = React.createClass({
             <a className="weui_cell" href={link} >
                 <div className="weui_cell_hd">
                     <div className={"icon " + icon}
-                        style={{fontSize:25,  color:'red', padding:'10'}} />
+                        style={{fontSize:25, padding:'10'}} />
                 </div>
                 <div className="weui_cell_bd weui_cell_primary">
                     <p className="titleDemo">{title}</p>
@@ -87,7 +87,7 @@ var GrapherCenterPage = React.createClass({
             <Link className="weui_cell" to={link} >
                 <div className="weui_cell_hd">
                     <div className={"icon " + icon}
-                        style={{fontSize:25,  color:'red', padding:'10'}} />
+                        style={{fontSize:25, padding:'10'}} />
                 </div>
                 <div className="weui_cell_bd weui_cell_primary">
                     <p className="titleDemo">{title}</p>
@@ -105,9 +105,9 @@ var GrapherCenterPage = React.createClass({
         className="grapherCenterPage">
         <HamburgMenu />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
-        {makeUiButton('edit_icon', '订单管理', 'grapher_tickets', 'react-router')}
-        {makeUiButton('edit_icon', '我的主页', 'grapherDetail/'+ this.state.userInfo.userId, 'react-router')}
-        {makeUiButton('phone_circle_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
+        {makeUiButton('order_icon', '订单管理', 'grapher_tickets', 'react-router')}
+        {makeUiButton('home_icon', '我的主页', 'grapherDetail/'+ this.state.userInfo.userId, 'react-router')}
+        {makeUiButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
       </div>
     );
   }
