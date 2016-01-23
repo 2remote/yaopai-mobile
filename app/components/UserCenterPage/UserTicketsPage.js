@@ -76,7 +76,7 @@ var UserCenterPage = React.createClass({
         className="userCenterPage">
         <HamburgMenu />
         <DocumentTitle title="个人中心" />
-        <UserAvatarBox background={true} data={this.state.userInfo}/>
+
         <div 
           style={style.splitLine}
           ref="myBookTicketsLabel">
