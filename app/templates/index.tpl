@@ -95,6 +95,7 @@
         },1000);
       },3000);
     </script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
     <div id="app"></div>
 
@@ -112,6 +113,5 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
-    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     </body>
 </html>
