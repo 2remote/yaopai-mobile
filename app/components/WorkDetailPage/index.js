@@ -14,6 +14,7 @@ var AlbumsActions = require('../../actions/AlbumsActions');
 import { GET_WORK_DETAIL, TITLE } from '../Tools';
 import {History} from 'react-router'
 import Share from '../Share';
+var WechatShare = require('../Weixin/WechatShare');
 
 var WorkDetailPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'),History],
@@ -93,6 +94,8 @@ var WorkDetailPage = React.createClass({
         <GrapherAvatar data={this.state.data.User} />
         <ActionBar workId={this.state.data.Id} />
         <Share />
+        <WechatShare title={this.state.data.Title} desc={this.state.data.Description} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+        </WechatShare>
       </div>
     );
   }
