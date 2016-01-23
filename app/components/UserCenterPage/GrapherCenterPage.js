@@ -10,6 +10,7 @@ var UserStore = require('../../stores/UserStore');
 var OrderActions = require('../../actions/OrderActions');
 var OrderStore = require('../../stores/OrderStore');
 var _ = require('underscore');
+import { makeUiButton } from '../Tools';
 
 var GrapherCenterPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(OrderStore,'_onOrderStoreChange'),History],
@@ -62,40 +63,6 @@ var GrapherCenterPage = React.createClass({
       },
       splitLine: {
         margin: '24px 0 12px 0'
-      }
-    };
-
-    var makeUiButton = function (icon, title, link="javascript:;", router="normalLink") {
-      if(router == 'normalLink'){
-        return (
-          <div className="weui_cells weui_cells_access" >
-            <a className="weui_cell" href={link} >
-                <div className="weui_cell_hd">
-                    <div className={"icon " + icon}
-                        style={{fontSize:25, padding:'10'}} />
-                </div>
-                <div className="weui_cell_bd weui_cell_primary">
-                    <p className="titleDemo">{title}</p>
-                </div>
-                <div className="weui_cell_ft" />
-            </a>
-          </div>
-        )
-      }else{
-        return (
-          <div className="weui_cells weui_cells_access" >
-            <Link className="weui_cell" to={link} >
-                <div className="weui_cell_hd">
-                    <div className={"icon " + icon}
-                        style={{fontSize:25, padding:'10'}} />
-                </div>
-                <div className="weui_cell_bd weui_cell_primary">
-                    <p className="titleDemo">{title}</p>
-                </div>
-                <div className="weui_cell_ft" />
-            </Link>
-          </div>
-        )
       }
     };
 
