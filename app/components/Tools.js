@@ -1,4 +1,6 @@
 import { API_URL } from '../api';
+var React = require('react');
+import { Link } from 'react-router';
 
 exports.imgModifier = function  (img, mode, width) {
   let modifies;
@@ -54,6 +56,40 @@ exports.parseImageUrl = function(url,width,height){
   url = url + '/interface/1'; //渐进
   return url;
 }
+
+exports.makeUiButton = function (icon, title, link="javascript:;", router="normalLink") {
+  if(router == 'normalLink'){
+    return (
+      <div className="weui_cells weui_cells_access" >
+        <a className="weui_cell" href={link} >
+            <div className="weui_cell_hd">
+                <div className={"icon " + icon}
+                    style={{fontSize:25, padding:'10'}} />
+            </div>
+            <div className="weui_cell_bd weui_cell_primary">
+                <p className="titleDemo">{title}</p>
+            </div>
+            <div className="weui_cell_ft" />
+        </a>
+      </div>
+    )
+  }else{
+    return (
+      <div className="weui_cells weui_cells_access" >
+        <Link className="weui_cell" to={link} >
+            <div className="weui_cell_hd">
+                <div className={"icon " + icon}
+                    style={{fontSize:25, padding:'10'}} />
+            </div>
+            <div className="weui_cell_bd weui_cell_primary">
+                <p className="titleDemo">{title}</p>
+            </div>
+            <div className="weui_cell_ft" />
+        </Link>
+      </div>
+    )
+  }
+};
 /*
   格式化日期
   format 传入格式 'yyyy-MM-dd'
