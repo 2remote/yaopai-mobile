@@ -21,14 +21,17 @@ var FindMyPassPage1 = require('./components/FindMyPassPage/FindByMobileForm');
 var FindMyPassPage2 = require('./components/FindMyPassPage/ChangePassWordForm');
 var WorkBookPage = require('./components/BookPage');
 var ReactDOM = require('react-dom');
+
 import BookSuccessDialog from './components/BookPage/BookSuccessDialog';
 import BookModify from './components/BookPage/BookModify';
 import UserCenterPage from './components/UserCenterPage';
+import UserTicketsPage from './components/UserCenterPage/UserTicketsPage';
 import GrapherCenterPage from './components/UserCenterPage/GrapherCenterPage';
+import GrapherTicketsPage from './components/UserCenterPage/GrapherTicketsPage';
 import GrapherBookSuccessDialog from './components/BookPage/GrapherBookSuccessDialog';
 import ConfirmBookDialog from './components/UserCenterPage/ConfirmBookDialog';
 import SidePage from './components/SidePage';
-import ViewOrder from './components/UserCenterPage/ViewOrder'
+import ViewOrder from './components/UserCenterPage/ViewOrder';
 
 main();
 
@@ -57,8 +60,12 @@ function main(){
       <Route path="/grapher_book_success_dialog" component={GrapherBookSuccessDialog} />
       
       <Route path="/user_center" component={UserCenterPage} />
-      <Route path="/viewOrder/:type/:orderId" component={ViewOrder} />
+      <Route path="/user_tickets" component={UserTicketsPage} />
+
       <Route path="/grapher_center" component={GrapherCenterPage} />
+      <Route path="/grapher_tickets" component={GrapherTicketsPage} />
+
+      <Route path="/viewOrder/:type/:orderId" component={ViewOrder} />
       <Route path="/confirm_book_dialog" component={ConfirmBookDialog} />
       <Route path="/book_modify/:workId/:photographerId" component={BookModify} />
     </Router>

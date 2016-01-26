@@ -18,11 +18,24 @@ app.use(function(err, req, res, next) {
 
 
 /*************************************** weixin start ***********************************************/
+/**
+ * 需要微信环境变量
+ * WEIXIN_APPID
+ * WEIXIN_SECRET
+ * @type {Weixin}
+ */
 var weixin = Weixin.init({
-  // appid && secret
+  appid:process.env.WEIXIN_APPID,
+  secret:process.env.WEIXIN_SECRET
 });
 
 router.get('/signPackage', function(req, res, next) {
+  if(!process.env.WEIXIN_APPID){
+    return res.json({
+      status:400,
+      error:'no weixin env'
+    })
+  }
   var result = {
     url:req.query.url,
     appid:weixin.appid,

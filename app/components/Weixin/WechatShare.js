@@ -26,15 +26,19 @@ var WechatShare = React.createClass({
   },
   componentDidMount() {
     let self=this;
-    console.log(location.href)
+    console.log("location.href="+location.href)
     return
     $.ajax({
       url: '//m.aiyaopai.com/signPackage?url=' + location.href,
       dataType: 'json',
       type: "GET",
       success: function (data) {
-        console.log(data)
-        initWechat(data)
+        console.log("signPackage data= "+data)
+        if(data.error){
+          console.log(data.error)
+        }else{
+          initWechat(data)
+        }
       },
       error : function() {
         console.log('fail');
