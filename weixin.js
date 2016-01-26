@@ -1,7 +1,6 @@
 /**
  * Created by zoey on 2016/1/21.
  */
-var BufferHelper = require('bufferhelper');
 var urlParse = require('url').parse;
 var crypto = require('crypto');
 /**
