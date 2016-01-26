@@ -11,6 +11,7 @@ var InterviewActions = require('../../actions/InterviewActions');
 import { GET_WORK_DETAIL, imgModifier, TITLE } from '../Tools';
 import {History, Link} from 'react-router';
 import Share from '../Share';
+var WechatShare = require('../Weixin/WechatShare');
 
 var interviewDetailPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),History],
@@ -60,6 +61,8 @@ var interviewDetailPage = React.createClass({
     if (this.state.data.User) {
       grapherId = this.state.data.User.Id;
     }
+    let wechatShareTitle = this.state.data.Title;
+    let wechatShareDesc = this.state.data.Title +' YAOPAI，一个全球预约摄影师的平台';
     return (
       <div style={{height: '100%'}} className="interviewDetailPage">
         <HamburgMenu />
@@ -112,6 +115,8 @@ var interviewDetailPage = React.createClass({
             }}>预约</div>
         </Link>
         <Share />
+        <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+        </WechatShare>
       </div>
     );
   }
