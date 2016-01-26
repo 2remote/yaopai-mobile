@@ -67,6 +67,7 @@
         top: 50%; }
     </style>
     <link rel="stylesheet" href="node_modules/weui/dist/style/weui.min.css"/>
+    <script type="text/javascript" src="/imgs/ua-parser.min.js"></script>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1453531938_6835597.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
@@ -78,8 +79,15 @@
     {% } %}
   </head>
   <body>
-    
-    <div class="loader-container">
+    <script type="text/javascript">
+      var parser = new UAParser();
+      var iOS = false;
+      if(parser.getResult().browser.name == 'Safari'){
+        iOS = true;
+      }
+    </script>
+
+    <div id="loader-container" class="loader-container">
       <div class="loader loader-active">
         <div class="loader-inner ball-clip-rotate-multiple" >
           <div></div>
@@ -88,12 +96,16 @@
       </div>
     </div>
     <script>
-      setTimeout(function(){
-        document.querySelector('.loader-container').style.opacity=0;
+      if(iOS){
         setTimeout(function(){
-          document.querySelector('.loader-container').style.display='none';
-        },1000);
-      },3000);
+          document.querySelector('.loader-container').style.opacity=0;
+          setTimeout(function(){
+            document.querySelector('.loader-container').style.display='none';
+          },1000);
+        },3000);
+      }else{
+        document.getElementById('loader-container').remove();
+      }
     </script>
     <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
