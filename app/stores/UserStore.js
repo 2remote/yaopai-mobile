@@ -1,5 +1,6 @@
 var Reflux = require('reflux');
 var UserActions = require('../actions/UserActions');
+var assert = require('assert');
 
 var UserStore = Reflux.createStore({
   userKey : 'yaopai_user',
@@ -68,19 +69,23 @@ var UserStore = Reflux.createStore({
     }
   },
   onLoginSuccess: function(data) {
-    console.log(data);
     //测试本地须转换JSON，集成测试后不需要
     //data = eval("(" + data + ")");
     if (data.Success) {
+      // console.log('onLoginSuccess and return success', this.data, data);
+      this.setCurrentUser(data.User);
+      assert(this.data.flag != 'login', 'flag is changed after setCurrentUser');
       //用户登录成功，需要获得用户信息
       UserActions.currentUser();
       localStorage.setItem(this.userKey,JSON.stringify(this.data));
       this.data.hintMessage = '';
     } else {
       this.data.hintMessage = data.ErrorMsg;
-      this.data.flag = "login";
-      this.trigger(this.data);
+      
     }
+    this.data.flag = "login";
+    this.trigger(this.data);
+    assert(this.data.flag == 'login', 'flag is login before login.');
   },
   /*
     onLoginFailed 主要监听网络访问错误
@@ -225,6 +230,7 @@ var UserStore = Reflux.createStore({
       this.data.isLogin = true;
       this.data.loginDate = new Date();
     }
+    this.trigger(this.data);
   },
   onTelResetPassWordSuccess: function (data) {
     this.data.flag = 'check';
