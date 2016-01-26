@@ -61,6 +61,11 @@ var WechatShare = React.createClass({
         jsApiList: self.props.apis, // 必填，需要使用的JS接口列表，所有JS接口列表见附录2,
         currentUrl:self.state.link //hack wechat js, you must
       });
+      wx.ready(function(){
+        self.setState({
+          isWechatReady:true
+        })
+      })
     }
   },
   componentWillReceiveProps: function(nextProps) {
@@ -73,46 +78,40 @@ var WechatShare = React.createClass({
     }
   },
   render(){
-    let self = this;
-    wx.ready(function(){
-      self.setState({
-        isWechatReady:true
-      })
-      let title = this.state.title;
-      let desc = this.state.desc;
-      let link = this.state.link;
-      let imgUrl = this.state.imgUrl;
-      if(self.state.isWechatReady){
-        wx.onMenuShareTimeline({
-          title: title, // 分享标题
-          link: link, // 分享链接
-          imgUrl: imgUrl, // 分享图标
-          success: function () {
-            console.log("onMenuShareTimeline success")
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function () {
-            // 用户取消分享后执行的回调函数
-            console.log("onMenuShareTimeline cancel")
-          }
-        });
+    let title = this.state.title;
+    let desc = this.state.desc;
+    let link = this.state.link;
+    let imgUrl = this.state.imgUrl;
+    if(this.state.isWechatReady){
+      wx.onMenuShareTimeline({
+        title: title, // 分享标题
+        link: link, // 分享链接
+        imgUrl: imgUrl, // 分享图标
+        success: function () {
+          console.log("onMenuShareTimeline success")
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+          console.log("onMenuShareTimeline cancel")
+        }
+      });
 
-        wx.onMenuShareAppMessage({
-          title: title, // 分享标题
-          desc: desc, // 分享描述
-          link: link, // 分享链接
-          imgUrl: imgUrl, // 分享图标
-          success: function () {
-            console.log("onMenuShareAppMessage success")
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function () {
-            // 用户取消分享后执行的回调函数
-            console.log("onMenuShareAppMessage cancel")
-          }
-        });
-      }
-    })
+      wx.onMenuShareAppMessage({
+        title: title, // 分享标题
+        desc: desc, // 分享描述
+        link: link, // 分享链接
+        imgUrl: imgUrl, // 分享图标
+        success: function () {
+          console.log("onMenuShareAppMessage success")
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+          console.log("onMenuShareAppMessage cancel")
+        }
+      });
+    }
     return <div></div>
   }
 });
