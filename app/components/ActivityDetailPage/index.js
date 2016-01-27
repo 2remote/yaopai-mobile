@@ -11,6 +11,7 @@ var ActivityActions = require('../../actions/ActivityActions');
 import { GET_WORK_DETAIL, imgModifier, TITLE } from '../Tools';
 import {History, Link} from 'react-router';
 import Share from '../Share';
+var WechatShare = require('../Weixin/WechatShare');
 
 var ActivityDetailPage = React.createClass({
   mixins : [Reflux.listenTo(ActivityStore,'_onActivityStoreChange'),History],
@@ -60,6 +61,8 @@ var ActivityDetailPage = React.createClass({
     if (this.state.data.User) {
       grapherId = this.state.data.User.Id;
     }
+    let wechatShareTitle = this.state.data.Title;
+    let wechatShareDesc = this.state.data.Title +' YAOPAI，一个全球预约摄影师的平台';
     return (
       <div style={{height: '100%'}} className="ActivityDetailPage">
         <HamburgMenu />
@@ -92,6 +95,8 @@ var ActivityDetailPage = React.createClass({
           srcSet="imgs/workDetailPage/work-split-line@2X.png 2x" />
           
         <Share />
+        <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+        </WechatShare>
       </div>
     );
   }
