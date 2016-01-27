@@ -24,6 +24,11 @@ var UserAvatarBox = React.createClass({
         height: 208,
         textAlign: 'center',
         backgroundImage: 'url(imgs/bookPageBg.png)'
+      },
+      updateInfo: {
+        position: 'absolute',
+        top: 80,
+        right: 10
       }
     };
 
@@ -37,6 +42,7 @@ var UserAvatarBox = React.createClass({
           src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}
           srcSet={this.props.data.avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
         <div style={style.nick} ref="userNick" >{this.props.data.userName}</div>
+        <div className="updateInfo" style={style.updateInfo}>{"更新资料>"}</div>
       </div>
     );
   }

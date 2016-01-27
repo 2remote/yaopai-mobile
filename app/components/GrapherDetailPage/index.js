@@ -10,6 +10,7 @@ var ActionBar = require('./ActionBar');
 import { API_URL } from '../../api';
 import Share from '../Share';
 import { TITLE } from '../Tools';
+var WechatShare = require('../Weixin/WechatShare');
 
 var GrapherDetailPage = React.createClass({
   getInitialState: function() {
@@ -59,6 +60,8 @@ var GrapherDetailPage = React.createClass({
   },
   render: function() {
     let pageTitle = this.state.grapherInfo.User.NickName || '摄影师';
+    let wechatShareTitle = 'YAOPAI 认证摄影师-'+this.state.grapherInfo.User.NickName;
+    let wechatShareDesc = this.state.grapherInfo.User.NickName +' '+this.state.grapherInfo.Signature;
     return (
       <DocumentTitle title={TITLE.grapherDetailPage + pageTitle}>
         <div className="grapherDetailPage">
@@ -67,6 +70,8 @@ var GrapherDetailPage = React.createClass({
           <WorkIntroList data={this.state.works}/>
           <ActionBar data={this.state.grapherInfo}/>
           <Share />
+          <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          </WechatShare>
         </div>
       </DocumentTitle>
     );

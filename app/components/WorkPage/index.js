@@ -14,6 +14,7 @@ import { LIST_ALL_WORKS, TITLE } from '../Tools';
 
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
+var WechatShare = require('../Weixin/WechatShare');
 
 var YaopaiLogo = React.createClass({
   render: function () {
@@ -146,6 +147,8 @@ var WorkPage = React.createClass({
             onSelectedTag={this.handleUpdateTags} />
 
           <WorkIntroGrapherList data={this.state.works} />
+          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          </WechatShare>
         </div>
       </DocumentTitle>
     );

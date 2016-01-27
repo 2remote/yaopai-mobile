@@ -66,8 +66,8 @@
         left: 50%;
         top: 50%; }
     </style>
-
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1450498112_8514779.css">
+    <link rel="stylesheet" href="node_modules/weui/dist/style/weui.min.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1453531938_6835597.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
@@ -95,6 +95,7 @@
         },1000);
       },3000);
     </script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
     <div id="app"></div>
 
@@ -112,6 +113,5 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
-    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     </body>
 </html>

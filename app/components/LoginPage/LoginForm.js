@@ -2,8 +2,6 @@ var React = require('react');
 var Reflux = require('reflux');
 var validator = require('validator');
 import { Router, Route, Link, History,Location } from 'react-router';
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
 
 var LoginForm = React.createClass({
   getInitialState : function(){
@@ -12,11 +10,10 @@ var LoginForm = React.createClass({
       password : ''
     }
   },
+  
   componentWillMount : function () {
-    //页面加载前判断当前用户信息
-    UserActions.currentUser();
-
   },
+
   _handleLogin : function(){
     var phone = this.state.userName;
     var password = this.state.password;
@@ -32,7 +29,7 @@ var LoginForm = React.createClass({
       autoexpires : 10000
     };
     console.log(loginData);
-    UserActions.login(loginData);
+    this.props.onLogin(loginData);
     return false;
   },
   _handleUserNameChange : function(event){
