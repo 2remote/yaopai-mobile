@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "webpack -p",
-    "preinstall": "npm install history@1.13.1",
+    "preinstall": "npm install history@1.17.0",
     "postinstall": "npm run build",
     "start": "webpack-dev-server",
     "test": "karma start",
@@ -74,10 +74,11 @@
   "dependencies": {
     "jquery": "^2.1.4",
     "react": "^0.14.0",
-    "react-dom": "^0.14.0",
     "react-document-title": "^2.0.1",
+    "react-dom": "^0.14.0",
     "react-lazy-load": "^2.0.1",
     "react-router": "^1.0.0",
+    "react-slick": "^0.9.3",
     "react-swipe": "^2.3.0",
     "react-tappable": "^0.6.0",
     "reflux": "^0.3.0",

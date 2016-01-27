@@ -48,7 +48,6 @@ describe('Albums Store Test', () => {
       'onDeleteSuccess',
       'onSearchSuccess',
       'onGetMyAlbumsSuccess',
-      'onGetCategoriesSuccess',
       'onSaleSuccess',
       'offSaleSuccess',
       'onRecommendListSuccess'
@@ -123,11 +122,7 @@ describe('Albums Store Test', () => {
     expect(AlbumsStore.data.workList).is.empty;
   });
 
-  storeCheckCommonUsage(AlbumsStore, 'onGetCategoriesSuccess', 'getCategories', 'categories');
-
   storeCheckCommonUsage(AlbumsStore, 'onSaleSuccess', 'onSale');
 
   storeCheckCommonUsage(AlbumsStore, 'offSaleSuccess', 'offSale');
-
-  storeCheckCommonUsage(AlbumsStore, 'onRecommendListSuccess', 'recommendList', 'workList');
 });

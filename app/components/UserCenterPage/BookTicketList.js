@@ -10,8 +10,8 @@ var BookTicketList = React.createClass({
   },
 
   render: function() {
-    var bookTicketNodes = this.props.data.map(function(order){
-      return (<BookTicketRow data={order} />);
+    var bookTicketNodes = this.props.data.map(function(order,i){
+      return (<BookTicketRow key={i} data={order} />);
     });
     return (
       <div className="bookTicketList">

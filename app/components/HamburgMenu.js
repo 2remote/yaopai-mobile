@@ -41,19 +41,19 @@ var HamburgMenu = React.createClass({
         }}>
         </div>
         <div
-        onClick={this.showLeft}
-        style={{
-          position: 'fixed',
-          top: 22,
-          padding: 10,
-          margin: -10,
-          left: 22,
-          zIndex: 99,
-        }}
-        className="hamburgMenu">
-        <img 
-          src="imgs/indexPage/hamburg-icon.png"
-          srcSet="imgs/indexPage/hamburg-icon@2X.png 2x" />
+          onClick={this.showLeft}
+          style={ this.props.style || {
+            position: 'fixed',
+            top: 22,
+            padding: 10,
+            margin: -10,
+            left: 22,
+            zIndex: 99,
+          }}
+          className="hamburgMenu">
+        <span
+          className="icon menu_icon"
+          style={{fontSize:25, backgroundColor:'black', color:'white', padding:'10'}} />
         <div>
           <SidePage ref="left" userData={this.state.userData}/>
         </div>

@@ -5,14 +5,15 @@ var DocumentTitle = require('react-document-title');
 
 var WorkTitle = require('./WorkTitle');
 var WorkPieceList = require('./WorkPieceList');
-var GrapherAvatar = require('./GrapherAvatar');
+var GrapherAvatar = require('../common/GrapherAvatar');
 var ActionBar = require('./ActionBar');
 var HamburgMenu = require('../HamburgMenu');
 var UserActions = require('../../actions/UserActions');
 var AlbumsStore = require('../../stores/AlbumsStore');
 var AlbumsActions = require('../../actions/AlbumsActions');
-import { GET_WORK_DETAIL } from '../Tools';
+import { GET_WORK_DETAIL, TITLE } from '../Tools';
 import {History} from 'react-router'
+import Share from '../Share';
 
 var WorkDetailPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'),History],
@@ -55,15 +56,15 @@ var WorkDetailPage = React.createClass({
     return (
       <div className="workDetailPage">
         <HamburgMenu />
-        <DocumentTitle title={this.state.data.Title || '作品'} />
+        <DocumentTitle title={this.state.data.Title + TITLE.workDetailPage} />
         <WorkTitle data={{header: this.state.data.Title}} />
         <WorkPieceList workPieces={this.state.data.Photos} />
         <div style={{textAlign:'center',margin: '34px 0 13px'}}>
-          <img 
-            style={{margin:'0 8px -3px 0'}}
+        
+          <span
             ref="workPriceIcon"
-            src="imgs/common/work-price.png"
-            srcSet="imgs/common/work-price@2X.png 2x" />
+            className="icon price_icon" 
+            style={{fontSize:18,marginRight: 8}} />
 
           {this.renderPrice()}
 
@@ -91,6 +92,7 @@ var WorkDetailPage = React.createClass({
         </div>
         <GrapherAvatar data={this.state.data.User} />
         <ActionBar workId={this.state.data.Id} />
+        <Share />
       </div>
     );
   }

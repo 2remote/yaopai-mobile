@@ -10,9 +10,34 @@ var AlbumsStore = require('../../stores/AlbumsStore');
 var WorkIntroGrapherList = require('./WorkIntroGrapherList');
 var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
-import { LIST_ALL_WORKS } from '../Tools';
-import Menu from './Menu';
+import { LIST_ALL_WORKS, TITLE } from '../Tools';
+
 import ShowMenu from './ShowMenu';
+import _ from 'underscore';
+
+var YaopaiLogo = React.createClass({
+  render: function () {
+    var style = {
+      fontSize:105, 
+      backgroundColor:'black', 
+      color:'white', 
+      lineHeight:0.3,
+      display:'block',
+      textAlign: 'center',
+      paddingTop: 13,
+      paddingBottom: '5px',
+      position: 'fixed',
+      width:'100%',
+      zIndex: '98',
+      top:0,
+      left:0,
+    };
+
+    return (
+      <div className="icon yaopai_logo" style={style} />
+    );
+  }
+});
 
 var WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange') ,AutoLoadPageMixin],
@@ -22,8 +47,8 @@ var WorkPage = React.createClass({
       pageCount :0,
       total : 0,
       works: [],
-      categories : [],
-      category : ''
+      tags: [],
+      selectedTags: []
     };
   },
   getDefaultProps: function() {
@@ -32,34 +57,60 @@ var WorkPage = React.createClass({
     };
   },
   componentDidMount: function() {
-    /*$.ajax ({
-      url: this.props.url,
-      dataType: 'json',
-      cache: false,
-      success: function(data){
-        this.setState({works: data.Result});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-    */
     AlbumsActions.search();
-    AlbumsActions.getCategories();
+    AlbumsActions.getTagList();
+  },
+  handleUpdateTags: function (tag) {
+    var tags = this.state.selectedTags;
+    var foundTagLocation = _.indexOf(this.state.selectedTags,tag);
+    if(  foundTagLocation >= 0 ){
+      // 发现tag存在于选中tags中，判定用户反选该tag
+      tags.splice(foundTagLocation, 1);
+    }else{
+      tags.push(tag);  
+    }
+    
+    this.setState({selectedTags: tags}, function () {
+      console.log(this.state.selectedTags);
+    });
+    // 读取tag过滤的数据
+    AlbumsActions.searchByTags(null, 
+      1,
+      10,
+      this.state.selectedTags.join(","));
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({works : this.state.works.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
+        this.setState({
+          works: this.state.works.concat(_.shuffle(data.workList)),
+          pageIndex: data.pageIndex,
+          total: data.total,
+          pageCount: data.pageCount
+        });
       }
     }
-    if(data.flag == 'getCategories'){
+    if(data.flag == 'searchByTags'){
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        this.setState({categories : data.categories});
+        this.setState({
+          works: _.shuffle(data.workList),
+          pageIndex: data.pageIndex,
+          total: data.total,
+          pageCount: data.pageCount
+        });
+
+      }
+    }
+    if(data.flag == 'getTagList'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+        console.log('getTagList', data);
+        this.setState({tags : data.tags});
       }
     }
   },
@@ -68,14 +119,32 @@ var WorkPage = React.createClass({
     AlbumsActions.search(category);
   },
   onChangePage : function(pageIndex){
-    AlbumsActions.search(this.state.category,pageIndex);
+    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
   },
   render: function() {
+    var cities = [];
+    var catas = [];
+    if ( this.state.tags.length > 1 ){
+      cities = this.state.tags[1].Tags;
+      catas = this.state.tags[0].Tags;  
+    }
+    
     return (
-      <DocumentTitle title="全部作品">
+      <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
-          <HamburgMenu />
-          <ShowMenu categories={this.state.categories} category={this.state.category} onChangeCategory={this.onChangeCategory}/>
+          <HamburgMenu style={{
+            position: 'fixed',
+            top: 5,
+            padding: 10,
+            margin: -10,
+            left: 22,
+            zIndex: 99}}/>
+          <YaopaiLogo />
+          <ShowMenu 
+            cities={cities} 
+            catas={catas} 
+            onSelectedTag={this.handleUpdateTags} />
+
           <WorkIntroGrapherList data={this.state.works} />
         </div>
       </DocumentTitle>

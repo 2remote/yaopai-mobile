@@ -17,11 +17,10 @@ var CallBox = React.createClass({
         <div 
           style={{color:'#3c3c3c'}}
           className="callBox">
-          <img 
-            style={{width:55}}
-            ref="callImage"
-            src="imgs/common/call-logo.png"
-            srcSet="imgs/common/call-logo@2X.png 2x" />
+          <span
+             className="icon phone_circle_icon" 
+            style={{width:55, fontSize:55}}
+            ref="callImage" />
           <div ref="callText" >致电咨询</div>
         </div>
       </a>
@@ -73,7 +72,8 @@ var DoubleCheckInfo = React.createClass({
         marginBottom: 9
       },
       priceImage:{
-        margin: '0 6px -2px -7px'
+        margin: '0 6px -2px -7px',
+        fontSize: 22
       },
       grapherPrice:{
         color: '#969696',
@@ -122,12 +122,10 @@ var DoubleCheckInfo = React.createClass({
           style={style.grapherName}
           ref="grapherName" >{mainText}</div>
 
-        <img 
+        <span
+          className="icon price_icon"
           style={style.priceImage}
-          ref="priceImage"
-          src="imgs/common/work-price.png"
-          srcSet="imgs/common/work-price@2X.png 2x" />
-
+          ref="priceImage" />
         <span 
           style={style.grapherPrice}
           ref="grapherPrice" >{this.props.order.Albums?this.props.order.Albums.Price:'面议'}</span>
@@ -135,7 +133,7 @@ var DoubleCheckInfo = React.createClass({
         <div>
           <span 
             style={style.label}
-            ref="userNameLabel">{this.props.type == 'p' ? '预约用户姓名':'摄影师'}</span>
+            ref="userNameLabel">{this.props.type == 'p' ? '预约姓名':'摄 影 师'}</span>
           <input 
             style={style.input}
             ref="usernameInput"
@@ -228,7 +226,8 @@ var ViewOrder = React.createClass({
         right: 29,
         top: 25,
         margin: -15,
-        padding: 15
+        padding: 15,
+        fontSize: 22
       },
       doubleCheckTicket: {
         backgroundColor: 'white',
@@ -278,12 +277,11 @@ var ViewOrder = React.createClass({
         <DocumentTitle title="订单详情"/> 
         <div style={style.headText} ref="headText" >{title}</div>
         <div style={style.subText}>{information}</div>
-        <img 
+        <span 
+          className="icon close_icon"
           style={style.close}
           onClick={this.handleClose}
-          ref="closeImage"
-          src="imgs/common/close-image.png"
-          srcSet="imgs/common/close-image@2X.png 2x" />
+          ref="closeImage" />
         <div 
           style={style.doubleCheckTicket}
           className="doubleCheckTicket">

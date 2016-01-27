@@ -28,10 +28,8 @@ describe('Albums Actions Test', () => {
       'delete',
       'search',
       'getMyAlbums',
-      'getCategories',
       'onSale',
-      'offSale',
-      'recommendList'
+      'offSale'
     ];
     methods.forEach((method) => {
       albumsActionsHasMethod(method);

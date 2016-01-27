@@ -33,7 +33,8 @@ var BookSuccessDialog = React.createClass({
         right: 29,
         top: 25,
         margin: -15,
-        padding: 15
+        padding: 15,
+        fontSize: 22
       },
       doubleCheckTicket: {
         backgroundColor: 'white',
@@ -57,13 +58,11 @@ var BookSuccessDialog = React.createClass({
         className="bookSuccessDialog">
         <div style={style.headText} ref="headText" >订单成功！</div>
         <div style={style.subText}>请尽快与摄影师取得联系，方便您更好的摄影服务</div>
-        <img 
+        <span 
           style={style.close}
           onClick={this.handleClose}
           ref="closeImage"
-          src="imgs/common/close-image.png"
-          srcSet="imgs/common/close-image@2X.png 2x" />
-
+          className="icon close_icon" />
         <div 
           style={style.doubleCheckTicket}
           className="doubleCheckTicket">

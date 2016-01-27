@@ -47,6 +47,7 @@ var JobTicketRow = React.createClass({
     let deviceHeight = parseInt(window.innerHeight);
     let heightRatio = deviceHeight/627;
     let rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.UserId) % 47 + 1 ) + '.png';
+
     var style = {
       row: {
         clear: 'both',
@@ -65,23 +66,31 @@ var JobTicketRow = React.createClass({
         position: 'absolute',
         left: '0',
         top: '0',
-        background: 'rgba(255,255,255,.7)',
+        background: 'rgba(255,255,255,.85)',
         width: '100%',
         height: 150,
         backgroundSize: '100% 150px',
         zIndex: '9',
         lineHeight: '150px',
         textAlign: 'left',
-        padding: '0 26% 0 14%',
+        padding: '0 14%',
         boxSizing: 'border-box',
+        color: 'green'
       },
       maskIcon: {
         verticalAlign: 'middle',
-        marginRight: '15%',
+        marginRight: '13%',
+        fontSize: 72,
+      },
+      maskText: {
+        fontSize: '2em',
+        verticalAlign: 'middle',
+        fontWeight: 'bold'
       },
       maskTurn: {
         float: 'right',
-        marginTop: '63.5px',
+        marginTop: '4px',
+        fontSize: 25,
       },
       hide: {
         display: 'none',
@@ -129,7 +138,9 @@ var JobTicketRow = React.createClass({
         verticalAlign: 'bottom',
         position: 'relative',
         right: '8%',
+        top: '-8px',
         float: 'right',
+        fontSize: 25
       },
       actionBox: {
         float: 'right',
@@ -214,16 +225,16 @@ var JobTicketRow = React.createClass({
     let linkToStyle= maskShow ? style.hide : style.toDetial;
     let maskText = '';
     let maskIconSrc = '';
-    let maskIconSrcSet = '';
+    
     if (this.props.data.State === 2){
       maskText ='订单取消';
-      maskIconSrc = 'imgs/userCenterPage/order-cancel.png'; 
-      maskIconSrcSet = 'imgs/userCenterPage/order-cancel@2X.png 2x';
+      maskIconSrc = ' fail_icon ';
+      style.mask.color = 'red';
     }  
     if (this.props.data.State === 1){
       maskText = '订单成功';
-      maskIconSrc = 'imgs/userCenterPage/order-confirm.png';
-      maskIconSrcSet = 'imgs/userCenterPage/order-confirm@2X.png 2x';
+      maskIconSrc = ' success_icon ';
+      style.mask.color = 'green';
     }
 
     var jobTicket = (
@@ -267,9 +278,9 @@ var JobTicketRow = React.createClass({
             <span style={style.label} ref="suggestPriceLabel" >参考金额：</span>
             <span style={style.userInfo} ref="suggestPrice" >{this.props.data.IsSpecifiesAlbums?this.props.data.Price:'面议'}</span>
             <Link style={style.link} to={"/viewOrder/p/"+this.props.data.Id}>
-              <img style={style.toDetial}
-                src="imgs/userCenterPage/detail-icon.png"
-                srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+              <span
+                className="icon detail_icon"
+                style={style.toDetial} />
             </Link>
           </div>
         </div>
@@ -282,11 +293,13 @@ var JobTicketRow = React.createClass({
 
         <Link to={"/viewOrder/p/"+this.props.data.Id}>
           <div className="cancel-mask" style={maskStyle}>
-            <img style={style.maskIcon} src={maskIconSrc} srcSet={maskIconSrcSet} />
-            <span style={style.cancelWord}>{maskText}</span>
-            <img style={style.maskTurn}
-              src="imgs/userCenterPage/detail-icon.png"
-              srcSet="imgs/userCenterPage/detail-icon@2X.png 2x" />
+            <span
+              className={"icon" + maskIconSrc}
+              style={style.maskIcon} />
+            <span style={style.maskText}>{maskText}</span>
+            <span
+              className="icon detail_icon"
+              style={style.maskTurn} />
           </div>
         </Link>
 
@@ -297,9 +310,10 @@ var JobTicketRow = React.createClass({
             style={style.editBox}
             className="editBox">
             <a href={"tel:" + this.props.data.BuyerTel}>
-            <img ref="editImage"
-                src="imgs/userCenterPage/contact-image.png"
-                srcSet="imgs/userCenterPage/contact-image@2X.png 2x" />
+            <span 
+              className="icon phone_icon"
+              style={{fontSize:22}}
+              ref="editImage" />
             <div style={style.buttonText} ref="editText" >{this.props.data.State===0?'联系':this.props.data.State===1?'已完成':'已关闭'}</div>
             </a>
           </div>
@@ -309,9 +323,11 @@ var JobTicketRow = React.createClass({
             <div 
               style={style.confirmBox}
               className="confirmBox">
-              <img ref="confirmImage"
-                  src="imgs/userCenterPage/confirm-image.png"
-                  srcSet="imgs/userCenterPage/confirm-image@2X.png 2x" />
+              <span 
+                className="icon success_icon"
+                ref="confirmImage"
+                style={{fontSize:22}} />
+                
               <div style={style.buttonText} ref="confirmText" >确认</div>
             </div>
           </Tappable>
@@ -332,18 +348,22 @@ var JobTicketRow = React.createClass({
               <Tappable 
                   onTap={this.confirm}>
                 <div style={style.confirmBox1} className="confirmBox">
-                  <img ref="confirmImage"
-                      src="imgs/userCenterPage/confirm-circle-image.png"
-                      srcSet="imgs/userCenterPage/confirm-circle-image@2X.png 2x" />
+                  <span 
+                    className="icon confirm_circle_icon"
+                    ref="confirmImage"
+                    style={{fontSize:55}} />
+                    
                   <div ref="confirmText">确定</div>
                 </div>
               </Tappable>
               <Tappable 
                 onTap={this.toggleConfirmDialog}>
                 <div style={style.cancelFrame} className="cancelFrame">
-                  <img ref="cancelImage"
-                      src="imgs/userCenterPage/cancel-circle-image.png"
-                      srcSet="imgs/userCenterPage/cancel-circle-image@2X.png 2x" />
+                  <span 
+                    className="icon cancel_circle_icon"
+                    ref="cancelImage"
+                    style={{fontSize:55}} />
+                    
                   <div ref="cancelText">取消</div>
                 </div>
               </Tappable>

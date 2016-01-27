@@ -8,6 +8,10 @@ var AutoLoadPageMixin = {
     window.addEventListener('scroll', this.onWindowScroll);
     window.addEventListener('resize', this.onWindowScroll);
   },
+  componentDidUpdate: function() {
+    window.addEventListener('scroll', this.onWindowScroll);
+    window.addEventListener('resize', this.onWindowScroll);
+  },
   onWindowScroll : function () {
     const bounds = findDOMNode(this).getBoundingClientRect();
     const scrollTop = window.pageYOffset;
@@ -19,12 +23,15 @@ var AutoLoadPageMixin = {
   },
   onNext : function() {
     var pageIndex = this.state.pageIndex + 1;
-    this.setState({pageIndex :pageIndex });
-    this.onChangePage(pageIndex)
-    if(this.state.pageCount != 0 && this.state.pageCount <= this.state.pageIndex){
+    if(this.state.pageCount != 0 && this.state.pageCount <= pageIndex){
       window.removeEventListener('scroll', this.onWindowScroll);
       window.removeEventListener('resize', this.onWindowScroll);
+      if(this.state.pageCount < pageIndex)
+        return;
     }
+    this.setState({pageIndex :pageIndex });
+    this.onChangePage(pageIndex)
+
   },
   componentWillUnmount: function() {
     window.removeEventListener('scroll', this.onWindowScroll);

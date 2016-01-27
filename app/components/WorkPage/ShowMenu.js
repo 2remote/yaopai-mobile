@@ -1,7 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 import { Router, Route, Link } from 'react-router';
-import Menu from './Menu';
+import TagMenu from './TagMenu';
 
 var ShowMenu = React.createClass({
   getInitialState: function () {
@@ -10,22 +10,33 @@ var ShowMenu = React.createClass({
     }
   },
   handleClick: function () {
-    this.refs.menu.controlShow();
+    this.refs.tagMenu.toggle();
+    this.setState({showState: !this.state.showState});
   },
   render: function () {
+    var transform = this.state.showState ? 'scaleY(-1)' : 'none';
     var style = {
       position: 'fixed',
-      top: '22px',
+      top: 5,
       right: '22px',
-    }
+      zIndex: '99',
+      transform: transform,
+      WebkitTransform: transform,
+      transition: '1s',
+      WebkitTransition: '1s',
+    };
+
     return (
       <div>
         <div style={style} onClick={this.handleClick}>
-          <img 
-            src="imgs/workPage/sifting.png"
-            srcSet="imgs/workPage/sifting@2X.png 2x" />
+          <span
+            className="icon filter_icon" 
+            style={{fontSize:25, backgroundColor:'black', padding:'10', color: 'white'}} />
         </div>
-        <Menu ref="menu" categories={this.props.categories} category={this.props.category} onChangeCategory={this.props.onChangeCategory}/>
+        <TagMenu ref="tagMenu" 
+          cities={this.props.cities} 
+          catas={this.props.catas} 
+          onSelectedTag={this.props.onSelectedTag} />
       </div>
     );
   }

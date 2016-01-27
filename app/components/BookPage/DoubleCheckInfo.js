@@ -24,7 +24,8 @@ var DoubleCheckInfo = React.createClass({
         marginBottom: 9
       },
       priceImage:{
-        margin: '0 6px -2px -7px'
+        margin: '0 6px -2px -7px',
+        fontSize: 22
       },
       grapherPrice:{
         color: '#969696',
@@ -60,11 +61,10 @@ var DoubleCheckInfo = React.createClass({
           style={style.grapherName}
           ref="grapherName" >{this.props.order.Albums?this.props.order.Albums.Title:this.props.order.Photographer?this.props.order.Photographer.NickName:''}</div>
 
-        <img 
-          style={style.priceImage}
+        <span 
           ref="priceImage"
-          src="imgs/common/work-price.png"
-          srcSet="imgs/common/work-price@2X.png 2x" />
+          className="icon price_icon"
+          style={style.priceImage} />
 
         <span 
           style={style.grapherPrice}

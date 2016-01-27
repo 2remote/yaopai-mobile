@@ -5,8 +5,13 @@ const PRODUCTION_ENV = '//api.aiyaopai.com/';
 let DOMAIN = DEV_ENV;
 
 //获取当前网站的根目录
-var Local_Host = window.location.host;
-var Local_Href = window.location.href;
+var Local_Host = "";
+var Local_Href="";
+
+if(typeof window != 'undefined'){
+  Local_Host = window.location.host;
+  Local_Href = window.location.href;  
+}
 
 //根据local host切换api
 function hasHost(host) {
@@ -68,6 +73,25 @@ var API_CONST = {
     offSale: API_URL + 'Albums.SalesOff',
     onSale: API_URL + 'Albums.SalesOn'
   },
+
+  INTERVIEW: {
+    search: API_URL + 'Interview.Search',
+    get: API_URL + 'Interview.Get',
+  },
+
+  ACTIVITY: {
+    search: API_URL + 'Activity.Search',
+    get: API_URL + 'Activity.Get',
+  },
+  
+  AD: {
+    list: API_URL + 'Ad.List',
+  },
+  
+  TAG: {
+    list: API_URL + 'Tag.List',
+  },
+
   ORDER: {
     outSearch: API_URL + 'Order.OutSearch',
     inSearch: API_URL + 'Order.InSearch',
