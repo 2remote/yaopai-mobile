@@ -9,6 +9,7 @@ var InterviewList = require('./InterviewList');
 var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { LIST_ALL_INTERVIEWS, TITLE } from '../Tools';
+var WechatShare = require('../Weixin/WechatShare');
 
 var InterviewPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange') ,AutoLoadPageMixin],
@@ -46,6 +47,8 @@ var InterviewPage = React.createClass({
         <div className="interviewPage">
           <HamburgMenu />
           <InterviewList data={this.state.interviews} />
+          <WechatShare title={TITLE.interviewPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          </WechatShare>
         </div>
       </DocumentTitle>
     );

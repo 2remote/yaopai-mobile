@@ -12,6 +12,7 @@ var ActivityList = require('./ActivityList');
 var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { LIST_ALL_ACTIVITIES, TITLE } from '../Tools';
+var WechatShare = require('../Weixin/WechatShare');
 
 var ActivityPage = React.createClass({
   mixins : [Reflux.listenTo(ActivityStore,'_onActivityStoreChange') ,AutoLoadPageMixin],
@@ -49,6 +50,8 @@ var ActivityPage = React.createClass({
         <div className="activityPage">
           <HamburgMenu />
           <ActivityList data={this.state.Activitys} />
+          <WechatShare title={TITLE.activityPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          </WechatShare>
         </div>
       </DocumentTitle>
     );
