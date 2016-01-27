@@ -10,6 +10,7 @@ var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { TITLE } from '../Tools';
 require('./GrapherPage.css');
 import _ from 'underscore';
+var WechatShare = require('../Weixin/WechatShare');
 
 var GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange') ,AutoLoadPageMixin],
@@ -45,6 +46,8 @@ var GrapherPage = React.createClass({
         <div className="grapherPage">
           <HamburgMenu />
           <GrapherList data={this.state.graphers} />
+          <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          </WechatShare>
         </div>
       </DocumentTitle>
     );
