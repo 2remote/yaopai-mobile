@@ -83,6 +83,7 @@
       var parser = new UAParser();
       var iOS = false;
       var ver8 = false;
+      var WeChat = false;
 
       var browser = parser.getResult().browser.name;
       console.log('name of browser: ' + browser);
@@ -96,6 +97,9 @@
         ver8 = true;
       } 
 
+      var ua = parser.getResult().ua;
+      WeChat = ua.indexOf('MicroMessenger') >= 0;
+      // alert('ua of browser:' + WeChat);
 
     </script>
 
@@ -112,7 +116,7 @@
       // UAParser会取得 iOS，WeChat 和version 8等状态，程序可以需求添加状态
       // 如：
       // Loader 只在iOS下运行，所以 Loader ＝ iOS。模块加载前要判断if(iOS)
-      // Function A在iOS8的微信里有问题，不能使用，所以 Function A = !(iOS && Wechat && ver8) 
+      // Function A在iOS8的微信里有问题，不能使用，所以 Function A = !(iOS && WeChat && ver8) 
       // wxShare时微信分享功能，只在微信里起作用，所以 wxShare = WeChat
 
       // 真值表如下：  
