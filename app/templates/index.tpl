@@ -84,12 +84,14 @@
       var iOS = false;
       var ver8 = false;
 
-      if(parser.getResult().browser.name == 'Safari'){
+      var browser = parser.getResult().browser.name;
+      console.log('name of browser: ' + browser);
+      if( browser == 'Safari'){
         iOS = true;
       }
 
       var version = parser.getResult().browser.version;
-      console.log('verstion of browser: ' + version);
+      console.log('version of browser: ' + version);
       if( version == '8.0.0'){
         ver8 = true;
       } 
