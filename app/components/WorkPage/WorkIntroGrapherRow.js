@@ -28,7 +28,7 @@ var WorkIntroGrapherRow = React.createClass({
         className="workIntroGrapherRow">
         <Link to={"/workDetail/" + this.props.data.Id}>
           <div style={{width:'100%',height:210/375*innerWidth,marginBottom: -36,backgroundColor:'#eeedeb'}}>
-            <LazyLoad threshold={100}>
+            <LazyLoad threshold={100} once>
               <img
                 style={{width:'100%',height:210/375*innerWidth}}
                 ref="workImage"
