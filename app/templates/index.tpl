@@ -66,7 +66,7 @@
         left: 50%;
         top: 50%; }
     </style>
-    <link rel="stylesheet" href="node_modules/weui/dist/style/weui.min.css"/>
+    <link rel="stylesheet" href="imgs/css/weui.min.css"/>
     <script type="text/javascript" src="/imgs/ua-parser.min.js"></script>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1453531938_6835597.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
