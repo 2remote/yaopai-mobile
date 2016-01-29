@@ -85,9 +85,9 @@
       var ver8 = false;
       var WeChat = false;
 
-      var browser = parser.getResult().browser.name;
-      console.log('name of browser: ' + browser);
-      if( browser == 'Safari'){
+      var os = parser.getResult().os.name;
+      console.log('name of os: ' + os);
+      if( os == 'iOS'){
         iOS = true;
       }
 
