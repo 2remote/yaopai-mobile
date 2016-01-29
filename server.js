@@ -87,3 +87,33 @@ var server = app.listen(process.env.PORT || 5000, function () {
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
+
+/**
+ * 如果环境变量存在qcloud 的SecretId 和 SecretKey 就认为需要刷新CDN
+ * 环境变量需要:
+ * QCLOUD_SECRETID : SecretId
+ * QCLOUD_SECRETKEY : SecretKey
+ * CDNURL : 需要刷新的Url
+ */
+var secretId = process.env.QCLOUD_SECRETID;
+var secretKey = process.env.QCLOUD_SECRETKEY;
+var cdnurl = process.env.CDNURL;
+
+if(secretId && secretKey && cdnurl){
+  var QcloudApi = require('./QcloudApi')
+  var qcloud = new QcloudApi({
+    SecretId: secretId,
+    SecretKey: secretKey,
+    method: 'GET',
+    serviceType:'cdn',
+  })
+  qcloud.request({
+    Region: 'gz',
+    Action: 'RefreshCdnUrl',
+    'urls.0': cdnurl,
+  }, function(error, data) {
+    console.log('Qcloud RefreshCdn result : ' + data);
+  })
+}
+
+/****************************************** end ********************************************/
