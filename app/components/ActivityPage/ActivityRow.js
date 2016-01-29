@@ -13,7 +13,7 @@ var ActivityRow = React.createClass({
   },
   render: function() {
 
-    const cover = imgModifier(this.props.data.Cover, "workCover");
+    const cover = imgModifier(this.props.data.Cover, "ad");
     
     return (
       <div 

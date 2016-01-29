@@ -107,7 +107,7 @@ var ImageBoxGrid = React.createClass({
             style={ (i === 3 & filter == 'HomeGrapher') ? homeGrapherLastStyle : style }
             className="imageCell">
           <a href={url} style={{display:'block'}} >
-            <LazyLoad threshold={100}>
+            <LazyLoad threshold={120} once>
               <img
                 style={ (i === 3 & filter == 'HomeGrapher') ? homeGrapherLastStyle : style }
                 src={imgModifier(work.Image, (filter == 'HomeGrapher')?'HomeGrapher':'ImageBoxGrid', borderSize*window.devicePixelRatio)} />
