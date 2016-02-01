@@ -148,7 +148,7 @@
           },1000);
         },3000);
       }else{
-        document.getElementById('loader-container').remove();
+        document.querySelector('.loader-container').style.display='none';
       }
     </script>
     <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
