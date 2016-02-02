@@ -55,7 +55,10 @@ var UserEditProfilePage = React.createClass({
         className="userEditProfile">
         <HamburgMenu />
         <DocumentTitle title="编辑我的资料" />
-        <UserAvatarBox background={true} data={this.state.userInfo}/>
+        <UserAvatarBox 
+          background={true}
+          editAvatar={true}
+          data={this.state.userInfo}/>
         
        
       </div>

@@ -5,12 +5,12 @@ var UserAvatarBox = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
-        userAvatar: 'imgs/default/maxiaochi-small.jpg',
-        userName: 'MA XIAOCHI'
-
+        userName: '未命名',
+        editAvatar: false
       }
     };
   },
+
   render: function() {
     var style = {
       avatar: {
@@ -44,8 +44,8 @@ var UserAvatarBox = React.createClass({
               ref="userAvatar"
               src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}
               srcSet={this.props.data.avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
-            <div style={style.nick} ref="userNick" >{this.props.data.userName}</div>
-            <div className="updateInfo" style={style.updateInfo}>{"更新资料>"}</div>
+            <div style={style.nick} ref="userNick" >{this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}</div>
+            <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
           </div>
         </Link>
       </div>
