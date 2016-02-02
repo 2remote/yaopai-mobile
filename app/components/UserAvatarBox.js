@@ -1,4 +1,5 @@
 var React = require('react');
+import {Link} from 'react-router';
 
 var UserAvatarBox = React.createClass({
   getDefaultProps: function() {
@@ -33,16 +34,20 @@ var UserAvatarBox = React.createClass({
     };
 
     return (
-      <div 
-        style={this.props.background?style.background:{}}
-        className="userAvatarBox">
-        <img 
-          style={style.avatar}
-          ref="userAvatar"
-          src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}
-          srcSet={this.props.data.avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
-        <div style={style.nick} ref="userNick" >{this.props.data.userName}</div>
-        <div className="updateInfo" style={style.updateInfo}>{"更新资料>"}</div>
+      <div>
+        <Link to="/user_edit_profile">
+          <div 
+            style={this.props.background?style.background:{}}
+            className="userAvatarBox">
+            <img 
+              style={style.avatar}
+              ref="userAvatar"
+              src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}
+              srcSet={this.props.data.avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
+            <div style={style.nick} ref="userNick" >{this.props.data.userName}</div>
+            <div className="updateInfo" style={style.updateInfo}>{"更新资料>"}</div>
+          </div>
+        </Link>
       </div>
     );
   }
