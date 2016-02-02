@@ -11,7 +11,7 @@ var UserActions = require('../../actions/UserActions');
 var UserStore = require('../../stores/UserStore');
 
 var _ = require('underscore');
-import { makeUiButton } from '../Tools';
+import { makeTextButton } from '../Tools';
 
 var UserEditProfilePage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -59,7 +59,10 @@ var UserEditProfilePage = React.createClass({
           background={true}
           editAvatar={true}
           data={this.state.userInfo}/>
-        
+
+          {makeTextButton('', '昵称', 'user_nickname_change', 'react-router')}
+          {makeTextButton('', '性别', 'user_gender_change', 'react-router')}
+          {makeTextButton('', '城市', 'user_city_change', 'react-router')}
        
       </div>
     );

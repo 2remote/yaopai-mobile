@@ -57,7 +57,7 @@ exports.parseImageUrl = function(url,width,height){
   return url;
 }
 
-exports.makeUiButton = function (icon, title, link="javascript:;", router="normalLink") {
+exports.makeIconButton = function (icon, title, link="javascript:;", router="normalLink") {
   if(router == 'normalLink'){
     return (
       <div className="weui_cells weui_cells_access" >
@@ -90,6 +90,7 @@ exports.makeUiButton = function (icon, title, link="javascript:;", router="norma
     )
   }
 };
+
 /*
   格式化日期
   format 传入格式 'yyyy-MM-dd'
