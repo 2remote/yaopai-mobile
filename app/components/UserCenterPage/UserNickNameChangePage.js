@@ -37,10 +37,10 @@ var UserEditProfilePage = React.createClass({
   onChangeUserNickName : function (e) {
     var nickname = this.refs.nickname.value.trim();
     console.log('onChangeUserNickName: ', nickname);
-    UserActions.changeUserNickName(nickname);
     if(_.isEmpty(nickname)){
       alert('请填入昵称');
     }else{
+      UserActions.changeUserNickName(nickname);
       this.history.pushState(null, '/user_edit_profile');
     }
   },
