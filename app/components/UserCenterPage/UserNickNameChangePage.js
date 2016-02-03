@@ -34,31 +34,35 @@ var UserEditProfilePage = React.createClass({
     UserActions.changeUserNickName('test');
   },
 
+  onChangeUserNickName : function (e) {
+    var nickname = this.refs.nickname.value.trim();
+    console.log('onChangeUserNickName: ', nickname);
+
+  },
+
   render: function() {
-    var style = {
-      page: {
-        backgroundColor: '#f2f2f2',
-        textAlign: 'center',
-        minHeight: '100%',
-        position: 'absolute',
-        width: '100%'
-      },
-      splitLine: {
-        margin: '24px 0 12px 0'
-      }
-    };
-    
     return (
-      <div 
-        style={style.page}
-        className="userEditProfile">
-        <HamburgMenu />
-        <DocumentTitle title="修改我的昵称" />
-        <UserAvatarBox 
-          background={true}
-          editAvatar={true}
-          data={this.state.userInfo}/>
-       
+      <div className="weui_msg">
+        <div className="weui_text_area">
+          <h2 className="weui_msg_title">修改我的昵称</h2>
+        </div>
+        <div className="weui_cells weui_cells_form" >
+          <DocumentTitle title="修改我的昵称" />
+
+          <div className="weui_cell">
+              <div className="weui_cell_hd">
+                  <label className="weui_label">昵称</label>
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                  <input className="weui_input" ref="nickname" type="text" placeholder="请输入昵称" />
+              </div>
+          </div>
+        </div>
+        <div className="weui_opr_area">
+          <p className="weui_btn_area">
+              <a href="javascript:;" onClick={this.onChangeUserNickName} className="weui_btn weui_btn_primary">修改</a>
+          </p>
+        </div>
       </div>
     );
   }
