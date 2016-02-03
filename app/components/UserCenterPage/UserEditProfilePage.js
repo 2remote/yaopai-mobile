@@ -60,7 +60,7 @@ var UserEditProfilePage = React.createClass({
           editAvatar={true}
           data={this.state.userInfo}/>
 
-          {makeTextButton('', '昵称', 'user_nickname_change', 'react-router')}
+          {makeTextButton('昵称', '#32', 'user_nickname_change', 'react-router')}
           {makeTextButton('', '性别', 'user_gender_change', 'react-router')}
           {makeTextButton('', '城市', 'user_city_change', 'react-router')}
        
