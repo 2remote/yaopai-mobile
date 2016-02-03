@@ -9,6 +9,7 @@ var UserActions = Reflux.createActions({
   'logout' : {children:["success"]},
   'openLogin' : {children:["success","failed"]},
   'currentServerUser' : {children:['success','failed']},
+  'currentUserDetail' : {children:['success','failed']},
   'currentUser' : {children:[]},
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
@@ -50,6 +51,16 @@ UserActions.openLogin.listen(function(data){
 UserActions.currentServerUser.listen(function(data){
   console.log('get currentUser');
   HttpFactory.post(API.USER.current_user,data,this.success,this.failed);
+});
+/*
+  得到当前用户详细信息
+*/
+UserActions.currentUserDetail.listen(function(){
+  console.log('get currentUserDetail');
+  var data = {
+    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName'
+  }  
+  HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
 });
 /*
   用户注册

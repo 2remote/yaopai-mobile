@@ -24,15 +24,13 @@ var UserEditProfilePage = React.createClass({
     if(!data.isLogin){
       this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
     }else{
-      let type = 'out';
-      //得到当前用户的预约订单
       this.setState({userInfo : data})
-      console.log(data);
+      console.log('getCurrentUserDetail: ', data);
     }
   },
 
   componentDidMount : function(){
-    UserActions.currentUser();
+    UserActions.currentUserDetail();
   },
 
   render: function() {
@@ -60,9 +58,9 @@ var UserEditProfilePage = React.createClass({
           editAvatar={true}
           data={this.state.userInfo}/>
 
-          {makeTextButton('昵称', '#32', 'user_nickname_change', 'react-router')}
-          {makeTextButton('', '性别', 'user_gender_change', 'react-router')}
-          {makeTextButton('', '城市', 'user_city_change', 'react-router')}
+          {makeTextButton('昵称', this.state.userInfo.userNickName, 'user_nickname_change', 'react-router')}
+          {makeTextButton('性别', this.state.userInfo.userSex, 'user_gender_change', 'react-router')}
+          {makeTextButton('城市', this.state.userInfo.userCity, 'user_city_change', 'react-router')}
        
       </div>
     );

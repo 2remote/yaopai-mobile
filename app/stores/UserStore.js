@@ -39,6 +39,8 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.loginWithToken.failed,this.onLoginWithTokenFailed);
     this.listenTo(UserActions.currentServerUser.success,this.onGetCurrentUser);
     this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserFailed);
+    this.listenTo(UserActions.currentServerUser.success,this.onGetCurrentUserDetail);
+    this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserDetailFailed);
     this.listenTo(UserActions.currentUser,this.onCurrentUser);
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
     this.listenTo(UserActions.modifyPassword.failed,this.onModifyPasswordFailed);
@@ -134,6 +136,20 @@ var UserStore = Reflux.createStore({
     this.data.flag = 'currentUser';
     this.trigger(this.data);
   },
+  onGetCurrentUserDetail : function (data) {
+    if(data.Success){
+      this.setCurrentUser(data);
+      this.data.flag = 'currentUserDetail';
+      this.trigger(this.data);
+    }else{
+      console.log(data.ErrorMsg);
+    }
+  },
+  onGetCurrentUserDetailFailed : function (data) {
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'currentUserDetail';
+    this.trigger(this.data);
+  },
   /*
     自动登录，如果用了loginToken，是否不用存user的其他信息？
   */
@@ -221,6 +237,9 @@ var UserStore = Reflux.createStore({
       this.data.userId = data.Id;
       this.data.userName = data.Name;
       this.data.userType = data.Type;
+      this.data.userSex = data.Sex == 0 ? '女' : '男';
+      this.data.userNickName = data.NickName || data.Name;
+      this.data.userCity = data.ProvinceName ? data.ProvinceName + " " + data.CityName : '未知';
       if (data.Avatar) {
         this.data.avatar = data.Avatar;
       } else {
