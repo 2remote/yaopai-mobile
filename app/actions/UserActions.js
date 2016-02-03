@@ -12,6 +12,7 @@ var UserActions = Reflux.createActions({
   'currentUserDetail' : {children:['success','failed']},
   'currentUser' : {children:[]},
   'changeUserNickName' : {children:[]}, // 不是Async，可以不写下面的listen，直接在store里指定
+  'changeUserGender' : {children:[]},
   'changeUserNickNameOnServer' : {children:['success','failed']},
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},

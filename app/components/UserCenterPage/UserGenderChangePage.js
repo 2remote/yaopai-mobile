@@ -18,7 +18,7 @@ var UserGenderChange = React.createClass({
   getInitialState : function(){
     return {
       userInfo : {},
-      gender: 0
+      gender: ''
 
     }
   },
@@ -35,12 +35,12 @@ var UserGenderChange = React.createClass({
   },
 
   onChangeUserGender : function (e) {
-    var gender = document.getElementByName('radio1').value.trim();
+    var gender = this.state.gender;
     console.log('onChangeUserGender: ', gender);
-    // UserActions.changeUserGender(gender);
     if(_.isEmpty(gender)){
       alert('请选择性别');
     }else{
+      UserActions.changeUserGender(gender);
       this.history.pushState(null, '/user_edit_profile');
     }
   },
@@ -61,7 +61,7 @@ var UserGenderChange = React.createClass({
         <div className="weui_cells weui_cells_form" >
           <DocumentTitle title="修改我的性别" />
           <div className="weui_cells weui_cells_radio">
-              <label className="weui_cell weui_check_label" for="x11" >
+              <label className="weui_cell weui_check_label" htmlFor="x11" >
                   <div className="weui_cell_bd weui_cell_primary">
                       <p>男</p>
                   </div>
@@ -73,7 +73,7 @@ var UserGenderChange = React.createClass({
                       <span className="weui_icon_checked"></span>
                   </div>
               </label>
-              <label className="weui_cell weui_check_label" for="x12" >
+              <label className="weui_cell weui_check_label" htmlFor="x12" >
 
                   <div className="weui_cell_bd weui_cell_primary">
                       <p>女</p>

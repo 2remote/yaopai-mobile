@@ -4,6 +4,12 @@ var assert = require('assert');
 
 var _ = require('underscore');
 
+function isExist (string) {
+  var exist = false;
+  exist = _.isString(string) && !_.isEmpty(string);
+  return exist;
+};
+
 var UserStore = Reflux.createStore({
   userKey : 'yaopai_user',
   init: function() {
@@ -44,7 +50,9 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.currentServerUser.success,this.onGetCurrentUserDetail);
     this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserDetailFailed);
     this.listenTo(UserActions.currentUser,this.onCurrentUser);
+
     this.listenTo(UserActions.changeUserNickName,this.onChangeUserNickName);
+    this.listenTo(UserActions.changeUserGender,this.onChangeUserGender);
     this.listenTo(UserActions.changeUserNickNameOnServer.success,this.onChangeUserNickNameOnServerSuccess);
     this.listenTo(UserActions.changeUserNickNameOnServer.failed,this.onChangeUserNickNameOnServerFailed);
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
@@ -54,8 +62,17 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.receiveTelResetPassWord.success, this.onreceiveTelResetPassWordSuccess);
     this.listenTo(UserActions.receiveTelResetPassWord.failed, this.onreceiveTelResetPassWordFailed);
   },
+
+  onChangeUserGender : function (gender) {
+    console.log('get gender from action: ', gender);    
+    var exist = false;
+    exist = isExist(gender);
+    this.data.newGenderStatus = exist;
+    this.data.newGender = gender;
+  },
+
   onChangeUserNickName : function (nickname) {
-    console.log('get nickname from action: ', nickname);
+    // console.log('get nickname from action: ', nickname);
     var exist = false;
     exist = _.isString(nickname) && !_.isEmpty(nickname);
     this.data.newNickStatus = exist;
