@@ -18,6 +18,7 @@ var UserGenderChange = React.createClass({
   getInitialState : function(){
     return {
       userInfo : {},
+      gender: 0
 
     }
   },
@@ -33,18 +34,25 @@ var UserGenderChange = React.createClass({
     
   },
 
-  onChangeUserNickName : function (e) {
-    var nickname = this.refs.nickname.value.trim();
-    console.log('onChangeUserNickName: ', nickname);
-    UserActions.changeUserNickName(nickname);
-    if(_.isEmpty(nickname)){
-      alert('请填入昵称');
+  onChangeUserGender : function (e) {
+    var gender = document.getElementByName('radio1').value.trim();
+    console.log('onChangeUserGender: ', gender);
+    // UserActions.changeUserGender(gender);
+    if(_.isEmpty(gender)){
+      alert('请选择性别');
     }else{
       this.history.pushState(null, '/user_edit_profile');
     }
   },
 
+  onChangeCurrentGender : function (e) {
+    var flag = e.target.value.trim();
+    this.setState({gender: flag});
+    console.log("flag changed to:", flag);
+  },
+
   render: function() {
+
     return (
       <div className="weui_msg">
         <div className="weui_text_area">
@@ -52,19 +60,37 @@ var UserGenderChange = React.createClass({
         </div>
         <div className="weui_cells weui_cells_form" >
           <DocumentTitle title="修改我的性别" />
+          <div className="weui_cells weui_cells_radio">
+              <label className="weui_cell weui_check_label" for="x11" >
+                  <div className="weui_cell_bd weui_cell_primary">
+                      <p>男</p>
+                  </div>
+                  <div className="weui_cell_ft" >
+                      <input type="radio" 
+                        className="weui_check" name="radio1" 
+                        id="x11" value="1" 
+                        onClick={this.onChangeCurrentGender} />
+                      <span className="weui_icon_checked"></span>
+                  </div>
+              </label>
+              <label className="weui_cell weui_check_label" for="x12" >
 
-          <div className="weui_cell">
-              <div className="weui_cell_hd">
-                  <label className="weui_label">昵称</label>
-              </div>
-              <div className="weui_cell_bd weui_cell_primary">
-                  <input className="weui_input" ref="nickname" type="text" placeholder="请输入昵称" />
-              </div>
+                  <div className="weui_cell_bd weui_cell_primary">
+                      <p>女</p>
+                  </div>
+                  <div className="weui_cell_ft" >
+                      <input type="radio" name="radio1" 
+                        className="weui_check" id="x12" 
+                        value="0" onClick={this.onChangeCurrentGender} />
+                      <span className="weui_icon_checked"></span>
+                  </div>
+              </label>
           </div>
+          
         </div>
         <div className="weui_opr_area">
           <p className="weui_btn_area">
-              <a href="javascript:;" onClick={this.onChangeUserNickName} className="weui_btn weui_btn_primary">修改</a>
+              <a href="javascript:;" onClick={this.onChangeUserGender} className="weui_btn weui_btn_primary">修改</a>
           </p>
         </div>
       </div>
