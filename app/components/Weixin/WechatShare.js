@@ -24,7 +24,7 @@ var WechatShare = React.createClass({
   },
   getDefaultProps() {
     return {
-      apis:['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage'],//,'onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone'
+      apis:['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage']
     };
   },
   componentDidMount() {
@@ -36,7 +36,7 @@ var WechatShare = React.createClass({
     })
     console.log("location.href="+location.href)
     $.ajax({
-      url: '//dev.m.aiyaopai.com/signPackage?url=' + location.href,
+      url: "//"+location.host + '/signPackage?url=' + location.href,
       dataType: 'json',
       type: "GET",
       success: function (data) {
