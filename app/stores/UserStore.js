@@ -2,6 +2,8 @@ var Reflux = require('reflux');
 var UserActions = require('../actions/UserActions');
 var assert = require('assert');
 
+var _ = require('underscore');
+
 var UserStore = Reflux.createStore({
   userKey : 'yaopai_user',
   init: function() {
@@ -42,6 +44,7 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.currentServerUser.success,this.onGetCurrentUserDetail);
     this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserDetailFailed);
     this.listenTo(UserActions.currentUser,this.onCurrentUser);
+    this.listenTo(UserActions.changeUserNickName,this.onChangeUserNickName);
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
     this.listenTo(UserActions.modifyPassword.failed,this.onModifyPasswordFailed);
     this.listenTo(UserActions.verifyTelResetPassWord.success, this.onTelResetPassWordSuccess);
@@ -49,6 +52,14 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.receiveTelResetPassWord.success, this.onreceiveTelResetPassWordSuccess);
     this.listenTo(UserActions.receiveTelResetPassWord.failed, this.onreceiveTelResetPassWordFailed);
   },
+  onChangeUserNickName : function (nickname) {
+    console.log('get nickname from action: ', nickname);
+    var exist = false;
+    exist = _.isString(nickname) && !_.isEmpty(nickname);
+    this.data.newNickStatus = exist;
+    this.data.newNick = nickname;
+  },
+
   //！！！这个方法只在从服务器得到不到当前用户的状态下调用！！！
   getTokenToLogin : function(){
     //从localStorage读取Data

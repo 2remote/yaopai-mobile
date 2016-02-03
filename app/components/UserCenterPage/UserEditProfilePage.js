@@ -31,6 +31,7 @@ var UserEditProfilePage = React.createClass({
 
   componentDidMount : function(){
     UserActions.currentUserDetail();
+    UserActions.changeUserNickName('test');
   },
 
   render: function() {

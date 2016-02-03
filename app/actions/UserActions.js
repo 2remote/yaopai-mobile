@@ -11,6 +11,7 @@ var UserActions = Reflux.createActions({
   'currentServerUser' : {children:['success','failed']},
   'currentUserDetail' : {children:['success','failed']},
   'currentUser' : {children:[]},
+  'changeUserNickName' : {children:[]}, // 不是Async，可以不写下面的listen，直接在store里指定
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
   'receiveTelResetPassWord': {children: ['success', 'failed']},
@@ -62,6 +63,7 @@ UserActions.currentUserDetail.listen(function(){
   }  
   HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
 });
+
 /*
   用户注册
   data:｛tel,code,password｝
