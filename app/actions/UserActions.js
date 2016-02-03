@@ -13,8 +13,11 @@ var UserActions = Reflux.createActions({
   'currentUser' : {children:[]},
   'changeUserNickName' : {children:[]}, // 不是Async，可以不写下面的listen，直接在store里指定
   'changeUserGender' : {children:[]},
+  'changeUserCity' : {children:[]},
   'changeUserNickNameOnServer' : {children:['success','failed']},
-  'changeUserGenderOnServer' : {children:['success','failed']},
+  'changeUserInfoOnServer' : {children:['success','failed']},
+  // 'changeUserCityOnServer' : {children:['success','failed']},
+
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
   'receiveTelResetPassWord': {children: ['success', 'failed']},
@@ -53,14 +56,13 @@ UserActions.openLogin.listen(function(data){
   得到当前用户
 */
 UserActions.currentServerUser.listen(function(data){
-  console.log('get currentUser');
+  console.log('get currentUser from server');
   HttpFactory.post(API.USER.current_user,data,this.success,this.failed);
 });
 /*
   得到当前用户详细信息
 */
 UserActions.currentUserDetail.listen(function(){
-  console.log('get currentUserDetail');
   var data = {
     Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName'
   }  
@@ -82,11 +84,13 @@ UserActions.changeUserNickNameOnServer.listen(function(nickname){
 /*
   修改 当前用户 性别（必须附上昵称）
 */
-UserActions.changeUserGenderOnServer.listen(function(nickname, gender){
-  console.log('get changeUserGenderOnServer');
+UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
+  console.log('get changeUserInfoOnServer');
+
   var data = {
     NickName: nickname,
-    Sex: gender,
+    Sex: parseInt(gender),
+    Location: parseInt(city),
   }  
   HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
 });
