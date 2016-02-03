@@ -47,16 +47,18 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.loginWithToken.failed,this.onLoginWithTokenFailed);
     this.listenTo(UserActions.currentServerUser.success,this.onGetCurrentUser);
     this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserFailed);
-    this.listenTo(UserActions.currentServerUser.success,this.onGetCurrentUserDetail);
-    this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserDetailFailed);
+    this.listenTo(UserActions.currentUserDetail.success,this.onGetCurrentUserDetail);
+    this.listenTo(UserActions.currentUserDetail.failed,this.onGetCurrentUserDetailFailed);
     this.listenTo(UserActions.currentUser,this.onCurrentUser);
 
     this.listenTo(UserActions.changeUserNickName,this.onChangeUserNickName);
     this.listenTo(UserActions.changeUserGender,this.onChangeUserGender);
+    this.listenTo(UserActions.changeUserCity,this.onChangeUserCity);
     this.listenTo(UserActions.changeUserNickNameOnServer.success,this.onChangeUserNickNameOnServerSuccess);
     this.listenTo(UserActions.changeUserNickNameOnServer.failed,this.onChangeUserNickNameOnServerFailed);
-    this.listenTo(UserActions.changeUserGenderOnServer.success,this.onChangeUserGenderOnServerSuccess);
-    this.listenTo(UserActions.changeUserGenderOnServer.failed,this.onChangeUserGenderOnServerFailed);
+    this.listenTo(UserActions.changeUserInfoOnServer.success,this.onChangeUserInfoOnServerSuccess);
+    this.listenTo(UserActions.changeUserInfoOnServer.failed,this.onChangeUserInfoOnServerFailed);
+
 
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
     this.listenTo(UserActions.modifyPassword.failed,this.onModifyPasswordFailed);
@@ -64,6 +66,14 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.verifyTelResetPassWord.failed,this.onTelResetPassWordFailed);
     this.listenTo(UserActions.receiveTelResetPassWord.success, this.onreceiveTelResetPassWordSuccess);
     this.listenTo(UserActions.receiveTelResetPassWord.failed, this.onreceiveTelResetPassWordFailed);
+  },
+
+  onChangeUserCity : function (areaId) {
+    console.log('get areaId from action: ', areaId);    
+    var exist = false;
+    exist = isExist(areaId);
+    this.data.newCityStatus = exist;
+    this.data.newCity = areaId;
   },
 
   onChangeUserGender : function (gender) {
@@ -136,7 +146,7 @@ var UserStore = Reflux.createStore({
   onCurrentUser : function(){
     var now = new Date();
     var loginDate = this.data.loginDate;
-    if(this.data.isLogin && this.data.loginDate && !this.data.newNickStatus){
+    if(this.data.isLogin && this.data.loginDate){
       if(typeof loginDate == 'string'){
         loginDate = StringToDate(loginDate);
       }
@@ -147,11 +157,12 @@ var UserStore = Reflux.createStore({
         this.data.flag = 'currentUser';
         return this.trigger(this.data);
       }else{
-        this.setCurrentUser(null);
+        // this.setCurrentUser(null);
         return UserActions.currentServerUser();
       }
+    }else{
+      UserActions.currentServerUser();  
     }
-    UserActions.currentServerUser();
   },
   onGetCurrentUser : function(data){
     if(data.Success){
@@ -170,6 +181,7 @@ var UserStore = Reflux.createStore({
     this.trigger(this.data);
   },
   onGetCurrentUserDetail : function (data) {
+    console.log(data);
     if(data.Success){
       this.setCurrentUser(data);
       this.data.flag = 'currentUserDetail';
@@ -221,19 +233,19 @@ var UserStore = Reflux.createStore({
     this.data.flag = 'changeUserNickNameOnServer';
     this.trigger(this.data);
   },
-  onChangeUserGenderOnServerSuccess : function(data){
+  onChangeUserInfoOnServerSuccess : function(data){
     console.log(data);
     if(data.Success){
       this.data.hintMessage = '';
     }else{
       this.data.hintMessage = data.ErrorMsg;
     }
-    this.data.flag = "changeUserGenderOnServer";
+    this.data.flag = "changeUserInfoOnServer";
     this.trigger(this.data);
   },
-  onChangeUserGenderOnServerFailed : function(data){
+  onChangeUserInfoOnServerFailed : function(data){
     this.data.hintMessage = '网络出错啦！';
-    this.data.flag = 'changeUserGenderOnServer';
+    this.data.flag = 'changeUserInfoOnServer';
     this.trigger(this.data);
   },
   /*
@@ -293,12 +305,15 @@ var UserStore = Reflux.createStore({
       this.data.userName = '';
       this.data.local = true;
       this.data.isLogin = false;
+      this.data.newNickStatus = false;
+      this.data.newGenderStatus = false;
+      this.data.newCityStatus = false;
       this.data.userType = '';
       this.data.avatar = '';
       this.data.loginDate = '';
     } else {
       this.data.userId = data.Id;
-      this.data.userName = data.Name;
+      this.data.userName = data.Name || data.NickName;
       this.data.userType = data.Type;
       this.data.userSex = data.Sex == 0 ? '女' : '男';
       this.data.userNickName = data.NickName || data.Name;
