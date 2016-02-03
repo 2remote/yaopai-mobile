@@ -32,7 +32,12 @@ var UserEditProfilePage = React.createClass({
   componentDidMount : function(){
     UserActions.currentUserDetail();
   },
-
+  // 这里并不真正修改信息，在昵称／性别／城市的单独页面已经修改
+  // 这里只是刷新数据 和 跳转页面
+  onChangeInfo : function () {
+    this.history.pushState(null, '/user_center');
+    UserActions.currentUser();
+  },
   render: function() {
     var style = {
       page: {
@@ -68,6 +73,12 @@ var UserEditProfilePage = React.createClass({
           {makeTextButton('昵称', nickname, 'user_nickname_change', 'react-router')}
           {makeTextButton('性别', this.state.userInfo.userSex, 'user_gender_change', 'react-router')}
           {makeTextButton('城市', this.state.userInfo.userCity, 'user_city_change', 'react-router')}
+
+        <div className="weui_opr_area">
+          <p className="weui_btn_area">
+            <a href="javascript:;" onClick={this.onChangeInfo} className="weui_btn weui_btn_primary">保存</a>
+          </p>
+        </div>
        
       </div>
     );

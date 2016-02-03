@@ -45,6 +45,8 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserDetailFailed);
     this.listenTo(UserActions.currentUser,this.onCurrentUser);
     this.listenTo(UserActions.changeUserNickName,this.onChangeUserNickName);
+    this.listenTo(UserActions.changeUserNickNameOnServer.success,this.onChangeUserNickNameOnServerSuccess);
+    this.listenTo(UserActions.changeUserNickNameOnServer.failed,this.onChangeUserNickNameOnServerFailed);
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
     this.listenTo(UserActions.modifyPassword.failed,this.onModifyPasswordFailed);
     this.listenTo(UserActions.verifyTelResetPassWord.success, this.onTelResetPassWordSuccess);
@@ -114,7 +116,7 @@ var UserStore = Reflux.createStore({
   onCurrentUser : function(){
     var now = new Date();
     var loginDate = this.data.loginDate;
-    if(this.data.isLogin && this.data.loginDate){
+    if(this.data.isLogin && this.data.loginDate && !this.data.newNickStatus){
       if(typeof loginDate == 'string'){
         loginDate = StringToDate(loginDate);
       }
@@ -182,6 +184,21 @@ var UserStore = Reflux.createStore({
   onLoginWithTokenFailed : function(data){
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = 'loginToken';
+    this.trigger(this.data);
+  },
+  onChangeUserNickNameOnServerSuccess : function(data){
+    console.log(data);
+    if(data.Success){
+      this.data.hintMessage = '';
+    }else{
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = "changeUserNickNameOnServer";
+    this.trigger(this.data);
+  },
+  onChangeUserNickNameOnServerFailed : function(data){
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'changeUserNickNameOnServer';
     this.trigger(this.data);
   },
   /*
