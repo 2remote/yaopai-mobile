@@ -21,6 +21,7 @@ var UserCityChangePage = React.createClass({
     return {
       userInfo : {},
       areaId: '0',
+      areaName: '未知',
     }
   },
   _onUserStoreChange : function(data){
@@ -34,17 +35,19 @@ var UserCityChangePage = React.createClass({
 
   onChangeUserCity : function (e) {
     var areaId = this.state.areaId;
-    console.log('onAreaChange:', areaId);  
+    var areaName = this.state.areaName;
+    console.log(areaId, areaName);  
     if(areaId != "0") {
-      UserActions.changeUserCity(areaId);
+      UserActions.changeUserCity(areaId, areaName);
       this.history.pushState(null, '/user_edit_profile');
     }else{
       alert('请选择所在城市');
     }
   },
 
-  onAreaChange : function  (areaId) {
+  onAreaChange : function  (areaId, areaName) {
     this.setState({areaId: areaId});
+    this.setState({areaName : areaName});
   },
 
   render: function() {

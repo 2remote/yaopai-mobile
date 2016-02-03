@@ -68,12 +68,13 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.receiveTelResetPassWord.failed, this.onreceiveTelResetPassWordFailed);
   },
 
-  onChangeUserCity : function (areaId) {
+  onChangeUserCity : function (areaId, areaName) {
     console.log('get areaId from action: ', areaId);    
     var exist = false;
     exist = isExist(areaId);
     this.data.newCityStatus = exist;
     this.data.newCity = areaId;
+    this.data.newCityName = areaName;
   },
 
   onChangeUserGender : function (gender) {

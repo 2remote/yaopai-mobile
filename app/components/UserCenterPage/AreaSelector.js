@@ -12,7 +12,8 @@ var AreaSelect = React.createClass({
     return {
       provinceList : [],
       cityList : [],
-      districtList : []
+      districtList : [],
+      found: false,
     }
   },
   componentDidMount : function(){
@@ -26,6 +27,46 @@ var AreaSelect = React.createClass({
       AreaActions.getDistrict({ParentId : nextProps.city});
     }
   },
+  getNameById : function (id) {
+    var found = this.state.found;
+
+    var provinceList = this.state.provinceList;
+    provinceList.map(function (province) {
+      if(province.Id == id){
+        if(found){
+          found = found + " " + province.Name;  
+        }else{
+          found = province.Name;
+        }
+      }
+    })
+
+    var cityList = this.state.cityList;
+    cityList.map(function (city) {
+      if(city.Id == id){
+        if(found){
+          found = found + " " + city.Name;  
+        }else{
+          found = city.Name;
+        }
+      }
+    })
+
+    var districtList = this.state.districtList;
+    districtList.map(function (district) {
+      if(district.Id == id){
+        if(found){
+          found = found + " " + district.Name;  
+        }else{
+          found = district.Name;
+        }
+      }
+    })
+
+    this.setState({found: found});
+    return found;
+  },
+
   onGetAreaList : function(data){
     if(data.flag == 'province'){
       this.setState({provinceList:data.province});
@@ -40,26 +81,29 @@ var AreaSelect = React.createClass({
   onProvinceChange : function(){
     this.setState({cityList:[],districtList:[]});
     var v = ReactDOM.findDOMNode(this.refs.province).value;
+    var vname = this.getNameById(v);
     if(v != '0'){
       AreaActions.getCity({ParentId : v});
     }else{
       this.setState({cityList : []});
     }
-    this.props.onProvinceChange(v);
+    this.props.onProvinceChange(v, vname);
   },
   onCityChange : function(){
     this.setState({districtList:[]});
     var v = ReactDOM.findDOMNode(this.refs.city).value;
+    var vname = this.getNameById(v);
     if(v != '0'){
       AreaActions.getDistrict({ParentId : v});
     }else{
       this.setState({districtList : []});
     }
-    this.props.onCityChange(v);
+    this.props.onCityChange(v, vname);
   },
   onDistrictChange : function(){
     var v = ReactDOM.findDOMNode(this.refs.district).value;
-    this.props.onDistrictChange(v);
+    var vname = this.getNameById(v);
+    this.props.onDistrictChange(v, vname);
   },
   getValue : function(){
     var p = ReactDOM.findDOMNode(this.refs.province).value;
