@@ -25,7 +25,7 @@ var UserEditProfilePage = React.createClass({
       this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
     }else{
       this.setState({userInfo : data})
-      console.log('getCurrentUserDetail: ', data);
+      console.log(data);
     }
   },
 
@@ -40,24 +40,30 @@ var UserEditProfilePage = React.createClass({
     if(nickFlag){ 
       nickname = this.state.userInfo.newNick;
     }
-    this.state.userInfo.newNickStatus = true;
+    nickFlag = true;
 
     // 处理性别
-    var gender = this.state.userInfo.userSex;
+    var gender = this.state.userInfo.userSex == '男' ? 1 : 0;
     var genderFlag = this.state.userInfo.newGenderStatus;
     if(genderFlag){
       gender = this.state.userInfo.newGender;
     }
 
+    // 处理城市
+    var city = this.state.userInfo.userCity;
+    var cityFlag = this.state.userInfo.newCityStatus;
+    if(cityFlag){
+      city = this.state.userInfo.newCity;
+    } 
+
     // 判断changeInfo模式
-    if(nickFlag && !genderFlag){
-      UserActions.changeUserNickNameOnServer(nickname);
-    }else if(nickFlag && genderFlag){
-      UserActions.changeUserGenderOnServer(nickname, gender);
+    if(nickFlag){
+      UserActions.changeUserInfoOnServer(nickname, gender, city);
     }else{
       console.warn("输入的修改内容不全，请重试。");
       console.warn("nickname:", nickname);
       console.warn("gender:", gender);
+      console.warn("city:", city);
       return ;
     }
     
