@@ -29,6 +29,7 @@ import UserTicketsPage from './components/UserCenterPage/UserTicketsPage';
 import UserEditProfile from './components/UserCenterPage/UserEditProfilePage';
 import UserNickNameChange from './components/UserCenterPage/UserNickNameChangePage';
 import UserGenderChange from './components/UserCenterPage/UserGenderChangePage';
+import UserCityChange from './components/UserCenterPage/UserCityChangePage';
 
 import GrapherCenterPage from './components/UserCenterPage/GrapherCenterPage';
 import GrapherTicketsPage from './components/UserCenterPage/GrapherTicketsPage';
@@ -68,6 +69,7 @@ function main(){
       <Route path="/user_edit_profile" component={UserEditProfile} />
       <Route path="/user_nickname_change" component={UserNickNameChange} />
       <Route path="/user_gender_change" component={UserGenderChange} />
+      <Route path="/user_city_change" component={UserCityChange} />
 
       <Route path="/grapher_center" component={GrapherCenterPage} />
       <Route path="/grapher_tickets" component={GrapherTicketsPage} />
