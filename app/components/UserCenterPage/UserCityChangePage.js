@@ -20,7 +20,7 @@ var UserCityChangePage = React.createClass({
   getInitialState : function(){
     return {
       userInfo : {},
-
+      areaId: '0',
     }
   },
   _onUserStoreChange : function(data){
@@ -32,23 +32,19 @@ var UserCityChangePage = React.createClass({
     }
   },
 
-  componentDidMount : function(){
-    
-  },
-
-  onChangeUserNickName : function (e) {
-    var nickname = this.refs.nickname.value.trim();
-    console.log('onChangeUserNickName: ', nickname);
-    if(_.isEmpty(nickname)){
-      alert('请填入昵称');
-    }else{
-      UserActions.changeUserNickName(nickname);
+  onChangeUserCity : function (e) {
+    var areaId = this.state.areaId;
+    console.log('onAreaChange:', areaId);  
+    if(areaId != "0") {
+      UserActions.changeUserCity(areaId);
       this.history.pushState(null, '/user_edit_profile');
+    }else{
+      alert('请选择所在城市');
     }
   },
 
   onAreaChange : function  (areaId) {
-    console.log('onAreaChange:', areaId);  
+    this.setState({areaId: areaId});
   },
 
   render: function() {
@@ -75,7 +71,7 @@ var UserCityChangePage = React.createClass({
         </div>
         <div className="weui_opr_area">
           <p className="weui_btn_area">
-              <a href="javascript:;" onClick={this.onChangeUserNickName} className="weui_btn weui_btn_primary">修改</a>
+              <a href="javascript:;" onClick={this.onChangeUserCity} className="weui_btn weui_btn_primary">修改</a>
           </p>
         </div>
       </div>
