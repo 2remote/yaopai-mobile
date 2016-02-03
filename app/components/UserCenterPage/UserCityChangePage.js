@@ -47,8 +47,8 @@ var UserCityChangePage = React.createClass({
     }
   },
 
-  onProvinceChange : function  (provinceId) {
-    console.log('onProvinceChange:', provinceId);  
+  onAreaChange : function  (areaId) {
+    console.log('onAreaChange:', areaId);  
   },
 
   render: function() {
@@ -58,9 +58,9 @@ var UserCityChangePage = React.createClass({
           <h2 className="weui_msg_title">修改我的城市</h2>
         </div>
         <AreaSelector 
-          onProvinceChange={this.onProvinceChange}
-          onCityChange={this.onProvinceChange}
-          onDistrictChange={this.onProvinceChange} />
+          onProvinceChange={this.onAreaChange}
+          onCityChange={this.onAreaChange}
+          onDistrictChange={this.onAreaChange} />
         <div className="weui_cell weui_cell_select weui_select_after">
           <div className="weui_cell_hd">
             省份
