@@ -31,7 +31,6 @@ var UserEditProfilePage = React.createClass({
 
   componentDidMount : function(){
     UserActions.currentUserDetail();
-    UserActions.changeUserNickName('test');
   },
 
   render: function() {
@@ -48,6 +47,13 @@ var UserEditProfilePage = React.createClass({
       }
     };
     
+    var nickname = "未命名";
+    if( this.state.userInfo.userNickName ){
+      nickname = this.state.userInfo.userNickName;
+    }
+    if ( this.state.userInfo.newNickStatus){
+      nickname = this.state.userInfo.newNick;
+    }
     return (
       <div 
         style={style.page}
@@ -59,7 +65,7 @@ var UserEditProfilePage = React.createClass({
           editAvatar={true}
           data={this.state.userInfo}/>
 
-          {makeTextButton('昵称', this.state.userInfo.userNickName, 'user_nickname_change', 'react-router')}
+          {makeTextButton('昵称', nickname, 'user_nickname_change', 'react-router')}
           {makeTextButton('性别', this.state.userInfo.userSex, 'user_gender_change', 'react-router')}
           {makeTextButton('城市', this.state.userInfo.userCity, 'user_city_change', 'react-router')}
        

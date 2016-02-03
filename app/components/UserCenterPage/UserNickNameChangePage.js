@@ -18,6 +18,7 @@ var UserEditProfilePage = React.createClass({
   getInitialState : function(){
     return {
       userInfo : {},
+
     }
   },
   _onUserStoreChange : function(data){
@@ -30,7 +31,7 @@ var UserEditProfilePage = React.createClass({
   },
 
   componentDidMount : function(){
-    UserActions.currentUserDetail();
+    
   },
 
   onChangeUserNickName : function (e) {
