@@ -55,6 +55,9 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.changeUserGender,this.onChangeUserGender);
     this.listenTo(UserActions.changeUserNickNameOnServer.success,this.onChangeUserNickNameOnServerSuccess);
     this.listenTo(UserActions.changeUserNickNameOnServer.failed,this.onChangeUserNickNameOnServerFailed);
+    this.listenTo(UserActions.changeUserGenderOnServer.success,this.onChangeUserGenderOnServerSuccess);
+    this.listenTo(UserActions.changeUserGenderOnServer.failed,this.onChangeUserGenderOnServerFailed);
+
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
     this.listenTo(UserActions.modifyPassword.failed,this.onModifyPasswordFailed);
     this.listenTo(UserActions.verifyTelResetPassWord.success, this.onTelResetPassWordSuccess);
@@ -216,6 +219,21 @@ var UserStore = Reflux.createStore({
   onChangeUserNickNameOnServerFailed : function(data){
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = 'changeUserNickNameOnServer';
+    this.trigger(this.data);
+  },
+  onChangeUserGenderOnServerSuccess : function(data){
+    console.log(data);
+    if(data.Success){
+      this.data.hintMessage = '';
+    }else{
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = "changeUserGenderOnServer";
+    this.trigger(this.data);
+  },
+  onChangeUserGenderOnServerFailed : function(data){
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'changeUserGenderOnServer';
     this.trigger(this.data);
   },
   /*

@@ -34,7 +34,33 @@ var UserEditProfilePage = React.createClass({
   },
 
   onChangeInfo : function () {
-    UserActions.changeUserNickNameOnServer(this.state.userInfo.newNick);
+    // 处理昵称
+    var nickname = this.state.userInfo.userNickName;
+    var nickFlag = this.state.userInfo.newNickStatus;
+    if(nickFlag){ 
+      nickname = this.state.userInfo.newNick;
+    }
+    this.state.userInfo.newNickStatus = true;
+
+    // 处理性别
+    var gender = this.state.userInfo.userSex;
+    var genderFlag = this.state.userInfo.newGenderStatus;
+    if(genderFlag){
+      gender = this.state.userInfo.newGender;
+    }
+
+    // 判断changeInfo模式
+    if(nickFlag && !genderFlag){
+      UserActions.changeUserNickNameOnServer(nickname);
+    }else if(nickFlag && genderFlag){
+      UserActions.changeUserGenderOnServer(nickname, gender);
+    }else{
+      console.warn("输入的修改内容不全，请重试。");
+      console.warn("nickname:", nickname);
+      console.warn("gender:", gender);
+      return ;
+    }
+    
     this.history.pushState(null, '/user_center');
     UserActions.currentUser();
   },

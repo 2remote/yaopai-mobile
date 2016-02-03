@@ -14,6 +14,7 @@ var UserActions = Reflux.createActions({
   'changeUserNickName' : {children:[]}, // 不是Async，可以不写下面的listen，直接在store里指定
   'changeUserGender' : {children:[]},
   'changeUserNickNameOnServer' : {children:['success','failed']},
+  'changeUserGenderOnServer' : {children:['success','failed']},
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
   'receiveTelResetPassWord': {children: ['success', 'failed']},
@@ -73,6 +74,19 @@ UserActions.changeUserNickNameOnServer.listen(function(nickname){
   console.log('get changeUserNickNameOnServer');
   var data = {
     NickName: nickname,
+  }  
+  HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
+});
+
+
+/*
+  修改 当前用户 性别（必须附上昵称）
+*/
+UserActions.changeUserGenderOnServer.listen(function(nickname, gender){
+  console.log('get changeUserGenderOnServer');
+  var data = {
+    NickName: nickname,
+    Sex: gender,
   }  
   HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
 });
