@@ -87,40 +87,57 @@ var AreaSelect = React.createClass({
     });
 
     return (
-      <div className="form-group">
-        <label className="control-label col-xs-3">
-          <span>地区：</span>
-        </label>
+      <div className="weui_cells">
+        <div className="weui_cell weui_cell_select weui_select_after">
+          <div className="weui_cell_hd">
+            省份：
+          </div>
 
-        <select ref="province" 
-          type="select" 
-          disabled={this.props.disabled} 
-          className="form-control" 
-          value = {this.props.province}
-          onChange={this.onProvinceChange}>
-          <option value={0}>选择省份</option>
-          {province}
-        </select>
+          <div className="weui_cell_bd weui_cell_primary">
+            <select className="weui_select"
+              name="select1"
+              ref="province" 
+              type="select" 
+              disabled={this.props.disabled} 
+              value = {this.props.province}
+              onChange={this.onProvinceChange}>
+              <option value={0}>选择省份</option>
+              {province}
+            </select>
+          </div>
+        </div>
 
-        <select ref="city" 
-          type="select"
-          disabled={this.props.disabled} 
-          className="form-control" 
-          value ={this.props.city}
-          onChange={this.onCityChange}>
-          <option value={0}>选择城市</option>
-          {city}
-        </select>
+        <div className="weui_cell weui_cell_select weui_select_after">
+          <div className="weui_cell_hd">
+            城市：
+          </div>
+          <div className="weui_cell_bd weui_cell_primary">
+            <select className="weui_select"
+              ref="city" 
+              type="select"
+              disabled={this.props.disabled}  
+              value ={this.props.city}
+              onChange={this.onCityChange}>
+              <option value={0}>选择城市</option>
+              {city}
+            </select>
+          </div>
+        </div>
 
-        <select ref="district"
-          type="select"
-          disabled = {this.props.disabled}
-          className="form-control"
-          value={this.props.district}
-          onChange={this.onDistrictChange}>
-          <option value={0}>选择区县</option>
-          {district}
-        </select>
+        <div className="weui_cell weui_cell_select weui_select_after">
+          <div className="weui_cell_hd">
+            地区：
+          </div>
+          <select className="weui_select"
+            ref="district"
+            type="select"
+            disabled = {this.props.disabled}
+            value={this.props.district}
+            onChange={this.onDistrictChange}>
+            <option value={0}>选择区县</option>
+            {district}
+          </select>
+        </div>
       </div>
     );
   }
