@@ -31,13 +31,13 @@ var UserEditProfilePage = React.createClass({
 
   componentDidMount : function(){
     UserActions.currentUserDetail();
-    UserActions.changeUserNickName('test');
   },
 
   onChangeUserNickName : function (e) {
     var nickname = this.refs.nickname.value.trim();
     console.log('onChangeUserNickName: ', nickname);
-
+    UserActions.changeUserNickName(nickname);
+    this.history.pushState(null, '/user_edit_profile');
   },
 
   render: function() {
