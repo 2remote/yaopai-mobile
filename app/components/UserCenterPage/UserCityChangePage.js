@@ -51,16 +51,16 @@ var UserCityChangePage = React.createClass({
         <div className="weui_text_area">
           <h2 className="weui_msg_title">修改我的城市</h2>
         </div>
-        <div className="weui_cells weui_cells_form" >
-          <DocumentTitle title="修改我的城市" />
-
-          <div className="weui_cell">
-              <div className="weui_cell_hd">
-                  <label className="weui_label">昵称</label>
-              </div>
-              <div className="weui_cell_bd weui_cell_primary">
-                  <input className="weui_input" ref="nickname" type="text" placeholder="请输入昵称" />
-              </div>
+        <div className="weui_cell weui_cell_select weui_select_after">
+          <div className="weui_cell_hd">
+            省份
+          </div>
+          <div className="weui_cell_bd weui_cell_primary">
+            <select className="weui_select" name="select2">
+              <option value="1">中国</option>
+              <option value="2">美国</option>
+              <option value="3">英国</option>
+            </select>
           </div>
         </div>
         <div className="weui_opr_area">
