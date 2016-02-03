@@ -32,9 +32,9 @@ var UserEditProfilePage = React.createClass({
   componentDidMount : function(){
     UserActions.currentUserDetail();
   },
-  // 这里并不真正修改信息，在昵称／性别／城市的单独页面已经修改
-  // 这里只是刷新数据 和 跳转页面
+
   onChangeInfo : function () {
+    UserActions.changeUserNickNameOnServer(this.state.userInfo.newNick);
     this.history.pushState(null, '/user_center');
     UserActions.currentUser();
   },
