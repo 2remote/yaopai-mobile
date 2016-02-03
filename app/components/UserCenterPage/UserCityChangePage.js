@@ -57,18 +57,7 @@ var UserCityChangePage = React.createClass({
           onProvinceChange={this.onAreaChange}
           onCityChange={this.onAreaChange}
           onDistrictChange={this.onAreaChange} />
-        <div className="weui_cell weui_cell_select weui_select_after">
-          <div className="weui_cell_hd">
-            省份
-          </div>
-          <div className="weui_cell_bd weui_cell_primary">
-            <select className="weui_select" name="select2">
-              <option value="1">中国</option>
-              <option value="2">美国</option>
-              <option value="3">英国</option>
-            </select>
-          </div>
-        </div>
+       
         <div className="weui_opr_area">
           <p className="weui_btn_area">
               <a href="javascript:;" onClick={this.onChangeUserCity} className="weui_btn weui_btn_primary">修改</a>
