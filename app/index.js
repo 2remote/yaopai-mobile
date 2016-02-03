@@ -27,6 +27,7 @@ import BookModify from './components/BookPage/BookModify';
 import UserCenterPage from './components/UserCenterPage';
 import UserTicketsPage from './components/UserCenterPage/UserTicketsPage';
 import UserEditProfile from './components/UserCenterPage/UserEditProfilePage';
+import UserNickNameChange from './components/UserCenterPage/UserNickNameChangePage';
 
 import GrapherCenterPage from './components/UserCenterPage/GrapherCenterPage';
 import GrapherTicketsPage from './components/UserCenterPage/GrapherTicketsPage';
@@ -64,6 +65,7 @@ function main(){
       <Route path="/user_center" component={UserCenterPage} />
       <Route path="/user_tickets" component={UserTicketsPage} />
       <Route path="/user_edit_profile" component={UserEditProfile} />
+      <Route path="/user_nickname_change" component={UserNickNameChange} />
 
       <Route path="/grapher_center" component={GrapherCenterPage} />
       <Route path="/grapher_tickets" component={GrapherTicketsPage} />
