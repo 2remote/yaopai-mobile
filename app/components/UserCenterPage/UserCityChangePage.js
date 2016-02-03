@@ -4,6 +4,8 @@ var Reflux = require('reflux');
 var HamburgMenu = require('../HamburgMenu');
 var DocumentTitle = require('react-document-title');
 
+var AreaSelector = require('./AreaSelector');
+
 import {History,Location} from 'react-router';
 import UserAvatarBox from '../UserAvatarBox' ;
 
@@ -45,12 +47,20 @@ var UserCityChangePage = React.createClass({
     }
   },
 
+  onProvinceChange : function  (provinceId) {
+    console.log('onProvinceChange:', provinceId);  
+  },
+
   render: function() {
     return (
       <div className="weui_msg">
         <div className="weui_text_area">
           <h2 className="weui_msg_title">修改我的城市</h2>
         </div>
+        <AreaSelector 
+          onProvinceChange={this.onProvinceChange}
+          onCityChange={this.onProvinceChange}
+          onDistrictChange={this.onProvinceChange} />
         <div className="weui_cell weui_cell_select weui_select_after">
           <div className="weui_cell_hd">
             省份
