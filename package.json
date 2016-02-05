@@ -78,6 +78,7 @@
     "express-session": "^1.13.0",
     "https": "^1.0.0",
     "jquery": "^2.1.4",
+    "net": "^1.0.2",
     "object-assign": "^4.0.1",
     "querystring": "^0.2.0",
     "react": "^0.14.0",

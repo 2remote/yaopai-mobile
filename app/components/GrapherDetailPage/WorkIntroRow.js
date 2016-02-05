@@ -30,8 +30,6 @@ var WorkIntroRow = React.createClass({
         left: 0,
         right: 0,
         height: 40,
-        background: '-webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.8)))',
-        background: '-webkit-linear-gradient(bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
         background: 'linear-gradient(to top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%)',
       },
       bottomMask:{
@@ -40,8 +38,6 @@ var WorkIntroRow = React.createClass({
         right: 0,
         height: 40,
         marginTop: -47,
-        background: '-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.8)))',
-        background: '-webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
         background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%)',
       }
     };
