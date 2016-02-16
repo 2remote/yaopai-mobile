@@ -316,7 +316,7 @@ var UserStore = Reflux.createStore({
       this.data.userId = data.Id;
       this.data.userName = data.Name || data.NickName;
       this.data.userType = data.Type;
-      this.data.userSex = data.Sex == 0 ? '女' : '男';
+      this.data.userSex = data.Sex;
       this.data.userNickName = data.NickName || data.Name;
       this.data.userCity = data.ProvinceName ? data.ProvinceName + " " + data.CityName : '未知';
       if (data.Avatar) {

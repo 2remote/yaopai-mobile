@@ -100,6 +100,19 @@ var UserEditProfilePage = React.createClass({
       city = this.state.userInfo.newCityName;
     }
 
+    var gender = "未指定";
+    if( this.state.userInfo.userSex ){
+      gender = this.state.userInfo.userSex;
+    }
+    if ( this.state.userInfo.newGenderStatus){
+      gender = this.state.userInfo.newGender;
+    }
+
+    var genderDisplay = "男";
+    if ( gender == 0){
+      genderDisplay = "女";
+    }
+
     return (
       <div 
         style={style.page}
@@ -112,7 +125,7 @@ var UserEditProfilePage = React.createClass({
           data={this.state.userInfo}/>
 
           {makeTextButton('昵称', nickname, 'user_nickname_change', 'react-router')}
-          {makeTextButton('性别', this.state.userInfo.userSex, 'user_gender_change', 'react-router')}
+          {makeTextButton('性别', genderDisplay, 'user_gender_change', 'react-router')}
           {makeTextButton('城市', city, 'user_city_change', 'react-router')}
 
         <div className="weui_opr_area">
