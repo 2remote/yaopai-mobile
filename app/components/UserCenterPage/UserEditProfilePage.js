@@ -43,7 +43,7 @@ var UserEditProfilePage = React.createClass({
     nickFlag = true;
 
     // 处理性别
-    var gender = this.state.userInfo.userSex == '男' ? 1 : 0;
+    var gender = this.state.userInfo.userSex;
     var genderFlag = this.state.userInfo.newGenderStatus;
     if(genderFlag){
       gender = this.state.userInfo.newGender;
