@@ -86,7 +86,7 @@ var WechatShare = React.createClass({
       wx.onMenuShareTimeline({
         title: title, // 分享标题
         link: link, // 分享链接
-        imgUrl: imgUrl, // 分享图标
+        //imgUrl: imgUrl, // 分享图标
         success: function () {
           console.log("onMenuShareTimeline success")
           // 用户确认分享后执行的回调函数
@@ -101,7 +101,7 @@ var WechatShare = React.createClass({
         title: title, // 分享标题
         desc: desc, // 分享描述
         link: link, // 分享链接
-        imgUrl: imgUrl, // 分享图标
+        //imgUrl: imgUrl, // 分享图标
         success: function () {
           console.log("onMenuShareAppMessage success")
           // 用户确认分享后执行的回调函数
