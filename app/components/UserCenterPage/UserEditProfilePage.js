@@ -101,11 +101,14 @@ var UserEditProfilePage = React.createClass({
     }
 
     var gender = "未指定";
-    if( this.state.userInfo.userSex ){
-      gender = this.state.userInfo.userSex;
+    var genderOnServer = this.state.userInfo.userSex;
+    if( genderOnServer == 0 ||  genderOnServer == 1){
+      gender = genderOnServer;
     }
+
+    var genderOnClient = this.state.userInfo.newGender;
     if ( this.state.userInfo.newGenderStatus){
-      gender = this.state.userInfo.newGender;
+      gender = genderOnClient;
     }
 
     var genderDisplay = "男";
