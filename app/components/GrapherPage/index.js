@@ -46,7 +46,7 @@ var GrapherPage = React.createClass({
         <div className="grapherPage">
           <HamburgMenu />
           <GrapherList data={this.state.graphers} />
-          <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage}>
           </WechatShare>
         </div>
       </DocumentTitle>

@@ -50,7 +50,7 @@ var ActivityPage = React.createClass({
         <div className="activityPage">
           <HamburgMenu />
           <ActivityList data={this.state.Activitys} />
-          <WechatShare title={TITLE.activityPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title={TITLE.activityPage} desc={TITLE.indexPage}>
           </WechatShare>
         </div>
       </DocumentTitle>

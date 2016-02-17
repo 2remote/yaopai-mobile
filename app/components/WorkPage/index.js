@@ -147,7 +147,7 @@ var WorkPage = React.createClass({
             onSelectedTag={this.handleUpdateTags} />
 
           <WorkIntroGrapherList data={this.state.works} />
-          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
           </WechatShare>
         </div>
       </DocumentTitle>
