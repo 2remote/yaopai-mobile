@@ -19,7 +19,7 @@ var WechatShare = React.createClass({
       link:location.href,
       title:'',
       desc:'',
-      imgUrl:'',
+      imgUrl:"//"+location.host +'/imgs/yaopai-logo-weixin.png',
     };
   },
   getDefaultProps() {
@@ -32,8 +32,12 @@ var WechatShare = React.createClass({
     self.setState({
       title:self.props.title,
       desc:self.props.desc,
-      imgUrl:self.props.imgUrl,
     })
+    if(self.props.imgUrl){
+      self.setState({
+        imgUrl:self.props.imgUrl,
+      })
+    }
     console.log("location.href="+location.href)
     $.ajax({
       url: "//"+location.host + '/signPackage?url=' + location.href.split('#')[0],
@@ -73,8 +77,12 @@ var WechatShare = React.createClass({
       this.setState({
         title:nextProps.title,
         desc:nextProps.desc,
-        imgUrl:nextProps.imgUrl,
       });
+      if(nextProps.imgUrl){
+        this.setState({
+          imgUrl:nextProps.imgUrl,
+        })
+      }
     }
   },
   render(){
@@ -86,7 +94,7 @@ var WechatShare = React.createClass({
       wx.onMenuShareTimeline({
         title: title, // 分享标题
         link: link, // 分享链接
-        //imgUrl: imgUrl, // 分享图标
+        imgUrl: imgUrl, // 分享图标
         success: function () {
           console.log("onMenuShareTimeline success")
           // 用户确认分享后执行的回调函数
@@ -101,7 +109,7 @@ var WechatShare = React.createClass({
         title: title, // 分享标题
         desc: desc, // 分享描述
         link: link, // 分享链接
-        //imgUrl: imgUrl, // 分享图标
+        imgUrl: imgUrl, // 分享图标
         success: function () {
           console.log("onMenuShareAppMessage success")
           // 用户确认分享后执行的回调函数
