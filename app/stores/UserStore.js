@@ -242,6 +242,11 @@ var UserStore = Reflux.createStore({
       this.data.hintMessage = data.ErrorMsg;
     }
     this.data.flag = "changeUserInfoOnServer";
+    // 服务器更新成功后，强制更新客户端用户信息
+    if(this.data.newNickStatus){
+      this.data.userName = this.data.newNick;
+      this.data.userNickName = this.data.newNick;
+    }
     this.trigger(this.data);
   },
   onChangeUserInfoOnServerFailed : function(data){
