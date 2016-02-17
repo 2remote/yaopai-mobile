@@ -19,7 +19,7 @@ var WechatShare = React.createClass({
       link:location.href,
       title:'',
       desc:'',
-      imgUrl:"//"+location.host +'/imgs/yaopai-logo-weixin.png',
+      imgUrl:"http://"+location.host +'/imgs/yaopai-logo-weixin.png',
     };
   },
   getDefaultProps() {
@@ -38,9 +38,12 @@ var WechatShare = React.createClass({
         imgUrl:self.props.imgUrl,
       })
     }
+    var targetUrl = location.href.split('#')[0];
+    targetUrl = targetUrl.replace('&', '%26');
     console.log("location.href="+location.href)
+    console.log("targetUrl="+targetUrl)
     $.ajax({
-      url: "//"+location.host + '/signPackage?url=' + location.href.split('#')[0],
+      url: "//"+location.host + '/signPackage?url=' + targetUrl,
       dataType: 'json',
       type: "GET",
       success: function (data) {
