@@ -47,7 +47,7 @@ var InterviewPage = React.createClass({
         <div className="interviewPage">
           <HamburgMenu />
           <InterviewList data={this.state.interviews} />
-          <WechatShare title={TITLE.interviewPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title={TITLE.interviewPage} desc={TITLE.indexPage}>
           </WechatShare>
         </div>
       </DocumentTitle>

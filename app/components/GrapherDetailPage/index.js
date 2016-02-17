@@ -70,7 +70,7 @@ var GrapherDetailPage = React.createClass({
           <WorkIntroList data={this.state.works}/>
           <ActionBar data={this.state.grapherInfo}/>
           <Share />
-          <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.User.Avatar}>
           </WechatShare>
         </div>
       </DocumentTitle>

@@ -135,7 +135,7 @@ var Index = React.createClass({
           </div>
 
           <ImageBoxGrid filter={"HomeActivity"} cols={3} rows={2} works={this.state.adWorks} />
-          <WechatShare title="YAOPAI" desc="YAOPAI ，一个全球预约摄影师的平台" imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title="YAOPAI" desc="YAOPAI ，一个全球预约摄影师的平台">
           </WechatShare>
         </div>
 
