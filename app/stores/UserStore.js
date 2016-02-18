@@ -319,7 +319,11 @@ var UserStore = Reflux.createStore({
       this.data.loginDate = '';
     } else {
       var areaId = 0;
+      // ProvinceId, CityId and CountyId are in same hash table(number=>name) 
+      // which are ordered in desc, so greater number always keeps full location
+      // information. We just need the greatest one when modify it.
       areaId = Math.max(0, data.ProvinceId, data.CityId, data.CountyId);
+
       this.data.location = areaId;
       this.data.userId = data.Id;
       this.data.userName = data.Name || data.NickName;
