@@ -64,7 +64,7 @@ exports.makeIconButton = function (icon, title, link="javascript:;", router="nor
         <a className="weui_cell" href={link} >
             <div className="weui_cell_hd">
                 <div className={"icon " + icon}
-                    style={{fontSize:25, padding:'10'}} />
+                    style={{fontSize:25, paddingRight:10}} />
             </div>
             <div className="weui_cell_bd weui_cell_primary">
                 <p className="titleDemo">{title}</p>
@@ -79,7 +79,7 @@ exports.makeIconButton = function (icon, title, link="javascript:;", router="nor
         <Link className="weui_cell" to={link} >
             <div className="weui_cell_hd">
                 <div className={"icon " + icon}
-                    style={{fontSize:25, padding:'10'}} />
+                    style={{fontSize:25, paddingRight:10}} />
             </div>
             <div className="weui_cell_bd weui_cell_primary">
                 <p className="titleDemo">{title}</p>

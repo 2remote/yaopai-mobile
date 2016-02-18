@@ -39,7 +39,6 @@ var UserCenterPage = React.createClass({
     var style = {
       page: {
         backgroundColor: '#f2f2f2',
-        textAlign: 'center',
         minHeight: '100%',
         position: 'absolute',
         width: '100%'
