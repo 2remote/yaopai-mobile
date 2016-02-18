@@ -11,7 +11,7 @@ var UserActions = require('../../actions/UserActions');
 var UserStore = require('../../stores/UserStore');
 
 var _ = require('underscore');
-import { makeUiButton } from '../Tools';
+import { makeIconButton } from '../Tools';
 
 var UserCenterPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -39,7 +39,6 @@ var UserCenterPage = React.createClass({
     var style = {
       page: {
         backgroundColor: '#f2f2f2',
-        textAlign: 'center',
         minHeight: '100%',
         position: 'absolute',
         width: '100%'
@@ -57,8 +56,8 @@ var UserCenterPage = React.createClass({
         <DocumentTitle title="个人中心" />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
         
-        {makeUiButton('order_icon', '我的订单', 'user_tickets', 'react-router')}
-        {makeUiButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
+        {makeIconButton('order_icon', '我的订单', 'user_tickets', 'react-router')}
+        {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
       </div>
     );
   }
