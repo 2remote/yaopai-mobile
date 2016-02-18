@@ -318,6 +318,9 @@ var UserStore = Reflux.createStore({
       this.data.avatar = '';
       this.data.loginDate = '';
     } else {
+      var areaId = 0;
+      areaId = Math.max(0, data.ProvinceId, data.CityId, data.CountyId);
+      this.data.location = areaId;
       this.data.userId = data.Id;
       this.data.userName = data.Name || data.NickName;
       this.data.userType = data.Type;

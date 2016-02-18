@@ -64,7 +64,7 @@ UserActions.currentServerUser.listen(function(data){
 */
 UserActions.currentUserDetail.listen(function(){
   var data = {
-    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName'
+    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId'
   }  
   HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
 });
@@ -90,8 +90,9 @@ UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
   var data = {
     NickName: nickname,
     Sex: parseInt(gender),
-    Location: parseInt(city),
+    Location: parseInt(city)
   }  
+
   HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
 });
 

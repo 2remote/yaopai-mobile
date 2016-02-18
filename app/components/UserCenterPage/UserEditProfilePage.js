@@ -50,7 +50,7 @@ var UserEditProfilePage = React.createClass({
     }
 
     // 处理城市
-    var city = this.state.userInfo.userCity;
+    var city = this.state.userInfo.location;
     var cityFlag = this.state.userInfo.newCityStatus;
     if(cityFlag){
       city = this.state.userInfo.newCity;
