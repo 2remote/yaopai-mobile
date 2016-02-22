@@ -39,11 +39,6 @@ var AreaStore = Reflux.createStore({
     this.data.flag = "city";
     this.trigger(this.data);
   },
-  onGetProvinceFailed : function(data){
-    this.data.hintMessage = "网络出错了，请重试！";
-    this.data.flag = "city"
-    this.trigger(this.data);
-  },
   onGetDistrictSuccess : function(data){
     if(data.Success){
       this.data.district = data.Result;

@@ -40,7 +40,12 @@ var common = {
     new HtmlwebpackPlugin({
       title: APP_TITLE
     })
-  ]
+  ],
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
 };
 
 if(TARGET === 'start' || !TARGET) {
@@ -84,12 +89,14 @@ if(TARGET === 'build') {
     },
     devtool: 'source-map',
     module: {
+      noParse: /validate\.js/,
       loaders: [
         {
           test: /\.jsx?$/,
           loaders: ['babel'],
           include: path.resolve(ROOT_PATH, 'app')
-        }
+        },
+        { test: /\.json$/, loader: 'json-loader' }
       ]
     },
     plugins: [
