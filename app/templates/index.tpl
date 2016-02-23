@@ -68,6 +68,11 @@
     </style>
     <link rel="stylesheet" href="imgs/css/weui.min.css"/>
     <script type="text/javascript" src="/imgs/ua-parser.min.js"></script>
+
+    <script type="text/javascript" src="/imgs/js/plupload.dev.js"></script>
+    <script type="text/javascript" src="/imgs/js/moxie.js"></script>
+    <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
+
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1454171547_0993109.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
