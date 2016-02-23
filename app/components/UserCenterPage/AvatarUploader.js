@@ -15,6 +15,7 @@ var AvatarUploader = React.createClass({
       userInfo: {},
       imageUrl : '',
       progress : 0,
+      qiniu: {},
       uploaderOption : {
         runtimes: 'html5,flash,html4',
         browse_button: 'avatarUploader',
@@ -56,22 +57,29 @@ var AvatarUploader = React.createClass({
       //得到当前用户的预约订单
       this.setState({userInfo : data})
       console.log(this.state.userInfo);
-      
+
       var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin);
       var definedLogin = ! undefinedLogin;
+      var emptyQiniu = _.isEmpty(this.state.qiniu);
 
-      if(definedLogin && this.state.userInfo.isLogin){
-        var uploaderOption = this.state.uploaderOption;
-        uploaderOption.init.FileUploaded = this.onFileUploaded;
-        uploaderOption.init.UploadProgress = this.onUploadProgress;
-        var qiniu = Qiniu.uploader(uploaderOption);
-
+      if(emptyQiniu && definedLogin && this.state.userInfo.isLogin){
+        var option = this.state.uploaderOption;
+        option.init.FileUploaded = this.onFileUploaded;
+        option.init.UploadProgress = this.onUploadProgress;
+        option.init.Error = this.onErrors;
+        var qiniu = Qiniu.uploader(option);
+        this.setState({qiniu: qiniu});
         console.log(qiniu);
       }
     }
   },
 
+  onErrors : function (up, err, errTip) {
+    console.log(up, err, errTip);
+  },
+
   onFileUploaded : function(up,file,info){
+    console.log("onFileUploaded");
     var res = JSON.parse(info);
     this.setState({imageUrl : res.Url});
     this.props.onUpload(res.Url); //上传成功后可以回调onUpload函数
@@ -79,6 +87,7 @@ var AvatarUploader = React.createClass({
 
 
   onUploadProgress : function(up,file){
+    console.log("onUploadProgress");
     console.log(JSON.stringify(file))
     this.setState({progress :file.percent});
     //this.props.progress = file.percent;
