@@ -75,7 +75,8 @@
     -->
 
     <!--上传图片Product脚本-->
-    <script type="text/javascript" src="/imgs/js/plupload.full.min.js"></script>
+    <script src="http://cdn.staticfile.org/plupload/2.1.8/plupload.full.min.js"></script>
+    <script src="http://cdn.staticfile.org/plupload/2.1.8/i18n/zh_CN.js"></script>
 
     <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
 
