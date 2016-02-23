@@ -1,9 +1,18 @@
 var React = require ('react');
 var API = require('../../api');
 
+var _ = require('underscore');
+
+var Reflux = require('reflux');
+import {History,Location} from 'react-router';
+var UserActions = require('../../actions/UserActions');
+var UserStore = require('../../stores/UserStore');
+
 var AvatarUploader = React.createClass({
+  mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
   getInitialState : function(){
     return {
+      userInfo: {},
       imageUrl : '',
       progress : 0,
       uploaderOption : {
@@ -40,6 +49,28 @@ var AvatarUploader = React.createClass({
     }
   },
 
+  _onUserStoreChange : function(data){
+    if(!data.isLogin){
+      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+    }else{
+      //得到当前用户的预约订单
+      this.setState({userInfo : data})
+      console.log(this.state.userInfo);
+      
+      var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin);
+      var definedLogin = ! undefinedLogin;
+
+      if(definedLogin && this.state.userInfo.isLogin){
+        var uploaderOption = this.state.uploaderOption;
+        uploaderOption.init.FileUploaded = this.onFileUploaded;
+        uploaderOption.init.UploadProgress = this.onUploadProgress;
+        var qiniu = Qiniu.uploader(uploaderOption);
+
+        console.log(qiniu);
+      }
+    }
+  },
+
   onFileUploaded : function(up,file,info){
     var res = JSON.parse(info);
     this.setState({imageUrl : res.Url});
@@ -54,12 +85,7 @@ var AvatarUploader = React.createClass({
   },
 
   componentDidMount : function() {
-    var uploaderOption = this.state.uploaderOption;
-    uploaderOption.init.FileUploaded = this.onFileUploaded;
-    uploaderOption.init.UploadProgress = this.onUploadProgress;
-    var qiniu = Qiniu.uploader(uploaderOption);
-
-    console.log(qiniu);
+    UserActions.currentUser();
   },
 
   render: function () {
