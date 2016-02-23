@@ -33,9 +33,13 @@ var UserAvatarBox = React.createClass({
       }
     };
 
+    let linkTo = '/user_edit_profile';
+    if (this.props.userType === 'grapher') {
+      linkTo = '/grapher_center';
+    }
     return (
       <div>
-        <Link to="/user_edit_profile">
+        <Link to={linkTo}>
           <div 
             style={this.props.background?style.background:{}}
             className="userAvatarBox">
@@ -45,7 +49,7 @@ var UserAvatarBox = React.createClass({
               src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}
               srcSet={this.props.data.avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
             <div style={style.nick} ref="userNick" >{this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}</div>
-            <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
+            <div className="updateInfo" style={style.updateInfo}>{(this.props.editAvatar || this.props.userType === 'grapher' ) ? "" : "更新资料>"}</div>
           </div>
         </Link>
       </div>
