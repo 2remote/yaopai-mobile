@@ -70,6 +70,8 @@ var AvatarUploader = React.createClass({
         var qiniu = Qiniu.uploader(option);
         this.setState({qiniu: qiniu});
         console.log(qiniu);
+      }else{
+        this.setState({qiniu: {}});
       }
     }
   },
