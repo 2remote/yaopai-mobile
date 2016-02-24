@@ -105,7 +105,11 @@ var AvatarUploader = React.createClass({
   },
 
   handleUploadingClick : function () {
-    this.setState({uploadingShow: true});
+    this.setState({uploadingShow: true}, function () {
+      setTimeout(function () {
+        this.setState({uploadingShow: false});
+      }.bind(this), 2000);  
+    });
   },
 
   handleUploadedClick : function () {
