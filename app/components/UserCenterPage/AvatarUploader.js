@@ -137,11 +137,6 @@ var AvatarUploader = React.createClass({
             src={this.props.defaultImage} />
         </div>
 
-        <Button 
-          size="small"
-          onClick={this.handleUploadingClick}>
-            显示上传中Toast
-        </Button>
         <Toast 
           show={this.state.uploadingShow}
           icon="loading"
@@ -149,23 +144,13 @@ var AvatarUploader = React.createClass({
           头像上传中...
         </Toast>
 
-        <Button 
-          size="small"
-          onClick={this.handleUploadedClick}>
-            显示上传成功Toast
-        </Button>
         <Toast 
           show={this.state.uploadedShow}
           icon="success"
           size="large">
           头像上传成功！
         </Toast>
-
-        <Button 
-          size="small"
-          onClick={this.handleUploadFailedClick}>
-            显示上传失败Toast
-        </Button>
+        
         <Toast 
           show={this.state.uploadFailedShow}
           icon="warn"
