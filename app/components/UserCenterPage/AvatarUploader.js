@@ -92,7 +92,9 @@ var AvatarUploader = React.createClass({
     // console.log("onFileUploaded");
     var res = JSON.parse(info);
     this.setState({imageUrl : res.Url});
-    this.props.onUpload(res.Url); //上传成功后可以回调onUpload函数
+
+    // 上传成功后，更新头像
+    UserActions.changeAvatarOnServer(res.Url);
 
     this.handleUploadedClick();
     this.setState({uploadingShow : false});
@@ -150,7 +152,7 @@ var AvatarUploader = React.createClass({
           size="large">
           头像上传成功！
         </Toast>
-        
+
         <Toast 
           show={this.state.uploadFailedShow}
           icon="warn"
