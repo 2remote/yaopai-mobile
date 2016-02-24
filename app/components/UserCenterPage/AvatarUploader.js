@@ -60,7 +60,7 @@ var AvatarUploader = React.createClass({
     }else{
       //得到当前用户的预约订单
       this.setState({userInfo : data})
-      console.log(this.state.userInfo);
+      // console.log(this.state.userInfo);
 
       var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin);
       var definedLogin = ! undefinedLogin;
@@ -74,7 +74,7 @@ var AvatarUploader = React.createClass({
         option.init.BeforeUpload = this.onBeforeUpload;
         var qiniu = Qiniu.uploader(option);
         this.setState({qiniu: qiniu});
-        console.log(qiniu);
+        // console.log(qiniu);
       }else{
         this.setState({qiniu: {}});
       }
