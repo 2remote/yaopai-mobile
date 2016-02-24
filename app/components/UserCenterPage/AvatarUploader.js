@@ -7,11 +7,14 @@ var Reflux = require('reflux');
 import {History,Location} from 'react-router';
 var UserActions = require('../../actions/UserActions');
 var UserStore = require('../../stores/UserStore');
+import {Button} from 'react-weui';
+var UploadingToast = require('./UploadingToast');
 
 var AvatarUploader = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
   getInitialState : function(){
     return {
+      show: false,
       userInfo: {},
       imageUrl : '',
       progress : 0,
@@ -99,6 +102,10 @@ var AvatarUploader = React.createClass({
     UserActions.currentUser();
   },
 
+  handleClick : function () {
+    this.setState({show: true});
+  },
+
   render: function () {
     return (
       <div>
@@ -107,6 +114,8 @@ var AvatarUploader = React.createClass({
             style={this.props.style}
             src={this.props.defaultImage} />
         </div>
+        <Button onClick={this.handleClick}>显示</Button>
+        <UploadingToast show={this.state.show}/>
       </div>
     );
   }
