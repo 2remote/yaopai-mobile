@@ -7,9 +7,7 @@ var Reflux = require('reflux');
 import {History,Location} from 'react-router';
 var UserActions = require('../../actions/UserActions');
 var UserStore = require('../../stores/UserStore');
-import {Button} from 'react-weui';
-var UploadingToast = require('./UploadingToast');
-var UploadedToast = require('./UploadedToast');
+import {Button, Toast} from 'react-weui';
 
 var AvatarUploader = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -108,7 +106,12 @@ var AvatarUploader = React.createClass({
   },
 
   handleUploadedClick : function () {
-    this.setState({uploadedShow: true});
+    this.setState({uploadedShow: true}, function () {
+      setTimeout(function () {
+        this.setState({uploadedShow: false});
+      }.bind(this), 2000);  
+    });
+    
   },
 
   render: function () {
@@ -121,12 +124,26 @@ var AvatarUploader = React.createClass({
         </div>
         <Button 
           size="small"
-          onClick={this.handleUploadingClick}>显示上传中Toast</Button>
-        <UploadingToast show={this.state.uploadingShow}/>
+          onClick={this.handleUploadingClick}>
+            显示上传中Toast
+        </Button>
+        <Toast 
+          show={this.state.uploadingShow}
+          icon="loading"
+          size="large">
+          头像上中...
+        </Toast>
         <Button 
           size="small"
-          onClick={this.handleUploadedClick}>显示上传成功Toast</Button>
-        <UploadedToast show={this.state.uploadedShow}/>
+          onClick={this.handleUploadedClick}>
+            显示上传成功Toast
+        </Button>
+        <Toast 
+          show={this.state.uploadedShow}
+          icon="success"
+          size="large">
+          头像上传成功！
+        </Toast>
       </div>
     );
   }
