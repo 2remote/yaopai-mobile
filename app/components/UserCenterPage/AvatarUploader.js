@@ -9,6 +9,7 @@ var UserActions = require('../../actions/UserActions');
 var UserStore = require('../../stores/UserStore');
 import {Button} from 'react-weui';
 var UploadingToast = require('./UploadingToast');
+var UploadedToast = require('./UploadedToast');
 
 var AvatarUploader = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -102,8 +103,12 @@ var AvatarUploader = React.createClass({
     UserActions.currentUser();
   },
 
-  handleClick : function () {
-    this.setState({show: true});
+  handleUploadingClick : function () {
+    this.setState({uploadingShow: true});
+  },
+
+  handleUploadedClick : function () {
+    this.setState({uploadedShow: true});
   },
 
   render: function () {
@@ -116,8 +121,12 @@ var AvatarUploader = React.createClass({
         </div>
         <Button 
           size="small"
-          onClick={this.handleClick}>显示上传中Toast</Button>
-        <UploadingToast show={this.state.show}/>
+          onClick={this.handleUploadingClick}>显示上传中Toast</Button>
+        <UploadingToast show={this.state.uploadingShow}/>
+        <Button 
+          size="small"
+          onClick={this.handleUploadedClick}>显示上传成功Toast</Button>
+        <UploadedToast show={this.state.uploadedShow}/>
       </div>
     );
   }
