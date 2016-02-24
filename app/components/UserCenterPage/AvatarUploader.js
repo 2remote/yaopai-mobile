@@ -7,7 +7,8 @@ var Reflux = require('reflux');
 import {History,Location} from 'react-router';
 var UserActions = require('../../actions/UserActions');
 var UserStore = require('../../stores/UserStore');
-import {Button, Toast} from 'react-weui';
+import {Button, Toast, Dialog} from 'react-weui';
+const {Alert} = Dialog;
 
 var AvatarUploader = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -116,6 +117,10 @@ var AvatarUploader = React.createClass({
     });
   },
 
+  handleUploadFailedClick : function () {
+    this.setState({uploadFailedShow: true});
+  },
+
   render: function () {
     return (
       <div>
@@ -149,6 +154,11 @@ var AvatarUploader = React.createClass({
           头像上传成功！
         </Toast>
 
+        <Button 
+          size="small"
+          onClick={this.handleUploadFailedClick}>
+            显示上传失败Alert
+        </Button>
       </div>
     );
   }
