@@ -114,7 +114,9 @@ var AvatarUploader = React.createClass({
             style={this.props.style}
             src={this.props.defaultImage} />
         </div>
-        <Button onClick={this.handleClick}>显示</Button>
+        <Button 
+          size="small"
+          onClick={this.handleClick}>显示上传中Toast</Button>
         <UploadingToast show={this.state.show}/>
       </div>
     );
