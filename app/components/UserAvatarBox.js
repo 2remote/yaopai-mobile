@@ -58,17 +58,17 @@ var UserAvatarBox = React.createClass({
 
     return (
       <div>
-        <Link to="/user_edit_profile">
-          <div 
-            style={this.props.background?style.background:{}}
-            className="userAvatarBox">
-            {AvatarImage}
-            <div style={style.nick} ref="userNick" >
-              {this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}
-            </div>
-            <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
+        <div
+          style={this.props.background?style.background:{}}
+          className="userAvatarBox">
+          {AvatarImage}
+          <div style={style.nick} ref="userNick" >
+            {this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}
           </div>
-        </Link>
+          <Link to="/user_edit_profile">
+            <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
+          </Link>
+        </div>
       </div>
     );
   }
