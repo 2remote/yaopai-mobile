@@ -18,7 +18,6 @@ var AvatarUploader = React.createClass({
       uploadedShow: false,
 
       userInfo: {},
-      imageUrl : '',
       progress : 0,
       qiniu: {},
       uploaderOption : {
@@ -91,13 +90,17 @@ var AvatarUploader = React.createClass({
   onFileUploaded : function(up,file,info){
     // console.log("onFileUploaded");
     var res = JSON.parse(info);
-    this.setState({imageUrl : res.Url});
-
+    
     // 上传成功后，更新头像
     UserActions.changeAvatarOnServer(res.Url);
 
+    // 本地更新头像
+    var newUserInfo = this.state.userInfo;
+    newUserInfo.avatar = res.Url;
+    this.setState({userInfo : newUserInfo}, this.setState({uploadingShow : false}));
+
     this.handleUploadedClick();
-    this.setState({uploadingShow : false});
+    UserActions.currentUser();
   },
 
   onBeforeUpload : function (up, file) {
@@ -131,12 +134,17 @@ var AvatarUploader = React.createClass({
   },
 
   render: function () {
+    var avatarImage = this.props.defaultImage;
+    if(!_.isEmpty(this.state.userInfo)){
+      avatarImage = this.state.userInfo.avatar;
+    }
+
     return (
       <div>
         <div id="container">
           <img id="avatarUploader"
             style={this.props.style}
-            src={this.props.defaultImage} />
+            src={avatarImage} />
         </div>
 
         <Toast 
