@@ -13,7 +13,10 @@ var AvatarUploader = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
   getInitialState : function(){
     return {
-      show: false,
+      uploadFailedShow: false,
+      uploadingShow: false,
+      uploadedShow: false,
+
       userInfo: {},
       imageUrl : '',
       progress : 0,
@@ -111,7 +114,6 @@ var AvatarUploader = React.createClass({
         this.setState({uploadedShow: false});
       }.bind(this), 2000);  
     });
-    
   },
 
   render: function () {
@@ -122,6 +124,7 @@ var AvatarUploader = React.createClass({
             style={this.props.style}
             src={this.props.defaultImage} />
         </div>
+
         <Button 
           size="small"
           onClick={this.handleUploadingClick}>
@@ -133,6 +136,7 @@ var AvatarUploader = React.createClass({
           size="large">
           头像上中...
         </Toast>
+
         <Button 
           size="small"
           onClick={this.handleUploadedClick}>
@@ -144,6 +148,7 @@ var AvatarUploader = React.createClass({
           size="large">
           头像上传成功！
         </Toast>
+
       </div>
     );
   }
