@@ -72,6 +72,7 @@ var AvatarUploader = React.createClass({
         option.init.FileUploaded = this.onFileUploaded;
         option.init.UploadProgress = this.onUploadProgress;
         option.init.Error = this.onErrors;
+        option.init.BeforeUpload = this.onBeforeUpload;
         var qiniu = Qiniu.uploader(option);
         this.setState({qiniu: qiniu});
         console.log(qiniu);
@@ -82,34 +83,33 @@ var AvatarUploader = React.createClass({
   },
 
   onErrors : function (up, err, errTip) {
+    this.handleUploadFailedClick();
+    this.setState({uploadingShow : false});
     console.log(up, err, errTip);
   },
 
   onFileUploaded : function(up,file,info){
-    console.log("onFileUploaded");
+    // console.log("onFileUploaded");
     var res = JSON.parse(info);
     this.setState({imageUrl : res.Url});
     this.props.onUpload(res.Url); //上传成功后可以回调onUpload函数
+
+    this.handleUploadedClick();
+    this.setState({uploadingShow : false});
   },
 
+  onBeforeUpload : function (up, file) {
+    this.setState({uploadingShow : true});
+  },
 
   onUploadProgress : function(up,file){
-    console.log("onUploadProgress");
-    console.log(JSON.stringify(file))
+    // console.log("onUploadProgress");
+    // console.log(JSON.stringify(file))
     this.setState({progress :file.percent});
-    //this.props.progress = file.percent;
   },
 
   componentDidMount : function() {
     UserActions.currentUser();
-  },
-
-  handleUploadingClick : function () {
-    this.setState({uploadingShow: true}, function () {
-      setTimeout(function () {
-        this.setState({uploadingShow: false});
-      }.bind(this), 2000);  
-    });
   },
 
   handleUploadedClick : function () {
@@ -146,7 +146,7 @@ var AvatarUploader = React.createClass({
           show={this.state.uploadingShow}
           icon="loading"
           size="large">
-          头像上中...
+          头像上传中...
         </Toast>
 
         <Button 
