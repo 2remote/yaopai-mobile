@@ -68,6 +68,19 @@
     </style>
     <link rel="stylesheet" href="imgs/css/weui.min.css"/>
     <script type="text/javascript" src="/imgs/ua-parser.min.js"></script>
+
+    <!--上传图片dev脚本
+    <script type="text/javascript" src="/imgs/js/moxie.js"></script>
+    <script type="text/javascript" src="/imgs/js/plupload.dev.js"></script>
+    -->
+    
+
+    <!--上传图片Product脚本-->
+    <script src="http://cdn.staticfile.org/plupload/2.1.8/plupload.full.min.js"></script>
+    <script src="http://cdn.staticfile.org/plupload/2.1.8/i18n/zh_CN.js"></script>
+    
+    <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
+
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1454171547_0993109.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
