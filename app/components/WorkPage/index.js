@@ -20,9 +20,9 @@ var Toaster = require('../Toast');
 var YaopaiLogo = React.createClass({
   render: function () {
     var style = {
-      fontSize:105, 
-      backgroundColor:'black', 
-      color:'white', 
+      fontSize:105,
+      backgroundColor:'black',
+      color:'white',
       lineHeight:0.3,
       display:'block',
       textAlign: 'center',
@@ -69,14 +69,14 @@ var WorkPage = React.createClass({
       // 发现tag存在于选中tags中，判定用户反选该tag
       tags.splice(foundTagLocation, 1);
     }else{
-      tags.push(tag);  
+      tags.push(tag);
     }
-    
+
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
     });
     // 读取tag过滤的数据
-    AlbumsActions.searchByTags(null, 
+    AlbumsActions.searchByTags(null,
       1,
       10,
       this.state.selectedTags.join(","));
@@ -130,9 +130,9 @@ var WorkPage = React.createClass({
     var catas = [];
     if ( this.state.tags.length > 1 ){
       cities = this.state.tags[1].Tags;
-      catas = this.state.tags[0].Tags;  
+      catas = this.state.tags[0].Tags;
     }
-    
+
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
@@ -144,15 +144,15 @@ var WorkPage = React.createClass({
             left: 22,
             zIndex: 99}}/>
           <YaopaiLogo />
-          <ShowMenu 
-            cities={cities} 
-            catas={catas} 
+          <ShowMenu
+            cities={cities}
+            catas={catas}
             onSelectedTag={this.handleUpdateTags} />
 
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
           </WechatShare>
-          <Toaster ref="toast" css={{}} duration="1000000"/>
+          <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

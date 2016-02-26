@@ -11,7 +11,9 @@ var Toaster = React.createClass({
   },
   getDefaultProps: function() {
     return {
-      duration: 1000
+      duration: 1000,
+      bottom:false,
+      css:{}
     };
   },
   timeId:false,
@@ -55,10 +57,16 @@ var Toaster = React.createClass({
       WebkitTransition:'all ease 1s',
       transition: 'all ease 1s'
     };
-    if (this.props.css) {
-      styles.top    = undefined;
+    if (this.props.bottom) {
+      styles.top = undefined;
       styles.display = 'none';
       styles.bottom = 0;
+    }
+    if (this.props.css) {
+      var css = this.props.css
+      for (var p in css) {
+        styles[p] = css[p];
+      }
     }
     return (
       <div ref="displayCtrl" style={styles}>

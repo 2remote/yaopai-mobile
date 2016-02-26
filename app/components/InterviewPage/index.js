@@ -52,7 +52,7 @@ var InterviewPage = React.createClass({
           <InterviewList data={this.state.interviews} />
           <WechatShare title={TITLE.interviewPage} desc={TITLE.indexPage}>
           </WechatShare>
-          <Toaster ref="toast" css={{}} duration="1000000"/>
+          <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

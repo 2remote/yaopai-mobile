@@ -44,7 +44,7 @@ var ActivityPage = React.createClass({
     }
   },
   onChangePage : function (pageIndex) {
-    this.onShowToast('åŠªåŠ›åŠ è½½ä¸­...')
+    this.onShowToast('Å¬Á¦¼ÓÔØÖÐ...')
     ActivityActions.search(pageIndex);
   },
   render: function() {
@@ -55,7 +55,7 @@ var ActivityPage = React.createClass({
           <ActivityList data={this.state.Activitys} />
           <WechatShare title={TITLE.activityPage} desc={TITLE.indexPage}>
           </WechatShare>
-          <Toaster ref="toast" css={{}} duration="1000000"/>
+          <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

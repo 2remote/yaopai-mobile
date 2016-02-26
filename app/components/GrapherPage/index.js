@@ -51,7 +51,7 @@ var GrapherPage = React.createClass({
           <GrapherList data={this.state.graphers} />
           <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage}>
           </WechatShare>
-          <Toaster ref="toast" css={{}} duration="1000000"/>
+          <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );
