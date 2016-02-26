@@ -9,22 +9,35 @@ var Toaster = React.createClass({
       top: '-200px',
     }
   },
+  getDefaultProps: function() {
+    return {
+      duration: 1000
+    };
+  },
+  timeId:false,
   componentDidUpdate: function () {
     if (this.state.display == 'block') {
-      setTimeout(function () {
+      this.timeId = setTimeout(function () {
         this.hide();
-      }.bind(this), 1000)
+        this.timeId = false;
+      }.bind(this), this.props.duration);
     }
+  },
+  componentWillUnmount () {
+    this.timeId && clearTimeout(this.timeId);
   },
   show: function (content) {
     this.setState({display: 'block', content: content, top: 0
     });
   },
   hide: function () {
-    setTimeout(function () {
-      this.setState({display: 'none', content: '', top: '-200px'
-      });
-    }.bind(this), 1000)
+    if (this.state.display == 'block') {
+      this.timeId && clearTimeout(this.timeId);
+      this.timeId = false
+      setTimeout(function () {
+        this.setState({display: 'none', content: '', top: '-200px'})
+      }.bind(this), 1000)
+    }
   },
   render: function () {
     var styles = {

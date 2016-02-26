@@ -10,6 +10,7 @@ var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { LIST_ALL_INTERVIEWS, TITLE } from '../Tools';
 var WechatShare = require('../Weixin/WechatShare');
+var Toaster = require('../Toast');
 
 var InterviewPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange') ,AutoLoadPageMixin],
@@ -35,10 +36,12 @@ var InterviewPage = React.createClass({
         console.log(data.hintMessage);
       }else{
         this.setState({interviews : this.state.interviews.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
+        this.onHideToast()
       }
     }
   },
   onChangePage : function (pageIndex) {
+    this.onShowToast('努力加载中...')
     InterviewActions.search(pageIndex);
   },
   render: function() {
@@ -49,6 +52,7 @@ var InterviewPage = React.createClass({
           <InterviewList data={this.state.interviews} />
           <WechatShare title={TITLE.interviewPage} desc={TITLE.indexPage}>
           </WechatShare>
+          <Toaster ref="toast" css={{}} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

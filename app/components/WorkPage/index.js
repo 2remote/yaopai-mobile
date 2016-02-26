@@ -15,6 +15,7 @@ import { LIST_ALL_WORKS, TITLE } from '../Tools';
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
 var WechatShare = require('../Weixin/WechatShare');
+var Toaster = require('../Toast');
 
 var YaopaiLogo = React.createClass({
   render: function () {
@@ -91,6 +92,7 @@ var WorkPage = React.createClass({
           total: data.total,
           pageCount: data.pageCount
         });
+        this.onHideToast()
       }
     }
     if(data.flag == 'searchByTags'){
@@ -120,6 +122,7 @@ var WorkPage = React.createClass({
     AlbumsActions.search(category);
   },
   onChangePage : function(pageIndex){
+    this.onShowToast('努力加载中...')
     AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
   },
   render: function() {
@@ -149,6 +152,7 @@ var WorkPage = React.createClass({
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
           </WechatShare>
+          <Toaster ref="toast" css={{}} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

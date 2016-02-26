@@ -55,20 +55,25 @@ var UserAvatarBox = React.createClass({
     if(this.props.editAvatar){
       AvatarImage = AvatarUploaderImage;
     }
-
+    var content = (
+      <div
+      style={this.props.background?style.background:{}}
+      className="userAvatarBox">
+        {AvatarImage}
+        <div style={style.nick} ref="userNick" >
+          {this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}
+        </div>
+      </div>
+    );
+    var children = (
+      <Link to="/user_edit_profile">{content}</Link>
+    );
+    if(this.props.editAvatar){
+      children = (<div>{content}</div>)
+    }
     return (
       <div>
-        <div
-          style={this.props.background?style.background:{}}
-          className="userAvatarBox">
-          {AvatarImage}
-          <div style={style.nick} ref="userNick" >
-            {this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}
-          </div>
-          <Link to="/user_edit_profile">
-            <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
-          </Link>
-        </div>
+        {children}
       </div>
     );
   }
