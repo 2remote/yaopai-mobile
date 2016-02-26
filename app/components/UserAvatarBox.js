@@ -63,6 +63,7 @@ var UserAvatarBox = React.createClass({
         <div style={style.nick} ref="userNick" >
           {this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}
         </div>
+        <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
       </div>
     );
     var children = (
