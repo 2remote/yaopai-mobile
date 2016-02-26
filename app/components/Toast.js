@@ -6,7 +6,7 @@ var Toaster = React.createClass({
     return {
       display: 'none',
       content: '',
-      top: '-200px',
+      top: '-200px'
     }
   },
   getDefaultProps: function() {
@@ -27,15 +27,16 @@ var Toaster = React.createClass({
     this.timeId && clearTimeout(this.timeId);
   },
   show: function (content) {
-    this.setState({display: 'block', content: content, top: 0
-    });
+    this.setState({display: 'block', content: content, top: 0});
+    this.refs.displayCtrl.style.display = 'block';
   },
   hide: function () {
     if (this.state.display == 'block') {
       this.timeId && clearTimeout(this.timeId);
-      this.timeId = false
+      this.timeId = false;
       setTimeout(function () {
-        this.setState({display: 'none', content: '', top: '-200px'})
+        this.setState({display: 'none', content: '', top: '-200px'});
+        this.refs.displayCtrl.style.display = 'none';
       }.bind(this), 1000)
     }
   },
@@ -52,14 +53,15 @@ var Toaster = React.createClass({
       lineHeight : '1em',
       fontSize: '14px',
       WebkitTransition:'all ease 1s',
-      transition: 'all ease 1s',
+      transition: 'all ease 1s'
     };
     if (this.props.css) {
       styles.top    = undefined;
+      styles.display = 'none';
       styles.bottom = 0;
     }
     return (
-      <div style={styles}>
+      <div ref="displayCtrl" style={styles}>
         {this.state.content}
       </div>
     )
