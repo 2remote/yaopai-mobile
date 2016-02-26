@@ -59,6 +59,9 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.changeUserInfoOnServer.success,this.onChangeUserInfoOnServerSuccess);
     this.listenTo(UserActions.changeUserInfoOnServer.failed,this.onChangeUserInfoOnServerFailed);
 
+    // 修改头像
+    this.listenTo(UserActions.changeAvatarOnServer.success,this.onchangeAvatarOnServerSuccess);
+    this.listenTo(UserActions.changeAvatarOnServer.failed,this.onchangeAvatarOnServerFailed);
 
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
     this.listenTo(UserActions.modifyPassword.failed,this.onModifyPasswordFailed);
@@ -252,6 +255,21 @@ var UserStore = Reflux.createStore({
   onChangeUserInfoOnServerFailed : function(data){
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = 'changeUserInfoOnServer';
+    this.trigger(this.data);
+  },
+  onchangeAvatarOnServerSuccess : function(data){
+    console.log(data);
+    if(data.Success){
+      this.data.hintMessage = '';
+    }else{
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = "changeAvatarOnServer";
+    this.trigger(this.data);
+  },
+  onchangeAvatarOnServerFailed : function(data){
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'changeAvatarOnServer';
     this.trigger(this.data);
   },
   /*
