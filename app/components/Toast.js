@@ -55,10 +55,8 @@ var Toaster = React.createClass({
       transition: 'all ease 1s',
     };
     if (this.props.css) {
-      var css = this.props.css
-      for (var p in css) {
-        styles[p] = css[p];
-      }
+      styles.top    = undefined;
+      styles.bottom = 0;
     }
     return (
       <div style={styles}>
