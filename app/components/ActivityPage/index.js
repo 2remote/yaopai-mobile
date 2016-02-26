@@ -44,7 +44,7 @@ var ActivityPage = React.createClass({
     }
   },
   onChangePage : function (pageIndex) {
-    this.onShowToast('Å¬Á¦¼ÓÔØÖĞ...')
+    this.onShowToast('åŠªåŠ›åŠ è½½ä¸­...')
     ActivityActions.search(pageIndex);
   },
   render: function() {
