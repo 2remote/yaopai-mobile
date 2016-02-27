@@ -152,7 +152,7 @@ var WorkPage = React.createClass({
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
           </WechatShare>
-          <Toaster ref="toast" bottom={true} duration="1000000"/>
+          <Toaster ref="toast" worfPageIs={true} bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

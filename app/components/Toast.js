@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 var Toaster = React.createClass({
   displayName: 'ReactToaster',
@@ -31,6 +32,7 @@ var Toaster = React.createClass({
   show: function (content) {
     this.setState({display: 'block', content: content, top: 0});
     this.refs.displayCtrl.style.display = 'block';
+    this.props.worfPageIs ? $("#app").offset({top: -20, left:0}) : $("#app").offset({top: -45, left:0});
   },
   hide: function () {
     if (this.state.display == 'block') {
@@ -39,7 +41,8 @@ var Toaster = React.createClass({
       setTimeout(function () {
         this.setState({display: 'none', content: '', top: '-200px'});
         this.refs.displayCtrl.style.display = 'none';
-      }.bind(this), 1000)
+        $("#app").offset({top: 0, left:0}).css("top","0");
+      }.bind(this), 200);
     }
   },
   render: function () {
@@ -63,7 +66,7 @@ var Toaster = React.createClass({
       styles.bottom = 0;
     }
     if (this.props.css) {
-      var css = this.props.css
+      var css = this.props.css;
       for (var p in css) {
         styles[p] = css[p];
       }
