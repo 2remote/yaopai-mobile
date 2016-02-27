@@ -1,15 +1,17 @@
 var React = require('react');
+import {Link} from 'react-router';
+var AvatarUploader = require('./UserCenterPage/AvatarUploader.js');
 
 var UserAvatarBox = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
-        userAvatar: 'imgs/default/maxiaochi-small.jpg',
-        userName: 'MA XIAOCHI'
-
+        userName: '未命名',
+        editAvatar: false
       }
     };
   },
+
   render: function() {
     var style = {
       avatar: {
@@ -32,17 +34,47 @@ var UserAvatarBox = React.createClass({
       }
     };
 
-    return (
-      <div 
-        style={this.props.background?style.background:{}}
-        className="userAvatarBox">
-        <img 
+    var AvatarImage = (
+      <div>
+        <img
           style={style.avatar}
           ref="userAvatar"
           src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}
           srcSet={this.props.data.avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
-        <div style={style.nick} ref="userNick" >{this.props.data.userName}</div>
-        <div className="updateInfo" style={style.updateInfo}>{"更新资料>"}</div>
+      </div>
+    );
+
+    var AvatarUploaderImage = (
+      <div>
+        <AvatarUploader
+          style={style.avatar}
+          defaultImage={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'} />
+      </div>
+    );
+
+    if(this.props.editAvatar){
+      AvatarImage = AvatarUploaderImage;
+    }
+    var content = (
+      <div
+        style={this.props.background?style.background:{}}
+        className="userAvatarBox">
+        {AvatarImage}
+        <div style={style.nick} ref="userNick" >
+          {this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}
+        </div>
+        <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
+      </div>
+    );
+    var children = (
+      <Link to="/user_edit_profile">{content}</Link>
+    );
+    if(this.props.editAvatar){
+      children = (<div>{content}</div>)
+    }
+    return (
+      <div>
+        {children}
       </div>
     );
   }

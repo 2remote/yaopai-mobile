@@ -26,12 +26,28 @@ var AutoLoadPageMixin = {
     if(this.state.pageCount != 0 && this.state.pageCount <= pageIndex){
       window.removeEventListener('scroll', this.onWindowScroll);
       window.removeEventListener('resize', this.onWindowScroll);
-      if(this.state.pageCount < pageIndex)
+      if(this.state.pageCount < pageIndex){
+        this.onPageEnd()
         return;
+      }
     }
     this.setState({pageIndex :pageIndex });
     this.onChangePage(pageIndex)
 
+  },
+  onPageEnd : function(){
+    this.onShowToast('没有更多了')
+    setTimeout(this.onHideToast, 2000);
+  },
+  onShowToast: function (content) {
+    if(this.refs.toast){
+      this.refs.toast.show(content)
+    }
+  },
+  onHideToast: function (content) {
+    if(this.refs.toast){
+      this.refs.toast.hide()
+    }
   },
   componentWillUnmount: function() {
     window.removeEventListener('scroll', this.onWindowScroll);

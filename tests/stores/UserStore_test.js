@@ -269,7 +269,7 @@ describe('User Store Test', () => {
     const fifteenMinsBefore = new Date().setTime(orgTime.getTime() - 15 * 60 * 1000);
     UserStore.data.loginDate = fifteenMinsBefore;
     UserStore.onCurrentUser();
-    expect(spy.callCount).to.equal(2);
+    expect(spy.callCount).to.equal(1);
   });
 
   it('onLoginFailed', () => {

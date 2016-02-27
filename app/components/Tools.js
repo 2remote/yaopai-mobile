@@ -14,7 +14,7 @@ exports.imgModifier = function  (img, mode, width) {
     modifies = 'imageMogr2/auto-orient/thumbnail/600x/interlace/1';
     break;
   case "workCover":
-    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x400a0a80/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x336a0a80/interlace/1';
     break;
   case "ad":
     // 首页走马灯，访谈活动列表页裁剪规则
@@ -57,14 +57,14 @@ exports.parseImageUrl = function(url,width,height){
   return url;
 }
 
-exports.makeUiButton = function (icon, title, link="javascript:;", router="normalLink") {
+exports.makeIconButton = function (icon, title, link="javascript:;", router="normalLink") {
   if(router == 'normalLink'){
     return (
       <div className="weui_cells weui_cells_access" >
         <a className="weui_cell" href={link} >
             <div className="weui_cell_hd">
                 <div className={"icon " + icon}
-                    style={{fontSize:25, padding:'10'}} />
+                    style={{fontSize:25, paddingRight:10}} />
             </div>
             <div className="weui_cell_bd weui_cell_primary">
                 <p className="titleDemo">{title}</p>
@@ -79,7 +79,7 @@ exports.makeUiButton = function (icon, title, link="javascript:;", router="norma
         <Link className="weui_cell" to={link} >
             <div className="weui_cell_hd">
                 <div className={"icon " + icon}
-                    style={{fontSize:25, padding:'10'}} />
+                    style={{fontSize:25, paddingRight:10}} />
             </div>
             <div className="weui_cell_bd weui_cell_primary">
                 <p className="titleDemo">{title}</p>
@@ -90,6 +90,45 @@ exports.makeUiButton = function (icon, title, link="javascript:;", router="norma
     )
   }
 };
+
+exports.makeTextButton = function (title, content, link="javascript:;", router="normalLink") {
+  function makeTextButtonTitle (title) {
+    return (
+      <div className="weui_cell_bd weui_cell_primary">
+          <p className="titleDemo">{title}</p>
+      </div>
+    )
+  }
+
+  function makeTextButtonContent (content) {
+    return (
+      <div className="weui_cell_ft" >
+        {content}
+      </div>
+    )
+  }
+  
+  if(router == 'normalLink'){
+    return (
+      <div className="weui_cells weui_cells_access" >
+        <a className="weui_cell" href={link} >
+          {makeTextButtonTitle(title)}
+          {makeTextButtonContent(content)}
+        </a>
+      </div>
+    )
+  }else{
+    return (
+      <div className="weui_cells weui_cells_access" >
+        <Link className="weui_cell" to={link} >
+            {makeTextButtonTitle(title)}
+            {makeTextButtonContent(content)}
+        </Link>
+      </div>
+    )
+  }
+};
+
 /*
   格式化日期
   format 传入格式 'yyyy-MM-dd'

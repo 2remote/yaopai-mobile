@@ -11,6 +11,7 @@ import { TITLE } from '../Tools';
 require('./GrapherPage.css');
 import _ from 'underscore';
 var WechatShare = require('../Weixin/WechatShare');
+var Toaster = require('../Toast');
 
 var GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange') ,AutoLoadPageMixin],
@@ -34,10 +35,12 @@ var GrapherPage = React.createClass({
           graphers: this.state.graphers.concat(_.shuffle(data.photographers)),
           pageCount: data.pageCount
         });
+        this.onHideToast()
       }
     }
   },
   onChangePage : function (pageIndex) {
+    this.onShowToast('努力加载中...')
     PhotographerActions.list(pageIndex);
   },
   render: function() {
@@ -46,8 +49,9 @@ var GrapherPage = React.createClass({
         <div className="grapherPage">
           <HamburgMenu />
           <GrapherList data={this.state.graphers} />
-          <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage}>
           </WechatShare>
+          <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

@@ -53,6 +53,7 @@ var API_CONST = {
     weixin_login: API_URL + "openuser.login&serviceid=weixin&redirecturl=" + Local_Href,
     current_user: API_URL + 'User.CurrentUser',
     currentUserDetail: API_URL + 'User.CurrentUserDetail',
+    changeInfo: API_URL + 'User.ChangeInfo',
     changeAvatar: API_URL + 'User.ChangeAvatar',
     updateInfo: API_URL + 'User.ChangeInfo',
   },

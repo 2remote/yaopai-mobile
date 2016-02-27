@@ -13,6 +13,7 @@ var HamburgMenu = require('../HamburgMenu');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { LIST_ALL_ACTIVITIES, TITLE } from '../Tools';
 var WechatShare = require('../Weixin/WechatShare');
+var Toaster = require('../Toast');
 
 var ActivityPage = React.createClass({
   mixins : [Reflux.listenTo(ActivityStore,'_onActivityStoreChange') ,AutoLoadPageMixin],
@@ -38,10 +39,12 @@ var ActivityPage = React.createClass({
         console.log(data.hintMessage);
       }else{
         this.setState({Activitys : this.state.Activitys.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
+        this.onHideToast()
       }
     }
   },
   onChangePage : function (pageIndex) {
+    this.onShowToast('努力加载中...')
     ActivityActions.search(pageIndex);
   },
   render: function() {
@@ -50,8 +53,9 @@ var ActivityPage = React.createClass({
         <div className="activityPage">
           <HamburgMenu />
           <ActivityList data={this.state.Activitys} />
-          <WechatShare title={TITLE.activityPage} desc={TITLE.indexPage} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+          <WechatShare title={TITLE.activityPage} desc={TITLE.indexPage}>
           </WechatShare>
+          <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );

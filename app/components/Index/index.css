@@ -16,10 +16,6 @@ body {
   overflow-x: hidden;
 }
 
-a {
-  line-height: 0;
-}
-
 #app {
   min-height: 100%;
   width: 100%;

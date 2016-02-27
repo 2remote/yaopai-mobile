@@ -2,6 +2,14 @@ var Reflux = require('reflux');
 var UserActions = require('../actions/UserActions');
 var assert = require('assert');
 
+var _ = require('underscore');
+
+function isExist (string) {
+  var exist = false;
+  exist = _.isString(string) && !_.isEmpty(string);
+  return exist;
+};
+
 var UserStore = Reflux.createStore({
   userKey : 'yaopai_user',
   init: function() {
@@ -39,7 +47,22 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.loginWithToken.failed,this.onLoginWithTokenFailed);
     this.listenTo(UserActions.currentServerUser.success,this.onGetCurrentUser);
     this.listenTo(UserActions.currentServerUser.failed,this.onGetCurrentUserFailed);
+    this.listenTo(UserActions.currentUserDetail.success,this.onGetCurrentUserDetail);
+    this.listenTo(UserActions.currentUserDetail.failed,this.onGetCurrentUserDetailFailed);
     this.listenTo(UserActions.currentUser,this.onCurrentUser);
+
+    this.listenTo(UserActions.changeUserNickName,this.onChangeUserNickName);
+    this.listenTo(UserActions.changeUserGender,this.onChangeUserGender);
+    this.listenTo(UserActions.changeUserCity,this.onChangeUserCity);
+    this.listenTo(UserActions.changeUserNickNameOnServer.success,this.onChangeUserNickNameOnServerSuccess);
+    this.listenTo(UserActions.changeUserNickNameOnServer.failed,this.onChangeUserNickNameOnServerFailed);
+    this.listenTo(UserActions.changeUserInfoOnServer.success,this.onChangeUserInfoOnServerSuccess);
+    this.listenTo(UserActions.changeUserInfoOnServer.failed,this.onChangeUserInfoOnServerFailed);
+
+    // 修改头像
+    this.listenTo(UserActions.changeAvatarOnServer.success,this.onchangeAvatarOnServerSuccess);
+    this.listenTo(UserActions.changeAvatarOnServer.failed,this.onchangeAvatarOnServerFailed);
+
     this.listenTo(UserActions.modifyPassword.success,this.onModifyPasswordSuccess);
     this.listenTo(UserActions.modifyPassword.failed,this.onModifyPasswordFailed);
     this.listenTo(UserActions.verifyTelResetPassWord.success, this.onTelResetPassWordSuccess);
@@ -47,6 +70,32 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.receiveTelResetPassWord.success, this.onreceiveTelResetPassWordSuccess);
     this.listenTo(UserActions.receiveTelResetPassWord.failed, this.onreceiveTelResetPassWordFailed);
   },
+
+  onChangeUserCity : function (areaId, areaName) {
+    console.log('get areaId from action: ', areaId);    
+    var exist = false;
+    exist = isExist(areaId);
+    this.data.newCityStatus = exist;
+    this.data.newCity = areaId;
+    this.data.newCityName = areaName;
+  },
+
+  onChangeUserGender : function (gender) {
+    console.log('get gender from action: ', gender);    
+    var exist = false;
+    exist = isExist(gender);
+    this.data.newGenderStatus = exist;
+    this.data.newGender = gender;
+  },
+
+  onChangeUserNickName : function (nickname) {
+    // console.log('get nickname from action: ', nickname);
+    var exist = false;
+    exist = _.isString(nickname) && !_.isEmpty(nickname);
+    this.data.newNickStatus = exist;
+    this.data.newNick = nickname;
+  },
+
   //！！！这个方法只在从服务器得到不到当前用户的状态下调用！！！
   getTokenToLogin : function(){
     //从localStorage读取Data
@@ -112,11 +161,12 @@ var UserStore = Reflux.createStore({
         this.data.flag = 'currentUser';
         return this.trigger(this.data);
       }else{
-        this.setCurrentUser(null);
+        // this.setCurrentUser(null);
         return UserActions.currentServerUser();
       }
+    }else{
+      UserActions.currentServerUser();  
     }
-    UserActions.currentServerUser();
   },
   onGetCurrentUser : function(data){
     if(data.Success){
@@ -132,6 +182,21 @@ var UserStore = Reflux.createStore({
   onGetCurrentUserFailed : function(data){
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = 'currentUser';
+    this.trigger(this.data);
+  },
+  onGetCurrentUserDetail : function (data) {
+    console.log(data);
+    if(data.Success){
+      this.setCurrentUser(data);
+      this.data.flag = 'currentUserDetail';
+      this.trigger(this.data);
+    }else{
+      console.log(data.ErrorMsg);
+    }
+  },
+  onGetCurrentUserDetailFailed : function (data) {
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'currentUserDetail';
     this.trigger(this.data);
   },
   /*
@@ -155,6 +220,56 @@ var UserStore = Reflux.createStore({
   onLoginWithTokenFailed : function(data){
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = 'loginToken';
+    this.trigger(this.data);
+  },
+  onChangeUserNickNameOnServerSuccess : function(data){
+    console.log(data);
+    if(data.Success){
+      this.data.hintMessage = '';
+    }else{
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = "changeUserNickNameOnServer";
+    this.trigger(this.data);
+  },
+  onChangeUserNickNameOnServerFailed : function(data){
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'changeUserNickNameOnServer';
+    this.trigger(this.data);
+  },
+  onChangeUserInfoOnServerSuccess : function(data){
+    console.log(data);
+    if(data.Success){
+      this.data.hintMessage = '';
+    }else{
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = "changeUserInfoOnServer";
+    // 服务器更新成功后，强制更新客户端用户信息
+    if(this.data.newNickStatus){
+      this.data.userName = this.data.newNick;
+      this.data.userNickName = this.data.newNick;
+    }
+    this.trigger(this.data);
+  },
+  onChangeUserInfoOnServerFailed : function(data){
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'changeUserInfoOnServer';
+    this.trigger(this.data);
+  },
+  onchangeAvatarOnServerSuccess : function(data){
+    console.log(data);
+    if(data.Success){
+      this.data.hintMessage = '';
+    }else{
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = "changeAvatarOnServer";
+    this.trigger(this.data);
+  },
+  onchangeAvatarOnServerFailed : function(data){
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = 'changeAvatarOnServer';
     this.trigger(this.data);
   },
   /*
@@ -214,13 +329,26 @@ var UserStore = Reflux.createStore({
       this.data.userName = '';
       this.data.local = true;
       this.data.isLogin = false;
+      this.data.newNickStatus = false;
+      this.data.newGenderStatus = false;
+      this.data.newCityStatus = false;
       this.data.userType = '';
       this.data.avatar = '';
       this.data.loginDate = '';
     } else {
+      var areaId = 0;
+      // ProvinceId, CityId and CountyId are in same hash table(number=>name) 
+      // which are ordered in desc, so greater number always keeps full location
+      // information. We just need the greatest one when modify it.
+      areaId = Math.max(0, data.ProvinceId, data.CityId, data.CountyId);
+
+      this.data.location = areaId;
       this.data.userId = data.Id;
-      this.data.userName = data.Name;
+      this.data.userName = data.Name || data.NickName;
       this.data.userType = data.Type;
+      this.data.userSex = data.Sex;
+      this.data.userNickName = data.NickName || data.Name;
+      this.data.userCity = isExist(data.ProvinceName) ? data.ProvinceName + " " + data.CityName + " " + data.CountyName : '未指定';
       if (data.Avatar) {
         this.data.avatar = data.Avatar;
       } else {

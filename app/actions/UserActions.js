@@ -9,7 +9,16 @@ var UserActions = Reflux.createActions({
   'logout' : {children:["success"]},
   'openLogin' : {children:["success","failed"]},
   'currentServerUser' : {children:['success','failed']},
+  'currentUserDetail' : {children:['success','failed']},
   'currentUser' : {children:[]},
+  'changeUserNickName' : {children:[]}, // 不是Async，可以不写下面的listen，直接在store里指定
+  'changeUserGender' : {children:[]},
+  'changeUserCity' : {children:[]},
+  'changeUserNickNameOnServer' : {children:['success','failed']},
+  'changeUserInfoOnServer' : {children:['success','failed']},
+  'changeAvatarOnServer' : {children:['success','failed']},
+  // 'changeUserCityOnServer' : {children:['success','failed']},
+
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
   'receiveTelResetPassWord': {children: ['success', 'failed']},
@@ -48,9 +57,57 @@ UserActions.openLogin.listen(function(data){
   得到当前用户
 */
 UserActions.currentServerUser.listen(function(data){
-  console.log('get currentUser');
+  console.log('get currentUser from server');
   HttpFactory.post(API.USER.current_user,data,this.success,this.failed);
 });
+/*
+  得到当前用户详细信息
+*/
+UserActions.currentUserDetail.listen(function(){
+  var data = {
+    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId'
+  }  
+  HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
+});
+
+/*
+  修改 当前用户 昵称
+*/
+UserActions.changeUserNickNameOnServer.listen(function(nickname){
+  console.log('get changeUserNickNameOnServer');
+  var data = {
+    NickName: nickname,
+  }  
+  HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
+});
+
+
+/*
+  修改 当前用户 性别（必须附上昵称）
+*/
+UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
+  console.log('get changeUserInfoOnServer');
+
+  var data = {
+    NickName: nickname,
+    Sex: parseInt(gender),
+    Location: parseInt(city)
+  }  
+
+  HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
+});
+
+/*
+  修改 当前用户 头像
+*/
+UserActions.changeAvatarOnServer.listen(function(imgLink) {
+  var data = {
+    Avatar: imgLink,
+  }  
+  HttpFactory.post(API.USER.changeAvatar,data,this.success,this.failed);
+});
+
+
 /*
   用户注册
   data:｛tel,code,password｝
