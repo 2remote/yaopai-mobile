@@ -18,7 +18,6 @@ var AvatarUploader = React.createClass({
       uploadedShow: false,
 
       userInfo: {},
-      imageUrl : '',
       progress : 0,
       qiniu: {},
       uploaderOption : {
@@ -61,7 +60,7 @@ var AvatarUploader = React.createClass({
     }else{
       //得到当前用户的预约订单
       this.setState({userInfo : data})
-      console.log(this.state.userInfo);
+      // console.log(this.state.userInfo);
 
       var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin);
       var definedLogin = ! undefinedLogin;
@@ -72,9 +71,10 @@ var AvatarUploader = React.createClass({
         option.init.FileUploaded = this.onFileUploaded;
         option.init.UploadProgress = this.onUploadProgress;
         option.init.Error = this.onErrors;
+        option.init.BeforeUpload = this.onBeforeUpload;
         var qiniu = Qiniu.uploader(option);
         this.setState({qiniu: qiniu});
-        console.log(qiniu);
+        // console.log(qiniu);
       }else{
         this.setState({qiniu: {}});
       }
@@ -82,34 +82,39 @@ var AvatarUploader = React.createClass({
   },
 
   onErrors : function (up, err, errTip) {
+    this.handleUploadFailedClick();
+    this.setState({uploadingShow : false});
     console.log(up, err, errTip);
   },
 
   onFileUploaded : function(up,file,info){
-    console.log("onFileUploaded");
+    // console.log("onFileUploaded");
     var res = JSON.parse(info);
-    this.setState({imageUrl : res.Url});
-    this.props.onUpload(res.Url); //上传成功后可以回调onUpload函数
+    
+    // 上传成功后，更新头像
+    UserActions.changeAvatarOnServer(res.Url);
+
+    // 本地更新头像
+    var newUserInfo = this.state.userInfo;
+    newUserInfo.avatar = res.Url;
+    this.setState({userInfo : newUserInfo}, this.setState({uploadingShow : false}));
+
+    this.handleUploadedClick();
+    UserActions.currentUser();
   },
 
+  onBeforeUpload : function (up, file) {
+    this.setState({uploadingShow : true});
+  },
 
   onUploadProgress : function(up,file){
-    console.log("onUploadProgress");
-    console.log(JSON.stringify(file))
+    // console.log("onUploadProgress");
+    // console.log(JSON.stringify(file))
     this.setState({progress :file.percent});
-    //this.props.progress = file.percent;
   },
 
   componentDidMount : function() {
     UserActions.currentUser();
-  },
-
-  handleUploadingClick : function () {
-    this.setState({uploadingShow: true}, function () {
-      setTimeout(function () {
-        this.setState({uploadingShow: false});
-      }.bind(this), 2000);  
-    });
   },
 
   handleUploadedClick : function () {
@@ -129,31 +134,26 @@ var AvatarUploader = React.createClass({
   },
 
   render: function () {
+    var avatarImage = this.props.defaultImage;
+    if(!_.isEmpty(this.state.userInfo)){
+      avatarImage = this.state.userInfo.avatar;
+    }
+
     return (
       <div>
         <div id="container">
           <img id="avatarUploader"
             style={this.props.style}
-            src={this.props.defaultImage} />
+            src={avatarImage} />
         </div>
 
-        <Button 
-          size="small"
-          onClick={this.handleUploadingClick}>
-            显示上传中Toast
-        </Button>
         <Toast 
           show={this.state.uploadingShow}
           icon="loading"
           size="large">
-          头像上中...
+          头像上传中...
         </Toast>
 
-        <Button 
-          size="small"
-          onClick={this.handleUploadedClick}>
-            显示上传成功Toast
-        </Button>
         <Toast 
           show={this.state.uploadedShow}
           icon="success"
@@ -161,11 +161,6 @@ var AvatarUploader = React.createClass({
           头像上传成功！
         </Toast>
 
-        <Button 
-          size="small"
-          onClick={this.handleUploadFailedClick}>
-            显示上传失败Toast
-        </Button>
         <Toast 
           show={this.state.uploadFailedShow}
           icon="warn"
