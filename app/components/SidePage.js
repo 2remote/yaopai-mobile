@@ -5,6 +5,7 @@ import { Link, History,Location } from 'react-router';
 var UserActions = require('../actions/UserActions');
 require('./SidePage.css');
 import SidePageIcon from './SidePageIcon';
+import {parseImageUrl} from './Tools';
 
 var style={
   sidePage:{
@@ -67,21 +68,6 @@ var SidePage = React.createClass({
   logout : function () {
     UserActions.logout();
   },
-  parseImageUrl :function(url,width,height){
-    url = url + '?imageMogr2/gravity/Center'
-    if(width && height){
-      url = url + '/thumbnail/!'+width+'x'+ height+'r'; //限制短边
-      url = url + '/crop/'+width + 'x' + height; //剪裁
-    }
-    if(width && !height){
-      url = url + '/thumbnail/'+width+'x'; //只缩放宽度,不剪裁
-    }
-    if(height && !width){
-      url = url + '/thumbnail/x'+height; //只缩放高度,不剪裁
-    }
-    url = url + '/interface/1'; //渐进
-    return url;
-  },
 
   render: function() {
     var accountContent = '';
@@ -94,7 +80,7 @@ var SidePage = React.createClass({
                 height={70}
                 style={style.avatar}
                 ref="defaultAvatar"
-                src={this.props.userData.avatar ? this.parseImageUrl(this.props.userData.avatar,70,70) : "imgs/sidePage/default-avatar.png"} />
+                src={this.props.userData.avatar ? parseImageUrl(this.props.userData.avatar,70,70) : "imgs/sidePage/default-avatar.png"} />
                 <div style={style.loginName} ref="pleaseLoginText">{this.props.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
