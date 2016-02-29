@@ -65,7 +65,7 @@ UserActions.currentServerUser.listen(function(data){
 */
 UserActions.currentUserDetail.listen(function(){
   var data = {
-    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId'
+    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId,Account.Type'
   }  
   HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
 });

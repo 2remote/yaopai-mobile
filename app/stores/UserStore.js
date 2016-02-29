@@ -187,6 +187,7 @@ var UserStore = Reflux.createStore({
   onGetCurrentUserDetail : function (data) {
     console.log(data);
     if(data.Success){
+      data.Type = data.Account.Type;
       this.setCurrentUser(data);
       this.data.flag = 'currentUserDetail';
       this.trigger(this.data);
