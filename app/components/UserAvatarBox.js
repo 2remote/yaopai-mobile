@@ -1,6 +1,7 @@
 var React = require('react');
 import {Link} from 'react-router';
 var AvatarUploader = require('./UserCenterPage/AvatarUploader.js');
+import {parseImageUrl} from './Tools';
 
 var UserAvatarBox = React.createClass({
   getDefaultProps: function() {
@@ -39,8 +40,8 @@ var UserAvatarBox = React.createClass({
         <img
           style={style.avatar}
           ref="userAvatar"
-          src={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'}
-          srcSet={this.props.data.avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
+          src={parseImageUrl(this.props.data.avatar,78,78) || 'imgs/sidePage/default-avatar.png'}
+          srcSet={parseImageUrl(this.props.data.avatar,78,78) || 'imgs/sidePage/default-avatar@2X.png 2x'} />
       </div>
     );
 
@@ -48,7 +49,7 @@ var UserAvatarBox = React.createClass({
       <div>
         <AvatarUploader
           style={style.avatar}
-          defaultImage={this.props.data.avatar || 'imgs/sidePage/default-avatar.png'} />
+          defaultImage={parseImageUrl(this.props.data.avatar,78,78) || 'imgs/sidePage/default-avatar.png'} />
       </div>
     );
 

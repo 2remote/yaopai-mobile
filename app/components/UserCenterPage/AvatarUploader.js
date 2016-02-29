@@ -8,6 +8,7 @@ import {History,Location} from 'react-router';
 var UserActions = require('../../actions/UserActions');
 var UserStore = require('../../stores/UserStore');
 import {Button, Toast} from 'react-weui';
+import {parseImageUrl} from '../Tools';
 
 var AvatarUploader = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -135,8 +136,8 @@ var AvatarUploader = React.createClass({
 
   render: function () {
     var avatarImage = this.props.defaultImage;
-    if(!_.isEmpty(this.state.userInfo)){
-      avatarImage = this.state.userInfo.avatar;
+    if(!_.isEmpty(this.state.userInfo.avatar)){
+      avatarImage = parseImageUrl(this.state.userInfo.avatar,78,78);
     }
 
     return (
