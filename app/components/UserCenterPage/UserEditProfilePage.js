@@ -66,8 +66,8 @@ var UserEditProfilePage = React.createClass({
       console.warn("city:", city);
       return ;
     }
-    
-    this.history.pushState(null, '/user_center');
+
+    this.history.pushState(null, this.state.userInfo.userType==0?'/user_center':'/grapher_center');
     UserActions.currentUser();
   },
   render: function() {
