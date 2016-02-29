@@ -35,13 +35,14 @@ var UserAvatarBox = React.createClass({
       }
     };
 
+    var avatar = this.props.data.avatar?parseImageUrl(this.props.data.avatar,78,78):null
     var AvatarImage = (
       <div>
         <img
           style={style.avatar}
           ref="userAvatar"
-          src={parseImageUrl(this.props.data.avatar,78,78) || 'imgs/sidePage/default-avatar.png'}
-          srcSet={parseImageUrl(this.props.data.avatar,78,78) || 'imgs/sidePage/default-avatar@2X.png 2x'} />
+          src={avatar || 'imgs/sidePage/default-avatar.png'}
+          srcSet={avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
       </div>
     );
 
@@ -49,7 +50,7 @@ var UserAvatarBox = React.createClass({
       <div>
         <AvatarUploader
           style={style.avatar}
-          defaultImage={parseImageUrl(this.props.data.avatar,78,78) || 'imgs/sidePage/default-avatar.png'} />
+          defaultImage={avatar || 'imgs/sidePage/default-avatar.png'} />
       </div>
     );
 
