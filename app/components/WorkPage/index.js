@@ -65,6 +65,11 @@ var WorkPage = React.createClass({
       console.log('old selectedTags:'+this.state.selectedTags);
       this.setState({selectedTags: tags}, function () {
         console.log('new selectedTags:'+this.state.selectedTags);
+        // 如果存在url的制定tag，会直接执行过滤作品
+        AlbumsActions.searchByTags(null, 
+        1,
+        10,
+        this.state.selectedTags.join(","));
       });
     }
   },
