@@ -94,7 +94,7 @@ var WorkDetailPage = React.createClass({
         <GrapherAvatar data={this.state.data.User} />
         <ActionBar workId={this.state.data.Id} />
         <Share />
-        <WechatShare title={this.state.data.Title} desc={this.state.data.Description} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+        <WechatShare title={this.state.data.Title} desc={this.state.data.Description} imgUrl={this.state.data.Cover}>
         </WechatShare>
       </div>
     );

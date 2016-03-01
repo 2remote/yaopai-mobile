@@ -29,7 +29,6 @@ Weixin.init = function (options) {
 };
 Weixin.prototype.getAccessToken = function (callback) {
   var url = this.accessTokenUrl.replace('{APPID}', this.appid).replace('{APPSECRET}', this.secret);
-  //callback({"access_token":"JUUWbIYB5d9AnIngiihSGijpdEpflXBdRCIjETmInrpGebzUC3QvXgnrM8RiOtG_ppSwFXkSBGV5HJQVh9hzIv9Dw20DDhqMpmFOOVkVM8EVFTgAHALVJ","expires_in":7200})
   httpHandle(url, 'GET', {}, {}, function (r) {
     if (callback) {
       callback(r);

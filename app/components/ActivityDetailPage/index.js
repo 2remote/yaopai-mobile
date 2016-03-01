@@ -95,7 +95,7 @@ var ActivityDetailPage = React.createClass({
           srcSet="imgs/workDetailPage/work-split-line@2X.png 2x" />
           
         <Share />
-        <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+        <WechatShare title={wechatShareTitle} desc={wechatShareDesc}>
         </WechatShare>
       </div>
     );

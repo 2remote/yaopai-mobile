@@ -115,7 +115,7 @@ var interviewDetailPage = React.createClass({
             }}>预约</div>
         </Link>
         <Share />
-        <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl="http://m.aiyaopai.com/imgs/sidePage/default-avatar@2X.png">
+        <WechatShare title={wechatShareTitle} desc={wechatShareDesc}>
         </WechatShare>
       </div>
     );
