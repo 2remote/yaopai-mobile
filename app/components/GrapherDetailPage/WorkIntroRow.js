@@ -37,7 +37,7 @@ var WorkIntroRow = React.createClass({
         left: 0,
         right: 0,
         height: 40,
-        marginTop: -47,
+        marginTop: -46,
         background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%)',
       }
     };
