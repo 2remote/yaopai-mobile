@@ -44,7 +44,7 @@ function main(){
   ReactDOM.render((
     <Router>
       <Route path="/" component={App} />
-      <Route path="/work(/:tag)(/:tag)" component={WorkPage} />
+      <Route path="/work(/:tag)(/:tag)(/:tag)(/:tag)" component={WorkPage} />
       <Route path="/workDetail/:Id" component={WorkDetailPage} />
 
       <Route path="/interview" component={InterviewPage} />      
