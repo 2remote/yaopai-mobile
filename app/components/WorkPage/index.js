@@ -89,12 +89,13 @@ var WorkPage = React.createClass({
     
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
-    });
-    // 读取tag过滤的数据
-    AlbumsActions.searchByTags(null, 
+      AlbumsActions.searchByTags(null, 
       1,
       10,
       this.state.selectedTags.join(","));
+    });
+    // 读取tag过滤的数据
+    
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
