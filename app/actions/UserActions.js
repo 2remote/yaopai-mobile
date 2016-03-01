@@ -16,6 +16,7 @@ var UserActions = Reflux.createActions({
   'changeUserCity' : {children:[]},
   'changeUserNickNameOnServer' : {children:['success','failed']},
   'changeUserInfoOnServer' : {children:['success','failed']},
+  'changeAvatarOnServer' : {children:['success','failed']},
   // 'changeUserCityOnServer' : {children:['success','failed']},
 
   'modifyPassword':{children:["success","failed"]},
@@ -64,7 +65,7 @@ UserActions.currentServerUser.listen(function(data){
 */
 UserActions.currentUserDetail.listen(function(){
   var data = {
-    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId'
+    Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId,Account.Type'
   }  
   HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
 });
@@ -95,6 +96,17 @@ UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
 
   HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
 });
+
+/*
+  修改 当前用户 头像
+*/
+UserActions.changeAvatarOnServer.listen(function(imgLink) {
+  var data = {
+    Avatar: imgLink,
+  }  
+  HttpFactory.post(API.USER.changeAvatar,data,this.success,this.failed);
+});
+
 
 /*
   用户注册

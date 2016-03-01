@@ -15,13 +15,14 @@ import { LIST_ALL_WORKS, TITLE } from '../Tools';
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
 var WechatShare = require('../Weixin/WechatShare');
+var Toaster = require('../Toast');
 
 var YaopaiLogo = React.createClass({
   render: function () {
     var style = {
-      fontSize:105, 
-      backgroundColor:'black', 
-      color:'white', 
+      fontSize:105,
+      backgroundColor:'black',
+      color:'white',
       lineHeight:0.3,
       display:'block',
       textAlign: 'center',
@@ -84,17 +85,17 @@ var WorkPage = React.createClass({
       // 发现tag存在于选中tags中，判定用户反选该tag
       tags.splice(foundTagLocation, 1);
     }else{
-      tags.push(tag);  
+      tags.push(tag);
     }
-    
+
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
-      AlbumsActions.searchByTags(null, 
+      // 读取tag过滤的数据
+      AlbumsActions.searchByTags(null,
       1,
       10,
       this.state.selectedTags.join(","));
     });
-    // 读取tag过滤的数据
     
   },
   _onAlbumsStoreChange : function(data){
@@ -108,6 +109,7 @@ var WorkPage = React.createClass({
           total: data.total,
           pageCount: data.pageCount
         });
+        this.onHideToast()
       }
     }
     if(data.flag == 'searchByTags'){
@@ -137,6 +139,7 @@ var WorkPage = React.createClass({
     AlbumsActions.search(category);
   },
   onChangePage : function(pageIndex){
+    this.onShowToast('努力加载中...')
     AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
   },
   render: function() {
@@ -144,9 +147,9 @@ var WorkPage = React.createClass({
     var catas = [];
     if ( this.state.tags.length > 1 ){
       cities = this.state.tags[1].Tags;
-      catas = this.state.tags[0].Tags;  
+      catas = this.state.tags[0].Tags;
     }
-    
+
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
@@ -167,6 +170,7 @@ var WorkPage = React.createClass({
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
           </WechatShare>
+          <Toaster ref="toast" worfPageIs={true} bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     );
