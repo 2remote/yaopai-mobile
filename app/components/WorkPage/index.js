@@ -61,11 +61,12 @@ var WorkPage = React.createClass({
   componentDidMount: function() {
     AlbumsActions.search();
     AlbumsActions.getTagList();
-    let tags = _.map(this.props.params.tag, function(num){ return parseInt(num); });
-    if (tags[0]){
-      console.log('old selectedTags:'+this.state.selectedTags);
-      this.setState({selectedTags: tags}, function () {
-        console.log('new selectedTags:'+this.state.selectedTags);
+
+    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) );
+    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) );
+    
+    if (nonemptyTagList[0]){
+      this.setState({selectedTags: nonemptyTagList}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
         AlbumsActions.searchByTags(null, 
         1,
