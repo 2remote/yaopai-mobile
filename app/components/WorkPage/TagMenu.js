@@ -83,7 +83,7 @@ var TagMenu = React.createClass({
         boxSizing: 'border-box',
         left: 0,
         top: top,
-        zIndex: '0',
+        zIndex: '99',
         padding: '10px 0',
         background: '#000',
         color: '#fff',

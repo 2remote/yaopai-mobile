@@ -1,6 +1,6 @@
 var React = require('react');
 var Reflux = require('reflux');
-import { Router, Route, Link } from 'react-router';
+import { Router, Route, Link, History } from 'react-router';
 var DocumentTitle = require('react-document-title');
 var $ = require('jquery');
 var UserActions = require('../../actions/UserActions');
@@ -42,7 +42,7 @@ var YaopaiLogo = React.createClass({
 });
 
 var WorkPage = React.createClass({
-  mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange') ,AutoLoadPageMixin],
+  mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
   getInitialState: function() {
     return {
       pageIndex : 1,
@@ -61,10 +61,26 @@ var WorkPage = React.createClass({
   componentDidMount: function() {
     AlbumsActions.search();
     AlbumsActions.getTagList();
+    let tags = _.map(this.props.params.tag, function(num){ return parseInt(num); });
+    if (tags[0]){
+      console.log('old selectedTags:'+this.state.selectedTags);
+      this.setState({selectedTags: tags}, function () {
+        console.log('new selectedTags:'+this.state.selectedTags);
+        // 如果存在url的制定tag，会直接执行过滤作品
+        AlbumsActions.searchByTags(null, 
+        1,
+        10,
+        this.state.selectedTags.join(","));
+      });
+    }
   },
   handleUpdateTags: function (tag) {
     var tags = this.state.selectedTags;
-    var foundTagLocation = _.indexOf(this.state.selectedTags,tag);
+    if (this.props.params.tag[0]) {
+      this.history.push('/work');
+      tags = [];
+    }
+    var foundTagLocation = _.indexOf(tags, tag);
     if(  foundTagLocation >= 0 ){
       // 发现tag存在于选中tags中，判定用户反选该tag
       tags.splice(foundTagLocation, 1);
@@ -74,12 +90,13 @@ var WorkPage = React.createClass({
 
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
-    });
-    // 读取tag过滤的数据
-    AlbumsActions.searchByTags(null,
+      // 读取tag过滤的数据
+      AlbumsActions.searchByTags(null,
       1,
       10,
       this.state.selectedTags.join(","));
+    });
+    
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
@@ -144,9 +161,10 @@ var WorkPage = React.createClass({
             left: 22,
             zIndex: 99}}/>
           <YaopaiLogo />
-          <ShowMenu
-            cities={cities}
-            catas={catas}
+          <ShowMenu 
+            tagsInUrl={this.props.params.tag}
+            cities={cities} 
+            catas={catas} 
             onSelectedTag={this.handleUpdateTags} />
 
           <WorkIntroGrapherList data={this.state.works} />
