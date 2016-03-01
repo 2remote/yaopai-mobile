@@ -83,13 +83,13 @@ var TagMenu = React.createClass({
         boxSizing: 'border-box',
         left: 0,
         top: top,
-        zIndex: '99',
+        zIndex: '98',
         padding: '10px 0',
         background: '#000',
         color: '#fff',
         WebkitTransition:'top ease .5s',
         transition: 'top ease .5s',
-        opacity: 0.8,
+        opacity: 0.8
       }
     };
 
