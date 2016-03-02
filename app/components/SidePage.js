@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, History,Location } from 'react-router';
 
 var UserActions = require('../actions/UserActions');
-require('./SidePage.css');
+import './SlidePage.scss';
 import SidePageIcon from './SidePageIcon';
 import {parseImageUrl} from './Tools';
 
