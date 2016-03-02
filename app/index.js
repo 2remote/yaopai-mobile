@@ -1,26 +1,26 @@
 'use strict';
-var React = require('react');
+import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
-var App = require('./components/Index');
+import App from './components/Index';
 
-var WorkPage = require('./components/WorkPage');
-var WorkDetailPage = require('./components/WorkDetailPage');
-var GrapherPage = require('./components/GrapherPage');
-var GrapherDetailPage = require('./components/GrapherDetailPage');
+import WorkPage from './components/WorkPage';
+import WorkDetailPage from './components/WorkDetailPage';
+import GrapherPage from './components/GrapherPage';
+import GrapherDetailPage from './components/GrapherDetailPage';
 
-var InterviewPage = require('./components/InterviewPage');
-var InterviewDetailPage = require('./components/InterviewDetailPage');
+import InterviewPage from './components/InterviewPage';
+import InterviewDetailPage from './components/InterviewDetailPage';
 
-var ActivityPage = require('./components/ActivityPage');
-var ActivityDetailPage = require('./components/ActivityDetailPage');
+import ActivityPage from './components/ActivityPage';
+import ActivityDetailPage from './components/ActivityDetailPage';
 
-var LoginPage = require('./components/LoginPage');
-var SignupPage = require('./components/SignupPage');
-var FindMyPassPage1 = require('./components/FindMyPassPage/FindByMobileForm');
-var FindMyPassPage2 = require('./components/FindMyPassPage/ChangePassWordForm');
-var WorkBookPage = require('./components/BookPage');
-var ReactDOM = require('react-dom');
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
+import FindMyPassPage1 from './components/FindMyPassPage/FindByMobileForm';
+import FindMyPassPage2 from './components/FindMyPassPage/ChangePassWordForm';
+import WorkBookPage from './components/BookPage';
+import ReactDOM from 'react-dom';
 
 import BookSuccessDialog from './components/BookPage/BookSuccessDialog';
 import BookModify from './components/BookPage/BookModify';

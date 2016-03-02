@@ -1,6 +1,6 @@
 import React from 'react';
 
-var GrapherRow = require('./GrapherRow');
+import GrapherRow from './GrapherRow';
 
 var GrapherList = React.createClass({
   getDefaultProps: function() {
@@ -30,4 +30,4 @@ var GrapherList = React.createClass({
   }
 });
 
-module.exports = GrapherList;
+export {GrapherList as default};

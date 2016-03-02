@@ -1,18 +1,18 @@
 import React from 'react';
-var Router = require('react-router');
-var Reflux = require('reflux');
-var HamburgMenu = require('../HamburgMenu');
-var DocumentTitle = require('react-document-title');
+import Router from 'react-router';
+import Reflux from 'reflux';
+import HamburgMenu from '../HamburgMenu';
+import DocumentTitle from 'react-document-title';
 
-var AreaSelector = require('./AreaSelector');
+import AreaSelector from './AreaSelector';
 
 import {History,Location} from 'react-router';
 import UserAvatarBox from '../UserAvatarBox' ;
 
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 
-var _ = require('underscore');
+import _ from 'underscore';
 import { makeTextButton } from '../Tools';
 
 var UserCityChangePage = React.createClass({
@@ -71,4 +71,4 @@ var UserCityChangePage = React.createClass({
   }
 });
 
-module.exports = UserCityChangePage;
+export {UserCityChangePage as default};

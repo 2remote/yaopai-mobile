@@ -1,9 +1,9 @@
 import React from 'react';
-var Reflux = require('reflux');
-var SidePage = require('./SidePage');
+import Reflux from 'reflux';
+import SidePage from './SidePage';
 
-var UserActions = require('../actions/UserActions');
-var UserStore = require('../stores/UserStore');
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore';
 
 var HamburgMenu = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange')],
@@ -37,7 +37,7 @@ var HamburgMenu = React.createClass({
           height: '100%',
           background: 'rgba(0,0,0,.5)',
           zIndex: '99',
-          display: 'none',
+          display: 'none'
         }}>
         </div>
         <div
@@ -48,7 +48,7 @@ var HamburgMenu = React.createClass({
             padding: 10,
             margin: -10,
             left: 22,
-            zIndex: 99,
+            zIndex: 99
           }}
           className="hamburgMenu">
         <span
@@ -63,4 +63,4 @@ var HamburgMenu = React.createClass({
   }
 });
 
-module.exports = HamburgMenu;
+export {HamburgMenu as default};

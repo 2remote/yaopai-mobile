@@ -1,14 +1,14 @@
 import React from 'react';
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 var History = require('react-router').History;
 var localStorage = require('web-storage')().localStorage;
-var DocumentTitle = require('react-document-title');
+import DocumentTitle from 'react-document-title';
 
 import DoubleCheckInfo from './DoubleCheckInfo';
 import ExtraServiceBox from '../WorkDetailPage/ExtraServiceBox';
 import ActionBar from './GrapherActionBar';
-var OrderActions = require('../../actions/OrderActions');
-var OrderStore = require('../../stores/OrderStore');
+import OrderActions from '../../actions/OrderActions';
+import OrderStore from '../../stores/OrderStore';
 
 var BookSuccessDialog = React.createClass({
   mixins: [Reflux.listenTo(OrderStore,'_onOrderStoreChange'),History],
@@ -113,4 +113,4 @@ var BookSuccessDialog = React.createClass({
   }
 });
 
-module.exports = BookSuccessDialog;
+export {BookSuccessDialog as default};

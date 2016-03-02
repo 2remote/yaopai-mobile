@@ -7,7 +7,7 @@ exports.imgModifier = function  (img, mode, width) {
   if(img === null || img === undefined ){
     console.warn('There is NO img link.');
     return "";
-  };
+  }
 
   switch(mode){
   case "work":
@@ -30,7 +30,7 @@ exports.imgModifier = function  (img, mode, width) {
     modifies = 'imageMogr2/gravity/Center/thumbnail/!' + width + 'x' + width + 'r/crop/' + width + 'x' + width + '/interlace/1';
     break;
   case "HomeGrapher":
-    modifies = 'imageMogr2/thumbnail/80000@'
+    modifies = 'imageMogr2/thumbnail/80000@';
     break;
   default:
     /*首页方块裁切函数，先不做修改*/
@@ -38,11 +38,11 @@ exports.imgModifier = function  (img, mode, width) {
   }
   
   return img + '?' + modifies;
-}
+};
 
 
 exports.parseImageUrl = function(url,width,height){
-  url = url + '?imageMogr2/auto-orient/gravity/Center'
+  url = url + '?imageMogr2/auto-orient/gravity/Center';
   if(width && height){
     url = url + '/thumbnail/!'+width+'x'+ height+'r'; //限制短边
     url = url + '/crop/'+width + 'x' + height; //剪裁
@@ -55,7 +55,7 @@ exports.parseImageUrl = function(url,width,height){
   }
   url = url + '/interface/1'; //渐进
   return url;
-}
+};
 
 exports.makeIconButton = function (icon, title, link="javascript:;", router="normalLink") {
   if(router == 'normalLink'){
@@ -162,7 +162,7 @@ exports.dateFormat = function(date, format) {
     return all;
   });
   return format;
-}
+};
 
 exports.actionLinkMaker = function (action, extraId) {
   switch (action){
@@ -193,7 +193,7 @@ exports.actionLinkMaker = function (action, extraId) {
   case 'InterviewList':
     return'/interview';
   }
-}
+};
 
 // 页面调取数据接口
 export const API = API_URL;
@@ -235,4 +235,4 @@ export const TITLE = {
   interviewDetailPage: '_YAOPAI',
   activityPage: 'YAOPAI 全部活动',
   activityDetailPage: '_YAOPAI'
-}
+};

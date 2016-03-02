@@ -72,4 +72,4 @@ var GrapherRow = React.createClass({
   }
 });
 
-module.exports = GrapherRow;
+export {GrapherRow as default};

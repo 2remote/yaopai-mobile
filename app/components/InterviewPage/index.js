@@ -1,16 +1,16 @@
 import React from 'react';
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 import { Router, Route, Link } from 'react-router';
-var DocumentTitle = require('react-document-title');
-var $ = require('jquery');
-var InterviewActions = require('../../actions/InterviewActions');
-var InterviewStore = require('../../stores/InterviewStore');
-var InterviewList = require('./InterviewList');
-var HamburgMenu = require('../HamburgMenu');
-var AutoLoadPageMixin = require('../AutoLoadPageMixin');
+import DocumentTitle from 'react-document-title';
+import $ from 'jquery';
+import InterviewActions from '../../actions/InterviewActions';
+import InterviewStore from '../../stores/InterviewStore';
+import InterviewList from './InterviewList';
+import HamburgMenu from '../HamburgMenu';
+import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_INTERVIEWS, TITLE } from '../Tools';
-var WechatShare = require('../Weixin/WechatShare');
-var Toaster = require('../Toast');
+import WechatShare from '../Weixin/WechatShare';
+import Toaster from '../Toast';
 
 var InterviewPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange') ,AutoLoadPageMixin],
@@ -41,7 +41,7 @@ var InterviewPage = React.createClass({
     }
   },
   onChangePage : function (pageIndex) {
-    this.onShowToast('努力加载中...')
+    this.onShowToast('努力加载中...');
     InterviewActions.search(pageIndex);
   },
   render: function() {
@@ -58,4 +58,4 @@ var InterviewPage = React.createClass({
     );
   }
 });
-module.exports = InterviewPage;
+export {InterviewPage as default};

@@ -2,11 +2,11 @@ import React from 'react';
 
 export default class Share extends React.Component {
   state = {
-    showShareGuide: false,
-  }
+    showShareGuide: false
+  };
   handleShare() {
     this.setState({
-      showShareGuide: !this.state.showShareGuide,
+      showShareGuide: !this.state.showShareGuide
     });
   }
   render() {
@@ -18,8 +18,8 @@ export default class Share extends React.Component {
       left: 0,
       zIndex: 999,
       backgroundColor: 'black',
-      opacity: 0.8,
-    }
+      opacity: 0.8
+    };
     return(
       <div 
         onClick={ this.handleShare.bind(this) }

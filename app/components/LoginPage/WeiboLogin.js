@@ -14,4 +14,4 @@ var WeiboLogin = React.createClass({
   }
 });
 
-module.exports = WeiboLogin;
+export {WeiboLogin as default};

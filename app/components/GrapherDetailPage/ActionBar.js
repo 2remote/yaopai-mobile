@@ -24,4 +24,4 @@ var ActionBar = React.createClass({
   }
 });
 
-module.exports = ActionBar;
+export {ActionBar as default};

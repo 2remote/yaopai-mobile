@@ -1,21 +1,21 @@
 import React from 'react';
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 import { Router, Route, Link, History } from 'react-router';
-var DocumentTitle = require('react-document-title');
-var $ = require('jquery');
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
-var AlbumsActions = require('../../actions/AlbumsActions');
-var AlbumsStore = require('../../stores/AlbumsStore');
-var WorkIntroGrapherList = require('./WorkIntroGrapherList');
-var HamburgMenu = require('../HamburgMenu');
-var AutoLoadPageMixin = require('../AutoLoadPageMixin');
+import DocumentTitle from 'react-document-title';
+import $ from 'jquery';
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import AlbumsActions from '../../actions/AlbumsActions';
+import AlbumsStore from '../../stores/AlbumsStore';
+import WorkIntroGrapherList from './WorkIntroGrapherList';
+import HamburgMenu from '../HamburgMenu';
+import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_WORKS, TITLE } from '../Tools';
 
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
-var WechatShare = require('../Weixin/WechatShare');
-var Toaster = require('../Toast');
+import WechatShare from '../Weixin/WechatShare';
+import Toaster from '../Toast';
 
 var YaopaiLogo = React.createClass({
   render: function () {
@@ -32,7 +32,7 @@ var YaopaiLogo = React.createClass({
       width:'100%',
       zIndex: '97',
       top:0,
-      left:0,
+      left:0
     };
 
     return (
@@ -177,4 +177,4 @@ var WorkPage = React.createClass({
     );
   }
 });
-module.exports = WorkPage;
+export {WorkPage as default};

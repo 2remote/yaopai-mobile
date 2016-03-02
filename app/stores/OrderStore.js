@@ -1,5 +1,5 @@
-var React = require('react');
-var Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 
 var OrderActions = require('../actions/OrderActions');
 
@@ -9,7 +9,7 @@ var OrderStore = Reflux.createStore({
     order : {}, //单个订单数据
     hintMessage : '',
     success : false,
-    flag : '',
+    flag : ''
   },
   init : function(){
     this.orders = [];
@@ -67,7 +67,7 @@ var OrderStore = Reflux.createStore({
   },
   onBookOrder : function(res){
     if(res.Success){
-      this.data.hintMessage = '预订成功！'
+      this.data.hintMessage = '预订成功！';
       this.data.order= {Id : res.Result};
       this.data.success = true;
     }else{
@@ -79,7 +79,7 @@ var OrderStore = Reflux.createStore({
   },
   onCloseOrder : function(res){
     if(res.Success){
-      this.data.hintMessage = '关闭订单成功！'
+      this.data.hintMessage = '关闭订单成功！';
       this.data.success = true;
     }else{
       this.data.hintMessage = res.ErrorMsg;
@@ -96,4 +96,4 @@ var OrderStore = Reflux.createStore({
 
 });
 
-module.exports = OrderStore;
+export {OrderStore as default};

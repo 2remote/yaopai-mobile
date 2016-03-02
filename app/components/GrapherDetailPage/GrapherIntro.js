@@ -55,4 +55,4 @@ var GrapherIntro = React.createClass({
   }
 });
 
-module.exports = GrapherIntro;
+export {GrapherIntro as default};

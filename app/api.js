@@ -55,14 +55,14 @@ var API_CONST = {
     currentUserDetail: API_URL + 'User.CurrentUserDetail',
     changeInfo: API_URL + 'User.ChangeInfo',
     changeAvatar: API_URL + 'User.ChangeAvatar',
-    updateInfo: API_URL + 'User.ChangeInfo',
+    updateInfo: API_URL + 'User.ChangeInfo'
   },
   PHOTOGRAPHER: {
     submitAudit: API_URL + 'Photographer.SubmitAudit',
     viewAudit: API_URL + 'Photographer.ViewAudit',
     get: API_URL + 'Photographer.Get',
     list: API_URL + 'Photographer.Search',
-    viewAdd: API_URL + 'Photographer.ViewAdd',
+    viewAdd: API_URL + 'Photographer.ViewAdd'
   },
   ALBUMS: {
     add: API_URL + 'Albums.Add',
@@ -77,20 +77,20 @@ var API_CONST = {
 
   INTERVIEW: {
     search: API_URL + 'Interview.Search',
-    get: API_URL + 'Interview.Get',
+    get: API_URL + 'Interview.Get'
   },
 
   ACTIVITY: {
     search: API_URL + 'Activity.Search',
-    get: API_URL + 'Activity.Get',
+    get: API_URL + 'Activity.Get'
   },
   
   AD: {
-    list: API_URL + 'Ad.List',
+    list: API_URL + 'Ad.List'
   },
   
   TAG: {
-    list: API_URL + 'Tag.List',
+    list: API_URL + 'Tag.List'
   },
 
   ORDER: {
@@ -99,17 +99,17 @@ var API_CONST = {
     get: API_URL + 'Order.Get',
     confirm: API_URL + 'Order.Confirm',
     add: API_URL + 'Order.Add',
-    close: API_URL + 'Order.Close',
+    close: API_URL + 'Order.Close'
   },
   FILE: {
     getToken: API_URL + 'File.Token',
     user_token_url: DOMAIN + 'file/token?type=user',
-    work_token_url: DOMAIN + 'file/token?type=work',
+    work_token_url: DOMAIN + 'file/token?type=work'
   },
   COMMON: {
-    area_list: API_URL + 'Area.List',
+    area_list: API_URL + 'Area.List'
   }
-}
+};
 
 function getRootPath_web() {
   var strFullPath = window.document.location.href;

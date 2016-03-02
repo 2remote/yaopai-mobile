@@ -1,14 +1,14 @@
-var Reflux = require('reflux');
-var UserActions = require('../actions/UserActions');
-var assert = require('assert');
+import Reflux from 'reflux';
+import UserActions from '../actions/UserActions';
+import assert from 'assert';
 
-var _ = require('underscore');
+import _ from 'underscore';
 
 function isExist (string) {
   var exist = false;
   exist = _.isString(string) && !_.isEmpty(string);
   return exist;
-};
+}
 
 var UserStore = Reflux.createStore({
   userKey : 'yaopai_user',
@@ -27,7 +27,7 @@ var UserStore = Reflux.createStore({
       isLogin: false,
       hintMessage: '',
       flag : '',
-      loginDate : '',
+      loginDate : ''
     };
     /*
       获取第三方登录的返回值，并得到当前用户
@@ -291,7 +291,7 @@ var UserStore = Reflux.createStore({
   */
   onRegisterFailed: function(data) {
     this.data.hintMessage = '网络出错啦！';
-    this.data.flag = "register"
+    this.data.flag = "register";
     this.trigger(this.data);
   },
   /*
@@ -387,7 +387,6 @@ var UserStore = Reflux.createStore({
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = 'resetPassword';
   }
-
 });
 
-module.exports = UserStore;
+export {UserStore as default};

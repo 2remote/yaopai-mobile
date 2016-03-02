@@ -21,4 +21,4 @@ var BookTicketList = React.createClass({
   }
 });
 
-module.exports = BookTicketList;
+export {BookTicketList as default};

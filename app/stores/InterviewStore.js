@@ -1,5 +1,5 @@
-var Reflux = require('reflux');
-var InterviewActions = require('../actions/InterviewActions');
+import Reflux from 'reflux';
+import InterviewActions from '../actions/InterviewActions';
 
 var InterviewStore = Reflux.createStore({
   data : {
@@ -12,7 +12,7 @@ var InterviewStore = Reflux.createStore({
     pageCount : 0, //当前查询条件下的总页数
     pageIndex : 0, //当前页
     pageSize : 0, //companent设置页面大小
-    total : 0, //当前查询条件下的作品总数
+    total : 0 //当前查询条件下的作品总数
   },
   
   init: function() {
@@ -56,7 +56,7 @@ var InterviewStore = Reflux.createStore({
     }
     this.data.flag = 'get';
     this.trigger(this.data);
-  },
+  }
 });
 
-module.exports = InterviewStore;
+export {InterviewStore as default};

@@ -20,5 +20,4 @@ var WorkPieceRow = React.createClass({
     );
   }
 });
-
-module.exports = WorkPieceRow;
+export {WorkPieceRow as default};

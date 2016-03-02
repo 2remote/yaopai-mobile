@@ -1,23 +1,23 @@
 import React from 'react';
-var Reflux = require('reflux');
-const $ = require('jquery');
-var DocumentTitle = require('react-document-title');
+import Reflux from 'reflux';
+import $ from 'jquery';
+import DocumentTitle from 'react-document-title';
 
-var GrapherIntro = require('../GrapherDetailPage/GrapherIntro');
-var HamburgMenu = require('../HamburgMenu');
-var UserActions = require('../../actions/UserActions');
-var InterviewStore = require('../../stores/InterviewStore');
-var InterviewActions = require('../../actions/InterviewActions');
+import GrapherIntro from '../GrapherDetailPage/GrapherIntro';
+import HamburgMenu from '../HamburgMenu';
+import UserActions from '../../actions/UserActions';
+import InterviewStore from '../../stores/InterviewStore';
+import InterviewActions from '../../actions/InterviewActions';
 import { GET_WORK_DETAIL, imgModifier, TITLE } from '../Tools';
 import {History, Link} from 'react-router';
 import Share from '../Share';
-var WechatShare = require('../Weixin/WechatShare');
+import WechatShare from '../Weixin/WechatShare';
 
 var interviewDetailPage = React.createClass({
   mixins : [Reflux.listenTo(InterviewStore,'_onInterviewStoreChange'),History],
   getInitialState: function() {
     return {
-      data:[],
+      data:[]
     };
   },
   
@@ -122,4 +122,4 @@ var interviewDetailPage = React.createClass({
   }
 });
 
-module.exports = interviewDetailPage;
+export {interviewDetailPage as default};

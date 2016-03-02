@@ -101,4 +101,4 @@ var TagMenu = React.createClass({
     );
   }
 });
-module.exports = TagMenu;
+export {TagMenu as default};

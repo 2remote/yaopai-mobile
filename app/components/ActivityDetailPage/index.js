@@ -1,23 +1,23 @@
 import React from 'react';
-var Reflux = require('reflux');
-const $ = require('jquery');
-var DocumentTitle = require('react-document-title');
+import Reflux from 'reflux';
+import $ from 'jquery';
+import DocumentTitle from 'react-document-title';
 
-var GrapherIntro = require('../GrapherDetailPage/GrapherIntro');
-var HamburgMenu = require('../HamburgMenu');
-var UserActions = require('../../actions/UserActions');
-var ActivityStore = require('../../stores/ActivityStore');
-var ActivityActions = require('../../actions/ActivityActions');
+import GrapherIntro from '../GrapherDetailPage/GrapherIntro';
+import HamburgMenu from '../HamburgMenu';
+import UserActions from '../../actions/UserActions';
+import ActivityStore from '../../stores/ActivityStore';
+import ActivityActions from '../../actions/ActivityActions';
 import { GET_WORK_DETAIL, imgModifier, TITLE } from '../Tools';
 import {History, Link} from 'react-router';
 import Share from '../Share';
-var WechatShare = require('../Weixin/WechatShare');
+import WechatShare from '../Weixin/WechatShare';
 
 var ActivityDetailPage = React.createClass({
   mixins : [Reflux.listenTo(ActivityStore,'_onActivityStoreChange'),History],
   getInitialState: function() {
     return {
-      data:[],
+      data:[]
     };
   },
   
@@ -102,4 +102,4 @@ var ActivityDetailPage = React.createClass({
   }
 });
 
-module.exports = ActivityDetailPage;
+export {ActivityDetailPage as default};

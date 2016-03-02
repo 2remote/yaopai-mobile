@@ -67,4 +67,4 @@ var WorkIntroRow = React.createClass({
   }
 });
 
-module.exports = WorkIntroRow;
+export {WorkIntroRow as default};

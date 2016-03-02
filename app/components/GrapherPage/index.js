@@ -1,17 +1,17 @@
 import React from 'react';
 import Reflux from 'reflux';
 import $ from 'jquery';
-var DocumentTitle = require('react-document-title');
-var HamburgMenu = require('../HamburgMenu');
-var GrapherList = require('./GrapherList');
-var PhotographerStore = require('../../stores/PhotographerStore');
-var PhotographerActions = require('../../actions/PhotographerActions');
-var AutoLoadPageMixin = require('../AutoLoadPageMixin');
+import DocumentTitle from 'react-document-title';
+import HamburgMenu from '../HamburgMenu';
+import GrapherList from './GrapherList';
+import PhotographerStore from '../../stores/PhotographerStore';
+import PhotographerActions from '../../actions/PhotographerActions';
+import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { TITLE } from '../Tools';
 import './GrapherPage.scss'
 import _ from 'underscore';
-var WechatShare = require('../Weixin/WechatShare');
-var Toaster = require('../Toast');
+import WechatShare from '../Weixin/WechatShare';
+import Toaster from '../Toast';
 
 var GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange') ,AutoLoadPageMixin],
@@ -40,7 +40,7 @@ var GrapherPage = React.createClass({
     }
   },
   onChangePage : function (pageIndex) {
-    this.onShowToast('努力加载中...')
+    this.onShowToast('努力加载中...');
     PhotographerActions.list(pageIndex);
   },
   render: function() {
@@ -58,4 +58,4 @@ var GrapherPage = React.createClass({
   }
 });
 
-module.exports = GrapherPage;
+export {GrapherPage as default};
