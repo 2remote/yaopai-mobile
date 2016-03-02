@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var DocumentTitle = require('react-document-title');
 var HamburgMenu = require('../HamburgMenu');
 

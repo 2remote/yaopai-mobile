@@ -1,5 +1,5 @@
-var React = require('react');
-require('./MainContent.css');
+import React from 'react';
+import './MainContent.scss'
 var main = React.createClass({
 
   render : function(){

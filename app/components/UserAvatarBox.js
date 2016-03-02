@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 import {Link} from 'react-router';
 var AvatarUploader = require('./UserCenterPage/AvatarUploader.js');
 import {parseImageUrl} from './Tools';

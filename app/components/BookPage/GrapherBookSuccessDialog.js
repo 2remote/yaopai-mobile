@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var History = require('react-router').History;
 
 import DoubleCheckInfo from './DoubleCheckInfo';

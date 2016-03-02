@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Reflux = require('reflux');
 var History = require('react-router').History;
 var localStorage = require('web-storage')().localStorage;

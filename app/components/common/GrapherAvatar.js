@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 import {Link} from 'react-router';
 import {imgModifier} from '../Tools';
 

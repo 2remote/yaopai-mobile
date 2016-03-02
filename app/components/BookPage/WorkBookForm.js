@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var validator = require('validator');
 var Toaster = require('../Toast');
 

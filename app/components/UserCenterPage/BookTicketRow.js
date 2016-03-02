@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var UserActions = require('../../actions/UserActions');
 var Tappable = require('react-tappable');
 var DocumentTitle = require('react-document-title');

@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var CallBox = require('./CallBox');
 import AddWeChat from './AddWeChat' ;
