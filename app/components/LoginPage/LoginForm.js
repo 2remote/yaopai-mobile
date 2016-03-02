@@ -1,6 +1,6 @@
 import React from 'react';
-var Reflux = require('reflux');
-var validator = require('validator');
+import Reflux from 'reflux';
+import validator from 'validator';
 import { Router, Route, Link, History,Location } from 'react-router';
 
 var LoginForm = React.createClass({
@@ -139,4 +139,4 @@ var LoginForm = React.createClass({
   }
 });
 
-module.exports = LoginForm;
+export {LoginForm as default};

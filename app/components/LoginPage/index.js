@@ -1,13 +1,13 @@
 import React from 'react';
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 import { Router, Route, Link, History,Location } from 'react-router';
-var DocumentTitle = require('react-document-title');
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
+import DocumentTitle from 'react-document-title';
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 
-var LoginForm = require('./LoginForm');
+import LoginForm from './LoginForm';
 import ActionBar from './ActionBar';
-var Toaster = require('../Toast');
+import Toaster from '../Toast';
 
 var LoginPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History,Location],
@@ -40,7 +40,7 @@ var LoginPage = React.createClass({
   },
 
   showMessage: function (content) {
-    this.refs.toast.show(content)
+    this.refs.toast.show(content);
   },
   render: function() {
     return (
@@ -89,4 +89,4 @@ var LoginPage = React.createClass({
   }
 });
 
-module.exports = LoginPage;
+export {LoginPage as default};

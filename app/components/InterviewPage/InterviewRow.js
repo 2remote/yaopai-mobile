@@ -34,4 +34,4 @@ var InterviewRow = React.createClass({
   }
 });
 
-module.exports = InterviewRow;
+export {InterviewRow as default};

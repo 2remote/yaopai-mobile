@@ -1,7 +1,7 @@
 import React from 'react';
 
-var WechatLogin = require('./WechatLogin');
-var WeiboLogin = require('./WeiboLogin');
+import WechatLogin from './WechatLogin';
+import WeiboLogin from './WeiboLogin';
 
 var ActionBar = React.createClass({
   render: function() {
@@ -15,4 +15,4 @@ var ActionBar = React.createClass({
   }
 });
 
-module.exports = ActionBar;
+export {ActionBar as default};
