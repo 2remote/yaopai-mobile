@@ -56,7 +56,6 @@ var ActionBar = React.createClass({
   },
   render: function() {
     return (
-      console.info('If you see this, plz just delete the console.info in components/ActionBar.js. If nobody see this, plz delete the whole file');
       <div className="actionBar" style={{paddingTop:22.5,height: 103.5,textAlign:'center'}}>
         <ShareGuide ref="shareGuide" />
         <div style={{float:'left',marginLeft: '22.666666%'}}>
