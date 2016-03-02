@@ -9,7 +9,7 @@ var PhotographerActions = require('../../actions/PhotographerActions');
 var PhotographerStore = require('../../stores/PhotographerStore');
 var AdActions = require('../../actions/AdActions');
 var AdStore = require('../../stores/AdStore');
-require('./index.css');
+import './index.scss';
 import { TITLE } from '../Tools';
 
 var HamburgMenu = require('../HamburgMenu');

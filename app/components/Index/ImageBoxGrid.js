@@ -43,10 +43,10 @@
 //         "Url": ""
 //    }]
 
-var React = require('react');
+import React from 'react';
 import { Router, Route, Link } from 'react-router';
 import LazyLoad from 'react-lazy-load';
-require('./ImageBoxGrid.css');
+import './ImageBoxGrid.scss';
 import {imgModifier, actionLinkMaker } from '../Tools'
 
 var ImageBoxGrid = React.createClass({

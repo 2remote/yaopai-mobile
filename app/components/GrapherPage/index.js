@@ -1,6 +1,6 @@
-var React = require('react');
-var Reflux = require('reflux');
-let $ = require('jquery');
+import React from 'react';
+import Reflux from 'reflux';
+import $ from 'jquery';
 var DocumentTitle = require('react-document-title');
 var HamburgMenu = require('../HamburgMenu');
 var GrapherList = require('./GrapherList');
@@ -8,7 +8,7 @@ var PhotographerStore = require('../../stores/PhotographerStore');
 var PhotographerActions = require('../../actions/PhotographerActions');
 var AutoLoadPageMixin = require('../AutoLoadPageMixin');
 import { TITLE } from '../Tools';
-require('./GrapherPage.css');
+import './GrapherPage.scss'
 import _ from 'underscore';
 var WechatShare = require('../Weixin/WechatShare');
 var Toaster = require('../Toast');
