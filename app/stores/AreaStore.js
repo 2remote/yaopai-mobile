@@ -1,6 +1,6 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
-var AreaActions = require('../actions/AreaActions');
+import AreaActions from '../actions/AreaActions';
 
 var AreaStore = Reflux.createStore({
   data:{},
@@ -27,7 +27,7 @@ var AreaStore = Reflux.createStore({
   },
   onGetProvinceFailed : function(data){
     this.data.hintMessage = "网络出错了，请重试！";
-    this.data.flag = "province"
+    this.data.flag = "province";
     this.trigger(this.data);
   },
   onGetCitySuccess : function(data){
@@ -50,10 +50,10 @@ var AreaStore = Reflux.createStore({
   },
   onGetDistrictFailed : function(data){
     this.data.hintMessage = "网络出错了，请重试！";
-    this.data.flag = "district"
+    this.data.flag = "district";
     this.trigger(this.data);
-  },
+  }
 
 });
 
-module.exports = AreaStore;
+export {AreaStore as default};

@@ -1,6 +1,6 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
-var GetCodeActions = require('../actions/GetCodeActions');
+import GetCodeActions from '../actions/GetCodeActions';
 var data = [];
 var timer = null;
 
@@ -15,8 +15,8 @@ var GetCodeStore = Reflux.createStore({
     this.data = {
       flag: '',
       left : 0,
-      result : '',
-    }
+      result : ''
+    };
     this.listenTo(GetCodeActions.sendTelRegister.success,this.onTelRegisterSucess);
     this.listenTo(GetCodeActions.sendTelRegister,this.onBeginTelRegister);
     this.listenTo(GetCodeActions.sendTelRestPassword.success, this.onTelRestPasswordSuccess);
@@ -59,12 +59,12 @@ var GetCodeStore = Reflux.createStore({
     if(data.Success){
       this.data.result = '验证码已发送';
     }else{
-      clearTimeout(timer)
+      clearTimeout(timer);
       this.data.result = data.ErrorMsg;
       this.data.left = 0;
     }
     this.trigger(this.data);
-  },
+  }
 });
 
-module.exports = GetCodeStore;
+export {GetCodeStore as default};

@@ -1,5 +1,5 @@
-var Reflux = require('reflux');
-var AlbumsActions = require('../actions/AlbumsActions');
+import Reflux from 'reflux';
+import AlbumsActions from '../actions/AlbumsActions';
 
 var AlbumsStore = Reflux.createStore({
   data : {
@@ -12,7 +12,7 @@ var AlbumsStore = Reflux.createStore({
     pageCount : 0, //当前查询条件下的总页数
     pageIndex : 0, //当前页
     pageSize : 0, //companent设置页面大小
-    total : 0, //当前查询条件下的作品总数
+    total : 0 //当前查询条件下的作品总数
   },
   init: function() {
     console.log('UploadWorksStore initialized');
@@ -167,4 +167,4 @@ var AlbumsStore = Reflux.createStore({
   }
 });
 
-module.exports = AlbumsStore;
+export {AlbumsStore as default};

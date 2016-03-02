@@ -93,7 +93,7 @@ var ImageBoxGrid = React.createClass({
 
     var work = this.props.works.filter(function(item){
       return item.Position == filter
-    }).slice(0,number)
+    }).slice(0,number);
     var imgNodes = work.map(function(work, i){
       var extraId = work.ExtraId;
       
@@ -125,4 +125,4 @@ var ImageBoxGrid = React.createClass({
   }
 });
 
-module.exports = ImageBoxGrid;
+export {ImageBoxGrid as default};

@@ -25,4 +25,4 @@ var CallGrapherBox = React.createClass({
   }
 });
 
-module.exports = CallGrapherBox;
+export {CallGrapherBox as default};

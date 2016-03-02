@@ -17,12 +17,12 @@ const settings = {
 export default class Slider extends React.Component {
   static defaultProps = {
     works: []
-  }
+  };
 
   render() {
     let works = this.props.works.filter(function(item,i){
       return item.Position == 'HomeSlide'
-    })
+    });
     let ImgNodes = works.map(function(work, i){
       var extraId = work.ExtraId;
 

@@ -16,4 +16,4 @@ var CallBox = React.createClass({
   }
 });
 
-module.exports = CallBox;
+export {CallBox as default};

@@ -1,4 +1,4 @@
-var React = require("react");
+import React from 'react';
 
 var NavBar = React.createClass({
   render: function(){
@@ -15,4 +15,4 @@ var NavBar = React.createClass({
   }
 });
 
-module.exports = NavBar;
+export {NavBar as default};

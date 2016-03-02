@@ -1,12 +1,12 @@
-var React = require ('react');
-var API = require('../../api');
+import React from 'react';
+import API from '../../api';
 
-var _ = require('underscore');
+import _ from 'underscore';
 
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 import {History,Location} from 'react-router';
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 import {Button, Toast} from 'react-weui';
 import {parseImageUrl} from '../Tools';
 
@@ -173,4 +173,4 @@ var AvatarUploader = React.createClass({
   }
 });
 
-module.exports = AvatarUploader;
+export {AvatarUploader as default};

@@ -16,4 +16,4 @@ var AddWeChat = React.createClass({
   }
 });
 
-module.exports = AddWeChat;
+export {AddWeChat as default};

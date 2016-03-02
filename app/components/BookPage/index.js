@@ -1,22 +1,22 @@
 import React from 'react';
-var Router = require('react-router');
+import Router from 'react-router';
 var History = Router.History;
 var Location = Router.Location;
-var Reflux = require('reflux');
-var DocumentTitle = require('react-document-title');
-var HamburgMenu = require('../HamburgMenu');
-const $ = require('jquery');
+import Reflux from 'reflux';
+import DocumentTitle from 'react-document-title';
+import HamburgMenu from '../HamburgMenu';
+import $ from 'jquery';
 var localStorage = require('web-storage')().localStorage;
 
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
-var OrderActions = require('../../actions/OrderActions');
-var OrderStore = require('../../stores/OrderStore');
-var AlbumsStore = require('../../stores/AlbumsStore');
-var AlbumsActions = require('../../actions/AlbumsActions');
-var PhotographerActions = require('../../actions/PhotographerActions');
-var PhotographerStore = require('../../stores/PhotographerStore');
-var Toaster = require('../Toast');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import OrderActions from '../../actions/OrderActions';
+import OrderStore from '../../stores/OrderStore';
+import AlbumsStore from '../../stores/AlbumsStore';
+import AlbumsActions from '../../actions/AlbumsActions';
+import PhotographerActions from '../../actions/PhotographerActions';
+import PhotographerStore from '../../stores/PhotographerStore';
+import Toaster from '../Toast';
 
 import BookIntro from './WorkBookIntro';
 import BookForm from './WorkBookForm';
@@ -27,7 +27,7 @@ var BookPage = React.createClass({
   getInitialState : function () {
     return {
       albums : '',
-      photographer : '',
+      photographer : ''
     }
   },
   mixins : [Reflux.listenTo(UserStore,'_handleUserSotreChange'),
@@ -148,7 +148,7 @@ var BookPage = React.createClass({
     //摄影师ID
     data.PhotographerId = this.state.photographer.Id;
     OrderActions.add(data);
-  },
+  }
 });
 
-module.exports = BookPage;
+export {BookPage as default};

@@ -1,12 +1,12 @@
-var Reflux = require('reflux');
-var PhotographerActions = require('../actions/PhotographerActions');
+import Reflux from 'reflux';
+import PhotographerActions from '../actions/PhotographerActions';
 
 var PhotographerStore = Reflux.createStore({
   data : {
     photographer : {},
     photographers : [],
     hitMessage : '',
-    flag : '',
+    flag : ''
   },
   init: function() {
     console.log('PAuthStore initialized');
@@ -51,8 +51,7 @@ var PhotographerStore = Reflux.createStore({
     }
     this.data.flag = 'recommendList';
     this.trigger(this.data);
-  },
-
+  }
 });
 
-module.exports = PhotographerStore;
+export {PhotographerStore as default};

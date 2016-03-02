@@ -1,5 +1,5 @@
 import React from 'react';
-var Acount = require('../User/Acount');
+import Acount from '../User/Acount';
 var LoginButton = React.createClass({
   render : function(){
     return (
@@ -34,4 +34,4 @@ var NavBar = React.createClass({
   }
 });
 
-module.exports = NavBar;
+export {NavBar as default};

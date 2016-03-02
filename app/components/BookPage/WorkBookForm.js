@@ -1,6 +1,6 @@
 import React from 'react';
-var validator = require('validator');
-var Toaster = require('../Toast');
+import validator from 'validator';
+import Toaster from '../Toast';
 
 import { Router, Route, Link } from 'react-router';
 
@@ -120,4 +120,4 @@ var BookForm = React.createClass({
 
 });
 
-module.exports = BookForm;
+export {BookForm as default};

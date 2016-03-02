@@ -52,4 +52,4 @@ var WorkIntroGrapherRow = React.createClass({
   }
 });
 
-module.exports = WorkIntroGrapherRow;
+export {WorkIntroGrapherRow as default};

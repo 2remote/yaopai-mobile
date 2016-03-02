@@ -1,5 +1,5 @@
-var Reflux = require('reflux');
-var AdActions = require('../actions/AdActions');
+import Reflux from 'reflux';
+import AdActions from '../actions/AdActions';
 
 var AdStore = Reflux.createStore({
   data : {
@@ -7,7 +7,7 @@ var AdStore = Reflux.createStore({
     hintMessage : '',
     workList : [],
     pageIndex : 0, //当前页
-    pageSize : 0, //companent设置页面大小
+    pageSize : 0 //companent设置页面大小
   },
   
   init: function() {
@@ -35,7 +35,7 @@ var AdStore = Reflux.createStore({
     }
     this.data.flag = 'list';
     this.trigger(this.data);
-  },
+  }
 });
 
-module.exports = AdStore;
+export {AdStore as default};

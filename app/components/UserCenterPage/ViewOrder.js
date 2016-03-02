@@ -1,12 +1,12 @@
 import React from 'react';
-var Reflux = require('reflux');
-var DocumentTitle = require('react-document-title');
+import Reflux from 'reflux';
+import DocumentTitle from 'react-document-title';
 var History = require('react-router').History;
 var localStorage = require('web-storage')().localStorage;
 
 import ExtraServiceBox from '../WorkDetailPage/ExtraServiceBox';
-var OrderActions = require('../../actions/OrderActions');
-var OrderStore = require('../../stores/OrderStore');
+import OrderActions from '../../actions/OrderActions';
+import OrderStore from '../../stores/OrderStore';
 
 var CallBox = React.createClass({
   render: function() {
@@ -296,4 +296,4 @@ var ViewOrder = React.createClass({
   }
 });
 
-module.exports = ViewOrder;
+export {ViewOrder as default};

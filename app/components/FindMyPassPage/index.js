@@ -1,5 +1,5 @@
 import React from 'react';
-var DocumentTitle = require('react-document-title');
+import DocumentTitle from 'react-document-title';
 
 /*已废弃*/
 import FindByMobileForm from './FindByMobileForm';
@@ -8,7 +8,7 @@ import ChangePassWordForm from './ChangePassWordForm';
 var FindMyPassPage = React.createClass({
   getInitialState: function () {
     return {
-      step: 1,
+      step: 1
     }
   },
   showNextStep: function () {
@@ -16,8 +16,8 @@ var FindMyPassPage = React.createClass({
   },
   render: function() {
     var styles = {
-      marginTop: '100px',
-    }
+      marginTop: '100px'
+    };
     var resetForm;
     if (this.state.step == 1) {
       resetForm = <FindByMobileForm toNextStep={this.showNextStep} />;
@@ -34,4 +34,4 @@ var FindMyPassPage = React.createClass({
   }
 });
 
-module.exports = FindMyPassPage;
+export {FindMyPassPage as default};

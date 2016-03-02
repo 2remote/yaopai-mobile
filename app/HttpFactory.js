@@ -1,4 +1,4 @@
-var $ = require('jquery');
+import $ from 'jquery';
 var HttpFactory = {
   post : function (url,data,success,failed) {
     //json post
@@ -13,9 +13,9 @@ var HttpFactory = {
         withCredentials : true
       },
       success : success,
-      error : failed,
+      error : failed
     });
   }
-}
+};
 
-module.exports = HttpFactory;
+export {HttpFactory as default};

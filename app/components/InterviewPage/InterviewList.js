@@ -1,6 +1,6 @@
 import React from 'react';
 
-var InterviewRow = require('./InterviewRow');
+import InterviewRow from'./InterviewRow';
 
 var InterviewList = React.createClass({
   getDefaultProps: function() {
@@ -31,4 +31,4 @@ var InterviewList = React.createClass({
   }
 });
 
-module.exports = InterviewList;
+export {InterviewList as default};

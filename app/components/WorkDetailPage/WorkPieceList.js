@@ -1,6 +1,6 @@
 import React from 'react';
 
-var WorkPieceRow = require('./WorkPieceRow');
+import WorkPieceRow from './WorkPieceRow';
 
 var WorkPieceList = React.createClass({
   getDefaultProps: function() {
@@ -23,5 +23,4 @@ var WorkPieceList = React.createClass({
     );
   }
 });
-
-module.exports = WorkPieceList;
+export {WorkPieceList as default};

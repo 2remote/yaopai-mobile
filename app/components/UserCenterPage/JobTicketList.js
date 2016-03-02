@@ -21,4 +21,4 @@ var JobTicketList = React.createClass({
   }
 });
 
-module.exports = JobTicketList;
+export {JobTicketList as default};

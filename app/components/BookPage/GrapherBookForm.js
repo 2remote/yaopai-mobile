@@ -83,4 +83,4 @@ var BookForm = React.createClass({
   }
 });
 
-module.exports = BookForm;
+export {BookForm as default};

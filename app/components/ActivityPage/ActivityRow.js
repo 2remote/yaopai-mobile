@@ -34,4 +34,4 @@ var ActivityRow = React.createClass({
   }
 });
 
-module.exports = ActivityRow;
+export {ActivityRow as default};

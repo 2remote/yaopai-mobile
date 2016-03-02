@@ -1,6 +1,6 @@
-var Reflux = require('reflux');
-var HttpFactory = require('../HttpFactory');
-var API = require('../api');
+import Reflux from 'reflux';
+import HttpFactory from '../HttpFactory';
+import API from '../api';
 
 var AlbumsActions = Reflux.createActions({
   'get':{children : ['success','failed']},
@@ -12,7 +12,7 @@ var AlbumsActions = Reflux.createActions({
   'getMyAlbums' : {children : ['success','failed']},
   'onSale' : {children:['success','failed']},
   'offSale' : {children:['success','failed']},
-  'getTagList' : {children:['success','failed']},
+  'getTagList' : {children:['success','failed']}
 });
 
 AlbumsActions.get.listen(function(id){
@@ -33,16 +33,16 @@ function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null){
     CategoryId : categoryId,
     Tags: tags,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar'
-  }
+  };
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
-};
+}
 
 // http://api.aiyaopai.com/?api=Tag.List&fields=id,name,display,tags.id,tags.name,tags.display
 AlbumsActions.getTagList.listen(function () {
   var data = {
     Fields : 'id,name,display,tags.id,tags.name,tags.display'
-  }
+  };
   HttpFactory.post(API.TAG.list,data,this.success,this.failed);
 });
 
-module.exports = AlbumsActions;
+export {AlbumsActions as default};
