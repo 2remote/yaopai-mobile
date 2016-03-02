@@ -112,4 +112,4 @@ var DoubleCheckInfo = React.createClass({
   }
 });
 
-module.exports = DoubleCheckInfo; 
+export {DoubleCheckInfo as default};

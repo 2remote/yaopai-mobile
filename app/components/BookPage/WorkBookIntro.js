@@ -1,5 +1,5 @@
 import React from 'react';
-const $ = require('jquery');
+import $ from 'jquery';
 
 import { GET_WORK_INTRO, imgModifier } from '../Tools';
 
@@ -40,4 +40,4 @@ var BookIntro = React.createClass({
   }
 });
 
-module.exports = BookIntro;
+export {BookIntro as default};

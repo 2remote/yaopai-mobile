@@ -32,4 +32,4 @@ var GrapherAvatar = React.createClass({
   }
 });
 
-module.exports = GrapherAvatar;
+export {GrapherAvatar as default};

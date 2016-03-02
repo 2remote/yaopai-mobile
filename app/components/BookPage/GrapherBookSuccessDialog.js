@@ -75,4 +75,4 @@ var BookSuccessDialog = React.createClass({
   }
 });
 
-module.exports = BookSuccessDialog;
+export {BookSuccessDialog as default};

@@ -1,6 +1,5 @@
 import React from 'react';
-
-var ActivityRow = require('./ActivityRow');
+import ActivityRow from'./ActivityRow';
 
 var ActivityList = React.createClass({
   getDefaultProps: function() {
@@ -31,4 +30,4 @@ var ActivityList = React.createClass({
   }
 });
 
-module.exports = ActivityList;
+export {ActivityList as default};
