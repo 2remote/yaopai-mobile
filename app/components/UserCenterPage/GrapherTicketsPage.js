@@ -1,15 +1,15 @@
 import React from 'react';
-var Router = require('react-router');
+import Router from 'react-router';
 import {History,Location} from 'react-router';
-var Reflux = require('reflux');
-var HamburgMenu = require('../HamburgMenu');
+import Reflux from 'reflux';
+import HamburgMenu from '../HamburgMenu';
 import UserAvatarBox from '../UserAvatarBox' ;
 import JobTicketList from './JobTicketList';
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
-var OrderActions = require('../../actions/OrderActions');
-var OrderStore = require('../../stores/OrderStore');
-var _ = require('underscore');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import OrderActions from '../../actions/OrderActions';
+import OrderStore from '../../stores/OrderStore';
+import _ from 'underscore';
 
 var GrapherTicketsPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(OrderStore,'_onOrderStoreChange'),History],
@@ -89,4 +89,4 @@ var GrapherTicketsPage = React.createClass({
   }
 });
 
-module.exports = GrapherTicketsPage;
+export {GrapherTicketsPage as default};

@@ -1,9 +1,9 @@
 import React from 'react';
-var UserActions = require('../../actions/UserActions');
-var Tappable = require('react-tappable');
-var DocumentTitle = require('react-document-title');
+import UserActions from'../../actions/UserActions';
+import Tappable from'react-tappable';
+import DocumentTitle from'react-document-title';
 
-var OrderActions = require('../../actions/OrderActions');
+import OrderActions from'../../actions/OrderActions';
 import { Link, History,Location } from 'react-router';
 
 var BookTicketRow = React.createClass({
@@ -14,7 +14,7 @@ var BookTicketRow = React.createClass({
   },
   getInitialState: function () {
     return {
-      showCancelDialog: false,
+      showCancelDialog: false
     }
   },
   toggleCancelDialog: function() {
@@ -32,7 +32,7 @@ var BookTicketRow = React.createClass({
       row: {
         clear: 'both',
         height: 165,
-        position: 'relative',
+        position: 'relative'
       },
       bookTicket: {
         backgroundImage: this.state.showCancelDialog ? 'url(imgs/userCenterPage/book-success-ticket-bk.png)' : 'url(imgs/userCenterPage/book-ticket-bk.png)',
@@ -40,7 +40,7 @@ var BookTicketRow = React.createClass({
         height: 150,
         float: 'left',
         backgroundSize: '100% 150px',
-        backgroundRepeat: 'no-repeat',
+        backgroundRepeat: 'no-repeat'
       },
       mask: {
         position: 'absolute',
@@ -60,7 +60,7 @@ var BookTicketRow = React.createClass({
       maskIcon: {
         verticalAlign: 'middle',
         marginRight: '13%',
-        fontSize: 72,
+        fontSize: 72
       },
       maskText: {
         fontSize: '2em',
@@ -75,7 +75,7 @@ var BookTicketRow = React.createClass({
       avatar: {
         width: 66,
         height: 66,
-        margin: '16.5px 0 3px 0',
+        margin: '16.5px 0 3px 0'
       },
       userName: {
         whiteSpace: 'nowrap',
@@ -108,7 +108,7 @@ var BookTicketRow = React.createClass({
         right: '8%',
         top: '-8px',
         float: 'right',
-        fontSize: 25,
+        fontSize: 25
       },
       actionBox: {
         float: 'right',
@@ -131,28 +131,28 @@ var BookTicketRow = React.createClass({
         bottom: 14,
         right: '28.6885246%',
         padding: '9px 17px',
-        margin: '-9px -17px',
+        margin: '-9px -17px'
       },
       contactBox: {
         position: 'absolute',
         top: 17,
         right: '28.6885246%',
         padding: '9px 17px',
-        margin: '-9px -17px',
+        margin: '-9px -17px'
       },
       buttonText: {
         fontSize: '0.666666667em',
         color: '#909090',
         marginTop: -3,
         height: '20px',
-        lineHeight: '20px',
+        lineHeight: '20px'
       },
       confirmTitle: {
         fontSize:'1.666666667em',
         marginBottom: 48*heightRatio
       },
       hide: {
-        display: 'none',
+        display: 'none'
       },
       cancelOrder: {
         float: 'left',
@@ -178,7 +178,7 @@ var BookTicketRow = React.createClass({
         zIndex: 100,
         paddingTop: 40*heightRatio,
         opacity: 0.88,
-        display: 'block',
+        display: 'block'
       },
       link: {
         lineHeight: 'inherit'
@@ -332,4 +332,4 @@ var BookTicketRow = React.createClass({
   }
 });
 
-module.exports = BookTicketRow;
+export {BookTicketRow as default};

@@ -1,26 +1,26 @@
 import React from 'react';
-var Reflux = require('reflux');
-const $ = require('jquery');
-var DocumentTitle = require('react-document-title');
+import Reflux from 'reflux';
+import $ from 'jquery';
+import DocumentTitle from 'react-document-title';
 
-var WorkTitle = require('./WorkTitle');
-var WorkPieceList = require('./WorkPieceList');
-var GrapherAvatar = require('../common/GrapherAvatar');
-var ActionBar = require('./ActionBar');
-var HamburgMenu = require('../HamburgMenu');
-var UserActions = require('../../actions/UserActions');
-var AlbumsStore = require('../../stores/AlbumsStore');
-var AlbumsActions = require('../../actions/AlbumsActions');
+import WorkTitle from './WorkTitle';
+import WorkPieceList from './WorkPieceList';
+import GrapherAvatar from '../common/GrapherAvatar';
+import ActionBar from './ActionBar';
+import HamburgMenu from '../HamburgMenu';
+import UserActions from '../../actions/UserActions';
+import AlbumsStore from '../../stores/AlbumsStore';
+import AlbumsActions from '../../actions/AlbumsActions';
 import { GET_WORK_DETAIL, TITLE } from '../Tools';
 import {History} from 'react-router'
 import Share from '../Share';
-var WechatShare = require('../Weixin/WechatShare');
+import WechatShare from '../Weixin/WechatShare';
 
 var WorkDetailPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'),History],
   getInitialState: function() {
     return {
-      data:[],
+      data:[]
     };
   },
   
@@ -101,4 +101,4 @@ var WorkDetailPage = React.createClass({
   }
 });
 
-module.exports = WorkDetailPage;
+export {WorkDetailPage as default};

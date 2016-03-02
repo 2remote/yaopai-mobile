@@ -17,7 +17,7 @@ export default class SidePageIcon extends React.Component {
         textAlign: 'center'
       },
       loginBox: {
-        position: 'relative',
+        position: 'relative'
       },
       logout:{
         position: 'absolute',
@@ -25,7 +25,7 @@ export default class SidePageIcon extends React.Component {
         right: '0px'
       },
       loginName: {
-        marginBottom: '15px',
+        marginBottom: '15px'
       },
       link:{
         lineHeight: '14px',
@@ -45,8 +45,8 @@ export default class SidePageIcon extends React.Component {
         margin:'0 0 0 10%'
       },
       commonIcon: {
-        marginTop: '15px',
-      },
+        marginTop: '15px'
+      }
     };
 
     return(

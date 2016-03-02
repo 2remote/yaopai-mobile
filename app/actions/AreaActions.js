@@ -1,7 +1,6 @@
-var Reflux = require('reflux');
-
-var HttpFactory = require('../HttpFactory');
-var API = require('../api');
+import Reflux from 'reflux';
+import HttpFactory from '../HttpFactory';
+import API from '../api';
 
 var AreaActions = Reflux.createActions({
   'getProvince' : {children:['success','failed']},
@@ -32,4 +31,4 @@ AreaActions.getDistrict.listen(function(data){
 });
 
 
-module.exports = AreaActions;
+export {AreaActions as default};

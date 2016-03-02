@@ -1,6 +1,6 @@
-var Reflux = require('reflux');
-var API = require('../api');
-var HttpFactory = require('../HttpFactory');
+import Reflux from 'reflux';
+import HttpFactory from '../HttpFactory';
+import API from '../api';
 
 var UserActions = Reflux.createActions({
   'register' : {children:["success","failed"]},
@@ -21,7 +21,7 @@ var UserActions = Reflux.createActions({
 
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
-  'receiveTelResetPassWord': {children: ['success', 'failed']},
+  'receiveTelResetPassWord': {children: ['success', 'failed']}
 });
 
 /*
@@ -92,7 +92,7 @@ UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
     NickName: nickname,
     Sex: parseInt(gender),
     Location: parseInt(city)
-  }  
+  };
 
   HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
 });
@@ -102,8 +102,8 @@ UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
 */
 UserActions.changeAvatarOnServer.listen(function(imgLink) {
   var data = {
-    Avatar: imgLink,
-  }  
+    Avatar: imgLink
+  };
   HttpFactory.post(API.USER.changeAvatar,data,this.success,this.failed);
 });
 
@@ -158,4 +158,4 @@ UserActions.receiveTelResetPassWord.listen(function (data) {
   HttpFactory.post(API.USER.receiveTelResetPassWord, data, this.success, this.failed);
 });
 
-module.exports = UserActions;
+export {UserActions as default};

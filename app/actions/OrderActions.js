@@ -1,6 +1,6 @@
-var Reflux = require('reflux');
-var HttpFactory = require('../HttpFactory');
-var API = require('../api');
+import Reflux from 'reflux';
+import HttpFactory from '../HttpFactory';
+import API from '../api';
 
 var OrderActions = Reflux.createActions({
   'list' : {children:['success','failed']} ,
@@ -20,13 +20,13 @@ OrderActions.list.listen(function(type,state){
   var s = null;
   if(state == 'pending'){
     s = 0;
-  };
+  }
   if(state == 'finished'){
     s = 1;
-  };
+  }
   if(state == 'closed'){
     s = 2;
-  };
+  }
   var data = {
     State : s,
     Fields : 'Id,UserId,BuyerName,BuyerTel,Price,AppointedTime,PhotographerId,Photographer.BusinessPhone,IsSpecifiesAlbums,AlbumsId,CreationTime,State,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id',
@@ -75,7 +75,7 @@ OrderActions.confirm.listen(function(id,appointeTime){
 OrderActions.close.listen(function(id){
   var data = {
     Id : id
-  }
+  };
   HttpFactory.post(API.ORDER.close,data,this.success,this.failed);
 });
-module.exports = OrderActions;
+export {OrderActions as default};

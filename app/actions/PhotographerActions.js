@@ -1,6 +1,6 @@
-var Reflux = require('reflux');
-var HttpFactory = require('../HttpFactory');
-var API = require('../api');
+import Reflux from 'reflux';
+import HttpFactory from '../HttpFactory';
+import API from '../api';
 
 var PhotographerActions = Reflux.createActions({
   'get' : {children : ['success','failed']},
@@ -14,7 +14,7 @@ PhotographerActions.get.listen(function(id){
   var data = {
     Id : id,
     Fields : 'Id,BusinessPhone,User.Id,User.NickName,User.Avatar'
-  }
+  };
   HttpFactory.post(API.PHOTOGRAPHER.get,data,this.success,this.failed);
 });
 /*
@@ -26,7 +26,7 @@ PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = nul
     PageIndex : pageIndex,
     PageSize : pageSize,
     city : city
-  }
+  };
   HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed);
 });
 
@@ -40,9 +40,9 @@ PhotographerActions.recommendList.listen(function(count = 3, city = null){
     PageSize : count,
     city : city,
     HomeRecommended : true,
-    HomeSortingDesc : true,
-  }
+    HomeSortingDesc : true
+  };
   HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed);
 });
 
-module.exports = PhotographerActions;
+export {PhotographerActions as default};

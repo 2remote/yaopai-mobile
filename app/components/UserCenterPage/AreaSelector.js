@@ -1,10 +1,10 @@
-var React = require ('react');
-var ReactDOM = require('react-dom');
-var Reflux = require('reflux');
-// var Input = require('react-bootstrap').Input;
+import React from 'react';
+import ReactDOM from'react-dom';
+import Reflux from'reflux';
+// var Input from'react-bootstrap').Input;
 
-var AreaActions = require('../../actions/AreaActions');
-var AreaStore = require('../../stores/AreaStore');
+import AreaActions from'../../actions/AreaActions';
+import AreaStore from'../../stores/AreaStore';
 
 var AreaSelect = React.createClass({
   mixins : [Reflux.listenTo(AreaStore,'onGetAreaList')],
@@ -13,7 +13,7 @@ var AreaSelect = React.createClass({
       provinceList : [],
       cityList : [],
       districtList : [],
-      found: false,
+      found: false
     }
   },
   componentDidMount : function(){
@@ -39,7 +39,7 @@ var AreaSelect = React.createClass({
           found = province.Name;
         }
       }
-    })
+    });
 
     var cityList = this.state.cityList;
     cityList.map(function (city) {
@@ -50,7 +50,7 @@ var AreaSelect = React.createClass({
           found = city.Name;
         }
       }
-    })
+    });
 
     var districtList = this.state.districtList;
     districtList.map(function (district) {
@@ -61,7 +61,7 @@ var AreaSelect = React.createClass({
           found = district.Name;
         }
       }
-    })
+    });
 
     this.setState({found: found});
     return found;
@@ -187,4 +187,4 @@ var AreaSelect = React.createClass({
   }
 });
 
-module.exports = AreaSelect;
+export {AreaSelect as default};

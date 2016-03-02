@@ -79,4 +79,4 @@ var Toaster = React.createClass({
   }
 });
 
-module.exports = Toaster;
+export {Toaster as default};

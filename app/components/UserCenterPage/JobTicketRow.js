@@ -1,9 +1,9 @@
 import React from 'react';
-var Tappable = require('react-tappable');
-var DocumentTitle = require('react-document-title');
-var OrderActions = require('../../actions/OrderActions');
+import Tappable from 'react-tappable';
+import DocumentTitle from 'react-document-title';
+import OrderActions from '../../actions/OrderActions';
 
-var assert = require('assert');
+import assert from 'assert';
 
 import { Link, History,Location } from 'react-router';
 
@@ -54,7 +54,7 @@ var JobTicketRow = React.createClass({
       row: {
         clear: 'both',
         height: 165,
-        position: 'relative',
+        position: 'relative'
       },
       jobTicket: {
         backgroundImage: this.state.showConfirmDialog? 'url(imgs/userCenterPage/book-success-ticket-bk.png)': 'url(imgs/userCenterPage/book-ticket-bk.png)',
@@ -62,7 +62,7 @@ var JobTicketRow = React.createClass({
         height: 150,
         float: 'left',
         backgroundSize: '100% 150px',
-        backgroundRepeat: 'no-repeat',
+        backgroundRepeat: 'no-repeat'
       },
       mask: {
         position: 'absolute',
@@ -82,7 +82,7 @@ var JobTicketRow = React.createClass({
       maskIcon: {
         verticalAlign: 'middle',
         marginRight: '13%',
-        fontSize: 72,
+        fontSize: 72
       },
       maskText: {
         fontSize: '2em',
@@ -92,10 +92,10 @@ var JobTicketRow = React.createClass({
       maskTurn: {
         float: 'right',
         marginTop: '4px',
-        fontSize: 25,
+        fontSize: 25
       },
       hide: {
-        display: 'none',
+        display: 'none'
       },
       avatar: {
         width: 66,
@@ -164,14 +164,14 @@ var JobTicketRow = React.createClass({
         bottom: 14,
         right: '28.6885246%',
         padding: '9px 17px',
-        margin: '-9px -17px',
+        margin: '-9px -17px'
       },
       editBox: {
         position: 'absolute',
         top: 17,
         right: '28.6885246%',
         padding: '9px 17px',
-        margin: '-9px -17px',
+        margin: '-9px -17px'
       },
       buttonText: {
         fontSize: .666666667+'em',
@@ -181,7 +181,7 @@ var JobTicketRow = React.createClass({
         lineHeight: '20px'
       },
       confirmBookDialog: {
-        display: 'none',
+        display: 'none'
       },
       
       confirmHint: {
@@ -215,7 +215,7 @@ var JobTicketRow = React.createClass({
         zIndex: 100,
         paddingTop: 40*heightRatio,
         opacity: 0.88,
-        display: 'block',
+        display: 'block'
       },
       link: {
         lineHeight: 'inherit'
@@ -389,4 +389,4 @@ var JobTicketRow = React.createClass({
   }
 });
 
-module.exports = JobTicketRow;
+export {JobTicketRow as default};

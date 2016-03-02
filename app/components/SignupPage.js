@@ -1,13 +1,13 @@
 import React from 'react';
-var Reflux = require('reflux');
-var DocumentTitle = require('react-document-title');
-var validator = require('validator');
-var UserActions = require('../actions/UserActions');
-var UserStore = require('../stores/UserStore');
-var GetCodeActions = require('../actions/GetCodeActions');
-var GetCodeStore = require('../stores/GetCodeStore');
+import Reflux from 'reflux';
+import DocumentTitle from 'react-document-title';
+import validator from 'validator';
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore';
+import GetCodeActions from '../actions/GetCodeActions';
+import GetCodeStore from '../stores/GetCodeStore';
 import { Router, Route, Link, History } from 'react-router';
-var Toaster = require('./Toast');
+import Toaster from './Toast';
 
 var SignupPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(GetCodeStore,'_onGetCodeStoreChange'),History],
@@ -17,7 +17,7 @@ var SignupPage = React.createClass({
       code : '',
       password1 : '',
       password2 : '',
-      codeLeft : 0,
+      codeLeft : 0
     }
   },
   _onUserStoreChange : function(data){
@@ -105,7 +105,7 @@ var SignupPage = React.createClass({
       lineHeight: '19px',
       borderWidth: '0 0 2px',
       borderRadius: 0,
-      borderColor: 'transparent transparent #c4c4c4',
+      borderColor: 'transparent transparent #c4c4c4'
     };
     var mobileNumber = {
       padding: '8px 10px',
@@ -200,4 +200,4 @@ var SignupPage = React.createClass({
   }
 });
 
-module.exports = SignupPage;
+export {SignupPage as default};

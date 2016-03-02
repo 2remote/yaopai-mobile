@@ -29,4 +29,4 @@ var WorkTitle = React.createClass({
   }
 });
 
-module.exports = WorkTitle;
+export {WorkTitle as default};

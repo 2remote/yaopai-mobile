@@ -1,5 +1,5 @@
 import React from 'react';
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
 var UserAction = Reflux.createAction({
   asyncResult: true,
@@ -18,4 +18,4 @@ UserAction.logout.listen(function(data){
   $.post('',data).then(this.logout);
 });
 
-module.exports = UserAction;
+export {UserAction as default};
