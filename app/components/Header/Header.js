@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Acount = require('../User/Acount');
 var LoginButton = React.createClass({
   render : function(){

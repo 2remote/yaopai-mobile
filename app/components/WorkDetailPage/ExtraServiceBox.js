@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Tappable = require('react-tappable');
 
 var ExtraServiceBox = React.createClass({

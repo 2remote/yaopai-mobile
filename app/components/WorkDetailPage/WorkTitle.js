@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var WorkTitle = React.createClass({
   getDefaultProps: function() {

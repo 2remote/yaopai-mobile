@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Reflux = require('reflux');
 import { Router, Route, Link } from 'react-router';
 var DocumentTitle = require('react-document-title');

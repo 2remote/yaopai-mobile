@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 import { Link, History,Location } from 'react-router';
 

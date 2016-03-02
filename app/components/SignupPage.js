@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Reflux = require('reflux');
 var DocumentTitle = require('react-document-title');
 var validator = require('validator');

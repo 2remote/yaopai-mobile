@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Reflux = require('reflux');
 const $ = require('jquery');
 var DocumentTitle = require('react-document-title');

@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Router = require('react-router');
 var History = Router.History;
 var Location = Router.Location;

@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 const $ = require('jquery');
 
 import { GET_WORK_INTRO, imgModifier } from '../Tools';

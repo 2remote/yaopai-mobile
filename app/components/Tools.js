@@ -1,5 +1,5 @@
 import { API_URL } from '../api';
-var React = require('react');
+import React from 'react';
 import { Link } from 'react-router';
 
 exports.imgModifier = function  (img, mode, width) {

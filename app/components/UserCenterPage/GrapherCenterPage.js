@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Router = require('react-router');
 import {History,Location, Link} from 'react-router';
 var Reflux = require('reflux');

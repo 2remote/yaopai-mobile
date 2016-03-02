@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var WechatLogin = require('./WechatLogin');
 var WeiboLogin = require('./WeiboLogin');

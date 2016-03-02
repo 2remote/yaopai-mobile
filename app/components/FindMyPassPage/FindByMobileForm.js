@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Reflux = require('reflux');
 var GetCodeActions = require('../../actions/GetCodeActions');
 var GetCodeStore = require('../../stores/GetCodeStore');

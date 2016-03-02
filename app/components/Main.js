@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require ('react');
+import React from 'react';
 var Header = require('./Header/Header');
 var MainContent = require('./Content/MainContent');
 
