@@ -2,7 +2,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
-import App from './components/Index';
+import AppIndex from './components/Index';
 
 import WorkPage from './components/WorkPage';
 import WorkDetailPage from './components/WorkDetailPage';
@@ -38,45 +38,63 @@ import ConfirmBookDialog from './components/UserCenterPage/ConfirmBookDialog';
 import SidePage from './components/SidePage';
 import ViewOrder from './components/UserCenterPage/ViewOrder';
 
+import Center from './components/Center/Center';
+import Grapher from './components/Center/Grapher/Grapher';
+import GrapherIndex from './components/Center/Grapher/Index';
+import GrapherUpdate from './components/Center/Grapher/Update/Update';
+import GrapherOrder from './components/Center/Grapher/Order';
+
 main();
 
 function main(){
   ReactDOM.render((
     <Router>
-      <Route path="/" component={App} />
-      <Route path="/work(/:tag)(/:tag)(/:tag)(/:tag)" component={WorkPage} />
-      <Route path="/workDetail/:Id" component={WorkDetailPage} />
+      <Route path="/">
+        <IndexRoute component={AppIndex} />
+        <Route path="/work(/:tag)(/:tag)(/:tag)(/:tag)" component={WorkPage} />
+        <Route path="/workDetail/:Id" component={WorkDetailPage} />
 
-      <Route path="/interview" component={InterviewPage} />      
-      <Route path="/interviewDetail/:Id" component={InterviewDetailPage} />
+        <Route path="/interview" component={InterviewPage} />
+        <Route path="/interviewDetail/:Id" component={InterviewDetailPage} />
 
-      <Route path="/activity" component={ActivityPage} />
-      <Route path="/activityDetail/:Id" component={ActivityDetailPage} />
+        <Route path="/activity" component={ActivityPage} />
+        <Route path="/activityDetail/:Id" component={ActivityDetailPage} />
 
-      <Route path="/grapher" component={GrapherPage} />
-      <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />
-      <Route path="/login_page" component={LoginPage} />
-      <Route path="/signupPage" component={SignupPage} />
-      <Route path="/find_my_pass_page1" component={FindMyPassPage1} />
-      <Route path="/find_my_pass_page2" component={FindMyPassPage2} />
-      <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
-      <Route path="/book_success_dialog/:orderId" component={BookSuccessDialog} />
-    
-      <Route path="/grapher_book_success_dialog" component={GrapherBookSuccessDialog} />
-      
-      <Route path="/user_center" component={UserCenterPage} />
-      <Route path="/user_tickets" component={UserTicketsPage} />
-      <Route path="/user_edit_profile" component={UserEditProfile} />
-      <Route path="/user_nickname_change" component={UserNickNameChange} />
-      <Route path="/user_gender_change" component={UserGenderChange} />
-      <Route path="/user_city_change" component={UserCityChange} />
+        <Route path="/grapher" component={GrapherPage} />
+        <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />
+        <Route path="/login_page" component={LoginPage} />
+        <Route path="/signupPage" component={SignupPage} />
+        <Route path="/find_my_pass_page1" component={FindMyPassPage1} />
+        <Route path="/find_my_pass_page2" component={FindMyPassPage2} />
+        <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
+        <Route path="/book_success_dialog/:orderId" component={BookSuccessDialog} />
 
-      <Route path="/grapher_center" component={GrapherCenterPage} />
-      <Route path="/grapher_tickets" component={GrapherTicketsPage} />
+        <Route path="/grapher_book_success_dialog" component={GrapherBookSuccessDialog} />
 
-      <Route path="/viewOrder/:type/:orderId" component={ViewOrder} />
-      <Route path="/confirm_book_dialog" component={ConfirmBookDialog} />
-      <Route path="/book_modify/:workId/:photographerId" component={BookModify} />
+        <Route path="/user_center" component={UserCenterPage} />
+        <Route path="/user_tickets" component={UserTicketsPage} />
+        <Route path="/user_edit_profile" component={UserEditProfile} />
+        <Route path="/user_nickname_change" component={UserNickNameChange} />
+        <Route path="/user_gender_change" component={UserGenderChange} />
+        <Route path="/user_city_change" component={UserCityChange} />
+
+        <Route path="/grapher_center" component={GrapherCenterPage} />
+        <Route path="/grapher_tickets" component={GrapherTicketsPage} />
+
+        <Route path="/viewOrder/:type/:orderId" component={ViewOrder} />
+        <Route path="/confirm_book_dialog" component={ConfirmBookDialog} />
+        <Route path="/book_modify/:workId/:photographerId" component={BookModify} />
+        <Route path="center">
+          <Route path="g">
+            <IndexRoute component={GrapherIndex}/>
+            <Route path="update" component={GrapherUpdate}>
+            </Route>
+            <Route path="order" component={GrapherOrder}>
+              <Route />
+            </Route>
+          </Route>
+        </Route>
+      </Route>
     </Router>
     ), document.getElementById('app')
   );
