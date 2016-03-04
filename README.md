@@ -12,3 +12,11 @@ CircleCI
   - 至少一个管理员审核
   - ci 显示为 pass
 
+
+##编码规范列表
+* <a href ="https://github.com/vikingmute/javascript/tree/master/react">React</a>
+* <a href ="https://github.com/yuche/javascript">ES6</a>
+* <a href ="https://github.com/airbnb/css">CSS && SASS</a>
+
+##黄金定律
+>不管有多少人共同参与同一项目，一定要确保每一行代码都像是同一个人编写的。
