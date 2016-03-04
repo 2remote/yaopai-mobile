@@ -41,6 +41,7 @@ import ViewOrder from './components/UserCenterPage/ViewOrder';
 import GrapherIndex from './components/Center/Grapher/Index';
 import GrapherUpdate from './components/Center/Grapher/Update/Update';
 import GrapherOrder from './components/Center/Grapher/Order';
+import OrderList from './components/Center/Grapher/OrderList';
 
 main();
 
@@ -88,7 +89,12 @@ function main(){
             <Route path="update" component={GrapherUpdate}>
             </Route>
             <Route path="order" component={GrapherOrder}>
-              <Route />
+              <Route path="unpayed" component={OrderList}/>
+              <Route path="unconfirmed" component={OrderList}/>
+              <Route path="ongoing" component={OrderList}/>
+              <Route path="completed" component={OrderList}/>
+              <Route path="closed" component={OrderList}/>
+            <Route />
             </Route>
           </Route>
         </Route>
