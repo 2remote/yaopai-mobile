@@ -8,20 +8,25 @@ class Order extends React.Component {
     super(props);
     this.state={
       navList: [{
+        id: '1',
         text: '待付款',
-        href: '/center/g/order/unpayed'
+        href: '#/center/g/order/unpayed'
       },{
+        id: '2',
         text: '待确认',
-        href: '/center/g/order/unconfirmed'
+        href: '#/center/g/order/unconfirmed'
       },{
+        id: '3',
         text: '进行中',
-        href: '/center/g/order/ongoing'
+        href: '#/center/g/order/ongoing'
       },{
+        id: '4',
         text: '已完成',
-        href: '/center/g/order/completed'
+        href: '#/center/g/order/completed'
       },{
+        id: '5',
         text: '已关闭',
-        href: '/center/g/order/closed'
+        href: '#/center/g/order/closed'
       }]
     }
   }
