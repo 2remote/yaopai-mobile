@@ -1,25 +1,27 @@
 import React from 'react';
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import WeuiNavbarActions from '../../actions/ui/WeuiNavbarActions';
+import WeuiNavbarStore from '../../stores/ui/WeuiNavbarStore';
 
 class WeuiNavbarItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOn: false
-    };
-  }
-  componentDidMount() {
-    this.setState({isOn: this.props.isOn});
-  }
+  setOn = (e) => {
+    console.log('WeuiNavbarItem', this.props.data.text);
+    WeuiNavbarActions.setOn(this.props.data.id);
+  };
   render() {
     var text = this.props.data.text;
     var href = this.props.data.href;
+    var tabId = this.props.data.id;
     return(
-      <div className={`weui_navbar_item${this.state.isOn ? ' weui_bar_item_on' : ''}`} key={this.props.index}>
+      <div onClick={this.setOn} className={`weui_navbar_item${this.state[tabId] ? ' weui_bar_item_on' : ''}`} key={this.props.index}>
         <a href={href} alt={text}>{text}</a>{/* TODO: */}
       </div>
     );
   }
 }
+
+ReactMixin.onClass(WeuiNavbarItem, Reflux.connect(WeuiNavbarStore));
 
 class WeuiNavbar extends React.Component {
   render() {
