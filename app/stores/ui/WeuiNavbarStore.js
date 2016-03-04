@@ -12,9 +12,11 @@ let WeuiNavbarStore = Reflux.createStore({
   },
   onSetOn(tabId) {
     // 清空所有状态(转为false)
-    this.items.foreach((item)=>{
-      item = false;
-    });
+    for(let i in this.items) {
+      if(this.items.hasOwnProperty(i)){
+        this.items[i] = false;
+      }
+    }
     // 设置选中tab为true
     this.items[tabId] = !this.items[tabId];
     this.trigger(this.items);
