@@ -11,10 +11,11 @@ class WeuiNavbarItem extends React.Component {
     this.setState({isOn: this.props.isOn});
   }
   render() {
-    var text = this.props.text;
+    var text = this.props.data.text;
+    var href = this.props.data.href;
     return(
       <div className={`weui_navbar_item${this.state.isOn ? ' weui_bar_item_on' : ''}`} key={this.props.index}>
-        <a href="#/" alt={text}>{text}</a>{/* TODO: */}
+        <a href={href} alt={text}>{text}</a>{/* TODO: */}
       </div>
     );
   }
@@ -22,9 +23,9 @@ class WeuiNavbarItem extends React.Component {
 
 class WeuiNavbar extends React.Component {
   render() {
-    let result = this.props.list.map((text, index)=>{
+    let result = this.props.list.map((data, index)=>{
       return (
-        <WeuiNavbarItem text={text.text} key={index} isOn={index === 0}/>
+        <WeuiNavbarItem data={data} key={index} isOn={index === 0}/>
       );
     });
     return(
