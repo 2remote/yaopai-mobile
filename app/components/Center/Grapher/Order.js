@@ -22,8 +22,13 @@ class Order extends React.Component {
   }
   render() {
     return (
-      <WeuiNavbar list={this.state.navList}>
-      </WeuiNavbar>
+      <div className="weui_tab">
+        <WeuiNavbar list={this.state.navList}>
+        </WeuiNavbar>
+        <div className="weui_tab_bd">
+          {this.props.children}
+        </div>
+      </div>
     );
   }
 }
