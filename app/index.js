@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
 
 import AppIndex from './components/Index';
 
@@ -42,6 +42,13 @@ import GrapherIndex from './components/Center/Grapher/Index';
 import GrapherUpdate from './components/Center/Grapher/Update/Update';
 import GrapherOrder from './components/Center/Grapher/Order';
 import OrderList from './components/Center/Grapher/OrderList';
+
+// imports UserCenter for User
+import UserCenterLayout from './components/layout/center/user/UserCenterLayout.jsx';
+import UserOrderListLayout from './components/layout/center/user/order/OrderListLayout.jsx';
+import UserOrderDetailLayout from './components/layout/center/user/order/OrderDetailLayout.jsx';
+import UserOrderSubmitLayout from './components/layout/center/user/order/OrderSubmitLayout.jsx';
+import UserOrderRefundLayout from './components/layout/center/user/order/OrderRefundLayout.jsx';
 
 main();
 
@@ -94,7 +101,22 @@ function main(){
               <Route path="ongoing" component={OrderList}/>
               <Route path="completed" component={OrderList}/>
               <Route path="closed" component={OrderList}/>
-            <Route />
+            </Route>
+          </Route>
+          <Route path="u">
+            <IndexRoute component={UserCenterLayout}/>
+            <Route path="order">
+              <IndexRedirect to="unpayed"/>
+              <Route path="unpayed" component={UserOrderListLayout}/>
+              <Route path="unconfirmed" component={UserOrderListLayout}/>
+              <Route path="ongoing" component={UserOrderListLayout}/>
+              <Route path="completed" component={UserOrderListLayout}/>
+              <Route path="closed" component={UserOrderListLayout}/>
+          </Route>
+            <Route path="order/:id">
+              <IndexRoute  component={UserOrderDetailLayout}/>
+              <Route path="submit" component={UserOrderSubmitLayout}/>
+              <Route path="refund" component={UserOrderRefundLayout}/>
             </Route>
           </Route>
         </Route>
