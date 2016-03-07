@@ -45,6 +45,7 @@ import OrderList from './components/Center/Grapher/OrderList';
 
 // imports UserCenter for User
 import UserCenterLayout from './components/layout/center/user/UserCenterLayout.jsx';
+import UserOrderTabLayout from './components/layout/center/user/order/OrderTabLayout.jsx';
 import UserOrderListLayout from './components/layout/center/user/order/OrderListLayout.jsx';
 import UserOrderDetailLayout from './components/layout/center/user/order/OrderDetailLayout.jsx';
 import UserOrderSubmitLayout from './components/layout/center/user/order/OrderSubmitLayout.jsx';
@@ -104,8 +105,9 @@ function main(){
             </Route>
           </Route>
           <Route path="u">
-            <IndexRoute component={UserCenterLayout}/>
-            <Route path="order">
+            {/*<IndexRoute component={UserCenterLayout}/>*/}
+            <IndexRoute component={UserCenterPage} />
+            <Route path="order" component={UserOrderTabLayout}>
               <IndexRedirect to="unpayed"/>
               <Route path="unpayed" component={UserOrderListLayout}/>
               <Route path="unconfirmed" component={UserOrderListLayout}/>
