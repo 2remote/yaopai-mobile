@@ -14,29 +14,28 @@ import './css/YPUIOrderCard.scss';
  * order.title: 订单标题
  * order.time: 预约时间
  * order.price: 订单价格
- * order.payedAmount: 订单已付价格
+ * order.payedAmount: 订单实付价格
  * @constructor
  */
 const YPUIOrderCard = ({order}) => (
+  <div className="container">
+    <article className="in-block">
+      <section className="user-msg in-block">
+        <img src={order.grapher.avatar} />
+        <span>{order.grapher.name}</span>
 
-  <div>
-    <section className="cardLeft">
-      <div>
-        <img src="" alt=""/>
-        <span></span>
-      </div>
-      <p>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+      </section><section className="order-msg in-block">
+        <span>{order.title}</span>
+        <span>{`预约时间: ${order.time}`}</span>
+        <span>{`价格: ${order.price}`}</span>
+        <span>{`实付: ${order.payedAmount}`}</span>
         <button>支付</button>
-      </p>
-    </section>
+      </section>
 
-    <section className="cardRight">
-
-    </section>
+    </article><article className="order-ctrl in-block">
+      <i className='icon grapher_icon' /><span>联系</span>
+      <i className='icon grapher_icon' /><span>取消</span>
+    </article>
   </div>
 );
 

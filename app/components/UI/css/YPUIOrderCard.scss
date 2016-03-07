@@ -1,0 +1,43 @@
+.in-block {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.container {
+  width: 100%;
+  margin: .5rem;
+  border-bottom: 3px #cccccc solid;
+
+  article:first-child {
+    width: 80%;
+  }
+
+  article:last-child {
+    width: 20%;
+  }
+}
+
+.user-msg {
+  width: 30%;
+  border-right: 1px #cccccc solid;
+  text-align: center;
+
+  img {
+    width: 70%;
+    margin: auto;
+    display: block;
+  }
+}
+
+.order-msg {
+  width: 60%;
+  span {
+    display: block;
+  }
+}
+
+.order-ctrl {
+  i {
+    display: block;
+  }
+}
