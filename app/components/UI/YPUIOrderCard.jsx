@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/YPUIOrderCard.scss';
 
 /**
  * 本component是个人中心中订单的UI组件,用于展示不同状态的订单UI
@@ -17,27 +18,25 @@ import React from 'react';
  * @constructor
  */
 const YPUIOrderCard = ({order}) => (
-  <div style={{
-    border: '3px solid red',
-    marginBottom: '15px'
-  }}>
-    <div className="grapherAvatar">
-      <img src={order.grapher.avatar} style={{
-        width: '100%'
-      }}/>
-      <br/>
-      <div>{order.grapher.name}</div>
-    </div>
-    <div className="orderDetail">
-      <div>{order.title}</div>
-      <div>预约时间:{order.time}</div>
-      <div>价格:{order.price}</div>
-      <div>实付:{order.payedAmount}</div>
-    </div>
-    <div className="orderOperate">
-      <div><a href={`tel:${order.grapher.phone}`}>联系</a></div>
-      <div><button type="button">取消</button></div>
-    </div>
+
+  <div>
+    <section className="cardLeft">
+      <div>
+        <img src="" alt=""/>
+        <span></span>
+      </div>
+      <p>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <button>支付</button>
+      </p>
+    </section>
+
+    <section className="cardRight">
+
+    </section>
   </div>
 );
 
