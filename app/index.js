@@ -108,12 +108,12 @@ function main(){
             {/*<IndexRoute component={UserCenterLayout}/>*/}
             <IndexRoute component={UserCenterPage} />
             <Route path="order" component={UserOrderTabLayout}>
-              <IndexRedirect to="unpayed"/>
-              <Route path="unpayed" component={UserOrderListLayout}/>
-              <Route path="unconfirmed" component={UserOrderListLayout}/>
-              <Route path="ongoing" component={UserOrderListLayout}/>
-              <Route path="completed" component={UserOrderListLayout}/>
-              <Route path="closed" component={UserOrderListLayout}/>
+              {/*<IndexRedirect to="unpayed"/>
+              <Route path="unpayed" component={UserOrderListLayout} foo="111"/>
+              <Route path="unconfirmed" component={UserOrderListLayout} foo="222"/>
+              <Route path="ongoing" component={UserOrderListLayout} foo="333"/>
+              <Route path="completed" component={UserOrderListLayout} foo="444"/>
+              <Route path="closed" component={UserOrderListLayout} foo="555"/>*/}
           </Route>
             <Route path="order/:id">
               <IndexRoute  component={UserOrderDetailLayout}/>
