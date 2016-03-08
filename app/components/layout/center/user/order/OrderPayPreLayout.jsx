@@ -3,10 +3,10 @@ import React from 'react';
 const OrderPayPreLayout = () => (
 	<div className="container">
 		<header>
-			<i className='icon grapher_icon' />
-			<i className='icon grapher_icon' />
-			<i className='icon grapher_icon' />
-			<i className='icon grapher_icon' />
+			<i className="icon grapher_icon" />
+			<i className="icon grapher_icon" />
+			<i className="icon grapher_icon" />
+			<i className="icon grapher_icon" />
 		</header>
 
 		<div>
