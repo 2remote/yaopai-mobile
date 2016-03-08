@@ -1,9 +1,4 @@
-.in-block {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.container {
+.YPUIOrderCard {
   width: 100%;
   margin: .5rem;
   border-bottom: 3px #cccccc solid;
@@ -15,29 +10,34 @@
   article:last-child {
     width: 20%;
   }
-}
 
-.user-msg {
-  width: 30%;
-  border-right: 1px #cccccc solid;
-  text-align: center;
-
-  img {
-    width: 70%;
-    margin: auto;
-    display: block;
+  .in-block {
+    display: inline-block;
+    vertical-align: top;
   }
-}
 
-.order-msg {
-  width: 60%;
-  span {
-    display: block;
+  .user-msg {
+    width: 30%;
+    border-right: 1px #cccccc solid;
+    text-align: center;
+
+    img {
+      width: 70%;
+      margin: auto;
+      display: block;
+    }
   }
-}
 
-.order-ctrl {
-  i {
-    display: block;
+  .order-msg {
+    width: 60%;
+    span {
+      display: block;
+    }
+  }
+
+  .order-ctrl {
+    i {
+      display: block;
+    }
   }
 }

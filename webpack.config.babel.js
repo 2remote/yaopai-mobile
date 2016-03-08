@@ -37,6 +37,12 @@ var common = {
       { test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
       }
+      /**
+       *  CSS Modules 配置方法
+      {
+        test: /\.scss$/,
+        loader: 'style!css?modules&localIdentName=[name]__[local]!sass?sourceMap=true'
+      }*/
     ]
   },
   plugins: [

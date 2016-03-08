@@ -18,7 +18,7 @@ import './css/YPUIOrderCard.scss';
  * @constructor
  */
 const YPUIOrderCard = ({order}) => (
-  <div className="container">
+  <div className="YPUIOrderCard">
     <article className="in-block">
       <section className="user-msg in-block">
         <img src={order.grapher.avatar} />
