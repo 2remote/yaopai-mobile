@@ -33,8 +33,8 @@ const YPUIOrderCard = ({order}) => (
       </section>
 
     </article><article className="order-ctrl in-block">
-      <i className='icon grapher_icon' /><span>联系</span>
-      <i className='icon grapher_icon' /><span>取消</span>
+      <i className="icon grapher_icon" /><span>联系</span>
+      <i className="icon grapher_icon" /><span>取消</span>
     </article>
   </div>
 );

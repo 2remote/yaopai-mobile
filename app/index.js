@@ -114,7 +114,7 @@ function main(){
               <Route path="ongoing" component={UserOrderListLayout} foo="333"/>
               <Route path="completed" component={UserOrderListLayout} foo="444"/>
               <Route path="closed" component={UserOrderListLayout} foo="555"/>*/}
-          </Route>
+            </Route>
             <Route path="order/:id">
               <IndexRoute  component={UserOrderDetailLayout}/>
               <Route path="submit" component={UserOrderSubmitLayout}/>

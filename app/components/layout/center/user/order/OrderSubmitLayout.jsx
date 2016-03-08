@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/OrderSubmitLayout.scss';
 
 const OrderSubmitLayout = () => (
   <div className="container">
@@ -10,19 +11,19 @@ const OrderSubmitLayout = () => (
 
 		<article>
 			<p>
-				<i className='icon grapher_icon' />
+				<i className="icon grapher_icon" />
 				<input type="text"/>
 			</p>
 			<p>
-				<i className='icon grapher_icon' />
+				<i className="icon grapher_icon" />
 				<input type="text"/>
 			</p>
 			<p>
-				<i className='icon grapher_icon' />
+				<i className="icon grapher_icon" />
 				<input type="text"/>
 			</p>
 			<p>
-				<i className='icon grapher_icon' />
+				<i className="icon grapher_icon" />
 				<input type="text"/>
 			</p>
 

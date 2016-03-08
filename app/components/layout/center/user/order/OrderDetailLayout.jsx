@@ -11,7 +11,7 @@ const OrderDetailLayout = () => (
 			<header>
 				<img src="" alt=""/>
 				可以拍摄的水果
-				<span><i className='icon grapher_icon' />3000</span>
+				<span><i className="icon grapher_icon" />3000</span>
 			</header>
 
 			<section className="ipt-box">
@@ -29,7 +29,7 @@ const OrderDetailLayout = () => (
 		</article>
 
 		<footer className="footer">
-			<i className='icon grapher_icon' />致电摄影师
+			<i className="icon grapher_icon" />致电摄影师
 		</footer>
 	</div>
 );
