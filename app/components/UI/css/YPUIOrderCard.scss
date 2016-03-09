@@ -1,43 +1,70 @@
+@import "../global";
+
 .YPUIOrderCard {
   width: 100%;
-  margin: .5rem;
-  border-bottom: 3px #cccccc solid;
+  height: 161px;
 
   article:first-child {
-    width: 80%;
+    height: 112px;
+    padding: 16px #{(19/355)}% 19px 22px;
+    font-size: 1.2em;
+    border-bottom: 1px #ccc solid;
   }
 
   article:last-child {
-    width: 20%;
-  }
-
-  .in-block {
-    display: inline-block;
-    vertical-align: top;
+    height: 20px;
+    padding: 16px 19px 19px 22px;
+    font-size: 1.4em;
   }
 
   .user-msg {
-    width: 30%;
-    border-right: 1px #cccccc solid;
-    text-align: center;
+    width: 77px;
+    margin-right: 22px;
+    display: inline-block;
 
     img {
-      width: 70%;
-      margin: auto;
-      display: block;
+      width: 77px;
+      height: 77px;
     }
   }
 
   .order-msg {
-    width: 60%;
-    span {
-      display: block;
+    width: 235px;
+    display: inline-block;
+    vertical-align: top;
+    color: #888;
+
+
+    > div {
+      height: 22px;
+      margin-bottom: 8px;
+
+      .order-title {
+        display: inline-block;
+        width: 198px;
+        font-size: (1.6em/1.2);
+        color: #333333;
+      }
+
+      .close-order {
+        margin-left: 23px;
+        width: 14px;
+      }
     }
+
+    .or-detail {
+      height: 25px;
+      margin-right: 37px;
+      line-height: 25px;
+
+      .prominent { color: #f00; }
+    }
+
   }
 
   .order-ctrl {
-    i {
-      display: block;
+    button {
+
     }
   }
 }

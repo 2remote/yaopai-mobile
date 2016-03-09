@@ -17,24 +17,32 @@ import './css/YPUIOrderCard.scss';
  * order.payedAmount: 订单实付价格
  * @constructor
  */
+
+
 const YPUIOrderCard = ({order}) => (
   <div className="YPUIOrderCard">
-    <article className="in-block">
-      <section className="user-msg in-block">
+    <article>
+      <section className="user-msg">
         <img src={order.grapher.avatar} />
-        <span>{order.grapher.name}</span>
 
-      </section><section className="order-msg in-block">
-        <span>{order.title}</span>
-        <span>{`预约时间: ${order.time}`}</span>
-        <span>{`价格: ${order.price}`}</span>
-        <span>{`实付: ${order.payedAmount}`}</span>
-        <button>支付</button>
+      </section><section className="order-msg">
+        <div>
+          <span className="order-title">{order.title}</span>
+          <i className="icon grapher_icon close-order" />
+        </div>
+        <div className="order-detail">
+          <i className="icon grapher_icon" />预约时间：{order.time}
+        </div>
+        <div className="order-detail">
+          <i className="icon grapher_icon" />价格：{order.price}
+          <p className="fr">实付：￥<span className="prominent">{order.payedAmount}</span></p>
+        </div>
       </section>
+    </article>
 
-    </article><article className="order-ctrl in-block">
-      <i className="icon grapher_icon" /><span>联系</span>
-      <i className="icon grapher_icon" /><span>取消</span>
+    <article className="order-ctrl">
+      <i className="icon grapher_icon" /><span>联系{order.grapher.name}</span>
+      <button className="fr">支付</button>
     </article>
   </div>
 );
