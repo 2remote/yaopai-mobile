@@ -21,14 +21,13 @@ import './css/YPUIOrderCard.scss';
 
 const YPUIOrderCard = ({order}) => (
   <div className="YPUIOrderCard">
-    <article>
-      <section className="user-msg">
+    <article className="container-header">
+      <section className="order-face">
         <img src={order.grapher.avatar} />
 
       </section><section className="order-msg">
-        <div>
-          <span className="order-title">{order.title}</span>
-          <i className="icon grapher_icon close-order" />
+        <div className="order-title">
+          <span>{order.title}</span>
         </div>
         <div className="order-detail">
           <i className="icon grapher_icon" />预约时间：{order.time}
@@ -37,14 +36,26 @@ const YPUIOrderCard = ({order}) => (
           <i className="icon grapher_icon" />价格：{order.price}
           <p className="fr">实付：￥<span className="prominent">{order.payedAmount}</span></p>
         </div>
+
+      </section><section className="order-close">
+        <i className="icon grapher_icon close-order" />
       </section>
     </article>
 
-    <article className="order-ctrl">
-      <i className="icon grapher_icon" /><span>联系{order.grapher.name}</span>
-      <button className="fr">支付</button>
+    <article className="container-footer">
+      <p>
+        <i className="icon grapher_icon" /><span>联系{order.grapher.name}</span>
+      </p>
+      <a href="javascript:;" className="fr weui_btn weui_btn_mini weui_btn_primary">去支付</a>
     </article>
   </div>
 );
 
-export default YPUIOrderCard;
+const YPUIOrderAside = () => (
+  <aside className="YPUIOrderAside">
+    <p>温馨提示：交易过程中如有异常</p>
+    <p>请拨打客服热线：0371-65337727</p>
+  </aside>
+);
+
+export {YPUIOrderCard, YPUIOrderAside};

@@ -1,80 +1,99 @@
 @import "../global";
 
-/*
- *将像素转换成百分比
- *例如,设计稿上某个 div 宽度标注的是19px,设计稿的总宽度为355px,那么
- * 可以这么写  div { width: st(19) } 等价于:
- *           div { width: #{(19/355)}% }
- */
-@function st($number){
-  @return percentage($number/3550);
-}
-
 .YPUIOrderCard {
   width: 100%;
   height: 161px;
 
-  article:first-child {
+  &:not(:first-child) {
+    border-top: 10px #eee solid;
+  }
+
+  .container-header {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
     height: 112px;
-    padding: 16px #{(19/355)}% 19px 22px;
+    padding: 16px st(37) 19px st(22);
     font-size: 1.2em;
     border-bottom: 1px #ccc solid;
   }
 
-  article:last-child {
-    height: 20px;
-    padding: 16px 19px 19px 22px;
+  .container-footer {
+    width: 100%;
+    height: 49px;
+    padding: 9px 19px 9px 22px;
     font-size: 1.4em;
-  }
+    color: #888;
 
-  .user-msg {
-    width: 77px;
-    margin-right: 22px;
-    display: inline-block;
+    p {
+      height: 31px;
+      line-height: 31px;
+      display: inline-block;
+    }
 
-    img {
-      width: 77px;
-      height: 77px;
+    a {
+      width: 96px;
+      height: 31px;
+      color: #fff;
+      font-size: (1.6em/1.4);
     }
   }
 
+  .order-face {
+    width: 77px;
+    margin-right: st(22);
+    display: inline-block;
+
+    img { width: 100%; }
+  }
+
   .order-msg {
-    width: 235px;
+    width: st(221);
+    height: 77px;
     display: inline-block;
     vertical-align: top;
     color: #888;
 
 
-    > div {
+    .order-title {
       height: 22px;
+      margin-bottom: 12px;
+      font-size: (1.6em/1.2);
+      color: #333333;
+
+      span {
+        display: inline-block;
+        width: 95%;
+      }
+    }
+
+    .order-detail {
+      height: 17px;
+      line-height: 17px;
       margin-bottom: 8px;
 
-      .order-title {
-        display: inline-block;
-        width: 198px;
-        font-size: (1.6em/1.2);
-        color: #333333;
-      }
-
-      .close-order {
-        margin-left: 23px;
-        width: 14px;
-      }
-    }
-
-    .or-detail {
-      height: 25px;
-      margin-right: 37px;
-      line-height: 25px;
-
-      .prominent { color: #f00; }
-    }
-
-  }
-
-  .order-ctrl {
-    button {
-
+      .prominent {  color: red; }
     }
   }
+
+  .order-close {
+    position: absolute;
+    right: st(19);
+    top: 16px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.YPUIOrderAside {
+  width: 100%;
+  height: 150px;
+  padding-top: 20px;
+  margin-top: 10px;
+  background: #eeeeee;
+  font-size:12px;
+  color:#979797;
+  line-height:24px;
+  text-align:center;
 }
