@@ -1,5 +1,8 @@
 'use strict';
 import React from 'react';
+
+import './index.scss';
+
 import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
 
 import AppIndex from './components/Index';
