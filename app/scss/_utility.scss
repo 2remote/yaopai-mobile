@@ -20,3 +20,23 @@ body {
   right: 16px;
   top: 9px;
 }
+
+.yp_media_box {
+  -webkit-display: flex;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  padding: 5px 15px;
+}
+.yp_media_box > .flex_spring {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.yp_media_box a {
+  display: inline-block;
+  font-size: 14px;
+  position: relative;
+  color: #333333 !important;
+}
