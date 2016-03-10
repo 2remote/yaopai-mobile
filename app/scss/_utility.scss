@@ -1,3 +1,21 @@
 body {
   background: #eee !important;
 }
+
+.yp_label {
+  display: block;
+  max-width: 5em;
+  margin-right: 1em;
+}
+
+.yp_label_fix {
+  display: block;
+  width: 5em;
+  margin-right: 1em;
+}
+
+.right_bottom_icon {
+  position: absolute;
+  right: 16px;
+  top: 9px;
+}

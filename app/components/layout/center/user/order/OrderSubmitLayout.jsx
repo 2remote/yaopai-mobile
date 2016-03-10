@@ -15,33 +15,34 @@ class OrderSubmitLayout extends React.Component {
 							<img src={avatar} className="weui_media_appmsg_thumb" />
 						</div>
 						<div className="weui_media_bd">
-							<h4 className="weui_media_title">标题一</h4>
-							<p className="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+							<h4 className="weui_media_title">[亲自家庭]FamilyXXX</h4>
+							<p className="weui_media_desc">摄影师：XXX</p>
 						</div>
 					</a>
+					<i className="icon youjiantou right_bottom_icon "/>
 				</section>
 
 				<div className="weui_cells_title">预约信息</div>
 
 				<section className="weui_panel">
 					<div className="weui_cell">
-						<div className="weui_cell_hd"><label className="weui_label">qq</label></div>
+						<div className="weui_cell_hd"><label className="yp_label">联系姓名</label></div>
 						<div className="weui_cell_bd weui_cell_primary">
-							<input className="weui_input" type="number" pattern="[0-9]*" placeholder="请输入qq号" />
+							<input className="weui_input" type="number" placeholder="您的昵称" />
 						</div>
 					</div>
 
 					<div className="weui_cell">
-						<div className="weui_cell_hd"><label className="weui_label">qq</label></div>
+						<div className="weui_cell_hd"><label className="yp_label">联系电话</label></div>
 						<div className="weui_cell_bd weui_cell_primary">
-							<input className="weui_input" type="number" pattern="[0-9]*" placeholder="请输入qq号" />
+							<input className="weui_input" type="number" placeholder="手机号码" />
 						</div>
 					</div>
 
 					<div className="weui_cell">
-						<div className="weui_cell_hd"><label className="weui_label">qq</label></div>
+						<div className="weui_cell_hd"><label className="yp_label">预约日期</label></div>
 						<div className="weui_cell_bd weui_cell_primary">
-							<input className="weui_input" type="number" pattern="[0-9]*" placeholder="请输入qq号" />
+							<input className="weui_input" type="number" placeholder="年/月/日" />
 						</div>
 					</div>
 				</section>
