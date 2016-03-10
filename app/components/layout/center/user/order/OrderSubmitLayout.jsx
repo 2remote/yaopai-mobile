@@ -28,21 +28,21 @@ class OrderSubmitLayout extends React.Component {
 					<div className="weui_cell">
 						<div className="weui_cell_hd"><label className="yp_label">联系姓名</label></div>
 						<div className="weui_cell_bd weui_cell_primary">
-							<input className="weui_input" type="number" placeholder="您的昵称" />
+							<input className="weui_input" type="text" placeholder="您的昵称" />
 						</div>
 					</div>
 
 					<div className="weui_cell">
 						<div className="weui_cell_hd"><label className="yp_label">联系电话</label></div>
 						<div className="weui_cell_bd weui_cell_primary">
-							<input className="weui_input" type="number" placeholder="手机号码" />
+							<input className="weui_input" type="number" pattern="[0-9]*" placeholder="手机号码" />
 						</div>
 					</div>
 
 					<div className="weui_cell">
-						<div className="weui_cell_hd"><label className="yp_label">预约日期</label></div>
+						<div className="weui_cell_hd"><label for="" className="yp_label">预约日期</label></div>
 						<div className="weui_cell_bd weui_cell_primary">
-							<input className="weui_input" type="number" placeholder="年/月/日" />
+							<input className="weui_input" type="date" value="" />
 						</div>
 					</div>
 				</section>
