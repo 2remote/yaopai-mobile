@@ -20,34 +20,16 @@ import './css/YPUIOrderCard.scss';
 
 
 const YPUIOrderCard = ({order}) => (
-  <div className="YPUIOrderCard">
-    <article className="container-header">
-      <section className="order-face">
-        <img src={order.grapher.avatar} />
-
-      </section><section className="order-msg">
-        <div className="order-title">
-          <span>{order.title}</span>
-        </div>
-        <div className="order-detail">
-          <i className="icon grapher_icon" />预约时间：{order.time}
-        </div>
-        <div className="order-detail">
-          <i className="icon grapher_icon" />价格：{order.price}
-          <p className="fr">实付：￥<span className="prominent">{order.payedAmount}</span></p>
-        </div>
-
-      </section><section className="order-close">
-        <i className="icon grapher_icon close-order" />
-      </section>
-    </article>
-
-    <article className="container-footer">
-      <p>
-        <i className="icon grapher_icon" /><span>联系{order.grapher.name}</span>
-      </p>
-      <a href="javascript:;" className="fr weui_btn weui_btn_mini weui_btn_primary">去支付</a>
-    </article>
+  <div className="weui_panel_bd">
+    <a href="javascript:void(0);" className="weui_media_box weui_media_appmsg">
+      <div className="weui_media_hd">
+        <img className="weui_media_appmsg_thumb" src={order.grapher.avatar} />
+      </div>
+      <div className="weui_media_bd">
+        <h4 className="weui_media_title">{order.title}</h4>
+        <p className="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+    </a>
   </div>
 );
 
@@ -59,3 +41,32 @@ const YPUIOrderAside = () => (
 );
 
 export {YPUIOrderCard, YPUIOrderAside};
+/*<div className="YPUIOrderCard">
+ <article className="container-header">
+ <section className="order-face">
+ <img src={order.grapher.avatar} />
+
+ </section><section className="order-msg">
+ <div className="order-title">
+ <span>{order.title}</span>
+ </div>
+ <div className="order-detail">
+ <i className="icon grapher_icon" />预约时间：{order.time}
+ </div>
+ <div className="order-detail">
+ <i className="icon grapher_icon" />价格：{order.price}
+ <p className="fr">实付：￥<span className="prominent">{order.payedAmount}</span></p>
+ </div>
+
+ </section><section className="order-close">
+ <i className="icon grapher_icon close-order" />
+ </section>
+ </article>
+
+ <article className="container-footer">
+ <p>
+ <i className="icon grapher_icon" /><span>联系{order.grapher.name}</span>
+ </p>
+ <a href="javascript:;" className="fr weui_btn weui_btn_mini weui_btn_primary">去支付</a>
+ </article>
+ </div>*/
