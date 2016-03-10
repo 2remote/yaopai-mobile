@@ -1,5 +1,5 @@
 import React from 'react';
-import {YPUIOrderCard, YPUIOrderAside} from '../../../../UI/YPUIOrderCard.jsx';
+import YPUIOrderCard from '../../../../UI/YPUIOrderCard.jsx';
 
 //* order.id: 订单ID
 //* order.status: 订单状态,分为:
@@ -53,7 +53,7 @@ const OrderListLayout = () => (
       <YPUIOrderCard order={order} key={index}/>
     )}
 
-    <YPUIOrderAside />
+    {/*<YPUIOrderAside />*/}
   </div>
 );
 
