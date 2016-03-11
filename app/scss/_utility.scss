@@ -40,6 +40,7 @@ body {
   }
 }
 
+.font_super  { font-size: 18px; }
 .font_large  { font-size: 16px; }
 .font_medium { font-size: 14px; }
 .font_small  { font-size: 12px; }
@@ -63,6 +64,10 @@ body {
 .text_center { text-align: center; }
 .text_left   { text-align: left; }
 .text_right  { text-align: right; }
+
+/*float*/
+.fl { float: left; }
+.fr { float: right; }
 
 .separator {
   display: block;

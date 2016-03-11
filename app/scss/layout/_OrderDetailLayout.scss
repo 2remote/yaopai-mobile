@@ -5,7 +5,7 @@
     padding: 10px 0;
     background: #fff;
     text-align: center;
-    font-size: 12px;
+
     span {
       position: relative;
 
@@ -19,4 +19,46 @@
       i { font-size: 32px; }
     }
 	}
+
+  .order-msg {
+    padding: 15px;
+    overflow: hidden;
+    background: #fff;
+
+    p {
+      height: 20px;
+      line-height: 20px;
+
+      span:first-child {
+        display: inline-block;
+        width: 6em;
+      }
+    }
+
+    p:last-child {
+      height: 60px;
+      line-height: 18px;
+
+      span {
+        display: inline-block;
+        vertical-align: top;
+
+        &:last-child {
+          width: 70%;
+          height: 60px;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  .add_up {
+    padding: 20px;
+  }
+
+  footer {
+    padding: 20px;
+  }
 }
