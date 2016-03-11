@@ -28,9 +28,10 @@ const YPUIOrderCard = ({order}) => (
           <h4 className="weui_media_title">
             {order.title}
           </h4>
-          <p className="weui_media_desc">预约时间:{order.time}</p>
-          <p className="weui_media_desc">价格:{order.price}&nbsp;&nbsp;&nbsp;实付:{order.payedAmount}</p>
+          <p className="weui_media_desc"><i className="icon icon_small book_icon ">&nbsp;&nbsp;</i>预约时间:{order.time}</p>
+          <p className="weui_media_desc"><i className="icon icon_small price_icon">&nbsp;&nbsp;</i>价格:{order.price}&nbsp;&nbsp;&nbsp;实付:{order.payedAmount}</p>
         </div>
+        <i className="icon youjiantou top_right_icon"></i>
       </a>
     </div>
     <div className="weui_panel_bd">
