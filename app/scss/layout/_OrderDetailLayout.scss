@@ -1,5 +1,22 @@
 .OrderDetailLayout {
 	.icon_box {
 		@include flex;
+    @include justify_content_space_around;
+    padding: 10px 0;
+    background: #fff;
+    text-align: center;
+    font-size: 12px;
+    span {
+      position: relative;
+
+      &:not(:last-child):after {
+        @include triangle_right(5px, #999);
+        position: absolute;
+        right: -33px;
+        top: 30px;
+      }
+
+      i { font-size: 32px; }
+    }
 	}
 }

@@ -48,8 +48,8 @@ body {
 .color_gray { @include font_color($gray) }
 .color_dark { @include font_color($dark) }
 
+
 /* text align */
 .text_center { text-align: center }
 .text_left { text-align: left }
 .text_right { text-align: right }
-
