@@ -49,5 +49,19 @@ body {
 .color_gray { @include font_color($gray) }
 .color_dark { @include font_color($dark) }
 
+/* text align */
+.text_center { text-align: center }
+.text_left { text-align: left }
+.text_right { text-align: right }
 
-
+/* 覆盖 weui_tab：调整tab body使navbar固定在上端 */
+.weui_navbar {
+  z-index: 100;
+}
+.weui_tab_bd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
