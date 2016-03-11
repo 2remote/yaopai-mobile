@@ -39,10 +39,9 @@ body {
   }
 }
 
-.weui_media_box .weui_media_desc { line-height: 1.6; }
 .icon_small { font-size: 13px; }
 
-/* 覆盖weui */
+/* font colors */
 .color_red { @include font_color($red) }
 .color_green { @include font_color($green) }
 .color_lightgray { @include font_color($light_gray) }
@@ -54,14 +53,3 @@ body {
 .text_left { text-align: left }
 .text_right { text-align: right }
 
-/* 覆盖 weui_tab：调整tab body使navbar固定在上端 */
-.weui_navbar {
-  z-index: 100;
-}
-.weui_tab_bd {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
