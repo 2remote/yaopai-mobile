@@ -40,34 +40,28 @@ body {
   }
 }
 
-.font_large { font-size: 16px; }
+.font_large  { font-size: 16px; }
 .font_medium { font-size: 14px; }
-.font_small { font-size: 12px; }
+.font_small  { font-size: 12px; }
 
 /* font colors */
-.color_red { @include font_color($red) }
-.color_green { @include font_color($green) }
+.color_red       { @include font_color($red) }
+.color_green     { @include font_color($green) }
 .color_lightgray { @include font_color($light_gray) }
-.color_gray { @include font_color($gray) }
-.color_dark { @include font_color($dark) }
+.color_gray      { @include font_color($gray) }
+.color_dark      { @include font_color($dark) }
 
 
 /* text align */
-<<<<<<< HEAD
-.text_center { text-align: center }
-.text_left { text-align: left }
-.text_right { text-align: right }
-=======
 .text_center { text-align: center; }
-.text_left { text-align: left; }
-.text_right { text-align: right; }
+.text_left   { text-align: left; }
+.text_right  { text-align: right; }
 
 .separator {
   display: block;
+  margin: 0 15px;
+  padding: 0;
   height: 1px;
   border: 0;
   border-top: 1px solid #ccc;
-  margin: 0 15px;
-  padding: 0;
 }
->>>>>>> origin/feature/user-center-v2
