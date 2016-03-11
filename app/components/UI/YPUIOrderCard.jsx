@@ -28,22 +28,100 @@ const YPUIOrderCard = ({order}) => (
           <h4 className="weui_media_title">
             {order.title}
           </h4>
-          <p className="weui_media_desc"><i className="icon icon_small book_icon ">&nbsp;&nbsp;</i>预约时间:{order.time}</p>
-          <p className="weui_media_desc"><i className="icon icon_small price_icon">&nbsp;&nbsp;</i>价格:{order.price}&nbsp;&nbsp;&nbsp;实付:{order.payedAmount}</p>
+          <p className="weui_media_desc">
+            <i className="icon icon_small book_icon ">&nbsp;&nbsp;</i>
+            预约时间：{order.time}
+          </p>
+          <p className="weui_media_desc">
+            <i className="icon icon_small price_icon">&nbsp;&nbsp;</i>
+            价格：￥{order.price}
+            &nbsp;&nbsp;&nbsp;
+            实付：<span className="color_red">￥{order.payedAmount}</span>
+          </p>
         </div>
-        <i className="icon youjiantou top_right_icon"></i>
+        <i className="icon youjiantou top_right_icon color_gray"></i>
+        {/*<i className="icon close_icon top_right_icon color_gray"></i>*/}
       </a>
     </div>
+    {/*某一天需要分离出这个分割线的话，就做成单独的UI Component*/}
+    <hr style={{
+      display: 'block',
+      height: '1px',
+      border: 0,
+      borderTop: '1px solid #ccc',
+      margin: '0 15px 3px',
+      padding: 0
+    }}/>
+    {/* 代付款 */}
     <div className="weui_panel_bd">
       <div className="yp_media_box">
         <div>
-          <a href={`tel:${order.grapher.phone}`}><i className="icon phone_icon" />联系{order.grapher.name}</a>
-				</div>
+          <a href={`tel:${order.grapher.phone}`} className="color_gray">
+            <i className="icon phone_icon" />
+            联系{order.grapher.name}
+          </a>
+        </div>
         <div className="flex_spring"></div>
         <div>
-          <button className="weui_btn weui_btn_mini weui_btn_default">退款</button>
+          <button className="weui_btn weui_btn_mini weui_btn_primary">
+            去支付
+          </button>
+        </div>
+      </div>
+    </div>
+    {/* 待确认 */}
+    <div className="weui_panel_bd">
+      <div className="yp_media_box">
+        <div>
+          <a href={`tel:${order.grapher.phone}`} className="color_gray">
+            <i className="icon phone_icon" />
+            联系{order.grapher.name}
+          </a>
+        </div>
+        <div className="flex_spring"></div>
+        <div>
+          <button className="weui_btn weui_btn_mini weui_btn_default">
+            退款
+          </button>
+        </div>
+      </div>
+    </div>
+    {/* 进行中 */}
+    <div className="weui_panel_bd">
+      <div className="yp_media_box">
+        <div>
+          <a href={`tel:${order.grapher.phone}`} className="color_gray">
+            <i className="icon phone_icon" />
+            联系{order.grapher.name}
+          </a>
+        </div>
+        <div className="flex_spring"></div>
+        <div>
+          <button className="weui_btn weui_btn_mini weui_btn_default">
+            退款
+          </button>
           <span>&nbsp;&nbsp;</span>
-          <button className="weui_btn weui_btn_mini weui_btn_primary">&nbsp;&nbsp;收片&nbsp;&nbsp;</button>
+          <button className="weui_btn weui_btn_mini weui_btn_primary">
+            &nbsp;&nbsp;收片&nbsp;&nbsp;
+          </button>
+        </div>
+      </div>
+    </div>
+    {/* TODO: 已完成 */}
+    {/* 已关闭 */}
+    <div className="weui_panel_bd">
+      <div className="yp_media_box">
+        <div>
+          <a href={`tel:${order.grapher.phone}`} className="color_gray">
+            <i className="icon phone_icon" />
+            联系{order.grapher.name}
+          </a>
+        </div>
+        <div className="flex_spring"></div>
+        <div>
+          <span className="color_gray">已取消订单</span>
+          <span className="color_red">退款成功</span>
+          <span className="color_green">已完成</span>
         </div>
       </div>
     </div>
