@@ -28,6 +28,21 @@
           justify-content: space-around;
 }
 
+@mixin flex_align($direction) {
+  -webkit-box-align: $direction;
+  box-align: $direction;
+  @if $direction == start {
+    -webkit-align-items: flex- + $direction;
+    align-items: flex- + $direction;
+  } @else if $direction == end {
+    -webkit-align-items: flex- + $direction;
+    align-items: flex- + $direction;
+  } @else {
+    -webkit-align-items: $direction;
+    align-items: $direction;
+  }
+}
+
 /*箭头向右的三角形*/
 @mixin triangle_right ($size, $color){
   content: '';
