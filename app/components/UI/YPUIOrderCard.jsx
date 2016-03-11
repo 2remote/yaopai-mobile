@@ -35,7 +35,9 @@ const YPUIOrderCard = ({order}) => (
     </div>
     <div className="weui_panel_bd">
       <div className="yp_media_box">
-        <div><a href={`tel:${order.grapher.phone}`}><i className="icon phone_icon" />联系{order.grapher.name}</a></div>
+        <div>
+          <a href={`tel:${order.grapher.phone}`}><i className="icon phone_icon" />联系{order.grapher.name}</a>
+				</div>
         <div className="flex_spring"></div>
         <div>
           <button className="weui_btn weui_btn_mini weui_btn_default">退款</button>
