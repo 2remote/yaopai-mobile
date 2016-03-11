@@ -19,7 +19,7 @@ class OrderSubmitLayout extends React.Component {
               <p className="weui_media_desc">摄影师：XXX</p>
             </div>
           </a>
-          <i className="icon youjiantou right_bottom_icon "/>
+          <i className="icon youjiantou top_right_icon "/>
         </section>
 
         <div className="weui_cells_title">预约信息</div>
