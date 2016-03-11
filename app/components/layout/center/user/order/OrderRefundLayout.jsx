@@ -42,7 +42,6 @@ const OrderRefundLayout = () => (
           <div className="yp_label">退款方式</div>
         </div>
         <div className="weui_cell_bd weui_cell_primary">
-          {/*<input className="weui_input" type="text" readonly />*/}
           <div className="font_medium">
             原路退回
             <span className="color_gray">（3-10个工作日完成，无手续费）</span>
@@ -54,7 +53,6 @@ const OrderRefundLayout = () => (
           <div className="yp_label">退款金额</div>
         </div>
         <div className="weui_cell_bd weui_cell_primary">
-          {/*<input className="weui_input" type="text" readonly />*/}
           <div className="font_medium">
             ¥ 1267元
             <span className="color_gray">（优惠不可退）</span>
@@ -66,8 +64,11 @@ const OrderRefundLayout = () => (
           <div className="yp_label color_red">退款原因</div>
         </div>
         <div className="weui_cell_bd weui_cell_primary">
-          {/*<input className="weui_input" type="text" readonly />*/}
-          <select className="weui_select font_medium">
+          <select className="weui_select font_medium"
+            style={{
+              paddingLeft: '0'
+            }}
+          >
             <option value="1">不想拍了</option>
           </select>
         </div>
