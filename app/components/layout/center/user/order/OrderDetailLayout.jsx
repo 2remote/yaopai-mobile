@@ -1,7 +1,7 @@
 import React from 'react';
 
 const OrderDetailLayout = () => (
-  <div>
+  <div className="OrderDetailLayout">
 		<div className="weui_cells_title">支付流程说明</div>
 		<div className="weui_cells_title">订单详情</div>
 

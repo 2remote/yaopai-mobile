@@ -39,17 +39,15 @@ body {
   }
 }
 
+.weui_media_box .weui_media_desc { line-height: 1.6; }
+.icon_small { font-size: 13px; }
+
 /* 覆盖weui */
-.weui_media_box .weui_media_desc {
-  line-height: 1.6;
-}
-
-.icon_small {
-  font-size: 13px;
-}
-
 .color_red { @include font_color($red) }
 .color_green { @include font_color($green) }
 .color_lightgray { @include font_color($light_gray) }
 .color_gray { @include font_color($gray) }
 .color_dark { @include font_color($dark) }
+
+
+
