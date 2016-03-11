@@ -19,3 +19,11 @@
 @mixin bg_color($color) {
   background-color: $color;
 }
+
+/*flex模块*/
+@mixin justify-content-space-around {
+  -webkit-box-pack:justify;
+          box-pack:justify;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+}
