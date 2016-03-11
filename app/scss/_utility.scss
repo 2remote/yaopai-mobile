@@ -21,7 +21,7 @@ body {
 .top_right_icon {
   position: absolute;
   right: 16px;
-  top: 9px;
+  top: 15px;
 }
 
 .yp_media_box {
@@ -49,4 +49,8 @@ body {
 /* 覆盖weui */
 .weui_media_box .weui_media_desc {
   line-height: 1.6;
+}
+
+.icon_small {
+  font-size: 13px;
 }
