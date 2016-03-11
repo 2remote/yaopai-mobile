@@ -9,6 +9,7 @@ body {
   display: block;
   max-width: 5em;
   margin-right: 1em;
+  font-size: 14px;
 }
 
 .yp_label_fix {
@@ -39,7 +40,9 @@ body {
   }
 }
 
-.icon_small { font-size: 13px; }
+.font_large { font-size: 16px; }
+.font_medium { font-size: 14px; }
+.font_small { font-size: 12px; }
 
 /* font colors */
 .color_red { @include font_color($red) }
@@ -49,7 +52,15 @@ body {
 .color_dark { @include font_color($dark) }
 
 /* text align */
-.text_center { text-align: center }
-.text_left { text-align: left }
-.text_right { text-align: right }
+.text_center { text-align: center; }
+.text_left { text-align: left; }
+.text_right { text-align: right; }
 
+.separator {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 0 15px;
+  padding: 0;
+}
