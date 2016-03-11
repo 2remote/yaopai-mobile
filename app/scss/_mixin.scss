@@ -21,9 +21,21 @@
 }
 
 /*flex模块*/
-@mixin justify-content-space-around {
+@mixin justify_content_space_around {
   -webkit-box-pack:justify;
           box-pack:justify;
   -webkit-justify-content: space-around;
           justify-content: space-around;
+}
+
+/*箭头向右的三角形*/
+@mixin triangle_right ($size, $color){
+  content: '';
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  border-bottom: $size solid transparent;
+  border-top: $size solid transparent;
+  border-left: $size solid $color;
 }
