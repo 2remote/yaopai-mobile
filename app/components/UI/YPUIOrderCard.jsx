@@ -29,11 +29,11 @@ const YPUIOrderCard = ({order}) => (
             {order.title}
           </h4>
           <p className="weui_media_desc">
-            <i className="icon icon_small book_icon ">&nbsp;&nbsp;</i>
+            <i className="icon font_small book_icon ">&nbsp;&nbsp;</i>
             预约时间：{order.time}
           </p>
           <p className="weui_media_desc">
-            <i className="icon icon_small price_icon">&nbsp;&nbsp;</i>
+            <i className="icon font_small price_icon">&nbsp;&nbsp;</i>
             价格：￥{order.price}
             &nbsp;&nbsp;&nbsp;
             实付：<span className="color_red">￥{order.payedAmount}</span>
@@ -44,14 +44,7 @@ const YPUIOrderCard = ({order}) => (
       </a>
     </div>
     {/*某一天需要分离出这个分割线的话，就做成单独的UI Component*/}
-    <hr style={{
-      display: 'block',
-      height: '1px',
-      border: 0,
-      borderTop: '1px solid #ccc',
-      margin: '0 15px 3px',
-      padding: 0
-    }}/>
+    <hr className="separator" />
     {/* 代付款 */}
     <div className="weui_panel_bd">
       <div className="yp_media_box">
