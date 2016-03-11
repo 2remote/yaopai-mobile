@@ -1,6 +1,9 @@
+/*Todo 背景色是用原本的#f9f9f9; 还是直接覆盖掉?
+ *
 body {
   background: #eee !important;
 }
+*/
 
 .yp_label {
   display: block;
@@ -27,16 +30,18 @@ body {
   display: -webkit-box;
   display: -webkit-flex;
   padding: 5px 15px;
-}
-.yp_media_box > .flex_spring {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-.yp_media_box a {
-  display: inline-block;
-  font-size: 14px;
-  position: relative;
-  color: #333333 !important;
+
+  > .flex_spring {
+    -webkit-box-flex: 1;
+        -webkit-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+  }
+
+  a {
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    color: #333333 !important;
+  }
 }
