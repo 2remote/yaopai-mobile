@@ -45,6 +45,38 @@ let sampleOrderList = [{
   time: '2016-03-09',
   price: '1267',
   payedAmount: '1267'
+}, {
+  id: 3,
+  status: 1,
+  user: {
+    id: 2
+  },
+  grapher: {
+    id: 1003,
+    avatar: 'http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1',
+    name: '糖宝3',
+    phone: '17600801640'
+  },
+  title: '少女写真(闺蜜组)',
+  time: '2016-03-09',
+  price: '1267',
+  payedAmount: '1267'
+}, {
+  id: 4,
+  status: 1,
+  user: {
+    id: 2
+  },
+  grapher: {
+    id: 1004,
+    avatar: 'http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1',
+    name: '糖宝4',
+    phone: '17600801640'
+  },
+  title: '少女写真(闺蜜组)',
+  time: '2016-03-09',
+  price: '1267',
+  payedAmount: '1267'
 }];
 
 const OrderListLayout = () => (
@@ -52,8 +84,13 @@ const OrderListLayout = () => (
     {sampleOrderList.map((order, index) =>
       <YPUIOrderCard order={order} key={index}/>
     )}
-
-    {/*<YPUIOrderAside />*/}
+    <div style={{
+      padding: '20px 15px 10px',
+      fontSize: '12px'
+    }} className="color_gray text_center">
+      温馨提示：交易过程中如有异常<br />
+      请拨打客服热线：0371-65337727
+    </div>
   </div>
 );
 
