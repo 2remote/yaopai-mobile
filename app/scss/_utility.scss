@@ -18,7 +18,7 @@ body {
 }
 
 /*订单右上角符号*/
-.right_bottom_icon {
+.top_right_icon {
   position: absolute;
   right: 16px;
   top: 9px;
@@ -44,4 +44,9 @@ body {
     font-size: 14px;
     color: #333333 !important;
   }
+}
+
+/* 覆盖weui */
+.weui_media_box .weui_media_desc {
+  line-height: 1.6;
 }
