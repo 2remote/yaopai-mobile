@@ -9,3 +9,11 @@
   -webkit-flex: 1;
           flex: 1;
 }
+
+@mixin font_color($color) {
+  color: $color !important;
+}
+
+@mixin bg_color($color) {
+  background-color: $color;
+}
