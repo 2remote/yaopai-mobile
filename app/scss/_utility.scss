@@ -50,7 +50,14 @@ body {
 .color_lightgray { @include font_color($light_gray) }
 .color_gray      { @include font_color($gray) }
 .color_dark      { @include font_color($dark) }
+.color_white     { @include font_color(white)}
 
+/* background colors */
+.bg_red          { @include bg_color($red) }
+.bg_green        { @include bg_color($green) }
+.bg_lightgray    { @include bg_color($light_gray) }
+.bg_gray         { @include bg_color($gray) }
+.bg_dark         { @include bg_color($dark) }
 
 /* text align */
 .text_center { text-align: center; }
@@ -65,3 +72,5 @@ body {
   border: 0;
   border-top: 1px solid #ccc;
 }
+
+.align_items_start { @include flex_align(start) }
