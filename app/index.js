@@ -52,6 +52,7 @@ import UserOrderTabLayout from './components/layout/center/user/order/OrderTabLa
 import UserOrderListLayout from './components/layout/center/user/order/OrderListLayout.jsx';
 import UserOrderDetailLayout from './components/layout/center/user/order/OrderDetailLayout.jsx';
 import UserOrderSubmitLayout from './components/layout/center/user/order/OrderSubmitLayout.jsx';
+import UserOrderSubmitResultLayout from './components/layout/center/user/order/OrderSubmitResultLayout.jsx';
 import UserOrderRefundLayout from './components/layout/center/user/order/OrderRefundLayout.jsx';
 
 main();
@@ -120,7 +121,10 @@ function main(){
             </Route>
             <Route path="order/:id">
               <IndexRoute  component={UserOrderDetailLayout}/>
-              <Route path="submit" component={UserOrderSubmitLayout}/>
+              <Route path="submit">
+                <IndexRoute component={UserOrderSubmitLayout}/>
+                <Route path="result" component={UserOrderSubmitResultLayout}/>
+              </Route>
               <Route path="refund" component={UserOrderRefundLayout}/>
             </Route>
           </Route>
