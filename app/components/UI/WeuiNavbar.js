@@ -10,11 +10,9 @@ class WeuiNavbarItem extends React.Component {
     WeuiNavbarActions.setOn(this.props.data.id);
   };
   render() {
-    var text = this.props.data.text;
-    var href = this.props.data.href;
-    var tabId = this.props.data.id;
+    const {text, href, id} = this.props.data;
     return(
-      <div onClick={this.setOn} className={`weui_navbar_item${this.state[tabId] ? ' weui_bar_item_on' : ''}`} key={this.props.index}>
+      <div onClick={this.setOn} className={`weui_navbar_item${this.state[id] ? ' weui_bar_item_on' : ''}`} key={this.props.index}>
         <a href={href} alt={text}>{text}</a>{/* TODO: */}
       </div>
     );
