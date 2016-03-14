@@ -23,11 +23,9 @@ ReactMixin.onClass(WeuiNavbarItem, Reflux.connect(WeuiNavbarStore));
 
 class WeuiNavbar extends React.Component {
   render() {
-    let result = this.props.list.map((data, index)=>{
-      return (
-        <WeuiNavbarItem data={data} key={index} isOn={index === 0}/>
-      );
-    });
+    let result = this.props.list.map((data, index) =>
+      <WeuiNavbarItem data={data} key={index} isOn={index === 0} />
+    );
     return(
       <div className="weui_navbar">
         {result}
