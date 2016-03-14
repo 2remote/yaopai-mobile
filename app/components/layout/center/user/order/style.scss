@@ -1,0 +1,22 @@
+.list_item{
+  .cover{
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+  }
+  .title{
+    font-weight: normal;
+    font-size: 16px;
+  }
+  .desc{
+    color: #888888;
+    font-size: 14px;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

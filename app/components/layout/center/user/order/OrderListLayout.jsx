@@ -94,4 +94,4 @@ const OrderListLayout = () => (
   </div>
 );
 
-export default OrderListLayout;
+export {OrderListLayout as default};

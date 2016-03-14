@@ -2,8 +2,14 @@ import React from 'react';
 import WeUI from 'react-weui';
 import {Button} from 'react-weui';
 let avatar= 'http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1';
-
+import './style.scss';
+const {Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter} = WeUI;
 class OrderSubmitLayout extends React.Component {
+  //TODO: 点击提交订单后的事件
+  submit = (e) => {
+    alert('message');
+  };
+
   render() {
     return (
       <div>
@@ -57,8 +63,35 @@ class OrderSubmitLayout extends React.Component {
         </div>
 
         <div className="weui_btn_area">
-          <Button type="primary">提交订单</Button>
+          <Button onClick={this.submit} type="primary">提交订单</Button>
         </div>
+
+        <section>
+          <CellsTitle>文章列表</CellsTitle>
+          <Cells access>
+            <Cell className="list_item">
+              <CellHeader>
+                <img className="cover" src="http://mmrb.github.io/avatar/jf.jpg" alt=""/>
+              </CellHeader>
+              <CellBody>
+                <h2 className="title">WeUI 发布——微信官方UI库</h2>
+                <p className="desc">团队里的几个小伙子把微信里面web app的UI，按照设计规范给梳理了一遍，并将之开源了出来。</p>
+              </CellBody>
+              <CellFooter/>
+            </Cell>
+            <Cell className="list_item">
+              <CellHeader>
+                <img className="cover" src="http://mmrb.github.io/avatar/bear.jpg" alt=""/>
+              </CellHeader>
+              <CellBody>
+                <h2 className="title">【纪念】服务器被删除了</h2>
+                <p className="desc">因为没钱付服务器年费，所以一直都是月付，然后每个月服务器商会发来短信告诉我要缴费了。</p>
+              </CellBody>
+              <CellFooter/>
+            </Cell>
+          </Cells>
+        </section>
+
       </div>
     );
   }
