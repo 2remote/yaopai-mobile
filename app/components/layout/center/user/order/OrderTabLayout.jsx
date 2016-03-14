@@ -22,8 +22,7 @@ let navList = [{
 
 const OrderTabLayout = () => (
   <div className="weui_tab">
-    <WeuiNavbar list={navList}>
-    </WeuiNavbar>
+    <WeuiNavbar list={navList} />
     <div className="weui_tab_bd">
       <OrderListLayout />
     </div>
