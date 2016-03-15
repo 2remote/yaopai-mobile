@@ -8,6 +8,7 @@ var OrderActions = Reflux.createActions({
   'add' : {children:['success','failed']} ,
   'confirm' : {children:['success','failed']} ,
   'close' : {children:['success','failed']} ,
+  'type': {}
 });
 
 /*
