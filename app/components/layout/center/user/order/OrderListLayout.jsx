@@ -1,7 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
-import _ from 'underscore';
+import { OrderStatus } from '../../../../Tools';
 
 import YPUIOrderCard from '../../../../UI/YPUIOrderCard.jsx';
 import OrderStore from '../../../../../stores/OrderStore';
@@ -12,13 +12,13 @@ class OrderListLayout extends React.Component {
   constructor() {
     super();
     this.state = {
-      filterType: [],
+      filterType: OrderStatus.UNPAYED,
       orders: []
     };
   }
   componentDidMount() {
     // 手动为默认展示选择“待付款”栏数据
-    OrderActions.type(['WaitingPayment']);
+    OrderActions.type(OrderStatus.UNPAYED);
     OrderActions.list('out');
   }
   onOrderLoad(order) {
@@ -34,7 +34,7 @@ class OrderListLayout extends React.Component {
       <div>
         {
           this.state.orders.map((order, index) => {
-            if(!_.contains(this.state.filterType, order.State)) return;
+            if(OrderStatus.parse(order.State) !== this.state.filterType) return;
             return <YPUIOrderCard order={order} key={index}/>;
           }
         )}
