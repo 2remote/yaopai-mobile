@@ -253,26 +253,16 @@ export const OrderStatus = {
    * @returns {*} 预先约定的状态
    */
   parse: function(status) {
-    let self = this;
-    switch(status){
-    case 'WaitingPayment':
-      return self.UNPAYED;
-      break;
-    case 'WaitingReception':
-      return self.UNCONFIRMED;
-      break;
-    case 'WaitingDelivery':
-    case 'WaitingAcceptance':
-      return self.ONGOING;
-      break;
-    case 'Completed':
-      return self.COMPLETE;
-      break;
-    case 'Cloesd': // TODO: 这个是gitbook文档拼写错误，还是后台真就这么返回？待验证
-      return self.CLOSED;
-      break;
-    default:
-      return;
-    }
+    // 与服务器数据对应的数据
+    // TODO: 这玩意儿怎么移除去啊。。不能每次都初始化一遍吧。。虽然开销不大
+    let $serverCode = {
+      WaitingPayment: this.UNPAYED,
+      WaitingReception: this.UNCONFIRMED,
+      WaitingDelivery: this.ONGOING,
+      WaitingAcceptance: this.ONGOING,
+      Completed: this.COMPLETE,
+      Cloesd: this.CLOSED // TODO: 这个是gitbook文档拼写错误，还是后台真就这么返回？待验证
+    };
+    return $serverCode[status] || this.CLOSED;
   }
 };
