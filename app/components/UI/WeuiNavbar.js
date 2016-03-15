@@ -8,18 +8,18 @@ class WeuiNavbar extends React.Component {
     this.state = {key: 0};
   }
 
-  onOff (index) {
+  onOff (data, index) {
     this.setState({key: index});
-	  this.props.onClick(index);
+    this.props.onClick(data);
   }
 
   render() {
     let result = this.props.list.map((data, index) =>
       <div
-        onClick={() => this.onOff(index)}
+        onClick={() => this.onOff(data, index)}
         className={`weui_navbar_item ${index === this.state.key ? 'weui_bar_item_on' : ''}`}
       >
-        <a href={data.href} alt={data.text}>{data.text}</a>{/* TODO: */}
+        <a href="javascript:;" alt={data.text}>{data.text}</a>{/* TODO: */}
       </div>
     );
     return(
