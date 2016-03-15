@@ -2,23 +2,6 @@ import React from 'react';
 import {Dialog, Button} from 'react-weui';
 const {Alert, Confirm} = Dialog;
 
-/**
- * 本component是个人中心中订单的UI组件,用于展示不同状态的订单UI
- * @param order: 订单信息,包含以下内容:
- * order.id: 订单ID
- * order.status: 订单状态,分为:
- * order.userId: 订单-用户ID
- * order.grapher.id: 订单-摄影师ID
- * order.grapher.avatar: 订单-摄影师头像
- * order.grapher.name: 订单-摄影师昵称
- * order.grapher.phone: 订单-摄影师电话号码
- * order.title: 订单标题
- * order.time: 预约时间
- * order.price: 订单价格
- * order.payedAmount: 订单实付价格
- * @constructor
- */
-
 class YPUIOrderCard extends React.Component {
   constructor(props) {
     super(props);
@@ -58,24 +41,24 @@ class YPUIOrderCard extends React.Component {
         <div className="weui_panel_bd">
           <a className="weui_media_box weui_media_appmsg">
             <div className="weui_media_hd">
-              <img className="weui_media_appmsg_thumb" src={order.grapher.avatar} alt/>
+              <img className="weui_media_appmsg_thumb" src={order.Albums.Cover} alt/>
             </div>
             <div className="weui_media_bd">
               <h4 className="weui_media_title">
-                {order.title}
+                {order.Albums.Title}
               </h4>
               <p className="weui_media_desc">
                 <i className="icon font_small book_icon ">&nbsp;&nbsp;</i>
-                预约时间：{order.time}
+                预约时间：{order.CreationTime}
               </p>
               <p className="weui_media_desc">
                 <i className="icon font_small price_icon">&nbsp;&nbsp;</i>
-                价格：￥{order.price}
+                价格：￥{order.Price}
                 &nbsp;&nbsp;&nbsp;
-                实付：<span className="color_red">￥{order.payedAmount}</span>
+                实付：<span className="color_red">￥{order.Amount}</span>
               </p>
             </div>
-            <i className="icon youjiantou top_right_icon color_gray"></i>
+            <i className="icon youjiantou top_right_icon color_gray" />
             {/*<i className="icon close_icon top_right_icon color_gray"></i>*/}
           </a>
         </div>
@@ -85,9 +68,9 @@ class YPUIOrderCard extends React.Component {
         <div className="weui_panel_bd">
           <div className="yp_media_box">
             <div>
-              <a href={`tel:${order.grapher.phone}`} className="color_gray">
+              <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
                 <i className="icon phone_icon" />
-                联系{order.grapher.name}
+                联系{order.Photographer.NickName}
               </a>
             </div>
             <div className="flex_spring"></div>
@@ -102,9 +85,9 @@ class YPUIOrderCard extends React.Component {
         <div className="weui_panel_bd">
           <div className="yp_media_box">
             <div>
-              <a href={`tel:${order.grapher.phone}`} className="color_gray">
+              <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
                 <i className="icon phone_icon" />
-                联系{order.grapher.name}
+                联系{order.Photographer.NickName}
               </a>
             </div>
             <div className="flex_spring"></div>
@@ -119,9 +102,9 @@ class YPUIOrderCard extends React.Component {
         <div className="weui_panel_bd">
           <div className="yp_media_box">
             <div>
-              <a href={`tel:${order.grapher.phone}`} className="color_gray">
+              <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
                 <i className="icon phone_icon" />
-                联系{order.grapher.name}
+                联系{order.Photographer.NickName}
               </a>
             </div>
             <div className="flex_spring"></div>
@@ -148,9 +131,9 @@ class YPUIOrderCard extends React.Component {
         <div className="weui_panel_bd">
           <div className="yp_media_box">
             <div>
-              <a href={`tel:${order.grapher.phone}`} className="color_gray">
+              <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
                 <i className="icon phone_icon" />
-                联系{order.grapher.name}
+                联系{order.Photographer.NickName}
               </a>
             </div>
             <div className="flex_spring"></div>
