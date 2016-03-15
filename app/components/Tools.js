@@ -236,3 +236,43 @@ export const TITLE = {
   activityPage: 'YAOPAI 全部活动',
   activityDetailPage: '_YAOPAI'
 };
+
+/**
+ * 订单状态前后端转换
+ */
+export const OrderStatus = {
+  UNPAYED: '1', // 未支付
+  UNCONFIRMED: '2', // 待确定
+  ONGOING: '3', // 进行中
+  COMPLETE: '4', // 已完成
+  CLOSED: '5', // 已关闭
+  /**
+   * 把服务器返回订单状态的文字翻译成前端约定的状态
+   *
+   * @param status 服务器返回订单的State字段
+   * @returns {*} 预先约定的状态
+   */
+  parse: function(status) {
+    let self = this;
+    switch(status){
+    case 'WaitingPayment':
+      return self.UNPAYED;
+      break;
+    case 'WaitingReception':
+      return self.UNCONFIRMED;
+      break;
+    case 'WaitingDelivery':
+    case 'WaitingAcceptance':
+      return self.ONGOING;
+      break;
+    case 'Completed':
+      return self.COMPLETE;
+      break;
+    case 'Cloesd': // TODO: 这个是gitbook文档拼写错误，还是后台真就这么返回？待验证
+      return self.CLOSED;
+      break;
+    default:
+      return;
+    }
+  }
+};
