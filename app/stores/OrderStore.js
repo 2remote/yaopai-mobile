@@ -9,7 +9,8 @@ var OrderStore = Reflux.createStore({
     order : {}, //单个订单数据
     hintMessage : '',
     success : false,
-    flag : ''
+    flag : '',
+    filterType: ''
   },
   init : function(){
     this.orders = [];
@@ -25,6 +26,7 @@ var OrderStore = Reflux.createStore({
     this.listenTo(OrderActions.confirm.failed,this.onFailed);
     this.listenTo(OrderActions.close.success,this.onCloseOrder);
     this.listenTo(OrderActions.close.failed,this.onFailed);
+    this.listenTo(OrderActions.type,this.onType);
   },
   onListOrders : function(data){
     //从服务器api接口获得定单的列表
@@ -91,6 +93,10 @@ var OrderStore = Reflux.createStore({
   onFailed : function(data){
     this.data.hintMessage = '网络错误！';
     this.data.flag = 'failed';
+    this.trigger(this.data);
+  },
+  onType: function(filterType) {
+    this.data.filterType = filterType;
     this.trigger(this.data);
   }
 
