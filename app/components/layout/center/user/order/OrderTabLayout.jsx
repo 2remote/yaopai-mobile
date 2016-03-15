@@ -2,23 +2,23 @@ import React from 'react';
 
 import OrderListLayout from './OrderListLayout.jsx';
 import WeuiNavbar from '../../../../UI/WeuiNavbar';
-
+import { OrderStatus } from '../../../../Tools';
 import OrderActions from '../../../../../actions/OrderActions';
 
 let navList = [{
-  filterType: ['WaitingPayment'],
+  filterType: OrderStatus.UNPAYED,
   text: '待付款'
 },{
-  filterType: ['WaitingReception'],
+  filterType: OrderStatus.UNCONFIRMED,
   text: '待确认'
 },{
-  filterType: ['WaitingDelivery', 'WaitingAcceptance'],
+  filterType: OrderStatus.ONGOING,
   text: '进行中'
 },{
-  filterType: ['Completed'],
+  filterType: OrderStatus.COMPLETE,
   text: '已完成'
 },{
-  filterType: ['Cloesd'], // TODO: 这个拼写错误需要认真验证
+  filterType: OrderStatus.CLOSED,
   text: '已关闭'
 }];
 
