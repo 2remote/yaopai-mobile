@@ -10,6 +10,7 @@ class WeuiNavbar extends React.Component {
 
   onOff (index) {
     this.setState({key: index});
+	  this.props.onClick(index);
   }
 
   render() {
