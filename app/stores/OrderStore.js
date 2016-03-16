@@ -97,6 +97,7 @@ var OrderStore = Reflux.createStore({
   },
   onType: function(filterType) {
     this.data.filterType = filterType;
+    this.data.flag = 'type';
     this.trigger(this.data);
   }
 
