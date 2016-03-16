@@ -13,14 +13,14 @@ class OrderDetailLayout extends React.Component{
     this.state = {
       order:{
         Albums:{},
-        Photographer:{},
+        Photographer:{}
       }
     };
   }
 
-	componentDidMount() {
+  componentDidMount() {
     OrderActions.get(this.props.params.id);
-	}
+  }
 
   onOrderLoad(data) {
     this.setState({
@@ -54,22 +54,34 @@ class OrderDetailLayout extends React.Component{
 				    <span>创建时间：</span>
 				    <span>{order.CreationTime}</span>
 			    </p>
-          <p className={order.PaymentTime || 'hide'}>
-            <span>付款时间：</span>
-            <span>{order.PaymentTime}</span>
-          </p>
-          <p>
-            <span>退款时间：</span>
-            <span>{order.RefundTime}</span>
-          </p>
-          <p>
-            <span>发片时间：</span>
-            <span>{order.DeliveryTime}</span>
-          </p>
-          <p>
-            <span>成交时间：</span>
-            <span>{order.CompleteTime}</span>
-          </p>
+          { order.PaymentTime ?
+            <p>
+              <span>付款时间：</span>
+              <span>{order.PaymentTime}</span>
+            </p>
+            : ''
+          }
+          { order.RefundTime ?
+            <p>
+              <span>退款时间：</span>
+              <span>{order.RefundTime}</span>
+            </p>
+            : ''
+          }
+          { order.DeliveryTime ?
+            <p>
+              <span>发片时间：</span>
+              <span>{order.DeliveryTime}</span>
+            </p>
+            : ''
+          }
+          { order.CompleteTime && !order.RefundTime ?
+            <p>
+              <span>成交时间：</span>
+              <span>{order.CompleteTime}</span>
+            </p>
+            : ''
+          }
 			    <p>
 				    <span>预约姓名：</span>
 				    <span>少女写真（闺蜜组）</span>
