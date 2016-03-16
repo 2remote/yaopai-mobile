@@ -13,7 +13,12 @@ class OrderDetailLayout extends React.Component{
     this.state = {
       order:{
         Albums:{},
-        Photographer:{}
+        Photographer:{},
+        CreationTime:'',
+        PaymentTime:'',
+        RefundTime:'',
+        DeliveryTime:'',
+        CompleteTime:''
       }
     };
   }
@@ -34,10 +39,10 @@ class OrderDetailLayout extends React.Component{
 	    <div className="OrderDetailLayout">
 		    <div className="weui_cells_title">支付流程说明</div>
 		    <section className="icon_box font_small color_gray">
-					<span><i className="icon phone" /><br/>提单
-					</span><span><i className="icon phone" /><br/>付款
-					</span><span><i className="icon phone" /><br/>拍摄
-					</span><span><i className="icon phone" /><br/>收片</span>
+					<span><i className="icon order_icon" /><br/>提单
+					</span><span><i className="icon refund" /><br/>付款
+					</span><span><i className="icon grapher_icon" /><br/>拍摄
+					</span><span><i className="icon album" /><br/>收片</span>
 		    </section>
 		    <div className="weui_cells_title">订单详情</div>
 
@@ -52,33 +57,33 @@ class OrderDetailLayout extends React.Component{
 			    </p>
 			    <p>
 				    <span>创建时间：</span>
-				    <span>{order.CreationTime}</span>
+				    <span>{order.CreationTime.substring(0,10)}</span>
 			    </p>
           { order.PaymentTime ?
             <p>
               <span>付款时间：</span>
-              <span>{order.PaymentTime}</span>
+              <span>{order.PaymentTime.substring(0,10)}</span>
             </p>
             : ''
           }
           { order.RefundTime ?
             <p>
               <span>退款时间：</span>
-              <span>{order.RefundTime}</span>
+              <span>{order.RefundTime.substring(0,10)}</span>
             </p>
             : ''
           }
           { order.DeliveryTime ?
             <p>
               <span>发片时间：</span>
-              <span>{order.DeliveryTime}</span>
+              <span>{order.DeliveryTime.substring(0,10)}</span>
             </p>
             : ''
           }
           { order.CompleteTime && !order.RefundTime ?
             <p>
               <span>成交时间：</span>
-              <span>{order.CompleteTime}</span>
+              <span>{order.CompleteTime.substring(0,10)}</span>
             </p>
             : ''
           }
