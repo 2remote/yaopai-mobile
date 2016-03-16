@@ -1,6 +1,4 @@
 import React from 'react';
-import WeuiNavbarActions from '../../actions/ui/WeuiNavbarActions';
-import WeuiNavbarStore from '../../stores/ui/WeuiNavbarStore';
 
 class WeuiNavbar extends React.Component {
   constructor(props) {
