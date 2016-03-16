@@ -48,9 +48,7 @@ class YPUIOrderCard extends React.Component {
           </div>
           <div className="flex_spring"></div>
           <div>
-            <button className="weui_btn weui_btn_mini weui_btn_primary">
-              去支付
-            </button>
+            <Button type="primary" size="small" className="weui_btn weui_btn_mini" onClick={this.showConfirm}>去支付</Button>
           </div>
         </div>
       </div>
