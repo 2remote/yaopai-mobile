@@ -16,6 +16,7 @@ class WeuiNavbar extends React.Component {
       <div
         onClick={() => this.onOff(data, index)}
         className={`weui_navbar_item ${index === this.state.key ? 'weui_bar_item_on' : ''}`}
+        key={index}
       >
         <a href="javascript:;" alt={data.text}>{data.text}</a>{/* TODO: */}
       </div>
