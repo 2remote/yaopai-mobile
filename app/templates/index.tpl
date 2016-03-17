@@ -182,5 +182,6 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
+    <script type="text/javascript" src="https://one.pingxx.com/lib/pingpp_one.js"></script>
     </body>
 </html>
