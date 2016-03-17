@@ -1,28 +1,69 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
+import Reflux from 'reflux';
 import WeUI from 'react-weui';
 import {Button} from 'react-weui';
-let avatar= 'http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1';
+
+import OrderActions from '../../../../../actions/OrderActions';
+import OrderStore from '../../../../../stores/OrderStore';
 import './style.scss';
+
+let avatar= 'http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1';
+
 const {Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter} = WeUI;
+
+/**
+ *
+ */
 class OrderSubmitLayout extends React.Component {
   //TODO: 点击提交订单后的事件
   submit = (e) => {
     alert('message');
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      order:{
+        Albums:{},
+        Photographer:{},
+        CreationTime:'',
+        PaymentTime:'',
+        RefundTime:'',
+        DeliveryTime:'',
+        CompleteTime:''
+      }
+    };
+  }
+
+  componentDidMount() {
+    OrderActions.get(this.props.params.id);
+  }
+
+  onOrderLoad(data) {
+    this.setState({
+      order: data.order
+    })
+  }
+
   render() {
+    const {order} = this.state;
     return (
       <div>
         <div className="weui_cells_title">套餐详情</div>
 
         <section className="weui_panel">
-          <a href="javascript:void(0);" className="weui_media_box weui_media_appmsg">
+          <a href={`#/center/u/order/${order.Id}`} className="weui_media_box weui_media_appmsg">
             <div className="weui_media_hd">
-              <img src={avatar} className="weui_media_appmsg_thumb"/>
+              <img src={order.Albums.Cover} alt={order.Albums.Title} className="weui_media_appmsg_thumb"/>
             </div>
             <div className="weui_media_bd">
-              <h4 className="weui_media_title">[亲自家庭]FamilyXXX</h4>
-              <p className="weui_media_desc">摄影师：XXX</p>
+              <h4 className="weui_media_title">
+                {order.Albums.Title}
+              </h4>
+              <p className="weui_media_desc">
+                摄影师：{order.Photographer.NickName}
+              </p>
             </div>
           </a>
           <i className="icon youjiantou top_right_icon "/>
@@ -39,14 +80,14 @@ class OrderSubmitLayout extends React.Component {
           </div>
 
           <div className="weui_cell">
-            <div className="weui_cell_hd"><label className="yp_label">联系电话</label></div>
+            <div className="weui_cell_hd"><label htmlFor="tempInput" className="yp_label">联系电话</label></div>
             <div className="weui_cell_bd weui_cell_primary">
-              <input className="weui_input" type="number" pattern="[0-9]*" placeholder="手机号码"/>
+              <input className="weui_input" type="number" id="tempInput" pattern="[0-9]*" placeholder="手机号码"/>
             </div>
           </div>
 
           <div className="weui_cell">
-            <div className="weui_cell_hd"><label for="" className="yp_label">预约日期</label></div>
+            <div className="weui_cell_hd"><label className="yp_label">预约日期</label></div>
             <div className="weui_cell_bd weui_cell_primary">
               <input className="weui_input" type="date" value=""/>
             </div>
@@ -97,5 +138,6 @@ class OrderSubmitLayout extends React.Component {
   }
 }
 
+ReactMixin.onClass(OrderSubmitLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
 
 export {OrderSubmitLayout as default};
