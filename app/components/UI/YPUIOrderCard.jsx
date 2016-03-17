@@ -1,6 +1,8 @@
 import React from 'react';
 import {Dialog, Button} from 'react-weui';
 import { OrderStatus } from '../Tools';
+import ReactMixin from 'react-mixin';
+import { History } from 'react-router';
 const {Alert, Confirm} = Dialog;
 
 class YPUIOrderCard extends React.Component {
@@ -24,8 +26,12 @@ class YPUIOrderCard extends React.Component {
         ]
       }
     };
-
   }
+
+  payOrder = (e, orderId) => {
+    console.log('[YPUIOrderCard-payOrder]', orderId);
+    this.history.pushState(null, `/center/u/order/${orderId}/submit`);
+  };
 
   showConfirm = (e) => {
     this.setState({showConfirm: true});
@@ -48,7 +54,10 @@ class YPUIOrderCard extends React.Component {
           </div>
           <div className="flex_spring"></div>
           <div>
-            <Button type="primary" size="small" className="weui_btn weui_btn_mini" onClick={this.showConfirm}>去支付</Button>
+            <Button type="primary" size="small" className="weui_btn weui_btn_mini"
+               onClick={ e => { this.payOrder(e, order.Id); }}>
+              &nbsp;&nbsp;去支付&nbsp;&nbsp;
+            </Button>
           </div>
         </div>
       </div>
@@ -146,7 +155,7 @@ class YPUIOrderCard extends React.Component {
     return (
       <div className="weui_panel weui_panel_access">
         <div className="weui_panel_bd">
-          <a className="weui_media_box weui_media_appmsg">
+          <a className="weui_media_box weui_media_appmsg" href={`#/center/u/order/${order.Id}`}>
             <div className="weui_media_hd">
               <img className="weui_media_appmsg_thumb" src={order.Albums.Cover} alt/>
             </div>
@@ -177,5 +186,7 @@ class YPUIOrderCard extends React.Component {
     );
   }
 }
+
+ReactMixin.onClass(YPUIOrderCard, History);
 
 export {YPUIOrderCard as default};
