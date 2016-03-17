@@ -23,7 +23,6 @@ class OrderListLayout extends React.Component {
   }
   onOrderLoad(order) {
     // TODO: if else and more
-    console.log('[OrderListLayout]', '[onOrderLoad]', order);
     this.setState({
       filterType: order.filterType,
       orders: order.orders
