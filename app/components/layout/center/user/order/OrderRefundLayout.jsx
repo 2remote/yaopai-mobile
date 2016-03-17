@@ -1,12 +1,34 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
+import Reflux from 'reflux';
 import {Button, Toast} from 'react-weui';
+
+import OrderActions from '../../../../../actions/OrderActions';
+import OrderStore from '../../../../../stores/OrderStore';
 
 class OrderRefundLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      order:{
+        AppointedTime: '',
+        Albums:{},
+        Photographer:{},
+        CreationTime:'',
+        PaymentTime:'',
+        RefundTime:'',
+        DeliveryTime:'',
+        CompleteTime:''
+      }
     };
+  }
+  componentDidMount() {
+    OrderActions.get(this.props.params.id);
+  }
+  onOrderLoad(data) {
+    this.setState({
+      order: data.order
+    })
   }
 
   handleClick = e => {
@@ -17,22 +39,28 @@ class OrderRefundLayout extends React.Component {
   };
 
   render() {
+    const {order} = this.state;
     return (
       <div>
         {/* 1. 订单信息panel */}
         <div className="weui_panel weui_panel_access">
           <div className="weui_panel_bd">
-            <a className="weui_media_box weui_media_appmsg">
+            <a href={`#/center/u/order/${order.Id}`}
+              className="weui_media_box weui_media_appmsg">
               <div className="weui_media_hd">
                 <img className="weui_media_appmsg_thumb"
                      src="http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1"
                      alt/>
               </div>
               <div className="weui_media_bd">
-                <div className="weui_media_title">少女写真（闺蜜组</div>
-                <div className="weui_media_desc">摄影师：糖宝</div>
+                <div className="weui_media_title">
+                  {order.Albums.Title}
+                </div>
                 <div className="weui_media_desc">
-                  总金额：<span className="color_red">¥ 1270.00</span>
+                  摄影师：{order.Photographer.NickName}
+                </div>
+                <div className="weui_media_desc">
+                  总金额：<span className="color_red">￥{order.Amount}</span>
                 </div>
               </div>
               <i className="icon youjiantou top_right_icon"/>
@@ -40,8 +68,8 @@ class OrderRefundLayout extends React.Component {
           </div>
           <hr className="separator"/>
           <div className="weui_panel_hd">
-            订单编号：287jqkqiUZztQlC3<br />
-            交易时间：2015-12-12 12:59:59
+            订单编号：{order.Id}<br />
+            付款时间：{order.PaymentTime && order.PaymentTime.substring(0,10)}
           </div>
         </div>
         {/* 2. 退款模块 */}
@@ -65,7 +93,7 @@ class OrderRefundLayout extends React.Component {
             </div>
             <div className="weui_cell_bd weui_cell_primary">
               <div className="font_medium">
-                ¥ 1267元
+                ￥{order.Amount}
                 <span className="color_gray">（优惠不可退）</span>
               </div>
             </div>
@@ -126,5 +154,7 @@ class OrderRefundLayout extends React.Component {
     );
   }
 }
+
+ReactMixin.onClass(OrderRefundLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
 
 export default OrderRefundLayout;

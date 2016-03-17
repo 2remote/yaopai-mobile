@@ -4,13 +4,22 @@ import Reflux from 'reflux';
 import WeUI from 'react-weui';
 import {Button} from 'react-weui';
 
+
 import OrderActions from '../../../../../actions/OrderActions';
 import OrderStore from '../../../../../stores/OrderStore';
-import './style.scss';
-
-let avatar= 'http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1';
 
 const {Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter} = WeUI;
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1);
+    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
 
 /**
  *
@@ -18,13 +27,51 @@ const {Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter} = W
 class OrderSubmitLayout extends React.Component {
   //TODO: 点击提交订单后的事件
   submit = (e) => {
-    alert('message');
+    e.preventDefault();
+    pingpp_one.init({
+      debug: true,
+      app_id: 'app_HOmP4CHinvvL9Kyv', //Ping++ 后台中的应用Id
+      amount: 0,    //金额请填写0
+      channel: ['alipay_wap', 'wx_pub', 'upacp_wap'],//渠道数组,视情况而定
+      charge_url: `http://dev.api.aiyaopai.com/payment/token?tokenId=${getCookie('pingToken')}`, //token地址
+      charge_param: { 'orderId': this.state.order.Id }  //订单Id
+    }, res => {
+      if(res.debug&&res.chargeUrlOutput){
+        console.log(res.chargeUrlOutput);
+      }
+      if(!res.status){
+        //处理错误
+        alert(res.msg);
+      }
+      else{
+        //debug 模式下调用 charge_url 后会暂停，可以调用 pingpp_one.resume 方法继续执行
+        if(res.debug&&!res.wxSuccess){
+          if(confirm('当前为 debug 模式，是否继续支付？')){
+            pingpp_one.resume();
+          }
+        }
+        //若微信公众号渠道需要使用壹收款的支付成功页面，则在这里进行成功回调，
+        //调用 pingpp_one.success 方法，你也可以自己定义回调函数
+        //其他渠道的处理方法请见第 2 节
+        else pingpp_one.success(function(res){
+          if(!res.status){
+            alert(res.msg);
+          }
+        },function(){
+          //这里处理支付成功页面点击“继续购物”按钮触发的方法，
+          //例如：若你需要点击“继续购物”按钮跳转到你的购买页，
+          //则在该方法内写入 window.location.href = "你的购买页面 url"
+          window.location.href='http://yourdomain.com/payment_succeeded';//示例
+        });
+      }
+    });
   };
 
   constructor(props) {
     super(props);
     this.state = {
       order:{
+        AppointedTime: '',
         Albums:{},
         Photographer:{},
         CreationTime:'',
@@ -50,8 +97,9 @@ class OrderSubmitLayout extends React.Component {
     const {order} = this.state;
     return (
       <div>
-        <div className="weui_cells_title">套餐详情</div>
-
+        <div style={{height:'1px'}}></div>
+        {/* 1. 套餐详情 */}
+        <CellsTitle>套餐详情</CellsTitle>
         <section className="weui_panel">
           <a href={`#/center/u/order/${order.Id}`} className="weui_media_box weui_media_appmsg">
             <div className="weui_media_hd">
@@ -69,70 +117,48 @@ class OrderSubmitLayout extends React.Component {
           <i className="icon youjiantou top_right_icon "/>
         </section>
 
-        <div className="weui_cells_title">预约信息</div>
-
-        <section className="weui_panel">
-          <div className="weui_cell">
-            <div className="weui_cell_hd"><label className="yp_label">联系姓名</label></div>
+        {/* 1. 套餐详情 */}
+        <form onSubmit={this.submit}>
+        {/* 1.1 预约信息 */}
+          <CellsTitle>预约信息</CellsTitle>
+          <section className="weui_panel">
+            <div className="weui_cell">
+              <div className="weui_cell_hd">
+                <label className="yp_label">联系姓名</label>
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                <p className="color_gray">{order.BuyerName}</p>
+              </div>
+            </div>
+            <div className="weui_cell">
+              <div className="weui_cell_hd">
+                <label className="yp_label">联系电话</label>
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                <p className="color_gray">{order.BuyerTel}</p>
+              </div>
+            </div>
+            <div className="weui_cell">
+              <div className="weui_cell_hd">
+                <label className="yp_label">预约日期</label>
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                <p className="color_gray">{order.AppointedTime.substring(0,10)}</p>
+              </div>
+            </div>
+          </section>
+          {/* 1.2 备注 */}
+          <CellsTitle>备注</CellsTitle>
+          <div className="weui_cell weui_panel">
             <div className="weui_cell_bd weui_cell_primary">
-              <input className="weui_input" type="text" placeholder="您的昵称"/>
+              <textarea ref="comment" maxLength="200" className="weui_textarea" placeholder="请输入评论" rows="3"/>
             </div>
           </div>
-
-          <div className="weui_cell">
-            <div className="weui_cell_hd"><label htmlFor="tempInput" className="yp_label">联系电话</label></div>
-            <div className="weui_cell_bd weui_cell_primary">
-              <input className="weui_input" type="number" id="tempInput" pattern="[0-9]*" placeholder="手机号码"/>
-            </div>
+          {/* 1.3 提交按钮 */}
+          <div className="weui_btn_area">
+            <button type="submit" className="weui_btn weui_btn_primary">提交订单</button>
           </div>
-
-          <div className="weui_cell">
-            <div className="weui_cell_hd"><label className="yp_label">预约日期</label></div>
-            <div className="weui_cell_bd weui_cell_primary">
-              <input className="weui_input" type="date" value=""/>
-            </div>
-          </div>
-        </section>
-
-        <div className="weui_cells_title">备注</div>
-
-        <div className="weui_cell weui_panel">
-          <div className="weui_cell_bd weui_cell_primary">
-            <textarea className="weui_textarea" placeholder="请输入评论" rows="3"/>
-            <div className="weui_textarea_counter"><span>0</span>/200</div>
-          </div>
-        </div>
-
-        <div className="weui_btn_area">
-          <Button onClick={this.submit} type="primary">提交订单</Button>
-        </div>
-
-        <section>
-          <CellsTitle>文章列表</CellsTitle>
-          <Cells access>
-            <Cell className="list_item">
-              <CellHeader>
-                <img className="cover" src="http://mmrb.github.io/avatar/jf.jpg" alt=""/>
-              </CellHeader>
-              <CellBody>
-                <h2 className="title">WeUI 发布——微信官方UI库</h2>
-                <p className="desc">团队里的几个小伙子把微信里面web app的UI，按照设计规范给梳理了一遍，并将之开源了出来。</p>
-              </CellBody>
-              <CellFooter/>
-            </Cell>
-            <Cell className="list_item">
-              <CellHeader>
-                <img className="cover" src="http://mmrb.github.io/avatar/bear.jpg" alt=""/>
-              </CellHeader>
-              <CellBody>
-                <h2 className="title">【纪念】服务器被删除了</h2>
-                <p className="desc">因为没钱付服务器年费，所以一直都是月付，然后每个月服务器商会发来短信告诉我要缴费了。</p>
-              </CellBody>
-              <CellFooter/>
-            </Cell>
-          </Cells>
-        </section>
-
+        </form>
       </div>
     );
   }

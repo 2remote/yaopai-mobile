@@ -28,7 +28,6 @@ class OrderTabLayout extends React.Component{
    * @param data
    */
   getIndex(data) {
-    console.log(data);
     OrderActions.type(data.filterType);
   }
   render() {
