@@ -49,8 +49,8 @@ class OrderRefundLayout extends React.Component {
               className="weui_media_box weui_media_appmsg">
               <div className="weui_media_hd">
                 <img className="weui_media_appmsg_thumb"
-                     src="http://7xrgj5.com1.z0.glb.clouddn.com/35/009098bc-6d59-4443-93ec-3e9f4d5bb277.jpg?imageMogr2/auto-orient/gravity/Center/thumbnail/!78x78r/crop/78x78/interface/1"
-                     alt/>
+                     src={order.Albums.Cover}
+                     alt={order.Albums.Title}/>
               </div>
               <div className="weui_media_bd">
                 <div className="weui_media_title">
