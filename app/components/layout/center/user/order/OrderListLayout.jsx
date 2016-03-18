@@ -31,6 +31,7 @@ class OrderListLayout extends React.Component {
       // 手动为默认展示选择“待付款”栏数据
       OrderActions.type(OrderStatus.UNPAYED);
       OrderActions.list('out');
+      this.setState({ userType: user.userType });
     }
   }
   onOrderLoad(order) {
@@ -49,7 +50,7 @@ class OrderListLayout extends React.Component {
     } else {
       theRealList = this.state.orders.map((order, index) => {
         if(OrderStatus.parse(order.State) !== this.state.filterType) return;
-        return <YPUIOrderCard order={order} key={index}/>;
+        return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>;
       });
     }
     return (
