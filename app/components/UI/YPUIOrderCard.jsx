@@ -3,6 +3,9 @@ import {Dialog, Button} from 'react-weui';
 import { OrderStatus } from '../Tools';
 import ReactMixin from 'react-mixin';
 import { History } from 'react-router';
+
+import OrderActions from '../../actions/OrderActions';
+
 const {Alert, Confirm} = Dialog;
 
 class YPUIOrderCard extends React.Component {
@@ -16,91 +19,116 @@ class YPUIOrderCard extends React.Component {
           {
             type: 'default',
             label: '取消',
-            onClick: this.hideConfirm
+            onClick: e => {
+              this.hideConfirm(e, false)
+            }
           },
           {
             type: 'primary',
             label: '确认',
-            onClick: this.hideConfirm
+            onClick: e => {
+              this.hideConfirm(e, true)
+            }
           }
         ]
       }
     };
   }
 
+  /**
+   * 用户：支付订单
+   * @param e
+   * @param orderId
+   */
   payOrder = (e, orderId) => {
     console.log('[YPUIOrderCard-payOrder]', orderId);
     this.history.pushState(null, `/center/u/order/${orderId}/submit`);
+  };
+
+  /**
+   * 用户：申请退款
+   * @param e
+   * @param orderId
+   */
+  payRefund = (e, orderId) => {
+    this.history.pushState(null, `/center/u/order/${orderId}/refund`);
+  };
+
+  /**
+   * 摄影师：接受订单
+   * @param e
+   * @param orderId
+   * @param approve
+   */
+  acceptOrder = (e, orderId, approve) => {
+    OrderActions.receive(orderId, approve);
   };
 
   showConfirm = (e) => {
     this.setState({showConfirm: true});
   };
 
-  hideConfirm = (e) => {
+  hideConfirm = (e, flag) => {
+    console.log(flag);
     this.setState({showConfirm: false});
   };
 
-  cardFooter = (order, status) => {
-    /* 代付款 */
+  cardFooter = (order, status, utype) => {
+    let leftPortion = <div></div>;
+    let rightPortion = <div></div>;
+    /* 待付款：显然这是买家用户 */
     if(status === OrderStatus.UNPAYED) {
-      return <div className="weui_panel_bd">
-        <div className="yp_media_box">
-          <div>
-            <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
-              <i className="icon phone_icon" />
-              联系{order.Photographer.NickName}
-            </a>
-          </div>
-          <div className="flex_spring"></div>
-          <div>
-            <Button type="primary" size="small" className="weui_btn weui_btn_mini"
-               onClick={ e => { this.payOrder(e, order.Id); }}>
-              &nbsp;&nbsp;去支付&nbsp;&nbsp;
-            </Button>
-          </div>
+      rightPortion = (
+        <div>
+          <Button type="primary" size="small" className="weui_btn weui_btn_mini"
+                  onClick={ e => { this.payOrder(e, order.Id); }}>
+            &nbsp;&nbsp;去支付&nbsp;&nbsp;
+          </Button>
         </div>
-      </div>
+      );
     }
     /* 待确认 */
     if(status === OrderStatus.UNCONFIRMED) {
-      return <div className="weui_panel_bd">
-        <div className="yp_media_box">
+      if(utype === 1){
+        rightPortion = (
           <div>
-            <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
-              <i className="icon phone_icon" />
-              联系{order.Photographer.NickName}
-            </a>
+            <button className="weui_btn weui_btn_mini weui_btn_default"
+                    onClick={ e => { this.acceptOrder(e, order.Id, false); }}>
+              拒接
+            </button>
+            <span>&nbsp;&nbsp;</span>
+            <button className="weui_btn weui_btn_mini weui_btn_primary"
+                    onClick={ e => { this.acceptOrder(e, order.Id, true); }}>
+              接受
+            </button>
           </div>
-          <div className="flex_spring"></div>
+        );
+      } else {
+        rightPortion = (
           <div>
-            <button className="weui_btn weui_btn_mini weui_btn_default">
+            <button className="weui_btn weui_btn_mini weui_btn_default"
+                    onClick={ e => { this.payRefund(e, order.Id); }}>
               退款
             </button>
           </div>
-        </div>
-      </div>
+        );
+      }
     }
     /* 进行中 */
     if(status === OrderStatus.ONGOING) {
-      return <div className="weui_panel_bd">
-        <div className="yp_media_box">
+      if(utype === 1) {
+
+      } else {
+        rightPortion = (
           <div>
-            <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
-              <i className="icon phone_icon" />
-              联系{order.Photographer.NickName}
-            </a>
-          </div>
-          <div className="flex_spring"></div>
-          <div>
-            <button className="weui_btn weui_btn_mini weui_btn_default">
+            <Button type="default" className="weui_btn weui_btn_mini">
               退款
-            </button>
+            </Button>
             <span>&nbsp;&nbsp;</span>
-            {/*<button className="weui_btn weui_btn_mini weui_btn_primary">
-             &nbsp;&nbsp;收片&nbsp;&nbsp;
-             </button>*/}
-            <Button type="primary" className="weui_btn weui_btn_mini" onClick={this.showConfirm}>收片</Button>
+            <Button type="primary" className="weui_btn weui_btn_mini"
+                    onClick={this.showConfirm}>
+              收片
+            </Button>
             <Confirm
               show={this.state.showConfirm}
               title={this.state.confirm.title}
@@ -108,46 +136,68 @@ class YPUIOrderCard extends React.Component {
               请您收到照片后再点击“确定”，点击“确定”后将把款打到摄影师的账户中！
             </Confirm>
           </div>
-        </div>
-      </div>;
+        );
+      }
     }
-    /* 已完成 or 已关闭 */
-    if(status === OrderStatus.COMPLETE) {
-      return <div className="weui_panel_bd">
+    if(utype === 1) {
+      leftPortion = <div></div>;
+    } else {
+      leftPortion = (
+        <div>
+          <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
+            <i className="icon phone_icon" />
+            联系{order.Photographer.NickName}
+          </a>
+        </div>
+      );
+    }
+    return (
+      <div className="weui_panel_bd">
         <div className="yp_media_box">
-          <div>
-            <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
-              <i className="icon phone_icon" />
-              联系{order.Photographer.NickName}
-            </a>
-          </div>
+          {leftPortion}
           <div className="flex_spring"></div>
-          <div>
-            <span className="color_gray">已取消订单</span>
-            <span className="color_red">退款成功</span>
-            <span className="color_green">已完成</span>
-          </div>
+          {rightPortion}
         </div>
-      </div>;
-    }
-    if(status === OrderStatus.CLOSED) {
-      return <div className="weui_panel_bd">
-        <div className="yp_media_box">
-          <div>
-            <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
-              <i className="icon phone_icon" />
-              联系{order.Photographer.NickName}
-            </a>
-          </div>
-          <div className="flex_spring"></div>
-          <div>
-            <span className="color_gray">已取消订单</span>
-            <span className="color_red">退款成功</span>
-            <span className="color_green">已完成</span>
-          </div>
-        </div>
-      </div>;
-    }
+      </div>
+    );
+
+    ///* 已完成 or 已关闭 */
+    //if(status === OrderStatus.COMPLETE) {
+    //  return <div className="weui_panel_bd">
+    //    <div className="yp_media_box">
+    //      <div>
+    //        <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
+    //          <i className="icon phone_icon" />
+    //          联系{order.Photographer.NickName}
+    //        </a>
+    //      </div>
+    //      <div className="flex_spring"></div>
+    //      <div>
+    //        <span className="color_gray">已取消订单</span>
+    //        <span className="color_red">退款成功</span>
+    //        <span className="color_green">已完成</span>
+    //      </div>
+    //    </div>
+    //  </div>;
+    //}
+    //if(status === OrderStatus.CLOSED) {
+    //  return <div className="weui_panel_bd">
+    //    <div className="yp_media_box">
+    //      <div>
+    //        <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
+    //          <i className="icon phone_icon" />
+    //          联系{order.Photographer.NickName}
+    //        </a>
+    //      </div>
+    //      <div className="flex_spring"></div>
+    //      <div>
+    //        <span className="color_gray">已取消订单</span>
+    //        <span className="color_red">退款成功</span>
+    //        <span className="color_green">已完成</span>
+    //      </div>
+    //    </div>
+    //  </div>;
+    //}
   };
 
   render() {
@@ -181,7 +231,7 @@ class YPUIOrderCard extends React.Component {
         {/*某一天需要分离出这个分割线的话，就做成单独的UI Component*/}
         <hr className="separator" />
 
-        {this.cardFooter(order, OrderStatus.parse(order.State))}
+        {this.cardFooter(order, OrderStatus.parse(order.State), this.props.utype)}
       </div>
     );
   }
