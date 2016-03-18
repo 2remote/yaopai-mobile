@@ -50,8 +50,17 @@ class YPUIOrderCard extends React.Component {
    * @param e
    * @param orderId
    */
-  payRefund = (e, orderId) => {
+  refundOrder = (e, orderId) => {
     this.history.pushState(null, `/center/u/order/${orderId}/refund`);
+  };
+
+  /**
+   * 用户：收片
+   * @param e
+   * @param orderId
+   */
+  acceptOrder = (e, orderId) => {
+    OrderActions.accept(orderId);
   };
 
   /**
@@ -60,8 +69,17 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    * @param approve
    */
-  acceptOrder = (e, orderId, approve) => {
+  receiveOrder = (e, orderId, approve) => {
     OrderActions.receive(orderId, approve);
+  };
+
+  /**
+   * 摄影师：发片
+   * @param e
+   * @param orderId
+   */
+  deliverOrder = (e, orderId) => {
+    OrderActions.deliver(orderId);
   };
 
   showConfirm = (e) => {
@@ -81,7 +99,7 @@ class YPUIOrderCard extends React.Component {
       rightPortion = (
         <div>
           <Button type="primary" size="small" className="weui_btn weui_btn_mini"
-                  onClick={ e => { this.payOrder(e, order.Id); }}>
+                  onClick={ e => this.payOrder(e, order.Id) }>
             &nbsp;&nbsp;去支付&nbsp;&nbsp;
           </Button>
         </div>
@@ -93,12 +111,12 @@ class YPUIOrderCard extends React.Component {
         rightPortion = (
           <div>
             <button className="weui_btn weui_btn_mini weui_btn_default"
-                    onClick={ e => { this.acceptOrder(e, order.Id, false); }}>
+                    onClick={ e => this.receiveOrder(e, order.Id, false) }>
               拒接
             </button>
             <span>&nbsp;&nbsp;</span>
             <button className="weui_btn weui_btn_mini weui_btn_primary"
-                    onClick={ e => { this.acceptOrder(e, order.Id, true); }}>
+                    onClick={ e => this.receiveOrder(e, order.Id, true) }>
               接受
             </button>
           </div>
@@ -107,7 +125,7 @@ class YPUIOrderCard extends React.Component {
         rightPortion = (
           <div>
             <button className="weui_btn weui_btn_mini weui_btn_default"
-                    onClick={ e => { this.payRefund(e, order.Id); }}>
+                    onClick={ e => this.refundOrder(e, order.Id) }>
               退款
             </button>
           </div>
@@ -117,27 +135,52 @@ class YPUIOrderCard extends React.Component {
     /* 进行中 */
     if(status === OrderStatus.ONGOING) {
       if(utype === 1) {
-
+        rightPortion = (
+          <div>
+            {
+              order.State === 'WaitingDelivery'?
+                <Button type="primary" className="weui_btn weui_btn_mini"
+                        onClick={e => this.deliverOrder(e, order.Id) }>
+                  发片
+                </Button> :
+                <span className="color_gray">等待用户收片</span>
+            }
+          </div>
+        );
       } else {
         rightPortion = (
           <div>
-            <Button type="default" className="weui_btn weui_btn_mini">
+            <Button type="default" className="weui_btn weui_btn_mini"
+                    onClick={ e => this.refundOrder(e, order.Id) }>
               退款
             </Button>
+            {/* This is a stupid hack so that no margin-top for adjacent buttons. */}
             <span>&nbsp;&nbsp;</span>
-            <Button type="primary" className="weui_btn weui_btn_mini"
-                    onClick={this.showConfirm}>
-              收片
-            </Button>
-            <Confirm
+            {
+              order.State === 'WaitingDelivery'?
+                <span className="color_gray">等待摄影师发片</span> :
+                <Button type="primary" className="weui_btn weui_btn_mini"
+                        onClick={e => this.acceptOrder(e, order.Id) }>
+                  收片
+                </Button>
+            }
+            {/*<Confirm
               show={this.state.showConfirm}
               title={this.state.confirm.title}
               buttons={this.state.confirm.buttons}>
               请您收到照片后再点击“确定”，点击“确定”后将把款打到摄影师的账户中！
-            </Confirm>
+            </Confirm>*/}
           </div>
         );
       }
+    }
+    /* 已完成 */
+    if(status === OrderStatus.COMPLETE) {
+      rightPortion = (
+        <div>
+          <span className="color_green">已完成</span>
+        </div>
+      );
     }
     if(utype === 1) {
       leftPortion = <div></div>;
