@@ -27,6 +27,9 @@ var OrderStore = Reflux.createStore({
     this.listenTo(OrderActions.close.success,this.onCloseOrder);
     this.listenTo(OrderActions.close.failed,this.onFailed);
     this.listenTo(OrderActions.type,this.onType);
+    this.listenTo(OrderActions.receive.success,this.onReceiveOrder);
+    this.listenTo(OrderActions.receive.failed,this.onFailed);
+
   },
   onListOrders : function(data){
     //从服务器api接口获得定单的列表
@@ -99,8 +102,20 @@ var OrderStore = Reflux.createStore({
     this.data.filterType = filterType;
     this.data.flag = 'type';
     this.trigger(this.data);
-  }
+  },
+  onReceiveOrder: function(data) {
+    if(data.Success){
+      // TODO: 这里要更新对应订单状态
 
+      this.data.hintMessage = '接单成功！';
+      this.data.success = true;
+    }else{
+      this.data.success = false;
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = 'receive';
+    this.trigger(this.data);
+  }
 });
 
 export {OrderStore as default};
