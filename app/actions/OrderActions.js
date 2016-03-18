@@ -8,7 +8,8 @@ var OrderActions = Reflux.createActions({
   'add' : {children:['success','failed']} ,
   'confirm' : {children:['success','failed']} ,
   'close' : {children:['success','failed']} ,
-  'type': {}
+  'type': {},
+  'receive': {children:['success','failed']} // 摄影师接单
 });
 
 /*
@@ -78,5 +79,13 @@ OrderActions.close.listen(function(id){
     Id : id
   };
   HttpFactory.post(API.ORDER.close,data,this.success,this.failed);
+});
+
+OrderActions.receive.listen(function(id, approve){
+  var data = {
+    Id: id,
+    Approved: approve
+  };
+  HttpFactory.post(API.ORDER.receive,data,this.success,this.failed);
 });
 export {OrderActions as default};
