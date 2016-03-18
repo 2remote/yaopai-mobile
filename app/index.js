@@ -55,6 +55,10 @@ import UserOrderSubmitLayout from './components/layout/center/user/order/OrderSu
 import UserOrderSubmitResultLayout from './components/layout/center/user/order/OrderSubmitResultLayout.jsx';
 import UserOrderRefundLayout from './components/layout/center/user/order/OrderRefundLayout.jsx';
 
+// imports GrapherCenter for Grapher
+import GrapherOrderTabLayout from './components/layout/center/grapher/order/OrderTabLayout.jsx';
+import GrapherOrderDetailLayout from './components/layout/center/grapher/order/OrderDetailLayout.jsx';
+
 main();
 
 function main(){
@@ -96,28 +100,9 @@ function main(){
         <Route path="/confirm_book_dialog" component={ConfirmBookDialog} />
         <Route path="/book_modify/:workId/:photographerId" component={BookModify} />
         <Route path="center">
-          <Route path="g">
-            <IndexRoute component={GrapherIndex}/>
-            <Route path="update" component={GrapherUpdate}>
-            </Route>
-            <Route path="order" component={GrapherOrder}>
-              <Route path="unpayed" component={OrderList}/>
-              <Route path="unconfirmed" component={OrderList}/>
-              <Route path="ongoing" component={OrderList}/>
-              <Route path="completed" component={OrderList}/>
-              <Route path="closed" component={OrderList}/>
-            </Route>
-          </Route>
           <Route path="u">
-            {/*<IndexRoute component={UserCenterLayout}/>*/}
             <IndexRoute component={UserCenterPage} />
             <Route path="order" component={UserOrderTabLayout}>
-              {/*<IndexRedirect to="unpayed"/>
-              <Route path="unpayed" component={UserOrderListLayout} foo="111"/>
-              <Route path="unconfirmed" component={UserOrderListLayout} foo="222"/>
-              <Route path="ongoing" component={UserOrderListLayout} foo="333"/>
-              <Route path="completed" component={UserOrderListLayout} foo="444"/>
-              <Route path="closed" component={UserOrderListLayout} foo="555"/>*/}
             </Route>
             <Route path="order/:id">
               <IndexRoute  component={UserOrderDetailLayout}/>
@@ -126,6 +111,14 @@ function main(){
                 <Route path="result" component={UserOrderSubmitResultLayout}/>
               </Route>
               <Route path="refund" component={UserOrderRefundLayout}/>
+            </Route>
+          </Route>
+          <Route path="g">
+            <IndexRoute component={UserCenterPage} />
+            <Route path="order" component={GrapherOrderTabLayout}>
+            </Route>
+            <Route path="order/:id">
+              <IndexRoute  component={GrapherOrderDetailLayout}/>
             </Route>
           </Route>
         </Route>
