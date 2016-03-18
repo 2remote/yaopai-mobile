@@ -99,7 +99,8 @@ var API_CONST = {
     get: API_URL + 'Order.Get',
     confirm: API_URL + 'Order.Confirm',
     add: API_URL + 'Order.Add',
-    close: API_URL + 'Order.Close'
+    close: API_URL + 'Order.Close',
+    receive: API_URL + 'Order.Reception'
   },
   FILE: {
     getToken: API_URL + 'File.Token',
