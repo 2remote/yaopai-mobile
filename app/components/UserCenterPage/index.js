@@ -47,7 +47,7 @@ var UserCenterPage = React.createClass({
         margin: '24px 0 12px 0'
       }
     };
-    
+
     return (
       <div 
         style={style.page}
