@@ -27,8 +27,15 @@ var OrderStore = Reflux.createStore({
     this.listenTo(OrderActions.close.success,this.onCloseOrder);
     this.listenTo(OrderActions.close.failed,this.onFailed);
     this.listenTo(OrderActions.type,this.onType);
+    /* 摄影师接单 */
     this.listenTo(OrderActions.receive.success,this.onReceiveOrder);
     this.listenTo(OrderActions.receive.failed,this.onFailed);
+    /* 摄影师发片 */
+    this.listenTo(OrderActions.deliver.success,this.onDeliverOrder);
+    this.listenTo(OrderActions.deliver.failed,this.onFailed);
+    /* 用户收片 */
+    this.listenTo(OrderActions.accept.success,this.onAcceptOrder);
+    this.listenTo(OrderActions.accept.failed,this.onFailed);
 
   },
   onListOrders : function(data){
@@ -114,6 +121,32 @@ var OrderStore = Reflux.createStore({
       this.data.hintMessage = data.ErrorMsg;
     }
     this.data.flag = 'receive';
+    this.trigger(this.data);
+  },
+  onAcceptOrder: function(data) {
+    if(data.Success){
+      // TODO: 这里要更新对应订单状态
+
+      this.data.hintMessage = '收片成功！';
+      this.data.success = true;
+    }else{
+      this.data.success = false;
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = 'accept';
+    this.trigger(this.data);
+  },
+  onDeliverOrder: function(data) {
+    if(data.Success){
+      // TODO: 这里要更新对应订单状态
+
+      this.data.hintMessage = '发片成功！';
+      this.data.success = true;
+    }else{
+      this.data.success = false;
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = 'deliver';
     this.trigger(this.data);
   }
 });
