@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import Reflux from 'reflux';
+import { History } from 'react-router';
 import WeUI from 'react-weui';
-import {Button} from 'react-weui';
 
-
+import UserActions from '../../../../../actions/UserActions';
 import OrderActions from '../../../../../actions/OrderActions';
+import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
 
-const {Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter} = WeUI;
+const {Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter, Button} = WeUI;
 
 function getCookie(cname) {
   var name = cname + "=";
@@ -84,7 +85,15 @@ class OrderSubmitLayout extends React.Component {
   }
 
   componentDidMount() {
-    OrderActions.get(this.props.params.id);
+    UserActions.currentUser();
+  }
+
+  onUserLoad(user) {
+    if(!user.isLogin){ // 用户未登录，跳转登陆页
+      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+    } else {
+      OrderActions.get(this.props.params.id);
+    }
   }
 
   onOrderLoad(data) {
@@ -165,5 +174,7 @@ class OrderSubmitLayout extends React.Component {
 }
 
 ReactMixin.onClass(OrderSubmitLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
+ReactMixin.onClass(OrderSubmitLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
+ReactMixin.onClass(OrderSubmitLayout, History);
 
 export {OrderSubmitLayout as default};
