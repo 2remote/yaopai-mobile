@@ -35,7 +35,11 @@ class OrderSubmitLayout extends React.Component {
       amount: 0,    //金额请填写0
       channel: ['alipay_wap', 'wx_pub', 'upacp_wap'],//渠道数组,视情况而定
       charge_url: `http://dev.api.aiyaopai.com/payment/token?tokenId=${getCookie('pingToken')}`, //token地址
-      charge_param: { 'orderId': this.state.order.Id }  //订单Id
+      open_id:'',
+      charge_param: {
+        'callback': `#/center/u/order/${this.state.order.Id}/submit/result`,
+        'orderId': this.state.order.Id
+      }  //订单Id
     }, res => {
       if(res.debug&&res.chargeUrlOutput){
         console.log(res.chargeUrlOutput);
