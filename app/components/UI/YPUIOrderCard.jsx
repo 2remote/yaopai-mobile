@@ -233,7 +233,8 @@ class YPUIOrderCard extends React.Component {
     return (
       <div className="weui_panel weui_panel_access">
         <div className="weui_panel_bd">
-          <a className="weui_media_box weui_media_appmsg" href={`#/center/u/order/${order.Id}`}>
+          <a className="weui_media_box weui_media_appmsg"
+             href={`#/center/${this.props.utype === 1 ? 'g':'u'}/order/${order.Id}`}>
             <div className="weui_media_hd">
               <img className="weui_media_appmsg_thumb" src={order.Albums.Cover} alt/>
             </div>
@@ -243,7 +244,7 @@ class YPUIOrderCard extends React.Component {
               </h4>
               <p className="weui_media_desc">
                 <i className="icon font_small book_icon ">&nbsp;&nbsp;</i>
-                预约时间：{order.CreationTime.substring(0,10)}
+                预约时间：{order.AppointedTime.substring(0,10)}
               </p>
               <p className="weui_media_desc">
                 <i className="icon font_small price_icon">&nbsp;&nbsp;</i>
