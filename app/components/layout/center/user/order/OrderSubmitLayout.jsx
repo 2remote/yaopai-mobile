@@ -160,13 +160,13 @@ class OrderSubmitLayout extends React.Component {
               </div>
             </div>
           </section>
-          {/* 1.2 备注 */}
+          {/* 1.2 备注
           <CellsTitle>备注</CellsTitle>
           <div className="weui_cell weui_panel">
             <div className="weui_cell_bd weui_cell_primary">
               <textarea ref="comment" maxLength="200" className="weui_textarea" placeholder="请输入评论" rows="3"/>
             </div>
-          </div>
+          </div> */}
           {/* 1.3 提交按钮 */}
           <div className="weui_btn_area">
             <button type="submit" className="weui_btn weui_btn_primary">提交订单</button>
