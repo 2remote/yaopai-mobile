@@ -20,14 +20,17 @@ class YPUIOrderCard extends React.Component {
             type: 'default',
             label: '取消',
             onClick: e => {
-              this.hideConfirm(e, false)
+              this.setState({ orderId: undefined });
+              this.hideConfirm(e);
             }
           },
           {
             type: 'primary',
             label: '确认',
             onClick: e => {
-              this.hideConfirm(e, true)
+              this.acceptOrder(e, this.state.orderId);
+              this.setState({ orderId: undefined });
+              this.hideConfirm(e);
             }
           }
         ]
@@ -82,17 +85,16 @@ class YPUIOrderCard extends React.Component {
     OrderActions.deliver(orderId);
   };
 
-  showConfirm = (e) => {
+  showConfirm = (e, orderId) => {
     this.setState({showConfirm: true});
+    this.setState({ orderId });
   };
 
-  hideConfirm = (e, flag) => {
-    console.log(flag);
+  hideConfirm = (e) => {
     this.setState({showConfirm: false});
   };
 
   cardFooter = (order, status, utype) => {
-    console.log('[YPUIOrderCard]', order, status, utype);
     let separator = <hr className="separator" />;
     let leftPortion = <div></div>;
     let rightPortion = <div></div>;
@@ -162,16 +164,16 @@ class YPUIOrderCard extends React.Component {
               order.State === 'WaitingDelivery'?
                 <span className="color_gray">等待摄影师发片</span> :
                 <Button type="primary" className="weui_btn weui_btn_mini"
-                        onClick={e => this.acceptOrder(e, order.Id) }>
+                        onClick={e => this.showConfirm(e, order.Id) }>
                   收片
                 </Button>
             }
-            {/*<Confirm
+            <Confirm
               show={this.state.showConfirm}
               title={this.state.confirm.title}
               buttons={this.state.confirm.buttons}>
               请您收到照片后再点击“确定”，点击“确定”后将把款打到摄影师的账户中！
-            </Confirm>*/}
+            </Confirm>
           </div>
         );
       }
