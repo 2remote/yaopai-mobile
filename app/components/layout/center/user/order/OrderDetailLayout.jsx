@@ -2,7 +2,10 @@ import React from 'react';
 
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
+
+import UserActions from '../../../../../actions/UserActions';
 import OrderActions from '../../../../../actions/OrderActions';
+import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
 
 import {Button} from 'react-weui';
@@ -24,7 +27,15 @@ class OrderDetailLayout extends React.Component{
   }
 
   componentDidMount() {
-    OrderActions.get(this.props.params.id);
+    UserActions.currentUser();
+  }
+
+  onUserLoad(user) {
+    if(!user.isLogin){ // 用户未登录，跳转登陆页
+      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+    } else {
+      OrderActions.get(this.props.params.id);
+    }
   }
 
   onOrderLoad(data) {
@@ -112,5 +123,7 @@ class OrderDetailLayout extends React.Component{
 }
 
 ReactMixin.onClass(OrderDetailLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
+ReactMixin.onClass(OrderDetailLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
+ReactMixin.onClass(OrderDetailLayout, History);
 
 export default OrderDetailLayout;
