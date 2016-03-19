@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import Reflux from 'reflux';
+import { History } from 'react-router';
 import {Button, Toast} from 'react-weui';
 
+import UserActions from '../../../../../actions/UserActions';
 import OrderActions from '../../../../../actions/OrderActions';
+import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
 
 class OrderRefundLayout extends React.Component {
@@ -23,13 +26,31 @@ class OrderRefundLayout extends React.Component {
     };
   }
   componentDidMount() {
-    OrderActions.get(this.props.params.id);
+    UserActions.currentUser();
+  };
+  onUserLoad(user) {
+    if(!user.isLogin){ // 用户未登录，跳转登陆页
+      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+    } else {
+      OrderActions.get(this.props.params.id);
+    }
   }
   onOrderLoad(data) {
     this.setState({
       order: data.order
     })
-  }
+  };
+  doRefund = e => {
+    e.preventDefault();
+    let reason = this.refs.reason.value;
+    let explain = this.refs.explain.value;
+    OrderActions.refund(this.state.order.Id, reason, explain);
+    this.setState({ show: true });
+    setTimeout(() => {
+      this.setState({ show: false });
+      this.history.pushState(null, '/center/u/order');
+    }, 3000);
+  };
 
   handleClick = e => {
     this.setState({ show: true });
@@ -75,60 +96,63 @@ class OrderRefundLayout extends React.Component {
         {/* 2. 退款模块 */}
         <div className="weui_cells_title">退款信息</div>
         {/* 3. 退款表单 */}
-        <div className="weui_cells weui_cells_form">
-          <div className="weui_cell">
-            <div className="weui_cell_hd">
-              <div className="yp_label">退款方式</div>
+        <form onSubmit={this.doRefund}>
+          <div className="weui_cells weui_cells_form">
+            <div className="weui_cell">
+              <div className="weui_cell_hd">
+                <div className="yp_label">退款方式</div>
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                <div className="font_medium">
+                  原路退回
+                  <span className="color_gray">（3-10个工作日完成，无手续费）</span>
+                </div>
+              </div>
             </div>
-            <div className="weui_cell_bd weui_cell_primary">
-              <div className="font_medium">
-                原路退回
-                <span className="color_gray">（3-10个工作日完成，无手续费）</span>
+            <div className="weui_cell">
+              <div className="weui_cell_hd">
+                <div className="yp_label">退款金额</div>
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                <div className="font_medium">
+                  ￥{order.Amount}
+                  <span className="color_gray">（优惠不可退）</span>
+                </div>
+              </div>
+            </div>
+            <div className="weui_cell weui_cell_select weui_select_after">
+              <div className="weui_cell_hd">
+                <div className="yp_label color_red">退款原因</div>
+              </div>
+              <div className="weui_cell_bd weui_cell_primary">
+                <select className="weui_select font_medium"
+                        style={{paddingLeft: '0'}}
+                        ref="reason">
+                  <option value="不想拍了">不想拍了</option>
+                </select>
               </div>
             </div>
           </div>
-          <div className="weui_cell">
-            <div className="weui_cell_hd">
-              <div className="yp_label">退款金额</div>
-            </div>
-            <div className="weui_cell_bd weui_cell_primary">
-              <div className="font_medium">
-                ￥{order.Amount}
-                <span className="color_gray">（优惠不可退）</span>
+          {/* 4. 退款说明 */}
+          <div className="weui_cells_title">
+            退款说明
+          </div>
+          <div className="weui_cells weui_cells_form">
+            <div className="weui_cell">
+              <div className="weui_cell_bd weui_cell_primary">
+                <textarea className="weui_textarea font_medium" placeholder="请输入退款说明" ref="explain" rows="4"/>
               </div>
             </div>
           </div>
-          <div className="weui_cell weui_cell_select weui_select_after">
-            <div className="weui_cell_hd">
-              <div className="yp_label color_red">退款原因</div>
-            </div>
-            <div className="weui_cell_bd weui_cell_primary">
-              <select className="weui_select font_medium"
-                      style={{paddingLeft: '0'}}>
-                <option value="1">不想拍了</option>
-              </select>
-            </div>
+          {/* 5. 提交按钮 */}
+          <div style={{padding: '24px 15px'}}>
+            <button className="weui_btn weui_btn_primary" type="submit">提交申请</button>
+            <Toast show={this.state.show}>
+              申请提交成功<br/>
+              <small>3秒后跳转...</small>
+            </Toast>
           </div>
-        </div>
-        {/* 4. 备注 */}
-        <div className="weui_cells_title">
-          备注
-        </div>
-        <div className="weui_cells weui_cells_form">
-          <div className="weui_cell">
-            <div className="weui_cell_bd weui_cell_primary">
-              <textarea className="weui_textarea font_medium" placeholder="请输入备注" rows="4"/>
-            </div>
-          </div>
-        </div>
-        {/* 5. 提交按钮 */}
-        <div style={{padding: '24px 15px'}}>
-          <Button onClick={this.handleClick}>提交申请</Button>
-          <Toast show={this.state.show}>
-            申请提交成功<br/>
-            <small>3秒后跳转...</small>
-          </Toast>
-        </div>
+        </form>
         {/* 6. 退款说明 */}
         <article className="weui_article">
           <section>
@@ -156,5 +180,7 @@ class OrderRefundLayout extends React.Component {
 }
 
 ReactMixin.onClass(OrderRefundLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
+ReactMixin.onClass(OrderRefundLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
+ReactMixin.onClass(OrderRefundLayout, History);
 
 export default OrderRefundLayout;
