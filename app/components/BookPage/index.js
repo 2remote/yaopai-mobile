@@ -73,7 +73,7 @@ var BookPage = React.createClass({
       if(data.success){
         console.log('提交订单成功！');
         var orderID = data.order.Id;
-        this.history.pushState(null,'/book_success_dialog/'+orderID);
+        this.props.history.pushState(null,`/center/u/order/${orderID}`);
       }else{
         this.showMessage(data.hintMessage);
       }
