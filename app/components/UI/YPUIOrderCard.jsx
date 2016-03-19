@@ -92,6 +92,8 @@ class YPUIOrderCard extends React.Component {
   };
 
   cardFooter = (order, status, utype) => {
+    console.log('[YPUIOrderCard]', order, status, utype);
+    let separator = <hr className="separator" />;
     let leftPortion = <div></div>;
     let rightPortion = <div></div>;
     /* 待付款：显然这是买家用户 */
@@ -182,7 +184,25 @@ class YPUIOrderCard extends React.Component {
         </div>
       );
     }
-    if(utype === 1) {
+    /* 已关闭 */
+    if(status === OrderStatus.CLOSED) {
+      let maskStyle = {
+        background: 'rgba(18,18,18,0.1)',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+      };
+      separator = '';
+      rightPortion = (
+        <div style={maskStyle}>
+
+        </div>
+      );
+    }
+    /* 调整footer左侧 */
+    if(utype === 1 || status === OrderStatus.CLOSED) {
       leftPortion = <div></div>;
     } else {
       leftPortion = (
@@ -196,6 +216,7 @@ class YPUIOrderCard extends React.Component {
     }
     return (
       <div className="weui_panel_bd">
+        {separator}
         <div className="yp_media_box">
           {leftPortion}
           <div className="flex_spring"></div>
@@ -203,44 +224,6 @@ class YPUIOrderCard extends React.Component {
         </div>
       </div>
     );
-
-    ///* 已完成 or 已关闭 */
-    //if(status === OrderStatus.COMPLETE) {
-    //  return <div className="weui_panel_bd">
-    //    <div className="yp_media_box">
-    //      <div>
-    //        <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
-    //          <i className="icon phone_icon" />
-    //          联系{order.Photographer.NickName}
-    //        </a>
-    //      </div>
-    //      <div className="flex_spring"></div>
-    //      <div>
-    //        <span className="color_gray">已取消订单</span>
-    //        <span className="color_red">退款成功</span>
-    //        <span className="color_green">已完成</span>
-    //      </div>
-    //    </div>
-    //  </div>;
-    //}
-    //if(status === OrderStatus.CLOSED) {
-    //  return <div className="weui_panel_bd">
-    //    <div className="yp_media_box">
-    //      <div>
-    //        <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
-    //          <i className="icon phone_icon" />
-    //          联系{order.Photographer.NickName}
-    //        </a>
-    //      </div>
-    //      <div className="flex_spring"></div>
-    //      <div>
-    //        <span className="color_gray">已取消订单</span>
-    //        <span className="color_red">退款成功</span>
-    //        <span className="color_green">已完成</span>
-    //      </div>
-    //    </div>
-    //  </div>;
-    //}
   };
 
   render() {
@@ -272,7 +255,6 @@ class YPUIOrderCard extends React.Component {
           </a>
         </div>
         {/*某一天需要分离出这个分割线的话，就做成单独的UI Component*/}
-        <hr className="separator" />
 
         {this.cardFooter(order, OrderStatus.parse(order.State), this.props.utype)}
       </div>
