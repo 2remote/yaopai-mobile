@@ -188,18 +188,10 @@ class YPUIOrderCard extends React.Component {
     }
     /* 已关闭 */
     if(status === OrderStatus.CLOSED) {
-      let maskStyle = {
-        background: 'rgba(18,18,18,0.1)',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-      };
-      separator = '';
+      //separator = '';
       rightPortion = (
-        <div style={maskStyle}>
-
+        <div>
+          <span className="color_gray">已关闭</span>
         </div>
       );
     }
@@ -239,7 +231,7 @@ class YPUIOrderCard extends React.Component {
               <img className="weui_media_appmsg_thumb" src={order.Albums.Cover} alt/>
             </div>
             <div className="weui_media_bd">
-              <h4 className="weui_media_title">
+              <h4 className={`weui_media_title${OrderStatus.parse(order.State) === OrderStatus.CLOSED ? ' color_gray':''}`}>
                 {order.Albums.Title}
               </h4>
               <p className="weui_media_desc">
@@ -250,7 +242,12 @@ class YPUIOrderCard extends React.Component {
                 <i className="icon font_small price_icon">&nbsp;&nbsp;</i>
                 价格：￥{order.Price}
                 &nbsp;&nbsp;&nbsp;
-                实付：<span className="color_red">￥{order.Amount}</span>
+                实付：
+                {
+                  OrderStatus.parse(order.State) === OrderStatus.CLOSED ?
+                    <span className="color_gray">￥{order.Amount}</span> :
+                    <span className="color_red">￥{order.Amount}</span>
+                }
               </p>
             </div>
             <i className="icon youjiantou top_right_icon color_gray" />
