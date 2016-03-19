@@ -9,6 +9,7 @@ var OrderActions = Reflux.createActions({
   'confirm' : {children:['success','failed']} ,
   'close' : {children:['success','failed']} ,
   'type': {},
+  'refund': {children:['success','failed']}, // 用户申请退款
   'receive': {children:['success','failed']}, // 摄影师接单
   'deliver': {children:['success','failed']}, // 摄影师发片
   'accept': {children:['success','failed']} // 用户收片
@@ -83,6 +84,19 @@ OrderActions.close.listen(function(id){
   HttpFactory.post(API.ORDER.close,data,this.success,this.failed);
 });
 /**
+ * 用户申请退款
+ */
+OrderActions.refund.listen(function(id, reason, explain){
+  var data = {
+    Id: id,
+    Reason: reason
+  };
+  if(explain) {
+    data.Explication = explain;
+  }
+  HttpFactory.post(API.ORDER.refund,data,data => this.success(data, id),this.failed);
+});
+/**
  * 摄影师接单
  */
 OrderActions.receive.listen(function(id, approve){
@@ -90,7 +104,7 @@ OrderActions.receive.listen(function(id, approve){
     Id: id,
     Approved: approve
   };
-  HttpFactory.post(API.ORDER.receive,data,this.success,this.failed);
+  HttpFactory.post(API.ORDER.receive,data,data => this.success(data, id, approve),this.failed);
 });
 /**
  * 摄影师发片
@@ -99,14 +113,15 @@ OrderActions.deliver.listen(function(id){
   var data = {
     Id: id
   };
-  HttpFactory.post(API.ORDER.deliver,data,this.success,this.failed);
-});/**
+  HttpFactory.post(API.ORDER.deliver,data,data => this.success(data, id),this.failed);
+});
+/**
  * 用户收片
  */
 OrderActions.accept.listen(function(id){
   var data = {
     Id: id
   };
-  HttpFactory.post(API.ORDER.accept,data,this.success,this.failed);
+  HttpFactory.post(API.ORDER.accept,data,data => this.success(data, id),this.failed);
 });
 export {OrderActions as default};

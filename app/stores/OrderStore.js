@@ -27,6 +27,9 @@ var OrderStore = Reflux.createStore({
     this.listenTo(OrderActions.close.success,this.onCloseOrder);
     this.listenTo(OrderActions.close.failed,this.onFailed);
     this.listenTo(OrderActions.type,this.onType);
+    /* 用户退款 */
+    this.listenTo(OrderActions.refund.success,this.onRefundOrder);
+    this.listenTo(OrderActions.refund.failed,this.onFailed);
     /* 摄影师接单 */
     this.listenTo(OrderActions.receive.success,this.onReceiveOrder);
     this.listenTo(OrderActions.receive.failed,this.onFailed);
@@ -110,10 +113,37 @@ var OrderStore = Reflux.createStore({
     this.data.flag = 'type';
     this.trigger(this.data);
   },
-  onReceiveOrder: function(data) {
+  onRefundOrder: function(data, id) {
     if(data.Success){
       // TODO: 这里要更新对应订单状态
-
+      for(let count = 0; count < this.data.orders.length; count ++){
+        if(id === this.data.orders[count].Id) {
+          this.data.orders[count].State = 'Closed';
+          break;
+        }
+      }
+      this.data.hintMessage = '退款成功！';
+      this.data.success = true;
+    } else {
+      this.data.success = false;
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = 'refund';
+    this.trigger(this.data);
+  },
+  onReceiveOrder: function(data, id, approve) {
+    if(data.Success){
+      // TODO: 这里要更新对应订单状态
+      for(let count = 0; count < this.data.orders.length; count ++){
+        if(id === this.data.orders[count].Id) {
+          if(approve){
+            this.data.orders[count].State = 'WaitingDelivery';
+          } else {
+            this.data.orders[count].State = 'Closed';
+          }
+          break;
+        }
+      }
       this.data.hintMessage = '接单成功！';
       this.data.success = true;
     }else{
@@ -123,23 +153,15 @@ var OrderStore = Reflux.createStore({
     this.data.flag = 'receive';
     this.trigger(this.data);
   },
-  onAcceptOrder: function(data) {
+  onDeliverOrder: function(data, id) {
     if(data.Success){
       // TODO: 这里要更新对应订单状态
-
-      this.data.hintMessage = '收片成功！';
-      this.data.success = true;
-    }else{
-      this.data.success = false;
-      this.data.hintMessage = data.ErrorMsg;
-    }
-    this.data.flag = 'accept';
-    this.trigger(this.data);
-  },
-  onDeliverOrder: function(data) {
-    if(data.Success){
-      // TODO: 这里要更新对应订单状态
-
+      for(let count = 0; count < this.data.orders.length; count ++){
+        if(id === this.data.orders[count].Id) {
+          this.data.orders[count].State = 'WaitingAcceptance';
+          break;
+        }
+      }
       this.data.hintMessage = '发片成功！';
       this.data.success = true;
     }else{
@@ -147,6 +169,24 @@ var OrderStore = Reflux.createStore({
       this.data.hintMessage = data.ErrorMsg;
     }
     this.data.flag = 'deliver';
+    this.trigger(this.data);
+  },
+  onAcceptOrder: function(data, id) {
+    if(data.Success){
+      // TODO: 这里要更新对应订单状态
+      for(let count = 0; count < this.data.orders.length; count ++){
+        if(id === this.data.orders[count].Id) {
+          this.data.orders[count].State = 'Completed';
+          break;
+        }
+      }
+      this.data.hintMessage = '收片成功！';
+      this.data.success = true;
+    }else{
+      this.data.success = false;
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = 'accept';
     this.trigger(this.data);
   }
 });

@@ -100,9 +100,10 @@ var API_CONST = {
     confirm: API_URL + 'Order.Confirm',
     add: API_URL + 'Order.Add',
     close: API_URL + 'Order.Close',
-    receive: API_URL + 'Order.Reception',
-    deliver: API_URL + 'Order.Delivery',
-    accept: API_URL + 'Order.Acceptance'
+    refund: API_URL + 'Order.RefundApply', // 退款
+    receive: API_URL + 'Order.Reception', // 接单
+    deliver: API_URL + 'Order.Delivery', // 发片
+    accept: API_URL + 'Order.Acceptance' // 收片
   },
   FILE: {
     getToken: API_URL + 'File.Token',
