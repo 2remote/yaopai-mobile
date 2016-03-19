@@ -129,6 +129,8 @@ class OrderRefundLayout extends React.Component {
                         style={{paddingLeft: '0'}}
                         ref="reason">
                   <option value="不想拍了">不想拍了</option>
+                  <option value="摄影师档期问题">摄影师档期问题</option>
+                  <option value="计划有变，没时间消费">计划有变，没时间消费</option>
                 </select>
               </div>
             </div>
