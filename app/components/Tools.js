@@ -261,7 +261,7 @@ export const OrderStatus = {
       WaitingDelivery: this.ONGOING,
       WaitingAcceptance: this.ONGOING,
       Completed: this.COMPLETE,
-      Cloesd: this.CLOSED // TODO: 这个是gitbook文档拼写错误，还是后台真就这么返回？待验证
+      Closed: this.CLOSED // TODO: 这个是gitbook文档拼写错误，还是后台真就这么返回？待验证
     };
     return $serverCode[status] || this.CLOSED;
   }
