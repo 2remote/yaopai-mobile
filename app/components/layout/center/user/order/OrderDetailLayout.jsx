@@ -1,14 +1,15 @@
 import React from 'react';
-
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
+import {Button} from 'react-weui';
+import { OrderStatus } from '../../../../Tools';
 
 import UserActions from '../../../../../actions/UserActions';
 import OrderActions from '../../../../../actions/OrderActions';
 import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
 
-import {Button} from 'react-weui';
+
 
 class OrderDetailLayout extends React.Component{
   constructor(props) {
@@ -43,6 +44,10 @@ class OrderDetailLayout extends React.Component{
       order: data.order
     })
   }
+
+  pay = e => {
+    this.props.history.pushState(null, `center/u/order/${this.state.order.Id}/submit`);
+  };
 
   render() {
     const {order} = this.state;
@@ -100,23 +105,25 @@ class OrderDetailLayout extends React.Component{
           }
 			    <p>
 				    <span>预约姓名：</span>
-				    <span>少女写真（闺蜜组）</span>
+				    <span>{order.BuyerName}</span>
 			    </p>
 			    <p>
 				    <span>预约电话：</span>
-				    <span>少女写真（闺蜜组）</span>
-			    </p>
-			    <p>
-				    <span>备注：</span><span>测测字测试文字测试文字测试测试文字测试文字测试测试文字测试文字测试文字</span>
+				    <span>{order.BuyerTel}</span>
 			    </p>
 		    </article>
 
 		    <div className="add_up color_gray fr">
-			    合计：<span className="font_super color_dark">￥1279</span>
+			    合计：<span className="font_super color_dark">￥{order.Price}</span>
 		    </div>
-		    <footer>
-			    <Button type="primary">支付￥1279</Button>
-		    </footer>
+        {
+          OrderStatus.UNPAYED === OrderStatus.parse(order.State) ?
+            <footer>
+              <Button type="primary" onClick={this.pay}>支付￥{order.Price}</Button>
+            </footer>
+            :
+            ''
+        }
 	    </div>
     );
   }
