@@ -58,6 +58,10 @@ import UserOrderRefundLayout from './components/layout/center/user/order/OrderRe
 // imports GrapherCenter for Grapher
 import GrapherOrderTabLayout from './components/layout/center/grapher/order/OrderTabLayout.jsx';
 import GrapherOrderDetailLayout from './components/layout/center/grapher/order/OrderDetailLayout.jsx';
+// imports purse for Grapher
+import PurseLayout from './components/layout/center/grapher/purse/PurseLayout.jsx';
+import PurseDetailListLayout from './components/layout/center/grapher/purse/PurseDetailListLayout.jsx';
+import PurseDetailLayout from './components/layout/center/grapher/purse/PurseDetailLayout.jsx';
 
 main();
 
@@ -119,6 +123,11 @@ function main(){
             </Route>
             <Route path="order/:id">
               <IndexRoute  component={GrapherOrderDetailLayout}/>
+            </Route>
+            <Route path="purse">
+              <IndexRoute component={PurseLayout}/>
+              <Route path="detail" component={PurseDetailListLayout}/>
+              <Route path="detail/:id" component={PurseDetailLayout}/>
             </Route>
           </Route>
         </Route>
