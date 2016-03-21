@@ -41,6 +41,7 @@ import ConfirmBookDialog from './components/UserCenterPage/ConfirmBookDialog';
 import SidePage from './components/SidePage';
 import ViewOrder from './components/UserCenterPage/ViewOrder';
 
+import GrapherCenterLayout from './components/layout/center/grapher/GrapherCenterLayout.jsx';
 import GrapherIndex from './components/Center/Grapher/Index';
 import GrapherUpdate from './components/Center/Grapher/Update/Update';
 import GrapherOrder from './components/Center/Grapher/Order';
