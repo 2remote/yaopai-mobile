@@ -61,7 +61,8 @@ import GrapherOrderTabLayout from './components/layout/center/grapher/order/Orde
 import GrapherOrderDetailLayout from './components/layout/center/grapher/order/OrderDetailLayout.jsx';
 // imports purse for Grapher
 import PurseLayout from './components/layout/center/grapher/purse/PurseLayout.jsx';
-import PurseDetailListLayout from './components/layout/center/grapher/purse/PurseDetailListLayout.jsx';
+import PurseTabLayout from './components/layout/center/grapher/purse/PurseTabLayout';
+import PurseDetailListLayout from './components/layout/center/grapher/purse/PurseListLayout.jsx';
 import PurseDetailLayout from './components/layout/center/grapher/purse/PurseDetailLayout.jsx';
 
 main();
@@ -104,11 +105,12 @@ function main(){
         <Route path="/viewOrder/:type/:orderId" component={ViewOrder} />
         <Route path="/confirm_book_dialog" component={ConfirmBookDialog} />
         <Route path="/book_modify/:workId/:photographerId" component={BookModify} />
+
         <Route path="center">
+          {/*用户中心*/}
           <Route path="u">
             <IndexRoute component={UserCenterPage} />
-            <Route path="order" component={UserOrderTabLayout}>
-            </Route>
+            <Route path="order" component={UserOrderTabLayout} />
             <Route path="order/:id">
               <IndexRoute  component={UserOrderDetailLayout}/>
               <Route path="submit">
@@ -118,17 +120,17 @@ function main(){
               <Route path="refund" component={UserOrderRefundLayout}/>
             </Route>
           </Route>
+          {/*摄影师中心*/}
           <Route path="g">
             <IndexRoute component={UserCenterPage} />
-            <Route path="order" component={GrapherOrderTabLayout}>
-            </Route>
+            <Route path="order" component={GrapherOrderTabLayout} />
             <Route path="order/:id">
-              <IndexRoute  component={GrapherOrderDetailLayout}/>
+              <IndexRoute component={GrapherOrderDetailLayout}/>
             </Route>
-            <Route path="purse">
-              <IndexRoute component={PurseLayout}/>
-              <Route path="detail" component={PurseDetailListLayout}/>
-              <Route path="detail/:id" component={PurseDetailLayout}/>
+
+            <Route path="purse" component={PurseTabLayout} />{/*摄影师账单列表*/}
+            <Route path="detail/:id" >
+              <IndexRoute component={PurseDetailLayout} />
             </Route>
           </Route>
         </Route>
