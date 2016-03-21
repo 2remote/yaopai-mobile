@@ -129,7 +129,7 @@ function main(){
             </Route>
 
             <Route path="purse" component={PurseTabLayout} />{/*摄影师账单列表*/}
-            <Route path="detail/:id" >
+            <Route path="purse/:id" >
               <IndexRoute component={PurseDetailLayout} />
             </Route>
           </Route>
