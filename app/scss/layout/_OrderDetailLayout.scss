@@ -26,13 +26,17 @@
     background: #fff;
 
     p {
-      height: 20px;
-      line-height: 20px;
+      height: 24px;
+      line-height: 24px;
 
       span:first-child {
         display: inline-block;
         width: 6em;
       }
+
+      span:last-child { color: #000; }
+
+
     }
 
     p:last-child {
@@ -52,5 +56,21 @@
         }
       }
     }
+  }
+}
+
+.PurseDetailLayout {
+  @extend .OrderDetailLayout;
+
+  .order-msg p:last-child {
+    height: 20px;
+    line-height: 20px;
+
+    &:last-child { height: 20px; }
+  }
+
+  .detail_header {
+    padding: 10px 0;
+    background: #fff;
   }
 }
