@@ -69,7 +69,6 @@ body {
 .fl { float: left; }
 .fr { float: right; }
 
-
 .separator {
   display: block;
   margin: 0 15px;
@@ -80,3 +79,6 @@ body {
 }
 
 .align_items_start { @include flex_align(start) }
+
+/* aside */
+.footer { padding: 20px; }

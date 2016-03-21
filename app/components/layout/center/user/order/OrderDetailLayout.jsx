@@ -113,12 +113,12 @@ class OrderDetailLayout extends React.Component{
 			    </p>
 		    </article>
 
-		    <div className="add_up color_gray fr">
+		    <div className="footer color_gray fr">
 			    合计：<span className="font_super color_dark">￥{order.Price}</span>
 		    </div>
         {
           OrderStatus.UNPAYED === OrderStatus.parse(order.State) ?
-            <footer>
+            <footer className="footer">
               <Button type="primary" onClick={this.pay}>支付￥{order.Price}</Button>
             </footer>
             :
