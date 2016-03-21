@@ -34,6 +34,7 @@ class PurseLayout extends React.Component {
         <section className="weui_cells weui_cells_access">
           <a className="weui_cell" href="javascript:;">
             <div className="weui_cell_bd weui_cell_primary">
+              {/*TODO 妈蛋,为毛支付宝icon不显示!!!!*/}
               <p><i className="icon zhifubao_icon" />&nbsp;绑定支付宝</p>
             </div>
             <div className="weui_cell_ft"><small className="font_small">未绑定支付宝</small></div>
