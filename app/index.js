@@ -65,6 +65,10 @@ import PurseTabLayout from './components/layout/center/grapher/purse/PurseTabLay
 import PurseDetailListLayout from './components/layout/center/grapher/purse/PurseListLayout.jsx';
 import PurseDetailLayout from './components/layout/center/grapher/purse/PurseDetailLayout.jsx';
 
+//绑定支付宝 提现
+import BindCard from './components/layout/center/grapher/withdraw/BindCard.jsx';
+import WithdrawDeposit from './components/layout/center/grapher/withdraw/WithdrawDeposit.jsx';
+
 main();
 
 function main(){
@@ -133,6 +137,11 @@ function main(){
               <IndexRoute component={PurseDetailLayout} />
             </Route>
           </Route>
+
+          {/*只用作于调试页面, 完成后请删除*/}
+          <Route path="a" component={BindCard} />
+          <Route path="b" component={WithdrawDeposit} />
+
         </Route>
       </Route>
     </Router>
