@@ -57,6 +57,9 @@ var API_CONST = {
     changeAvatar: API_URL + 'User.ChangeAvatar',
     updateInfo: API_URL + 'User.ChangeInfo'
   },
+  USERFUND: {
+    currentAccount: API_URL + 'UserFunds.CurrentAccount'
+  },
   PHOTOGRAPHER: {
     submitAudit: API_URL + 'Photographer.SubmitAudit',
     viewAudit: API_URL + 'Photographer.ViewAudit',
