@@ -58,7 +58,8 @@ var API_CONST = {
     updateInfo: API_URL + 'User.ChangeInfo'
   },
   USERFUND: {
-    currentAccount: API_URL + 'UserFunds.CurrentAccount'
+    currentAccount: API_URL + 'UserFunds.CurrentAccount',
+    recordsSearch: API_URL + 'UserFunds.RecordsSearch'//摄影师资金流水列表
   },
   PHOTOGRAPHER: {
     submitAudit: API_URL + 'Photographer.SubmitAudit',
