@@ -131,17 +131,15 @@ function main(){
             <Route path="order/:id">
               <IndexRoute component={GrapherOrderDetailLayout}/>
             </Route>
-
-            <Route path="purse" component={PurseTabLayout} />{/*摄影师账单列表*/}
-            <Route path="purse/:id" >
-              <IndexRoute component={PurseDetailLayout} />
+            {/* 摄影师钱包 */}
+            <Route path="purse">
+              <IndexRoute component={PurseLayout}/>
+              <Route path="detail" component={PurseTabLayout} />
+              <Route path="detail/:id" component={PurseDetailLayout} />
+              <Route path="bind" component={BindCard} />
+              <Route path="withdraw" component={WithdrawDeposit} />
             </Route>
           </Route>
-
-          {/*只用作于调试页面, 完成后请删除*/}
-          <Route path="a" component={BindCard} />
-          <Route path="b" component={WithdrawDeposit} />
-
         </Route>
       </Route>
     </Router>
