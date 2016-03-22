@@ -41,14 +41,12 @@ import ConfirmBookDialog from './components/UserCenterPage/ConfirmBookDialog';
 import SidePage from './components/SidePage';
 import ViewOrder from './components/UserCenterPage/ViewOrder';
 
-import GrapherCenterLayout from './components/layout/center/grapher/GrapherCenterLayout.jsx';
 import GrapherIndex from './components/Center/Grapher/Index';
 import GrapherUpdate from './components/Center/Grapher/Update/Update';
 import GrapherOrder from './components/Center/Grapher/Order';
 import OrderList from './components/Center/Grapher/OrderList';
 
 // imports UserCenter for User
-import UserCenterLayout from './components/layout/center/user/UserCenterLayout.jsx';
 import UserOrderTabLayout from './components/layout/center/user/order/OrderTabLayout.jsx';
 import UserOrderListLayout from './components/layout/center/user/order/OrderListLayout.jsx';
 import UserOrderDetailLayout from './components/layout/center/user/order/OrderDetailLayout.jsx';
