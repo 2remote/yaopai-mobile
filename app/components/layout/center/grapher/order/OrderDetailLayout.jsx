@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
 
