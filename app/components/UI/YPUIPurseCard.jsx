@@ -2,37 +2,30 @@ import React from 'react';
 
 class YPUIPurseCard extends React.Component{
   render() {
+    let fundsType = "";
+    switch (this.props.FundsType) {
+      case "Completed":
+        fundsType = "全部";
+        break;
+      case "order" :
+        fundsType = "收入";
+        break;
+      case "Compensative" :
+        fundsType = "补偿";
+        break;
+      case "Withdrew" :
+        fundsType = "提现";
+        break;
+    }
     return (
       <div className="YPUIPurseCard">
         <section className="Purse_box">
           <div className="fl">
-            <p>收入</p>
-            2015-12-12&nbsp;21:11:10
+            <p>{fundsType}</p>
+            {this.props.CreationTime}
           </div>
           <div className="fr">
-            <p className="color_green">+1267.00</p>
-            交易成功
-          </div>
-        </section>
-
-        <section className="Purse_box">
-          <div className="fl">
-            <p>补偿</p>
-            2015-12-12&nbsp;21:11:10
-          </div>
-          <div className="fr">
-            <p>+1267.00</p>
-            交易成功
-          </div>
-        </section>
-
-        <section className="Purse_box">
-          <div className="fl">
-            <p>提现</p>
-            2015-12-12&nbsp;21:11:10
-          </div>
-          <div className="fr">
-            <p>-1267.00</p>
+            <p className="color_green">{this.props.Amount}</p>
             交易成功
           </div>
         </section>
