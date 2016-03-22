@@ -34,7 +34,16 @@ class PurseLayout extends React.Component {
         href: '/center/g/purse/bind'
       }],
       user: {},
-      fundData: {}
+      fundData: {
+        userId: '', // 用户ID
+        Available: '', // 可提现余额
+        Frozen : '', // 被冻结的金额(尚在提现中的资金会被冻结)
+        TotalRevenue: '', // //收入总计
+        Receivable: '', // 收款帐号
+        ErrorCode: '',
+        hintMessage: '',
+        success: false
+      }
     };
   }
   componentDidMount() {
@@ -54,7 +63,7 @@ class PurseLayout extends React.Component {
       fundData,
       balanceList: [{
         title: '账户余额',
-        money: fundData.Available
+        money: fundData.purse.Available
       }],
       bindOpList: [{
         icon: 'zhifubao',

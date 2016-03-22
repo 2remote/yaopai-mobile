@@ -6,33 +6,47 @@ import { OrderStatus } from '../../../../Tools';
 import OrderActions from '../../../../../actions/OrderActions';
 
 let navList = [{
-  filterType: OrderStatus.UNPAYED,
+  filterType: 'Completed',
   text: '全部'
 },{
-  filterType: OrderStatus.UNCONFIRMED,
+  filterType: 'Compensative',
   text: '收入'
 },{
-  filterType: OrderStatus.ONGOING,
+  filterType: 'Order',
   text: '补偿'
 },{
-  filterType: OrderStatus.COMPLETE,
+  filterType: 'Withdrew',
   text: '提现'
 }];
 
+let whichSelect = 0;
 class OrderTabLayout extends React.Component{
   /**
    * 我也不知道为什么要把整个data传出来
    * @param data
    */
-  getIndex(data) {
-    OrderActions.type(data.filterType);
+  getIndex(data,index) {
+    switch (index) {
+      case 0 :
+        whichSelect = 'Completed';
+        break;
+      case 1 :
+        whichSelect = 'order';
+        break;
+      case 2 :
+        whichSelect = 'Compensative';
+        break;
+      case 3 :
+        whichSelect = 'Withdrew';
+        break
+    }
   }
   render() {
     return (
       <div className="weui_tab">
         <WeuiNavbar list={navList} onClick={this.getIndex.bind(this)} />
         <div className="weui_tab_bd">
-          <PurseListLayout location={{ pathname: this.props.location.pathname }} />
+          <PurseListLayout whichSelect={whichSelect} />
         </div>
       </div>
     );
