@@ -1,6 +1,7 @@
 import { API_URL } from '../api';
 import React from 'react';
 import { Link } from 'react-router';
+import _ from 'underscore';
 
 exports.imgModifier = function  (img, mode, width) {
   let modifies;
@@ -266,3 +267,34 @@ export const OrderStatus = {
     return $serverCode[status] || this.CLOSED;
   }
 };
+
+/**
+ * 摄影师流水数据筛选
+ */
+export function WhichAccount(account,data) {
+  var accounts = {
+    'Completed'()    { return data },
+    'Compensative'() { return _.where(data, {FundsType: 'Compensative'}); },
+    'Order'()        { return _.where(data, {FundsType: 'Order'}); },
+    'Withdrew'()     { return _.where(data, {FundsType: 'Withdrew'}); }
+  };
+  if (typeof accounts[account] !== 'function') {
+    return false;
+  }
+  return accounts[account]();
+}
+
+/**
+ * 摄影师流水列表"提现状态"
+ */
+export function WhichFundsType(FundsType) {
+  var FundsTypes = {
+    'Order'()        { return '收入' },
+    'Compensative'() { return '补偿' },
+    'Withdrew'()     { return '提现' }
+  };
+  if (typeof FundsTypes[FundsType] !== 'function') {
+    return false;
+  }
+  return FundsTypes[FundsType]();
+}
