@@ -11,7 +11,7 @@ var UserFundStore = Reflux.createStore({
         Available: '', // 可提现余额
         Frozen : '', // 被冻结的金额(尚在提现中的资金会被冻结)
         TotalRevenue: '', // //收入总计
-        Receivable: '', // 收款帐号
+        Receivable: '' // 收款帐号
       },
       list: [//摄影师账单流水
         {}
@@ -20,12 +20,15 @@ var UserFundStore = Reflux.createStore({
       success : false,
       flag : '',
       filterType: ''
+      filterType: 'Completed'//默认展示选择“全部”栏数据
     };
     this.listenTo(UserFundActions.currentAccount.success, this.onCurrentAccountSuccess);
     this.listenTo(UserFundActions.currentAccount.failed, this.onFailed);
 
     this.listenTo(UserFundActions.recordsSearch.success, this.onRecordsSearchSuccess);
     this.listenTo(UserFundActions.recordsSearch.failed, this.onFailed);
+
+    this.listenTo(UserFundActions.type,this.onType);
   },
   _fillData: function(data) {
     this.data.purse.userId = data.Id;
@@ -50,7 +53,6 @@ var UserFundStore = Reflux.createStore({
   },
 
   onRecordsSearchSuccess: function(data) {
-    //console.log(data);
     this.data.flag = 'resetPassword';
     if (data.Success) {
       this.data.hintMessage = '';
@@ -65,6 +67,12 @@ var UserFundStore = Reflux.createStore({
 
   onFailed: function(data) {
     this.data.hintMessage = "网络出错啦！";
+    this.trigger(this.data);
+  },
+
+  onType(filterType) {
+    this.data.filterType = filterType;
+    this.data.flag = 'type';
     this.trigger(this.data);
   }
 });

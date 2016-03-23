@@ -4,7 +4,8 @@ import API from '../api';
 
 var UserFundActions = Reflux.createActions({
   'currentAccount': {children: ['success', 'failed']},
-  'recordsSearch': {children: ['success', 'failed']}
+  'recordsSearch': {children: ['success', 'failed']},
+  'type': {}
 });
 
 UserFundActions.currentAccount.listen(function() {
