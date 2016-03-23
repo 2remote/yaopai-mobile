@@ -64,8 +64,8 @@ import PurseDetailListLayout from './components/layout/center/grapher/purse/Purs
 import PurseDetailLayout from './components/layout/center/grapher/purse/PurseDetailLayout.jsx';
 
 //绑定支付宝 提现
-import BindCard from './components/layout/center/grapher/withdraw/BindCard.jsx';
-import WithdrawDeposit from './components/layout/center/grapher/withdraw/WithdrawDeposit.jsx';
+import BindCardLayout from './components/layout/center/grapher/purse/BindCardLayout.jsx';
+import WithdrawDepositLayout from './components/layout/center/grapher/purse/WithdrawDepositLayout.jsx';
 
 main();
 
@@ -134,8 +134,8 @@ function main(){
               <IndexRoute component={PurseLayout}/>
               <Route path="detail" component={PurseTabLayout} />
               <Route path="detail/:id" component={PurseDetailLayout} />
-              <Route path="bind" component={BindCard} />
-              <Route path="withdraw" component={WithdrawDeposit} />
+              <Route path="bind" component={BindCardLayout} />
+              <Route path="withdraw" component={WithdrawDepositLayout} />
             </Route>
           </Route>
         </Route>
