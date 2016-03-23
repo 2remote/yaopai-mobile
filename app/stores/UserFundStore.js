@@ -19,7 +19,6 @@ var UserFundStore = Reflux.createStore({
       hintMessage : '',
       success : false,
       flag : '',
-      filterType: ''
       filterType: 'Completed'//默认展示选择“全部”栏数据
     };
     this.listenTo(UserFundActions.currentAccount.success, this.onCurrentAccountSuccess);

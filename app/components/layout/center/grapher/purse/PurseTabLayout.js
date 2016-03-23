@@ -3,16 +3,16 @@ import React from 'react';
 import PurseListLayout from './PurseListLayout.jsx';
 import WeuiNavbar from '../../../../UI/WeuiNavbar';
 import { OrderStatus } from '../../../../Tools';
-import OrderActions from '../../../../../actions/OrderActions';
+import UserFundActions from '../../../../../actions/UserFundActions';
 
 let navList = [{
   filterType: 'Completed',
   text: '全部'
 },{
-  filterType: 'Compensative',
+  filterType: 'Order',
   text: '收入'
 },{
-  filterType: 'Order',
+  filterType: 'Compensative',
   text: '补偿'
 },{
   filterType: 'Withdrew',
@@ -25,28 +25,15 @@ class OrderTabLayout extends React.Component{
    * 我也不知道为什么要把整个data传出来
    * @param data
    */
-  getIndex(data,index) {
-    switch (index) {
-      case 0 :
-        whichSelect = 'Completed';
-        break;
-      case 1 :
-        whichSelect = 'order';
-        break;
-      case 2 :
-        whichSelect = 'Compensative';
-        break;
-      case 3 :
-        whichSelect = 'Withdrew';
-        break
-    }
+  getIndex(data) {
+    UserFundActions.type(data.filterType);
   }
   render() {
     return (
       <div className="weui_tab">
         <WeuiNavbar list={navList} onClick={this.getIndex.bind(this)} />
         <div className="weui_tab_bd">
-          <PurseListLayout whichSelect={whichSelect} />
+          <PurseListLayout />
         </div>
       </div>
     );
