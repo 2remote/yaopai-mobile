@@ -59,7 +59,8 @@ var API_CONST = {
   },
   USERFUND: {
     currentAccount: API_URL + 'UserFunds.CurrentAccount',
-    recordsSearch: API_URL + 'UserFunds.RecordsSearch'//摄影师资金流水列表
+    recordsSearch: API_URL + 'UserFunds.RecordsSearch',//摄影师资金流水列表
+    withdrawalGet: API_URL + 'UserFunds.WithdrawalGet'
   },
   PHOTOGRAPHER: {
     submitAudit: API_URL + 'Photographer.SubmitAudit',

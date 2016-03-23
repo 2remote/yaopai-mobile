@@ -5,6 +5,7 @@ import API from '../api';
 var UserFundActions = Reflux.createActions({
   'currentAccount': {children: ['success', 'failed']},
   'recordsSearch': {children: ['success', 'failed']},
+  'withdrawalGet': {children: ['success', 'failed']},
   'type': {}
 });
 
@@ -20,6 +21,13 @@ UserFundActions.recordsSearch.listen(function() {
     Fields: 'Id,Amount,CreationTime,AssociatedId,FundsType'
   };
   HttpFactory.post(API.USERFUND.recordsSearch,data,this.success,this.failed);
+});
+
+UserFundActions.withdrawalGet.listen(function() {
+  var data = {
+    Fields: 'Id,Amount,State,CompletionTime'
+  };
+  HttpFactory.post(API.USERFUND.withdrawalGet,data,this.success,this.failed);
 });
 
 export {UserFundActions as default};
