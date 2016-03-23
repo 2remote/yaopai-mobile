@@ -1,5 +1,6 @@
 import React from 'react';
 import { CellsTitle } from 'react-weui';
+import { History } from 'react-router';
 import { WhichAccount } from '../../../../Tools';
 
 import Reflux from 'reflux';
@@ -104,5 +105,6 @@ class PurseListLayout extends React.Component {
 
 ReactMixin.onClass(PurseListLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
 ReactMixin.onClass(PurseListLayout, Reflux.listenTo(UserFundStore, 'onUserFundLoad'));
+ReactMixin.onClass(PurseListLayout, History);
 
 export default PurseListLayout;
