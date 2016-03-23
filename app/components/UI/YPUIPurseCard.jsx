@@ -18,7 +18,7 @@ class YPUIPurseCard extends React.Component{
     }*/
     return (
       <div className="YPUIPurseCard">
-        <section className="Purse_box">
+        <a className="Purse_box" href={`#/center/g/purse/detail/${this.props.Id}`}>
           <div className="fl">
             <p>{fundsType}</p>
             {this.props.CreationTime}
@@ -29,7 +29,7 @@ class YPUIPurseCard extends React.Component{
             </p>
             交易成功
           </div>
-        </section>
+        </a>
       </div>
     );
   }

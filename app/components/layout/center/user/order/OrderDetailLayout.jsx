@@ -9,8 +9,6 @@ import OrderActions from '../../../../../actions/OrderActions';
 import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
 
-
-
 class OrderDetailLayout extends React.Component{
   constructor(props) {
     super(props);

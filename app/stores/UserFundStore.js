@@ -13,9 +13,7 @@ var UserFundStore = Reflux.createStore({
         TotalRevenue: '', // //收入总计
         Receivable: '' // 收款帐号
       },
-      list: [//摄影师账单流水
-        {}
-      ],
+      list: [{}],//摄影师账单流水
       hintMessage : '',
       success : false,
       flag : '',

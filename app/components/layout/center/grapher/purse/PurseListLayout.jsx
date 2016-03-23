@@ -11,7 +11,6 @@ import UserFundActions from '../../../../../actions/UserFundActions';
 import UserFundStore from '../../../../../stores/UserFundStore';
 
 import YPUIPurseCard from '../../../../UI/YPUIPurseCard.jsx';
-import _ from 'underscore';
 
  /*
   Id: 2,  //Id
@@ -27,7 +26,7 @@ class PurseListLayout extends React.Component {
     this.state = {
       filterType: 'Completed',
       list: [],
-      hintMessage : '订单加载中。。。',
+      hintMessage : '账单加载中。。。',
       success : false
     };
   }
@@ -82,6 +81,7 @@ class PurseListLayout extends React.Component {
                   Amount={account.Amount}
                   CreationTime={account.CreationTime}
                   FundsType = {account.FundsType}
+                  Id = {account.AssociatedId}
                   key={index}
               />;
       });
