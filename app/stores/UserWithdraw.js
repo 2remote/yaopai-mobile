@@ -49,7 +49,7 @@ var UserWithdrawal = Reflux.createStore({
   },
   onWithdrawalAdd: function(data) {
     this.data.flag = 'add';
-    if(data.success) {
+    if(data.Success) {
       this.data.hintMessage = '';
       this.data.success = true;
     } else {
