@@ -19,6 +19,8 @@ var UserWithdrawal = Reflux.createStore({
 
     this.listenTo(UserFundActions.withdrawalGet.success, this.onWithdrawalGet );
     this.listenTo(UserFundActions.withdrawalGet.failed, this.onFailed);
+    this.listenTo(UserFundActions.withdrawalAdd.success, this.onWithdrawalAdd );
+    this.listenTo(UserFundActions.withdrawalAdd.failed, this.onFailed);
   },
   _fillData: function(data) {
     console.log(data);
@@ -39,6 +41,17 @@ var UserWithdrawal = Reflux.createStore({
       this.data.hintMessage = '';
       this.data.success = true;
       this._fillData(data);
+    } else {
+      this.data.hintMessage = data.ErrorMsg;
+      this.data.success = false;
+    }
+    this.trigger(this.data);
+  },
+  onWithdrawalAdd: function(data) {
+    this.data.flag = 'add';
+    if(data.success) {
+      this.data.hintMessage = '';
+      this.data.success = true;
     } else {
       this.data.hintMessage = data.ErrorMsg;
       this.data.success = false;

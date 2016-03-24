@@ -8,6 +8,7 @@ var UserFundActions = Reflux.createActions({
   'withdrawalGet': {children: ['success', 'failed']},
   'sendTelAccount': {children: ['success', 'failed']},
   'receiveTelAccount': {children: ['success', 'failed']},
+  'withdrawalAdd': {children: ['success', 'failed']},
   'type': {}
 });
 
@@ -43,6 +44,13 @@ UserFundActions.receiveTelAccount.listen(function(Code, Receivable) {
     Receivable: Receivable
   };
   HttpFactory.post(API.USERFUND.receiveTelAccount,data,this.success,this.failed);
+});
+
+UserFundActions.withdrawalAdd.listen(function(amount) {
+  var data = {
+    Amount: amount
+  };
+  HttpFactory.post(API.USERFUND.withdrawalAdd,data,this.success,this.failed);
 });
 
 export {UserFundActions as default};
