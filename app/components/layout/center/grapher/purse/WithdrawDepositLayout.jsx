@@ -106,7 +106,7 @@ class WithdrawDepositLayout extends React.Component {
               <div className="weui_cell_bd weui_cell_primary">
                 <input ref="amount"
                        className="weui_input text_right"
-                       type="number" min="0" step="0.01"
+                       type="number" min="100" step="0.01"
                        required="true"
                        placeholder="请输入提现的金额" />
               </div>
