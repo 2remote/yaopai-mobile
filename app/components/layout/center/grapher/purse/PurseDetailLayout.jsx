@@ -52,7 +52,8 @@ class PurseDetailLayout extends React.Component {
 
   onOrderLoad(data) {
     this.setState({
-      order:data.order
+      order:data.order,
+      Withdrawal: {State:''}
     });
   }
 
