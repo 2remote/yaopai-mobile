@@ -1,7 +1,108 @@
 import React from 'react';
-import {Button} from 'react-weui';
 
-class WithdrawDeposit extends React.Component {
+import {Dialog, Button} from 'react-weui';
+const {Alert, Confirm} = Dialog;
+
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+
+import UserActions from '../../../../../actions/UserActions';
+import UserStore from '../../../../../stores/UserStore';
+import UserFundActions from '../../../../../actions/UserFundActions';
+import UserFundStore from '../../../../../stores/UserFundStore';
+
+class BindCardLayout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showAlert: false,
+      alert: {
+        title: '内容不能为空',
+        buttons: [
+          {
+            label: '好的',
+            onClick: this.hideAlert.bind(this)
+          }
+        ]
+      }
+    };
+  }
+
+  onUserLoad(user) {
+    if(!user.isLogin){ // 用户未登录，跳转登陆页
+      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+    } else {
+      OrderActions.get(this.props.params.id);
+    }
+  }
+
+  onOrderLoad(data) {
+
+  }
+
+  submit = (e) => {
+    event.preventDefault();
+    let Code = this.refs.authCode.value.trim();
+    let Receivable = this.refs.payId.value.trim();
+    if(Receivable == '') {
+      this.setState({
+        alert:{
+          title: '请输入支付宝账号',
+          buttons: [
+            {
+              label: '好的',
+              onClick: this.hideAlert.bind(this)
+            }
+          ]}
+      });
+      this.showAlert();
+      return;
+    }
+    if(Code == '') {
+      this.setState({
+        alert:{
+          title: '请输入验证码',
+          buttons: [
+            {
+              label: '好的',
+              onClick: this.hideAlert.bind(this)
+            }
+          ]}
+      });
+      this.showAlert();
+      return;
+    }
+    UserFundActions.receiveTelAccount(Code, Receivable);
+  };
+
+  getTel = (e) => {
+    let Receivable = this.refs.payId.value.trim();
+    if(Receivable == '') {
+      this.setState({
+        alert:{
+          title: '请输入支付宝账号',
+          buttons: [
+            {
+              label: '好的',
+              onClick: this.hideAlert.bind(this)
+            }
+          ]}
+      });
+      this.showAlert();
+      return;
+    }
+    UserFundActions.sendTelAccount();//让后台发送验证码
+    var i  = 60;
+    let timer = setInterval(() => {
+      i--;
+      this.refs.numMsg.innerHTML = i;
+      if (i == 0) {
+        clearInterval(timer);
+        this.refs.numMsg.innerHTML = '点击再次获取';
+      }
+    },1000);
+  };
+
   render() {
     return (
       <div>
@@ -9,24 +110,28 @@ class WithdrawDeposit extends React.Component {
         <div className="weui_cells">
           <div className="weui_cell weui_cells_form">
             <div className="weui_cell_bd weui_cell_primary">
-              <input className="weui_input" type="number" pattern="[0-9]*" placeholder="请输入支付宝账号" />
+              <input ref="payId" className="weui_input" type="text" placeholder="请输入支付宝账号" />
             </div>
           </div>
 
           <div className="weui_cell">
             <div className="weui_cell_bd weui_cell_primary">
-              <input className="weui_input" type="number" pattern="[0-9]*" placeholder="请输入手机验证码" />
+              <input ref="authCode" className="weui_input" type="number" pattern="[0-9]*" placeholder="请输入手机验证码" />
             </div>
             <div className="weui_cell_ft">
-              <a className="color_green font_medium" href="javascript:;">获取验证码</a>
+              <a className="color_green font_medium" href="javascript:;" ref="numMsg" onClick={this.getTel}>获取验证码</a>
             </div>
           </div>
         </div>
 
         <footer className="footer" style={{paddingTop:40, paddingBottom:0}}>
-          <Button type="primary">提交绑定</Button>
+          <Button type="primary" onClick={this.submit}>提交绑定</Button>
         </footer>
-
+        <Alert
+          show={this.state.showAlert}
+          title={this.state.alert.title}
+          buttons={this.state.alert.buttons}>
+        </Alert>
         <aside className="footer color_gray font_small">
           <p className="font_medium">注意：</p>
           <ul>
@@ -39,6 +144,16 @@ class WithdrawDeposit extends React.Component {
       </div>
     );
   }
+  showAlert(){
+    this.setState({showAlert: true});
+  }
+
+  hideAlert(){
+    this.setState({showAlert: false});
+  }
 }
 
-export default WithdrawDeposit;
+ReactMixin.onClass(BindCardLayout, Reflux.listenTo(UserFundStore, 'onFundLoad'));
+ReactMixin.onClass(BindCardLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
+
+export default BindCardLayout;
