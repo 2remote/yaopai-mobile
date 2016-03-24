@@ -128,7 +128,7 @@ class PurseDetailLayout extends React.Component {
           </p>
         </article>
 
-        <aside className="footer text_center color_green">客服</aside>
+        <a href="tel:0371-65337727" className="footer text_center color_green">客服</a>
       </div>
     );
   }

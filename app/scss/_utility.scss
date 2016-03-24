@@ -81,4 +81,7 @@ body {
 .align_items_start { @include flex_align(start) }
 
 /* aside */
-.footer { padding: 15px; }
+.footer {
+  display: block;
+  padding: 15px;
+}
