@@ -21,7 +21,7 @@ class YPUIPurseCard extends React.Component{
         <a className="Purse_box" href={`#/center/g/purse/detail/${this.props.Id}`}>
           <div className="fl">
             <p>{fundsType}</p>
-            {this.props.CreationTime}
+            {this.props.CreationTime.substring(0,10)}
           </div>
           <div className="fr">
             <p className={fundsType == '收入' ? 'color_green' : ''}>
