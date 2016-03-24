@@ -5,7 +5,7 @@ import ReactMixin from 'react-mixin';
 import UserActions from '../../../../../actions/UserActions';
 import UserStore from '../../../../../stores/UserStore';
 import UserFundActions from '../../../../../actions/UserFundActions';
-import UserWithdrawal from '../../../../../stores/UserWithdrawa';
+import UserWithdrawal from '../../../../../stores/UserWithdraw';
 
 import OrderActions from '../../../../../actions/OrderActions';
 import OrderStore from '../../../../../stores/OrderStore';
