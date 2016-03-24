@@ -75,18 +75,13 @@ class WithdrawDepositLayout extends React.Component {
       }
     });
     if(self.state.success) {
-      console.log('跳转吧皮卡丘！');
       this.props.history.pushState(null, '/center/g/purse');
     } else {
-      // hehe, 挂了
     }
   };
   doWithdraw = e => {
     e.preventDefault();
-    if(!this.refs.amount.value){
-      alert('请输入金额!');
-      return;
-    }
+
     let amount = new Number(this.refs.amount.value).valueOf();
     console.log('[Withdraw]', amount, amount.toFixed(2));
     UserFundActions.withdrawalAdd(amount);
@@ -112,6 +107,7 @@ class WithdrawDepositLayout extends React.Component {
                 <input ref="amount"
                        className="weui_input text_right"
                        type="number" min="0" step="0.01"
+                       required="true"
                        placeholder="请输入提现的金额" />
               </div>
             </div>
