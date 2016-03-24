@@ -26,8 +26,9 @@ UserFundActions.recordsSearch.listen(function() {
   HttpFactory.post(API.USERFUND.recordsSearch,data,this.success,this.failed);
 });
 
-UserFundActions.withdrawalGet.listen(function() {
+UserFundActions.withdrawalGet.listen(function(id) {
   var data = {
+    Id: id,
     Fields: 'Id,Amount,State,CompletionTime'
   };
   HttpFactory.post(API.USERFUND.withdrawalGet,data,this.success,this.failed);

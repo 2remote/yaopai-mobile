@@ -5,7 +5,7 @@ import ReactMixin from 'react-mixin';
 import UserActions from '../../../../../actions/UserActions';
 import UserStore from '../../../../../stores/UserStore';
 import UserFundActions from '../../../../../actions/UserFundActions';
-import UserWithdrawal from '../../../../../stores/UserWithdraw';
+import UserWithdraw from '../../../../../stores/UserWithdraw';
 
 import OrderActions from '../../../../../actions/OrderActions';
 import OrderStore from '../../../../../stores/OrderStore';
@@ -28,19 +28,18 @@ class PurseDetailLayout extends React.Component {
         Refund: {} //退款对象
       },
       Withdrawal: {
-        /*提现详情
-         Id: 2,  //Id
-         Amount: 33.33, //提现金额
-         State: "None", //提现状态 , 详情见备注
-         CompletionTime: null,    //结束时间(未结束为null)
-         */
+        Id: '',  //Id
+        Amount: '', //提现金额
+        State: '', //提现状态 , 详情见备注
+        CompletionTime: ''    //结束时间(未结束为null)
       }
     };
   }
 
   componentDidMount() {
     UserActions.currentUser();
-    UserFundActions.withdrawalGet();
+    //TODO 原本下面这行是放在第49行后的,但是会拿不到数据,放到这就可以,为什么?
+    UserFundActions.withdrawalGet(this.props.params.id);
   }
 
   onUserLoad(user) {
@@ -53,15 +52,14 @@ class PurseDetailLayout extends React.Component {
 
   onOrderLoad(data) {
     this.setState({
-      order: data.order
-    })
+      order:data.order
+    });
   }
 
   onFundLoad(data) {
-    console.log(data);
     this.setState({
-      order: data.Withdrawal
-    })
+      Withdrawal:data.Withdrawal
+    });
   }
 
   render() {
@@ -78,7 +76,7 @@ class PurseDetailLayout extends React.Component {
             <span>交易金额</span>
             <span className="color_red">
               {
-                Withdrawal.state == 'Completed' || order.HasRefund
+                Withdrawal.State == 'Completed' || order.HasRefund
                 ?
                 Withdrawal.Amount || order.Refund.Compensation
                 :
@@ -87,7 +85,7 @@ class PurseDetailLayout extends React.Component {
             </span>
           </p>
           {
-            Withdrawal.state == 'Completed'
+            Withdrawal.State == 'Completed'
             ?
             ''
             :
@@ -95,7 +93,7 @@ class PurseDetailLayout extends React.Component {
           }
 
           {
-            Withdrawal.state == 'Completed'
+            Withdrawal.State == 'Completed'
               ?
               ''
               :
@@ -106,7 +104,7 @@ class PurseDetailLayout extends React.Component {
             <span>交易时间：</span>
             <span>
               {
-                Withdrawal.state == 'Completed' || order.HasRefund
+                Withdrawal.State == 'Completed' || order.HasRefund
                 ?
                 Withdrawal.CompletionTime.substring(0,10) +' '+ Withdrawal.CompletionTime.substring(11,19)
                   ||
@@ -119,12 +117,12 @@ class PurseDetailLayout extends React.Component {
           <p>
             <span>交易类型：</span>
             <span>
-              {Withdrawal.state == 'Completed' || order.HasRefund ? '提现' || '补偿' : '收入'}
+              {Withdrawal.State == 'Completed' || order.HasRefund ? '提现' || '补偿' : '收入'}
             </span>
           </p>
           <p>
             <span>交易单号：</span>
-            <span>{Withdrawal.state == 'Completed' ? Withdrawal.Id : order.Id}</span>
+            <span>{Withdrawal.State == 'Completed' ? Withdrawal.Id : order.Id}</span>
           </p>
         </article>
 
@@ -135,7 +133,7 @@ class PurseDetailLayout extends React.Component {
 }
 
 ReactMixin.onClass(PurseDetailLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
-ReactMixin.onClass(PurseDetailLayout, Reflux.listenTo(UserWithdrawal, 'onFundLoad'));
+ReactMixin.onClass(PurseDetailLayout, Reflux.listenTo(UserWithdraw, 'onFundLoad'));
 ReactMixin.onClass(PurseDetailLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
 
 export default PurseDetailLayout;
