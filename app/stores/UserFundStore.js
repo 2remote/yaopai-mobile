@@ -17,13 +17,23 @@ var UserFundStore = Reflux.createStore({
       hintMessage : '',
       success : false,
       flag : '',
-      filterType: 'Completed'//默认展示选择“全部”栏数据
+      filterType: 'Completed',//默认展示选择“全部”栏数据
+      sendReceiveState:{
+        send:'false',
+        receive:'false'
+      }
     };
     this.listenTo(UserFundActions.currentAccount.success, this.onCurrentAccountSuccess);
     this.listenTo(UserFundActions.currentAccount.failed, this.onFailed);
 
     this.listenTo(UserFundActions.recordsSearch.success, this.onRecordsSearchSuccess);
     this.listenTo(UserFundActions.recordsSearch.failed, this.onFailed);
+
+    this.listenTo(UserFundActions.sendTelAccount.success, this.onSendTelAccountSuccess);
+    this.listenTo(UserFundActions.sendTelAccount.failed, this.onFailed);
+
+    this.listenTo(UserFundActions.receiveTelAccount.success, this.onReceiveTelAccountSuccess);
+    this.listenTo(UserFundActions.receiveTelAccount.failed, this.onFailed);
 
     this.listenTo(UserFundActions.type,this.onType);
   },
@@ -35,6 +45,8 @@ var UserFundStore = Reflux.createStore({
     this.data.purse.Receivable = data.Receivable;
 
     this.data.list = data.Result;
+
+    this.data.Success =  data.Success;
   },
   onCurrentAccountSuccess: function (data) {
     this.data.flag = 'resetPassword';
@@ -55,6 +67,28 @@ var UserFundStore = Reflux.createStore({
       this.data.hintMessage = '';
       this.data.success = true;
       this._fillData(data);
+    } else {
+      this.data.hintMessage = data.ErrorMsg;
+      this.data.success = false;
+    }
+    this.trigger(this.data);
+  },
+
+  onSendTelAccountSuccess: function(data) {
+    if (data.Success) {
+      this.data.hintMessage = '';
+      this.data.success = true;
+    } else {
+      this.data.hintMessage = data.ErrorMsg;
+      this.data.success = false;
+    }
+    this.trigger(this.data);
+  },
+
+  onReceiveTelAccountSuccess: function(data) {
+    if (data.Success) {
+      this.data.hintMessage = '';
+      this.data.success = true;
     } else {
       this.data.hintMessage = data.ErrorMsg;
       this.data.success = false;
