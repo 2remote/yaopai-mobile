@@ -1,19 +1,26 @@
 import React from 'react';
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
-import {Button} from 'react-weui';
+import {Button, Dialog} from 'react-weui';
+const {Alert} = Dialog;
 
 import UserActions from '../../../../../actions/UserActions';
 import UserStore from '../../../../../stores/UserStore';
 import UserFundActions from '../../../../../actions/UserFundActions';
 import UserFundStore from '../../../../../stores/UserFundStore';
+import UserFundWithdrawStore from '../../../../../stores/UserWithdraw';
 
-class BindCardLayout extends React.Component {
+class WithdrawDepositLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userFund: {
         available: '0.00'
+      },
+      success: false,
+      alert: {
+        show: false,
+        message: '',
       }
     };
   }
@@ -36,14 +43,53 @@ class BindCardLayout extends React.Component {
       }
     });
   }
+  onFundWithdrawLoad(result) {
+    let self = this;
+    if(result.flag === 'add') {
+      self.setState({
+        success: result.success
+      });
+      if(result.success) { // 成功
+        self.setState({
+          alert: {
+            show: true,
+            message: '提现申请已提交'
+          }
+        });
+      } else {
+        self.setState({
+          alert: {
+            show: true,
+            message: result.hintMessage
+          }
+        });
+      }
+    }
+  }
+  hideAlert = () => {
+    let self = this;
+    self.setState({
+      alert: {
+        show: false,
+        message: ''
+      }
+    });
+    if(self.state.success) {
+      console.log('跳转吧皮卡丘！');
+      this.props.history.pushState(null, '/center/g/purse');
+    } else {
+      // hehe, 挂了
+    }
+  };
   doWithdraw = e => {
     e.preventDefault();
     if(!this.refs.amount.value){
       alert('请输入金额!');
       return;
     }
-    let amount = new Number(this.refs.amount.value);
-    console.log('[Withdraw]', amount, amount.valueOf(), amount.valueOf().toFixed(2));
+    let amount = new Number(this.refs.amount.value).valueOf();
+    console.log('[Withdraw]', amount, amount.toFixed(2));
+    UserFundActions.withdrawalAdd(amount);
   };
   render() {
     return (
@@ -74,17 +120,29 @@ class BindCardLayout extends React.Component {
           <footer className="footer">
             <button type="submit" className="weui_btn weui_btn_primary">确&nbsp;&nbsp;定</button>
           </footer>
+          <Alert
+            show={this.state.alert.show}
+            title={this.state.alert.message}
+            buttons={[{
+              label: '好的',
+              type: 'primary',
+              onClick: this.hideAlert
+            }]}>
+          </Alert>
         </form>
         <aside className="footer color_gray font_small text_center">
           温馨提示：提现至您绑定的支付宝账号中，如您未绑定支付宝账号，请您先进行绑定再进行提现<br/>
-          <a className="color_green  font_medium">绑定支付宝<i className="icon youjiantou" /></a>
+          <a className="color_green font_medium" href="#/center/g/purse/bind">
+            绑定支付宝<i className="icon youjiantou" />
+          </a>
         </aside>
       </div>
     );
   }
 }
 
-ReactMixin.onClass(BindCardLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
-ReactMixin.onClass(BindCardLayout, Reflux.listenTo(UserFundStore, 'onFundLoad'));
+ReactMixin.onClass(WithdrawDepositLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
+ReactMixin.onClass(WithdrawDepositLayout, Reflux.listenTo(UserFundStore, 'onFundLoad'));
+ReactMixin.onClass(WithdrawDepositLayout, Reflux.listenTo(UserFundWithdrawStore, 'onFundWithdrawLoad'));
 
-export default BindCardLayout;
+export default WithdrawDepositLayout;
