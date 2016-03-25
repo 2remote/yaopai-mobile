@@ -1,0 +1,23 @@
+/*
+ * 详情模块公共Panel
+ * 比如账单详情,订单详情页面展示数据的模块
+ */
+.ypui_detail_box {
+  padding: 15px;
+  background: #fff;
+
+  p {
+    height: 28px;
+
+    span:last-child {
+      color: #000;
+      float: right;
+    }
+  }
+
+  .ypui_detail_title {
+    margin-bottom: 10px;
+    height: 50px;
+    border-bottom: 1px #eee solid;
+  }
+}
