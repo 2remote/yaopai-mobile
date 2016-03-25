@@ -19,7 +19,7 @@ var GrapherCenterPage = React.createClass({
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       let type = 'in';
       this.setState({userInfo : data});

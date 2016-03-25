@@ -94,7 +94,7 @@ class OrderSubmitLayout extends React.Component {
 
   onUserLoad(user) {
     if(!user.isLogin){ // 用户未登录，跳转登陆页
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       OrderActions.get(this.props.params.id);
     }

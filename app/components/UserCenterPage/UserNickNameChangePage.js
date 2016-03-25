@@ -22,7 +22,7 @@ var UserEditProfilePage = React.createClass({
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       this.setState({userInfo : data});
       console.log('getCurrentUserDetail: ', data);
