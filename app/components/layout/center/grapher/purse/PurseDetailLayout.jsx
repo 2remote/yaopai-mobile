@@ -70,21 +70,16 @@ class PurseDetailLayout extends React.Component {
 
   render() {
     const {order, Withdrawal, show} = this.state;
-    console.log(this.state.success);
     return (
       <div>
         <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
 
         <div className="PurseDetailLayout" style={this.state.success ? {display: 'block'} : {display: 'none'}}>
-          <header className="detail_header text_center">
-            <i className="weui_icon_msg weui_icon_success" /><br/>
-            交易成功
-          </header>
           <div className="weui_cells_title">账单详情</div>
-          <article className="order-msg color_gray">
-            <p>
-              <span>交易金额</span>
-              <span className="color_red">
+          <article className="ypui_detail_box color_gray">
+            <p className="ypui_detail_title">
+              <span>{Withdrawal.State == 'Completed' ? '出账金额' : '入账金额'}</span>
+              <span className={Withdrawal.State == 'Completed' ? 'font_biggest' : 'color_green font_biggest '}>
                 {
                   Withdrawal.State == 'Completed' || order.HasRefund
                   ?
@@ -99,7 +94,7 @@ class PurseDetailLayout extends React.Component {
               ?
               ''
               :
-              <p><span>交易名称：</span><span>{order.Albums.Title}</span></p>
+              <p><span>交易名称</span><span>{order.Albums.Title}</span></p>
             }
 
             {
@@ -107,11 +102,11 @@ class PurseDetailLayout extends React.Component {
                 ?
                 ''
                 :
-                <p><span>预约客户：</span><span>{order.BuyerName}</span></p>
+                <p><span>预约客户</span><span>{order.BuyerName}</span></p>
             }
 
             <p>
-              <span>交易时间：</span>
+              <span>时&nbsp;&nbsp;&nbsp;&nbsp;间：</span>
               <span>
                 {
                   Withdrawal.State == 'Completed' || order.HasRefund
@@ -125,13 +120,13 @@ class PurseDetailLayout extends React.Component {
               </span>
             </p>
             <p>
-              <span>交易类型：</span>
+              <span>类&nbsp;&nbsp;&nbsp;&nbsp;型</span>
               <span>
-                {Withdrawal.State == 'Completed' || order.HasRefund ? '提现' || '补偿' : '收入'}
+                {Withdrawal.State == 'Completed' || order.HasRefund ? '提现' || '违约金' : '订单收入'}
               </span>
             </p>
             <p>
-              <span>交易单号：</span>
+              <span>交易单号</span>
               <span>{Withdrawal.State == 'Completed' ? Withdrawal.Id : order.Id}</span>
             </p>
           </article>
