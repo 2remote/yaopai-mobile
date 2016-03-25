@@ -298,3 +298,18 @@ export function WhichFundsType(FundsType) {
   }
   return FundsTypes[FundsType]();
 }
+
+/*
+ * @WhichFundsType 方法代替switch语法
+ let fundsType = "";
+ switch (this.props.FundsType) {
+  case "Order" :
+    fundsType = "收入";
+    break;
+  case "Compensative" :
+    fundsType = "补偿";
+    break;
+  case "Withdrew" :
+    fundsType = "提现";
+    break;
+ }*/
