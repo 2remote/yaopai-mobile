@@ -64,7 +64,7 @@ class OrderListLayout extends React.Component {
           }}
           className="color_gray text_center">
           温馨提示：交易过程中如有异常<br />
-          请拨打客服热线：0371-65337727
+          请拨打客服热线：<a className="color_green" href="tel:0371-65337727">0371-65337727</a>
         </div>
       </div>
     );

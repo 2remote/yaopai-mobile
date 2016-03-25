@@ -172,7 +172,7 @@ class OrderRefundLayout extends React.Component {
             <p className="font_small color_gray">
               1、若办理退款，退款会优先使用您原订单的支付方式进行退回。<br />
               2、如果所支付的订单中含有非现金部分(如优惠券)，在退款时，非现金部分不能折现。<br />
-              3、如有疑问，请拨打客服热线： 400-888-8888
+              3、如有疑问，请拨打客服热线： <a className="color_green" href="tel:400-888-8888">400-888-8888</a>
             </p>
           </section>
         </article>
