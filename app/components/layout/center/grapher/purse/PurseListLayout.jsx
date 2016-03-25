@@ -1,5 +1,6 @@
 import React from 'react';
-import { CellsTitle } from 'react-weui';
+import {LoadingToast} from '../../../../UI/WeuiToast';
+
 import { History } from 'react-router';
 import { WhichAccount } from '../../../../Tools';
 
@@ -56,26 +57,9 @@ class PurseListLayout extends React.Component {
     let accountList;
     let accountDataList = [];
     if(!this.state.success) {
-      accountList = <CellsTitle>{this.state.hintMessage}</CellsTitle>;
+      accountList = <LoadingToast />;
     } else {
       accountDataList = WhichAccount(this.state.filterType, this.state.list);
-     /*
-      用上面的方法代替switch语法
-      switch(this.state.filterType) {
-        case 'Completed' :
-          accountDataList = this.state.list;
-          break;
-        case "Compensative" :
-          accountDataList =  _.where(this.state.list, {FundsType: 'Compensative'});
-          break;
-        case "Order" :
-          accountDataList =  _.where(this.state.list, {FundsType: 'Order'});
-          break;
-        case "Withdrew" :
-          accountDataList =  _.where(this.state.list, {FundsType: 'Withdrew'});
-          break;
-      }
-      */
       accountList = accountDataList.map((account, index) => {
         return <YPUIPurseCard
                   Amount={account.Amount}
