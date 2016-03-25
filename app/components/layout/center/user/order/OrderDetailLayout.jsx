@@ -67,53 +67,53 @@ class OrderDetailLayout extends React.Component{
           </section>
           <div className="weui_cells_title">订单详情</div>
 
-          <article className="order-msg color_gray">
+          <article className="ypui_detail_box color_gray">
             <p>
-              <span>预约服务：</span>
+              <span>预约服务</span>
               <span>{order.Albums.Title}</span>
             </p>
             <p>
-              <span>预约摄影师：</span>
+              <span>预约摄影师</span>
               <span>{order.Photographer.NickName}</span>
             </p>
             <p>
-              <span>创建时间：</span>
+              <span>创建时间</span>
               <span>{order.CreationTime.substring(0,10)}</span>
             </p>
             { order.PaymentTime ?
               <p>
-                <span>付款时间：</span>
+                <span>付款时间</span>
                 <span>{order.PaymentTime.substring(0,10)}</span>
               </p>
               : ''
             }
             { order.RefundTime ?
               <p>
-                <span>退款时间：</span>
+                <span>退款时间</span>
                 <span>{order.RefundTime.substring(0,10)}</span>
               </p>
               : ''
             }
             { order.DeliveryTime ?
               <p>
-                <span>发片时间：</span>
+                <span>发片时间</span>
                 <span>{order.DeliveryTime.substring(0,10)}</span>
               </p>
               : ''
             }
             { order.CompleteTime && !order.RefundTime ?
               <p>
-                <span>成交时间：</span>
+                <span>成交时间</span>
                 <span>{order.CompleteTime.substring(0,10)}</span>
               </p>
               : ''
             }
             <p>
-              <span>预约姓名：</span>
+              <span>预约姓名</span>
               <span>{order.BuyerName}</span>
             </p>
             <p>
-              <span>预约电话：</span>
+              <span>预约电话</span>
               <span>{order.BuyerTel}</span>
             </p>
           </article>
