@@ -1,6 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
-import { CellsTitle } from 'react-weui';
+import {LoadingToast} from '../../../../UI/WeuiToast';
+
 import ReactMixin from 'react-mixin';
 import { OrderStatus } from '../../../../Tools';
 
@@ -46,7 +47,7 @@ class OrderListLayout extends React.Component {
   render() {
     let theRealList;
     if(!this.state.success) {
-      theRealList = <CellsTitle>{this.state.hintMessage}</CellsTitle>;
+      theRealList = <LoadingToast />;
     } else {
       theRealList = this.state.orders.map((order, index) => {
         if(OrderStatus.parse(order.State) !== this.state.filterType) return;
