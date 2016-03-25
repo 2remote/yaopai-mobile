@@ -1,6 +1,9 @@
 import React from 'react';
 import Reflux from 'reflux';
 
+import {Toast} from 'react-weui';
+import {LoadingToast} from '../../../../UI/WeuiToast';
+
 import ReactMixin from 'react-mixin';
 import UserActions from '../../../../../actions/UserActions';
 import UserStore from '../../../../../stores/UserStore';
@@ -32,13 +35,13 @@ class PurseDetailLayout extends React.Component {
         Amount: '', //提现金额
         State: '', //提现状态 , 详情见备注
         CompletionTime: ''    //结束时间(未结束为null)
-      }
+      },
+      success: false
     };
   }
 
   componentDidMount() {
     UserActions.currentUser();
-    //TODO 原本下面这行是放在第49行后的,但是会拿不到数据,放到这就可以,为什么?
     UserFundActions.withdrawalGet(this.props.params.id);
   }
 
@@ -52,82 +55,89 @@ class PurseDetailLayout extends React.Component {
 
   onOrderLoad(data) {
     this.setState({
-      order:data.order,
-      Withdrawal: {State:''}
+      order: data.order,
+      Withdrawal: {State:''},
+      success: data.success
     });
   }
 
   onFundLoad(data) {
     this.setState({
-      Withdrawal:data.Withdrawal
+      Withdrawal: data.Withdrawal,
+      success: data.success
     });
   }
 
   render() {
-    const {order, Withdrawal} = this.state;
+    const {order, Withdrawal, show} = this.state;
+    console.log(this.state.success);
     return (
-      <div className="PurseDetailLayout">
-        <header className="detail_header text_center">
-          <i className="weui_icon_msg weui_icon_success" /><br/>
-          交易成功
-        </header>
-        <div className="weui_cells_title">账单详情</div>
-        <article className="order-msg color_gray">
-          <p>
-            <span>交易金额</span>
-            <span className="color_red">
-              {
-                Withdrawal.State == 'Completed' || order.HasRefund
-                ?
-                Withdrawal.Amount || order.Refund.Compensation
-                :
-                order.Price
-              }
-            </span>
-          </p>
-          {
-            Withdrawal.State == 'Completed'
-            ?
-            ''
-            :
-            <p><span>交易名称：</span><span>{order.Albums.Title}</span></p>
-          }
+      <div>
+        <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
 
-          {
-            Withdrawal.State == 'Completed'
+        <div className="PurseDetailLayout" style={this.state.success ? {display: 'block'} : {display: 'none'}}>
+          <header className="detail_header text_center">
+            <i className="weui_icon_msg weui_icon_success" /><br/>
+            交易成功
+          </header>
+          <div className="weui_cells_title">账单详情</div>
+          <article className="order-msg color_gray">
+            <p>
+              <span>交易金额</span>
+              <span className="color_red">
+                {
+                  Withdrawal.State == 'Completed' || order.HasRefund
+                  ?
+                  Withdrawal.Amount || order.Refund.Compensation
+                  :
+                  order.Price
+                }
+              </span>
+            </p>
+            {
+              Withdrawal.State == 'Completed'
               ?
               ''
               :
-              <p><span>预约客户：</span><span>{order.BuyerName}</span></p>
-          }
+              <p><span>交易名称：</span><span>{order.Albums.Title}</span></p>
+            }
 
-          <p>
-            <span>交易时间：</span>
-            <span>
-              {
-                Withdrawal.State == 'Completed' || order.HasRefund
+            {
+              Withdrawal.State == 'Completed'
                 ?
-                Withdrawal.CompletionTime.substring(0,10) +' '+ Withdrawal.CompletionTime.substring(11,19)
-                  ||
-                order.Refund.CompletionTime.substring(0,10) +' '+ order.Refund.CompletionTime.substring(11,19)
+                ''
                 :
-                order.CompleteTime.substring(0,10) +' '+ order.CompleteTime.substring(11,19)
-              }
-            </span>
-          </p>
-          <p>
-            <span>交易类型：</span>
-            <span>
-              {Withdrawal.State == 'Completed' || order.HasRefund ? '提现' || '补偿' : '收入'}
-            </span>
-          </p>
-          <p>
-            <span>交易单号：</span>
-            <span>{Withdrawal.State == 'Completed' ? Withdrawal.Id : order.Id}</span>
-          </p>
-        </article>
+                <p><span>预约客户：</span><span>{order.BuyerName}</span></p>
+            }
 
-        <a href="tel:0371-65337727" className="footer text_center color_green">客服</a>
+            <p>
+              <span>交易时间：</span>
+              <span>
+                {
+                  Withdrawal.State == 'Completed' || order.HasRefund
+                  ?
+                  Withdrawal.CompletionTime.substring(0,10) +' '+ Withdrawal.CompletionTime.substring(11,19)
+                    ||
+                  order.Refund.CompletionTime.substring(0,10) +' '+ order.Refund.CompletionTime.substring(11,19)
+                  :
+                  order.CompleteTime.substring(0,10) +' '+ order.CompleteTime.substring(11,19)
+                }
+              </span>
+            </p>
+            <p>
+              <span>交易类型：</span>
+              <span>
+                {Withdrawal.State == 'Completed' || order.HasRefund ? '提现' || '补偿' : '收入'}
+              </span>
+            </p>
+            <p>
+              <span>交易单号：</span>
+              <span>{Withdrawal.State == 'Completed' ? Withdrawal.Id : order.Id}</span>
+            </p>
+          </article>
+
+          <a href="tel:0371-65337727" className="footer text_center color_green">客服</a>
+        </div>
       </div>
     );
   }
