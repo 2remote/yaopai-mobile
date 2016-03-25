@@ -2,6 +2,8 @@ import React from 'react';
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
 import {Button} from 'react-weui';
+import {LoadingToast} from '../../../../UI/WeuiToast';
+
 import { OrderStatus } from '../../../../Tools';
 
 import UserActions from '../../../../../actions/UserActions';
@@ -21,7 +23,8 @@ class OrderDetailLayout extends React.Component{
         RefundTime:'',
         DeliveryTime:'',
         CompleteTime:''
-      }
+      },
+      success: false
     };
   }
 
@@ -39,7 +42,8 @@ class OrderDetailLayout extends React.Component{
 
   onOrderLoad(data) {
     this.setState({
-      order: data.order
+      order: data.order,
+      success: data.success
     })
   }
 
@@ -50,79 +54,83 @@ class OrderDetailLayout extends React.Component{
   render() {
     const {order} = this.state;
     return (
-	    <div className="OrderDetailLayout">
-		    <div className="weui_cells_title">支付流程说明</div>
-		    <section className="icon_box font_small color_gray">
-					<span><i className="icon order_icon" /><br/>提单
-					</span><span><i className="icon refund" /><br/>付款
-					</span><span><i className="icon grapher_icon" /><br/>拍摄
-					</span><span><i className="icon album" /><br/>收片</span>
-		    </section>
-		    <div className="weui_cells_title">订单详情</div>
+      <div>
+        <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
 
-		    <article className="order-msg color_gray">
-			    <p>
-				    <span>预约服务：</span>
-				    <span>{order.Albums.Title}</span>
-			    </p>
-			    <p>
-				    <span>预约摄影师：</span>
-				    <span>{order.Photographer.NickName}</span>
-			    </p>
-			    <p>
-				    <span>创建时间：</span>
-				    <span>{order.CreationTime.substring(0,10)}</span>
-			    </p>
-          { order.PaymentTime ?
-            <p>
-              <span>付款时间：</span>
-              <span>{order.PaymentTime.substring(0,10)}</span>
-            </p>
-            : ''
-          }
-          { order.RefundTime ?
-            <p>
-              <span>退款时间：</span>
-              <span>{order.RefundTime.substring(0,10)}</span>
-            </p>
-            : ''
-          }
-          { order.DeliveryTime ?
-            <p>
-              <span>发片时间：</span>
-              <span>{order.DeliveryTime.substring(0,10)}</span>
-            </p>
-            : ''
-          }
-          { order.CompleteTime && !order.RefundTime ?
-            <p>
-              <span>成交时间：</span>
-              <span>{order.CompleteTime.substring(0,10)}</span>
-            </p>
-            : ''
-          }
-			    <p>
-				    <span>预约姓名：</span>
-				    <span>{order.BuyerName}</span>
-			    </p>
-			    <p>
-				    <span>预约电话：</span>
-				    <span>{order.BuyerTel}</span>
-			    </p>
-		    </article>
+        <div className="OrderDetailLayout" style={this.state.success ? {display: 'block'} : {display: 'none'}}>
+          <div className="weui_cells_title">支付流程说明</div>
+          <section className="icon_box font_small color_gray">
+            <span><i className="icon order_icon" /><br/>提单
+            </span><span><i className="icon refund" /><br/>付款
+            </span><span><i className="icon grapher_icon" /><br/>拍摄
+            </span><span><i className="icon album" /><br/>收片</span>
+          </section>
+          <div className="weui_cells_title">订单详情</div>
 
-		    <div className="footer color_gray fr">
-			    合计：<span className="font_super color_dark">￥{order.Price}</span>
-		    </div>
-        {
-          OrderStatus.UNPAYED === OrderStatus.parse(order.State) ?
-            <footer className="footer">
-              <Button type="primary" onClick={this.pay}>支付￥{order.Price}</Button>
-            </footer>
-            :
-            ''
-        }
-	    </div>
+          <article className="order-msg color_gray">
+            <p>
+              <span>预约服务：</span>
+              <span>{order.Albums.Title}</span>
+            </p>
+            <p>
+              <span>预约摄影师：</span>
+              <span>{order.Photographer.NickName}</span>
+            </p>
+            <p>
+              <span>创建时间：</span>
+              <span>{order.CreationTime.substring(0,10)}</span>
+            </p>
+            { order.PaymentTime ?
+              <p>
+                <span>付款时间：</span>
+                <span>{order.PaymentTime.substring(0,10)}</span>
+              </p>
+              : ''
+            }
+            { order.RefundTime ?
+              <p>
+                <span>退款时间：</span>
+                <span>{order.RefundTime.substring(0,10)}</span>
+              </p>
+              : ''
+            }
+            { order.DeliveryTime ?
+              <p>
+                <span>发片时间：</span>
+                <span>{order.DeliveryTime.substring(0,10)}</span>
+              </p>
+              : ''
+            }
+            { order.CompleteTime && !order.RefundTime ?
+              <p>
+                <span>成交时间：</span>
+                <span>{order.CompleteTime.substring(0,10)}</span>
+              </p>
+              : ''
+            }
+            <p>
+              <span>预约姓名：</span>
+              <span>{order.BuyerName}</span>
+            </p>
+            <p>
+              <span>预约电话：</span>
+              <span>{order.BuyerTel}</span>
+            </p>
+          </article>
+
+          <div className="footer color_gray fr">
+            合计：<span className="font_super color_dark">￥{order.Price}</span>
+          </div>
+          {
+            OrderStatus.UNPAYED === OrderStatus.parse(order.State) ?
+              <footer className="footer">
+                <Button type="primary" onClick={this.pay}>支付￥{order.Price}</Button>
+              </footer>
+              :
+              ''
+          }
+        </div>
+      </div>
     );
   }
 }
