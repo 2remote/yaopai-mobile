@@ -49,10 +49,10 @@ class PurseDetailLayout extends React.Component {
       this.setState({success: true});
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
-      if(this.props.params.type == 'Order') {
-        OrderActions.get(this.props.params.id);
-      } else {
+      if(this.props.params.type == 'Withdrew') {
         UserFundActions.withdrawalGet(this.props.params.id);
+      } else {
+        OrderActions.get(this.props.params.id);
       }
     }
   }
@@ -74,6 +74,7 @@ class PurseDetailLayout extends React.Component {
 
   render() {
     const {order, Withdrawal, show} = this.state;
+    let isWithdrew = this.props.params.type == 'Withdrew';
     return (
       <div>
         <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
@@ -82,56 +83,54 @@ class PurseDetailLayout extends React.Component {
           <div className="weui_cells_title">账单详情</div>
           <article className="ypui_detail_box color_gray">
             <p className="ypui_detail_title">
-              <span>{Withdrawal.State == 'Completed' ? '出账金额' : '入账金额'}</span>
-              <span className={Withdrawal.State == 'Completed' ? 'font_biggest' : 'color_green font_biggest '}>
+              <span>{isWithdrew ? '出账金额' : '入账金额'}</span>
+              <span className={isWithdrew ? 'font_biggest' : 'color_green font_biggest '}>
                 {
-                  Withdrawal.State == 'Completed' || order.HasRefund
+                  isWithdrew
                   ?
-                  Withdrawal.Amount || order.Refund.Compensation
+                    Withdrawal.Amount
                   :
-                  order.Price
+                    order.HasRefund ? order.Refund.Compensation : order.Price
                 }
               </span>
             </p>
             {
-              Withdrawal.State == 'Completed'
+              isWithdrew
               ?
-              ''
+                ''
               :
-              <p><span>交易名称</span><span>{order.Albums.Title}</span></p>
+                <p><span>交易名称</span><span>{order.Albums.Title}</span></p>
             }
 
             {
-              Withdrawal.State == 'Completed'
+              isWithdrew
                 ?
-                ''
+                  ''
                 :
-                <p><span>预约客户</span><span>{order.BuyerName}</span></p>
+                  <p><span>预约客户</span><span>{order.BuyerName}</span></p>
             }
-
             <p>
               <span>时&nbsp;&nbsp;&nbsp;&nbsp;间：</span>
               <span>
                 {
-                  Withdrawal.State == 'Completed' || order.HasRefund
+                  isWithdrew
                   ?
-                  Withdrawal.CompletionTime.substring(0,10) +' '+ Withdrawal.CompletionTime.substring(11,19)
-                    ||
-                  order.Refund.CompletionTime.substring(0,10) +' '+ order.Refund.CompletionTime.substring(11,19)
+                    `${Withdrawal.CompletionTime.substring(0,10)} ${Withdrawal.CompletionTime.substring(11,19)}`
                   :
-                  order.CompleteTime.substring(0,10) +' '+ order.CompleteTime.substring(11,19)
+                    order.HasRefund ? `${order.Refund.CompletionTime.substring(0,10)} ${order.Refund.CompletionTime.substring(11,19)}`
+                                    : `${order.CompleteTime.substring(0,10)} ${order.CompleteTime.substring(11,19)}`
                 }
               </span>
             </p>
             <p>
               <span>类&nbsp;&nbsp;&nbsp;&nbsp;型</span>
               <span>
-                {Withdrawal.State == 'Completed' || order.HasRefund ? '提现' || '违约金' : '订单收入'}
+                {isWithdrew ? '提现' : (order.HasRefund ? '违约金' : '订单收入')}
               </span>
             </p>
             <p>
               <span>交易单号</span>
-              <span>{Withdrawal.State == 'Completed' ? Withdrawal.Id : order.Id}</span>
+              <span>{isWithdrew ? Withdrawal.Id : order.Id}</span>
             </p>
           </article>
 
