@@ -42,7 +42,6 @@ class PurseDetailLayout extends React.Component {
 
   componentDidMount() {
     UserActions.currentUser();
-    UserFundActions.withdrawalGet(this.props.params.id);
   }
 
   onUserLoad(user) {
@@ -50,7 +49,11 @@ class PurseDetailLayout extends React.Component {
       this.setState({success: true});
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
-      OrderActions.get(this.props.params.id);
+      if(this.props.params.type == 'Order') {
+        OrderActions.get(this.props.params.id);
+      } else {
+        UserFundActions.withdrawalGet(this.props.params.id);
+      }
     }
   }
 
