@@ -6,7 +6,10 @@ class YPUIPurseCard extends React.Component{
     let fundsType = WhichFundsType(this.props.FundsType);
     return (
       <div className="YPUIPurseCard">
-        <a className="Purse_box" href={`#/center/g/purse/detail/${this.props.Id}`}>
+        <a
+          className="Purse_box"
+          href={`#/center/g/purse/detail/${this.props.FundsType}/${this.props.Id}`}
+        >
           <div className="fl">
             <p>{fundsType}</p>
             {this.props.CreationTime.substring(0,10)}

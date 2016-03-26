@@ -133,7 +133,7 @@ function main(){
             <Route path="purse">
               <IndexRoute component={PurseLayout}/>
               <Route path="detail" component={PurseTabLayout} />
-              <Route path="detail/:id" component={PurseDetailLayout} />
+              <Route path="detail/:type/:id" component={PurseDetailLayout} />
               <Route path="bind" component={BindCardLayout} />
               <Route path="withdraw" component={WithdrawDepositLayout} />
             </Route>
