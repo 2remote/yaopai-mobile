@@ -20,7 +20,7 @@ class WithdrawDepositLayout extends React.Component {
       success: false,
       alert: {
         show: false,
-        message: '',
+        message: ''
       }
     };
   }
