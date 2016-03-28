@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import { History } from 'react-router';
 
 import {Toast} from 'react-weui';
 import {LoadingToast} from '../../../../UI/WeuiToast';
@@ -144,5 +145,6 @@ class PurseDetailLayout extends React.Component {
 ReactMixin.onClass(PurseDetailLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
 ReactMixin.onClass(PurseDetailLayout, Reflux.listenTo(UserWithdraw, 'onFundLoad'));
 ReactMixin.onClass(PurseDetailLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
+ReactMixin.onClass(PurseDetailLayout, History);
 
 export default PurseDetailLayout;
