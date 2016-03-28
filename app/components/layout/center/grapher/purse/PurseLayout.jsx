@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
 import WeuiCells from '../../../../UI/WeuiCells';
 import UserAvatarBox from '../../../../UserAvatarBox' ;
+import HamburgMenu from'../../../../HamburgMenu';
 
 import UserActions from '../../../../../actions/UserActions';
 import UserStore from '../../../../../stores/UserStore';
@@ -76,6 +77,7 @@ class PurseLayout extends React.Component {
   render() {
     return (
       <div>
+        <HamburgMenu />
         <UserAvatarBox background={true} data={this.state.user}/>
         <WeuiCells cellList={this.state.balanceList} access={false} />
         <WeuiCells cellList={operationList} />
