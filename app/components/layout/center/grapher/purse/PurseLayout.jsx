@@ -2,6 +2,8 @@ import React from 'react';
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
 import WeuiCells from '../../../../UI/WeuiCells';
+
+import { History } from 'react-router';
 import UserAvatarBox from '../../../../UserAvatarBox' ;
 import HamburgMenu from'../../../../HamburgMenu';
 
@@ -32,7 +34,7 @@ class PurseLayout extends React.Component {
         icon: 'zhifubao',
         title: '绑定支付宝',
         desc: '未绑定支付宝',
-        href: '/center/g/purse/bind'
+        href: ''
       }],
       user: {},
       fundData: {
@@ -70,8 +72,8 @@ class PurseLayout extends React.Component {
       bindOpList: [{
         icon: 'zhifubao',
         title: '绑定支付宝',
-        href: '/center/g/purse/bind',
-        desc: `${fundData.purse.Receivable?'已绑定支付宝':'未绑定支付宝'}`
+        href: `${fundData.purse.Receivable ? '/center/g/purse/bindDetail' : '/center/g/purse/bind'}`,
+        desc: `${fundData.purse.Receivable ? '已绑定支付宝' : '未绑定支付宝'}`
       }]
     });
   }
@@ -93,5 +95,6 @@ class PurseLayout extends React.Component {
 
 ReactMixin.onClass(PurseLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
 ReactMixin.onClass(PurseLayout, Reflux.listenTo(UserFundStore, 'onUserFundLoad'));
+ReactMixin.onClass(PurseLayout, History);
 
 export default PurseLayout;
