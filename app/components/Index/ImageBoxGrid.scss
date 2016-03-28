@@ -1,14 +1,17 @@
-ul {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+.indexContent,
+.imageBoxGrid {
+  ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 
-  li {
-    float: left;
-    list-style: none;
-    position: relative;
+    li {
+      float: left;
+      list-style: none;
+      position: relative;
 
-    a { display: block; }
+      a { display: block; }
+    }
   }
 }
 
