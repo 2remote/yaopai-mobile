@@ -52,7 +52,7 @@ class PurseLayout extends React.Component {
   }
   onUserLoad(user) {
     if(!user.isLogin){ // 用户未登录，跳转登陆页
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       this.setState({ user });
       // 获取用户fund信息
