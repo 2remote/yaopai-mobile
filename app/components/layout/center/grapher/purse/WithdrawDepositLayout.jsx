@@ -83,7 +83,6 @@ class WithdrawDepositLayout extends React.Component {
     e.preventDefault();
 
     let amount = new Number(this.refs.amount.value).valueOf();
-    console.log('[Withdraw]', amount, amount.toFixed(2));
     UserFundActions.withdrawalAdd(amount);
   };
   render() {
