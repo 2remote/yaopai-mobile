@@ -36,6 +36,7 @@ class PurseLayout extends React.Component {
       }],
       user: {},
       fundData: {
+        purse: {},
         userId: '', // 用户ID
         Available: '', // 可提现余额
         Frozen : '', // 被冻结的金额(尚在提现中的资金会被冻结)
@@ -70,7 +71,7 @@ class PurseLayout extends React.Component {
         icon: 'zhifubao',
         title: '绑定支付宝',
         href: '/center/g/purse/bind',
-        desc: `${fundData.Receivable?'已绑定支付宝':'未绑定支付宝'}`
+        desc: `${fundData.purse.Receivable?'已绑定支付宝':'未绑定支付宝'}`
       }]
     });
   }
