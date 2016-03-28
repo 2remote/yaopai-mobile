@@ -67,7 +67,7 @@ class PurseLayout extends React.Component {
       fundData,
       balanceList: [{
         title: '账户余额',
-        money: (fundData.purse.Available?fundData.purse.Available:'0.00')
+        money: (fundData.purse.Available ? fundData.purse.Available : '0.00')
       }],
       bindOpList: [{
         icon: 'zhifubao',
@@ -86,7 +86,8 @@ class PurseLayout extends React.Component {
         <WeuiCells cellList={operationList} />
         <WeuiCells cellList={this.state.bindOpList} />
         <aside className="color_gray font_small footer">
-          绑定支付宝账号后，即可提现。如充值或提现遇到特殊情况，请联系客服，或拨打0371-65337727帮助
+          绑定支付宝账号后，即可提现。如充值或提现遇到特殊情况，请联系客服，或拨打
+          <a className="color_green" href="tel:0371-65337727">0371-65337727</a>帮助。
         </aside>
       </div>
     );
