@@ -64,7 +64,7 @@ class PurseLayout extends React.Component {
       fundData,
       balanceList: [{
         title: '账户余额',
-        money: fundData.purse.Available
+        money: (fundData.purse.Available?fundData.purse.Available:'0.00')
       }],
       bindOpList: [{
         icon: 'zhifubao',

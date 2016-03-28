@@ -37,11 +37,13 @@ class WithdrawDepositLayout extends React.Component {
     }
   }
   onFundLoad(userFund) {
-    this.setState({
-      userFund: {
-        available: userFund.purse.Available
-      }
-    });
+    if(userFund.purse.Available){
+      this.setState({
+        userFund: {
+          available: userFund.purse.Available
+        }
+      });
+    }
   }
   onFundWithdrawLoad(result) {
     let self = this;
