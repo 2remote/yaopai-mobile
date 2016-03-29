@@ -15,10 +15,6 @@ class CardDetailLayout extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      balanceList: [{
-        title: '账户余额',
-        money: ''
-      }],
       bindOpList: [{
         icon: 'zhifubao',
         title: '支付宝账号',
@@ -56,11 +52,8 @@ class CardDetailLayout extends React.Component{
 
   onUserFundLoad(data) {
     this.setState({
-      balanceList: [{
-        title: '账户余额',
-        money: (data.purse.Available ? data.purse.Available : '0.00')
-      }],
       bindOpList: [{
+        icon: 'zhifubao',
         title: '支付宝账号',
         desc: data.purse.Receivable
       }]
@@ -78,7 +71,6 @@ class CardDetailLayout extends React.Component{
         </Confirm>
 
         <div className="weui_cells_title">支付宝账号详情</div>
-        <WeuiCells cellList={this.state.balanceList} access={false} />
         <WeuiCells cellList={this.state.bindOpList}  access={false} />
 
         <footer className="footer" style={{paddingTop:40, paddingBottom:0}}>
