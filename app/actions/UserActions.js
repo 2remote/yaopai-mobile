@@ -66,7 +66,7 @@ UserActions.currentServerUser.listen(function(data){
 UserActions.currentUserDetail.listen(function(){
   var data = {
     Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId,Account.Type'
-  }  
+  };
   HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
 });
 
@@ -76,8 +76,8 @@ UserActions.currentUserDetail.listen(function(){
 UserActions.changeUserNickNameOnServer.listen(function(nickname){
   console.log('get changeUserNickNameOnServer');
   var data = {
-    NickName: nickname,
-  }  
+    NickName: nickname
+  };
   HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
 });
 

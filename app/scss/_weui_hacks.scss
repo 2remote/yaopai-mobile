@@ -1,0 +1,23 @@
+.weui_media_box .weui_media_desc { line-height: 1.6; }
+
+/* 覆盖 weui_tab：调整tab body使navbar固定在上端 */
+.weui_navbar {
+  z-index: 100;
+}
+.weui_tab_bd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.weui_btn.weui_btn_mini {
+  line-height: 2.1;
+}
+
+/* 覆盖confirm弹出框内文字不居中
+ * weu原本是居左
+ */
+.weui_dialog_confirm .weui_dialog .weui_dialog_bd {
+  text-align: center;
+}

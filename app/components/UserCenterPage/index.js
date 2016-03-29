@@ -22,7 +22,7 @@ var UserCenterPage = React.createClass({
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       let type = 'out';
       //得到当前用户的预约订单
@@ -47,7 +47,7 @@ var UserCenterPage = React.createClass({
         margin: '24px 0 12px 0'
       }
     };
-    
+
     return (
       <div 
         style={style.page}
@@ -56,8 +56,9 @@ var UserCenterPage = React.createClass({
         <DocumentTitle title="个人中心" />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
         
-        {makeIconButton('order_icon', '我的订单', 'user_tickets', 'react-router')}
-        {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
+        {/*makeIconButton('order_icon', '我的订单', 'user_tickets', 'react-router')*/}
+        {makeIconButton('order_icon', '我的订单', 'center/u/order', 'react-router')}
+        {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}
       </div>
     );
   }

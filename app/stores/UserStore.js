@@ -27,6 +27,7 @@ var UserStore = Reflux.createStore({
       isLogin: false,
       hintMessage: '',
       flag : '',
+      pingToken: '',
       loginDate : ''
     };
     /*
@@ -122,6 +123,13 @@ var UserStore = Reflux.createStore({
     //data = eval("(" + data + ")");
     if (data.Success) {
       // console.log('onLoginSuccess and return success', this.data, data);
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+      }
+      setCookie('pingToken', data.SessionToken, 1);
       this.setCurrentUser(data.User);
       assert(this.data.flag != 'login', 'flag is changed after setCurrentUser');
       //用户登录成功，需要获得用户信息

@@ -57,7 +57,7 @@ var AvatarUploader = React.createClass({
 
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       //得到当前用户的预约订单
       this.setState({userInfo : data})

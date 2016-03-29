@@ -53,7 +53,7 @@ var BookPage = React.createClass({
   _handleUserSotreChange: function(userData){
     console.log('userData from Store', userData);
     if(!userData.isLogin){
-      this.history.replaceState({nextPage : this.props.location.pathname},'/login_page');
+      this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       console.log(this.props.params);
       if(this.props.params.workId && this.props.params.workId != '0')
@@ -73,7 +73,7 @@ var BookPage = React.createClass({
       if(data.success){
         console.log('提交订单成功！');
         var orderID = data.order.Id;
-        this.history.pushState(null,'/book_success_dialog/'+orderID);
+        this.props.history.pushState(null,`/center/u/order/${orderID}`);
       }else{
         this.showMessage(data.hintMessage);
       }

@@ -1,0 +1,43 @@
+.OrderDetailLayout {
+	.icon_box {
+		/*痛心! flex 兼容出了问题!!
+		@include flex;
+    @include justify_content_space_around;
+    */
+    padding: 10px 0;
+    background: #fff;
+    text-align: center;
+
+    >div {
+      position: relative;
+      display: inline-block;
+      width: 24%;
+
+      &:not(:last-child):after {
+        @include triangle_right(5px, #999);
+        position: absolute;
+        right: 1px;
+        top: 23px;
+      }
+
+      i { font-size: 32px; }
+    }
+	}
+  /*p:last-child {
+    height: 60px;
+    line-height: 18px;
+
+    span {
+      display: inline-block;
+      vertical-align: top;
+
+      &:last-child {
+        width: 70%;
+        height: 60px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
+    }
+  }*/
+}
