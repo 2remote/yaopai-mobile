@@ -14,3 +14,10 @@
 .weui_btn.weui_btn_mini {
   line-height: 2.1;
 }
+
+/* 覆盖confirm弹出框内文字不居中
+ * weu原本是居左
+ */
+.weui_dialog_confirm .weui_dialog .weui_dialog_bd {
+  text-align: center;
+}
