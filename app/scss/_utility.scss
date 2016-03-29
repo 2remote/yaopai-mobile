@@ -33,7 +33,7 @@ body {
     @include flex_1;
   }
 
-  a {
+  a:not(.weui_btn_dialog) {
     display: inline-block;
     position: relative;
     font-size: 14px;
