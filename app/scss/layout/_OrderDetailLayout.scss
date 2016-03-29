@@ -1,19 +1,23 @@
 .OrderDetailLayout {
 	.icon_box {
+		/*痛心! flex 兼容出了问题!!
 		@include flex;
     @include justify_content_space_around;
+    */
     padding: 10px 0;
     background: #fff;
     text-align: center;
 
-    span {
+    >div {
       position: relative;
+      display: inline-block;
+      width: 24%;
 
       &:not(:last-child):after {
         @include triangle_right(5px, #999);
         position: absolute;
-        right: -33px;
-        top: 30px;
+        right: 1px;
+        top: 23px;
       }
 
       i { font-size: 32px; }
