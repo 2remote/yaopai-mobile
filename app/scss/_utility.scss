@@ -52,7 +52,7 @@ body {
 .color_lightgray { @include font_color($light_gray) }
 .color_gray      { @include font_color($gray) }
 .color_dark      { @include font_color($dark) }
-.color_white     { @include font_color(white)}
+.color_white     { @include font_color(white) }
 
 /* background colors */
 .bg_red          { @include bg_color($red) }
