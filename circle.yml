@@ -1,12 +1,3 @@
 machine:
   node:
     version: 0.12.7
-deployment:
-  prod:
-    branch: master
-    heroku:
-      appname: yaopai-mobile
-  dev:
-    branch: dev
-    heroku:
-      appname: yaopai-mobile-dev
