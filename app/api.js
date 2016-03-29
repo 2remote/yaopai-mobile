@@ -39,6 +39,7 @@ if (hasHost(Local_Host) && isProdHost(Local_Host)) {
 const API_URL = DOMAIN + '?api=';
 
 var API_CONST = {
+  isProd: DOMAIN === PRODUCTION_ENV,
   API_URL: API_URL,
   USER: {
     login: API_URL + 'User.Login',
@@ -112,7 +113,9 @@ var API_CONST = {
     refund: API_URL + 'Order.RefundApply', // 退款
     receive: API_URL + 'Order.Reception', // 接单
     deliver: API_URL + 'Order.Delivery', // 发片
-    accept: API_URL + 'Order.Acceptance' // 收片
+    accept: API_URL + 'Order.Acceptance', // 收片
+    pay: DOMAIN + 'payment/token?tokenId=',
+    wechatRedirect: DOMAIN + 'payment/successful?orderId='
   },
   FILE: {
     getToken: API_URL + 'File.Token',

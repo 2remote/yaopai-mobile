@@ -34,11 +34,11 @@ class OrderSubmitLayout extends React.Component {
     let self = this;
     let pingppPay = (self, openid) => {
       let initData = {
-        debug: true,
+        debug: !API.isProd,
         app_id: 'app_HOmP4CHinvvL9Kyv', //Ping++ 后台中的应用Id
         amount: 0,    //金额请填写0
         channel: ['alipay_wap', 'wx_pub', 'upacp_wap'],//渠道数组,视情况而定
-        charge_url: `http://dev.api.aiyaopai.com/payment/token?tokenId=${getCookie('pingToken')}`, //token地址
+        charge_url: `${API.ORDER.pay}${getCookie('pingToken')}`, //token地址
         charge_param: {
           'callback': `#/center/u/order/${self.state.order.Id}/submit/result`,
           'orderId': self.state.order.Id
@@ -60,7 +60,7 @@ class OrderSubmitLayout extends React.Component {
               pingpp_one.resume();
             }
           } else {
-            window.location.href = `http://dev.api.aiyaopai.com/payment/successful?orderId=${self.state.order.Id}`;
+            window.location.href = `${API.ORDER.wechatRedirect}${self.state.order.Id}`;
           }
         }
       });
