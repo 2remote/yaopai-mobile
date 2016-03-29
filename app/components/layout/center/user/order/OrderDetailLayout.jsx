@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
 import {Button} from 'react-weui';
 import {LoadingToast} from '../../../../UI/WeuiToast';
+import { History } from 'react-router';
 
 import { OrderStatus } from '../../../../Tools';
 

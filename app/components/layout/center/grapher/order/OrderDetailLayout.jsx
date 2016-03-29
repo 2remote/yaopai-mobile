@@ -1,6 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
+import { History } from 'react-router';
 import {LoadingToast} from '../../../../UI/WeuiToast';
 
 import UserActions from '../../../../../actions/UserActions';
