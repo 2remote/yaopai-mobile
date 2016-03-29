@@ -63,7 +63,8 @@ var API_CONST = {
     withdrawalGet:  API_URL + 'UserFunds.WithdrawalGet',
     sendTelAccount: API_URL + 'UserFunds.SendTelAccountChange', //发送修改收款帐号认证短信or绑定支付宝短信(让后台发验证码)
     receiveTelAccount: API_URL + 'UserFunds.ReceiveTelAccountChange', //接收修改当前用户收款帐号短信or绑定支付宝(填好了,发给后台验证)
-    withdrawalAdd:API_URL + 'UserFunds.WithdrawalAdd'
+    withdrawalAdd:API_URL + 'UserFunds.WithdrawalAdd',
+    weixinAuthGet: API_URL + 'OpenUser.WeixinAuthGet'
   },
   PHOTOGRAPHER: {
     submitAudit: API_URL + 'Photographer.SubmitAudit',
