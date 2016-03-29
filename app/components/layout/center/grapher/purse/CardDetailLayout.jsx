@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Dialog} from 'react-weui';
-const {Alert} = Dialog;
+const {Confirm} = Dialog;
 import WeuiCells from '../../../../UI/WeuiCells';
 
 import Reflux from 'reflux';
@@ -24,9 +24,20 @@ class CardDetailLayout extends React.Component{
         title: '支付宝账号',
         desc: ''
       }],
-      alert: {
+      confirm: {
         show: false,
-        message: ''
+        buttons: [
+          {
+            type: 'default',
+            label: '取消',
+            onClick: this.hideConfirm
+          },
+          {
+            type: 'primary',
+            label: '确定',
+            onClick: this.jumpBind
+          }
+        ]
       }
     }
   }
@@ -50,45 +61,28 @@ class CardDetailLayout extends React.Component{
         money: (data.purse.Available ? data.purse.Available : '0.00')
       }],
       bindOpList: [{
-        icon: 'zhifubao',
         title: '支付宝账号',
         desc: data.purse.Receivable
       }]
     });
   }
 
-  disabled = (e) => { //点击'解除绑定'
-    this.setState({
-      alert:{
-        title: '确定更改支付宝账户吗?',
-        buttons: [
-          {
-            label: '确定',
-            onClick: this.hideAlert.bind(this)
-          }
-        ]}
-    });
-    this.showAlert();
-
-    // TODO 跳转到绑定支付宝页面
-    // 哪些需要history 用户未登录，跳转登陆页,哪些不需要?
-  };
-
   render() {
     return(
       <div>
-        <Alert
-          show={this.state.showAlert}
-          title={this.state.alert.title}
-          buttons={this.state.alert.buttons}>
-        </Alert>
+        <Confirm
+          show={this.state.showConfirm}
+          title={this.state.confirm.title}
+          buttons={this.state.confirm.buttons}>
+          确定更改的支付宝账户吗？
+        </Confirm>
 
         <div className="weui_cells_title">支付宝账号详情</div>
         <WeuiCells cellList={this.state.balanceList} access={false} />
         <WeuiCells cellList={this.state.bindOpList}  access={false} />
 
         <footer className="footer" style={{paddingTop:40, paddingBottom:0}}>
-          <Button type="disabled" onClick={this.disabled}>更改账户</Button>
+          <Button type="disabled" onClick={this.showConfirm}>更改账户</Button>
         </footer>
 
         <aside className="footer color_gray font_small">
@@ -105,13 +99,18 @@ class CardDetailLayout extends React.Component{
     );
   }
 
-  showAlert(){
-    this.setState({showAlert: true});
-  }
+  jumpBind = (e) => {//跳转到绑定支付宝页面
+    this.setState({showConfirm: false});
+    this.history.pushState(null, 'center/g/purse/bind');
+  };
 
-  hideAlert(){
-    this.setState({showAlert: false});
-  }
+  showConfirm = (e) => {
+    this.setState({showConfirm: true});
+  };
+
+  hideConfirm = (e) => {
+    this.setState({showConfirm: false});
+  };
 }
 
 ReactMixin.onClass(CardDetailLayout, Reflux.listenTo(UserFundStore, 'onUserFundLoad'));
