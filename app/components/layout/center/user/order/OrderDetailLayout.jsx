@@ -62,10 +62,10 @@ class OrderDetailLayout extends React.Component{
         <div className="OrderDetailLayout" style={this.state.success ? {display: 'block'} : {display: 'none'}}>
           <div className="weui_cells_title">支付流程说明</div>
           <section className="icon_box font_small color_gray">
-            <span><i className="icon order_icon" /><br/>提单
-            </span><span><i className="icon refund" /><br/>付款
-            </span><span><i className="icon grapher_icon" /><br/>拍摄
-            </span><span><i className="icon album" /><br/>收片</span>
+            <div><i className="icon order_icon" /><br/>提单
+            </div><div><i className="icon refund" /><br/>付款
+            </div><div><i className="icon grapher_icon" /><br/>拍摄
+            </div><div><i className="icon album" /><br/>收片</div>
           </section>
           <div className="weui_cells_title">订单详情</div>
 
