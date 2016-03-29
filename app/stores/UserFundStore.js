@@ -18,9 +18,9 @@ var UserFundStore = Reflux.createStore({
       success : false,
       flag : '',
       filterType: 'Completed',//默认展示选择“全部”栏数据
-      sendReceiveState:{
-        send:'false',
-        receive:'false'
+      checkingState: {
+        send: '',
+        receive: ''
       }
     };
     this.listenTo(UserFundActions.currentAccount.success, this.onCurrentAccountSuccess);
@@ -40,9 +40,9 @@ var UserFundStore = Reflux.createStore({
   _fillData: function(data) {
     this.data.purse.userId = data.Id;
     this.data.purse.Available = data.Available;
+    this.data.purse.Receivable = data.Receivable;
     this.data.purse.Frozen = data.Frozen;
     this.data.purse.TotalRevenue = data.TotalRevenue;
-    this.data.purse.Receivable = data.Receivable;
 
     this.data.list = data.Result;
 
@@ -74,24 +74,22 @@ var UserFundStore = Reflux.createStore({
     this.trigger(this.data);
   },
 
-  onSendTelAccountSuccess: function(data) {
+  onSendTelAccountSuccess: function(data) {//后台发送验证码给用户
     if (data.Success) {
       this.data.hintMessage = '';
-      this.data.success = true;
+      this.data.checkingState.send = '验证码发送成功';
     } else {
-      this.data.hintMessage = data.ErrorMsg;
-      this.data.success = false;
+      this.data.checkingState.send= data.ErrorMsg;
     }
     this.trigger(this.data);
   },
 
-  onReceiveTelAccountSuccess: function(data) {
+  onReceiveTelAccountSuccess: function(data) {//检查验证码是否正确
     if (data.Success) {
       this.data.hintMessage = '';
-      this.data.success = true;
+      this.data.checkingState.receive = '验证码正确';
     } else {
-      this.data.hintMessage = data.ErrorMsg;
-      this.data.success = false;
+      this.data.checkingState.receive = '验证码错误';
     }
     this.trigger(this.data);
   },
