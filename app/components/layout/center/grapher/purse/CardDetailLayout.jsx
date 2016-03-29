@@ -67,7 +67,7 @@ class CardDetailLayout extends React.Component{
           show={this.state.showConfirm}
           title={this.state.confirm.title}
           buttons={this.state.confirm.buttons}>
-          确定更改的支付宝账户吗？
+          确定更改支付宝账户吗？
         </Confirm>
 
         <div className="weui_cells_title">支付宝账号详情</div>
