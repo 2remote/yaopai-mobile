@@ -49,7 +49,6 @@ var UserFundStore = Reflux.createStore({
     this.data.Success =  data.Success;
   },
   onCurrentAccountSuccess: function (data) {
-    this.data.flag = 'resetPassword';
     if (data.Success) {
       this.data.hintMessage = '';
       this.data.success = true;
@@ -62,7 +61,6 @@ var UserFundStore = Reflux.createStore({
   },
 
   onRecordsSearchSuccess: function(data) {
-    this.data.flag = 'resetPassword';
     if (data.Success) {
       this.data.hintMessage = '';
       this.data.success = true;

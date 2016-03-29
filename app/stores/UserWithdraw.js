@@ -24,7 +24,6 @@ var UserWithdrawal = Reflux.createStore({
   },
 
   onWithdrawalGet: function(data) {
-    this.data.flag = 'resetPassword';
     if (data.Success) {
       this.data.hintMessage = '';
       this.data.success = true;
