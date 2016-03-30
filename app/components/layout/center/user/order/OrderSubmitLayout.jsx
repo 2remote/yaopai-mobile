@@ -34,7 +34,8 @@ class OrderSubmitLayout extends React.Component {
     let self = this;
     let pingppPay = (self, openid) => {
       let initData = {
-        debug: !API.isProd,
+        // 后台所有环境均已切换至真实支付，需在dev环境进行真实支付测试
+        debug: false, //!API.isProd,
         app_id: 'app_HOmP4CHinvvL9Kyv', //Ping++ 后台中的应用Id
         amount: 0,    //金额请填写0
         channel: ['alipay_wap', 'wx_pub', 'upacp_wap'],//渠道数组,视情况而定
