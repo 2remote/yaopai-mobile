@@ -44,8 +44,7 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   payOrder = (e, orderId) => {
-    console.log('[YPUIOrderCard-payOrder]', orderId);
-    this.history.pushState(null, `/center/u/order/${orderId}/submit`);
+    this.history.pushState(null, `/center/u/order/submit/${orderId}`);
   };
 
   /**
