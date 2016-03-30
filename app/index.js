@@ -113,13 +113,15 @@ function main(){
           {/*用户中心*/}
           <Route path="u">
             <IndexRoute component={UserCenterPage} />
-            <Route path="order" component={UserOrderTabLayout} />
-            <Route path="order/:id">
-              <IndexRoute  component={UserOrderDetailLayout}/>
-              <Route path="submit">
+            <Route path="order">
+              <IndexRoute component={UserOrderTabLayout} />
+              <Route path="submit/:id">
                 <IndexRoute component={UserOrderSubmitLayout}/>
                 <Route path="result" component={UserOrderSubmitResultLayout}/>
               </Route>
+            </Route>
+            <Route path="order/:id">
+              <IndexRoute  component={UserOrderDetailLayout}/>
               <Route path="refund" component={UserOrderRefundLayout}/>
             </Route>
           </Route>
