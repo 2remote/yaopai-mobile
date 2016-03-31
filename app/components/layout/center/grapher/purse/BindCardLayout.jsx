@@ -87,7 +87,7 @@ class BindCardLayout extends React.Component {
       clickSendTelAgain: true
     });
     UserFundActions.sendTelAccount();//让后台发送验证码
-    let i = 4;
+    let i = 60;
     timer = setInterval(() => {
       i--;
       this.setState({
@@ -97,7 +97,7 @@ class BindCardLayout extends React.Component {
         clearInterval(timer);
         this.setState({
           clickSendTel: false,
-          countDown: 4
+          countDown: 60
         })
       }
     },1000);

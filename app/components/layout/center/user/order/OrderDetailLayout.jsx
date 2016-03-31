@@ -50,7 +50,7 @@ class OrderDetailLayout extends React.Component{
   }
 
   pay = e => {
-    this.props.history.pushState(null, `center/u/order/${this.state.order.Id}/submit`);
+    this.props.history.pushState(null, `center/u/order/submit/${this.state.order.Id}`);
   };
 
   render() {

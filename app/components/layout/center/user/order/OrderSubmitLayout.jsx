@@ -41,7 +41,7 @@ class OrderSubmitLayout extends React.Component {
         channel: ['alipay_wap', 'wx_pub', 'upacp_wap'],//渠道数组,视情况而定
         charge_url: `${API.ORDER.pay}${getCookie('pingToken')}`, //token地址
         charge_param: {
-          'callback': `#/center/u/order/${self.state.order.Id}/submit/result`,
+          'callback': `#/center/u/order/submit/${self.state.order.Id}/result`,
           'orderId': self.state.order.Id
         }  //订单Id
       };
