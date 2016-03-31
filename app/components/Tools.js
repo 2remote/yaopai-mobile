@@ -15,11 +15,11 @@ exports.imgModifier = function  (img, mode, width) {
     modifies = 'imageMogr2/auto-orient/thumbnail/600x/interlace/1';
     break;
   case "workCover":
-    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x336a0a80/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x336/interlace/1';
     break;
   case "ad":
     // 首页走马灯，访谈活动列表页裁剪规则
-    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x336/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x336/interlace/1';
     break;
   case "avatar":
     modifies = 'imageView2/1/w/52/h/52/interlace/1';
