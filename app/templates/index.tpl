@@ -91,22 +91,6 @@
     <link href="{%=o.htmlWebpackPlugin.files.css[css]%}" ref="stylesheet">
     {% } %}
     
-    <script type='text/javascript'>
-      var _vds = _vds || [];
-      window._vds = _vds;
-      (function(){
-        _vds.push(['setAccountId', '82d356b26442f5f6']);
-        (function() {
-          var vds = document.createElement('script');
-          vds.type='text/javascript';
-          vds.async = true;
-          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(vds, s);
-        })();
-      })();
-    </script>
-    
   </head>
   <body>
     <script type="text/javascript">
