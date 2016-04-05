@@ -57,7 +57,15 @@ class OrderListLayout extends React.Component {
         if (OrderStatus.parse(order.State) !== this.state.filterType) return;
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>;
       });
-      if (theRealList[0] == undefined) {
+      //判断列表是否为空
+      let num = 0;
+      for (let item of theRealList) {
+        if (item == undefined) {
+          num++;
+        }
+      }
+      //列表为空时渲染内容
+      if (num == theRealList.length) {
         return (
           <section className="text_center">
             <div style={{ padding:'50px 0px' }}>
@@ -73,6 +81,7 @@ class OrderListLayout extends React.Component {
         );
       }
     }
+    //列表不为空时渲染内容
     return (
       <div>
         { theRealList }
