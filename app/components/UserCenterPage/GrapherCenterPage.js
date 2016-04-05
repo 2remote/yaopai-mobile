@@ -55,4 +55,4 @@ var GrapherCenterPage = React.createClass({
   }
 });
 
-module.exports = GrapherCenterPage;
+export {GrapherCenterPage as default};
