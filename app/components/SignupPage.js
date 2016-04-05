@@ -6,7 +6,6 @@ import UserActions from '../actions/UserActions';
 import UserStore from '../stores/UserStore';
 import GetCodeActions from '../actions/GetCodeActions';
 import GetCodeStore from '../stores/GetCodeStore';
-import { Router, Route, Link, History } from 'react-router';
 import Toaster from './Toast';
 
 var SignupPage = React.createClass({
@@ -54,7 +53,7 @@ var SignupPage = React.createClass({
   _handleGetCode : function(){
     if(this.state.codeLeft > 0) return;
     var phone = this.state.phone;
-    var isMobile = validator.isMobilePhone(phone,'zh-CN')
+    var isMobile = validator.isMobilePhone(phone,'zh-CN');
     if(isMobile){
       GetCodeActions.sendTelRegister({tel:phone});
     }else{
