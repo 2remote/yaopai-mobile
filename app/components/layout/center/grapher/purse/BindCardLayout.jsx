@@ -2,7 +2,6 @@ import React from 'react';
 
 import {Dialog, Button, Toast} from 'react-weui';
 const {Alert, Confirm} = Dialog;
-import {LoadingToast} from '../../../../UI/WeuiToast';
 
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
@@ -60,16 +59,12 @@ class BindCardLayout extends React.Component {
         this.showAlert('验证码错误！');
       } else if (this.state.checkingState.receive === '验证码正确') {
         this.setState({
-          showToast: true,
           checkingState: {
             send: '',
             receive: ''
           }
         });
-        setTimeout(() => {
-          this.setState({showToast: false});
-        },800);
-        this.history.pushState(null, 'center/g/purse/bindDetail');
+        this.history.pushState(null, 'center/g/purse');
       }
     } else if(this.state.checkingState.receive === '不满足发送间隔时长') {
       this.showAlert('提交太频繁,请稍后再试！');
@@ -148,7 +143,6 @@ class BindCardLayout extends React.Component {
           title={this.state.alert.title}
           buttons={this.state.alert.buttons}>
         </Alert>
-        <Toast show={this.state.show}>绑定成功！</Toast>
 
         <div className="weui_cells_title">绑定支付宝</div>
         <div className="weui_cells">
