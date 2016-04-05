@@ -71,7 +71,7 @@ var BookForm = React.createClass({
     e.preventDefault();
     // 获得用户输入
     const BuyerName     = this.refs.bookName.value.trim();
-    const BuyerTel      = this.refs.bookPhone.value.trim();
+    const BuyerTel      = this.refs.phoneImage.value.trim();
     const AppointedTime = this.refs.bookDate.value.trim();
     const BuyerMemo     = this.refs.bookComment.value.trim();
     if (!BuyerName) {
