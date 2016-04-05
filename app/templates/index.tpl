@@ -66,7 +66,7 @@
         left: 50%;
         top: 50%; }
     </style>
-    <link rel="stylesheet" href="imgs/css/weui.min.css"/>
+    <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/0.4.0/weui.min.css"/>
     <script type="text/javascript" src="/imgs/ua-parser.min.js"></script>
 
     <!--上传图片dev脚本
@@ -90,6 +90,23 @@
     {% for (var css in o.htmlWebpackPlugin.files.css) { %}
     <link href="{%=o.htmlWebpackPlugin.files.css[css]%}" ref="stylesheet">
     {% } %}
+    
+    <script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', '82d356b26442f5f6']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+    </script>
+    
   </head>
   <body>
     <script type="text/javascript">

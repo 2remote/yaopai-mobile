@@ -23,7 +23,11 @@ var BookIntro = React.createClass({
             <div className="weui_media_hd">
               <img
                 className="weui_media_appmsg_thumb"
+<<<<<<< HEAD
                 src={imgModifier(this.props.albums?this.props.albums.Cover:this.props.photographer.Avatar, "avatar")} />
+=======
+                src={imgModifier(this.props.albums?this.props.albums.Cover:this.props.photographer.Avatar, "avatar")}
+>>>>>>> master
               />
             </div>
             <div className="weui_media_bd">
