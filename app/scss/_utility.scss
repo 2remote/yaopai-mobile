@@ -60,7 +60,6 @@ body {
 .bg_lightgray    { @include bg_color($light_gray) }
 .bg_gray         { @include bg_color($gray) }
 .bg_dark         { @include bg_color($dark) }
-.bg_white         { @include bg_color(white) }
 
 /* text align */
 .text_center { text-align: center; }
