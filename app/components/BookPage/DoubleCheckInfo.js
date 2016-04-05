@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 import {imgModifier} from '../Tools';
 
@@ -112,4 +112,4 @@ var DoubleCheckInfo = React.createClass({
   }
 });
 
-module.exports = DoubleCheckInfo; 
+export {DoubleCheckInfo as default};

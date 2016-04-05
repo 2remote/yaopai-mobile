@@ -1,24 +1,25 @@
 import { API_URL } from '../api';
-var React = require('react');
+import React from 'react';
 import { Link } from 'react-router';
+import _ from 'underscore';
 
 exports.imgModifier = function  (img, mode, width) {
   let modifies;
   if(img === null || img === undefined ){
     console.warn('There is NO img link.');
     return "";
-  };
+  }
 
   switch(mode){
   case "work":
     modifies = 'imageMogr2/auto-orient/thumbnail/600x/interlace/1';
     break;
   case "workCover":
-    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x336a0a80/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x336/interlace/1';
     break;
   case "ad":
     // 首页走马灯，访谈活动列表页裁剪规则
-    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/north/crop/!600x336/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x336/interlace/1';
     break;
   case "avatar":
     modifies = 'imageView2/1/w/52/h/52/interlace/1';
@@ -30,7 +31,7 @@ exports.imgModifier = function  (img, mode, width) {
     modifies = 'imageMogr2/gravity/Center/thumbnail/!' + width + 'x' + width + 'r/crop/' + width + 'x' + width + '/interlace/1';
     break;
   case "HomeGrapher":
-    modifies = 'imageMogr2/thumbnail/80000@'
+    modifies = 'imageMogr2/thumbnail/80000@';
     break;
   default:
     /*首页方块裁切函数，先不做修改*/
@@ -38,11 +39,11 @@ exports.imgModifier = function  (img, mode, width) {
   }
   
   return img + '?' + modifies;
-}
+};
 
 
 exports.parseImageUrl = function(url,width,height){
-  url = url + '?imageMogr2/auto-orient/gravity/Center'
+  url = url + '?imageMogr2/auto-orient/gravity/Center';
   if(width && height){
     url = url + '/thumbnail/!'+width+'x'+ height+'r'; //限制短边
     url = url + '/crop/'+width + 'x' + height; //剪裁
@@ -55,7 +56,7 @@ exports.parseImageUrl = function(url,width,height){
   }
   url = url + '/interface/1'; //渐进
   return url;
-}
+};
 
 exports.makeIconButton = function (icon, title, link="javascript:;", router="normalLink") {
   if(router == 'normalLink'){
@@ -162,7 +163,7 @@ exports.dateFormat = function(date, format) {
     return all;
   });
   return format;
-}
+};
 
 exports.actionLinkMaker = function (action, extraId) {
   switch (action){
@@ -193,7 +194,7 @@ exports.actionLinkMaker = function (action, extraId) {
   case 'InterviewList':
     return'/interview';
   }
-}
+};
 
 // 页面调取数据接口
 export const API = API_URL;
@@ -235,4 +236,80 @@ export const TITLE = {
   interviewDetailPage: '_YAOPAI',
   activityPage: 'YAOPAI 全部活动',
   activityDetailPage: '_YAOPAI'
+};
+
+/**
+ * 订单状态前后端转换
+ */
+export const OrderStatus = {
+  UNPAYED: '1', // 未支付
+  UNCONFIRMED: '2', // 待确定
+  ONGOING: '3', // 进行中
+  COMPLETE: '4', // 已完成
+  CLOSED: '5', // 已关闭
+  /**
+   * 把服务器返回订单状态的文字翻译成前端约定的状态
+   *
+   * @param status 服务器返回订单的State字段
+   * @returns {*} 预先约定的状态
+   */
+  parse: function(status) {
+    // 与服务器数据对应的数据
+    // TODO: 这玩意儿怎么移除去啊。。不能每次都初始化一遍吧。。虽然开销不大
+    let $serverCode = {
+      WaitingPayment: this.UNPAYED,
+      WaitingReception: this.UNCONFIRMED,
+      WaitingDelivery: this.ONGOING,
+      WaitingAcceptance: this.ONGOING,
+      Completed: this.COMPLETE,
+      Closed: this.CLOSED // TODO: 这个是gitbook文档拼写错误，还是后台真就这么返回？待验证
+    };
+    return $serverCode[status] || this.CLOSED;
+  }
+};
+
+/**
+ * 摄影师流水数据筛选
+ */
+export function WhichAccount(account,data) {
+  var accounts = {
+    'Completed'()    { return data },
+    'Compensative'() { return _.where(data, {FundsType: 'Compensative'}); },
+    'Order'()        { return _.where(data, {FundsType: 'Order'}); },
+    'Withdrew'()     { return _.where(data, {FundsType: 'Withdrew'}); }
+  };
+  if (typeof accounts[account] !== 'function') {
+    return false;
+  }
+  return accounts[account]();
 }
+
+/**
+ * 摄影师流水列表"提现状态"
+ */
+export function WhichFundsType(FundsType) {
+  var FundsTypes = {
+    'Order'()        { return '收入' },
+    'Compensative'() { return '补偿' },
+    'Withdrew'()     { return '提现' }
+  };
+  if (typeof FundsTypes[FundsType] !== 'function') {
+    return false;
+  }
+  return FundsTypes[FundsType]();
+}
+
+/*
+ * @WhichFundsType 方法代替switch语法
+ let fundsType = "";
+ switch (this.props.FundsType) {
+  case "Order" :
+    fundsType = "收入";
+    break;
+  case "Compensative" :
+    fundsType = "补偿";
+    break;
+  case "Withdrew" :
+    fundsType = "提现";
+    break;
+ }*/

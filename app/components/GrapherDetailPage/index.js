@@ -1,16 +1,16 @@
-var React = require('react');
-var DocumentTitle = require('react-document-title');
-var HamburgMenu = require('../HamburgMenu');
+import React from 'react';
+import DocumentTitle from 'react-document-title';
+import HamburgMenu from '../HamburgMenu';
 
-const $ = require('jquery');
+import $ from 'jquery';
 
-var GrapherIntro = require('./GrapherIntro');
-var WorkIntroList = require('./WorkIntroList');
-var ActionBar = require('./ActionBar');
+import GrapherIntro from './GrapherIntro';
+import WorkIntroList from './WorkIntroList';
+import ActionBar from './ActionBar';
 import { API_URL } from '../../api';
 import Share from '../Share';
 import { TITLE } from '../Tools';
-var WechatShare = require('../Weixin/WechatShare');
+import WechatShare from '../Weixin/WechatShare';
 
 var GrapherDetailPage = React.createClass({
   getInitialState: function() {
@@ -78,4 +78,4 @@ var GrapherDetailPage = React.createClass({
   }
 });
 
-module.exports = GrapherDetailPage;
+export {GrapherDetailPage as default};

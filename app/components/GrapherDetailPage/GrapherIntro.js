@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 import {imgModifier} from '../Tools';
 
@@ -55,4 +55,4 @@ var GrapherIntro = React.createClass({
   }
 });
 
-module.exports = GrapherIntro;
+export {GrapherIntro as default};

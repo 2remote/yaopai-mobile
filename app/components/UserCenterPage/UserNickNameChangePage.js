@@ -1,31 +1,30 @@
-var React = require('react');
-var Router = require('react-router');
-var Reflux = require('reflux');
-var HamburgMenu = require('../HamburgMenu');
-var DocumentTitle = require('react-document-title');
+import React from 'react';
+import Router from'react-router';
+import Reflux from'reflux';
+import HamburgMenu from'../HamburgMenu';
+import DocumentTitle from'react-document-title';
 
 import {History,Location} from 'react-router';
 import UserAvatarBox from '../UserAvatarBox' ;
 
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
+import UserActions from'../../actions/UserActions';
+import UserStore from'../../stores/UserStore';
 
-var _ = require('underscore');
+import _ from'underscore';
 import { makeTextButton } from '../Tools';
 
 var UserEditProfilePage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
   getInitialState : function(){
     return {
-      userInfo : {},
-
+      userInfo : {}
     }
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
-      this.setState({userInfo : data})
+      this.setState({userInfo : data});
       console.log('getCurrentUserDetail: ', data);
     }
   },
@@ -73,4 +72,4 @@ var UserEditProfilePage = React.createClass({
   }
 });
 
-module.exports = UserEditProfilePage;
+export {UserEditProfilePage as default};

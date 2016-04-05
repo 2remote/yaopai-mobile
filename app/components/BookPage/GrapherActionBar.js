@@ -1,6 +1,5 @@
-var React = require('react');
-
-var CallGrapherBox = require('./CallGrapherBox');
+import React from 'react';
+import CallGrapherBox from'./CallGrapherBox';
 import AddWeChat from './AddWeChat' ;
 
 var ActionBar = React.createClass({
@@ -26,4 +25,4 @@ var ActionBar = React.createClass({
   }
 });
 
-module.exports = ActionBar;
+export {ActionBar as default};

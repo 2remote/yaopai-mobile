@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 import {Link} from 'react-router';
 import {imgModifier} from '../Tools';
 
@@ -32,4 +32,4 @@ var GrapherAvatar = React.createClass({
   }
 });
 
-module.exports = GrapherAvatar;
+export {GrapherAvatar as default};

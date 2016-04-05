@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 import {Link} from 'react-router';
-var AvatarUploader = require('./UserCenterPage/AvatarUploader.js');
+import AvatarUploader from './UserCenterPage/AvatarUploader.js';
 import {parseImageUrl} from './Tools';
 
 var UserAvatarBox = React.createClass({
@@ -82,4 +82,4 @@ var UserAvatarBox = React.createClass({
   }
 });
 
-module.exports = UserAvatarBox;
+export {UserAvatarBox as default};

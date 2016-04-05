@@ -1,33 +1,28 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import Router from 'react-router';
 var History = Router.History;
 var Location = Router.Location;
-var Reflux = require('reflux');
-var DocumentTitle = require('react-document-title');
-var HamburgMenu = require('../HamburgMenu');
-const $ = require('jquery');
-var localStorage = require('web-storage')().localStorage;
+import Reflux from 'reflux';
+import DocumentTitle from 'react-document-title';
 
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
-var OrderActions = require('../../actions/OrderActions');
-var OrderStore = require('../../stores/OrderStore');
-var AlbumsStore = require('../../stores/AlbumsStore');
-var AlbumsActions = require('../../actions/AlbumsActions');
-var PhotographerActions = require('../../actions/PhotographerActions');
-var PhotographerStore = require('../../stores/PhotographerStore');
-var Toaster = require('../Toast');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import OrderActions from '../../actions/OrderActions';
+import OrderStore from '../../stores/OrderStore';
+import AlbumsStore from '../../stores/AlbumsStore';
+import AlbumsActions from '../../actions/AlbumsActions';
+import PhotographerActions from '../../actions/PhotographerActions';
+import PhotographerStore from '../../stores/PhotographerStore';
+import Toaster from '../Toast';
 
 import BookIntro from './WorkBookIntro';
 import BookForm from './WorkBookForm';
-
-import { BOOK_A_WORK, GET_WORK_INTRO } from '../Tools';
 
 var BookPage = React.createClass({
   getInitialState : function () {
     return {
       albums : '',
-      photographer : '',
+      photographer : ''
     }
   },
   mixins : [Reflux.listenTo(UserStore,'_handleUserSotreChange'),
@@ -53,7 +48,7 @@ var BookPage = React.createClass({
   _handleUserSotreChange: function(userData){
     console.log('userData from Store', userData);
     if(!userData.isLogin){
-      this.history.replaceState({nextPage : this.props.location.pathname},'/login_page');
+      this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       console.log(this.props.params);
       if(this.props.params.workId && this.props.params.workId != '0')
@@ -73,7 +68,7 @@ var BookPage = React.createClass({
       if(data.success){
         console.log('提交订单成功！');
         var orderID = data.order.Id;
-        this.history.pushState(null,'/book_success_dialog/'+orderID);
+        this.props.history.pushState(null,`/center/u/order/${orderID}`);
       }else{
         this.showMessage(data.hintMessage);
       }
@@ -123,17 +118,8 @@ var BookPage = React.createClass({
     }
     return (
       <DocumentTitle title="作品预约">
-        <div
-          style={{
-            textAlign: 'center',
-            position: 'absolute',
-            width: '100%',
-            minHeight: '100%',
-            backgroundImage:'url(imgs/bookPageBg.png)'
-          }}
-          className="bookPage">
+        <div>
           <Toaster ref="toast"/>
-          <HamburgMenu />
           {bookInfo}
           <BookForm onSubmit={this.HandleBookWorkFormSubmit} subValue="提交订单"/>
         </div>
@@ -148,7 +134,7 @@ var BookPage = React.createClass({
     //摄影师ID
     data.PhotographerId = this.state.photographer.Id;
     OrderActions.add(data);
-  },
+  }
 });
 
-module.exports = BookPage;
+export {BookPage as default};

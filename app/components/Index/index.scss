@@ -1,19 +1,17 @@
-html {
-  height: 100%;
-}
+html { height: 100%; }
 
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
   font-size: 14px;
   line-height: 1.7;
   background: #f9f9f9;
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-  min-height: 100%;
   cursor: pointer;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 #app {
@@ -22,40 +20,23 @@ body {
   /*position: absolute;*/
 }
 
-a:link {
-  color: #000000;
-  text-decoration: none;
-}
+.index { text-align: center; }
 
-a:visited {
-  text-decoration: none;
-  color: #000000;
-}
-
-a:hover {
-  text-decoration: none;
-  color: #000000;
-}
-
+a:link,
+a:visited,
+a:hover,
 a:active {
-  text-decoration: none;
   color: #000000;
+  text-decoration: none;
 }
 
 :focus {
   outline: transparent none 0;
 }
 
-.index {
-  text-align: center;
-}
-
-
 /*走马灯*/
 
-.sliderBox {
-  margin-bottom: -7px;
-}
+.sliderBox { margin-bottom: -7px; }
 
 .sliderButtonsLine {
   position: absolute;
@@ -87,13 +68,8 @@ a:active {
 
 /* 分割线 */
 
-.splitContent {
-  color: #191919;
-}
-
-.splitLine {
-  margin: -25px 0 -8px;
-}
+.splitContent { color: #191919; }
+.splitLine { margin: -25px 0 -8px; }
 
 .splitContent>:first-child {
   margin-bottom: -8px;
@@ -103,7 +79,6 @@ a:active {
 
 
 /*暂时隐藏活动和访谈*/
-
 .spliterWork,
 .spliterGrapher,
 .spliterInterview,
@@ -125,9 +100,7 @@ a:active {
   width: 100%;
 }
 
-.imageCircleGrid {
-  margin-bottom: 115px;
-}
+.imageCircleGrid { margin-bottom: 115px; }
 
 .active-item:active {
   color: white!important;

@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var CallGrapherBox = React.createClass({
   getDefaultProps: function() {
@@ -25,4 +25,4 @@ var CallGrapherBox = React.createClass({
   }
 });
 
-module.exports = CallGrapherBox;
+export {CallGrapherBox as default};

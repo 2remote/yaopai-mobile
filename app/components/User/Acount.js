@@ -1,6 +1,6 @@
-var React = require('react');
-var Reflux = require('reflux');
-var UserStore = require('./UserStore');
+import React from 'react';
+import Reflux from 'reflux';
+import UserStore from './UserStore';
 
 var Acount = React.createClass({
   mixins: [Reflux.listenTo(UserStore, 'onStatusChange')],
@@ -25,4 +25,4 @@ var Acount = React.createClass({
   }
 });
 
-module.exports = Acount;
+export {Acount as default};

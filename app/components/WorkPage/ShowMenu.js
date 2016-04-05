@@ -1,5 +1,5 @@
-var React = require('react');
-var Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 import { Router, Route, Link } from 'react-router';
 import TagMenu from './TagMenu';
 
@@ -23,7 +23,7 @@ var ShowMenu = React.createClass({
       transform: transform,
       WebkitTransform: transform,
       transition: '1s',
-      WebkitTransition: '1s',
+      WebkitTransition: '1s'
     };
 
     return (
@@ -42,4 +42,4 @@ var ShowMenu = React.createClass({
   }
 });
 
-module.exports = ShowMenu;
+export {ShowMenu as default};

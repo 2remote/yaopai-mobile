@@ -1,6 +1,6 @@
-var Reflux = require('reflux');
-var HttpFactory = require('../HttpFactory');
-var API = require('../api');
+import Reflux from 'reflux';
+import HttpFactory from '../HttpFactory';
+import API from '../api';
 
 var OrderActions = Reflux.createActions({
   'list' : {children:['success','failed']} ,
@@ -8,6 +8,11 @@ var OrderActions = Reflux.createActions({
   'add' : {children:['success','failed']} ,
   'confirm' : {children:['success','failed']} ,
   'close' : {children:['success','failed']} ,
+  'type': {},
+  'refund': {children:['success','failed']}, // 用户申请退款
+  'receive': {children:['success','failed']}, // 摄影师接单
+  'deliver': {children:['success','failed']}, // 摄影师发片
+  'accept': {children:['success','failed']} // 用户收片
 });
 
 /*
@@ -20,16 +25,16 @@ OrderActions.list.listen(function(type,state){
   var s = null;
   if(state == 'pending'){
     s = 0;
-  };
+  }
   if(state == 'finished'){
     s = 1;
-  };
+  }
   if(state == 'closed'){
     s = 2;
-  };
+  }
   var data = {
     State : s,
-    Fields : 'Id,UserId,BuyerName,BuyerTel,Price,AppointedTime,PhotographerId,Photographer.BusinessPhone,IsSpecifiesAlbums,AlbumsId,CreationTime,State,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id',
+    Fields : 'Id,UserId,BuyerName,BuyerTel,Price,AppointedTime,PhotographerId,Photographer.BusinessPhone,AlbumsId,CreationTime,State,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id,Albums.Cover,Albums.Title,Amount,CompleteTime,HasRefund,Refund.CompletionTime,Refund.Compensation'
   };
   if(type == 'out')
     HttpFactory.post(API.ORDER.outSearch,data,this.success,this.failed);
@@ -40,7 +45,7 @@ OrderActions.list.listen(function(type,state){
 OrderActions.get.listen(function(id){
   var data = {
     Id : id,
-    Fields : 'Id,UserId,BuyerName,BuyerTel,AppointedTime,PhotographerId,IsSpecifiesAlbums,AlbumsId,CreationTime,State,Photographer.BusinessPhone,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id,Albums.Title,Albums.Cover,Albums.Price,Albums.Service,Albums.Description',
+    Fields : 'Id,UserId,BuyerName,BuyerTel,AppointedTime,PhotographerId,AlbumsId,CreationTime,State,Photographer.BusinessPhone,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id,Albums.Title,Albums.Cover,Albums.Price,Albums.Service,Albums.Description,PaymentTime,BuyerMemo,Price,CompleteTime,HasRefund,Refund.CompletionTime,Refund.Compensation'
   };
   HttpFactory.post(API.ORDER.get,data,this.success,this.failed);
 });
@@ -75,7 +80,48 @@ OrderActions.confirm.listen(function(id,appointeTime){
 OrderActions.close.listen(function(id){
   var data = {
     Id : id
-  }
+  };
   HttpFactory.post(API.ORDER.close,data,this.success,this.failed);
 });
-module.exports = OrderActions;
+/**
+ * 用户申请退款
+ */
+OrderActions.refund.listen(function(id, reason, explain){
+  var data = {
+    Id: id,
+    Reason: reason
+  };
+  if(explain) {
+    data.Explication = explain;
+  }
+  HttpFactory.post(API.ORDER.refund,data,data => this.success(data, id),this.failed);
+});
+/**
+ * 摄影师接单
+ */
+OrderActions.receive.listen(function(id, approve){
+  var data = {
+    Id: id,
+    Approved: approve
+  };
+  HttpFactory.post(API.ORDER.receive,data,data => this.success(data, id, approve),this.failed);
+});
+/**
+ * 摄影师发片
+ */
+OrderActions.deliver.listen(function(id){
+  var data = {
+    Id: id
+  };
+  HttpFactory.post(API.ORDER.deliver,data,data => this.success(data, id),this.failed);
+});
+/**
+ * 用户收片
+ */
+OrderActions.accept.listen(function(id){
+  var data = {
+    Id: id
+  };
+  HttpFactory.post(API.ORDER.accept,data,data => this.success(data, id),this.failed);
+});
+export {OrderActions as default};

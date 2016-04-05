@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var AddWeChat = React.createClass({
   render: function() {
@@ -16,4 +16,4 @@ var AddWeChat = React.createClass({
   }
 });
 
-module.exports = AddWeChat;
+export {AddWeChat as default};

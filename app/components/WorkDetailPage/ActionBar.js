@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 import { Router, Route, Link } from 'react-router';
 
@@ -28,4 +28,4 @@ var ActionBar = React.createClass({
   }
 });
 
-module.exports = ActionBar;
+export {ActionBar as default};

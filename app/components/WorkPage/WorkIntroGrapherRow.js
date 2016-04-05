@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 import { Router, Route, Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
@@ -52,4 +52,4 @@ var WorkIntroGrapherRow = React.createClass({
   }
 });
 
-module.exports = WorkIntroGrapherRow;
+export {WorkIntroGrapherRow as default};

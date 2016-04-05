@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 import {imgModifier} from '../Tools';
 
@@ -20,5 +20,4 @@ var WorkPieceRow = React.createClass({
     );
   }
 });
-
-module.exports = WorkPieceRow;
+export {WorkPieceRow as default};

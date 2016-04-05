@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
+import UserActions from '../../actions/UserActions';
 
-var UserActions = require('../../actions/UserActions');
 var WechatLogin = React.createClass({
   _weChatLogin : function(){
     UserActions.openLogin();
@@ -18,4 +18,4 @@ var WechatLogin = React.createClass({
   }
 });
 
-module.exports = WechatLogin;
+export {WechatLogin as default};

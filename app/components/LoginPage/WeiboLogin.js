@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var WeiboLogin = React.createClass({
   render: function() {
@@ -14,4 +14,4 @@ var WeiboLogin = React.createClass({
   }
 });
 
-module.exports = WeiboLogin;
+export {WeiboLogin as default};

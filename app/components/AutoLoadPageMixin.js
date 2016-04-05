@@ -55,4 +55,4 @@ var AutoLoadPageMixin = {
   }
 };
 
-module.exports = AutoLoadPageMixin;
+export {AutoLoadPageMixin as default};

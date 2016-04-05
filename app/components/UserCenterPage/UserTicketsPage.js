@@ -1,34 +1,34 @@
-var React = require('react');
-var Router = require('react-router');
-var Reflux = require('reflux');
-var HamburgMenu = require('../HamburgMenu');
-var DocumentTitle = require('react-document-title');
+import React from 'react';
+import Router from 'react-router';
+import Reflux from 'reflux';
+import HamburgMenu from '../HamburgMenu';
+import DocumentTitle from 'react-document-title';
 
 import {History,Location} from 'react-router';
 import UserAvatarBox from '../UserAvatarBox' ;
 import BookTicketList from './BookTicketList';
 
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
-var OrderActions = require('../../actions/OrderActions');
-var OrderStore = require('../../stores/OrderStore');
-var _ = require('underscore');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import OrderActions from '../../actions/OrderActions';
+import OrderStore from '../../stores/OrderStore';
+import _ from 'underscore';
 
 var UserCenterPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(OrderStore,'_onOrderStoreChange'),History],
   getInitialState : function(){
     return {
       orders : [],
-      userInfo : {},
+      userInfo : {}
     }
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       let type = 'out';
       //得到当前用户的预约订单
-      this.setState({userInfo : data})
+      this.setState({userInfo : data});
       console.log(data);
       OrderActions.list(type,null);
     }
@@ -97,4 +97,4 @@ var UserCenterPage = React.createClass({
   }
 });
 
-module.exports = UserCenterPage;
+export {UserCenterPage as default};

@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 import { Router, Route, Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
@@ -34,4 +34,4 @@ var ActivityRow = React.createClass({
   }
 });
 
-module.exports = ActivityRow;
+export {ActivityRow as default};

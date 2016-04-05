@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var Clean = require('clean-webpack-plugin');
@@ -33,7 +34,16 @@ var common = {
         test: /\.css$/,
         loaders: ['style', 'css'],
         include: path.resolve(ROOT_PATH, 'app')
+      },
+      { test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
       }
+      /**
+       *  CSS Modules 配置方法
+      {
+        test: /\.scss$/,
+        loader: 'style!css?modules&localIdentName=[name]__[local]!sass?sourceMap=true'
+      }*/
     ]
   },
   plugins: [
@@ -72,6 +82,12 @@ if(TARGET === 'start' || !TARGET) {
       new HtmlwebpackPlugin({
         title: APP_TITLE,
         template: 'app/templates/index.tpl'
+      }),
+      new OpenBrowserPlugin({
+        url: 'http://localhost:8080'
+        // 这里写要打开的浏览器名字，若不填，会打开默认浏览器
+        // Mac系统下可以选：Safari, Google Chrome, Firefox
+        // ,browser: 'Firefox'
       })
     ]
   });

@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var WorkIntroRow = require('./WorkIntroRow');
+import WorkIntroRow from './WorkIntroRow';
 
 var WorkIntroList = React.createClass({
   getDefaultProps: function() {
@@ -20,4 +20,4 @@ var WorkIntroList = React.createClass({
   }
 });
 
-module.exports = WorkIntroList;
+export {WorkIntroList as default};

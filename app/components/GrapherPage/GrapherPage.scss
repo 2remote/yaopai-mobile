@@ -1,0 +1,75 @@
+.grapherRow {
+  width: 100%;
+  position: relative;
+
+  a { display: block; }
+
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+  }
+
+  &:nth-child(odd)  .grapherAvatar { float: left; }
+  &:nth-child(even) .grapherAvatar { float: right; }
+}
+
+.grapherAvatar {
+  width: 50%;
+  margin-bottom: -7.9px;
+
+  img { width: 100%; }
+
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+
+
+.grapherPageIntro {
+  float: right;
+  position: relative;
+  width: 50%;
+}
+
+/*.grapherPageIntro:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+}*/
+
+
+.grapherIntroContainer {
+  width: 135px;
+  height: 135px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -65px;
+  margin-top: -69px;
+
+  >div:nth-child(1) { font-size: 1.3em; }
+
+  >:nth-child(5) {
+    position: relative;
+    /*top: -6px;*/
+  }
+
+  button {
+    border: 1px solid #232323;
+    padding: 7px 17px;
+    margin-left: 59px;
+    background-color: inherit;
+    font-size: 0.9em;
+  }
+}
+
+/*
+.grapherIntroContainer>div:nth-child(2) {
+  margin: -4px 0 5px 0;
+}*/

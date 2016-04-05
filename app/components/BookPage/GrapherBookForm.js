@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-import { Router, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 
 var BookForm = React.createClass({
   getInitialState: function() {
@@ -83,4 +83,4 @@ var BookForm = React.createClass({
   }
 });
 
-module.exports = BookForm;
+export {BookForm as default};

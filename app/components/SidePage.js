@@ -1,9 +1,9 @@
-var React = require('react');
+import React from 'react';
 
 import { Link, History,Location } from 'react-router';
 
-var UserActions = require('../actions/UserActions');
-require('./SidePage.css');
+import UserActions from '../actions/UserActions';
+import './SlidePage.scss';
 import SidePageIcon from './SidePageIcon';
 import {parseImageUrl} from './Tools';
 
@@ -16,7 +16,7 @@ var style={
     textAlign: 'center'
   },
   loginBox: {
-    position: 'relative',
+    position: 'relative'
   },
   logout:{
     position: 'absolute',
@@ -24,7 +24,7 @@ var style={
     right: '0px'
   },
   loginName: {
-    marginBottom: '15px',
+    marginBottom: '15px'
   },
   link:{
     lineHeight: '14px',
@@ -44,8 +44,8 @@ var style={
     margin:'0 0 0 10%'
   },
   commonIcon: {
-    marginTop: '15px',
-  },
+    marginTop: '15px'
+  }
 };
 
 
@@ -53,7 +53,7 @@ var SidePage = React.createClass({
   getInitialState: function() {
     return {
       visible: false,
-      isLogin : false,
+      isLogin : false
     };
   },
   show: function() {
@@ -126,7 +126,7 @@ var SidePage = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 });
 
-module.exports = SidePage;
+export {SidePage as default};

@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var DocumentTitle = require('react-document-title');
 
 import BookTicketRow from './BookTicketRow';
@@ -70,4 +70,6 @@ var ConfirmBookDialog = React.createClass({
   }
 });
 
-module.exports = ConfirmBookDialog;
+
+export {ConfirmBookDialog as default};
+

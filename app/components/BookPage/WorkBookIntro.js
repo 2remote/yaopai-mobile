@@ -1,7 +1,7 @@
-var React = require('react');
-const $ = require('jquery');
-
-import { GET_WORK_INTRO, imgModifier } from '../Tools';
+import React from 'react';
+import WeUI from 'react-weui';
+const { CellsTitle } = WeUI;
+import {imgModifier} from '../Tools';
 
 var BookIntro = React.createClass({
 
@@ -13,31 +13,32 @@ var BookIntro = React.createClass({
 
   render: function() {
     return (
-      <div 
-        style={{
-          paddingTop: 15,
-          backgroundImage: 'url(imgs/bookIntroBg.png)',
-          height: 140,
-          width: '87.2%',
-          margin: '0 auto 18px'
-        }}
-        className="bookIntro">
-        <span ref="currentTitle" >当前订单</span>
-        <div 
-          style={{margin: '-25px 0 19px'}}
-          className="splitLine" >
-          <img
-          src="imgs/common/spliter-line.png"
-          srcSet="imgs/common/spliter-line@2X.png 2x" />
-        </div>
-        <img 
-          style={{width:52}}
-          ref="grapherAvatar"
-          src={imgModifier(this.props.albums?this.props.albums.Cover:this.props.photographer.Avatar, "avatar")} />
-        <div ref="grapherName">{this.props.albums?this.props.albums.Title:this.props.photographer.NickName}</div>
+      <div>
+        <div style={{height:'1px'}}></div>
+        {/* 1. 套餐详情 */}
+        <CellsTitle>套餐详情</CellsTitle>
+
+        <section className="weui_panel">
+          <a href="javascript:void(0);" className="weui_media_box weui_media_appmsg">
+            <div className="weui_media_hd">
+              <img
+                className="weui_media_appmsg_thumb"
+                src={imgModifier(this.props.albums?this.props.albums.Cover:this.props.photographer.Avatar, "avatar")} />
+              />
+            </div>
+            <div className="weui_media_bd">
+              <h4 className="weui_media_title">
+                {this.props.albums.Title}
+              </h4>
+              <p className="weui_media_desc">
+                {this.props.albums ? '' : ` 摄影师：${this.props.photographer.NickName}`}
+              </p>
+            </div>
+          </a>
+        </section>
       </div>
     );
   }
 });
 
-module.exports = BookIntro;
+export {BookIntro as default};

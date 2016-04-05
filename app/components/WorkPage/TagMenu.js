@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var TagCol = React.createClass({
   getInitialState: function () {
@@ -101,4 +101,4 @@ var TagMenu = React.createClass({
     );
   }
 });
-module.exports = TagMenu;
+export {TagMenu as default};

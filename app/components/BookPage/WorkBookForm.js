@@ -1,8 +1,8 @@
-var React = require('react');
-var validator = require('validator');
-var Toaster = require('../Toast');
-
-import { Router, Route, Link } from 'react-router';
+import React from 'react';
+import validator from 'validator';
+import Toaster from '../Toast';
+import WeUI from 'react-weui';
+const { CellsTitle } = WeUI;
 
 var BookForm = React.createClass({
   getDefaultProps: function () {
@@ -27,62 +27,41 @@ var BookForm = React.createClass({
       lineHeight: '19px',
       borderWidth: '0 0 2px',
       borderRadius: 0,
-      borderColor: 'transparent transparent #c4c4c4',
+      borderColor: 'transparent transparent #c4c4c4'
     };
     return (
-      <div className="bookForm" style={{textAlign : 'center'}}>
+      <div>
         <Toaster ref="toast"/>
+        <CellsTitle>预约信息</CellsTitle>
         <form ref="bookForm" >
-          <div>
-            <span 
-              className="icon name_icon"
-              style={iconStyle}
-              ref="nameImage" />
-            <input 
-              style={inputStyle}
-              ref="bookName"
-              type="text" 
-              placeholder="填写预约姓名" />
+          <div className="weui_cell bg_white">
+            <div className="weui_cell_hd"><label className="weui_label">姓名</label></div>
+            <div className="weui_cell_bd weui_cell_primary">
+              <input ref="bookName" className="weui_input" type="text" placeholder="填写预约姓名" />
+            </div>
           </div>
-          <div>
-            <span 
-              className="icon phone_icon" 
-              style={iconStyle}
-              ref="phoneImage" />
-            <input 
-              style={inputStyle}
-              ref="bookPhone"
-              type="text" 
-              placeholder="填写预约电话" />
+          <div className="weui_cell bg_white">
+            <div className="weui_cell_hd"><label className="weui_label">电话</label></div>
+            <div className="weui_cell_bd weui_cell_primary">
+              <input ref="phoneImage" className="weui_input" type="number" pattern="[0-9]*" placeholder="填写预约电话" />
+            </div>
           </div>
-          <div>
-            <span
-              className="icon calendar_icon"
-              style={iconStyle}
-              ref="dateImage" />
-            <input 
-              style={inputStyle}
-              ref="bookDate"
-              type="date" 
-              defaultValue={this.props.userInput}
-              placeholder="选择拍照日期" />
+          <div className="weui_cell bg_white">
+            <div className="weui_cell_hd"><label className="weui_label">日期</label></div>
+            <div className="weui_cell_bd weui_cell_primary">
+              <input ref="bookDate" className="weui_input" defaultValue={this.props.userInput} type="date" placeholder="选择拍照日期" />
+            </div>
           </div>
-          <div 
-            style={{  
-              width: 126,
-              height: 37,
-              border: '2px solid',
-              margin: '54px auto 0',
-              borderRadius: '30px',
-              borderColor: '#3c3c3c',
-              fontSize: '1.3334em',
-              backgroundColor: 'inherit',
-              color: '#3c3c3c'
-            }}
-            className="active-item"
-            ref="bookButton"
-            onClick={this.handleSubmit} >
-            {this.props.subValue}
+
+          <CellsTitle>备注</CellsTitle>
+          <div className="weui_cell weui_panel bg_white">
+            <div className="weui_cell_bd weui_cell_primary">
+              <textarea ref="bookComment" maxLength="50" className="weui_textarea" placeholder="请输入评论" rows="3"/>
+            </div>
+          </div>
+
+          <div className="weui_btn_area" onClick={this.handleSubmit} >
+            <button type="button" className="weui_btn weui_btn_primary">{this.props.subValue}</button>
           </div>
         </form>
       </div>
@@ -92,10 +71,9 @@ var BookForm = React.createClass({
     e.preventDefault();
     // 获得用户输入
     const BuyerName     = this.refs.bookName.value.trim();
-    const BuyerTel      = this.refs.bookPhone.value.trim();
+    const BuyerTel      = this.refs.phoneImage.value.trim();
     const AppointedTime = this.refs.bookDate.value.trim();
-    console.log();
-    console.log();
+    const BuyerMemo     = this.refs.bookComment.value.trim();
     if (!BuyerName) {
       this.showMessage('请填写预约姓名');
       return;
@@ -115,9 +93,9 @@ var BookForm = React.createClass({
     // console.log('预约信息', {BuyerName, BuyerTel, AppointedTime});
 
     // 网络存储
-    this.props.onSubmit({BuyerName, BuyerTel, AppointedTime});
+    this.props.onSubmit({BuyerName, BuyerTel, AppointedTime, BuyerMemo});
   }
 
 });
 
-module.exports = BookForm;
+export {BookForm as default};

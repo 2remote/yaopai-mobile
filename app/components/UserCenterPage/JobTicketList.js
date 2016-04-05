@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 import JobTicketRow  from './JobTicketRow' ;
 
@@ -21,4 +21,4 @@ var JobTicketList = React.createClass({
   }
 });
 
-module.exports = JobTicketList;
+export {JobTicketList as default};

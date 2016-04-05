@@ -1,11 +1,11 @@
-var Reflux = require('reflux');
-var HttpFactory = require('../HttpFactory');
-var API = require('../api');
+import Reflux from 'reflux';
+import HttpFactory from '../HttpFactory';
+import API from '../api';
 
 
 var GetCodeActions = Reflux.createActions({
   'sendTelRegister' : {children:["success","failed"]},
-  'sendTelRestPassword': {children: ["success", "failed"]},
+  'sendTelRestPassword': {children: ["success", "failed"]}
   // Here you can list your actions
 });
 
@@ -30,4 +30,4 @@ GetCodeActions.sendTelRestPassword.listen(function (data) {
 });
 
 
-module.exports = GetCodeActions;
+export {GetCodeActions as default};

@@ -1,5 +1,5 @@
-var React = require('react');
-var Tappable = require('react-tappable');
+import React from 'react';
+import Tappable from 'react-tappable';
 
 var ExtraServiceBox = React.createClass({
   getDefaultProps: function() {
@@ -76,8 +76,6 @@ var ExtraServiceBox = React.createClass({
       </div>
     );
   }
-
-
 });
 
-module.exports = ExtraServiceBox;
+export {ExtraServiceBox as default};

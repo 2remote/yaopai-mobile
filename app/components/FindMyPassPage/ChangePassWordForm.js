@@ -1,10 +1,10 @@
-var React = require('react');
-var Reflux = require('reflux')
-var DocumentTitle = require('react-document-title');
-var Toaster = require('../Toast');
+import React from 'react';
+import Reflux from 'reflux';
+import DocumentTitle from 'react-document-title';
+import Toaster from '../Toast';
 import {History} from 'react-router';
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 
 var ChangePassWordForm = React.createClass({
   mixins: [Reflux.listenTo(UserStore, '_onPdSubmit'),History],
@@ -91,4 +91,4 @@ var ChangePassWordForm = React.createClass({
   }
 });
 
-module.exports = ChangePassWordForm;
+export {ChangePassWordForm as default};

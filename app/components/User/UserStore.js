@@ -1,6 +1,6 @@
-var React = require('react');
-var Reflux = require('reflux');
-var UserAction = require('./UserAction');
+import React from 'react';
+import Reflux from 'reflux';
+import UserAction from './UserAction';
 
 var UserStore = Reflux.createStore({
   currentUser : {

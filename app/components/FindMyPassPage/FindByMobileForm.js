@@ -1,13 +1,13 @@
-var React = require('react');
-var Reflux = require('reflux');
-var GetCodeActions = require('../../actions/GetCodeActions');
-var GetCodeStore = require('../../stores/GetCodeStore');
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
-var Toaster = require('../Toast');
-var validator = require('validator');
+import React from 'react';
+import Reflux from 'reflux';
+import GetCodeActions from'../../actions/GetCodeActions';
+import GetCodeStore from'../../stores/GetCodeStore';
+import UserActions from'../../actions/UserActions';
+import UserStore from'../../stores/UserStore';
+import Toaster from'../Toast';
+import validator from'validator';
 import {History} from 'react-router';
-var DocumentTitle = require('react-document-title');
+import DocumentTitle from 'react-document-title';
 
 var FindByMobileForm = React.createClass({
   mixins: [Reflux.listenTo(GetCodeStore, '_onGetCodeStoreChange'),
@@ -15,7 +15,7 @@ var FindByMobileForm = React.createClass({
   History],
   getInitialState: function () {
     return {
-      codeLeft: 0,
+      codeLeft: 0
     }
   },
   _onGetCodeStoreChange: function (data) {
@@ -171,4 +171,4 @@ var FindByMobileForm = React.createClass({
   }
 });
 
-module.exports = FindByMobileForm;
+export {FindByMobileForm as default};

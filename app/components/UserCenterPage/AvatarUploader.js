@@ -1,12 +1,12 @@
-var React = require ('react');
-var API = require('../../api');
+import React from 'react';
+import API from '../../api';
 
-var _ = require('underscore');
+import _ from 'underscore';
 
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 import {History,Location} from 'react-router';
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 import {Button, Toast} from 'react-weui';
 import {parseImageUrl} from '../Tools';
 
@@ -57,7 +57,7 @@ var AvatarUploader = React.createClass({
 
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({netxPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       //得到当前用户的预约订单
       this.setState({userInfo : data})
@@ -173,4 +173,4 @@ var AvatarUploader = React.createClass({
   }
 });
 
-module.exports = AvatarUploader;
+export {AvatarUploader as default};

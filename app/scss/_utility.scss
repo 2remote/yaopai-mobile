@@ -1,0 +1,89 @@
+/*Todo 背景色是用原本的#f9f9f9; 还是直接覆盖掉?
+ *
+body {
+  background: #eee !important;
+}
+*/
+
+.yp_label {
+  display: block;
+  max-width: 5em;
+  margin-right: 1em;
+  font-size: 14px;
+}
+
+.yp_label_fix {
+  display: block;
+  width: 5em;
+  margin-right: 1em;
+}
+
+/*订单右上角符号*/
+.top_right_icon {
+  position: absolute;
+  right: 16px;
+  top: 15px;
+}
+
+.yp_media_box {
+  @include flex;
+  padding: 5px 15px;
+
+  > .flex_spring {
+    @include flex_1;
+  }
+
+  a:not(.weui_btn_dialog) {
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+  }
+}
+
+.font_biggest { font-size: 22px; }
+.font_super   { font-size: 18px; }
+.font_large   { font-size: 16px; }
+.font_medium  { font-size: 14px; }
+.font_small   { font-size: 12px; }
+
+/* font colors */
+.color_red       { @include font_color($red) }
+.color_green     { @include font_color($green) }
+.color_lightgray { @include font_color($light_gray) }
+.color_gray      { @include font_color($gray) }
+.color_dark      { @include font_color($dark) }
+.color_white     { @include font_color(white) }
+
+/* background colors */
+.bg_red          { @include bg_color($red) }
+.bg_green        { @include bg_color($green) }
+.bg_lightgray    { @include bg_color($light_gray) }
+.bg_gray         { @include bg_color($gray) }
+.bg_dark         { @include bg_color($dark) }
+.bg_white         { @include bg_color(white) }
+
+/* text align */
+.text_center { text-align: center; }
+.text_left   { text-align: left; }
+.text_right  { text-align: right; }
+
+/*float*/
+.fl { float: left; }
+.fr { float: right; }
+
+.separator {
+  display: block;
+  margin: 0 15px;
+  padding: 0;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.align_items_start { @include flex_align(start) }
+
+/* aside */
+.footer {
+  display: block;
+  padding: 15px;
+}

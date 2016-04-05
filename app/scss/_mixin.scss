@@ -1,0 +1,50 @@
+@mixin flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex_1 {
+  -webkit-box-flex: 1;
+          box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+
+@mixin font_color($color) { color: $color !important; }
+@mixin bg_color($color)   { background-color: $color; }
+
+/*flex模块*/
+@mixin justify_content_space_around {
+  -webkit-box-pack:justify;
+          box-pack:justify;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+}
+
+@mixin flex_align($direction) {
+  -webkit-box-align: $direction;
+          box-align: $direction;
+  @if $direction == start {
+    -webkit-align-items: flex- + $direction;
+            align-items: flex- + $direction;
+  } @else if $direction == end {
+    -webkit-align-items: flex- + $direction;
+            align-items: flex- + $direction;
+  } @else {
+    -webkit-align-items: $direction;
+            align-items: $direction;
+  }
+}
+
+/*箭头向右的三角形*/
+@mixin triangle_right ($size, $color){
+  content: '';
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  border-bottom: $size solid transparent;
+  border-top: $size solid transparent;
+  border-left: $size solid $color;
+}

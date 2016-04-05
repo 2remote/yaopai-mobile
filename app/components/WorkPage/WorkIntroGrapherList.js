@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var WorkIntroGrapherRow = require('./WorkIntroGrapherRow');
+import WorkIntroGrapherRow from './WorkIntroGrapherRow';
 
 var WorkIntroGrapherList = React.createClass({
   getDefaultProps: function() {
@@ -56,4 +56,4 @@ var WorkIntroGrapherList = React.createClass({
   }
 });
 
-module.exports = WorkIntroGrapherList;
+export {WorkIntroGrapherList as default};

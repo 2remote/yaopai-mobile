@@ -1,19 +1,19 @@
-var React = require('react');
-var Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 import { Router, Route, Link } from 'react-router';
-var DocumentTitle = require('react-document-title');
-var $ = require('jquery');
+import DocumentTitle from 'react-document-title';
+import $ from 'jquery';
 
-var ActivityActions = require('../../actions/ActivityActions');
-var ActivityStore = require('../../stores/ActivityStore');
+import ActivityActions from '../../actions/ActivityActions';
+import ActivityStore from '../../stores/ActivityStore';
 
-var ActivityList = require('./ActivityList');
+import ActivityList from './ActivityList';
 
-var HamburgMenu = require('../HamburgMenu');
-var AutoLoadPageMixin = require('../AutoLoadPageMixin');
+import HamburgMenu from '../HamburgMenu';
+import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_ACTIVITIES, TITLE } from '../Tools';
-var WechatShare = require('../Weixin/WechatShare');
-var Toaster = require('../Toast');
+import WechatShare from '../Weixin/WechatShare';
+import Toaster from '../Toast';
 
 var ActivityPage = React.createClass({
   mixins : [Reflux.listenTo(ActivityStore,'_onActivityStoreChange') ,AutoLoadPageMixin],
@@ -22,7 +22,7 @@ var ActivityPage = React.createClass({
       pageIndex : 1,
       pageCount :0,
       total : 0,
-      Activitys: [],
+      Activitys: []
     };
   },
   getDefaultProps: function() {
@@ -44,7 +44,7 @@ var ActivityPage = React.createClass({
     }
   },
   onChangePage : function (pageIndex) {
-    this.onShowToast('努力加载中...')
+    this.onShowToast('努力加载中...');
     ActivityActions.search(pageIndex);
   },
   render: function() {
@@ -61,4 +61,4 @@ var ActivityPage = React.createClass({
     );
   }
 });
-module.exports = ActivityPage;
+export {ActivityPage as default};

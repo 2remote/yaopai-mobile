@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var CallBox = React.createClass({
   render: function() {
@@ -16,4 +16,4 @@ var CallBox = React.createClass({
   }
 });
 
-module.exports = CallBox;
+export {CallBox as default};

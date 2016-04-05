@@ -1,26 +1,10 @@
-var React = require('react');
-var Router = require('react-router');
-var History = Router.History;
-var Location = Router.Location;
-var Reflux = require('reflux');
-var DocumentTitle = require('react-document-title');
-var HamburgMenu = require('../HamburgMenu');
-const $ = require('jquery');
-var localStorage = require('web-storage')().localStorage;
-
-var UserActions = require('../../actions/UserActions');
-var UserStore = require('../../stores/UserStore');
-var OrderActions = require('../../actions/OrderActions');
-var OrderStore = require('../../stores/OrderStore');
-var AlbumsStore = require('../../stores/AlbumsStore');
-var AlbumsActions = require('../../actions/AlbumsActions');
-var PhotographerActions = require('../../actions/PhotographerActions');
-var PhotographerStore = require('../../stores/PhotographerStore');
+import React from 'react';
+import DocumentTitle from 'react-document-title';
+import HamburgMenu from '../HamburgMenu';
 
 import BookIntro from './WorkBookIntro';
 import BookForm from './WorkBookForm';
 
-import { BOOK_A_WORK, GET_WORK_INTRO } from '../Tools';
 
 var BookPage = React.createClass({
   render: function() {
@@ -41,7 +25,7 @@ var BookPage = React.createClass({
         </div>
       </DocumentTitle>
     );
-  },
+  }
 });
 
-module.exports = BookPage;
+export {BookPage as default};

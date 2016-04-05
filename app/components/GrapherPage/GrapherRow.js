@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 import { Router, Route, Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
@@ -72,4 +72,4 @@ var GrapherRow = React.createClass({
   }
 });
 
-module.exports = GrapherRow;
+export {GrapherRow as default};

@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require ('react');
-var Header = require('./Header/Header');
-var MainContent = require('./Content/MainContent');
+import React from 'react';
+import Header from './Header/Header';
+import MainContent from './Content/MainContent';
 
 var Main = React.createClass({
   render(){
@@ -15,4 +15,4 @@ var Main = React.createClass({
   }
 });
 
-module.exports = Main;
+export {Main as default};

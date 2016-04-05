@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var WorkTitle = React.createClass({
   getDefaultProps: function() {
@@ -29,4 +29,4 @@ var WorkTitle = React.createClass({
   }
 });
 
-module.exports = WorkTitle;
+export {WorkTitle as default};

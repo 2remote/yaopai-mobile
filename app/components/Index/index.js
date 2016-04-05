@@ -1,26 +1,26 @@
-var React = require('react');
-var Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 import { Router, Route, Link } from 'react-router';
 
-var ReactSwipe = require('react-swipe');
-var DocumentTitle = require('react-document-title');
-var UserActions = require('../../actions/UserActions');
-var PhotographerActions = require('../../actions/PhotographerActions');
-var PhotographerStore = require('../../stores/PhotographerStore');
-var AdActions = require('../../actions/AdActions');
-var AdStore = require('../../stores/AdStore');
-require('./index.css');
+import ReactSwipe from 'react-swipe';
+import DocumentTitle from 'react-document-title';
+import UserActions from '../../actions/UserActions';
+import PhotographerActions from '../../actions/PhotographerActions';
+import PhotographerStore from '../../stores/PhotographerStore';
+import AdActions from '../../actions/AdActions';
+import AdStore from '../../stores/AdStore';
+import './index.scss';
 import { TITLE } from '../Tools';
 
-var HamburgMenu = require('../HamburgMenu');
-var ImageBoxGrid = require('./ImageBoxGrid');
+import HamburgMenu from '../HamburgMenu';
+import ImageBoxGrid from './ImageBoxGrid';
 import Slider from './Slider';
-var WechatShare = require('../Weixin/WechatShare');
+import WechatShare from '../Weixin/WechatShare';
 
 var Index = React.createClass({
   mixins : [
     Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'),
-    Reflux.listenTo(AdStore,'_onAdStoreChange'),
+    Reflux.listenTo(AdStore,'_onAdStoreChange')
   ],
   getInitialState: function() {
     return {
@@ -145,4 +145,4 @@ var Index = React.createClass({
   }
 });
 
-module.exports = Index;
+export {Index as default};
