@@ -56,7 +56,7 @@ var BookForm = React.createClass({
           <CellsTitle>备注</CellsTitle>
           <div className="weui_cell weui_panel bg_white">
             <div className="weui_cell_bd weui_cell_primary">
-              <textarea ref="bookComment" maxLength="200" className="weui_textarea" placeholder="请输入评论" rows="3"/>
+              <textarea ref="bookComment" maxLength="50" className="weui_textarea" placeholder="请输入评论" rows="3"/>
             </div>
           </div>
 
@@ -73,7 +73,7 @@ var BookForm = React.createClass({
     const BuyerName     = this.refs.bookName.value.trim();
     const BuyerTel      = this.refs.bookPhone.value.trim();
     const AppointedTime = this.refs.bookDate.value.trim();
-    const Remarks       = this.refs.bookComment.value.trim();
+    const BuyerMemo     = this.refs.bookComment.value.trim();
     if (!BuyerName) {
       this.showMessage('请填写预约姓名');
       return;
@@ -93,7 +93,7 @@ var BookForm = React.createClass({
     // console.log('预约信息', {BuyerName, BuyerTel, AppointedTime});
 
     // 网络存储
-    this.props.onSubmit({BuyerName, BuyerTel, AppointedTime, Remarks});
+    this.props.onSubmit({BuyerName, BuyerTel, AppointedTime, BuyerMemo});
   }
 
 });
