@@ -22,14 +22,17 @@
   text-align: center;
 }
 
+/* 覆盖weui原始Tab栏的样式
+ *
+ */
 .weui_bar_item_on {
-  border-bottom:2px solid #0bb20c;
+  border-bottom: 2px solid #0bb20c;
 }
 
-.weui_bar_item_on a{
+.weui_bar_item_on a {
   color: #0bb20c!important;
 }
 
-.weui_navbar_item:after{
-  border-right:0;
+.weui_navbar_item:after {
+  border-right: 0;
 }
