@@ -2,8 +2,6 @@ import React from 'react';
 import validator from 'validator';
 import Toaster from '../Toast';
 
-import { Router, Route, Link } from 'react-router';
-
 var BookForm = React.createClass({
   getDefaultProps: function () {
     var nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toJSON().slice(0,10);
