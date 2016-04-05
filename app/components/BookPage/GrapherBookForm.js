@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Router, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 
 var BookForm = React.createClass({
   getInitialState: function() {

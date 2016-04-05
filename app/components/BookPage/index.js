@@ -4,9 +4,6 @@ var History = Router.History;
 var Location = Router.Location;
 import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
-import HamburgMenu from '../HamburgMenu';
-import $ from 'jquery';
-var localStorage = require('web-storage')().localStorage;
 
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
@@ -20,8 +17,6 @@ import Toaster from '../Toast';
 
 import BookIntro from './WorkBookIntro';
 import BookForm from './WorkBookForm';
-
-import { BOOK_A_WORK, GET_WORK_INTRO } from '../Tools';
 
 var BookPage = React.createClass({
   getInitialState : function () {
@@ -123,17 +118,8 @@ var BookPage = React.createClass({
     }
     return (
       <DocumentTitle title="作品预约">
-        <div
-          style={{
-            textAlign: 'center',
-            position: 'absolute',
-            width: '100%',
-            minHeight: '100%',
-            backgroundImage:'url(imgs/bookPageBg.png)'
-          }}
-          className="bookPage">
+        <div>
           <Toaster ref="toast"/>
-          <HamburgMenu />
           {bookInfo}
           <BookForm onSubmit={this.HandleBookWorkFormSubmit} subValue="提交订单"/>
         </div>

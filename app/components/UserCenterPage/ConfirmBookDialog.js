@@ -70,4 +70,6 @@ var ConfirmBookDialog = React.createClass({
   }
 });
 
-module.exports = ConfirmBookDialog;
+
+export {ConfirmBookDialog as default};
+
