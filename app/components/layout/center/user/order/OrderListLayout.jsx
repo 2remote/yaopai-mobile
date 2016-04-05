@@ -53,6 +53,24 @@ class OrderListLayout extends React.Component {
         if(OrderStatus.parse(order.State) !== this.state.filterType) return;
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>;
       });
+      if(theRealList[0]==undefined){
+        return (
+            <section className="text_center" >
+              <div style={{ padding:'50px 0px' }}>
+                <i className="weui_icon_msg weui_icon_waiting" ></i>
+                <p>暂无数据</p>
+              </div>
+              <div style={{
+                     padding: '20px 15px 10px',
+                     fontSize: '12px'
+                   }}
+                   className="color_gray text_center">
+                  温馨提示：交易过程中如有异常<br />
+                  请拨打客服热线：<a className="color_green" href="tel:0371-65337727">0371-65337727</a>
+              </div>
+            </section>
+        );
+      }
     }
     return (
       <div>
