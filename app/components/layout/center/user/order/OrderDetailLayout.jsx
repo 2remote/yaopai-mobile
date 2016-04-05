@@ -41,6 +41,7 @@ class OrderDetailLayout extends React.Component{
         CompleteTime:'',
         BuyerMemo:''
       },
+      user: {},
       success: false
     };
   }
@@ -55,6 +56,9 @@ class OrderDetailLayout extends React.Component{
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       OrderActions.get(this.props.params.id);
+      this.setState({
+        user: user
+      });
     }
   }
 
@@ -75,7 +79,7 @@ class OrderDetailLayout extends React.Component{
         app_id: 'app_HOmP4CHinvvL9Kyv', //Ping++ 后台中的应用Id
         amount: 0,    //金额请填写0
         channel: ['alipay_wap', 'wx_pub', 'upacp_wap'],//渠道数组,视情况而定
-        charge_url: `${API.ORDER.pay}${getCookie('pingToken')}`, //token地址
+        charge_url: `${API.ORDER.pay}${self.state.user.pingToken}`, //token地址
         charge_param: {
           'callback': `#/center/u/order/submit/${self.state.order.Id}/result`,
           'orderId': self.state.order.Id
