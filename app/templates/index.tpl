@@ -66,7 +66,7 @@
         left: 50%;
         top: 50%; }
     </style>
-    <link rel="stylesheet" href="imgs/css/weui.min.css"/>
+    <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/0.4.0/weui.min.css"/>
     <script type="text/javascript" src="/imgs/ua-parser.min.js"></script>
 
     <!--上传图片dev脚本
@@ -90,6 +90,7 @@
     {% for (var css in o.htmlWebpackPlugin.files.css) { %}
     <link href="{%=o.htmlWebpackPlugin.files.css[css]%}" ref="stylesheet">
     {% } %}
+    
   </head>
   <body>
     <script type="text/javascript">

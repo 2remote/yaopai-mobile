@@ -22,7 +22,7 @@ var BookForm = React.createClass({
       lineHeight: '19px',
       borderWidth: '0 0 2px',
       borderRadius: 0,
-      borderColor: 'transparent transparent #c4c4c4',
+      borderColor: 'transparent transparent #c4c4c4'
     };
     return (
       <div className="bookForm">
@@ -76,7 +76,7 @@ var BookForm = React.createClass({
               className="active-item"
               ref="bookButton"
               type="submit" value="提交订单" />
-            </Link>
+          </Link>
         </form>
       </div>
     );
