@@ -38,19 +38,11 @@ import GrapherCenterPage from './components/UserCenterPage/GrapherCenterPage';
 import GrapherTicketsPage from './components/UserCenterPage/GrapherTicketsPage';
 import GrapherBookSuccessDialog from './components/BookPage/GrapherBookSuccessDialog';
 import ConfirmBookDialog from './components/UserCenterPage/ConfirmBookDialog';
-import SidePage from './components/SidePage';
 import ViewOrder from './components/UserCenterPage/ViewOrder';
-
-import GrapherIndex from './components/Center/Grapher/Index';
-import GrapherUpdate from './components/Center/Grapher/Update/Update';
-import GrapherOrder from './components/Center/Grapher/Order';
-import OrderList from './components/Center/Grapher/OrderList';
 
 // imports UserCenter for User
 import UserOrderTabLayout from './components/layout/center/user/order/OrderTabLayout.jsx';
-import UserOrderListLayout from './components/layout/center/user/order/OrderListLayout.jsx';
 import UserOrderDetailLayout from './components/layout/center/user/order/OrderDetailLayout.jsx';
-import UserOrderSubmitLayout from './components/layout/center/user/order/OrderSubmitLayout.jsx';
 import UserOrderSubmitResultLayout from './components/layout/center/user/order/OrderSubmitResultLayout.jsx';
 import UserOrderRefundLayout from './components/layout/center/user/order/OrderRefundLayout.jsx';
 
@@ -60,7 +52,6 @@ import GrapherOrderDetailLayout from './components/layout/center/grapher/order/O
 // imports purse for Grapher
 import PurseLayout from './components/layout/center/grapher/purse/PurseLayout.jsx';
 import PurseTabLayout from './components/layout/center/grapher/purse/PurseTabLayout';
-import PurseDetailListLayout from './components/layout/center/grapher/purse/PurseListLayout.jsx';
 import PurseDetailLayout from './components/layout/center/grapher/purse/PurseDetailLayout.jsx';
 
 //绑定支付宝 提现
@@ -116,7 +107,7 @@ function main(){
             <Route path="order">
               <IndexRoute component={UserOrderTabLayout} />
               <Route path="submit/:id">
-                <IndexRoute component={UserOrderSubmitLayout}/>
+                <IndexRoute  component={UserOrderDetailLayout}/>
                 <Route path="result" component={UserOrderSubmitResultLayout}/>
               </Route>
             </Route>
