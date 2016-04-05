@@ -122,14 +122,6 @@ var UserStore = Reflux.createStore({
     //测试本地须转换JSON，集成测试后不需要
     //data = eval("(" + data + ")");
     if (data.Success) {
-      // console.log('onLoginSuccess and return success', this.data, data);
-      function setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires="+d.toUTCString();
-        document.cookie = cname + "=" + cvalue + "; " + expires;
-      }
-      setCookie('pingToken', data.SessionToken, 1);
       this.setCurrentUser(data.User);
       assert(this.data.flag != 'login', 'flag is changed after setCurrentUser');
       //用户登录成功，需要获得用户信息
@@ -344,6 +336,7 @@ var UserStore = Reflux.createStore({
       this.data.userType = '';
       this.data.avatar = '';
       this.data.loginDate = '';
+      this.data.pingToken = '';
     } else {
       var areaId = 0;
       // ProvinceId, CityId and CountyId are in same hash table(number=>name) 
@@ -366,6 +359,7 @@ var UserStore = Reflux.createStore({
       this.data.local = data.Local;
       this.data.isLogin = true;
       this.data.loginDate = new Date();
+      this.data.pingToken = data.SessionToken;
     }
     this.trigger(this.data);
   },
