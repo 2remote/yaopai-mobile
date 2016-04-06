@@ -93,7 +93,9 @@ class OrderDetailLayout extends React.Component{
           //alert('charge ' + res.chargeUrlOutput);
         }
         if(!res.status) { // 付款失败，处理错误
-          alert('付款失败，请稍后再试');
+          // alert('付款失败，请稍后再试');
+          // shows the exact error message
+          alert(res.msg);
         } else { // 付款成功
           //debug 模式下调用 charge_url 后会暂停，可以调用 pingpp_one.resume 方法继续执行
           if(res.debug&&!res.wxSuccess){
@@ -139,7 +141,7 @@ class OrderDetailLayout extends React.Component{
       <div>
         <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
 
-        <div className="OrderDetailLayout" style={this.state.success ? {display: 'block'} : {display: 'none'}}>
+        <div className="OrderDetailLayout" >
           <CellsTitle>支付流程说明</CellsTitle>
           <section className="icon_box font_small color_gray">
             <div><i className="icon order_icon" /><br/>提单
