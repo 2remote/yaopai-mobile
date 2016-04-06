@@ -57,6 +57,7 @@ class OrderListLayout extends React.Component {
         if (OrderStatus.parse(order.State) !== this.state.filterType) return;
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>;
       });
+      console.log(theRealList);
       //判断列表是否为空
       let num = 0;
       for (let item of theRealList) {
