@@ -13,14 +13,6 @@ import UserFundStore from '../../../../../stores/UserFundStore';
 
 import YPUIPurseCard from '../../../../UI/YPUIPurseCard.jsx';
 
- /*
-  Id: 2,  //Id
-  Amount: 33.33, //正负金额
-  CreationTime: "0001-01-01T00:00:00",    //创建时间
-  AssociatedId: "123543653",    //关联Id
-  FundsType: "Order", //用户流水类型 , 详情见备注
- */
-
 class PurseListLayout extends React.Component {
   constructor() {
     super();
@@ -54,11 +46,9 @@ class PurseListLayout extends React.Component {
   }
 
   render() {
-    let accountList;
     let accountDataList = [];
-    if(!this.state.success) {
-      accountList = <LoadingToast />;
-    } else {
+    let accountList;
+    if(this.state.success) {
       accountDataList = WhichAccount(this.state.filterType, this.state.list);
       accountList = accountDataList.map((account, index) => {
         return <YPUIPurseCard
@@ -69,16 +59,28 @@ class PurseListLayout extends React.Component {
                   key={index}
               />;
       });
+
+      //判断列表是否为空
+      let isOrderNUll = true;
+      for (let item of accountList) {
+        if (item !== undefined) isOrderNUll = false;
+      }
+      //列表为空时渲染内容
+      if (isOrderNUll) {
+        accountList =
+          <section className="text_center">
+            <div style={{ padding:'50px 0px' }}>
+              <i className="weui_icon_msg weui_icon_waiting"/>
+              <p>暂无数据</p>
+            </div>
+          </section>
+      }
     }
     return (
       <div>
+        {this.state.success ? '' : <LoadingToast />}
         { accountList }
-        <aside
-          style={{
-            padding: '20px 15px 10px',
-            fontSize: '12px'
-          }}
-          className="color_gray text_center">
+        <aside className="color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />
           请拨打客服热线：<a className="color_green" href="tel:0371-65337727">0371-65337727</a>
         </aside>
