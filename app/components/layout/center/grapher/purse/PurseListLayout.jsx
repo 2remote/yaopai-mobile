@@ -61,12 +61,14 @@ class PurseListLayout extends React.Component {
       });
 
       //判断列表是否为空
-      let isOrderNUll = true;
-      for (let item of accountList) {
-        if (item !== undefined) isOrderNUll = false;
-      }
+      let isOrderNull = true;
+
+      accountList.map((orderData) => {
+        if (orderData !== undefined) isOrderNull = false;
+      });
+      
       //列表为空时渲染内容
-      if (isOrderNUll) {
+      if (isOrderNull) {
         accountList =
           <section className="text_center">
             <div style={{ padding:'50px 0px' }}>
