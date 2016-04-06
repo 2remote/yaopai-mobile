@@ -51,16 +51,12 @@ class OrderListLayout extends React.Component {
   render() {
     let theRealList;
     if (this.state.success) {
+      let isOrderNUll = true;
       theRealList = this.state.orders.map((order, index) => {
         if (OrderStatus.parse(order.State) !== this.state.filterType) return;
+        isOrderNUll = false;
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>;
       });
-      
-       //判断列表是否为空
-      let isOrderNUll = true;
-      for (let item of theRealList) {
-        if (item !== undefined) isOrderNUll = false;
-      }
       //列表为空时渲染内容
       if (isOrderNUll) {
         theRealList =
