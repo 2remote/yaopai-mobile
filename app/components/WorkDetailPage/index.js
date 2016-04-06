@@ -1,6 +1,5 @@
 import React from 'react';
 import Reflux from 'reflux';
-import $ from 'jquery';
 import DocumentTitle from 'react-document-title';
 
 import WorkTitle from './WorkTitle';
@@ -83,7 +82,7 @@ var WorkDetailPage = React.createClass({
             }}>
           </div>
           <div 
-            style={{color:'#a7a7a7',marginBottom:-8}}>
+            style={{color:'#a7a7a7', marginBottom:-8, paddingLeft:15, paddingRight:15}}>
             {this.state.data.Service}
           </div>
           <img
