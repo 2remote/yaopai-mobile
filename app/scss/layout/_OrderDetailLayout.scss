@@ -34,6 +34,7 @@
       &:last-child {
         width: 70%;
         height: 60px;
+        float: right;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;

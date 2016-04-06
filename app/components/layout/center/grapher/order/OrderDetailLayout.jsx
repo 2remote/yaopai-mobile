@@ -54,7 +54,7 @@ class OrderDetailLayout extends React.Component{
       <div>
         <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
 
-        <div className="OrderDetailLayout" style={this.state.success ? {display: 'block'} : {display: 'none'}}>
+        <div className="OrderDetailLayout">
           <div className="weui_cells_title">支付流程说明</div>
           <section className="icon_box font_small color_gray">
             <div><i className="icon order_icon" /><br/>提单

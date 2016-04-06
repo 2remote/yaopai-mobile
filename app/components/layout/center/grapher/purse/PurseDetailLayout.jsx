@@ -80,7 +80,7 @@ class PurseDetailLayout extends React.Component {
       <div>
         <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
 
-        <div className="PurseDetailLayout" style={this.state.success ? {display: 'block'} : {display: 'none'}}>
+        <div className="PurseDetailLayout" >
           <div className="weui_cells_title">账单详情</div>
           <article className="ypui_detail_box color_gray">
             <p className="ypui_detail_title">
