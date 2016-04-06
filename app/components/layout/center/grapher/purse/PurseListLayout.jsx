@@ -80,7 +80,7 @@ class PurseListLayout extends React.Component {
       <div>
         {this.state.success ? '' : <LoadingToast />}
         { accountList }
-        <aside className="color_gray text_center font_small">
+        <aside className="footer color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />
           请拨打客服热线：<a className="color_green" href="tel:0371-65337727">0371-65337727</a>
         </aside>
