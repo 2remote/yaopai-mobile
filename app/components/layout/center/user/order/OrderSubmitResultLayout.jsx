@@ -121,7 +121,7 @@ class OrderSubmitResultLayout extends React.Component {
             <label className="yp_label font_medium color_gray">预约人</label>
           </div>
           <div className="weui_cell_bd weui_cell_primary font_medium color_gray">
-            这里是服务内容描述这里是服务内容描述这里是服务内容描述这里是服务内容描述这里是服务内容描述这里是服务内容描述这里是服务内容描述这里是服务内容描述这里是服务内容描述这里是服
+            {Albums.Service}
           </div>
         </div>
       </div>
