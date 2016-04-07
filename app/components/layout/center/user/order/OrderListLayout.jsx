@@ -61,7 +61,7 @@ class OrderListLayout extends React.Component {
       if (isOrderNull) {
         theRealList =
           <section className="text_center">
-            <div style={{ padding:'50px 0px' }}>
+            <div style={{ padding:'50px 0' }}>
               <i className="weui_icon_msg weui_icon_waiting"/>
               <p>暂无数据</p>
             </div>

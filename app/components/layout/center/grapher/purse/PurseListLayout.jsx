@@ -46,36 +46,28 @@ class PurseListLayout extends React.Component {
   }
 
   render() {
-    let accountDataList = [];
-    let accountList;
+    let accountDataList, accountList;
     if(this.state.success) {
       accountDataList = WhichAccount(this.state.filterType, this.state.list);
-      accountList = accountDataList.map((account, index) => {
-        return <YPUIPurseCard
-                  Amount={account.Amount}
-                  CreationTime={account.CreationTime}
-                  FundsType = {account.FundsType}
-                  Id = {account.AssociatedId}
-                  key={index}
-              />;
-      });
-
-      //判断列表是否为空
-      let isOrderNull = true;
-
-      accountList.map((orderData) => {
-        if (orderData !== undefined) isOrderNull = false;
-      });
-      
       //列表为空时渲染内容
-      if (isOrderNull) {
+      if (accountDataList.length === 0) {
         accountList =
           <section className="text_center">
-            <div style={{ padding:'50px 0px' }}>
+            <div style={{ padding:'50px 0' }}>
               <i className="weui_icon_msg weui_icon_waiting"/>
               <p>暂无数据</p>
             </div>
           </section>
+      } else {
+        accountList = accountDataList.map((account, index) => {
+          return <YPUIPurseCard
+            Amount={account.Amount}
+            CreationTime={account.CreationTime}
+            FundsType = {account.FundsType}
+            Id = {account.AssociatedId}
+            key={index}
+          />;
+        });
       }
     }
     return (
