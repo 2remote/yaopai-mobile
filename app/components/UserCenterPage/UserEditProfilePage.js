@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from 'react-router';
 import Reflux from 'reflux';
 import HamburgMenu from '../HamburgMenu';
 import DocumentTitle from 'react-document-title';
@@ -10,7 +9,6 @@ import UserAvatarBox from '../UserAvatarBox' ;
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 
-import _ from 'underscore';
 import { makeTextButton } from '../Tools';
 
 var UserEditProfilePage = React.createClass({
@@ -132,7 +130,7 @@ var UserEditProfilePage = React.createClass({
 
         <div className="weui_opr_area">
           <p className="weui_btn_area">
-            <a href="javascript:;" onClick={this.onChangeInfo} className="weui_btn weui_btn_primary">保存</a>
+            <a href="javascript:;" onClick={this.onChangeInfo} className="weui_btn weui_btn_primary color_white">保存</a>
           </p>
         </div>
        

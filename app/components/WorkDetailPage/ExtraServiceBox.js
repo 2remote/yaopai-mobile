@@ -22,7 +22,7 @@ var ExtraServiceBox = React.createClass({
       header:{
         color:'#3d7dca',
         fontSize:'1.2em'
-      },
+      }
     };
     let showExtraService = this.state.showExtraService;
     return (

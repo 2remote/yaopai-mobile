@@ -1,6 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import {LoadingToast} from '../../../../UI/WeuiToast';
+import {Button, Toast} from 'react-weui';
 
 import ReactMixin from 'react-mixin';
 import { OrderStatus } from '../../../../Tools';
@@ -46,23 +47,30 @@ class OrderListLayout extends React.Component {
   }
   render() {
     let theRealList;
-    if(!this.state.success) {
-      theRealList = <LoadingToast />;
-    } else {
+    if(this.state.success) {
+      let isOrderNull = true;
       theRealList = this.state.orders.map((order, index) => {
         if(OrderStatus.parse(order.State) !== this.state.filterType) return;
+        isOrderNull = false;
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>;
       });
+
+      //列表为空时渲染内容
+      if (isOrderNull) {
+        theRealList =
+          <section className="text_center">
+            <div style={{ padding:'50px 0' }}>
+              <i className="weui_icon_msg weui_icon_waiting"/>
+              <p>暂无数据</p>
+            </div>
+          </section>
+      }
     }
     return (
       <div>
-        { theRealList }
-        <aside
-          style={{
-            padding: '20px 15px 10px',
-            fontSize: '12px'
-          }}
-          className="color_gray text_center">
+        {this.state.success ? '' : <LoadingToast />}
+        {theRealList}
+        <aside className="footer color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />
           请拨打客服热线：<a className="color_green" href="tel:0371-65337727">0371-65337727</a>
         </aside>
