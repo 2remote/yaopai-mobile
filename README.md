@@ -27,7 +27,7 @@ CircleCI
 ##编码规范列表
 * [React](https://github.com/vikingmute/javascript/tree/master/react)
 * [ES6](https://github.com/yuche/javascript)
-* [CSS && SASS](https://github.com/airbnb/css)
+* [CSS / SASS](https://github.com/Zhangjd/css-style-guide#oocss-and-bem)
 
 ##黄金定律
 >不管有多少人共同参与同一项目，一定要确保每一行代码都像是同一个人编写的。
