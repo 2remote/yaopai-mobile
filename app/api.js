@@ -1,5 +1,5 @@
 // var API_URL = 'http://localhost:3000';
-const DEV_ENV = '//dev.api.aiyaopai.com/';
+const DEV_ENV = '//api.aiyaopai.com/';
 const PRODUCTION_ENV = '//api.aiyaopai.com/';
 
 let DOMAIN = DEV_ENV;
