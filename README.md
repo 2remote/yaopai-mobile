@@ -4,6 +4,8 @@ web app for YAOPAI
 CircleCI 
 [![Circle CI](https://circleci.com/gh/2remote/yaopai-mobile/tree/master.svg?style=svg&circle-token=1cc3f1e118023c56b38a5ab98154fcd893baaf06)](https://circleci.com/gh/2remote/yaopai-mobile/tree/master)
 
+[![Throughput Graph](https://graphs.waffle.io/2remote/yaopai-mobile/throughput.svg)](https://waffle.io/2remote/yaopai-mobile/metrics)
+
 ## 分支说明
 
 - master 为部署分支，所有 master 分支的内容都应当是可部署的，只允许从 dev 分支 pull request 到 master。
@@ -25,7 +27,7 @@ CircleCI
 ##编码规范列表
 * [React](https://github.com/vikingmute/javascript/tree/master/react)
 * [ES6](https://github.com/yuche/javascript)
-* [CSS && SASS](https://github.com/airbnb/css)
+* [CSS / SASS](https://github.com/Zhangjd/css-style-guide#oocss-and-bem)
 
 ##黄金定律
 >不管有多少人共同参与同一项目，一定要确保每一行代码都像是同一个人编写的。

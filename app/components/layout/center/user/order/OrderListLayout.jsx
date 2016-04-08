@@ -51,17 +51,17 @@ class OrderListLayout extends React.Component {
   render() {
     let theRealList;
     if (this.state.success) {
-      let isOrderNUll = true;
+      let isOrderNull = true;
       theRealList = this.state.orders.map((order, index) => {
         if (OrderStatus.parse(order.State) !== this.state.filterType) return;
-        isOrderNUll = false;
+        isOrderNull = false;
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>;
       });
       //列表为空时渲染内容
-      if (isOrderNUll) {
+      if (isOrderNull) {
         theRealList =
           <section className="text_center">
-            <div style={{ padding:'50px 0px' }}>
+            <div style={{ padding:'50px 0' }}>
               <i className="weui_icon_msg weui_icon_waiting"/>
               <p>暂无数据</p>
             </div>
