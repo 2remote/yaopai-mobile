@@ -96,7 +96,8 @@ var LoginForm = React.createClass({
               onChange={this._handleUserNameChange}
               style={style.input}
               ref="mobileNumber"
-              type="text" 
+              type="tel"
+              pattern="[0-9]*"
               placeholder="手机号" />
           </div>
           <div>

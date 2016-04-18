@@ -22,6 +22,14 @@
   text-align: center;
 }
 
+/*
+ * 调整panel的margin-top为margin-bottom
+ */
+.weui_panel {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 /* 覆盖weui原始Tab栏的样式
  *
  */

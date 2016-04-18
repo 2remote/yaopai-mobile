@@ -107,7 +107,7 @@ function main(){
             <Route path="order">
               <IndexRoute component={UserOrderTabLayout} />
               <Route path="submit/:id">
-                <IndexRoute  component={UserOrderDetailLayout}/>
+                <IndexRedirect to="/center/u/order/:id" />
                 <Route path="result" component={UserOrderSubmitResultLayout}/>
               </Route>
             </Route>
