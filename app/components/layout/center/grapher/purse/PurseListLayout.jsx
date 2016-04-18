@@ -50,7 +50,7 @@ class PurseListLayout extends React.Component {
     if(this.state.success) {
       accountDataList = WhichAccount(this.state.filterType, this.state.list);
       //列表为空时渲染内容
-      if (accountDataList.length === 0) {
+      if (!accountDataList.length) {
         accountList =
           <section className="text_center">
             <div style={{ padding:'50px 0' }}>
