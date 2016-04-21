@@ -111,20 +111,25 @@ class OrderSubmitResultLayout extends React.Component {
         </div>
         {/* 4. 包含服务 */}
         <div className="weui_cells weui_cells_form">
-        <div className="weui_cell">
-          <div className="weui_cell_bd weui_cell_primary">
-            <p>包含服务</p>
+          <div className="weui_cell">
+            <div className="weui_cell_bd weui_cell_primary">
+              <p>包含服务</p>
+            </div>
+          </div>
+          <div className="weui_cell align_items_start">
+            <div className="weui_cell_hd">
+              <label className="yp_label font_medium color_gray">预约人</label>
+            </div>
+            <div className="weui_cell_bd weui_cell_primary font_medium color_gray">
+              {order.Albums.Service}
+            </div>
           </div>
         </div>
-        <div className="weui_cell align_items_start">
-          <div className="weui_cell_hd">
-            <label className="yp_label font_medium color_gray">预约人</label>
-          </div>
-          <div className="weui_cell_bd weui_cell_primary font_medium color_gray">
-            {Albums.Service}
-          </div>
+        <div style={{ padding: '15px 5px 5px'}}>
+          <button onClick={ () => location.href='#/user_center' } className="weui_btn weui_btn_primary">
+            返&nbsp;&nbsp;回
+          </button>
         </div>
-      </div>
       </div>
     );
   }
