@@ -47,6 +47,7 @@ class OrderListLayout extends React.Component {
   }
   render() {
     let theRealList;
+    console.log(this.state.success);
     if(this.state.success) {
       let isOrderNull = true;
       theRealList = this.state.orders.map((order, index) => {

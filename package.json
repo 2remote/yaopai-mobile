@@ -63,6 +63,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.3",
     "node-libs-browser": "^0.5.3",
+    "node-sass": "^3.5.3",
     "open-browser-webpack-plugin": "0.0.2",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
