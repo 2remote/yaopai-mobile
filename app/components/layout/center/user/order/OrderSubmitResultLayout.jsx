@@ -17,7 +17,7 @@ class OrderSubmitResultLayout extends React.Component {
         PaymentTime:'',
         RefundTime:'',
         DeliveryTime:'',
-        CompleteTime:''
+        CompleteTime:'',
       }
     };
   }

@@ -22,7 +22,9 @@ class OrderDetailLayout extends React.Component{
         PaymentTime:'',
         RefundTime:'',
         DeliveryTime:'',
-        CompleteTime:''
+        CompleteTime:'',
+        AppointedTime:'',
+        BuyerMemo:''
       },
       success: false
     };
@@ -77,6 +79,10 @@ class OrderDetailLayout extends React.Component{
               <span>创建时间</span>
               <span>{order.CreationTime.substring(0,10)}</span>
             </p>
+            <p>
+              <span>预约日期</span>
+              <span>{order.AppointedTime.substring(0,10)}</span>
+            </p>
             { order.PaymentTime ?
               <p>
                 <span>付款时间</span>
@@ -112,6 +118,10 @@ class OrderDetailLayout extends React.Component{
             <p>
               <span>预约电话</span>
               <span>{order.BuyerTel}</span>
+            </p>
+            <p>
+              <span>备注</span>
+              <span>{order.BuyerMemo}</span>
             </p>
           </article>
 
