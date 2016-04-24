@@ -359,7 +359,9 @@ var UserStore = Reflux.createStore({
       this.data.local = data.Local;
       this.data.isLogin = true;
       this.data.loginDate = new Date();
-      this.data.pingToken = data.SessionToken;
+      if(data.SessionToken){
+        this.data.pingToken = data.SessionToken;
+      }
     }
     this.trigger(this.data);
   },
