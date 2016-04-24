@@ -26,7 +26,7 @@ var AvatarUploader = React.createClass({
         browse_button: 'avatarUploader',
         max_file_size: '10mb',
         chunk_size: '4mb',
-        uptoken_url: API.FILE.user_token_url,
+        //uptoken_url: API.FILE.user_token_url,
         domain: 'http://qiniu-plupload.qiniudn.com/',
         auto_start: true,
         get_new_uptoken: true,
@@ -68,20 +68,23 @@ var AvatarUploader = React.createClass({
       var emptyQiniu = _.isEmpty(this.state.qiniu);
 
       if(emptyQiniu && definedLogin && this.state.userInfo.isLogin){
-        var option = this.state.uploaderOption;
-        option.init.FileUploaded = this.onFileUploaded;
-        option.init.UploadProgress = this.onUploadProgress;
-        option.init.Error = this.onErrors;
-        option.init.BeforeUpload = this.onBeforeUpload;
-        var qiniu = Qiniu.uploader(option);
-        this.setState({qiniu: qiniu});
+        if(data.flag == 'currentUser'){
+          this.initUploader(data.pingToken);
+        }
         // console.log(qiniu);
-      }else{
-        this.setState({qiniu: {}});
       }
     }
   },
-
+  initUploader : function(sessionToken){
+    var option = this.state.uploaderOption;
+    option.uptoken_url = API.FILE.work_token_url+'&tokenid='+sessionToken;
+    option.init.FileUploaded = this.onFileUploaded;
+    option.init.UploadProgress = this.onUploadProgress;
+    option.init.Error = this.onErrors;
+    option.init.BeforeUpload = this.onBeforeUpload;
+    var qiniu = Qiniu.uploader(option);
+    this.setState({qiniu: qiniu});
+  },
   onErrors : function (up, err, errTip) {
     this.handleUploadFailedClick();
     this.setState({uploadingShow : false});
@@ -91,7 +94,7 @@ var AvatarUploader = React.createClass({
   onFileUploaded : function(up,file,info){
     // console.log("onFileUploaded");
     var res = JSON.parse(info);
-    
+
     // 上传成功后，更新头像
     UserActions.changeAvatarOnServer(res.Url);
 
@@ -122,7 +125,7 @@ var AvatarUploader = React.createClass({
     this.setState({uploadedShow: true}, function () {
       setTimeout(function () {
         this.setState({uploadedShow: false});
-      }.bind(this), 2000);  
+      }.bind(this), 2000);
     });
   },
 
@@ -130,7 +133,7 @@ var AvatarUploader = React.createClass({
     this.setState({uploadFailedShow: true}, function () {
       setTimeout(function () {
         this.setState({uploadFailedShow: false});
-      }.bind(this), 3000);  
+      }.bind(this), 3000);
     });
   },
 
@@ -148,21 +151,21 @@ var AvatarUploader = React.createClass({
             src={avatarImage} />
         </div>
 
-        <Toast 
+        <Toast
           show={this.state.uploadingShow}
           icon="loading"
           size="large">
           头像上传中...
         </Toast>
 
-        <Toast 
+        <Toast
           show={this.state.uploadedShow}
           icon="success"
           size="large">
           头像上传成功！
         </Toast>
 
-        <Toast 
+        <Toast
           show={this.state.uploadFailedShow}
           icon="warn"
           size="large">
