@@ -77,7 +77,7 @@ var AvatarUploader = React.createClass({
   },
   initUploader : function(sessionToken){
     var option = this.state.uploaderOption;
-    option.uptoken_url = API.FILE.work_token_url+'&tokenid='+sessionToken;
+    option.uptoken_url = API.FILE.user_token_url+'&tokenid='+sessionToken;
     option.init.FileUploaded = this.onFileUploaded;
     option.init.UploadProgress = this.onUploadProgress;
     option.init.Error = this.onErrors;
