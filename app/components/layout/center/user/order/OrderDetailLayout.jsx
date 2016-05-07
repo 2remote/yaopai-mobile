@@ -34,6 +34,7 @@ class OrderDetailLayout extends React.Component{
       order:{
         Albums:{},
         Photographer:{},
+        AppointedTime: '',
         CreationTime:'',
         PaymentTime:'',
         RefundTime:'',
@@ -163,6 +164,10 @@ class OrderDetailLayout extends React.Component{
             <p>
               <span>创建时间</span>
               <span>{order.CreationTime.substring(0,10)}</span>
+            </p>
+            <p>
+              <span>预约时间</span>
+              <span>{order.AppointedTime.substring(0,10)}</span>
             </p>
             { order.PaymentTime ?
               <p>

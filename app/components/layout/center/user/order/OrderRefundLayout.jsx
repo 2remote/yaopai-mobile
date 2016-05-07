@@ -131,6 +131,8 @@ class OrderRefundLayout extends React.Component {
                   <option value="不想拍了">不想拍了</option>
                   <option value="摄影师档期问题">摄影师档期问题</option>
                   <option value="计划有变，没时间消费">计划有变，没时间消费</option>
+                  <option value="拍摄效果不满意">拍摄效果不满意</option>
+                  <option value="其他">其他</option>
                 </select>
               </div>
             </div>

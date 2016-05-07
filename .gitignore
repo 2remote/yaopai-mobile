@@ -5,3 +5,6 @@ build
 .idea
 *.sublime-project
 *.sublime-workspace
+
+# Ignore vim swap files
+*.swp
