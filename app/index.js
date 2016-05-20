@@ -135,6 +135,8 @@ function main(){
           </Route>
         </Route>
       </Route>
+      {/* 填错 URL 的情况一律跳转到首页 */}
+      <Route path="*" component={ AppIndex } />
     </Router>
     ), document.getElementById('app')
   );
