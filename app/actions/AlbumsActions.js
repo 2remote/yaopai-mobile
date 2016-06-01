@@ -18,7 +18,7 @@ var AlbumsActions = Reflux.createActions({
 AlbumsActions.get.listen(function(id){
   var data = {
     Id : id,
-    Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar',
+    Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar',
   };
   HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
 });
@@ -32,7 +32,7 @@ function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null){
     PageSize:pageSize,
     CategoryId : categoryId,
     Tags: tags,
-    Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar'
+    Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,User.Id,User.NickName,User.Avatar'
   };
   HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
 }
