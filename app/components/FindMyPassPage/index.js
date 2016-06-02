@@ -1,5 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
+import '../LoginPage/index.scss';
 
 /*已废弃*/
 import FindByMobileForm from './FindByMobileForm';
