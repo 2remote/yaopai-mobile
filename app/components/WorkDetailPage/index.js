@@ -29,7 +29,9 @@ var WorkDetailPage = React.createClass({
       }
     };
   },
-  
+  showTop: function(){
+    window.scrollTo(0,0);
+  },
   componentDidMount: function() {
     if(!this.props.params.Id)
       return this.history.pushState(null,'/work');
@@ -61,7 +63,7 @@ var WorkDetailPage = React.createClass({
   },
   render: function() {
     return (
-      <div className="workDetailPage">
+      <div className="workDetailPage" onload={this.showTop()}>
         <HamburgMenu />
         <WorkTitle data={this.state.data} />
         <WorkDetail data={this.state.data} />
