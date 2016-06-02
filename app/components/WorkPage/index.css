@@ -1,0 +1,30 @@
+.tagMenu span {
+  color: #CCAC7B;
+  display: block;
+  padding: 5px 15px;
+  font-weight: 800; }
+
+.workIntroGrapherRow .top {
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 14px solid rgba(0, 0, 0, 0.8);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: -2px;
+  right: 0;
+  margin-right: -18.999px; }
+.workIntroGrapherRow .bottom {
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 14px solid rgba(0, 0, 0, 0.8);
+  transform: rotate(-135deg);
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  margin-right: -18.8px; }
+
+/*# sourceMappingURL=index.css.map */

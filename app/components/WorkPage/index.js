@@ -11,7 +11,7 @@ import WorkIntroGrapherList from './WorkIntroGrapherList';
 import HamburgMenu from '../HamburgMenu';
 import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_WORKS, TITLE } from '../Tools';
-
+import './index.scss';
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
@@ -20,14 +20,12 @@ import Toaster from '../Toast';
 var YaopaiLogo = React.createClass({
   render: function () {
     var style = {
-      fontSize:105,
-      backgroundColor:'black',
-      color:'white',
-      lineHeight:0.3,
+      fontSize:20,
+      backgroundColor:'white',
+      color:'black',
+      lineHeight:'57px',
       display:'block',
       textAlign: 'center',
-      paddingTop: 13,
-      paddingBottom: '5px',
       position: 'fixed',
       width:'100%',
       zIndex: '97',
@@ -36,7 +34,7 @@ var YaopaiLogo = React.createClass({
     };
 
     return (
-      <div className="icon yaopai_logo" style={style} />
+      <div className="icon yaopainew" style={style} />
     );
   }
 });
@@ -64,11 +62,11 @@ var WorkPage = React.createClass({
 
     let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) );
     let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) );
-    
+
     if (nonemptyTagList[0]){
       this.setState({selectedTags: nonemptyTagList}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.searchByTags(null, 
+        AlbumsActions.searchByTags(null,
         1,
         10,
         this.state.selectedTags.join(","));
@@ -97,7 +95,7 @@ var WorkPage = React.createClass({
       10,
       this.state.selectedTags.join(","));
     });
-    
+
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
@@ -162,10 +160,10 @@ var WorkPage = React.createClass({
             left: 22,
             zIndex: 99}}/>
           <YaopaiLogo />
-          <ShowMenu 
+          <ShowMenu
             tagsInUrl={this.props.params.tag}
-            cities={cities} 
-            catas={catas} 
+            cities={cities}
+            catas={catas}
             onSelectedTag={this.handleUpdateTags} />
 
           <WorkIntroGrapherList data={this.state.works} />

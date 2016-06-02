@@ -14,14 +14,14 @@ var TagCol = React.createClass({
   },
 
   render: function () {
-    var border_color = this.state.clicked ? 'gray' :'black';
+    var border_color = this.state.clicked ? 'gray' :'rgba(255,255,255,.1)';
     var style = {
       display: 'inline-block',
-      padding: '5px 10px 5px 10px',
+      padding: '5px 25px',
       margin: '5px',
-      fontSize: 18,
-      borderRadius: '4px',
-      border: '1px solid ' + border_color
+      fontSize: 12,
+      borderRadius: '20px',
+      border:'1px solid ' + border_color,
     };
 
     return (      
@@ -39,7 +39,8 @@ var TagRow = React.createClass({
   
   render: function () {
     var style={
-      overflow: 'scroll'
+      overflow: 'hidden',
+
     };
 
     var tagNodes = (<div />);
@@ -75,7 +76,7 @@ var TagMenu = React.createClass({
   },
   
   render: function () {
-    var top = this.state.showTags ? 49 : '-340px';
+    var top = this.state.showTags ? 56 : '-340px';
     var style = {
       tab: {
         position: 'fixed',
@@ -83,19 +84,21 @@ var TagMenu = React.createClass({
         boxSizing: 'border-box',
         left: 0,
         top: top,
-        zIndex: '98',
-        padding: '10px 0',
+        zIndex: '1000',
+        padding: '15px 0',
         background: '#000',
         color: '#fff',
         WebkitTransition:'top ease .5s',
         transition: 'top ease .5s',
-        opacity: 0.8
+        opacity: 0.95
       }
     };
 
     return (
       <div className="tagMenu" style={style.tab}>
+        <span>拍摄地区 | Shooting Area</span>
         <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
+        <span>拍摄种类 | Shooting Type</span>
         <TagRow data={this.props.catas} onSelectedTag={this.props.onSelectedTag}/>
       </div>
     );
