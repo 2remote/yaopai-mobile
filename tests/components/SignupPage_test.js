@@ -24,7 +24,7 @@ describe('用户注册页面 SignupPage', () => {
 
   it('React渲染页面成功', () => {
     // 获取textContent内容，简单判断是否成功
-    assert.equal(signupPage.getDOMNode().textContent, '获取验证码创建账号');
+    assert.equal(signupPage.getDOMNode().textContent, '全球 预约 摄影师 平台登录 | Login注册 | Register获取验证码创建账号');
   });
 
   describe('手机号输入框 组件', () => {
