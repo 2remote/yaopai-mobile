@@ -1,0 +1,252 @@
+@charset "UTF-8";
+/*flex模块*/
+/*箭头向右的三角形*/
+/*Todo 背景色是用原本的#f9f9f9; 还是直接覆盖掉?
+ *
+body {
+  background: #eee !important;
+}
+*/
+.yp_label {
+  display: block;
+  max-width: 5em;
+  margin-right: 1em;
+  font-size: 14px; }
+
+.yp_label_fix {
+  display: block;
+  width: 5em;
+  margin-right: 1em; }
+
+/*订单右上角符号*/
+.top_right_icon {
+  position: absolute;
+  right: 16px;
+  top: 15px; }
+
+.yp_media_box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 5px 15px; }
+  .yp_media_box > .flex_spring {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1; }
+  .yp_media_box a:not(.weui_btn_dialog) {
+    display: inline-block;
+    position: relative;
+    font-size: 14px; }
+
+.font_biggest {
+  font-size: 22px; }
+
+.font_super {
+  font-size: 18px; }
+
+.font_large {
+  font-size: 16px; }
+
+.font_medium {
+  font-size: 14px; }
+
+.font_small {
+  font-size: 12px; }
+
+/* font colors */
+.color_red {
+  color: #f14d4a !important; }
+
+.color_green {
+  color: #00c000 !important; }
+
+.color_lightgray {
+  color: #f7f7f7 !important; }
+
+.color_gray {
+  color: #999999 !important; }
+
+.color_dark {
+  color: #000000 !important; }
+
+.color_white {
+  color: white !important; }
+
+/* background colors */
+.bg_red {
+  background-color: #f14d4a; }
+
+.bg_green {
+  background-color: #00c000; }
+
+.bg_lightgray {
+  background-color: #f7f7f7; }
+
+.bg_gray {
+  background-color: #999999; }
+
+.bg_dark {
+  background-color: #000000; }
+
+.bg_white {
+  background-color: white; }
+
+/* text align */
+.text_center {
+  text-align: center; }
+
+.text_left {
+  text-align: left; }
+
+.text_right {
+  text-align: right; }
+
+/*float*/
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+.separator {
+  display: block;
+  margin: 0 15px;
+  padding: 0;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc; }
+
+.align_items_start {
+  -webkit-box-align: start;
+  box-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start; }
+
+/* aside */
+.footer {
+  display: block;
+  padding: 15px; }
+
+.weui_media_box .weui_media_desc {
+  line-height: 1.6; }
+
+/* 覆盖 weui_tab：调整tab body使navbar固定在上端 */
+.weui_navbar {
+  z-index: 100; }
+
+.weui_tab_bd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+.weui_btn.weui_btn_mini {
+  line-height: 2.1; }
+
+/* 覆盖confirm弹出框内文字不居中
+ * weu原本是居左
+ */
+.weui_dialog_confirm .weui_dialog .weui_dialog_bd {
+  text-align: center; }
+
+/*
+ * 调整panel的margin-top为margin-bottom
+ */
+.weui_panel {
+  margin-top: 0;
+  margin-bottom: 10px; }
+
+/* 覆盖weui原始Tab栏的样式
+ *
+ */
+.weui_bar_item_on {
+  border-bottom: 2px solid #0bb20c; }
+
+.weui_bar_item_on a {
+  color: #0bb20c !important; }
+
+.weui_navbar_item:after {
+  border-right: 0; }
+
+/*
+ * 详情模块公共Panel
+ * 比如账单详情,订单详情页面展示数据的模块
+ */
+.ypui_detail_box {
+  padding: 15px;
+  background: #fff; }
+  .ypui_detail_box p {
+    height: 28px; }
+    .ypui_detail_box p span:last-child {
+      color: #000;
+      float: right; }
+  .ypui_detail_box .ypui_detail_title {
+    margin-bottom: 10px;
+    height: 50px;
+    border-bottom: 1px #eee solid; }
+
+li {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+.OrderDetailLayout .icon_box {
+  		/*痛心! flex 兼容出了问题!!
+  		@include flex;
+      @include justify_content_space_around;
+      */
+  padding: 10px 0;
+  background: #fff;
+  text-align: center; }
+  .OrderDetailLayout .icon_box > div {
+    position: relative;
+    display: inline-block;
+    width: 24%; }
+    .OrderDetailLayout .icon_box > div:not(:last-child):after {
+      content: '';
+      width: 0;
+      height: 0;
+      font-size: 0;
+      line-height: 0;
+      border-bottom: 5px solid transparent;
+      border-top: 5px solid transparent;
+      border-left: 5px solid #999;
+      position: absolute;
+      right: 1px;
+      top: 23px; }
+    .OrderDetailLayout .icon_box > div i {
+      font-size: 32px; }
+.OrderDetailLayout .last-layout {
+  height: 60px;
+  line-height: 18px; }
+  .OrderDetailLayout .last-layout span {
+    display: inline-block;
+    vertical-align: top; }
+    .OrderDetailLayout .last-layout span:last-child {
+      height: 60px;
+      float: right;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis; }
+
+.YPUIPurseCard .Purse_box {
+  display: block;
+  height: 48px;
+  padding: 5px 15px;
+  font-size: 12px;
+  background: #fff;
+  color: #999;
+  clear: both;
+  border-bottom: 1px #f7f7f7 solid; }
+  .YPUIPurseCard .Purse_box p {
+    color: #000;
+    font-size: 16px; }
+
+* {
+  -webkit-font-smoothing: antialiased;
+  font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif; }
+
+/*# sourceMappingURL=index.css.map */

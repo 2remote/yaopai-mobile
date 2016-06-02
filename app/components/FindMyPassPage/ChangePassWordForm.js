@@ -45,30 +45,27 @@ var ChangePassWordForm = React.createClass({
         position: 'relative',
         textAlign: 'center',
         margin: '0 auto',
-        width: 212
       },
       input: {
-        padding: '8px 10px',
-        marginTop: '48px',
         backgroundColor: 'inherit',
-        width: '170px',
-        fontSize: '1.2em',
-        lineHeight: '19px',
-        borderWidth: '0 0 2px',
+        width: '100%',
+        fontSize: '14px',
+        lineHeight: '50px',
+        borderWidth: '0 0 1px',
         borderRadius: 0,
-        borderColor: 'transparent transparent #c4c4c4'
+        color:'#fff',
+        borderColor: 'transparent transparent #333'
       },
       submit: {
-        width: 212,
-        height: 50,
-        marginTop: 39,
-        borderRadius: 30,
-        padding: 0,
-        border: 0,
-        fontSize: '1.5em',
-        backgroundColor: '#3c3c3c',
-        color: '#ffffff',
-        fontWeight: 'lighter'
+        marginTop: 60,
+        border: '1px solid #fff',
+        fontSize: '14px',
+        color: '#fff',
+        height:'50px',
+        lineHeight:'50px',
+        width:'100%',
+        background:'transparent',
+        borderRadius:'0'
       }
     };
     return (

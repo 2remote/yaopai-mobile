@@ -52,8 +52,8 @@ var HamburgMenu = React.createClass({
           }}
           className="hamburgMenu">
         <span
-          className="icon menu_icon"
-          style={{fontSize:25, backgroundColor:'black', color:'white', padding:'10'}} />
+          className="icon hamburgermenu"
+          style={{fontSize:30, color:'black',padding:'5px 4px 3px 5px',background:'rgba(255,255,255,.5)',zIndex:'1'}} />
         <div>
           <SidePage ref="left" userData={this.state.userData}/>
         </div>

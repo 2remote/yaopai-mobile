@@ -10,11 +10,10 @@ export default class SidePageIcon extends React.Component {
   render() {
     const style={
       sidePage:{
-        boxShadow: 'inset -2px 0px 16px 4px #C9C9C9',
-        paddingRight: '14%',
         height: '100%',
         overflow: 'scroll',
-        textAlign: 'center'
+        textAlign:'center',
+        fontSize:'12px',
       },
       loginBox: {
         position: 'relative'
@@ -25,12 +24,12 @@ export default class SidePageIcon extends React.Component {
         right: '0px'
       },
       loginName: {
-        marginBottom: '15px'
+        marginBottom: '16px'
       },
       link:{
-        lineHeight: '14px',
-        paddingBottom: '15px',
-        display: 'block'
+        lineHeight: '60px',
+        display: 'block',
+        color:'#5c5c5c'
       },
       avatar:{
         margin: '34px 0 19px',
@@ -41,24 +40,43 @@ export default class SidePageIcon extends React.Component {
         margin: '51px 15px 0 -53px'
       },
       spliterLine:{
-        borderTop:'1px solid #c9c9c9',
-        margin:'0 0 0 10%'
+        borderTop:'1px solid #2b2b2b',
+        margin:'0 0 0 30%'
       },
       commonIcon: {
         marginTop: '15px'
+      },
+      icon: {
+        color:'#5c5c5c',
+        fontSize:'20px',
+        textAlign:'center',
+        display:'inline-block',
+        height:'60px',
+        lineHeight:'60px',
+        width:'40%'
+      },
+      text:{
+        textAlign:'left',
+        display:'inline-block',
+        height:'60px',
+        lineHeight:'60px',
+        width:'60%'
       }
     };
 
     return(
       <div >
-        <div style={style.spliterLine} className="spliterLine" />
-
         <Link style={style.link} to={this.props.to || `/${this.props.name}`} >
-          <img  style={style.commonIcon} ref="interviewIcon" 
-            src={`imgs/sidePage/${this.props.name}-icon.png`}
-            srcSet={`imgs/sidePage/${this.props.name}-icon@2X.png 2x`} />
-          <div>{this.props.text}</div>
+          <div>
+            <span style={style.icon}>
+              <i className={'icon '+ this.props.icon}></i>
+            </span>
+            <span style={style.text}>
+              {this.props.text}
+            </span>
+          </div>
         </Link>
+        <div style={style.spliterLine} className="spliterLine" />
       </div>
     );
   }

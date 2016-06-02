@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import UserActions from '../../actions/UserActions';
 import validator from 'validator';
 import { Router, Route, Link, History,Location } from 'react-router';
 
@@ -13,7 +14,9 @@ var LoginForm = React.createClass({
   
   componentWillMount : function () {
   },
-
+  _weChatLogin : function(){
+    UserActions.openLogin();
+  },
   _handleLogin : function(){
     var phone = this.state.userName;
     var password = this.state.password;
@@ -44,43 +47,41 @@ var LoginForm = React.createClass({
         position: 'relative',
         textAlign: 'center',
         margin: '0 auto',
-        width: 225
+        padding:'0px 20px',
       },
       input: {
-        padding: '8px 10px',
-        marginTop: '48px',
         backgroundColor: 'inherit',
-        width: 200,
-        fontSize: '1.2em',
-        lineHeight: '19px',
-        borderWidth: '0 0 2px',
+        width: '100%',
+        fontSize: '14px',
+        lineHeight: '50px',
+        borderWidth: '0 0 1px',
         borderRadius: 0,
-        borderColor: 'transparent transparent #c4c4c4'
+        color:'#fff',
+        borderColor: 'transparent transparent #333'
       },
       login: {
-        width: 222,
-        padding: '5px',
-        marginTop: 46,
-        borderRadius: 30,
-        border: 0,
-        fontSize: '1.5em',
-        backgroundColor: '#3c3c3c',
-        color: '#ffffff',
-        fontWeight: 'lighter'
+        marginTop: 60,
+        border: '1px solid #fff',
+        fontSize: '14px',
+        color: '#fff',
+        height:'50px',
+        lineHeight:'50px'
       },
       findPass: {
         border: 0,
         backgroundColor: 'inherit',
         float: 'right',
         marginRight: 5,
-        marginTop: 15
+        marginTop: 15,
+        color:'#777'
       },
       provision: {
         border: 0,
         backgroundColor: 'inherit',
         float: 'left',
         marginLeft: 5,
-        marginTop: 15
+        marginTop: 15,
+        color:'#777'
       }
     };
 
@@ -131,9 +132,15 @@ var LoginForm = React.createClass({
             style={style.login}
             onClick={this._handleLogin}
             ref="loginButton">
-            登录 
+            立即登录
           </div>
-
+          <div
+            style={style.login}
+            className="wechat"
+            onClick={this._weChatLogin}
+            ref="loginButton">
+            微信登录
+          </div>
         </form>
       </div>
     );

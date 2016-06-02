@@ -9,19 +9,14 @@ var ActionBar = React.createClass({
   },
   render: function() {
     return (
-      <div className="actionBar" style={{padding:'22.5px 0',height: 103.5,textAlign:'center'}}>
+      <div className="actionBar" style={{background:'white',height:'60px',lineHeight:'60px',padding:'0 0 0 10px'}}>
         <div>
-           <Link to={"/work_book_page/" + this.props.workId +'/0'} style={{lineHeight: 'inherit'}} >
-            <span
-              ref="bookIcon"
-              className="icon book_icon" 
-              style={{fontSize:55}} />
-            <div
-              style={{letterSpacing: 10, marginLeft: 5, marginTop: -14, fontWeight: 'bold'}}
-              ref="bookOption">
-              预约
-            </div>
-          </Link>
+          <p>
+            <span>￥ {this.props.data.Price}元</span>
+            <Link className="orderButton" to={"/work_book_page/" + this.props.data.Id +'/0'}>
+              立即预约
+            </Link>
+          </p>
         </div>
       </div>
     );

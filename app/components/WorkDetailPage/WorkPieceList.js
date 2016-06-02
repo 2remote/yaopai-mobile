@@ -15,9 +15,8 @@ var WorkPieceList = React.createClass({
 
     return (
       <div className="workPieceList">
-        <div 
-          style={{fontSize: '4em',fontWeight: 'lighter',color: '#a7a7a7',margin:'0 0 10px 28px'}}
-          ref="pieceCount">{this.props.workPieces.length+"P"}</div>
+        <hr className="moreWork"/>
+        <span className="des">客片展示</span>
         {workNodes}
       </div>
     );
