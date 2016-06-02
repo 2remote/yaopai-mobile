@@ -6,3 +6,8 @@
 @import "scss/scaffolding";
 @import "scss/layout/OrderDetailLayout";
 @import "scss/layout/YPUIPurseCard";
+
+*{
+  -webkit-font-smoothing: antialiased;
+  font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+}
