@@ -18,20 +18,22 @@ var UserAvatarBox = React.createClass({
       avatar: {
         width: 78,
         height: 78,
-        margin: '42px 0 14px'
+        margin: '42px 0 14px',
+        borderRadius:'50%'
       },
       nick: {
-        color: '#232323'
+        color: '#fff'
       },
       background: {
         height: 208,
         textAlign: 'center',
-        backgroundImage: 'url(imgs/bookPageBg.png)'
+        background:'#282828'
       },
       updateInfo: {
         position: 'absolute',
         top: 80,
-        right: 10
+        right: 10,
+        color:'#fff'
       }
     };
 
