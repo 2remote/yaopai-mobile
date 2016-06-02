@@ -11,7 +11,7 @@ var LoginButton = React.createClass({
 var RegisterButton = React.createClass({
   render : function(){
     return (
-      
+
       <button className="btn btn-default navbar-btn" >注册</button>
     );
   }
