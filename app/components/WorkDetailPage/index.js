@@ -8,7 +8,6 @@ import GrapherAvatar from '../common/GrapherAvatar';
 import ActionBar from './ActionBar';
 import WorkDetail from './WorkDetail';
 import AboutGrapher from './AboutGrapher';
-import WorkDetailAlert from './WorkDetailAlert'
 import AboutYAOPAI from './AboutYAOPAI';
 import HamburgMenu from '../HamburgMenu';
 import UserActions from '../../actions/UserActions';
