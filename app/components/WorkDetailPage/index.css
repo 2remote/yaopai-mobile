@@ -1,0 +1,208 @@
+.workDetailPage {
+  padding-bottom: 60px; }
+  .workDetailPage .workTitlePanel {
+    width: 100%; }
+    .workDetailPage .workTitlePanel .cover {
+      height: 245px; }
+    .workDetailPage .workTitlePanel .title-a {
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+      padding: 0 10px; }
+      .workDetailPage .workTitlePanel .title-a .title {
+        display: inline-block; }
+      .workDetailPage .workTitlePanel .title-a .price {
+        display: inline-block;
+        float: right; }
+    .workDetailPage .workTitlePanel .sub-title {
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+      color: #bebebe;
+      padding: 0 10px; }
+  .workDetailPage .workDetail {
+    padding: 10px;
+    margin-top: 15px; }
+    .workDetailPage .workDetail .workDetail-mask {
+      background: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      color: #000;
+      padding: 20px 0;
+      overflow: auto; }
+      .workDetailPage .workDetail .workDetail-mask .a {
+        text-align: center;
+        font-size: 20px;
+        letter-spacing: 1px; }
+      .workDetailPage .workDetail .workDetail-mask .b {
+        text-align: center;
+        font-size: 9px;
+        color: #b0b0b0; }
+      .workDetailPage .workDetail .workDetail-mask .btn {
+        position: fixed;
+        bottom: 0;
+        background: #fff; }
+      .workDetailPage .workDetail .workDetail-mask ul {
+        padding: 0 40px;
+        margin: 20px 0;
+        position: relative; }
+        .workDetailPage .workDetail .workDetail-mask ul li {
+          font-size: 14px;
+          line-height: 60px;
+          height: 60px;
+          border-bottom: 1px solid #F3F3F3; }
+          .workDetailPage .workDetail .workDetail-mask ul li i {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            font-size: 20px;
+            color: #CCAC7B;
+            margin-right: 20px; }
+          .workDetailPage .workDetail .workDetail-mask ul li .a {
+            font-size: 14px; }
+          .workDetailPage .workDetail .workDetail-mask ul li .b {
+            font-size: 14px;
+            float: right; }
+    .workDetailPage .workDetail .package {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      border: 1px solid #E0E0E0;
+      border-bottom: 0;
+      padding: 15px; }
+      .workDetailPage .workDetail .package li {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        text-align: center; }
+        .workDetailPage .workDetail .package li i {
+          font-size: 30px;
+          color: #CCAC7B;
+          display: block;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          margin: 0 auto; }
+        .workDetailPage .workDetail .package li span {
+          display: block;
+          font-size: 12px;
+          color: #333; }
+      .workDetailPage .workDetail .package:after {
+        content: "";
+        display: block;
+        clear: both;
+        height: 0; }
+    .workDetailPage .workDetail button {
+      width: 100%;
+      border: 1px solid #e0e0e0;
+      height: 50px;
+      line-height: 50px;
+      color: #CCAC7B;
+      font-size: 14px;
+      background: transparent; }
+  .workDetailPage .grapher-panel {
+    text-align: center;
+    padding: 40px 0; }
+    .workDetailPage .grapher-panel .avatar {
+      margin: 0 auto; }
+    .workDetailPage .grapher-panel .uName {
+      height: 30px;
+      line-height: 30px;
+      font-size: 16px;
+      margin-top: 10px; }
+    .workDetailPage .grapher-panel .uDes {
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+      color: #bebebe; }
+  .workDetailPage .actionBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px; }
+    .workDetailPage .actionBar .orderButton {
+      background: #282828;
+      line-height: 60px;
+      color: #fff;
+      height: 60px;
+      display: inline-block;
+      float: right;
+      width: 70%;
+      text-align: center; }
+  .workDetailPage .workPieceList .moreWork {
+    margin: 20px 10px;
+    border: 0;
+    border-top: 1px dashed #bebebe; }
+  .workDetailPage .workPieceList .des {
+    display: block;
+    text-align: center;
+    background: #f2f2f2;
+    margin: -30px auto 20px auto;
+    width: 100px;
+    color: #bebebe;
+    font-size: 12px; }
+  .workDetailPage .workPieceList .workPieceRow {
+    margin-bottom: 10px; }
+  .workDetailPage .aboutYAOPAI {
+    padding: 10px; }
+    .workDetailPage .aboutYAOPAI .moreWork {
+      margin: 20px 10px;
+      border: 0;
+      border-top: 1px dashed #bebebe; }
+    .workDetailPage .aboutYAOPAI .des {
+      display: block;
+      text-align: center;
+      background: #f2f2f2;
+      margin: -30px auto 20px auto;
+      width: 100px;
+      color: #bebebe;
+      font-size: 12px; }
+    .workDetailPage .aboutYAOPAI ul {
+      margin-bottom: 10px; }
+      .workDetailPage .aboutYAOPAI ul li {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-bottom: 1px dashed #bebebe;
+        padding: 10px 0; }
+        .workDetailPage .aboutYAOPAI ul li i {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          font-size: 50px;
+          display: block;
+          text-align: center;
+          line-height: 50px;
+          height: 50px; }
+        .workDetailPage .aboutYAOPAI ul li .info {
+          -webkit-box-flex: 4;
+          -webkit-flex: 4;
+          -ms-flex: 4;
+          flex: 4; }
+          .workDetailPage .aboutYAOPAI ul li .info p {
+            font-size: 12px;
+            font-weight: 800;
+            text-align: left; }
+          .workDetailPage .aboutYAOPAI ul li .info span {
+            color: #bebebe;
+            font-size: 10px;
+            line-height: 15px;
+            display: block; }
+
+/*# sourceMappingURL=index.css.map */
