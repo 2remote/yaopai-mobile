@@ -6,8 +6,9 @@ import UserActions from '../actions/UserActions';
 import UserStore from '../stores/UserStore';
 import GetCodeActions from '../actions/GetCodeActions';
 import GetCodeStore from '../stores/GetCodeStore';
-import { History } from 'react-router';
+import { Router, Route, Link, History,Location } from 'react-router';
 import Toaster from './Toast';
+import './LoginPage/index.scss';
 
 var SignupPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(GetCodeStore,'_onGetCodeStoreChange'),History],
@@ -30,6 +31,10 @@ var SignupPage = React.createClass({
       }
     }
   },
+  _getHeight: function(){
+    return '600px';
+  },
+
   _onGetCodeStoreChange : function(data){
     if (data.flag == 'registerCode') {
       if (data.left == 0) {
@@ -97,103 +102,117 @@ var SignupPage = React.createClass({
   },
   render: function() {
     var inputStyle={
-      padding: '8px 10px',
-      marginTop: '48px',
       backgroundColor: 'inherit',
-      width: 200,
-      fontSize: '1.2em',
-      lineHeight: '19px',
-      borderWidth: '0 0 2px',
+      width: '100%',
+      fontSize: '14px',
+      lineHeight: '50px',
+      borderWidth: '0 0 1px',
       borderRadius: 0,
-      borderColor: 'transparent transparent #c4c4c4'
+      color:'#fff',
+      borderColor: 'transparent transparent #333'
     };
     var mobileNumber = {
-      padding: '8px 10px',
-      marginTop: '48px',
       backgroundColor: 'inherit',
-      width: 200,
-      fontSize: '1.2em',
-      lineHeight: '19px',
-      borderWidth: '0 0 2px',
+      width:'100%',
+      fontSize: '14px',
+      color:'#fff',
+      lineHeight: '50px',
+      borderWidth: '0 0 1px',
       borderRadius: 0,
-      borderColor: 'transparent transparent #c4c4c4',
-      float: 'left'
+      borderColor: 'transparent transparent #333',
+
     };
     return (
       <div 
         style={{
           width: '100%',
           textAlign: 'center',
-          minHeight: '100%',
-          position: 'absolute'
+          position: 'absolute',
+          height:this._getHeight,
         }}
         className="signupPage">
-        <DocumentTitle title="新建帐号" />
-        <Toaster ref="toast"/>
-        <div 
-          style={{
-            position: 'relative',
-            textAlign: 'center',
-            margin: '0 auto',
-            width: 212
-          }}
-          className="signupForm">
-          <input
-            value = {this.state.phone}
-            onChange = {this._handlePhoneChange}
-            style={mobileNumber}
-            ref="mobileNumber"
-            type="text" 
-            placeholder="手机号" />
+        <div className="loginCover" style={{backgroundImage:`url('http://ww2.sinaimg.cn/large/006gDr5Tjw1f453zyd9jjj30v91ao7h0.jpg')`}}>
+          <i className="icon yaopainew"></i>
+          <p style={{color:'#000'}}>全球&nbsp;预约&nbsp;摄影师&nbsp;平台</p>
+        </div>
+        <div className="regForm">
+          <div>
+            <Link to="/login_page">
+              <span className="login">
+                登录 | Login
+              </span>
+            </Link>
+            <span className="reg" >
+              注册 | Register
+            </span>
 
+          </div>
           <div
             style={{
-              padding: '8px 0',
-              border: 0,
-              fontSize: '.8333em',
-              fontWeight: 600,
-              backgroundColor: 'inherit',
-              color: '#6a6a6a',
-              marginTop: -38,
-              float: 'right'
+              position: 'relative',
+              textAlign: 'center',
+              margin: '0 auto',
+              padding:'0 20px',
+              height:'600px',
+              overflow:'hidden'
             }}
-            onClick={this._handleGetCode}
-            ref="getVerificationCode" >
-            {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
-          </div>
+            className="signupForm">
+            <input
+              value = {this.state.phone}
+              onChange = {this._handlePhoneChange}
+              style={mobileNumber}
+              ref="mobileNumber"
+              type="text"
+              placeholder="手机号" />
 
-          <input
-            value = {this.state.password1}
-            onChange = {this._handlePassword1Change}
-            style={inputStyle}
-            ref="passWord"
-            type="password" 
-            placeholder="输入密码" />
+            <div
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+                backgroundColor: 'inherit',
+                color: '#fff',
+                float: 'right',
+                padding:'8px',
+                position:'absolute',
+                right:0,
+                top:'-20px',
+                margin:'25px 20px'
+              }}
+              onClick={this._handleGetCode}
+              ref="getVerificationCode" >
+              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
+            </div>
 
-          <input 
-            style={inputStyle}
-            value = {this.state.code}
-            onChange = {this._handleCodeChange}
-            ref="verificationCode"
-            type="text" 
-            placeholder="验证码" />
-            <div 
-              style={{  
-                width: '212px',
-                padding : '5px',
-                height : '40px',
-                marginTop: '54px',
-                borderRadius: '25px',
-                border: '0',
-                fontSize: '1.5em',
-                backgroundColor: '#3c3c3c',
-                color: '#ffffff',
-                fontWeight: 'lighter'
+            <input
+              value = {this.state.password1}
+              onChange = {this._handlePassword1Change}
+              style={inputStyle}
+              ref="passWord"
+              type="password"
+              placeholder="输入密码" />
+
+            <input
+              style={inputStyle}
+              value = {this.state.code}
+              onChange = {this._handleCodeChange}
+              ref="verificationCode"
+              type="text"
+              placeholder="验证码" />
+            <div
+              style={{
+                border: '1px solid #fff',
+                fontSize: '14px',
+                color: '#fff',
+                height:'50px',
+                lineHeight:'50px',
+                marginTop:'10px'
               }}
               onClick = {this._handleRegister}
               ref="signupButton">
               创建账号
             </div>
+          </div>
+          <Toaster ref="toast"/>
         </div>
       </div>
     );
