@@ -4,9 +4,9 @@ import { Router, Route, Link, History,Location } from 'react-router';
 import DocumentTitle from 'react-document-title';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
-
+import './index.scss';
 import LoginForm from './LoginForm';
-import ActionBar from './ActionBar';
+
 import Toaster from '../Toast';
 
 var LoginPage = React.createClass({
@@ -45,44 +45,35 @@ var LoginPage = React.createClass({
   render: function() {
     return (
       <DocumentTitle title="登录">
-        <div  
+        <div
         style={{
           position: 'absolute',
           width: '100%',
           minHeight: '100%',
           margin: '0 auto',
           textAlign: 'center',
-          padding: '60px 0 30px'
         }}
         className="loginPage">
-        <span
-          className="icon yaopai_logo"
-          ref="yaopaiLogo"
-          style={{fontSize:140,lineHeight:0.3,display:'block'}} />
-        <LoginForm showMessage={this.showMessage} onLogin={this.handleLoginPost} />
+
+
+          <div className="loginCover" style={{backgroundImage:`url('http://ww2.sinaimg.cn/large/006gDr5Tjw1f453zyd9jjj30v91ao7h0.jpg')`}}>
+            <i className="icon yaopainew"></i>
+            <p style={{color:'#000'}}>全球&nbsp;预约&nbsp;摄影师&nbsp;平台</p>
+          </div>
+          <div className="loginForm">
+            <div>
+              <span className="login">
+                登录 | Login
+              </span>
+              <Link to="/signupPage">
+                <span className="reg" ref="signupButton">
+                  注册 | Register
+                </span>
+              </Link>
+            </div>
+            <LoginForm showMessage={this.showMessage} onLogin={this.handleLoginPost} />
+          </div>
         <Toaster ref="toast"/>
-        <div style={{margin: '44px 0 5px'}}>
-          <Link to="/signupPage">
-            <span 
-            style={{
-              color: '#636363',
-              fontSize: '1.2em'
-            }}
-            ref="signupButton">新建帐号</span>
-          </Link>
-        </div>
-        <span ref="splitText">
-          <img 
-            src="imgs/common/spliter-line.png"
-            srcSet="imgs/common/spliter-line@2X.png 2x" />
-          <div 
-          style={{
-            position: 'relative',
-            marginTop: -21,
-            color: '#c4c4c4'
-          }}>OR</div>
-        </span>
-          <ActionBar />
         </div>
       </DocumentTitle>
     );
