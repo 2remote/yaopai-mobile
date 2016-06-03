@@ -19,7 +19,7 @@ import ActivityPage from './components/ActivityPage';
 import ActivityDetailPage from './components/ActivityDetailPage';
 
 import LoginPage from './components/LoginPage';
-import SignupPage from './components/SignupPage';
+import SignupPage from './components/LoginPage/SignupPage';
 import FindMyPassPage1 from './components/FindMyPassPage/FindByMobileForm';
 import FindMyPassPage2 from './components/FindMyPassPage/ChangePassWordForm';
 import WorkBookPage from './components/BookPage';

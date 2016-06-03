@@ -1,6 +1,6 @@
 import React from 'react/addons';
 import assert from 'assert';
-import SignupPage from '../../app/components/SignupPage.js';
+import SignupPage from '../../app/components/LoginPage/SignupPage';
 
 // 定义常用React测试函数
 const {
