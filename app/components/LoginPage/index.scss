@@ -1,3 +1,19 @@
+/* 此 scss 不仅包括 components/LoginPage 目录下的样式，
+ * 也包含了 components/FindMyPassPage 目录下的样式
+ */
+
+ %span-box {
+   display: inline-block;
+   height: 50px;
+   width: 50%;
+   text-align: center;
+   color: #fff;
+   font-size: 14px;
+   background: rgba(0, 0, 0, .5);
+   line-height: 50px;
+ }
+
+// components/LoginPage
 .loginPage {
   background: #282828;
 
@@ -20,17 +36,7 @@
     height: 500px;
     overflow-y: hidden;
 
-    span {
-      display: inline-block;
-      height: 50px;
-      width: 50%;
-      text-align: center;
-      color: #fff;
-      font-size: 14px;
-      background: rgba(0,0,0,0.5);
-      line-height: 50px;
-    }
-
+    span { @extend %span-box; }
     .reg { color: #888; }
 
     .wechat {
@@ -62,28 +68,70 @@
   .regForm {
     margin-top: -50px;
 
-    span {
-      display: inline-block;
-      height: 50px;
-      width: 50%;
-      text-align: center;
-      color: #fff;
-      font-size: 14px;
-      background: rgba(0,0,0,0.5);
-      line-height: 50px;
-    }
-
+    span   { @extend %span-box; }
     .login { color: #888; }
   }
 }
 
+// components/FindMyPassPage
 .findMyPassPage {
-  background: #282828;
-  min-height: 100%;
   position: fixed;
   padding: 0 20px;
+  min-height: 100%;
+  background: #282828;
 
   .findByMobileForm {
 
+  }
+  .form {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .form-hack {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .input {
+    background-color: inherit;
+    width: 100%;
+    font-size: 14px;
+    line-height: 50px;
+    border-width: 0 0 1px;
+    border-radius: 0;
+    color: #fff;
+    border-color: transparent transparent #333;
+  }
+
+  .captcha {
+    padding: 8px 0;
+    margin-top : 51px;
+    border: 0;
+    font-size: .8333em;
+    font-weight: 600;
+    background-color: inherit;
+    color: #6a6a6a;
+    margin-left: -63px;
+  }
+
+  .submits {
+    margin-top: 10px;
+    border: 1px solid #fff;
+    font-size: 14px;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .submits-hack {
+    @extend .submits;
+    margin-top: 60px;
   }
 }
