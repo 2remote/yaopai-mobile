@@ -1,6 +1,6 @@
 import React from 'react';
-
-import {imgModifier} from '../Tools';
+import { imgModifier } from '../Tools';
+import './bookPage.scss';
 
 var DoubleCheckInfo = React.createClass({
 
@@ -11,71 +11,34 @@ var DoubleCheckInfo = React.createClass({
       }
     };
   },
-  
-  render: function() {
-    var style = {
-      grapherImage:{
-        width:66,
-        height: 66,
-        marginTop: 17
-      },
-      grapherName:{
-        color:'#4d4d4d',
-        marginBottom: 9
-      },
-      priceImage:{
-        margin: '0 6px -2px -7px',
-        fontSize: 22
-      },
-      grapherPrice:{
-        color: '#969696',
-        fontWeight:'bold'
-      },
-      label:{
-        fontSize:'1.333333em',
-        color:'#ababab',
-      },
-      input:{
-        color:'#ababab',
-        padding: '3px 0',
-        margin: '18px 0 0 15px',
-        width: '170px',
-        lineHeight: '19px',
-        fontSize: '1em',
-        border: 0,
-        borderBottom: '2px solid #c4c4c4',
-        borderRadius: 0,
-        verticalAlign: 'super',
-      }
-    };
 
-
+  render() {
     return (
       <div className="doubleCheckInfo">
-        <img 
-          style={style.grapherImage}
+        <img
+          className="grapherImage"
           ref="grapherImage"
           src={this.props.order.Albums?this.props.order.Albums.Cover:this.props.order.Photographer?this.props.order.Photographer.Avatar:''} />
 
-        <div 
-          style={style.grapherName}
+        <div
+          className="grapherName"
           ref="grapherName" >{this.props.order.Albums?this.props.order.Albums.Title:this.props.order.Photographer?this.props.order.Photographer.NickName:''}</div>
 
-        <span 
+        <span
           ref="priceImage"
-          className="icon price_icon"
-          style={style.priceImage} />
+          className="priceImage icon price_icon"
+         />
 
-        <span 
-          style={style.grapherPrice}
+        <span
+          className="grapherPrice"
           ref="grapherPrice" >{this.props.order.Price?this.order.Price:'面议'}</span>
 
         <div>
-          <span 
-            style={style.label}
+          <span
+            className="label"
             ref="userNameLabel">预约姓名</span>
-          <input 
-            style={style.input}
+          <input
+            className="input"
             ref="usernameInput"
             type="text"
             disabled
@@ -83,11 +46,11 @@ var DoubleCheckInfo = React.createClass({
             placeholder="将显示您的预订姓名" />
         </div>
         <div>
-          <span 
-            style={style.label}
+          <span
+            className="label"
             ref="mobilePhoneLabel">预约电话</span>
-          <input 
-            style={style.input}
+          <input
+            className="input"
             ref="mobilePhoneInput"
             type="text"
             disabled
@@ -95,11 +58,11 @@ var DoubleCheckInfo = React.createClass({
             placeholder="将显示您的联系电话" />
         </div>
         <div>
-          <span 
-            style={style.label}
+          <span
+            className="label"
             ref="dateLabel">拍摄日期</span>
-          <input 
-            style={style.input}
+          <input
+            className="input"
             ref="dateInput"
             type="text"
             disabled

@@ -41,3 +41,45 @@
     height: 20;
   }
 }
+
+/** DoubleCheckInfo **/
+.doubleCheckInfo {
+  .grapherImage {
+    width: 66;
+    height: 66;
+    margin-top: 17;
+  }
+
+  .grapherName {
+    color: #4d4d4d;
+    margin-bottom: 9;
+  }
+
+  .priceImage {
+    margin: 0 6px -2px -7px;
+    font-size: 22;
+  }
+
+  .grapherPrice {
+    color: #969696;
+    font-weight: bold;
+  }
+
+  .label {
+    font-size: 1.333333em;
+    color: #ababab;
+  }
+
+  .input {
+    color:#ababab;
+    padding: 3px 0;
+    margin: 18px 0 0 15px;
+    width: 170px;
+    line-height: 19px;
+    font-size: 1em;
+    border: 0;
+    border-bottom: 2px solid #c4c4c4;
+    border-radius: 0;
+    vertical-align: super;
+  }
+}
