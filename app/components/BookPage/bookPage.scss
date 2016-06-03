@@ -4,7 +4,7 @@
   position: absolute;
   width: 100%;
   min-height: 100%;
-  background-image: url("imgs/bookPageBg.png");
+  background-image: url("/imgs/bookPageBg.png");
   padding-bottom: 30;
 
   .headText {
@@ -34,7 +34,7 @@
   }
 
   .wave {
-    background: url("imgs/bookIntroBg.png") repeat-x;
+    background: url("/imgs/bookIntroBg.png") repeat-x;
     background-position: bottom;
     width: 90%;
     margin: 0 auto;
