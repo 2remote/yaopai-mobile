@@ -1,7 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
 import { History }  from 'react-router';
-var localStorage = require('web-storage')().localStorage;
 import DocumentTitle from 'react-document-title';
 
 import DoubleCheckInfo from './DoubleCheckInfo';

@@ -1,5 +1,4 @@
 import React from 'react';
-import { imgModifier } from '../Tools';
 import './bookPage.scss';
 
 var DoubleCheckInfo = React.createClass({

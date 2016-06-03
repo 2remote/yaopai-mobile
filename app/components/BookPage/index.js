@@ -1,5 +1,5 @@
 import React from 'react';
-import Router, { History, Location } from 'react-router';
+import { History, Location } from 'react-router';
 import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 

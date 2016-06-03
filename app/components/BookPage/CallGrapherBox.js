@@ -1,12 +1,12 @@
 import React from 'react';
 
 var CallGrapherBox = React.createClass({
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       data: {}
     };
   },
-  render: function() {
+  render() {
     return (
       <a
         style={{lineHeight:'inherit'}}
