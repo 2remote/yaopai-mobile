@@ -1,12 +1,11 @@
 import React from 'react';
 
 import WechatLogin from './WechatLogin';
-import WeiboLogin from './WeiboLogin';
 
 var ActionBar = React.createClass({
-  render: function() {
+  render() {
     return (
-      <div 
+      <div
         style={{margin: '15px 0'}}
         className="actionBar">
         <WechatLogin />
