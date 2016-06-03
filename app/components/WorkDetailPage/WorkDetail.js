@@ -10,6 +10,35 @@ var WorkDetail = React.createClass({
     }
   },
 
+  getPlace: function(){
+    var item = this.props.data.Detail.PlaceType;
+    if(typeof(item)=="undefined"){
+      item='';
+    }
+    var arr = item.split(',');
+    var en_arr ='';
+    for(var i=0; i<arr.length; i++){
+      switch(arr[i]){
+      case 'Null':
+        en_arr+='无';
+        break;
+      case 'Studio':
+        en_arr+=' 影棚 ';
+        break;
+      case 'Exterior':
+        en_arr+=' 外景 ';
+        break;
+      case 'Interior':
+        en_arr+=' 室内 ';
+        break;
+      default:
+        en_arr+='无';
+          break;
+      }
+    }
+    return en_arr;
+  },
+
   handleClick: function() {
     this.setState({showPanel: !this.state.showPanel});
   },
@@ -36,7 +65,7 @@ var WorkDetail = React.createClass({
             </li>
             <li>
               <i className="icon shijian"/>
-              <span>5天拍摄</span>
+              <span>拍摄时长</span>
             </li>
           </ul>
           <button onClick={this.handleClick}>查看套餐详情</button>
@@ -44,13 +73,21 @@ var WorkDetail = React.createClass({
           <div className="workDetail-mask" style={style}>
             <div className="panel">
               <p className="a">套餐详情</p>
-              <p className="b">Package Detail</p>
-
               <ul>
                 <li>
                   <i className="icon success_icon"></i>
-                  <span className="a">拍摄时长</span>
-                  <span className="b">{this.props.data.Detail.Duration}</span>
+                  <span className="a">照片类型</span>
+                  <span className="b">数码/胶片</span>
+                </li>
+                <li>
+                  <i className="icon success_icon"></i>
+                  <span className="a">拍摄人数</span>
+                  <span className="b">{this.props.data.Detail.PeopleCount}人</span>
+                </li>
+                <li>
+                  <i className="icon success_icon"></i>
+                  <span className="a">原片提供</span>
+                  <span className="b">{this.props.data.Detail.OriginalSupport?'全送':'不送'}</span>
                 </li>
                 <li>
                   <i className="icon success_icon"></i>
@@ -64,23 +101,8 @@ var WorkDetail = React.createClass({
                 </li>
                 <li>
                   <i className="icon success_icon"></i>
-                  <span className="a">服装数目</span>
-                  <span className="b">{this.props.data.Detail.CostumeCount}件</span>
-                </li>
-                <li>
-                  <i className="icon success_icon"></i>
-                  <span className="a">化妆造型</span>
-                  <span className="b">{this.props.data.Detail.MakeUpSupport?'提供':'暂无'}</span>
-                </li>
-                <li>
-                  <i className="icon success_icon"></i>
-                  <span className="a">提供原片</span>
-                  <span className="b">{this.props.data.Detail.OriginalSupport?'提供':'暂无'}</span>
-                </li>
-                <li>
-                  <i className="icon success_icon"></i>
-                  <span className="a">提供产品</span>
-                  <span className="b">{this.props.data.Detail.PhysicalSupport?'提供':'暂无'}</span>
+                  <span className="a">拍摄时长</span>
+                  <span className="b">{this.props.data.Detail.Duration}</span>
                 </li>
                 <li>
                   <i className="icon success_icon"></i>
@@ -89,20 +111,51 @@ var WorkDetail = React.createClass({
                 </li>
                 <li>
                   <i className="icon success_icon"></i>
-                  <span className="a">场景数量</span>
-                  <span className="b">{this.props.data.Detail.SceneCount}个</span>
+                  <span className="a">服装提供</span>
+                  <span className="b">{this.props.data.Detail.CostumeCount}套</span>
                 </li>
                 <li>
                   <i className="icon success_icon"></i>
-                  <span className="a">拍摄人数</span>
-                  <span className="b">{this.props.data.Detail.PeopleCount}人</span>
+                  <span className="a">化妆造型</span>
+                  <span className="b">{this.props.data.Detail.MakeUpSupport?'提供':'不提供'}</span>
+                </li>
+                <li>
+                  <i className="icon success_icon"></i>
+                  <span className="a">场景数量</span>
+                  <span className="b">{this.props.data.Detail.SceneCount}处</span>
+                </li>
+                <li>
+                  <i className="icon success_icon"></i>
+                  <span className="a">拍摄场地</span>
+                  <span className="b">{this.getPlace()}</span>
                 </li>
                 <li>
                   <i className="icon success_icon"></i>
                   <span className="a">拍摄机位</span>
                   <span className="b">{this.props.data.Detail.SeatCount}个</span>
                 </li>
-
+                <li>
+                  <i className="icon success_icon"></i>
+                  <span className="a">交付天数</span>
+                  <span className="b">与摄影师协商</span>
+                </li>
+                <li>
+                  <i className="icon success_icon"></i>
+                  <span className="a">实体产品</span>
+                  <span className="b">{this.props.data.Detail.PhysicalSupport?'提供':'不提供'}</span>
+                </li>
+                <li>
+                  <i className="icon success_icon"></i>
+                  <span className="a">套系价格</span>
+                  <span className="b">￥{this.props.data.Price}</span>
+                </li>
+                <li style={{height:'auto',paddingBottom:'50px'}}>
+                  <i className="icon success_icon"></i>
+                  <span className="a">补充服务说明</span>
+                  <div style={{lineHeight:'30px',color:'#888'}}>
+                    {this.props.data.Service===''?'暂无说明':this.props.data.Service}
+                  </div>
+                </li>
               </ul>
               <button className="btn" onClick={this.handleClick}>关闭</button>
             </div>
