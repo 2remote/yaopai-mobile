@@ -1,7 +1,5 @@
 import React from 'react';
-import Router from 'react-router';
-var History = Router.History;
-var Location = Router.Location;
+import Router, { History, Location} from 'react-router';
 import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 
