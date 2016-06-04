@@ -11,7 +11,7 @@ var LoginForm = React.createClass({
       password : ''
     }
   },
-
+  
   componentWillMount : function () {
   },
   _weChatLogin : function(){
@@ -41,15 +41,61 @@ var LoginForm = React.createClass({
   _handlePasswordChange : function(event){
     this.setState({password : event.target.value});
   },
-  render() {
+  render: function() {
+    var style = {
+      loginForm: {
+        position: 'relative',
+        textAlign: 'center',
+        margin: '0 auto',
+        padding:'0px 20px',
+      },
+      input: {
+        backgroundColor: 'inherit',
+        width: '100%',
+        fontSize: '14px',
+        lineHeight: '50px',
+        borderWidth: '0 0 1px',
+        borderRadius: 0,
+        color:'#fff',
+        borderColor: 'transparent transparent #333'
+      },
+      login: {
+        marginTop: 60,
+        border: '1px solid #fff',
+        fontSize: '14px',
+        color: '#fff',
+        height:'50px',
+        lineHeight:'50px'
+      },
+      findPass: {
+        border: 0,
+        backgroundColor: 'inherit',
+        float: 'right',
+        marginRight: 5,
+        marginTop: 15,
+        color:'#777'
+      },
+      provision: {
+        border: 0,
+        backgroundColor: 'inherit',
+        float: 'left',
+        marginLeft: 5,
+        marginTop: 15,
+        color:'#777'
+      }
+    };
+
+
     return (
-      <div className="loginForm">
+      <div 
+        style={style.loginForm}
+        className="loginForm">
         <form ref="loginForm">
           <div>
-            <input
+            <input 
               value={this.state.userName}
               onChange={this._handleUserNameChange}
-              className="login-input"
+              style={style.input}
               ref="mobileNumber"
               type="tel"
               pattern="[0-9]*"
@@ -59,37 +105,38 @@ var LoginForm = React.createClass({
             <input
               value={this.state.password}
               onChange = {this._handlePasswordChange}
-              className="login-input"
+              style={style.input}
               ref="passWord"
               type="password"
               placeholder="密码" />
           </div>
           <div>
             <Link to="/find_my_pass_page1">
-              <input
-                className="findPass"
+              <input 
+                style={style.findPass}
                 ref="findMyPassButton"
-                type="button"
+                type="button" 
                 value="忘记密码" />
             </Link>
           </div>
           <div>
             <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed">
-              <input
-                className="provision"
-                type="button"
+              <input 
+                style={style.provision}
+                type="button" 
                 value="YAOPAI 服务条款" />
             </a>
           </div>
 
           <div
-            className="login-btn"
+            style={style.login}
             onClick={this._handleLogin}
             ref="loginButton">
             立即登录
           </div>
           <div
-            className="wechat-login-btn"
+            style={style.login}
+            className="wechat"
             onClick={this._weChatLogin}
             ref="loginButton">
             微信登录

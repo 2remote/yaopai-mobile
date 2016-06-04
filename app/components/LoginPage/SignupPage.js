@@ -2,13 +2,13 @@ import React from 'react';
 import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 import validator from 'validator';
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
-import GetCodeActions from '../../actions/GetCodeActions';
-import GetCodeStore from '../../stores/GetCodeStore';
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore';
+import GetCodeActions from '../actions/GetCodeActions';
+import GetCodeStore from '../stores/GetCodeStore';
 import { Router, Route, Link, History,Location } from 'react-router';
-import Toaster from '../Toast';
-import './index.scss';
+import Toaster from './Toast';
+import './LoginPage/index.scss';
 
 var SignupPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(GetCodeStore,'_onGetCodeStoreChange'),History],
@@ -100,20 +100,53 @@ var SignupPage = React.createClass({
   showMessage: function (content) {
     this.refs.toast.show(content)
   },
-  render() {
+  render: function() {
+    var inputStyle={
+      backgroundColor: 'inherit',
+      width: '100%',
+      fontSize: '14px',
+      lineHeight: '50px',
+      borderWidth: '0 0 1px',
+      borderRadius: 0,
+      color:'#fff',
+      borderColor: 'transparent transparent #333'
+    };
+    var mobileNumber = {
+      backgroundColor: 'inherit',
+      width:'100%',
+      fontSize: '14px',
+      color:'#fff',
+      lineHeight: '50px',
+      borderWidth: '0 0 1px',
+      borderRadius: 0,
+      borderColor: 'transparent transparent #333',
+
+    };
     return (
-      <div
-        style={{ height: this._getHeight }}
+      <div 
+        style={{
+          width: '100%',
+          textAlign: 'center',
+          position: 'absolute',
+          height:this._getHeight,
+        }}
         className="signupPage">
-        <div className="loginCover">
+        <div className="loginCover" style={{backgroundImage:`url('http://ww2.sinaimg.cn/large/006gDr5Tjw1f453zyd9jjj30v91ao7h0.jpg')`}}>
           <i className="icon yaopainew"></i>
-          <p>全球&nbsp;预约&nbsp;摄影师&nbsp;平台</p>
+          <p style={{color:'#000'}}>全球&nbsp;预约&nbsp;摄影师&nbsp;平台</p>
         </div>
         <div className="regForm">
-          <section className="login-register-switch">
-            <Link to="/login_page"><span>登录 | Login</span></Link>
-            <span>注册 | Register</span>
-          </section>
+          <div>
+            <Link to="/login_page">
+              <span className="login">
+                登录 | Login
+              </span>
+            </Link>
+            <span className="reg" >
+              注册 | Register
+            </span>
+
+          </div>
           <div
             style={{
               position: 'relative',
@@ -127,7 +160,7 @@ var SignupPage = React.createClass({
             <input
               value = {this.state.phone}
               onChange = {this._handlePhoneChange}
-              className="login-input"
+              style={mobileNumber}
               ref="mobileNumber"
               type="text"
               placeholder="手机号" />
@@ -153,13 +186,13 @@ var SignupPage = React.createClass({
             <input
               value = {this.state.password1}
               onChange = {this._handlePassword1Change}
-              className="login-input"
+              style={inputStyle}
               ref="passWord"
               type="password"
               placeholder="输入密码" />
 
             <input
-              className="login-input"
+              style={inputStyle}
               value = {this.state.code}
               onChange = {this._handleCodeChange}
               ref="verificationCode"

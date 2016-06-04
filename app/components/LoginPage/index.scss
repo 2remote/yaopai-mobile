@@ -1,107 +1,76 @@
-/* 此 scss 包括 components/LoginPage 目录下的样式，
+/* 此 scss 不仅包括 components/LoginPage 目录下的样式，
  * 也包含了 components/FindMyPassPage 目录下的样式
  */
 
- %login-background-image {
-   height: 300px;
-   width: 100%;
-   background-image: url('http://ww2.sinaimg.cn/large/006gDr5Tjw1f453zyd9jjj30v91ao7h0.jpg');
-   background-size: cover;
-   background-position: center center;
-
-   i {
-     display: inline-block;
-     margin-top: 100px;
-     color: #000;
-     font-size: 30px;
-   }
-
-   p { color: #000; }
+ %span-box {
+   display: inline-block;
+   height: 50px;
+   width: 50%;
+   text-align: center;
+   color: #fff;
+   font-size: 14px;
+   background: rgba(0, 0, 0, .5);
+   line-height: 50px;
  }
 
-// 登陆注册切换组件
- .login-register-switch {
-   a span { color: #888; }
-
-   span {
-     display: inline-block;
-     height: 50px;
-     width: 50%;
-     text-align: center;
-     color: #fff;
-     font-size: 14px;
-     background: rgba(0, 0, 0, .5);
-     line-height: 50px;
-   }
- }
-
-// components/LoginPage 登陆页面
+// components/LoginPage
 .loginPage {
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  text-align: center;
   background: #282828;
 
-  .loginCover { @extend %login-background-image; }
+  .loginCover {
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+
+    i {
+      display: inline-block;
+      margin-top: 100px;
+      color: #000;
+      font-size: 30px;
+    }
+  }
 
   .loginForm {
-    position: relative;
+    margin-top: -50px;
     height: 500px;
     overflow-y: hidden;
-    text-align: center;
 
-    .login-btn {
-      margin-top: 60px;
-      height: 50px;
-      border: 1px solid #fff;
-      font-size: 14px;
-      color: #fff;
-      line-height:50px;
-    }
+    span { @extend %span-box; }
+    .reg { color: #888; }
 
-    .wechat-login-btn {
-      @extend .login-btn;
+    .wechat {
       background: green;
-      border: 0;
-      margin-top: 10px;
-    }
-
-    // TODO
-    // @ 石头 可以用 继承的方式替换 !important
-    // 再用 !important 要扣工资了 🍉
-    // .wechat {
-    //   background: green;
-    //   border: 0!important;
-    //   margin-top: 10px!important;
-    // }
-
-    .findPass {
-      float: right;
-      margin-right: 5;
-      margin-top: 15px;
-      border: 0;
-      background-color: inherit;
-      color: #777;
-    }
-
-    .provision {
-      @extend .findPass;
-      float: left;
+      border: 0!important;
+      margin-top: 10px!important;
     }
   }
 }
 
-// 注册页面
 .signupPage {
-  width: 100%;
-  text-align: center;
-  position: absolute;
   min-height: 100%;
   background: #282828;
 
-  .loginCover { @extend %login-background-image; }
-  .regForm    { margin-top: -50px; }
+  .loginCover {
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+
+    i {
+      display: inline-block;
+      margin-top: 100px;
+      color: #000;
+      font-size: 30px;
+    }
+  }
+
+  .regForm {
+    margin-top: -50px;
+
+    span   { @extend %span-box; }
+    .login { color: #888; }
+  }
 }
 
 // components/FindMyPassPage
@@ -125,6 +94,17 @@
     position: relative;
     text-align: center;
     margin: 0 auto;
+  }
+
+  .input {
+    background-color: inherit;
+    width: 100%;
+    font-size: 14px;
+    line-height: 50px;
+    border-width: 0 0 1px;
+    border-radius: 0;
+    color: #fff;
+    border-color: transparent transparent #333;
   }
 
   .captcha {
