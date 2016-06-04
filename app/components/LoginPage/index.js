@@ -45,35 +45,23 @@ var LoginPage = React.createClass({
   render: function() {
     return (
       <DocumentTitle title="登录">
-        <div
-        style={{
-          position: 'absolute',
-          width: '100%',
-          minHeight: '100%',
-          margin: '0 auto',
-          textAlign: 'center',
-        }}
-        className="loginPage">
-
-
-          <div className="loginCover" style={{backgroundImage:`url('http://ww2.sinaimg.cn/large/006gDr5Tjw1f453zyd9jjj30v91ao7h0.jpg')`}}>
+        <div style={{ height: this._getHeight }}
+          className="loginPage">
+          <div className="loginCover">
             <i className="icon yaopainew"></i>
-            <p style={{color:'#000'}}>全球&nbsp;预约&nbsp;摄影师&nbsp;平台</p>
+            <p>全球&nbsp;预约&nbsp;摄影师&nbsp;平台</p>
           </div>
-          <div className="loginForm">
-            <div>
-              <span className="login">
-                登录 | Login
-              </span>
+
+          <div>
+            <section className="login-register-switch">
+              <span>登录 | Login</span>
               <Link to="/signupPage">
-                <span className="reg" ref="signupButton">
-                  注册 | Register
-                </span>
+                <span ref="signupButton">注册 | Register</span>
               </Link>
-            </div>
+            </section>
             <LoginForm showMessage={this.showMessage} onLogin={this.handleLoginPost} />
           </div>
-        <Toaster ref="toast"/>
+          <Toaster ref="toast"/>
         </div>
       </DocumentTitle>
     );
