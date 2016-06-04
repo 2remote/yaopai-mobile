@@ -65,7 +65,7 @@ function main(){
   ReactDOM.render((
     <Router>
       <Route path="/">
-        <IndexRoute component={WorkPage} />
+        <IndexRedirect to="/work(/:tag)(/:tag)(/:tag)(/:tag)" />
         <Route path="/work(/:tag)(/:tag)(/:tag)(/:tag)" component={WorkPage} />
         <Route path="/workDetail/:Id" component={WorkDetailPage} />
 
