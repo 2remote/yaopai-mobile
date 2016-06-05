@@ -78,83 +78,34 @@ var FindByMobileForm = React.createClass({
       }
     }
   },
-  showMessage: function (content) {
+  showMessage(content) {
     this.refs.toast.show(content);
   },
-  render: function() {
-    var style = {
-      form: {
-        position: 'relative',
-        textAlign: 'center',
-        margin: '0 auto',
-        padding:'0 20px'
-      },
-      mobileNumber: {
-        backgroundColor: 'inherit',
-        width:'100%',
-        fontSize: '14px',
-        color:'#fff',
-        lineHeight: '50px',
-        borderWidth: '0 0 1px',
-        borderRadius: 0,
-        borderColor: 'transparent transparent #333',
-      },
-      input: {
-        backgroundColor: 'inherit',
-        width: '100%',
-        fontSize: '14px',
-        lineHeight: '50px',
-        borderWidth: '0 0 1px',
-        borderRadius: 0,
-        color:'#fff',
-        borderColor: 'transparent transparent #333'
-      },
-      captcha: {
-        padding: '8px 0',
-        marginTop : 51,
-        border: 0,
-        fontSize: '.8333em',
-        fontWeight: 600,
-        backgroundColor: 'inherit',
-        color: '#6a6a6a',
-        marginLeft: -63,
-      },
-      submits: {
-        marginTop: 10,
-        border: '1px solid #fff',
-        fontSize: '14px',
-        color: '#fff',
-        height:'50px',
-        lineHeight:'50px',
-        width:'100%',
-        background:'transparent',
-        borderRadius:'0'
-      }
-    };
+  render() {
     return (
       <DocumentTitle title="重置密码第一步">
         <div className="findMyPassPage">
           <div className="findByMobileForm">
             <Toaster ref="toast" />
-            <form 
-              style={style.form}
+            <form
+              className="form"
               ref="mobileForm" >
-              <input 
-                style={style.mobileNumber}
+              <input
+                className="input"
                 ref="mobileNumber"
                 type="text" placeholder="输入手机号" />
               <input
-                style={style.captcha} 
+                className="captcha"
                 ref="getVertificationCode"
                 onClick={this._handleCheck}
-                type="button" 
+                type="button"
                 value={(this.state.codeLeft>0 ? '( '+this.state.codeLeft+' )' : '获取验证码')} />
-              <input 
-                style={style.input}
+              <input
+                className="input"
                 ref="vertificationCode"
                 type="text" placeholder="输入验证码" />
-              <input 
-                style={style.submits}
+              <input
+                className="submits"
                 ref="submitButton"
                 onClick={this._handleNextStep}
                 type="submit" value="下一步" />
@@ -162,7 +113,7 @@ var FindByMobileForm = React.createClass({
           </div>
         </div>
       </DocumentTitle>
-      
+
     );
   }
 });
