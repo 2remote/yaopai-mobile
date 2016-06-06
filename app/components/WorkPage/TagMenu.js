@@ -24,8 +24,8 @@ var TagCol = React.createClass({
       border:'1px solid ' + border_color,
     };
 
-    return (      
-      <div className="tagColBox" 
+    return (
+      <div className="tagColBox"
         style={style}
         onClick={this.handleClick}  >
         {this.props.name}
@@ -36,7 +36,7 @@ var TagCol = React.createClass({
 
 var TagRow = React.createClass({
 
-  
+
   render: function () {
     var style={
       overflow: 'hidden',
@@ -74,28 +74,10 @@ var TagMenu = React.createClass({
     var status = ! this.state.showTags;
     this.setState({showTags: status});
   },
-  
-  render: function () {
-    var top = this.state.showTags ? 56 : '-340px';
-    var style = {
-      tab: {
-        position: 'fixed',
-        width: '100%',
-        boxSizing: 'border-box',
-        left: 0,
-        top: top,
-        zIndex: '1000',
-        padding: '15px 0',
-        background: '#000',
-        color: '#fff',
-        WebkitTransition:'top ease .5s',
-        transition: 'top ease .5s',
-        opacity: 0.95
-      }
-    };
 
+  render() {
     return (
-      <div className="tagMenu" style={style.tab}>
+      <div className={`tagMenu ${this.state.showTags ? `tagMuneDown` : `tagMuneIn`}`}>
         <span>拍摄地区 | Shooting Area</span>
         <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
         <span>拍摄种类 | Shooting Type</span>
