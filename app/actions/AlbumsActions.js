@@ -19,7 +19,7 @@ AlbumsActions.get.listen(function(id){
   var data = {
     Id : id,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
-    'Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
+    'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
     'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,' +
@@ -38,7 +38,7 @@ function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null){
     CategoryId : categoryId,
     Tags: tags,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
-    'Cover,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
+    'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
     'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,' +

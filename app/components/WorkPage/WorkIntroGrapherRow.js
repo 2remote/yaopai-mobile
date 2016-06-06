@@ -19,9 +19,14 @@ var WorkIntroGrapherRow = React.createClass({
     };
   },
   render: function() {
-    console.log("obj",this.props.data)
-    const cover = imgModifier(this.props.data.Cover, "workCover");
-    const avatar = imgModifier(this.props.data.Photographer.Avatar, "avatar");
+    let cover;
+    if(this.props.data.Cut){
+      var cut = JSON.parse(this.props.data.Cut);
+      cover = this.props.data.Cover + cut.w;
+    }else{
+      cover = imgModifier(this.props.data.Cover, "workCover");
+    }
+    const avatar = imgModifier(this.props.data.User.Avatar, "avatar");
     return (
       <div
         style={{width:'100%',color:'#0f0f0f'}}
