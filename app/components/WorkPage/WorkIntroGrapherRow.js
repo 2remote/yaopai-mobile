@@ -28,30 +28,43 @@ var WorkIntroGrapherRow = React.createClass({
     }
     const avatar = imgModifier(this.props.data.User.Avatar, "avatar");
     return (
-      <div 
-        style={{width:'100%',textAlign:'center',color:'#0f0f0f'}}
+      <div
+        style={{width:'100%',color:'#0f0f0f'}}
         className="workIntroGrapherRow">
         <Link to={"/workDetail/" + this.props.data.Id}>
-          <div style={{width:'100%',height:210/375*innerWidth,marginBottom: -36,backgroundColor:'#eeedeb'}}>
+          <div style={{width:'100%',height:254/375*innerWidth,marginBottom: -36,
+          backgroundColor:'#eeedeb',position:'relative'}}>
             <LazyLoad threshold={100} once>
+              <div style={{background:'rgba(0,0,0,.8)',width:'auto',height:'35px',lineHeight:'35px',color:'white',position:'absolute',bottom:0,left:0,fontSize:'16px',padding:'0 5px',marginBottom:'20px'}}>
+                ￥{this.props.data.Price} <span style={{fontSize:'12px'}}>/套</span>
+                <div className="top"></div>
+                <div className="bottom"></div>
+              </div>
+
               <img
-                style={{width:'100%',height:210/375*innerWidth}}
+                style={{width:'100%',height:254/375*innerWidth}}
                 ref="workImage"
                 src={cover}/>
             </LazyLoad>
+
           </div>
         </Link>
-        <Link style={{lineHeight:'inherit'}} to={"/grapherDetail/" + this.props.data.User.Id}>
+        <Link style={{textAlign:'right',display:'block'}} to={"/grapherDetail/" + this.props.data.UserId}>
         <img
-          style={{width:52,height:52}}
+          style={{width:50,height:50,borderRadius:'50%',marginRight:10,marginTop:10,position:'relative'}}
           ref="avatarImage"
           src={avatar}/>
-        <div
-          ref="avatarNick">{this.props.data.User.NickName}</div>
         </Link>
-        <div
-          style={{fontSize:'1.667em',margin:'3px 0 21px'}}
-          ref="workTitle">“ {this.props.data.Title} ”</div>
+        <div style={{padding:'12px 10px',lineHeight:'24px',marginTop:'-31px',marginBottom:'10px',background:'#fff'}}>
+          <p style={{fontSize:'16px',color:'#282828',display:'block',
+            whiteSpace:'nowrap', overflow:'hidden',
+            textOverflow:'ellipsis',width:'80%'}}>
+            {this.props.data.Title}
+          </p>
+          <p style={{fontSize:'12px',color:'#bebebe'}}>
+            有{this.props.data.Views}人想拍
+          </p>
+        </div>
       </div>
     );
   }

@@ -9,14 +9,16 @@ import {parseImageUrl} from './Tools';
 
 var style={
   sidePage:{
-    boxShadow: 'inset -2px 0px 16px 4px #C9C9C9',
-    paddingRight: '14%',
     height: '100%',
-    overflow: 'scroll',
-    textAlign: 'center'
+    background:'#282828',
+    textAlign:'center',
+    fontSize:'12px',
+
   },
   loginBox: {
-    position: 'relative'
+    position: 'relative',
+    color:'#fff',
+    marginBottom:'5px'
   },
   logout:{
     position: 'absolute',
@@ -24,7 +26,8 @@ var style={
     right: '0px'
   },
   loginName: {
-    marginBottom: '15px'
+    marginBottom: '16px',
+    color:'white'
   },
   link:{
     lineHeight: '14px',
@@ -33,18 +36,30 @@ var style={
   },
   avatar:{
     margin: '34px 0 19px',
-    fontSize:'55px'
+    fontSize:'55px',
+    width:'90px',
+    borderRadius:'50%',
   },
   loginIcon:{
     float: 'right',
     margin: '51px 15px 0 -53px'
   },
   spliterLine:{
-    borderTop:'1px solid #c9c9c9',
+    borderTop:'1px solid #2b2b2b',
     margin:'0 0 0 10%'
   },
   commonIcon: {
     marginTop: '15px'
+  },
+  logoutIcon:{
+    marginRight:'20px'
+  },
+  service:{
+    color:'#5c5c5c',
+    textAlign:'left',
+    padding:'20px',
+    position:'absolute',
+    bottom:'0'
   }
 };
 
@@ -76,11 +91,11 @@ var SidePage = React.createClass({
         <div className="loginBox" style={style.loginBox}>
           <Link style={style.link} to={this.props.userData.userType==0?"/user_center":"/grapher_center"}>
               <img
-                width={70}
-                height={70}
+                width={90}
+                height={90}
                 style={style.avatar}
                 ref="defaultAvatar"
-                src={this.props.userData.avatar ? parseImageUrl(this.props.userData.avatar,70,70) : "imgs/sidePage/default-avatar.png"} />
+                src={this.props.userData.avatar ? parseImageUrl(this.props.userData.avatar,90,90) : "imgs/sidePage/default-avatar.png"} />
                 <div style={style.loginName} ref="pleaseLoginText">{this.props.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
@@ -112,17 +127,15 @@ var SidePage = React.createClass({
           <div
             style={style.sidePage}
             className="sidePage">
-            
             {accountContent}
 
-            <SidePageIcon name={'index'} text={'首页'} to={'/'} />
-            <SidePageIcon name={'work'} text={'作品'} />
-            <SidePageIcon name={'grapher'} text={'摄影师'} />
-            <SidePageIcon name={'interview'} text={'访谈'} />
-            <SidePageIcon name={'activity'} text={'活动'} />
-            
-            <div style={style.spliterLine} className="spliterLine" />
+            <SidePageIcon name={'work'} icon={'home'} text={'首页 | HOME'} />
+            <div style={style.service}>
+              <p>客服热线</p>
+              <p>0371-65337727</p>
+            </div>
           </div>
+
         </div>
       </div>
     );

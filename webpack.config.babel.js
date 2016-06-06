@@ -75,7 +75,8 @@ if(TARGET === 'start' || !TARGET) {
       hot: true,
       inline: true,
       progress: true,
-      proxy: { '/imgs/*' : 'http://localhost:5000/' }
+      proxy: { '/imgs/*' : 'http://localhost:5000/' },
+      host: '0.0.0.0', // 允许局域网访问
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),

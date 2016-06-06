@@ -1,0 +1,82 @@
+.loginPage{
+  background:#282828;
+  .loginCover{
+    background-size:cover;
+    height:300px;
+    width:100%;
+    background-position:center center;
+    i{
+      color:#000;
+      display:inline-block;
+      margin-top:100px;
+      font-size:30px;
+    }
+  }
+  .loginForm{
+    margin-top:-50px;
+    height:500px;
+    overflow-y: hidden;
+    span{
+      width:50%;
+      text-align:center;
+      color:#fff;
+      font-size:14px;
+      background: rgba(0,0,0,0.5);
+      display:inline-block;
+      height:50px;
+      line-height:50px;
+    }
+    .reg{
+      color:#888;
+    }
+    .wechat{
+      background: green;
+      border:0!important;
+      margin-top:10px!important;
+    }
+  }
+}
+
+.signupPage{
+  background:#282828;
+  min-height:100%;
+  .loginCover{
+    background-size:cover;
+    background-position:center center;
+    height:300px;
+    width:100%;
+    i{
+      color:#000;
+      display:inline-block;
+      margin-top:100px;
+      font-size:30px;
+    }
+  }
+
+  .regForm{
+    margin-top:-50px;
+    span{
+      width:50%;
+      text-align:center;
+      color:#fff;
+      font-size:14px;
+      background: rgba(0,0,0,0.5);
+      display:inline-block;
+      height:50px;
+      line-height:50px;
+    }
+    .login{
+      color:#888;
+    }
+  }
+}
+
+.findMyPassPage{
+  background:#282828;
+  min-height:100%;
+  position:fixed;
+  padding:0 20px;
+  .findByMobileForm{
+
+  }
+}

@@ -15,11 +15,11 @@ exports.imgModifier = function  (img, mode, width) {
     modifies = 'imageMogr2/auto-orient/thumbnail/600x/interlace/1';
     break;
   case "workCover":
-    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x336/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x400/interlace/1';
     break;
   case "ad":
     // 首页走马灯，访谈活动列表页裁剪规则
-    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x336/interlace/1';
+    modifies = 'imageMogr2/auto-orient/thumbnail/600x/gravity/Center/crop/!600x400/interlace/1';
     break;
   case "avatar":
     modifies = 'imageView2/1/w/52/h/52/interlace/1';
@@ -37,7 +37,7 @@ exports.imgModifier = function  (img, mode, width) {
     /*首页方块裁切函数，先不做修改*/
     modifies = 'imageMogr2/gravity/Center/thumbnail/!100x100r/crop/100x100/interlace/1';
   }
-  
+
   return img + '?' + modifies;
 };
 
@@ -108,7 +108,7 @@ exports.makeTextButton = function (title, content, link="javascript:;", router="
       </div>
     )
   }
-  
+
   if(router == 'normalLink'){
     return (
       <div className="weui_cells weui_cells_access" >
@@ -140,13 +140,13 @@ exports.dateFormat = function(date, format) {
     date = new Date();
   }
   var map = {
-    "M": date.getMonth() + 1, //月份 
-    "d": date.getDate(), //日 
-    "h": date.getHours(), //小时 
-    "m": date.getMinutes(), //分 
-    "s": date.getSeconds(), //秒 
-    "q": Math.floor((date.getMonth() + 3) / 3), //季度 
-    "S": date.getMilliseconds() //毫秒 
+    "M": date.getMonth() + 1, //月份
+    "d": date.getDate(), //日
+    "h": date.getHours(), //小时
+    "m": date.getMinutes(), //分
+    "s": date.getSeconds(), //秒
+    "q": Math.floor((date.getMonth() + 3) / 3), //季度
+    "S": date.getMilliseconds() //毫秒
   };
   format = format.replace(/([yMdhmsqS])+/g, function(all, t){
     var v = map[t];
@@ -228,7 +228,7 @@ export const BOOK_A_WORK = API + bookWork ;
 // 页面标题
 export const TITLE = {
   indexPage: 'YAOPAI，一个全球预约摄影师的平台',
-  workPage: 'YAOPAI 作品库',
+  workPage: '全球预约摄影师平台',
   grapherPage: 'YAOPAI 摄影师精选',
   workDetailPage: '_YAOPAI',
   grapherDetailPage: 'YAOPAI 认证摄影师_',

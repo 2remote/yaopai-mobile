@@ -65,7 +65,7 @@ function main(){
   ReactDOM.render((
     <Router>
       <Route path="/">
-        <IndexRoute component={AppIndex} />
+        <IndexRedirect to="/work(/:tag)(/:tag)(/:tag)(/:tag)" />
         <Route path="/work(/:tag)(/:tag)(/:tag)(/:tag)" component={WorkPage} />
         <Route path="/workDetail/:Id" component={WorkDetailPage} />
 
@@ -136,7 +136,7 @@ function main(){
         </Route>
       </Route>
       {/* 填错 URL 的情况一律跳转到首页 */}
-      <Route path="*" component={ AppIndex } />
+      <Route path="*" component={ WorkPage } />
     </Router>
     ), document.getElementById('app')
   );
