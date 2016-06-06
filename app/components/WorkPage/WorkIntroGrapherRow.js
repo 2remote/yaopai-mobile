@@ -26,7 +26,7 @@ var WorkIntroGrapherRow = React.createClass({
     }else{
       cover = imgModifier(this.props.data.Cover, "workCover");
     }
-    const avatar = imgModifier(this.props.data.User.Avatar, "avatar");
+    const avatar = imgModifier(this.props.data.Photographer.Avatar, "avatar");
     return (
       <div
         style={{width:'100%',color:'#0f0f0f'}}
