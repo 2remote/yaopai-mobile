@@ -33,7 +33,7 @@ var WorkDetail = React.createClass({
         break;
       default:
         en_arr+='无';
-          break;
+        break;
       }
     }
     return en_arr;
