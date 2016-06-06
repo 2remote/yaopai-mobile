@@ -36,49 +36,21 @@ var ChangePassWordForm = React.createClass({
     console.log(data);
     UserActions.receiveTelResetPassWord(data);
   },
-  showMessage: function (content) {
+  showMessage(content) {
     this.refs.toast.show(content);
   },
-  render: function() {
-    var style = {
-      form: {
-        position: 'relative',
-        textAlign: 'center',
-        margin: '0 auto',
-      },
-      input: {
-        backgroundColor: 'inherit',
-        width: '100%',
-        fontSize: '14px',
-        lineHeight: '50px',
-        borderWidth: '0 0 1px',
-        borderRadius: 0,
-        color:'#fff',
-        borderColor: 'transparent transparent #333'
-      },
-      submit: {
-        marginTop: 60,
-        border: '1px solid #fff',
-        fontSize: '14px',
-        color: '#fff',
-        height:'50px',
-        lineHeight:'50px',
-        width:'100%',
-        background:'transparent',
-        borderRadius:'0'
-      }
-    };
+  render() {
     return (
       <DocumentTitle title="重置密码第二步">
         <div className="findMyPassPage">
-            <div className="changePassWordForm">
+          <div>
             <Toaster ref="toast" />
-            <form style={style.form} ref="changePassForm" >
-              <input style={style.input} ref="newPassword"
+            <form className="form-hack" ref="changePassForm" >
+              <input className="input" ref="newPassword"
                 type="password" placeholder="输入新密码" />
-              <input style={style.input} ref="confirmPassword"
+              <input className="input" ref="confirmPassword"
                 type="password" placeholder="确认密码" />
-              <input style={style.submit} ref="changePassButton"
+              <input className="submits-hack" ref="changePassButton"
                 type="submit" value="确认修改" onClick={this._handleSubmit} />
             </form>
           </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 var CallBox = React.createClass({
-  render: function() {
+  render() {
     return (
       <div 
         style={{color:'#3c3c3c'}}

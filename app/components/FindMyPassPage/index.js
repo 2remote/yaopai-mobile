@@ -28,7 +28,7 @@ var FindMyPassPage = React.createClass({
     return (
       <DocumentTitle title="重置密码第一步">
         <div style={styles} className="findMyPassPage">
-        {resetForm}
+          {resetForm}
         </div>
       </DocumentTitle>
     );
