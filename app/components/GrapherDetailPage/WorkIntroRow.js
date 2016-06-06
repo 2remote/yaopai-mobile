@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
 
@@ -47,7 +47,7 @@ var WorkIntroRow = React.createClass({
         <Link to={"/workDetail/" + this.props.data.Id}>
           <div style={style.topMask} />
           <span style={style.price}>{"¥ "+this.props.data.Price}</span>
-          <img 
+          <img
             style={{width:'100%',height:210/375*innerWidth}}
             ref="workImage"
             src={cover} />
@@ -55,7 +55,7 @@ var WorkIntroRow = React.createClass({
             <span style={style.photoAmount} >{this.props.data.Photos.length + " P"}</span>
           </div>
         </Link>
-        <span 
+        <span
           style={{marginBottom:1, color:'green'}}
           ref="workArrow"
           className="icon up_icon" />

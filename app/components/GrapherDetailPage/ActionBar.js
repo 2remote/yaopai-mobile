@@ -1,15 +1,14 @@
 import React from 'react';
-
-import { Router, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 
 var ActionBar = React.createClass({
-  render: function() {
+  render() {
     return (
       <div className="actionBar" style={{padding:'22.5px 0',height: 103.5,textAlign:'center'}}>
         <div>
           <Link to={"/work_book_page/0/"+this.props.data.Id} style={{lineHeight: 'inherit'}} >
             <span
-              className="icon book_icon" 
+              className="icon book_icon"
               ref="bookIcon"
               style={{fontSize:55}} />
             <div

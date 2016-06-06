@@ -29,10 +29,6 @@ var UserEditProfilePage = React.createClass({
     }
   },
 
-  componentDidMount : function(){
-    
-  },
-
   onChangeUserNickName : function (e) {
     var nickname = this.refs.nickname.value.trim();
     console.log('onChangeUserNickName: ', nickname);
