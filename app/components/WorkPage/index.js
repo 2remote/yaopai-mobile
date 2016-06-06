@@ -66,7 +66,7 @@ var WorkPage = React.createClass({
     if (nonemptyTagList[0]){
       this.setState({selectedTags: nonemptyTagList}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.searchByTags(null,
+        AlbumsActions.searchByKey(null,
         1,
         10,
         this.state.selectedTags.join(","));
@@ -90,10 +90,11 @@ var WorkPage = React.createClass({
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
       // 读取tag过滤的数据
-      AlbumsActions.searchByTags(null,
+      AlbumsActions.searchByKey(null,
       1,
       10,
-      this.state.selectedTags.join(","));
+      this.state.selectedTags.join(","),
+      '天');
     });
 
   },
@@ -109,6 +110,20 @@ var WorkPage = React.createClass({
           pageCount: data.pageCount
         });
         this.onHideToast()
+      }
+    }
+    if(data.flag == 'searchByKey'){
+      console.log('searchByKey');
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+        this.setState({
+          works: _.shuffle(data.workList),
+          pageIndex: data.pageIndex,
+          total: data.total,
+          pageCount: data.pageCount
+        });
+
       }
     }
     if(data.flag == 'searchByTags'){
