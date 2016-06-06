@@ -38,7 +38,7 @@ var FindByMobileForm = React.createClass({
       } else {
         var phone = this.refs.mobileNumber.value.trim();
         var code = this.refs.vertificationCode.value.trim();
-        this.history.pushState({phone: phone, code: code}, '/find_my_pass_page2')
+        this.history.pushState({phone: phone, code: code}, '/changePassWordForm')
       }
     }
   },
@@ -85,32 +85,30 @@ var FindByMobileForm = React.createClass({
     return (
       <DocumentTitle title="重置密码第一步">
         <div className="findMyPassPage">
-          <div className="findByMobileForm">
-            <Toaster ref="toast" />
-            <form
-              className="form"
-              ref="mobileForm" >
-              <input
-                className="input"
-                ref="mobileNumber"
-                type="text" placeholder="输入手机号" />
-              <input
-                className="captcha"
-                ref="getVertificationCode"
-                onClick={this._handleCheck}
-                type="button"
-                value={(this.state.codeLeft>0 ? '( '+this.state.codeLeft+' )' : '获取验证码')} />
-              <input
-                className="input"
-                ref="vertificationCode"
-                type="text" placeholder="输入验证码" />
-              <input
-                className="submits"
-                ref="submitButton"
-                onClick={this._handleNextStep}
-                type="submit" value="下一步" />
-            </form>
-          </div>
+          <Toaster ref="toast" />
+          <form
+            className="form"
+            ref="mobileForm" >
+            <input
+              className="input"
+              ref="mobileNumber"
+              type="text" placeholder="输入手机号" />
+            <input
+              className="captcha"
+              ref="getVertificationCode"
+              onClick={this._handleCheck}
+              type="button"
+              value={(this.state.codeLeft>0 ? '( '+this.state.codeLeft+' )' : '获取验证码')} />
+            <input
+              className="input"
+              ref="vertificationCode"
+              type="text" placeholder="输入验证码" />
+            <input
+              className="submits"
+              ref="submitButton"
+              onClick={this._handleNextStep}
+              type="submit" value="下一步" />
+          </form>
         </div>
       </DocumentTitle>
 

@@ -43,17 +43,15 @@ var ChangePassWordForm = React.createClass({
     return (
       <DocumentTitle title="重置密码第二步">
         <div className="findMyPassPage">
-          <div>
-            <Toaster ref="toast" />
-            <form className="form-hack" ref="changePassForm" >
-              <input className="input" ref="newPassword"
-                type="password" placeholder="输入新密码" />
-              <input className="input" ref="confirmPassword"
-                type="password" placeholder="确认密码" />
-              <input className="submits-hack" ref="changePassButton"
-                type="submit" value="确认修改" onClick={this._handleSubmit} />
-            </form>
-          </div>
+          <Toaster ref="toast" />
+          <form className="form" ref="changePassForm" >
+            <input className="input" ref="newPassword"
+              type="password" placeholder="输入新密码" />
+            <input className="input" ref="confirmPassword"
+              type="password" placeholder="确认密码" />
+            <input className="submits" ref="changePassButton"
+              type="submit" value="确认修改" onClick={this._handleSubmit} />
+          </form>
         </div>
       </DocumentTitle>
     );

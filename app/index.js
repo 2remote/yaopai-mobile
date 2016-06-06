@@ -20,8 +20,8 @@ import ActivityDetailPage from './components/ActivityDetailPage';
 
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/LoginPage/SignupPage';
-import FindMyPassPage1 from './components/FindMyPassPage/FindByMobileForm';
-import FindMyPassPage2 from './components/FindMyPassPage/ChangePassWordForm';
+import FindByMobileForm from './components/LoginPage/FindByMobileForm';
+import ChangePassWordForm from './components/LoginPage/ChangePassWordForm';
 import WorkBookPage from './components/BookPage';
 import ReactDOM from 'react-dom';
 
@@ -79,8 +79,8 @@ function main(){
         <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />
         <Route path="/login_page" component={LoginPage} />
         <Route path="/signupPage" component={SignupPage} />
-        <Route path="/find_my_pass_page1" component={FindMyPassPage1} />
-        <Route path="/find_my_pass_page2" component={FindMyPassPage2} />
+        <Route path="/findByMobileForm" component={FindByMobileForm} />
+        <Route path="/changePassWordForm" component={ChangePassWordForm} />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
         <Route path="/book_success_dialog/:orderId" component={BookSuccessDialog} />
 

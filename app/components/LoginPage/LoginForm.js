@@ -11,7 +11,7 @@ var LoginForm = React.createClass({
       password : ''
     }
   },
-  
+
   componentWillMount : function () {
   },
   _weChatLogin : function(){
@@ -87,12 +87,12 @@ var LoginForm = React.createClass({
 
 
     return (
-      <div 
+      <div
         style={style.loginForm}
         className="loginForm">
         <form ref="loginForm">
           <div>
-            <input 
+            <input
               value={this.state.userName}
               onChange={this._handleUserNameChange}
               style={style.input}
@@ -111,19 +111,19 @@ var LoginForm = React.createClass({
               placeholder="密码" />
           </div>
           <div>
-            <Link to="/find_my_pass_page1">
-              <input 
+            <Link to="/findByMobileForm">
+              <input
                 style={style.findPass}
                 ref="findMyPassButton"
-                type="button" 
+                type="button"
                 value="忘记密码" />
             </Link>
           </div>
           <div>
             <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed">
-              <input 
+              <input
                 style={style.provision}
-                type="button" 
+                type="button"
                 value="YAOPAI 服务条款" />
             </a>
           </div>
