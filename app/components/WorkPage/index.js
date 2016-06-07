@@ -47,6 +47,7 @@ var WorkPage = React.createClass({
       pageCount :0,
       total : 0,
       works: [],
+      searchKey: '',
       tags: [],
       selectedTags: []
     };
@@ -66,12 +67,22 @@ var WorkPage = React.createClass({
     if (nonemptyTagList[0]){
       this.setState({selectedTags: nonemptyTagList}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.searchByKey(null,
+        AlbumsActions.searchByTags(null,
         1,
         10,
         this.state.selectedTags.join(","));
       });
     }
+  },
+  handleUpdateSearch: function (key) {
+    this.setState({searchKey: key}, function () {
+      // 读取search过滤的数据
+      AlbumsActions.searchByKey(null,
+      1,
+      10,
+      null,
+      key);
+    });
   },
   handleUpdateTags: function (tag) {
     var tags = this.state.selectedTags;
@@ -90,21 +101,24 @@ var WorkPage = React.createClass({
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
       // 读取tag过滤的数据
-      AlbumsActions.searchByKey(null,
+      AlbumsActions.searchByTags(null,
       1,
       10,
-      this.state.selectedTags.join(","),
-      '天');
+      this.state.selectedTags.join(","));
     });
+
+    // 清空搜索框
+    this.setState({searchKey: ''})
 
   },
   _onAlbumsStoreChange : function(data){
     if(data.flag == 'search'){
+      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
         this.setState({
-          works: this.state.works.concat(_.shuffle(data.workList)),
+          works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
@@ -113,12 +127,12 @@ var WorkPage = React.createClass({
       }
     }
     if(data.flag == 'searchByKey'){
-      console.log('searchByKey');
+      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
         this.setState({
-          works: _.shuffle(data.workList),
+          works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
@@ -127,11 +141,12 @@ var WorkPage = React.createClass({
       }
     }
     if(data.flag == 'searchByTags'){
+      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
         this.setState({
-          works: _.shuffle(data.workList),
+          works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
@@ -140,6 +155,7 @@ var WorkPage = React.createClass({
       }
     }
     if(data.flag == 'getTagList'){
+      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
@@ -149,12 +165,17 @@ var WorkPage = React.createClass({
     }
   },
   onChangeCategory : function(category){
+    console.table(data.workList);
     this.setState({works : [],category : category});
     AlbumsActions.search(category);
   },
   onChangePage : function(pageIndex){
     this.onShowToast('努力加载中...')
-    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
+    if(this.state.searchKey){
+      AlbumsActions.searchByKey(null, pageIndex, 10, null, this.state.searchKey)
+    } else {
+      AlbumsActions.search(null, pageIndex, 10, this.state.selectedTags.join(','))
+    }
   },
   render: function() {
     var cities = [];
@@ -179,7 +200,8 @@ var WorkPage = React.createClass({
             tagsInUrl={this.props.params.tag}
             cities={cities}
             catas={catas}
-            onSelectedTag={this.handleUpdateTags} />
+            onSelectedTag={this.handleUpdateTags}
+            onSearch = {this.handleUpdateSearch} />
 
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
