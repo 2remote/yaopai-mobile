@@ -1,5 +1,31 @@
 import React from 'react';
 
+class SearchRow extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: ""
+    }
+  }
+  handleChange(event) {
+    this.setState({value: event.target.value})
+  }
+  handleClick() {
+    this.props.onSearch(this.state.value)
+  }
+  render() {
+    return (
+      <div>
+        <input type="text"
+          ref
+          value={this.state.value}
+          onChange={this.handleChange.bind(this)} />
+        <button onClick={this.handleClick.bind(this)}>搜索</button>
+      </div>
+    )
+  }
+}
+
 var TagCol = React.createClass({
   getInitialState: function () {
     return {
@@ -24,8 +50,8 @@ var TagCol = React.createClass({
       border:'1px solid ' + border_color,
     };
 
-    return (      
-      <div className="tagColBox" 
+    return (
+      <div className="tagColBox"
         style={style}
         onClick={this.handleClick}  >
         {this.props.name}
@@ -36,7 +62,6 @@ var TagCol = React.createClass({
 
 var TagRow = React.createClass({
 
-  
   render: function () {
     var style={
       overflow: 'hidden',
@@ -74,7 +99,7 @@ var TagMenu = React.createClass({
     var status = ! this.state.showTags;
     this.setState({showTags: status});
   },
-  
+
   render: function () {
     var top = this.state.showTags ? 56 : '-340px';
     var style = {
@@ -96,6 +121,7 @@ var TagMenu = React.createClass({
 
     return (
       <div className="tagMenu" style={style.tab}>
+        <SearchRow onSearch = {this.props.onSearch}/>
         <span>拍摄地区 | Shooting Area</span>
         <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
         <span>拍摄种类 | Shooting Type</span>
