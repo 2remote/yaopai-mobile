@@ -32,14 +32,9 @@ var ShowMenu = React.createClass({
         <TagMenu ref="tagMenu"
           cities={this.props.cities}
           catas={this.props.catas}
-<<<<<<< HEAD
-          onSelectedTag={this.props.onSelectedTag} />
-      </section>
-=======
           onSelectedTag={this.props.onSelectedTag}
           onSearch = {this.props.onSearch} />
-      </div>
->>>>>>> searchWork
+      </section>
     );
   }
 });

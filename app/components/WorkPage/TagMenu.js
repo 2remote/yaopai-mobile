@@ -39,7 +39,7 @@ var TagCol = React.createClass({
     this.props.onSelectedTag(tag);
   },
 
-  render: function () {
+  render() {
     var border_color = this.state.clicked ? 'gray' :'rgba(255,255,255,.1)';
     var style = {
       display: 'inline-block',
@@ -61,18 +61,12 @@ var TagCol = React.createClass({
 });
 
 var TagRow = React.createClass({
-
-<<<<<<< HEAD
-
-=======
->>>>>>> searchWork
-  render: function () {
+  render() {
     var style={
       overflow: 'hidden',
-
     };
 
-    var tagNodes = (<div />);
+    var tagNodes = <div />;
     if (typeof this.props.data != 'undefined'){
       var onSelectedTag = this.props.onSelectedTag;
       tagNodes = this.props.data.map(function(tag, i){
@@ -103,37 +97,11 @@ var TagMenu = React.createClass({
     var status = ! this.state.showTags;
     this.setState({showTags: status});
   },
-<<<<<<< HEAD
-=======
-
-  render: function () {
-    var top = this.state.showTags ? 56 : '-340px';
-    var style = {
-      tab: {
-        position: 'fixed',
-        width: '100%',
-        boxSizing: 'border-box',
-        left: 0,
-        top: top,
-        zIndex: '1000',
-        padding: '15px 0',
-        background: '#000',
-        color: '#fff',
-        WebkitTransition:'top ease .5s',
-        transition: 'top ease .5s',
-        opacity: 0.95
-      }
-    };
->>>>>>> searchWork
 
   render() {
     return (
-<<<<<<< HEAD
       <div className={`tagMenu ${this.state.showTags ? `tagMuneDown` : `tagMuneIn`}`}>
-=======
-      <div className="tagMenu" style={style.tab}>
         <SearchRow onSearch = {this.props.onSearch}/>
->>>>>>> searchWork
         <span>拍摄地区 | Shooting Area</span>
         <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
         <span>拍摄种类 | Shooting Type</span>
