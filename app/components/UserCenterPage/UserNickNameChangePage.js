@@ -51,16 +51,16 @@ var UserEditProfilePage = React.createClass({
 
           <div className="weui_cell">
               <div className="weui_cell_hd">
-                  <label className="weui_label">昵称</label>
+                <label className="weui_label">昵称</label>
               </div>
               <div className="weui_cell_bd weui_cell_primary">
-                  <input className="weui_input" ref="nickname" type="text" placeholder="请输入昵称" />
+                <input className="weui_input" ref="nickname" type="text" placeholder="请输入昵称" />
               </div>
           </div>
         </div>
         <div className="weui_opr_area">
           <p className="weui_btn_area">
-              <a href="javascript:;" onClick={this.onChangeUserNickName} className="weui_btn weui_btn_primary">修改</a>
+            <a href="javascript:;" onClick={this.onChangeUserNickName} className="weui_btn weui_btn_primary">修改</a>
           </p>
         </div>
       </div>

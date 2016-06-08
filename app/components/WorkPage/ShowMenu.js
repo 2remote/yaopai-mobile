@@ -23,17 +23,17 @@ var ShowMenu = React.createClass({
     };
 
     return (
-      <div>
+      <section>
         <div style={style} onClick={this.handleClick}>
-          筛选<span
+          筛选<i
             className="icon down"
             style={{fontSize:25, color: 'black'}} />
         </div>
-        <TagMenu ref="tagMenu" 
-          cities={this.props.cities} 
-          catas={this.props.catas} 
+        <TagMenu ref="tagMenu"
+          cities={this.props.cities}
+          catas={this.props.catas}
           onSelectedTag={this.props.onSelectedTag} />
-      </div>
+      </section>
     );
   }
 });
