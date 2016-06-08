@@ -1,5 +1,31 @@
 import React from 'react';
 
+class SearchRow extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: ""
+    }
+  }
+  handleChange(event) {
+    this.setState({value: event.target.value})
+  }
+  handleClick() {
+    this.props.onSearch(this.state.value)
+  }
+  render() {
+    return (
+      <div>
+        <input type="text"
+          ref
+          value={this.state.value}
+          onChange={this.handleChange.bind(this)} />
+        <button onClick={this.handleClick.bind(this)}>搜索</button>
+      </div>
+    )
+  }
+}
+
 var TagCol = React.createClass({
   getInitialState: function () {
     return {
@@ -36,7 +62,10 @@ var TagCol = React.createClass({
 
 var TagRow = React.createClass({
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> searchWork
   render: function () {
     var style={
       overflow: 'hidden',
@@ -74,10 +103,37 @@ var TagMenu = React.createClass({
     var status = ! this.state.showTags;
     this.setState({showTags: status});
   },
+<<<<<<< HEAD
+=======
+
+  render: function () {
+    var top = this.state.showTags ? 56 : '-340px';
+    var style = {
+      tab: {
+        position: 'fixed',
+        width: '100%',
+        boxSizing: 'border-box',
+        left: 0,
+        top: top,
+        zIndex: '1000',
+        padding: '15px 0',
+        background: '#000',
+        color: '#fff',
+        WebkitTransition:'top ease .5s',
+        transition: 'top ease .5s',
+        opacity: 0.95
+      }
+    };
+>>>>>>> searchWork
 
   render() {
     return (
+<<<<<<< HEAD
       <div className={`tagMenu ${this.state.showTags ? `tagMuneDown` : `tagMuneIn`}`}>
+=======
+      <div className="tagMenu" style={style.tab}>
+        <SearchRow onSearch = {this.props.onSearch}/>
+>>>>>>> searchWork
         <span>拍摄地区 | Shooting Area</span>
         <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
         <span>拍摄种类 | Shooting Type</span>
