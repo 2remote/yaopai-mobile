@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class SearchRow extends React.Component {
   constructor(props) {
@@ -27,33 +28,19 @@ class SearchRow extends React.Component {
 }
 
 var TagCol = React.createClass({
-  getInitialState: function () {
-    return {
-      clicked: false
-    }
-  },
-
-  handleClick: function () {
-    this.setState({clicked: !this.state.clicked});
+  handleClick() {
+    $("#tagColBox").toggleClass('tagColBoxActive');
     var tag = this.props.id;
     this.props.onSelectedTag(tag);
   },
 
   render() {
-    var border_color = this.state.clicked ? 'gray' :'rgba(255,255,255,.1)';
-    var style = {
-      display: 'inline-block',
-      padding: '5px 25px',
-      margin: '5px',
-      fontSize: 12,
-      borderRadius: '20px',
-      border:'1px solid ' + border_color,
-    };
-
     return (
-      <div className="tagColBox"
-        style={style}
-        onClick={this.handleClick}  >
+      <div
+        className="tagColBox"
+        id="tagColBox"
+        onClick={this.handleClick}
+      >
         {this.props.name}
       </div>
     );
@@ -62,10 +49,6 @@ var TagCol = React.createClass({
 
 var TagRow = React.createClass({
   render() {
-    var style={
-      overflow: 'hidden',
-    };
-
     var tagNodes = <div />;
     if (typeof this.props.data != 'undefined'){
       var onSelectedTag = this.props.onSelectedTag;
@@ -79,7 +62,7 @@ var TagRow = React.createClass({
     }
 
     return (
-      <div className="tagRowBox" style={style}>
+      <div className="tagRowBox">
         {tagNodes}
       </div>
     );
@@ -87,20 +70,13 @@ var TagRow = React.createClass({
 });
 
 var TagMenu = React.createClass({
-  getInitialState: function () {
-    return {
-      showTags: false
-    }
-  },
-
-  toggle: function () {
-    var status = ! this.state.showTags;
-    this.setState({showTags: status});
+  toggle() {
+    $("#tagMenu").slideToggle();
   },
 
   render() {
     return (
-      <div className={`tagMenu ${this.state.showTags ? `tagMuneDown` : `tagMuneIn`}`}>
+      <div className="tagMenu" id="tagMenu">
         <SearchRow onSearch = {this.props.onSearch}/>
         <span>拍摄地区 | Shooting Area</span>
         <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>

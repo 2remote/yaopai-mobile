@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
 
-import { Link, History,Location } from 'react-router';
-
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
 import UserActions from '../actions/UserActions';
-import './SlidePage.scss';
-import SidePageIcon from './SidePageIcon';
-import {parseImageUrl} from './Tools';
+import UserStore from '../stores/UserStore';
 
-var style={
+import {parseImageUrl} from './Tools';
+import $ from 'jquery'
+
+const style={
   sidePage:{
     height: '100%',
     background:'#282828',
@@ -63,45 +65,51 @@ var style={
   }
 };
 
+class SidePage extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      userData : {}
+    }
+  }
 
-var SidePage = React.createClass({
-  getInitialState: function() {
-    return {
-      visible: false,
-      isLogin : false
-    };
-  },
-  show: function() {
-    this.setState({ visible: true });
-    //document.addEventListener("click", this.hide.bind(this));
-  },
+  componentDidMount() {
+    UserActions.currentUser();
 
-  hide: function() {
-    //document.removeEventListener("click", this.hide.bind(this));
-    this.setState({ visible: false });
-  },
-  logout : function () {
-    UserActions.logout();
-  },
+    $('#menuLink').click(() => {
+      const winHeight = `${$(window).height()}px`
+      // TODO 打开侧边导航后禁止页面滚动
+      // 在 Chrome 里测试正常，苹果手机测试失败，仍然可以滚动
+      $('body').css({ height: winHeight, overflow: 'hidden' })
+      $('#mask-menu').show().addClass('fade-toggle')
+      $('#menu').addClass('actionsheet-toggle')
+    })
 
-  render: function() {
-    var accountContent = '';
-    if(this.props.userData && this.props.userData.isLogin){
+    $('#mask-menu').click(() => {
+      $('#mask-menu').removeClass('fade-toggle').hide()
+      $('#menu').removeClass('actionsheet-toggle')
+      $('body').css({ height: '100%', overflow: 'visible' })
+    })
+  }
+
+  render() {
+    let accountContent = '';
+    if(this.state.userData && this.state.userData.isLogin){
       accountContent = (
         <div className="loginBox" style={style.loginBox}>
-          <Link style={style.link} to={this.props.userData.userType==0?"/user_center":"/grapher_center"}>
+          <Link style={style.link} to={this.state.userData.userType==0?"/user_center":"/grapher_center"}>
               <img
                 width={90}
                 height={90}
                 style={style.avatar}
                 ref="defaultAvatar"
-                src={this.props.userData.avatar ? parseImageUrl(this.props.userData.avatar,90,90) : "imgs/sidePage/default-avatar.png"} />
-                <div style={style.loginName} ref="pleaseLoginText">{this.props.userData.userName}</div>
+                src={this.state.userData.avatar ? parseImageUrl(this.state.userData.avatar,90,90) : "imgs/sidePage/default-avatar.png"} />
+                <div style={style.loginName} ref="pleaseLoginText">{this.state.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
-            <span 
-              style={style.logoutIcon} 
-              ref="logoutIcon" 
+            <span
+              style={style.logoutIcon}
+              ref="logoutIcon"
               className="icon logout_icon"
               onClick={this.logout} />
           </div>
@@ -110,7 +118,7 @@ var SidePage = React.createClass({
     }else{
       accountContent= (<div className="loginBox" style={style.loginBox}>
         <Link style={style.link} to="/login_page">
-          <img
+          <im
             style={style.avatar}
             ref="defaultAvatar"
             src="imgs/sidePage/default-avatar.png"
@@ -120,26 +128,60 @@ var SidePage = React.createClass({
       </div>
       )
     }
-    return(
-      <div
-        className="menu">
-        <div className={(this.state.visible ? "visible " : "") + 'left'}>
-          <div
-            style={style.sidePage}
-            className="sidePage">
+
+    return (
+      <section>
+        {/* Hamburger icon */}
+        <div id="menuLink" className="menu-link">
+          <i className="icon hamburgermenu"/>
+        </div>
+        <div id="actionSheet-wrap">
+          { /* 透明遮罩层 */ }
+          <div className="mask-transition" id="mask-menu"></div>
+
+          <div className="actionsheet" id="menu">
             {accountContent}
 
-            <SidePageIcon name={'work'} icon={'home'} text={'首页 | HOME'} />
-            <div style={style.service}>
-              <p>客服热线</p>
-              <p>0371-65337727</p>
-            </div>
+            <nav className="menu-slide-nav pure-menu">
+              <ul className="pure-menu-list">
+                <li className="pure-menu-item nav-list-bar">
+                  <Link to="/main/work" activeClassName="active">
+                    <i className="menu-icon home" />
+                    <div className="menu-button"><span>首页&nbsp;&nbsp;HOME</span></div>
+                  </Link>
+                </li>
+                <li className="pure-menu-item nav-list-bar">
+                  <Link to="/main/discovery" activeClassName="active">
+                    <i className="menu-icon grid" />
+                    <div className="menu-button"><span>作品&nbsp;&nbsp;LIBRARY</span></div>
+                  </Link>
+                </li>
+                <li className="pure-menu-item nav-list-bar">
+                  <Link to="/main/grapher" activeClassName="active">
+                    <i className="menu-icon camera" />
+                    <div className="menu-button"><span>摄影师&nbsp;&nbsp;PARAGRAPHER</span></div>
+                  </Link>
+                </li>
+                <li className="pure-menu-item nav-list-bar">
+                  <Link to="/main/user" activeClassName="active">
+                    <i className="menu-icon settings" />
+                    <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <footer className="menu-slide-footer">
+              客服热线<br />
+              <a href="tel:400-1122-3323">400-1122-3323</a>
+            </footer>
           </div>
-
         </div>
-      </div>
-    );
+      </section>
+    )
   }
-});
+}
 
-export {SidePage as default};
+ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, '_onUserStoreChange'));
+
+export default SidePage

@@ -16,28 +16,7 @@ import ShowMenu from './ShowMenu';
 import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
 import Toaster from '../Toast';
-
-var YaopaiLogo = React.createClass({
-  render: function () {
-    var style = {
-      fontSize:20,
-      backgroundColor:'white',
-      color:'black',
-      lineHeight:'57px',
-      display:'block',
-      textAlign: 'center',
-      position: 'fixed',
-      width:'100%',
-      zIndex: '97',
-      top:0,
-      left:0
-    };
-
-    return (
-      <div className="icon yaopainew" style={style} />
-    );
-  }
-});
+import SidePage from '../SidePage';
 
 var WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
@@ -188,14 +167,8 @@ var WorkPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
-          <HamburgMenu style={{
-            position: 'fixed',
-            top: 5,
-            padding: 10,
-            margin: -10,
-            left: 22,
-            zIndex: 99}}/>
-          <YaopaiLogo />
+          <SidePage />
+          
           <ShowMenu
             tagsInUrl={this.props.params.tag}
             cities={cities}
