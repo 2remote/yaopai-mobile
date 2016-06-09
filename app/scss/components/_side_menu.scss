@@ -1,47 +1,49 @@
 //* *菜单导航nav-slide*****************************************
 //*  actionsheet
-$menu-bg-color     : $dim-black;
-$menu-mask-color   : rgba(0,0,0,0.8);
-$menu-width        : 70%;
-$menu-icon-margin  : 33px;
+$menu-bg-color: $dim-black;
+$menu-mask-color: rgba(0,0,0,0.8);
+$menu-width: 70%;
+$menu-icon-margin: 33px;
 $menu-margin-bottom: 42px;
 
 //* 菜单头像 portrait
-$menu-avatar-width : 90px;
+$menu-avatar-width: 90px;
 $menu-avatar-height: 90px;
 
 //* menu-icon
-$menu-icon-size    : $font-size-h3;
-$menu-link-size    : 26px;
+$menu-icon-size: $font-size-h3;
+$menu-link-size: 26px;
 
 //* 用户状态 nickname
-$menu-username-size       : 16px;
+$menu-username-size: 16px;
 $menu-username-line-height: 24px;
-$menu-username-color      : $white;
+$menu-username-color: $white;
 
 //* 菜单字体 menu-slide-nav*/
-$menu-font-size           : $font-size-small;
-$menu-line-height         : 60px;
+$menu-font-size: $font-size-small;
+$menu-line-height: 60px;
 
 //* 菜单点击，悬停 */
-$menu-color               : #5a5a5a;
-$menu-hover-color         : $white;
-$menu-active-color        : $white;
+$menu-color: #5a5a5a;
+$menu-hover-color: $white;
+$menu-active-color: $white;
 
 //* 菜单客服 footer */
 $menu-footer-lineheight: 25px;
 
 // TODO annotation
-.workPage .menu-link{ top: 0; }
+.workPage .menu-link {
+  top: 0;
+}
 
 .menu-link {
-  color   : $black;
-  position: fixed;
-  z-index : $zindex-menu-link;
-  top     : 75px;
-  left    : 20px;
-  width   : 57px;
-  height  : 57px;
+  color      : $black;
+  position   : fixed;
+  z-index    : $zindex-menu-link;
+  top        : 75px;
+  left       : 20px;
+  width      : 57px;
+  height     : 57px;
   line-height: 57px;
 
   i { font-size: $menu-link-size; }
@@ -60,9 +62,7 @@ $menu-footer-lineheight: 25px;
   transition        : background .2s;
 }
 
-.fade-toggle {
-  background: $menu-mask-color;
-}
+.fade-toggle { background: $menu-mask-color; }
 
 .actionsheet {
   position                   : fixed;
@@ -150,7 +150,5 @@ $menu-footer-lineheight: 25px;
   bottom     : $menu-margin-bottom;
   line-height: $menu-footer-lineheight;
 
-  a {
-    color: $menu-color;
-  }
+  a { color: $menu-color; }
 }

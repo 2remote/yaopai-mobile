@@ -33,8 +33,9 @@ $btn-line-height: $btn-height;
 
 
 //== Z-index
+$zindex-base: 500;
+$zindex-tag-box: 800;
 $zindex-menu-link    : 900;
-$zindex-page         : $zindex-menu-link;
 $zindex-select-mask  : 1000;
 $zindex-selelct      : 1010;
 $zindex-menu-mask    : 1020;

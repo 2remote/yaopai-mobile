@@ -1,11 +1,8 @@
-$tagBox: 800;
-$tagBtn: 900;
-
 .tagBox {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: $tagBox;
+  z-index: $zindex-tag-box;
   width: 100%;
   background: #fff;
 
@@ -21,7 +18,7 @@ $tagBtn: 900;
     position: absolute;
     right: 10px;
     top: 0;
-    z-index: $tagBtn;
+    z-index: $zindex-menu-link;
     height: 57px;
     line-height: 57px;
     color: #282828; // $dim-black
