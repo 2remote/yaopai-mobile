@@ -1,0 +1,156 @@
+//* *菜单导航nav-slide*****************************************
+//*  actionsheet
+$menu-bg-color     : $dim-black;
+$menu-mask-color   : rgba(0,0,0,0.8);
+$menu-width        : 70%;
+$menu-icon-margin  : 33px;
+$menu-margin-bottom: 42px;
+
+//* 菜单头像 portrait
+$menu-avatar-width : 90px;
+$menu-avatar-height: 90px;
+
+//* menu-icon
+$menu-icon-size    : $font-size-h3;
+$menu-link-size    : 26px;
+
+//* 用户状态 nickname
+$menu-username-size       : 16px;
+$menu-username-line-height: 24px;
+$menu-username-color      : $white;
+
+//* 菜单字体 menu-slide-nav*/
+$menu-font-size           : $font-size-small;
+$menu-line-height         : 60px;
+
+//* 菜单点击，悬停 */
+$menu-color               : #5a5a5a;
+$menu-hover-color         : $white;
+$menu-active-color        : $white;
+
+//* 菜单客服 footer */
+$menu-footer-lineheight: 25px;
+
+// TODO annotation
+.workPage .menu-link{ top: 0; }
+
+.menu-link {
+  color   : $black;
+  position: fixed;
+  z-index : $zindex-menu-link;
+  top     : 75px;
+  left    : 20px;
+  width   : 57px;
+  height  : 57px;
+  line-height: 57px;
+
+  i { font-size: $menu-link-size; }
+}
+
+.mask-transition {
+  display           : none;
+  position          : fixed;
+  z-index           : $zindex-menu-mask;
+  width             : 100%;
+  height            : 100%;
+  top               : 0;
+  left              : 0;
+  background        : rgba(0, 0, 0, 0);
+  -webkit-transition: background .2s;
+  transition        : background .2s;
+}
+
+.fade-toggle {
+  background: $menu-mask-color;
+}
+
+.actionsheet {
+  position                   : fixed;
+  left                       : 0;
+  top                        : 0;
+  -webkit-transform          : translate(-100%, 0);
+  transform                  : translate(-100%, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility        : hidden;
+  z-index                    : $zindex-navbar;
+  width                      : $menu-width;
+  height                     : 100%;
+  background-color           : $dim-black;
+  -webkit-transition         : -webkit-transform .2s ease-in-out;
+  transition                 : -webkit-transform .2s ease-in-out;
+  transition                 : transform .2s ease-in-out;
+  transition                 : transform .2s, -webkit-transform .2s ease-in-out;
+  color                      : $menu-color;
+  font-size                  : $menu-font-size;
+}
+
+.actionsheet-toggle {
+  -webkit-transform: translate(0, 0);
+  transform        : translate(0, 0);
+}
+
+.menu-slide-header {
+  margin    : 30px auto 35px;
+  width     : 100%;
+  text-align: center;
+
+  .portrait {
+    width        : $menu-avatar-width;
+    height       : $menu-avatar-height;
+    margin       : auto;
+    background   : #fff;
+    border-radius: 50%;
+
+    img {
+      width : $menu-avatar-width;
+      height: $menu-avatar-height;
+    }
+  }
+
+  .nickname {
+    margin   : 25px 0 35px;
+    font-size: $menu-username-size;
+    color    : $menu-username-color;
+  }
+}
+
+.nav-list-bar {
+  line-height: $menu-line-height;
+
+  a {
+    @extend %flex-align;
+    color: $menu-color;
+
+    &.active {
+      color: $menu-active-color;
+    }
+
+    .menu-icon {
+      display       : inline-block;
+      vertical-align: bottom;
+      margin        : 0 $menu-icon-margin;
+      font-size     : $menu-icon-size;
+    }
+
+    .menu-button {
+      @extend %flex-1;
+      border-bottom: 1px lighten($dim-black, 4%) solid;
+
+      span {
+        display       : inline-block;
+        vertical-align: bottom;
+      }
+    }
+  }
+}
+
+.menu-slide-footer {
+  position   : absolute;
+  left       : $menu-icon-margin;
+  bottom     : $menu-margin-bottom;
+  line-height: $menu-footer-lineheight;
+
+  a {
+    color: $menu-color;
+  }
+}

@@ -30,3 +30,14 @@ $font-size-h6        : ceil(($font-size-base * .85)); // ~12px
 $btn-font-base       : $font-size-base;
 $btn-height: 50px;
 $btn-line-height: $btn-height;
+
+
+//== Z-index
+$zindex-menu-link    : 900;
+$zindex-page         : $zindex-menu-link;
+$zindex-select-mask  : 1000;
+$zindex-selelct      : 1010;
+$zindex-menu-mask    : 1020;
+$zindex-navbar       : 1030;
+$zindex-popover      : 1060;
+$zindex-tooltip      : 1070;
