@@ -42,9 +42,9 @@ $menu-footer-lineheight: 25px;
   z-index    : $zindex-menu-link;
   top        : 75px;
   left       : 20px;
-  width      : 57px;
-  height     : 57px;
-  line-height: 57px;
+  width      : $tag-height;
+  height     : $tag-height;
+  line-height: $tag-height;
 
   i { font-size: $menu-link-size; }
 }

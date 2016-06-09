@@ -12,7 +12,6 @@ $black     : #000;
 $dim-black : #282828;
 $coffee    : #cc7b7b;
 
-
 //== Typography
 //
 //## Font, line-height, and color for body text, headings, and more.
@@ -26,11 +25,14 @@ $font-size-h4        : ceil(($font-size-base * 1.25)); // ~18px
 $font-size-h5        : $font-size-base;
 $font-size-h6        : ceil(($font-size-base * .85)); // ~12px
 
-//## Button
+//== Button
 $btn-font-base       : $font-size-base;
 $btn-height: 50px;
 $btn-line-height: $btn-height;
 
+
+//== NavBar
+$tag-height: 57px;
 
 //== Z-index
 $zindex-base: 500;
