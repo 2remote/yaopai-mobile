@@ -3,10 +3,10 @@ import { Link } from 'react-router'
 
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
-import UserActions from '../actions/UserActions';
-import UserStore from '../stores/UserStore';
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 
-import {parseImageUrl} from './Tools';
+import {parseImageUrl} from '../Tools';
 import $ from 'jquery'
 
 const style={

@@ -2,7 +2,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import $ from 'jquery';
 import DocumentTitle from 'react-document-title';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
 import GrapherList from './GrapherList';
 import PhotographerStore from '../../stores/PhotographerStore';
 import PhotographerActions from '../../actions/PhotographerActions';
@@ -47,7 +47,7 @@ var GrapherPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.grapherPage}>
         <div className="grapherPage">
-          <HamburgMenu />
+          <SidePage />
           <GrapherList data={this.state.graphers} />
           <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage}>
           </WechatShare>

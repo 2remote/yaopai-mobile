@@ -8,14 +8,14 @@ import UserStore from '../../stores/UserStore';
 import AlbumsActions from '../../actions/AlbumsActions';
 import AlbumsStore from '../../stores/AlbumsStore';
 import WorkIntroGrapherList from './WorkIntroGrapherList';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
+
 import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_WORKS, TITLE } from '../Tools';
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
 import Toaster from '../Toast';
-import SidePage from '../SidePage';
 
 var WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],

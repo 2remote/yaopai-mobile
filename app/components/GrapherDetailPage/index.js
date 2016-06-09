@@ -1,6 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
 
 import $ from 'jquery';
 
@@ -19,7 +19,7 @@ var GrapherDetailPage = React.createClass({
         User: {
           NickName: '读取中...'
         }
-      } 
+      }
     };
   },
   componentDidMount: function() {
@@ -29,7 +29,7 @@ var GrapherDetailPage = React.createClass({
     const fields = '&Fields=Id,User.NickName,CityName,User.Avatar,Signature';
     const filter = '&Id='+id;
     const url = API_URL + grapherInfo + fields + filter;
-    
+
     $.ajax ({
       url: url,
       dataType: 'json',
@@ -65,7 +65,7 @@ var GrapherDetailPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.grapherDetailPage + pageTitle}>
         <div className="grapherDetailPage">
-          <HamburgMenu />
+          <SidePage />
           <GrapherIntro data={this.state.grapherInfo} />
           <WorkIntroList data={this.state.works}/>
           <ActionBar data={this.state.grapherInfo}/>

@@ -12,7 +12,7 @@ import AdStore from '../../stores/AdStore';
 import './index.scss';
 import { TITLE } from '../Tools';
 
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
 import ImageBoxGrid from './ImageBoxGrid';
 import Slider from './Slider';
 import WechatShare from '../Weixin/WechatShare';
@@ -64,7 +64,7 @@ var Index = React.createClass({
     return (
       <DocumentTitle title={TITLE.indexPage}>
       <div className="text_center">
-        <HamburgMenu />
+        <SidePage />
 
         <Slider works={this.state.adWorks} />
 

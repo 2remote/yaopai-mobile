@@ -1,7 +1,6 @@
 import React from 'react';
 import Router from'react-router';
 import Reflux from'reflux';
-import HamburgMenu from'../HamburgMenu';
 import DocumentTitle from'react-document-title';
 
 import {History,Location} from 'react-router';
