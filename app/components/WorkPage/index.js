@@ -11,7 +11,6 @@ import WorkIntroGrapherList from './WorkIntroGrapherList';
 import HamburgMenu from '../HamburgMenu';
 import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_WORKS, TITLE } from '../Tools';
-import './index.scss';
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
@@ -168,7 +167,7 @@ var WorkPage = React.createClass({
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
           <SidePage />
-          
+
           <ShowMenu
             tagsInUrl={this.props.params.tag}
             cities={cities}
