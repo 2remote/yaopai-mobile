@@ -1,3 +1,5 @@
+$tag-height: 57px;
+
 .tagBox {
   position: fixed;
   top: 0;
@@ -10,7 +12,7 @@
     font-size: 20px;
     background-color: white;
     color: black;
-    line-height: 57px;
+    line-height: $tag-height;
     text-align: center;
   }
 
@@ -19,9 +21,9 @@
     right: 10px;
     top: 0;
     z-index: $zindex-menu-link;
-    height: 57px;
-    line-height: 57px;
-    color: #282828; // $dim-black
+    height: $tag-height;
+    line-height: $tag-height;
+    color: $dim-black;
 
     i { font-size: 20px; }
   }
