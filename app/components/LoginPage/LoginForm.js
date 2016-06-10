@@ -1,8 +1,7 @@
 import React from 'react';
-import Reflux from 'reflux';
 import UserActions from '../../actions/UserActions';
 import validator from 'validator';
-import { Router, Route, Link, History,Location } from 'react-router';
+import { Link } from 'react-router';
 
 var LoginForm = React.createClass({
   getInitialState : function(){
@@ -12,8 +11,6 @@ var LoginForm = React.createClass({
     }
   },
 
-  componentWillMount : function () {
-  },
   _weChatLogin : function(){
     UserActions.openLogin();
   },

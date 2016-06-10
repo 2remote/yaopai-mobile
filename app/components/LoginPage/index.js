@@ -1,6 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
-import { Router, Route, Link, History,Location } from 'react-router';
+import { Link, History, Location } from 'react-router';
 import DocumentTitle from 'react-document-title';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';

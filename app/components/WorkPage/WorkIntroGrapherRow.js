@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
 import LazyLoad from 'react-lazy-load';

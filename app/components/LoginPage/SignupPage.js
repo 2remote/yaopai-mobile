@@ -1,12 +1,11 @@
 import React from 'react';
 import Reflux from 'reflux';
-import DocumentTitle from 'react-document-title';
 import validator from 'validator';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 import GetCodeActions from '../../actions/GetCodeActions';
 import GetCodeStore from '../../stores/GetCodeStore';
-import { Router, Route, Link, History,Location } from 'react-router';
+import { Link, History } from 'react-router';
 import Toaster from '../Toast';
 import './index.scss';
 

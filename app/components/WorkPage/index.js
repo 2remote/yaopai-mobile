@@ -1,10 +1,8 @@
 import React from 'react';
 import Reflux from 'reflux';
-import { Router, Route, Link, History } from 'react-router';
+import { History } from 'react-router';
 import DocumentTitle from 'react-document-title';
 import $ from 'jquery';
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
 import AlbumsActions from '../../actions/AlbumsActions';
 import AlbumsStore from '../../stores/AlbumsStore';
 import WorkIntroGrapherList from './WorkIntroGrapherList';

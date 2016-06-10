@@ -1,6 +1,4 @@
 import React from 'react';
-import Reflux from 'reflux';
-import { Router, Route, Link } from 'react-router';
 import TagMenu from './TagMenu';
 
 var ShowMenu = React.createClass({
