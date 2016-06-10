@@ -171,11 +171,11 @@ var WorkPage = React.createClass({
             cities={cities}
             catas={catas}
             onSelectedTag={this.handleUpdateTags}
-            onSearch = {this.handleUpdateSearch} />
+            onSearch = {this.handleUpdateSearch}
+          />
 
           <WorkIntroGrapherList data={this.state.works} />
-          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
-          </WechatShare>
+          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} />
           <Toaster ref="toast" worfPageIs={true} bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
