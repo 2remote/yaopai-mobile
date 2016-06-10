@@ -54,14 +54,12 @@ class SidePage extends Component {
             <img
               width={90}
               height={90}
-              ref="defaultAvatar"
               src={userData.avatar ? parseImageUrl(userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"}
             />
-            <div className="nick-name" ref="pleaseLoginText">{userData.userName}</div>
+            <div className="nick-name">{userData.userName}</div>
           </Link>
           <div className="logout">
             <span
-              ref="logoutIcon"
               className="icon logout_icon"
               onClick={this.logout}
             />
@@ -73,11 +71,10 @@ class SidePage extends Component {
           <div className="menu-slide-header">
             <Link className="link-box" to="/login_page">
               <img
-                ref="defaultAvatar"
                 src="../imgs/sidePage/default-avatar.png"
                 srcSet="../imgs/sidePage/default-avatar@2X.png 2x"
               />
-            <div className="login-msg" ref="pleaseLoginText">请登录</div>
+            <div className="login-msg">请登录</div>
             </Link>
         </div>
       )
