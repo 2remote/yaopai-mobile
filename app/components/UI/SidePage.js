@@ -79,20 +79,24 @@ class SidePage extends Component {
     })
   }
 
+  onUserLoad(userData) {
+    this.setState({ userData })
+  }
+
   render() {
-    let accountContent = '';
-    console.log(this.state.userData)
-    if(this.state.userData && this.state.userData.isLogin){
+    const userData = this.state.userData;
+    let accountContent = <div></div>;
+    if(userData.isLogin){ // 用户未登录，跳转登陆页
       accountContent = (
         <div className="loginBox" style={style.loginBox}>
-          <Link style={style.link} to={this.state.userData.userType==0?"/user_center":"/grapher_center"}>
+          <Link style={style.link} to={userData.userType==0?"/user_center":"/grapher_center"}>
               <img
                 width={90}
                 height={90}
                 style={style.avatar}
                 ref="defaultAvatar"
-                src={this.state.userData.avatar ? parseImageUrl(this.state.userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"} />
-                <div style={style.loginName} ref="pleaseLoginText">{this.state.userData.userName}</div>
+                src={userData.avatar ? parseImageUrl(userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"} />
+                <div style={style.loginName} ref="pleaseLoginText">{userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
             <span
@@ -103,20 +107,20 @@ class SidePage extends Component {
           </div>
         </div>
       )
-    }else{
-      accountContent= (<div className="loginBox" style={style.loginBox}>
-        <Link style={style.link} to="/login_page">
-          <img
-            style={style.avatar}
-            ref="defaultAvatar"
-            src="../imgs/sidePage/default-avatar.png"
-            srcSet="../imgs/sidePage/default-avatar@2X.png 2x" />
-          <div style={style.loginName} ref="pleaseLoginText">请登录</div>
-        </Link>
-      </div>
+    } else {
+      accountContent= (
+          <div className="loginBox" style={style.loginBox}>
+            <Link style={style.link} to="/login_page">
+              <img
+                style={style.avatar}
+                ref="defaultAvatar"
+                src="../imgs/sidePage/default-avatar.png"
+                srcSet="../imgs/sidePage/default-avatar@2X.png 2x" />
+              <div style={style.loginName} ref="pleaseLoginText">请登录</div>
+            </Link>
+        </div>
       )
     }
-
     return (
       <section>
         {/* Hamburger icon */}
@@ -170,6 +174,6 @@ class SidePage extends Component {
   }
 }
 
-ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, '_onUserStoreChange'));
+ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, 'onUserLoad'));
 
 export default SidePage
