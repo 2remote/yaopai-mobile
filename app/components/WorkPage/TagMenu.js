@@ -1,47 +1,35 @@
 import React from 'react';
 import $ from 'jquery';
 
-var TagCol = React.createClass({
-  handleClick() {
+class TagRow extends React.Component {
+  handleClick(tagId, onSelectedTag) {
     $("#tagColBox").toggleClass('tagColBoxActive');
-    var tag = this.props.id;
-    this.props.onSelectedTag(tag);
-  },
-
-  render() {
-    return (
-      <div
-        className="tagColBox"
-        id="tagColBox"
-        onClick={this.handleClick}
-      >
-        {this.props.name}
-      </div>
-    );
+    onSelectedTag(tagId);
   }
-});
 
-var TagRow = React.createClass({
   render() {
     var tagNodes = <div />;
     if (typeof this.props.data != 'undefined'){
       var onSelectedTag = this.props.onSelectedTag;
-      tagNodes = this.props.data.map(function(tag, i){
+      tagNodes = this.props.data.map((tag, i) => {
         if(tag.Display){
           return (
-            <TagCol name={tag.Name} key={i} id={tag.Id} onSelectedTag={onSelectedTag} />
+            <div
+              key={i}
+              className="tagColBox"
+              id="tagColBox"
+              onClick={() => this.handleClick(tag.id, onSelectedTag)}
+            >
+              {tag.Name}
+            </div>
           );
         }
       });
     }
 
-    return (
-      <div className="tagRowBox">
-        {tagNodes}
-      </div>
-    );
+    return <div className="tagRowBox">{tagNodes}</div>
   }
-});
+};
 
 class TagMenu extends React.Component{
   toggle() {
@@ -49,7 +37,6 @@ class TagMenu extends React.Component{
   }
 
   render() {
-    let searchText;
     return (
       <section className="tagMenu" id="tagMenu">
         <div>
