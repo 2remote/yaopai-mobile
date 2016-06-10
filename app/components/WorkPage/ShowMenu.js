@@ -2,43 +2,38 @@ import React from 'react';
 import TagRow from './TagRow';
 import $ from 'jquery';
 
-var ShowMenu = React.createClass({
-  handleClick() {
-    $("#tagMenu").slideToggle();
-  },
-  render() {
-    return (
-      <section className="tagBox">
-        <div className="tagLogo icon yaopainew" />
-        <div className="tagBtn" onClick={this.handleClick}>
-          筛选 <i className="icon down" />
-        </div>
+const ShowMenu = ({onSearch, cities, catas, onSelectedTag,}) => {
+  const handleClick = () => $("#tagMenu").slideToggle();
+  let searchText;
+  return (
+    <section className="tagBox">
+      <div className="tagLogo icon yaopainew" />
+      <div className="tagBtn" onClick={handleClick}>
+        筛选 <i className="icon down" />
+      </div>
 
-        <div className="tagMenu" id="tagMenu">
-          <div>
-            <input
-              type="text"
-              placeholder="找不到想要的？试着搜一下！"
-              ref="search"
-            />
-            { /* button 改成 icon */ }
-            <button onClick={event => {
-              event.preventDefault();
-              let text = this.refs.search.value.trim();
-              if (text) this.props.onSearch(text)
-            }}>
-              搜索
-            </button>
-          </div>
+      <div className="tagMenu" id="tagMenu">
+        <input
+          type="text"
+          placeholder="找不到想要的？试着搜一下！"
+          ref={node => searchText = node}
+        />
+        { /* button 改成 icon */ }
+        <button onClick={event => {
+          event.preventDefault();
+          let text = searchText.value.trim();
+          if (text) onSearch(text)
+        }}>
+          搜索
+        </button>
 
-          <span>拍摄地区 | Shooting Area</span>
-          <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
-          <span>拍摄种类 | Shooting Type</span>
-          <TagRow data={this.props.catas} onSelectedTag={this.props.onSelectedTag}/>
-        </div>
-      </section>
-    );
-  }
-});
+        <span>拍摄地区 | Shooting Area</span>
+        <TagRow data={cities} onSelectedTag={onSelectedTag}/>
+        <span>拍摄种类 | Shooting Type</span>
+        <TagRow data={catas} onSelectedTag={onSelectedTag}/>
+      </div>
+    </section>
+  );
+};
 
 export default ShowMenu;
