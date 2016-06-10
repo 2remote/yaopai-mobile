@@ -28,12 +28,12 @@ var WorkPage = React.createClass({
       selectedTags: []
     };
   },
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       url: LIST_ALL_WORKS
     };
   },
-  componentDidMount: function() {
+  componentDidMount() {
     AlbumsActions.search();
     AlbumsActions.getTagList();
 
@@ -50,7 +50,7 @@ var WorkPage = React.createClass({
       });
     }
   },
-  handleUpdateSearch: function (key) {
+  handleUpdateSearch(key) {
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
       AlbumsActions.searchByKey(null,
@@ -60,7 +60,7 @@ var WorkPage = React.createClass({
       key);
     });
   },
-  handleUpdateTags: function (tag) {
+  handleUpdateTags(tag) {
     var tags = this.state.selectedTags;
     if (this.props.params.tag[0]) {
       this.history.push('/work');
@@ -87,7 +87,7 @@ var WorkPage = React.createClass({
     this.setState({searchKey: ''})
 
   },
-  _onAlbumsStoreChange : function(data){
+  _onAlbumsStoreChange(data) {
     if(data.flag == 'search'){
       console.table(data.workList);
       if(data.hintMessage){

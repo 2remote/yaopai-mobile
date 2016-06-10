@@ -2,7 +2,7 @@ import React from 'react';
 import TagMenu from './TagMenu';
 
 var ShowMenu = React.createClass({
-  handleClick: function () {
+  handleClick() {
     this.refs.tagMenu.toggle();
   },
   render() {
@@ -24,4 +24,4 @@ var ShowMenu = React.createClass({
   }
 });
 
-export {ShowMenu as default};
+export default ShowMenu;
