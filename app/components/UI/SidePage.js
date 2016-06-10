@@ -10,13 +10,6 @@ import {parseImageUrl} from '../Tools';
 import $ from 'jquery'
 
 const style={
-  sidePage:{
-    height: '100%',
-    background:'#282828',
-    textAlign:'center',
-    fontSize:'12px',
-
-  },
   loginBox: {
     position: 'relative',
     color:'#fff',
@@ -34,7 +27,8 @@ const style={
   link:{
     lineHeight: '14px',
     paddingBottom: '15px',
-    display: 'block'
+    display: 'block',
+    textAlign: 'center',
   },
   avatar:{
     margin: '34px 0 19px',
@@ -55,13 +49,6 @@ const style={
   },
   logoutIcon:{
     marginRight:'20px'
-  },
-  service:{
-    color:'#5c5c5c',
-    textAlign:'left',
-    padding:'20px',
-    position:'absolute',
-    bottom:'0'
   }
 };
 
@@ -94,6 +81,7 @@ class SidePage extends Component {
 
   render() {
     let accountContent = '';
+    console.log(this.state.userData)
     if(this.state.userData && this.state.userData.isLogin){
       accountContent = (
         <div className="loginBox" style={style.loginBox}>
@@ -103,7 +91,7 @@ class SidePage extends Component {
                 height={90}
                 style={style.avatar}
                 ref="defaultAvatar"
-                src={this.state.userData.avatar ? parseImageUrl(this.state.userData.avatar,90,90) : "imgs/sidePage/default-avatar.png"} />
+                src={this.state.userData.avatar ? parseImageUrl(this.state.userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"} />
                 <div style={style.loginName} ref="pleaseLoginText">{this.state.userData.userName}</div>
             </Link>
           <div className="logout" style={style.logout}  >
@@ -118,11 +106,11 @@ class SidePage extends Component {
     }else{
       accountContent= (<div className="loginBox" style={style.loginBox}>
         <Link style={style.link} to="/login_page">
-          <im
+          <img
             style={style.avatar}
             ref="defaultAvatar"
-            src="imgs/sidePage/default-avatar.png"
-            srcSet="imgs/sidePage/default-avatar@2X.png 2x" />
+            src="../imgs/sidePage/default-avatar.png"
+            srcSet="../imgs/sidePage/default-avatar@2X.png 2x" />
           <div style={style.loginName} ref="pleaseLoginText">请登录</div>
         </Link>
       </div>
@@ -173,7 +161,7 @@ class SidePage extends Component {
 
             <footer className="menu-slide-footer">
               客服热线<br />
-              <a href="tel:400-1122-3323">400-1122-3323</a>
+            <a href="tel:400-1122-3323">0371-65337727</a>
             </footer>
           </div>
         </div>
