@@ -1,35 +1,32 @@
 import React from 'react';
 import $ from 'jquery';
 
-class TagRow extends React.Component {
-  handleClick(tagId, onSelectedTag) {
+const TagRow = ({data, onSelectedTag}) => {
+  const handleClick = (tagId, onSelectedTag) => {
     $("#tagColBox").toggleClass('tagColBoxActive');
     onSelectedTag(tagId);
   }
 
-  render() {
-    var tagNodes = <div />;
-    if (typeof this.props.data != 'undefined'){
-      var onSelectedTag = this.props.onSelectedTag;
-      tagNodes = this.props.data.map((tag, i) => {
-        if(tag.Display){
-          return (
-            <div
-              key={i}
-              className="tagColBox"
-              id="tagColBox"
-              onClick={() => this.handleClick(tag.id, onSelectedTag)}
-            >
-              {tag.Name}
-            </div>
-          );
-        }
-      });
-    }
-
-    return <div className="tagRowBox">{tagNodes}</div>
+  let tagNodes;
+  if (data != 'undefined'){
+    tagNodes = data.map((tag, i) => {
+      if(tag.Display){
+        return (
+          <div
+            key={i}
+            className="tagColBox"
+            id="tagColBox"
+            onClick={() => handleClick(tag.id, onSelectedTag)}
+          >
+            {tag.Name}
+          </div>
+        );
+      }
+    });
   }
-};
+
+  return <div className="tagRowBox">{tagNodes}</div>
+}
 
 class TagMenu extends React.Component{
   toggle() {
