@@ -1,9 +1,10 @@
 import React from 'react';
-import TagMenu from './TagMenu';
+import TagRow from './TagRow';
+import $ from 'jquery';
 
 var ShowMenu = React.createClass({
   handleClick() {
-    this.refs.tagMenu.toggle();
+    $("#tagMenu").slideToggle();
   },
   render() {
     return (
@@ -12,13 +13,29 @@ var ShowMenu = React.createClass({
         <div className="tagBtn" onClick={this.handleClick}>
           筛选 <i className="icon down" />
         </div>
-        <TagMenu
-          ref="tagMenu"
-          cities={this.props.cities}
-          catas={this.props.catas}
-          onSelectedTag={this.props.onSelectedTag}
-          onSearch = {this.props.onSearch}
-        />
+
+        <div className="tagMenu" id="tagMenu">
+          <div>
+            <input
+              type="text"
+              placeholder="找不到想要的？试着搜一下！"
+              ref="search"
+            />
+            { /* button 改成 icon */ }
+            <button onClick={event => {
+              event.preventDefault();
+              let text = this.refs.search.value.trim();
+              if (text) this.props.onSearch(text)
+            }}>
+              搜索
+            </button>
+          </div>
+
+          <span>拍摄地区 | Shooting Area</span>
+          <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
+          <span>拍摄种类 | Shooting Type</span>
+          <TagRow data={this.props.catas} onSelectedTag={this.props.onSelectedTag}/>
+        </div>
       </section>
     );
   }
