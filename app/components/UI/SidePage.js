@@ -9,49 +9,6 @@ import UserStore from '../../stores/UserStore';
 import {parseImageUrl} from '../Tools';
 import $ from 'jquery'
 
-const style={
-  loginBox: {
-    position: 'relative',
-    color:'#fff',
-    marginBottom:'5px'
-  },
-  logout:{
-    position: 'absolute',
-    top: '58px',
-    right: '0px'
-  },
-  loginName: {
-    marginBottom: '16px',
-    color:'white'
-  },
-  link:{
-    lineHeight: '14px',
-    paddingBottom: '15px',
-    display: 'block',
-    textAlign: 'center',
-  },
-  avatar:{
-    margin: '34px 0 19px',
-    fontSize:'55px',
-    width:'90px',
-    borderRadius:'50%',
-  },
-  loginIcon:{
-    float: 'right',
-    margin: '51px 15px 0 -53px'
-  },
-  spliterLine:{
-    borderTop:'1px solid #2b2b2b',
-    margin:'0 0 0 10%'
-  },
-  commonIcon: {
-    marginTop: '15px'
-  },
-  logoutIcon:{
-    marginRight:'20px'
-  }
-};
-
 class SidePage extends Component {
   constructor(props){
     super(props);
@@ -88,35 +45,35 @@ class SidePage extends Component {
     let accountContent = <div></div>;
     if(userData.isLogin){ // 用户未登录，跳转登陆页
       accountContent = (
-        <div className="loginBox" style={style.loginBox}>
-          <Link style={style.link} to={userData.userType==0?"/user_center":"/grapher_center"}>
-              <img
-                width={90}
-                height={90}
-                style={style.avatar}
-                ref="defaultAvatar"
-                src={userData.avatar ? parseImageUrl(userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"} />
-                <div style={style.loginName} ref="pleaseLoginText">{userData.userName}</div>
-            </Link>
-          <div className="logout" style={style.logout}  >
+        <div className="menu-slide-header">
+          <Link className="link-box" to={userData.userType==0?"/user_center":"/grapher_center"}>
+            <img
+              width={90}
+              height={90}
+              ref="defaultAvatar"
+              src={userData.avatar ? parseImageUrl(userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"}
+            />
+            <div className="nick-name" ref="pleaseLoginText">{userData.userName}</div>
+          </Link>
+          <div className="logout">
             <span
-              style={style.logoutIcon}
               ref="logoutIcon"
               className="icon logout_icon"
-              onClick={this.logout} />
+              onClick={this.logout}
+            />
           </div>
         </div>
       )
     } else {
       accountContent= (
-          <div className="loginBox" style={style.loginBox}>
-            <Link style={style.link} to="/login_page">
+          <div className="menu-slide-header">
+            <Link className="link-box" to="/login_page">
               <img
-                style={style.avatar}
                 ref="defaultAvatar"
                 src="../imgs/sidePage/default-avatar.png"
-                srcSet="../imgs/sidePage/default-avatar@2X.png 2x" />
-              <div style={style.loginName} ref="pleaseLoginText">请登录</div>
+                srcSet="../imgs/sidePage/default-avatar@2X.png 2x"
+              />
+            <div className="login-msg" ref="pleaseLoginText">请登录</div>
             </Link>
         </div>
       )

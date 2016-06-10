@@ -31,11 +31,12 @@ $menu-active-color: $white;
 //* 菜单客服 footer */
 $menu-footer-lineheight: 25px;
 
-// TODO annotation
+//处于首页的菜单按钮位置微调
 .workPage .menu-link {
   top: 0;
 }
 
+//菜单按钮
 .menu-link {
   color      : $black;
   position   : fixed;
@@ -64,6 +65,7 @@ $menu-footer-lineheight: 25px;
 
 .fade-toggle { background: $menu-mask-color; }
 
+// 左侧弹出菜单
 .actionsheet {
   position                   : fixed;
   left                       : 0;
@@ -89,28 +91,48 @@ $menu-footer-lineheight: 25px;
   transform        : translate(0, 0);
 }
 
+// 左侧弹出菜单头部
 .menu-slide-header {
-  margin    : 30px auto 35px;
-  width     : 100%;
-  text-align: center;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-bottom: 5px;
+  color: $white;
 
-  .portrait {
-    width        : $menu-avatar-width;
-    height       : $menu-avatar-height;
-    margin       : auto;
-    background   : #fff;
-    border-radius: 50%;
+  .link-box {
+    line-height: 14px;
+    padding-bottom: 15px;
+    display: block;
+    text-align: center;
 
     img {
-      width : $menu-avatar-width;
-      height: $menu-avatar-height;
+      margin: 34px 0 19px;
+      font-size: 55px;
+      width: 90px;
+      border-radius: 50%;
+    }
+
+    .nick-name {
+      margin-bottom: 16px;
+      color: $white;
+    }
+
+    .login-msg {
+      margin-bottom: 16px;
+      color: $white;
+      // TODO  如果用户未登录，用稍微明显的字体颜色提示用户
     }
   }
 
-  .nickname {
-    margin   : 25px 0 35px;
-    font-size: $menu-username-size;
-    color    : $menu-username-color;
+  .logout {
+    position: absolute;
+    top: 58px;
+    right: 0;
+
+    span {
+      float: right;
+      margin: 51px 15px 0 -53px;
+    }
   }
 }
 
