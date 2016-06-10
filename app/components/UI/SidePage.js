@@ -40,6 +40,10 @@ class SidePage extends Component {
     this.setState({ userData })
   }
 
+  logout() {
+    UserActions.logout();
+  }
+
   render() {
     const userData = this.state.userData;
     let accountContent = <div></div>;
