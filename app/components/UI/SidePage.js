@@ -47,7 +47,7 @@ class SidePage extends Component {
   render() {
     const userData = this.state.userData;
     let accountContent = <div></div>;
-    if(userData.isLogin){ // 用户未登录，跳转登陆页
+    if(userData.isLogin){ // 用户未登录，跳转登录页
       accountContent = (
         <div className="menu-slide-header">
           <Link className="link-box" to={userData.userType==0?"/user_center":"/grapher_center"}>

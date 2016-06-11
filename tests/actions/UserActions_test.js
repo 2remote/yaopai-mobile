@@ -48,7 +48,7 @@ describe('User Actions Test', () => {
 
     // token登录目前没有好方法测试
 
-    // wechat登陆目前没有好方法测试
+    // wechat登录目前没有好方法测试
 
     data = {};
     apiOk(API.USER.current_user, data, 'API.USER.current_user 获得用户信息');

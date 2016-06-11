@@ -44,7 +44,7 @@ class BindCardLayout extends React.Component {
   }
 
   onUserLoad(user) {
-    if(!user.isLogin){ // 用户未登录，跳转登陆页
+    if(!user.isLogin){ // 用户未登录，跳转登录页
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }
   }
