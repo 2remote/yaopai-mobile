@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
               >
                 YAOPAI 服务条款
               </a>
-              <a className="fr" href="/findByMobileForm">
+              <a className="fr" href="/#/findByMobileForm">
                 忘记密码
               </a>
             </aside>

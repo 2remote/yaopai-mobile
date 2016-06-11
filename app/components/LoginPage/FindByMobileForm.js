@@ -5,6 +5,8 @@ import GetCodeStore from'../../stores/GetCodeStore';
 import UserActions from'../../actions/UserActions';
 import UserStore from'../../stores/UserStore';
 import Toaster from'../Toast';
+import InputGroup from '../UI/InputGroup';
+import { ButtonBlock } from '../UI/Button';
 import validator from'validator';
 import {History} from 'react-router';
 import DocumentTitle from 'react-document-title';
@@ -15,7 +17,9 @@ var FindByMobileForm = React.createClass({
   History],
   getInitialState: function () {
     return {
-      codeLeft: 0
+      codeLeft: 0,
+      mobileNumber: '',
+      vertificationCode: '',
     }
   },
   _onGetCodeStoreChange: function (data) {
@@ -36,15 +40,15 @@ var FindByMobileForm = React.createClass({
         this.showMessage(data.hintMessage);
         return;
       } else {
-        var phone = this.refs.mobileNumber.value.trim();
-        var code = this.refs.vertificationCode.value.trim();
+        var phone = this.state.mobileNumber;
+        var code = this.state.vertificationCode;
         this.history.pushState({phone: phone, code: code}, '/changePassWordForm')
       }
     }
   },
   _handleCheck: function () {
     if (this.state.codeLeft > 0) return;
-    var phone = this.refs.mobileNumber.value.trim();
+    var phone = this.state.mobileNumber;
     if (phone) {
       var isMobile = validator.isMobilePhone(phone,['zh-CN']);
       if (isMobile) {
@@ -61,8 +65,8 @@ var FindByMobileForm = React.createClass({
   },
   _handleNextStep: function (e) {
     e.preventDefault();
-    var phone = this.refs.mobileNumber.value.trim();
-    var code = this.refs.vertificationCode.value.trim();
+    var phone = this.state.mobileNumber;
+    var code = this.state.vertificationCode;
     if (!phone) {
       this.showMessage('手机号不能为空');
       return;
@@ -84,30 +88,34 @@ var FindByMobileForm = React.createClass({
   render() {
     return (
       <DocumentTitle title="重置密码第一步">
-        <div className="findMyPassPage">
+        <div>
           <Toaster ref="toast" />
-          <form
-            className="form"
-            ref="mobileForm" >
-            <input
-              className="input"
-              ref="mobileNumber"
-              type="text" placeholder="输入手机号" />
-            <input
-              className="captcha"
-              ref="getVertificationCode"
-              onClick={this._handleCheck}
-              type="button"
-              value={(this.state.codeLeft>0 ? '( '+this.state.codeLeft+' )' : '获取验证码')} />
-            <input
-              className="input"
-              ref="vertificationCode"
-              type="text" placeholder="输入验证码" />
-            <input
-              className="submits"
-              ref="submitButton"
-              onClick={this._handleNextStep}
-              type="submit" value="下一步" />
+          <form className="find-password">
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ mobileNumber => this.setState({mobileNumber}) }
+              type="tel"
+              pattern="[0-9]*"
+              placeholder="请输入手机号"
+            />
+
+            <div className="get-tel-code" onClick={this._handleCheck}>
+              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
+            </div>
+
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ vertificationCode => this.setState({vertificationCode}) }
+              type="tel"
+              pattern="[0-9]*"
+              placeholder="请输入验证码"
+            />
+
+            <ButtonBlock
+              buttonType="btn-dark"
+              value="下一步"
+              handleSubmit={this._handleNextStep}
+            />
           </form>
         </div>
       </DocumentTitle>

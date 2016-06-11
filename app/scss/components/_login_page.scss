@@ -17,7 +17,8 @@
   .btn-block { margin-bottom: 16px; }
 }
 
-.signup-page {
+.signup-page,
+.find-password {
   position: relative;
   top: 0;
   right: 0;
@@ -30,3 +31,5 @@
     color: $white;
   }
 }
+
+.find-password .btn-dark { margin-bottom: 20px; }
