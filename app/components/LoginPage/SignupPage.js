@@ -107,10 +107,7 @@ let SignupPage = React.createClass({
             pattern="[0-9]*"
             placeholder="请输入手机号"
           />
-          <div
-            className="get-tel-code"
-            onClick={this._handleGetCode}
-            ref="getVerificationCode" >
+          <div className="get-tel-code" onClick={this._handleGetCode}>
             {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
           </div>
 
