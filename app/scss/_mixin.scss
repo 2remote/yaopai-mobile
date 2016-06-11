@@ -37,14 +37,28 @@
   }
 }
 
-/*箭头向右的三角形*/
-@mixin triangle_right ($size, $color){
+/*三角形*/
+@mixin triangle ($direction, $size, $color){
   content: '';
   width: 0;
   height: 0;
   font-size: 0;
   line-height: 0;
-  border-bottom: $size solid transparent;
-  border-top: $size solid transparent;
-  border-left: $size solid $color;
+
+  @if $direction == 'right' {
+    border-bottom: $size solid transparent;
+    border-top: $size solid transparent;
+    border-left: $size solid $color;
+  }
+
+  @if $direction == 'top-left' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+  }
+
+  @if $direction == 'bottom-left' {
+    border-bottom: $size solid $color;
+    border-right: $size solid transparent;
+  }
+  // TODO 待补充其他方向的三角形
 }
