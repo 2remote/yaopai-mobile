@@ -1,21 +1,28 @@
 import React from 'react';
 import UserActions from '../../actions/UserActions';
 import { ButtonBlock } from '../UI/Button';
+import InputGroup from '../UI/InputGroup';
 import validator from 'validator';
 import { Link } from 'react-router';
 
-var LoginForm = React.createClass({
-  getInitialState : function(){
-    return {
+class LoginForm extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
       userName : '',
-      password : ''
+      password : '',
     }
-  },
+    this._handleUserNameChange = this._handleUserNameChange.bind(this)
+    this._handlePasswordChange = this._handlePasswordChange.bind(this)
+    this._handleLogin = this._handleLogin.bind(this)
+    this._weChatLogin = this._weChatLogin.bind(this)
+  }
 
-  _weChatLogin : function(){
+  _weChatLogin() {
     UserActions.openLogin();
-  },
-  _handleLogin : function(){
+  }
+
+  _handleLogin() {
     var phone = this.state.userName;
     var password = this.state.password;
     if(!validator.isMobilePhone(phone, 'zh-CN') || !validator.isLength(password,6,18)) {
@@ -32,20 +39,27 @@ var LoginForm = React.createClass({
     console.log(loginData);
     this.props.onLogin(loginData);
     return false;
-  },
-  _handleUserNameChange : function(event){
+  }
+
+  _handleUserNameChange(event) {
     this.setState({userName : event.target.value});
-  },
-  _handlePasswordChange : function(event){
+  }
+
+  _handlePasswordChange(event) {
     this.setState({password : event.target.value});
-  },
-  render: function() {
+  }
+
+  inputValue(text) {
+    console.log(text)
+  }
+
+  render() {
     var style = {
       loginForm: {
         position: 'relative',
         textAlign: 'center',
         margin: '0 auto',
-        padding:'0px 20px',
+        // padding:'0px 20px',
       },
       input: {
         backgroundColor: 'inherit',
@@ -82,7 +96,6 @@ var LoginForm = React.createClass({
         color:'#777'
       }
     };
-
 
     return (
       <div
@@ -126,6 +139,13 @@ var LoginForm = React.createClass({
             </a>
           </div>
 
+          <InputGroup
+            iconLeft="phone"
+            type="password"
+            placeholder="请输入密码"
+            updateValue={ text => this.inputValue(text) }
+          />
+
           <ButtonBlock
             buttonType="btn-dark"
             value="立即登录"
@@ -140,6 +160,6 @@ var LoginForm = React.createClass({
       </div>
     );
   }
-});
+};
 
-export {LoginForm as default};
+export default LoginForm;
