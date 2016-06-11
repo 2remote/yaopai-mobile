@@ -4,6 +4,7 @@ import UserActions from '../../actions/UserActions';
 import { ButtonBlock } from '../UI/Button';
 import InputGroup from '../UI/InputGroup';
 import validator from 'validator';
+import { RouteTransition, presets } from 'react-router-transition'
 
 class LoginForm extends React.Component {
   constructor(props){
@@ -43,43 +44,46 @@ class LoginForm extends React.Component {
     return (
       <div>
         <UserEntryLayout />
-        <form>
-          <InputGroup
-            iconLeft="phone"
-            updateValue={ userName => this.setState({userName}) }
-            type="tel"
-            pattern="[0-9]*"
-            placeholder="请输入手机号"
-          />
+        <RouteTransition { ...presets.slideLeft } >
+          <form>
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ userName => this.setState({userName}) }
+              type="tel"
+              pattern="[0-9]*"
+              placeholder="请输入手机号"
 
-          <InputGroup
-            iconLeft="phone"
-            updateValue={ password => this.setState({password}) }
-            type="password"
-            placeholder="请输入密码"
-          />
-          <aside className="aside">
-            <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed"
-              className="fl"
-            >
-              YAOPAI 服务条款
-            </a>
-            <a className="fr" href="/findByMobileForm">
-              忘记密码
-            </a>
-          </aside>
+            />
 
-          <ButtonBlock
-            buttonType="btn-dark"
-            value="立即登录"
-            handleSubmit={this._handleLogin}
-          />
-          <ButtonBlock
-            buttonType="btn-green"
-            value="微信登录"
-            handleSubmit={this._weChatLogin}
-          />
-        </form>
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ password => this.setState({password}) }
+              type="password"
+              placeholder="请输入密码"
+            />
+            <aside className="aside">
+              <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed"
+                className="fl"
+              >
+                YAOPAI 服务条款
+              </a>
+              <a className="fr" href="/findByMobileForm">
+                忘记密码
+              </a>
+            </aside>
+
+            <ButtonBlock
+              buttonType="btn-dark"
+              value="立即登录"
+              handleSubmit={this._handleLogin}
+            />
+            <ButtonBlock
+              buttonType="btn-green"
+              value="微信登录"
+              handleSubmit={this._weChatLogin}
+            />
+          </form>
+        </RouteTransition>
       </div>
     );
   }

@@ -9,6 +9,7 @@ import UserStore from '../../stores/UserStore';
 import GetCodeActions from '../../actions/GetCodeActions';
 import GetCodeStore from '../../stores/GetCodeStore';
 import { Link, History } from 'react-router';
+import { RouteTransition, presets } from 'react-router-transition'
 import Toaster from '../Toast';
 
 let SignupPage = React.createClass({
@@ -99,45 +100,47 @@ let SignupPage = React.createClass({
     return (
       <div className="login-register-container">
         <UserEntryLayout />
-        <form className="signup-page">
-          <InputGroup
-            iconLeft="phone"
-            updateValue={ phone => this.setState({phone}) }
-            type="tel"
-            pattern="[0-9]*"
-            placeholder="请输入手机号"
-          />
-          <div className="get-tel-code" onClick={this._handleGetCode}>
-            {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
-          </div>
+        <RouteTransition { ...presets.slideRight } >
+          <form className="signup-page">
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ phone => this.setState({phone}) }
+              type="tel"
+              pattern="[0-9]*"
+              placeholder="请输入手机号"
+            />
+            <div className="get-tel-code" onClick={this._handleGetCode}>
+              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
+            </div>
 
-          <InputGroup
-            iconLeft="phone"
-            updateValue={ password1 => this.setState({password1}) }
-            type="password"
-            placeholder="请输入密码"
-          />
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ password1 => this.setState({password1}) }
+              type="password"
+              placeholder="请输入密码"
+            />
 
-          <InputGroup
-            iconLeft="phone"
-            updateValue={ password2 => this.setState({password2}) }
-            type="password"
-            placeholder="请再次输入密码"
-          />
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ password2 => this.setState({password2}) }
+              type="password"
+              placeholder="请再次输入密码"
+            />
 
-          <InputGroup
-            iconLeft="phone"
-            updateValue={ code => this.setState({code}) }
-            type="tel"
-            pattern="[0-9]*"
-            placeholder="请输入验证码"
-          />
+            <InputGroup
+              iconLeft="phone"
+              updateValue={ code => this.setState({code}) }
+              type="tel"
+              pattern="[0-9]*"
+              placeholder="请输入验证码"
+            />
+          </form>
           <ButtonBlock
             buttonType="btn-dark"
             value="创建账号"
             handleSubmit={this._handleRegister}
           />
-        </form>
+        </RouteTransition>
         <Toaster ref="toast"/>
       </div>
     );
