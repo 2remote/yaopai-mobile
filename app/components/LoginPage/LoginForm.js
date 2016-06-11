@@ -47,24 +47,6 @@ class LoginForm extends React.Component {
         margin: '0 auto',
         // padding:'0px 20px',
       },
-      input: {
-        backgroundColor: 'inherit',
-        width: '100%',
-        fontSize: '14px',
-        lineHeight: '50px',
-        borderWidth: '0 0 1px',
-        borderRadius: 0,
-        color:'#fff',
-        borderColor: 'transparent transparent #333'
-      },
-      login: {
-        marginTop: 60,
-        border: '1px solid #fff',
-        fontSize: '14px',
-        color: '#fff',
-        height:'50px',
-        lineHeight:'50px'
-      },
       findPass: {
         border: 0,
         backgroundColor: 'inherit',
@@ -103,20 +85,15 @@ class LoginForm extends React.Component {
             placeholder="请输入密码"
           />
           <div>
-            <Link to="/findByMobileForm">
-              <input
-                style={style.findPass}
-                ref="findMyPassButton"
-                type="button"
-                value="忘记密码" />
-            </Link>
+            <a href="/findByMobileForm" style={style.findPass}>
+              忘记密码
+            </a>
           </div>
           <div>
-            <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed">
-              <input
-                style={style.provision}
-                type="button"
-                value="YAOPAI 服务条款" />
+            <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed"
+              style={style.provision}
+            >
+              YAOPAI 服务条款
             </a>
           </div>
 
