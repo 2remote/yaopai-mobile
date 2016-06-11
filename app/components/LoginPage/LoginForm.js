@@ -1,9 +1,9 @@
 import React from 'react';
+import UserEntryLayout from './UserEntryLayout';
 import UserActions from '../../actions/UserActions';
 import { ButtonBlock } from '../UI/Button';
 import InputGroup from '../UI/InputGroup';
 import validator from 'validator';
-import { Link } from 'react-router';
 
 class LoginForm extends React.Component {
   constructor(props){
@@ -40,36 +40,10 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    var style = {
-      loginForm: {
-        position: 'relative',
-        textAlign: 'center',
-        margin: '0 auto',
-        // padding:'0px 20px',
-      },
-      findPass: {
-        border: 0,
-        backgroundColor: 'inherit',
-        float: 'right',
-        marginRight: 5,
-        marginTop: 15,
-        color:'#777'
-      },
-      provision: {
-        border: 0,
-        backgroundColor: 'inherit',
-        float: 'left',
-        marginLeft: 5,
-        marginTop: 15,
-        color:'#777'
-      }
-    };
-
     return (
-      <div
-        style={style.loginForm}
-        className="loginForm">
-        <form ref="loginForm">
+      <div>
+        <UserEntryLayout />
+        <form>
           <InputGroup
             iconLeft="phone"
             updateValue={ userName => this.setState({userName}) }
@@ -84,18 +58,16 @@ class LoginForm extends React.Component {
             type="password"
             placeholder="请输入密码"
           />
-          <div>
-            <a href="/findByMobileForm" style={style.findPass}>
-              忘记密码
-            </a>
-          </div>
-          <div>
+          <aside className="aside">
             <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed"
-              style={style.provision}
+              className="fl"
             >
               YAOPAI 服务条款
             </a>
-          </div>
+            <a className="fr" href="/findByMobileForm">
+              忘记密码
+            </a>
+          </aside>
 
           <ButtonBlock
             buttonType="btn-dark"

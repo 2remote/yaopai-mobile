@@ -74,7 +74,7 @@ class SidePage extends Component {
                 src="../imgs/sidePage/default-avatar.png"
                 srcSet="../imgs/sidePage/default-avatar@2X.png 2x"
               />
-            <div className="login-msg">请登录</div>
+              <div className="login-msg">请登录</div>
             </Link>
         </div>
       )
