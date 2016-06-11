@@ -15,42 +15,33 @@ var WorkIntroGrapherRow = React.createClass({
     }
     const avatar = imgModifier(this.props.data.Photographer.Avatar, "avatar");
     return (
-      <div
-        style={{width:'100%',color:'#0f0f0f'}}
-        className="workIntroGrapherRow">
+      <div className="workIntroGrapherRow">
         <Link to={"/workDetail/" + this.props.data.Id}>
-          <div style={{width:'100%',height:254/375*innerWidth,marginBottom: -36,
-          backgroundColor:'#eeedeb',position:'relative'}}>
+          <div className="card-work" style={{height: 254/375*innerWidth}}>
+
             <LazyLoad threshold={100} once>
-              <div style={{background:'rgba(0,0,0,.8)',width:'auto',height:'35px',lineHeight:'35px',color:'white',position:'absolute',bottom:0,left:0,fontSize:'16px',padding:'0 5px',marginBottom:'20px'}}>
-                ￥{this.props.data.Price} <span style={{fontSize:'12px'}}>/套</span>
-                <div className="top"></div>
-                <div className="bottom"></div>
+              <div className="card-price">
+                ￥{this.props.data.Price} <span className="font_small">/套</span>
+                <div className="triangle-top-left"></div>
+                <div className="triangle-bottom-left"></div>
               </div>
 
               <img
                 style={{width:'100%',height:254/375*innerWidth}}
-                ref="workImage"
-                src={cover}/>
+                src={cover}
+              />
             </LazyLoad>
 
           </div>
         </Link>
-        <Link style={{textAlign:'right',display:'block'}} to={"/grapherDetail/" + this.props.data.UserId}>
-        <img
-          style={{width:50,height:50,borderRadius:'50%',marginRight:10,marginTop:10,position:'relative'}}
-          ref="avatarImage"
-          src={avatar}/>
-        </Link>
-        <div style={{padding:'12px 10px',lineHeight:'24px',marginTop:'-31px',marginBottom:'10px',background:'#fff'}}>
-          <p style={{fontSize:'16px',color:'#282828',display:'block',
-            whiteSpace:'nowrap', overflow:'hidden',
-            textOverflow:'ellipsis',width:'80%'}}>
-            {this.props.data.Title}
-          </p>
-          <p style={{fontSize:'12px',color:'#bebebe'}}>
-            有{this.props.data.Views}人想拍
-          </p>
+
+        <a className="card-head-face" href={`/grapherDetail/${this.props.data.UserId}`}>
+          <img src={avatar} />
+        </a>
+
+        <div className="card-info">
+          <p className="info-title">{this.props.data.Title}</p>
+          <p className="info-Subtitle">有{this.props.data.Views}人想拍</p>
         </div>
       </div>
     );
