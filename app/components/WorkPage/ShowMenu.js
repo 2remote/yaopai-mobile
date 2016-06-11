@@ -13,23 +13,24 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
       </div>
 
       <div className="tagMenu" id="tagMenu">
-        <input
-          type="text"
-          placeholder="找不到想要的？试着搜一下！"
-          ref={node => searchText = node}
-        />
-        { /* TODO button 改成 icon */ }
-        <button onClick={event => {
-          event.preventDefault();
-          let text = searchText.value.trim();
-          if (text) onSearch(text)
-        }}>
-          搜索
-        </button>
+        <section className="input-group-dark">
+          <input
+            className="input input-block"
+            ref={node => searchText = node}
+            type="text"
+            placeholder="找不到想要的？试着搜一下！"
+          />
+          <div onClick={() => {
+            let text = searchText.value.trim();
+            if (text) onSearch(text)
+          }}>
+            <span className="icon icon-right phone">搜索</span>
+          </div>
+        </section>
 
-        <span>拍摄地区 | Shooting Area</span>
+        <span className="tag-title">拍摄地区 | Shooting Area</span>
         <TagRow data={cities} onSelectedTag={onSelectedTag}/>
-        <span>拍摄种类 | Shooting Type</span>
+        <span className="tag-title">拍摄种类 | Shooting Type</span>
         <TagRow data={catas} onSelectedTag={onSelectedTag}/>
       </div>
     </section>

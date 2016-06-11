@@ -1,5 +1,6 @@
 .login-register-container {
   width: 100%;
+  position: fixed;
   min-height: 100%;
   background: $dim-black;
 
@@ -32,4 +33,16 @@
   }
 }
 
-.find-password .btn-dark { margin-bottom: 20px; }
+.find-password {
+  padding-top: 20px;
+  width: 100%;
+  position: fixed;
+  min-height: 100%;
+  background: $dim-black;
+
+  .get-tel-code {
+    top: 35px;
+  }
+
+  .btn-dark { margin-top: 20px; }
+}
