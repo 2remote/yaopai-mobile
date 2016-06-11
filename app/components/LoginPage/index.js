@@ -4,7 +4,6 @@ import { Link, History, Location } from 'react-router';
 import DocumentTitle from 'react-document-title';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
-import './index.scss';
 import LoginForm from './LoginForm';
 
 import Toaster from '../Toast';
