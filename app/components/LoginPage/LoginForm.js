@@ -12,8 +12,6 @@ class LoginForm extends React.Component {
       userName : '',
       password : '',
     }
-    this._handleUserNameChange = this._handleUserNameChange.bind(this)
-    this._handlePasswordChange = this._handlePasswordChange.bind(this)
     this._handleLogin = this._handleLogin.bind(this)
     this._weChatLogin = this._weChatLogin.bind(this)
   }
@@ -39,18 +37,6 @@ class LoginForm extends React.Component {
     console.log(loginData);
     this.props.onLogin(loginData);
     return false;
-  }
-
-  _handleUserNameChange(event) {
-    this.setState({userName : event.target.value});
-  }
-
-  _handlePasswordChange(event) {
-    this.setState({password : event.target.value});
-  }
-
-  inputValue(text) {
-    console.log(text)
   }
 
   render() {
@@ -102,25 +88,20 @@ class LoginForm extends React.Component {
         style={style.loginForm}
         className="loginForm">
         <form ref="loginForm">
-          <div>
-            <input
-              value={this.state.userName}
-              onChange={this._handleUserNameChange}
-              style={style.input}
-              ref="mobileNumber"
-              type="tel"
-              pattern="[0-9]*"
-              placeholder="手机号" />
-          </div>
-          <div>
-            <input
-              value={this.state.password}
-              onChange = {this._handlePasswordChange}
-              style={style.input}
-              ref="passWord"
-              type="password"
-              placeholder="密码" />
-          </div>
+          <InputGroup
+            iconLeft="phone"
+            updateValue={ userName => this.setState({userName}) }
+            type="tel"
+            pattern="[0-9]*"
+            placeholder="手机号"
+          />
+
+          <InputGroup
+            iconLeft="phone"
+            updateValue={ password => this.setState({password}) }
+            type="password"
+            placeholder="请输入密码"
+          />
           <div>
             <Link to="/findByMobileForm">
               <input
@@ -138,13 +119,6 @@ class LoginForm extends React.Component {
                 value="YAOPAI 服务条款" />
             </a>
           </div>
-
-          <InputGroup
-            iconLeft="phone"
-            type="password"
-            placeholder="请输入密码"
-            updateValue={ text => this.inputValue(text) }
-          />
 
           <ButtonBlock
             buttonType="btn-dark"
