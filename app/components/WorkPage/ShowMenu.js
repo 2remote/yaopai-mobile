@@ -2,7 +2,7 @@ import React from 'react';
 import TagRow from './TagRow';
 import $ from 'jquery';
 
-const ShowMenu = ({onSearch, cities, catas, onSelectedTag,}) => {
+const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
   const handleClick = () => $("#tagMenu").slideToggle();
   let searchText;
   return (
@@ -18,7 +18,7 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag,}) => {
           placeholder="找不到想要的？试着搜一下！"
           ref={node => searchText = node}
         />
-        { /* button 改成 icon */ }
+        { /* TODO button 改成 icon */ }
         <button onClick={event => {
           event.preventDefault();
           let text = searchText.value.trim();

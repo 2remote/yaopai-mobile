@@ -5,20 +5,7 @@ import {imgModifier} from '../Tools';
 import LazyLoad from 'react-lazy-load';
 
 var WorkIntroGrapherRow = React.createClass({
-  getDefaultProps: function() {
-    return {
-      data: {
-        Cover: "imgs/default/work1.jpg",
-        User: {
-          NickName: "Ma Xiaochi",
-          Avatar: "imgs/default/maxiaochi.jpg"
-        },
-        Title: "可以拍摄的水果",
-        Id: 1
-      }
-    };
-  },
-  render: function() {
+  render() {
     let cover;
     if(this.props.data.Cut){
       var cut = JSON.parse(this.props.data.Cut);
