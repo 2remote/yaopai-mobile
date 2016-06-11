@@ -1,5 +1,6 @@
 import React from 'react';
 import UserActions from '../../actions/UserActions';
+import { ButtonBlock } from '../UI/Button';
 import validator from 'validator';
 import { Link } from 'react-router';
 
@@ -125,19 +126,16 @@ var LoginForm = React.createClass({
             </a>
           </div>
 
-          <div
-            style={style.login}
-            onClick={this._handleLogin}
-            ref="loginButton">
-            立即登录
-          </div>
-          <div
-            style={style.login}
-            className="wechat"
-            onClick={this._weChatLogin}
-            ref="loginButton">
-            微信登录
-          </div>
+          <ButtonBlock
+            buttonType="btn-dark"
+            value="立即登录"
+            handleSubmit={this._handleLogin}
+          />
+          <ButtonBlock
+            buttonType="btn-green"
+            value="微信登录"
+            handleSubmit={this._weChatLogin}
+          />
         </form>
       </div>
     );

@@ -35,7 +35,19 @@
 
 .btn-black {
   background: $black;
-  border: none;
+  border: 1px $black solid;
+  color : $white;
+
+  &.active,
+  &:active {
+    color       : $black;
+    background  : $white;
+  }
+}
+
+.btn-green {
+  background: $green;
+  border: 1px $green solid;
   color : $white;
 
   &.active,
@@ -57,7 +69,5 @@
 .btn-block {
   margin: 0 10px;
 
-  button {
-    width: 100%;
-  }
+  a { width: 100%; }
 }
