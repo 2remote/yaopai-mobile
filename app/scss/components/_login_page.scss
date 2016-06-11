@@ -14,7 +14,18 @@
     }
   }
 
-  .btn-block {
-    margin-bottom: 16px;
+  .btn-block { margin-bottom: 16px; }
+}
+
+.signup-page {
+  position: relative;
+  top: 0;
+  right: 0;
+
+  .get-tel-code {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: $white;
   }
 }

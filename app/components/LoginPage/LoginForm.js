@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
             updateValue={ userName => this.setState({userName}) }
             type="tel"
             pattern="[0-9]*"
-            placeholder="手机号"
+            placeholder="请输入手机号"
           />
 
           <InputGroup
