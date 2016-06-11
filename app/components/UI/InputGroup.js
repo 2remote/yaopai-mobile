@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 /**
 * @param: iconLeft 输入框左边的 icon
 * @param: iconRight 输入框右边的 icon
-* @param: type, placeholder 是 input 的基本属性
+* @param: {...others } 是 input 的基本属性,可能有 placeholder、type 等
 * @param: updateValue 回掉函数，把输入的内容传递给调用该组件的父组件
 **/
 
@@ -24,8 +24,6 @@ const InputGroup = props => {
 InputGroup.propTypes = {
   iconLeft: PropTypes.string,
   iconRight: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   updateValue: PropTypes.func.isRequired,
 }
 
