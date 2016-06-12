@@ -37,8 +37,7 @@
     position     : absolute;
     top          : 0;
     right        : 0;
-    z-index: $zindex-base;
-    margin-right : -16.8px;
+    margin-right : -15.8px;
     @include triangle(top-left, 16px, rgba(0,0,0,.8));
   }
 
@@ -46,8 +45,7 @@
     position     : absolute;
     top          : 19px;
     right        : 0;
-    z-index: $zindex-base;
-    margin-right : -16.8px;
+    margin-right : -15.8px;
     @include triangle(bottom-left, 16px, rgba(0,0,0,.8));
   }
 
@@ -62,8 +60,8 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      margin-right:10;
-      margin-top: 10;
+      margin-right:10px;
+      margin-top: 10px;
     }
   }
 
