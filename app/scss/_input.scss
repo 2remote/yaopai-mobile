@@ -3,7 +3,7 @@
 // --------------------------------------------------
 .input {
   display    : inline-block;
-  border     : none;
+  border     : 0;
   white-space: nowrap;
   font-size  : $btn-font-base;
   height     : $btn-height;
@@ -14,7 +14,6 @@
   &:focus {
     outline       : none;
     border-bottom : 1px solid $white;
-    letter-spacing: 5px;
   }
 }
 
@@ -27,7 +26,7 @@
   input {
     width        : 100%;
     box-sizing   : border-box;
-    border-bottom: 1px lighten($dim-black, 20%) solid;
+    border-bottom: 1px lighten($dim-black, 5%) solid;
     color        : $white;
     padding      : 0 100px 0 50px;
   }
