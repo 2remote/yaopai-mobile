@@ -42,26 +42,6 @@ var GrapherRow = React.createClass({
       PhotographerAlbumPoolAction.update(this.props.data.Id);
       console.log('FETCH', this.props.data.Id);
     }
-    //const id = this.props.data.Id;
-    //const listWorkDetail = 'Albums.Search';
-    //const fields = '&Fields=Id,Cut';
-    //const filter = '&UserId='+id;
-    //const url = API_URL + listWorkDetail + fields + filter;
-    //if(id){
-    //  $.ajax ({
-    //    url: url,
-    //    dataType: 'json',
-    //    cache: false,
-    //    success: function(data){
-    //      this.setState({works:data});
-    //      console.log(this.state);
-    //    }.bind(this),
-    //    error: function(xhr, status, err) {
-    //      console.error(this.props.worksUrl, status, err.toString());
-    //    }.bind(this)
-    //  });
-    //  console.log(id);
-    //}
   },
 
 
