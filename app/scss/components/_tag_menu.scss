@@ -30,14 +30,14 @@
     position                   : absolute;
     left                       : 0;
     right                      : 0;
-    z-index                    : $zindex-base;
+    z-index                    : $zindex-hidden !important;
     width                      : 100%;
     box-sizing                 : border-box;
     padding-bottom             : 15px;
     background                 : #000;
     color                      : #fff;
     -webkit-transform          : translate(0, -100%);
-    transform                  : translate(0, -120%);
+    transform                  : translate(0, -100%);
     -webkit-backface-visibility: hidden;
     backface-visibility        : hidden;
     -webkit-transition         : -webkit-transform .2s ease-in-out;
@@ -56,11 +56,10 @@
   .tagmenu-toggle {
     -webkit-transform: translate(0, 0);
     transform        : translate(0, 0);
+    z-index          : $zindex-base;
   }
 
-  .tagRowBox {
-    overflow: hidden;
-  }
+  .tagRowBox { overflow: hidden; }
 
   .tagColBox {
     display      : inline-block;
