@@ -130,6 +130,8 @@ var SidePage = React.createClass({
             {accountContent}
 
             <SidePageIcon name={'work'} icon={'home'} text={'首页 | HOME'} />
+            <SidePageIcon name={'grapher'} icon={'camera'} text={'摄影师 | GRAPHER'} />
+
             <div style={style.service}>
               <p>客服热线</p>
               <p>0371-65337727</p>

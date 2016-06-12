@@ -9,7 +9,9 @@ var TagCol = React.createClass({
 
   handleClick: function () {
     this.setState({clicked: !this.state.clicked});
+
     var tag = this.props.id;
+
     this.props.onSelectedTag(tag);
   },
 
@@ -17,7 +19,7 @@ var TagCol = React.createClass({
     var border_color = this.state.clicked ? 'gray' :'rgba(255,255,255,.1)';
     var style = {
       display: 'inline-block',
-      padding: '5px 25px',
+      padding: '5px 20px',
       margin: '5px',
       fontSize: 12,
       borderRadius: '20px',
@@ -69,14 +71,19 @@ var TagMenu = React.createClass({
       showTags: false
     }
   },
-
+  handleMask: function () {
+    this.refs.mask.style.display = 'none';
+    this.setState({showTags:false});
+  },
   toggle: function () {
     var status = ! this.state.showTags;
+    var display = status==true?'block':'none';
+    this.refs.mask.style.display = display;
     this.setState({showTags: status});
   },
   
   render: function () {
-    var top = this.state.showTags ? 56 : '-340px';
+    var top = this.state.showTags ? '56px' : '-380px';
     var style = {
       tab: {
         position: 'fixed',
@@ -84,23 +91,36 @@ var TagMenu = React.createClass({
         boxSizing: 'border-box',
         left: 0,
         top: top,
-        zIndex: '1000',
+        zIndex: '98',
         padding: '15px 0',
         background: '#000',
         color: '#fff',
-        WebkitTransition:'top ease .5s',
-        transition: 'top ease .5s',
+        WebkitTransition:'top ease .3s',
+        transition: 'top ease .3s',
         opacity: 0.95
       }
     };
 
     return (
-      <div className="tagMenu" style={style.tab}>
-        <span>拍摄地区 | Shooting Area</span>
-        <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
-        <span>拍摄种类 | Shooting Type</span>
-        <TagRow data={this.props.catas} onSelectedTag={this.props.onSelectedTag}/>
+      <div ref="mask" className="mask" onClick={this.handleMask} style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        background: 'rgba(0,0,0,.5)',
+        zIndex: '10',
+        display:'none',
+      }}>
+        <div className="tagMenu" ref="tags" style={style.tab}>
+          <input type="text" />
+          <span>拍摄地区 | Shooting Area</span>
+          <TagRow data={this.props.cities} onSelectedTag={this.props.onSelectedTag}/>
+          <span>拍摄类别 | Shooting Type</span>
+          <TagRow data={this.props.catas} onSelectedTag={this.props.onSelectedTag}/>
+        </div>
       </div>
+
     );
   }
 });

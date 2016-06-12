@@ -36,7 +36,9 @@ var WorkIntroGrapherList = React.createClass({
 
   render: function() {
     var workNodes = this.props.data.map(function(work, i){
+
       if(work.User !== null){
+        console.log(i,work)
         return(
           <WorkIntroGrapherRow 
             key={i}

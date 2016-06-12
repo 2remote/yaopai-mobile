@@ -86,7 +86,6 @@ var WorkPage = React.createClass({
     }else{
       tags.push(tag);
     }
-
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
       // 读取tag过滤的数据
@@ -139,7 +138,7 @@ var WorkPage = React.createClass({
   },
   onChangePage : function(pageIndex){
     this.onShowToast('努力加载中...')
-    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
+    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','), true);
   },
   render: function() {
     var cities = [];
