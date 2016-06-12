@@ -52,7 +52,6 @@ class LoginForm extends React.Component {
               type="tel"
               pattern="[0-9]*"
               placeholder="请输入手机号"
-
             />
 
             <InputGroup
