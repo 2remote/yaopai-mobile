@@ -146,15 +146,11 @@ var WorkPage = React.createClass({
   },
   onChangePage : function(pageIndex){
     this.onShowToast('努力加载中...')
-<<<<<<< HEAD
     if(this.state.searchKey){
       AlbumsActions.searchByKey(null, pageIndex, 10, null, this.state.searchKey)
     } else {
-      AlbumsActions.search(null, pageIndex, 10, this.state.selectedTags.join(','))
+      AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','), true);
     }
-=======
-    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','), true);
->>>>>>> add-grapher-css
   },
   render: function() {
     var cities = [];
