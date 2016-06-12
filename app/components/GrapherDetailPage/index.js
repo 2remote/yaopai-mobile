@@ -26,7 +26,7 @@ var GrapherDetailPage = React.createClass({
     const id = this.props.params.Id;
     const grapherInfo = 'Photographer.Get';
     const listWorkDetail = 'Albums.Search';
-    const fields = '&Fields=Id,User.NickName,CityName,User.Avatar,Signature';
+    const fields = '&Fields=Id,NickName,CityName,Avatar,Signature,TotalAlbums,Sales,Marks,';
     const filter = '&Id='+id;
     const url = API_URL + grapherInfo + fields + filter;
 
@@ -59,9 +59,9 @@ var GrapherDetailPage = React.createClass({
     }
   },
   render: function() {
-    let pageTitle = this.state.grapherInfo.User.NickName || '摄影师';
-    let wechatShareTitle = 'YAOPAI 认证摄影师-'+this.state.grapherInfo.User.NickName;
-    let wechatShareDesc = this.state.grapherInfo.User.NickName +' '+this.state.grapherInfo.Signature;
+    let pageTitle = this.state.NickName || '摄影师';
+    let wechatShareTitle = 'YAOPAI 认证摄影师-'+this.state.grapherInfo.NickName;
+    let wechatShareDesc = this.state.grapherInfo.NickName +' '+this.state.grapherInfo.Signature;
     return (
       <DocumentTitle title={TITLE.grapherDetailPage + pageTitle}>
         <div className="grapherDetailPage">
@@ -69,8 +69,7 @@ var GrapherDetailPage = React.createClass({
           <GrapherIntro data={this.state.grapherInfo} />
           <WorkIntroList data={this.state.works}/>
           <ActionBar data={this.state.grapherInfo}/>
-          <Share />
-          <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.User.Avatar}>
+          <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.Avatar}>
           </WechatShare>
         </div>
       </DocumentTitle>

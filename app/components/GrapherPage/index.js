@@ -25,6 +25,7 @@ var GrapherPage = React.createClass({
   componentDidMount: function() {
     //this.handleLoadGraphers(this.props.url);
     PhotographerActions.list();
+
   },
   _onPhotographerStoreChange : function(data){
     if(data.flag == 'list'){

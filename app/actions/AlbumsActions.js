@@ -13,8 +13,21 @@ var AlbumsActions = Reflux.createActions({
   'getMyAlbums' : {children : ['success','failed']},
   'onSale' : {children:['success','failed']},
   'offSale' : {children:['success','failed']},
-  'getTagList' : {children:['success','failed']}
+  'getTagList' : {children:['success','failed']},
+  'getById' : {children:['success','failed']},
 });
+
+/*
+ 根据摄影师Id查询摄影师列表
+ */
+AlbumsActions.getById.listen(function(id){
+  var data = {
+    UserId : id,
+    Fields : 'Id,Result.Title,Service,Cut',
+  };
+  HttpFactory.post(API.ALBUMS.getById,data,this.success,this.failed);
+});
+
 
 AlbumsActions.get.listen(function(id){
   var data = {
@@ -33,13 +46,21 @@ AlbumsActions.search.listen( aaSearch );
 AlbumsActions.searchByTags.listen( aaSearch );
 AlbumsActions.searchByKey.listen( aaSearch );
 
+<<<<<<< HEAD
 function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null, key = ""){
+=======
+function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null, creationTimeDesc=true){
+>>>>>>> add-grapher-css
   var data = {
     PageIndex:pageIndex,
     PageSize:pageSize,
     CategoryId : categoryId,
     Tags: tags,
+<<<<<<< HEAD
     Key: key,
+=======
+    CreationTimeDesc:creationTimeDesc,
+>>>>>>> add-grapher-css
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
