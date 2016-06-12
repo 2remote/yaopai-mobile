@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 const TagRow = ({data, onSelectedTag}) => {
   const handleClick = (tagId, onSelectedTag) => {
-    $("#tagColBox").toggleClass('tagColBoxActive');
+    $('#'+tagId).toggleClass('tagColBoxActive');
     onSelectedTag(tagId);
   }
 
@@ -15,8 +15,8 @@ const TagRow = ({data, onSelectedTag}) => {
           <div
             key={i}
             className="tagColBox"
-            id="tagColBox"
-            onClick={() => handleClick(tag.id, onSelectedTag)}
+            id={tag.Id}
+            onClick={() => handleClick(tag.Id, onSelectedTag)}
           >
             {tag.Name}
           </div>
