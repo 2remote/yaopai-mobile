@@ -41,11 +41,13 @@ $menu-footer-lineheight: 25px;
   color      : $black;
   position   : fixed;
   z-index    : $zindex-menu-link;
-  top        : 75px;
   left       : 20px;
+  top        : 20px;
   width      : $tag-height;
   height     : $tag-height;
   line-height: $tag-height;
+  background : rgba(255,255,255,.5);
+  text-align : center;
 
   i { font-size: $menu-link-size; }
 }
@@ -152,6 +154,14 @@ $menu-footer-lineheight: 25px;
       vertical-align: bottom;
       margin        : 0 $menu-icon-margin;
       font-size     : $menu-icon-size;
+    }
+
+    .home {
+      font-size:18px;
+    }
+
+    .camera {
+      margin: 0 30px;
     }
 
     .menu-button {

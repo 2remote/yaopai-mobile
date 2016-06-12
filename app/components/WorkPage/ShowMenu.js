@@ -15,7 +15,7 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
       <div className="tagMenu" id="tagMenu">
         <section className="input-group-dark">
           <input
-            className="input input-block"
+            className="input input-block search"
             ref={node => searchText = node}
             type="text"
             placeholder="搜索 作品名称/作品标签"
@@ -24,7 +24,7 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
             let text = searchText.value.trim();
             if (text) onSearch(text)
           }}>
-            <span className="icon icon-right phone">搜索</span>
+            <span className="icon icon-right">搜索</span>
           </div>
         </section>
 

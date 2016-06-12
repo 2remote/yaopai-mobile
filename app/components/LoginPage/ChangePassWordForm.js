@@ -59,14 +59,14 @@ var ChangePassWordForm = React.createClass({
               type="password" placeholder="确认密码" />
 
             <InputGroup
-              iconLeft="phone"
+              iconLeft="mima01"
               updateValue={ newPassword => this.setState({newPassword}) }
               type="password"
               placeholder="请输入密码"
             />
 
             <InputGroup
-              iconLeft="phone"
+              iconLeft="mima01"
               updateValue={ confirmPassword => this.setState({confirmPassword}) }
               type="password"
               placeholder="请再次输入密码"

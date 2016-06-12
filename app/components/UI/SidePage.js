@@ -95,29 +95,29 @@ class SidePage extends Component {
             <nav className="menu-slide-nav pure-menu">
               <ul className="pure-menu-list">
                 <li className="pure-menu-item nav-list-bar">
-                  <Link to="/main/work" activeClassName="active">
-                    <i className="menu-icon home" />
-                    <div className="menu-button"><span>首页&nbsp;&nbsp;HOME</span></div>
+                  <Link to="/work" activeClassName="active">
+                    <i className="menu-icon icon home" />
+                    <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
                   </Link>
                 </li>
-                <li className="pure-menu-item nav-list-bar">
+                {/*<li className="pure-menu-item nav-list-bar">
                   <Link to="/main/discovery" activeClassName="active">
                     <i className="menu-icon grid" />
                     <div className="menu-button"><span>作品&nbsp;&nbsp;LIBRARY</span></div>
                   </Link>
-                </li>
+                </li>*/}
                 <li className="pure-menu-item nav-list-bar">
-                  <Link to="/main/grapher" activeClassName="active">
-                    <i className="menu-icon camera" />
-                    <div className="menu-button"><span>摄影师&nbsp;&nbsp;PARAGRAPHER</span></div>
+                  <Link to="/grapher" activeClassName="active">
+                    <i className="menu-icon icon camera" />
+                    <div className="menu-button"><span>摄影师&nbsp;&nbsp;Grapher</span></div>
                   </Link>
                 </li>
-                <li className="pure-menu-item nav-list-bar">
+                {/*<li className="pure-menu-item nav-list-bar">
                   <Link to="/main/user" activeClassName="active">
                     <i className="menu-icon settings" />
                     <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </nav>
 

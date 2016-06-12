@@ -104,7 +104,7 @@ var FindByMobileForm = React.createClass({
             </div>
 
             <InputGroup
-              iconLeft="phone"
+              iconLeft="mima01"
               updateValue={ vertificationCode => this.setState({vertificationCode}) }
               type="tel"
               pattern="[0-9]*"

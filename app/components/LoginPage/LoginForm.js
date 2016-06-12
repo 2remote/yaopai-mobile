@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
             />
 
             <InputGroup
-              iconLeft="phone"
+              iconLeft="mima01"
               updateValue={ password => this.setState({password}) }
               type="password"
               placeholder="请输入密码"

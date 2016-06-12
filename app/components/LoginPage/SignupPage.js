@@ -114,21 +114,21 @@ let SignupPage = React.createClass({
             </div>
 
             <InputGroup
-              iconLeft="phone"
+              iconLeft="mima01"
               updateValue={ password1 => this.setState({password1}) }
               type="password"
               placeholder="请输入密码"
             />
 
             <InputGroup
-              iconLeft="phone"
+              iconLeft="mima01"
               updateValue={ password2 => this.setState({password2}) }
               type="password"
               placeholder="请再次输入密码"
             />
 
             <InputGroup
-              iconLeft="phone"
+              iconLeft="mima01"
               updateValue={ code => this.setState({code}) }
               type="tel"
               pattern="[0-9]*"
