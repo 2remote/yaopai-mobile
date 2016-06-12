@@ -1,0 +1,95 @@
+//
+// Buttons
+// --------------------------------------------------
+.input {
+  display    : inline-block;
+  border     : none;
+  white-space: nowrap;
+  font-size  : $btn-font-base;
+  height     : $btn-height;
+  line-height: $btn-line-height - 25;
+  background : transparent;
+
+  &.focus,
+  &:focus {
+    outline       : none;
+    border-bottom : 1px solid $white;
+    letter-spacing: 5px;
+  }
+}
+
+.input-group-dark {
+  position: relative;
+  left    : 0;
+  top     : 0;
+  padding : 0 10px;
+
+  input {
+    width        : 100%;
+    box-sizing   : border-box;
+    border-bottom: 1px lighten($dim-black, 20%) solid;
+    color        : $white;
+    padding      : 0 100px 0 50px;
+  }
+
+  .icon-left {
+    position   : absolute;
+    left       : 0;
+    top        : 0;
+    width      : 50px;
+    height     : 50px;
+    color      : lighten($dim-black,20%);
+    line-height: 50px;
+    text-align : center;
+  }
+
+  .icon-right,
+  a {
+    position   : absolute;
+    right      : 0;
+    top        : 0;
+    height     : 50px;
+    line-height: 50px;
+    width      : 100px;
+    color      : lighten($dim-black,20%);
+    text-align : center;
+  }
+
+  a {
+    text-decoration: none;
+    color          : $white;
+  }
+}
+
+.input-group-light {
+  @extend .input-group-dark;
+  background: $white;
+  margin    : 0 10px;
+
+  input {
+    color        : $gray;
+    border-bottom: 1px $white solid;
+  }
+}
+
+// .input-select {
+//   display   : none;
+//   position  : absolute;
+//   left      : 0;
+//   top       : $btn-height;
+//   z-index   : $zindex-select-mask;
+//   width     : 100%;
+//   text-align: center;
+//   background: $red;
+//
+//   .select-item {
+//     height    : $btn-height;
+//     background: $white;
+//
+//     &.active,
+//     &:active {
+//       color     : $dim-black;
+//       background: $gray;
+//     }
+//   }
+// }

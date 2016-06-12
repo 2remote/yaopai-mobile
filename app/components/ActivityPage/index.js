@@ -9,7 +9,7 @@ import ActivityStore from '../../stores/ActivityStore';
 
 import ActivityList from './ActivityList';
 
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
 import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_ACTIVITIES, TITLE } from '../Tools';
 import WechatShare from '../Weixin/WechatShare';
@@ -51,7 +51,7 @@ var ActivityPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.activityPage}>
         <div className="activityPage">
-          <HamburgMenu />
+          <SidePage />
           <ActivityList data={this.state.Activitys} />
           <WechatShare title={TITLE.activityPage} desc={TITLE.indexPage}>
           </WechatShare>

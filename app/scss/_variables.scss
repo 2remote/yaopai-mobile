@@ -1,5 +1,46 @@
-$red: #f14d4a;
-$green: #00c000;
+// 旧的颜色
 $light_gray: #f7f7f7;
-$gray: #999999;
-$dark: #000000;
+$dark      : #000000;
+
+// 新项目颜色
+$white     : #fff;
+$red       : #d42e2e;
+$green     : #38bb59;
+$silver    : #ececec;
+$gray      : #bebebe;
+$black     : #000;
+$dim-black : #282828;
+$coffee    : #cc7b7b;
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+$font-size-base      : 14px;
+$font-size-large     : ceil(($font-size-base * 1.14)); // ~16px
+$font-size-small     : ceil(($font-size-base * .85)); // ~12px
+$font-size-h1        : floor(($font-size-base * 2.6)); // ~36px
+$font-size-h2        : floor(($font-size-base * 2.15)); // ~30px
+$font-size-h3        : ceil(($font-size-base * 1.7)); // ~24px
+$font-size-h4        : ceil(($font-size-base * 1.25)); // ~18px
+$font-size-h5        : $font-size-base;
+$font-size-h6        : ceil(($font-size-base * .85)); // ~12px
+
+//== Button
+$btn-font-base       : $font-size-base;
+$btn-height: 50px;
+$btn-line-height: $btn-height;
+
+
+//== NavBar
+$tag-height: 57px;
+
+//== Z-index
+$zindex-base: 500;
+$zindex-tag-box: 800;
+$zindex-menu-link    : 900;
+$zindex-select-mask  : 1000;
+$zindex-selelct      : 1010;
+$zindex-menu-mask    : 1020;
+$zindex-navbar       : 1030;
+$zindex-popover      : 1060;
+$zindex-tooltip      : 1070;
