@@ -18,7 +18,7 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
             className="input input-block"
             ref={node => searchText = node}
             type="text"
-            placeholder="找不到想要的？试着搜一下！"
+            placeholder="搜索 作品名称/作品标签"
           />
           <div onClick={() => {
             let text = searchText.value.trim();
