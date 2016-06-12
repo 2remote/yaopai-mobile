@@ -87,8 +87,8 @@ var WorkPage = React.createClass({
 
   },
   _onAlbumsStoreChange(data) {
+
     if(data.flag == 'search'){
-      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
@@ -102,12 +102,11 @@ var WorkPage = React.createClass({
       }
     }
     if(data.flag == 'searchByKey'){
-      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
         this.setState({
-          works: this.state.works.concat(data.workList),
+          works: data.workList,
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
@@ -121,7 +120,7 @@ var WorkPage = React.createClass({
         console.log(data.hintMessage);
       }else{
         this.setState({
-          works: this.state.works.concat(data.workList),
+          works: data.workList,
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
@@ -130,7 +129,6 @@ var WorkPage = React.createClass({
       }
     }
     if(data.flag == 'getTagList'){
-      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
@@ -140,7 +138,6 @@ var WorkPage = React.createClass({
     }
   },
   onChangeCategory : function(category){
-    console.table(data.workList);
     this.setState({works : [],category : category});
     AlbumsActions.search(category);
   },
