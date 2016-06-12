@@ -1,6 +1,5 @@
 import React from 'react';
 import CallGrapherBox from'./CallGrapherBox';
-import AddWeChat from './AddWeChat' ;
 
 var ActionBar = React.createClass({
   getDefaultProps: function() {
