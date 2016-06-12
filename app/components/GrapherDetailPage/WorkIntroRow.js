@@ -28,8 +28,8 @@ var WorkIntroRow = React.createClass({
             backgroundColor:'#eeedeb',position:'relative'}}>
             <div style={{background:'rgba(0,0,0,.8)',width:'auto',height:'35px',lineHeight:'35px',color:'white',position:'absolute',bottom:0,left:0,fontSize:'16px',padding:'0 5px',marginBottom:'20px'}}>
               ￥{this.props.data.Price} <span style={{fontSize:'12px'}}>/套</span>
-              <div className="top"></div>
-              <div className="bottom"></div>
+              <div className="triangle-top-left"></div>
+              <div className="triangle-bottom-left"></div>
             </div>
 
             <img
