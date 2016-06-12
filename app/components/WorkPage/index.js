@@ -149,7 +149,7 @@ var WorkPage = React.createClass({
     if(this.state.searchKey){
       AlbumsActions.searchByKey(null, pageIndex, 10, null, this.state.searchKey)
     } else {
-      AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','), true);
+      AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
     }
   },
   render: function() {
