@@ -46,14 +46,13 @@ AlbumsActions.search.listen( aaSearch );
 AlbumsActions.searchByTags.listen( aaSearch );
 AlbumsActions.searchByKey.listen( aaSearch );
 
-function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null, key = "", creationTimeDesc=true){
+function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null, key = ""){
   var data = {
     PageIndex:pageIndex,
     PageSize:pageSize,
     CategoryId : categoryId,
     Tags: tags,
     Key: key,
-    CreationTimeDesc:creationTimeDesc,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
