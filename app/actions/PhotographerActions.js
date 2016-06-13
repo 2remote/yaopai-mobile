@@ -13,7 +13,7 @@ var PhotographerActions = Reflux.createActions({
 PhotographerActions.get.listen(function(id){
   var data = {
     Id : id,
-    Fields : ',Id,Views,Marks,NickName,Avatar,Signature,TotalAlbums,Sales',
+    Fields : 'Id,Views,Marks,NickName,Avatar,Signature,TotalAlbums,Sales',
   };
   HttpFactory.post(API.PHOTOGRAPHER.get,data,this.success,this.failed);
 });

@@ -12,6 +12,7 @@ import './GrapherPage.scss'
 import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
 import Toaster from '../Toast';
+import ShowMenu from './ShowMenu';
 
 var GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange') ,AutoLoadPageMixin],
@@ -45,10 +46,20 @@ var GrapherPage = React.createClass({
     PhotographerActions.list(pageIndex);
   },
   render: function() {
+    var cities = [];
+    var catas = [];
+
     return (
       <DocumentTitle title={TITLE.grapherPage}>
         <div className="grapherPage">
-          <SidePage />
+            <SidePage />
+            <ShowMenu
+              tagsInUrl={this.props.params.tag}
+              cities={cities}
+              catas={catas}
+              onSelectedTag={this.handleUpdateTags}
+              onSearch = {this.handleUpdateSearch}
+            />
           <GrapherList data={this.state.graphers} />
           <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage}>
           </WechatShare>

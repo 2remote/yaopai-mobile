@@ -63,6 +63,7 @@ var WorkDetailPage = React.createClass({
     )
   },
   render: function() {
+    console.table(this.state.data);
     return (
       <div className="workDetailPage" onload={this.showTop()}>
         <SidePage />
