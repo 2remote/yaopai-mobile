@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
     return (
       <div>
         <UserEntryLayout />
-        <RouteTransition { ...presets.slideLeft } >
+        <RouteTransition { ...presets.slideLeft } pathname="/login_page">
           <form>
             <InputGroup
               iconLeft="phone"

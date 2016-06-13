@@ -100,7 +100,7 @@ let SignupPage = React.createClass({
     return (
       <div className="login-register-container">
         <UserEntryLayout />
-        <RouteTransition { ...presets.slideRight } >
+        <RouteTransition { ...presets.slideRight } pathname="/signupPage">
           <form className="signup-page">
             <InputGroup
               iconLeft="phone"
