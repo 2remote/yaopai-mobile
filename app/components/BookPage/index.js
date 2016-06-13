@@ -130,7 +130,7 @@ var BookPage = React.createClass({
     if(this.state.albums && this.state.albums.Id)
       data.AlbumsId = this.state.albums.Id;
     //摄影师ID
-    data.PhotographerId = this.state.photographer.Id;
+    data.PhotographerId = this.state.albums.Photographer.Id;
     OrderActions.add(data);
   }
 });
