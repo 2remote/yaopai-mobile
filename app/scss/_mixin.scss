@@ -62,3 +62,42 @@
   }
   // TODO 待补充其他方向的三角形
 }
+
+
+/* @mixin 滑动动画
+ * 调用方法：
+ * 假设给 <div className="nav-bar" id="nav-bar"/></div> 添加一个上下拉的动画
+  ```scss
+  .nav-bar {
+    @include slide-animation (top-bottom);
+  }
+  ```
+
+  ```javascript
+  $('#nav-bar').toggleClass('slide-toggle');
+  ```
+ */
+@mixin slide-animation ($direction) {
+  -webkit-backface-visibility: hidden;
+  backface-visibility        : hidden;
+  -webkit-transition         : -webkit-transform .2s ease-in-out;
+  transition                 : -webkit-transform .2s ease-in-out;
+  transition                 : transform .2s ease-in-out;
+  transition                 : transform .2s, -webkit-transform .2s ease-in-out;
+
+  @if $direction == 'left-right' {
+    -webkit-transform          : translate(-100%, 0);
+    transform                  : translate(-100%, 0);
+  }
+
+  @if $direction == 'top-bottom' {
+    -webkit-transform          : translate(0, -100%);
+    transform                  : translate(0, -100%);
+  }
+  /* bottom-top、right-left等待补充 */
+}
+/* 一个公共类放在这是不规范的，但是放在这更合适 */
+.slide-toggle {
+  -webkit-transform: translate(0, 0) !important;
+  transform        : translate(0, 0) !important;
+}
