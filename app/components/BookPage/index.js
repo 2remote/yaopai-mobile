@@ -13,8 +13,8 @@ import PhotographerActions from '../../actions/PhotographerActions';
 import PhotographerStore from '../../stores/PhotographerStore';
 import Toaster from '../Toast';
 
-import BookIntro from './WorkBookIntro';
-import BookForm from './WorkBookForm';
+import BookIntro from './BookIntro';
+import BookForm from './BookForm';
 
 var BookPage = React.createClass({
   getInitialState : function () {
