@@ -3,7 +3,7 @@ import TagRow from './TagRow';
 import $ from 'jquery';
 
 const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
-  const handleClick = () => $("#tagMenu").toggleClass('tagmenu-toggle');
+  const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
   let searchText;
   return (
     <section className="tagBox">
