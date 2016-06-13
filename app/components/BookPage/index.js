@@ -59,12 +59,12 @@ var BookPage = React.createClass({
     }
   },
   /*
-    订单提交成功之后，取得订单号，跳转至book_success_dialog
+    订单提交成功之后，取得订单号，跳转至订单详情
   */
   _handleOrderStoreChange : function(data){
     if(data.flag == 'add'){
       if(data.success){
-        console.log('提交订单成功！');
+        this.showMessage("预约成功！");
         var orderID = data.order.Id;
         this.props.history.pushState(null,`/center/u/order/${orderID}`);
       }else{
