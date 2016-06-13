@@ -218,7 +218,7 @@ const workDetailFields = ',photos.url,Negotiable,Price,Service';
 export const GET_WORK_DETAIL = API + listWorkDetail + workGeneralFields + workDetailFields;
 
 // 调取 作品介绍 信息
-const workIntroFileds = '&Fields=Title,Cover,ID,Price,Photographer.BusinessPhone';
+const workIntroFileds = '&Fields=Title,Cover,ID,Price';
 export const GET_WORK_INTRO = API + listWorkDetail + workIntroFileds;
 
 // 调取 预约作品 接口
