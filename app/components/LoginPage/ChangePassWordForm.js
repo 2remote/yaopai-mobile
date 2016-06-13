@@ -1,5 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
+import InputGroup from '../UI/InputGroup';
+import { ButtonBlock } from '../UI/Button';
 import DocumentTitle from 'react-document-title';
 import Toaster from '../Toast';
 import {History} from 'react-router';
@@ -8,6 +10,12 @@ import UserStore from '../../stores/UserStore';
 
 var ChangePassWordForm = React.createClass({
   mixins: [Reflux.listenTo(UserStore, '_onPdSubmit'),History],
+  getInitialState: function () {
+    return {
+      newPassword: '',
+      confirmPassword: '',
+    }
+  },
   _onPdSubmit: function (data) {
     console.log(data);
     if (data.flag == 'resetPassword') {
@@ -22,8 +30,8 @@ var ChangePassWordForm = React.createClass({
   },
   _handleSubmit: function (e) {
     e.preventDefault();
-    var newPassword = this.refs.newPassword.value.trim();
-    var confirmPassword = this.refs.confirmPassword.value.trim();
+    var newPassword = this.state.newPassword;
+    var confirmPassword = this.state.confirmPassword;
     if (!newPassword) {
       this.showMessage("新密码不能为空！");
       return;
@@ -42,18 +50,34 @@ var ChangePassWordForm = React.createClass({
   render() {
     return (
       <DocumentTitle title="重置密码第二步">
-        <div className="findMyPassPage">
-          <div>
-            <Toaster ref="toast" />
-            <form className="form-hack" ref="changePassForm" >
-              <input className="input" ref="newPassword"
-                type="password" placeholder="输入新密码" />
-              <input className="input" ref="confirmPassword"
-                type="password" placeholder="确认密码" />
-              <input className="submits-hack" ref="changePassButton"
-                type="submit" value="确认修改" onClick={this._handleSubmit} />
-            </form>
-          </div>
+        <div>
+          <Toaster ref="toast" />
+          <form className="find-password">
+            <input className="input" ref="newPassword"
+              type="password" placeholder="输入新密码" />
+            <input className="input" ref="confirmPassword"
+              type="password" placeholder="确认密码" />
+
+            <InputGroup
+              iconLeft="mima01"
+              updateValue={ newPassword => this.setState({newPassword}) }
+              type="password"
+              placeholder="请输入密码"
+            />
+
+            <InputGroup
+              iconLeft="mima01"
+              updateValue={ confirmPassword => this.setState({confirmPassword}) }
+              type="password"
+              placeholder="请再次输入密码"
+            />
+
+            <ButtonBlock
+              buttonType="btn-dark"
+              value="确认修改"
+              handleSubmit={this._handleSubmit}
+            />
+          </form>
         </div>
       </DocumentTitle>
     );

@@ -1,0 +1,42 @@
+$nav-height :50px;
+
+.entry-container {
+  position: relative;
+  left: 0;
+  top: 0;
+  background-image: url('http://ww2.sinaimg.cn/large/006gDr5Tjw1f453zyd9jjj30v91ao7h0.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 300px;
+}
+
+.entry-nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $nav-height;
+  background: rgba(0, 0, 0, .5);
+  font-size: 0;
+
+  a {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    color: #777;
+    font-size: $font-size-large;
+    line-height: $nav-height;
+  }
+
+  .active { color: $white; }
+}
+
+.entry-header {
+  text-align: center;
+  color: #000;
+
+  i {
+    display: inline-block;
+    margin-top: 100px;
+    font-size: 30px;
+  }
+}

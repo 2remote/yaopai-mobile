@@ -4,7 +4,8 @@ import $ from 'jquery';
 import DocumentTitle from 'react-document-title';
 
 import GrapherIntro from '../GrapherDetailPage/GrapherIntro';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
+
 import UserActions from '../../actions/UserActions';
 import InterviewStore from '../../stores/InterviewStore';
 import InterviewActions from '../../actions/InterviewActions';
@@ -65,7 +66,7 @@ var interviewDetailPage = React.createClass({
     let wechatShareDesc = this.state.data.Title +' YAOPAI，一个全球预约摄影师的平台';
     return (
       <div style={{height: '100%'}} className="interviewDetailPage">
-        <HamburgMenu />
+        <SidePage />
         <DocumentTitle title={this.state.data.Title + TITLE.interviewDetailPage} />
 
         <div style={{margin:'56px 20% 0 11%'}}>

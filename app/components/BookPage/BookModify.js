@@ -1,7 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import HamburgMenu from '../HamburgMenu';
-
+import SidePage from '../UI/SidePage';
 import BookIntro from './WorkBookIntro';
 import BookForm from './WorkBookForm';
 
@@ -19,7 +18,7 @@ var BookPage = React.createClass({
             backgroundImage:'url(imgs/bookPageBg.png)'
           }}
           className="bookPage">
-          <HamburgMenu />
+          <SidePage />
           <BookIntro />
           <BookForm subValue="修改预约" />
         </div>
