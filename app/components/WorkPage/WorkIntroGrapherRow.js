@@ -33,10 +33,9 @@ const WorkIntroGrapherRow = ({data}) => {
 
         </div>
       </Link>
-
-      <a className="card-head-face" href={`/grapherDetail/${data.UserId}`}>
+      <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
         <img src={avatar} />
-      </a>
+      </Link>
 
       <div className="card-info">
         <p className="info-title">{data.Title}</p>

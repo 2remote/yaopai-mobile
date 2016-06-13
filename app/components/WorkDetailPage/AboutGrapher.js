@@ -1,4 +1,5 @@
 import React from 'react';
+import { Router, Route, Link } from 'react-router';
 
 
 var AboutGrapher = React.createClass({
@@ -15,6 +16,7 @@ var AboutGrapher = React.createClass({
     console.log('ag', this.props.data);
     return (
         <div className="grapher-panel">
+          <Link to={"/grapherDetail/"+this.props.data.UserId} >
             <div className="avatar" style={
             {backgroundImage:`url(${this.props.data.Photographer.Avatar})`,
             backgroundSize:'contain',
@@ -23,8 +25,9 @@ var AboutGrapher = React.createClass({
             borderRadius:'50%'}
             }>
             </div>
-            <p className="uName">{this.props.data.Photographer.NickName}</p>
-            <p className="uDes">YAOPAI认证摄影师</p>
+          </Link>
+          <p className="uName">{this.props.data.Photographer.NickName}</p>
+          <p className="uDes">YAOPAI认证摄影师</p>
         </div>
     );
   }
