@@ -1,7 +1,6 @@
 //* *菜单导航nav-slide*****************************************
 //*  actionsheet
 $menu-bg-color: $dim-black;
-$menu-mask-color: rgba(0,0,0,0.8);
 $menu-width: 70%;
 $menu-icon-margin: 33px;
 $menu-margin-bottom: 42px;
@@ -51,21 +50,6 @@ $menu-footer-lineheight: 25px;
 
   i { font-size: $menu-link-size; }
 }
-
-.mask-transition {
-  display           : none;
-  position          : fixed;
-  z-index           : $zindex-menu-mask;
-  width             : 100%;
-  height            : 100%;
-  top               : 0;
-  left              : 0;
-  background        : rgba(0, 0, 0, 0);
-  -webkit-transition: background .2s;
-  transition        : background .2s;
-}
-
-.fade-toggle { background: $menu-mask-color; }
 
 // 左侧弹出菜单
 .actionsheet {
