@@ -31,7 +31,7 @@ var BookIntro = React.createClass({
                 {this.props.albums.Title}
               </h4>
               <p className="weui_media_desc">
-                {this.props.albums ? '' : ` 摄影师：${this.props.photographer.NickName}`}
+                {this.props.albums ? this.props.albums.Photographer.NickName : ` 摄影师：${this.props.photographer.NickName}`}
               </p>
             </div>
           </a>
