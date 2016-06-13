@@ -26,12 +26,12 @@ class SidePage extends Component {
       // 在 Chrome 里测试正常，苹果手机测试失败，仍然可以滚动
       $('body').css({ height: winHeight, overflow: 'hidden' })
       $('#mask-menu').show().addClass('fade-toggle')
-      $('#menu').addClass('actionsheet-toggle')
+      $('#menu').addClass('slide-toggle')
     })
 
     $('#mask-menu').click(() => {
       $('#mask-menu').removeClass('fade-toggle').hide()
-      $('#menu').removeClass('actionsheet-toggle')
+      $('#menu').removeClass('slide-toggle')
       $('body').css({ height: '100%', overflow: 'visible' })
     })
   }
