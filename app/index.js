@@ -25,7 +25,6 @@ import ChangePassWordForm from './components/LoginPage/ChangePassWordForm';
 import WorkBookPage from './components/BookPage';
 import ReactDOM from 'react-dom';
 
-import BookModify from './components/BookPage/BookModify';
 import UserCenterPage from './components/UserCenterPage';
 import UserEditProfile from './components/UserCenterPage/UserEditProfilePage';
 import UserNickNameChange from './components/UserCenterPage/UserNickNameChangePage';
@@ -84,8 +83,6 @@ function main(){
         <Route path="/user_city_change" component={UserCityChange} />
 
         <Route path="/grapher_center" component={GrapherCenterPage} />
-
-        <Route path="/book_modify/:workId/:photographerId" component={BookModify} />
 
         <Route path="center">
           {/*用户中心*/}
