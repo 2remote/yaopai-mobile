@@ -72,25 +72,13 @@ $menu-footer-lineheight: 25px;
   position                   : fixed;
   left                       : 0;
   top                        : 0;
-  -webkit-transform          : translate(-100%, 0);
-  transform                  : translate(-100%, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility        : hidden;
   z-index                    : $zindex-navbar;
   width                      : $menu-width;
   height                     : 100%;
+  @include slide-animation(left-right);
   background-color           : $dim-black;
-  -webkit-transition         : -webkit-transform .2s ease-in-out;
-  transition                 : -webkit-transform .2s ease-in-out;
-  transition                 : transform .2s ease-in-out;
-  transition                 : transform .2s, -webkit-transform .2s ease-in-out;
   color                      : $menu-color;
   font-size                  : $menu-font-size;
-}
-
-.actionsheet-toggle {
-  -webkit-transform: translate(0, 0);
-  transform        : translate(0, 0);
 }
 
 // 左侧弹出菜单头部

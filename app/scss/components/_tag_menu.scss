@@ -36,14 +36,7 @@
     padding-bottom             : 15px;
     background                 : #000;
     color                      : #fff;
-    -webkit-transform          : translate(0, -100%);
-    transform                  : translate(0, -100%);
-    -webkit-backface-visibility: hidden;
-    backface-visibility        : hidden;
-    -webkit-transition         : -webkit-transform .2s ease-in-out;
-    transition                 : -webkit-transform .2s ease-in-out;
-    transition                 : transform .2s ease-in-out;
-    transition                 : transform .2s, -webkit-transform .2s ease-in-out;
+    @include slide-animation(top-bottom);
 
     .tag-title {
       color      : #CCAC7B;
@@ -51,12 +44,6 @@
       padding    : 5px 15px;
       font-weight: 800;
     }
-  }
-
-  .tagmenu-toggle {
-    -webkit-transform: translate(0, 0);
-    transform        : translate(0, 0);
-    z-index          : $zindex-base;
   }
 
   .tagRowBox { overflow: hidden; }
