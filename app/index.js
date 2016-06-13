@@ -22,7 +22,6 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/LoginPage/SignupPage';
 import FindByMobileForm from './components/LoginPage/FindByMobileForm';
 import ChangePassWordForm from './components/LoginPage/ChangePassWordForm';
-import WorkBookPage from './components/BookPage';
 import ReactDOM from 'react-dom';
 
 import UserCenterPage from './components/UserCenterPage';
@@ -38,6 +37,7 @@ import UserOrderTabLayout from './components/layout/center/user/order/OrderTabLa
 import UserOrderDetailLayout from './components/layout/center/user/order/OrderDetailLayout.jsx';
 import UserOrderSubmitResultLayout from './components/layout/center/user/order/OrderSubmitResultLayout.jsx';
 import UserOrderRefundLayout from './components/layout/center/user/order/OrderRefundLayout.jsx';
+import WorkBookPage from './components/layout/center/user/appointment/BookPage';
 
 // imports GrapherCenter for Grapher
 import GrapherOrderTabLayout from './components/layout/center/grapher/order/OrderTabLayout.jsx';

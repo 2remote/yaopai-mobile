@@ -3,15 +3,15 @@ import { History, Location } from 'react-router';
 import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
-import OrderActions from '../../actions/OrderActions';
-import OrderStore from '../../stores/OrderStore';
-import AlbumsStore from '../../stores/AlbumsStore';
-import AlbumsActions from '../../actions/AlbumsActions';
-import PhotographerActions from '../../actions/PhotographerActions';
-import PhotographerStore from '../../stores/PhotographerStore';
-import Toaster from '../Toast';
+import UserActions from '../../../../../actions/UserActions';
+import UserStore from '../../../../../stores/UserStore';
+import OrderActions from '../../../../../actions/OrderActions';
+import OrderStore from '../../../../../stores/OrderStore';
+import AlbumsStore from '../../../../../stores/AlbumsStore';
+import AlbumsActions from '../../../../../actions/AlbumsActions';
+import PhotographerActions from '../../../../../actions/PhotographerActions';
+import PhotographerStore from '../../../../../stores/PhotographerStore';
+import Toaster from '../../../../Toast';
 
 import BookIntro from './BookIntro';
 import BookForm from './BookForm';

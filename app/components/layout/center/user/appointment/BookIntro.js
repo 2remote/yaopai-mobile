@@ -1,7 +1,7 @@
 import React from 'react';
 import WeUI from 'react-weui';
 const { CellsTitle } = WeUI;
-import {imgModifier} from '../Tools';
+import {imgModifier} from '../../../../Tools';
 
 var BookIntro = React.createClass({
 
