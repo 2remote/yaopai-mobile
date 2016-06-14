@@ -38,9 +38,11 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag, reset}) => {
         <TagRow data={cities} onSelectedTag={onSelectedTag} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | Shooting Type</span>
         <TagRow data={catas} onSelectedTag={onSelectedTag} tagRowClass="tagColBox2"/>
-        <button onClick={() => plzResetAllOfThem(reset)}>重置</button>
-        {/*确定实际上就是隐藏*/}
-        <button onClick={handleClick}>确定</button>
+        <div className="tagButton">
+          <button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>
+          {/*确定实际上就是隐藏*/}
+          <button className="yesImPretySure" onClick={handleClick}>确定</button>
+        </div>
       </div>
     </section>
   );
