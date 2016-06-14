@@ -28,7 +28,7 @@ class OrderListLayout extends React.Component {
   }
 
   onUserLoad(user) {
-    if (!user.isLogin) { // 用户未登录，跳转登陆页
+    if (!user.isLogin) { // 用户未登录，跳转登录页
       this.history.pushState({nextPage: this.props.location.pathname}, '/login_page');
     } else {
       // 手动为默认展示选择“待付款”栏数据
@@ -71,7 +71,6 @@ class OrderListLayout extends React.Component {
     //列表不为空时渲染内容
     return (
       <div>
-        {this.state.success ? '' : <LoadingToast />}
         {theRealList}
         <aside className="footer color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />

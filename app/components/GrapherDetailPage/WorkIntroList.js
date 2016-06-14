@@ -13,7 +13,7 @@ var WorkIntroList = React.createClass({
       return (<WorkIntroRow data={work} key={i}/>);
     });
     return (
-      <div className="workIntroList">
+      <div>
         {workIntroNodes}
       </div>
     );

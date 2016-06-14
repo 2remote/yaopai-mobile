@@ -1,0 +1,156 @@
+//* *菜单导航nav-slide*****************************************
+//*  actionsheet
+$menu-bg-color: $dim-black;
+$menu-width: 70%;
+$menu-icon-margin: 33px;
+$menu-margin-bottom: 42px;
+
+//* 菜单头像 portrait
+$menu-avatar-width: 90px;
+$menu-avatar-height: 90px;
+
+//* menu-icon
+$menu-icon-size: $font-size-h3;
+$menu-link-size: 26px;
+
+//* 用户状态 nickname
+$menu-username-size: 16px;
+$menu-username-line-height: 24px;
+$menu-username-color: $white;
+
+//* 菜单字体 menu-slide-nav*/
+$menu-font-size: $font-size-small;
+$menu-line-height: 60px;
+
+//* 菜单点击，悬停 */
+$menu-color: #5a5a5a;
+$menu-hover-color: $white;
+$menu-active-color: $white;
+
+//* 菜单客服 footer */
+$menu-footer-lineheight: 25px;
+
+//处于首页的菜单按钮位置微调
+.workPage .menu-link {
+  top: 0;
+}
+
+//菜单按钮
+.menu-link {
+  color      : $black;
+  position   : fixed;
+  z-index    : $zindex-menu-link;
+  width      : $tag-height;
+  height     : $tag-height;
+  line-height: $tag-height;
+  background : rgba(255,255,255,.5);
+  text-align : center;
+
+  i { font-size: $menu-link-size; }
+}
+
+// 左侧弹出菜单
+.actionsheet {
+  position                   : fixed;
+  left                       : 0;
+  top                        : 0;
+  z-index                    : $zindex-navbar;
+  width                      : $menu-width;
+  height                     : 100%;
+  @include slide-animation(left-right);
+  background-color           : $dim-black;
+  color                      : $menu-color;
+  font-size                  : $menu-font-size;
+}
+
+// 左侧弹出菜单头部
+.menu-slide-header {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-bottom: 5px;
+  color: $white;
+
+  .link-box {
+    line-height: 14px;
+    padding-bottom: 15px;
+    display: block;
+    text-align: center;
+
+    img {
+      margin: 34px 0 19px;
+      font-size: 55px;
+      width: 90px;
+      border-radius: 50%;
+    }
+
+    .nick-name {
+      margin-bottom: 16px;
+      color: $white;
+    }
+
+    .login-msg {
+      margin-bottom: 16px;
+      color: $white;
+      // TODO  如果用户未登录，用稍微明显的字体颜色提示用户
+    }
+  }
+
+  .logout {
+    position: absolute;
+    top: 58px;
+    right: 0;
+
+    span {
+      float: right;
+      margin: 51px 15px 0 -53px;
+    }
+  }
+}
+
+.nav-list-bar {
+  line-height: $menu-line-height;
+
+  a {
+    @extend %flex-align;
+    color: $menu-color;
+
+    &.active {
+      color: $menu-active-color;
+    }
+
+    .menu-icon {
+      display       : inline-block;
+      vertical-align: bottom;
+      margin        : 0 $menu-icon-margin;
+      font-size     : $menu-icon-size;
+    }
+
+    .home {
+      font-size:18px;
+    }
+
+    .camera {
+      margin: 0 30px;
+    }
+
+    .menu-button {
+      @extend %flex-1;
+      border-bottom: 1px lighten($dim-black, 4%) solid;
+
+      span {
+        display       : inline-block;
+        vertical-align: bottom;
+      }
+    }
+  }
+}
+
+.menu-slide-footer {
+  position   : absolute;
+  left       : $menu-icon-margin;
+  bottom     : $menu-margin-bottom;
+  line-height: $menu-footer-lineheight;
+
+  a { color: $menu-color; }
+}

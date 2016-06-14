@@ -9,7 +9,7 @@
     <meta content="email=no" name="format-detection" />
 
     <title>{%=o.htmlWebpackPlugin.options.title %}</title>
-    
+
     <style>
       @keyframes rotate {
         0% {
@@ -50,7 +50,7 @@
             -webkit-animation-direction: reverse;
                     animation-direction: reverse; }
 
-      .loader-container {   
+      .loader-container {
         width: 100%;
         height: 100%;
         position: fixed;
@@ -73,15 +73,15 @@
     <script type="text/javascript" src="/imgs/js/moxie.js"></script>
     <script type="text/javascript" src="/imgs/js/plupload.dev.js"></script>
     -->
-    
+
 
     <!--上传图片Product脚本-->
     <script src="http://cdn.staticfile.org/plupload/2.1.8/plupload.full.min.js"></script>
     <script src="http://cdn.staticfile.org/plupload/2.1.8/i18n/zh_CN.js"></script>
-    
+
     <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
 
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1464753255_0636058.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1465725935_7881246.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
@@ -90,7 +90,7 @@
     {% for (var css in o.htmlWebpackPlugin.files.css) { %}
     <link href="{%=o.htmlWebpackPlugin.files.css[css]%}" ref="stylesheet">
     {% } %}
-    
+
   </head>
   <body>
     <script type="text/javascript">
@@ -109,7 +109,7 @@
       console.log('version of browser: ' + version);
       if( version == '8.0.0'){
         ver8 = true;
-      } 
+      }
 
       var ua = parser.getResult().ua;
       WeChat = ua.indexOf('MicroMessenger') >= 0;
@@ -130,10 +130,10 @@
       // UAParser会取得 iOS，WeChat 和version 8等状态，程序可以需求添加状态
       // 如：
       // Loader 只在iOS下运行，所以 Loader ＝ iOS。模块加载前要判断if(iOS)
-      // Function A在iOS8的微信里有问题，不能使用，所以 Function A = !(iOS && WeChat && ver8) 
+      // Function A在iOS8的微信里有问题，不能使用，所以 Function A = !(iOS && WeChat && ver8)
       // wxShare时微信分享功能，只在微信里起作用，所以 wxShare = WeChat
 
-      // 真值表如下：  
+      // 真值表如下：
       //
       // +-----+--------+-------+--------+------------+---------+
       // | iOS | WeChat | ver 8 | Loader | Function A | wxShare |
@@ -172,14 +172,14 @@
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry%}"></script>
     {% } %}
-    
+
 
     <script>
       var _hmt = _hmt || [];
       (function() {
         var hm = document.createElement("script");
         hm.src = "//hm.baidu.com/hm.js?729720ed3583c74c1baf6772758369f3";
-        var s = document.getElementsByTagName("script")[0]; 
+        var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
       })();
     </script>

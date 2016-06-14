@@ -1,7 +1,6 @@
 import React from 'react';
 import Router from 'react-router';
 import Reflux from 'reflux';
-import HamburgMenu from '../HamburgMenu';
 import DocumentTitle from 'react-document-title';
 
 import {History,Location} from 'react-router';
@@ -31,7 +30,7 @@ var UserGenderChange = React.createClass({
   },
 
   componentDidMount : function(){
-    
+
   },
 
   onChangeUserGender : function (e) {
@@ -66,9 +65,9 @@ var UserGenderChange = React.createClass({
                       <p>男</p>
                   </div>
                   <div className="weui_cell_ft" >
-                      <input type="radio" 
-                        className="weui_check" name="radio1" 
-                        id="x11" value="1" 
+                      <input type="radio"
+                        className="weui_check" name="radio1"
+                        id="x11" value="1"
                         onClick={this.onChangeCurrentGender} />
                       <span className="weui_icon_checked"></span>
                   </div>
@@ -79,14 +78,14 @@ var UserGenderChange = React.createClass({
                       <p>女</p>
                   </div>
                   <div className="weui_cell_ft" >
-                      <input type="radio" name="radio1" 
-                        className="weui_check" id="x12" 
+                      <input type="radio" name="radio1"
+                        className="weui_check" id="x12"
                         value="0" onClick={this.onChangeCurrentGender} />
                       <span className="weui_icon_checked"></span>
                   </div>
               </label>
           </div>
-          
+
         </div>
         <div className="weui_opr_area">
           <p className="weui_btn_area">

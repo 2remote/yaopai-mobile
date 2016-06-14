@@ -9,7 +9,8 @@ import ActionBar from './ActionBar';
 import WorkDetail from './WorkDetail';
 import AboutGrapher from './AboutGrapher';
 import AboutYAOPAI from './AboutYAOPAI';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
+
 import UserActions from '../../actions/UserActions';
 import AlbumsStore from '../../stores/AlbumsStore';
 import AlbumsActions from '../../actions/AlbumsActions';
@@ -50,21 +51,22 @@ var WorkDetailPage = React.createClass({
     const negotiable = this.state.data.Negotiable;
     const price = this.state.data.Price;
     let priceResult = "面议";
-    
+
     if(!negotiable){
       priceResult = price;
     }
     return (
-    <span 
+    <span
       style={{color:'#050505',fontWeight:'bold'}}
-      ref="workPrice" 
+      ref="workPrice"
       className="workPrice">{priceResult}</span>
     )
   },
   render: function() {
+    console.table(this.state.data);
     return (
       <div className="workDetailPage" onload={this.showTop()}>
-        <HamburgMenu />
+        <SidePage />
         <WorkTitle data={this.state.data} />
         <WorkDetail data={this.state.data} />
         <AboutGrapher data={this.state.data} />
