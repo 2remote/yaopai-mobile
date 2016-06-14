@@ -6,28 +6,19 @@ import ShowMenu from '../WorkPage/ShowMenu';
 import { LIST_ALL_WORKS, TITLE } from '../Tools';
 import PhotographerActions from '../../actions/PhotographerActions';
 
-
-var YaopaiLogo = React.createClass({
-  render: function () {
-    var style = {
-      fontSize:20,
-      backgroundColor:'white',
-      color:'black',
-      lineHeight:'57px',
-      display:'block',
-      textAlign: 'center',
-      position: 'fixed',
-      width:'100%',
-      zIndex: '97',
-      top:0,
-      left:0
-    };
-
-    return (
-      <div className="icon yaopainew" style={style} />
-    );
-  }
-});
+const style = {
+  fontSize:20,
+  backgroundColor:'white',
+  color:'black',
+  lineHeight:'57px',
+  display:'block',
+  textAlign: 'center',
+  position: 'fixed',
+  width:'100%',
+  zIndex: '97',
+  top:0,
+  left:0
+};
 
 var GrapherList = React.createClass({
   getDefaultProps: function() {
@@ -42,7 +33,8 @@ var GrapherList = React.createClass({
         return (
           <GrapherRow
             data={grapher}
-            key={i} />
+            key={i}
+          />
         );
       }else{
         console.warn('User ' + grapher.Id + " don't have an User info!");
