@@ -72,6 +72,8 @@ class YPUIOrderCard extends React.Component {
    * @param approve
    */
   receiveOrder = (e, orderId, approve) => {
+    // TODO 添加 alert 组件
+    alert('接单成功，请及时与客户沟通详细的拍摄需求！');
     OrderActions.receive(orderId, approve);
   };
 
@@ -120,7 +122,7 @@ class YPUIOrderCard extends React.Component {
             <span>&nbsp;&nbsp;</span>
             <button className="weui_btn weui_btn_mini weui_btn_primary"
                     onClick={ e => this.receiveOrder(e, order.Id, true) }>
-              接受
+              接单
             </button>
           </div>
         );
