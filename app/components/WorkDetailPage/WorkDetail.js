@@ -18,7 +18,7 @@ var WorkDetail = React.createClass({
     var arr = item.split(',');
     var en_arr ='';
     for(var i=0; i<arr.length; i++){
-      switch(arr[i].trim()){
+      switch(arr[i]){
       case 'Null':
         en_arr+='无';
         break;

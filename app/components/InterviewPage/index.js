@@ -6,7 +6,7 @@ import $ from 'jquery';
 import InterviewActions from '../../actions/InterviewActions';
 import InterviewStore from '../../stores/InterviewStore';
 import InterviewList from './InterviewList';
-import SidePage from '../UI/SidePage';
+import HamburgMenu from '../HamburgMenu';
 import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_INTERVIEWS, TITLE } from '../Tools';
 import WechatShare from '../Weixin/WechatShare';
@@ -48,7 +48,7 @@ var InterviewPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.interviewPage}>
         <div className="interviewPage">
-          <SidePage />
+          <HamburgMenu />
           <InterviewList data={this.state.interviews} />
           <WechatShare title={TITLE.interviewPage} desc={TITLE.indexPage}>
           </WechatShare>

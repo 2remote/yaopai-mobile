@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Router, Route, Link } from 'react-router';
 
 import {imgModifier} from '../Tools';
 
@@ -12,6 +12,35 @@ var WorkIntroRow = React.createClass({
     };
   },
   render: function() {
+    const style = {
+      price: {
+        position: 'absolute',
+        right: 20,
+        marginTop: 15,
+        color: 'white'
+      },
+      photoAmount: {
+        position: 'absolute',
+        right: 20,
+        bottom: 15,
+        color: 'white'
+      },
+      topMask: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        height: 40,
+        background: 'linear-gradient(to top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%)',
+      },
+      bottomMask:{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        height: 40,
+        marginTop: -46,
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%)',
+      }
+    };
     let cover;
     if(this.props.data.Cut){
       var cut = JSON.parse(this.props.data.Cut);
@@ -20,35 +49,25 @@ var WorkIntroRow = React.createClass({
       cover = imgModifier(this.props.data.Cover,"workCover");
     }
     return (
-      <div
-        style={{width:'100%',color:'#0f0f0f'}}
-        className="workIntroGrapherRow">
+      <div className="workIntroRow" style={{width:'100%',height:210/375*innerWidth+80,textAlign:'center'}}>
         <Link to={"/workDetail/" + this.props.data.Id}>
-          <div style={{width:'100%',height:254/375*innerWidth,marginBottom: -36,
-            backgroundColor:'#eeedeb',position:'relative'}}>
-            <div style={{background:'rgba(0,0,0,.8)',width:'auto',height:'35px',lineHeight:'35px',color:'white',position:'absolute',bottom:0,left:0,fontSize:'16px',padding:'0 5px',marginBottom:'20px'}}>
-              ￥{this.props.data.Price} <span style={{fontSize:'12px'}}>/套</span>
-              <div className="triangle-top-left"></div>
-              <div className="triangle-bottom-left"></div>
-            </div>
-
-            <img
-              style={{width:'100%',height:254/375*innerWidth}}
-              ref="workImage"
-              src={cover}/>
-
+          <div style={style.topMask} />
+          <span style={style.price}>{"¥ "+this.props.data.Price}</span>
+          <img 
+            style={{width:'100%',height:210/375*innerWidth}}
+            ref="workImage"
+            src={cover} />
+          <div style={style.bottomMask}>
+            <span style={style.photoAmount} >{this.props.data.Photos.length + " P"}</span>
           </div>
         </Link>
-        <div style={{padding:'12px 10px',lineHeight:'24px',marginTop:'-31px',marginBottom:'10px',background:'#fff'}}>
-          <p style={{fontSize:'16px',color:'#282828',display:'block',
-              whiteSpace:'nowrap', overflow:'hidden',
-              textOverflow:'ellipsis',width:'80%',marginTop:'35px'}}>
-            {this.props.data.Title}
-          </p>
-          <p style={{fontSize:'12px',color:'#bebebe'}}>
-            有{this.props.data.Views}人想拍
-          </p>
-        </div>
+        <span 
+          style={{marginBottom:1, color:'green'}}
+          ref="workArrow"
+          className="icon up_icon" />
+        <div
+          style={{marginTop:-6}}
+          ref="workTitle">{this.props.data.Title}</div>
       </div>
     );
   }

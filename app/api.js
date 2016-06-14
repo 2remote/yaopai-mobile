@@ -82,8 +82,7 @@ var API_CONST = {
     search: API_URL + 'Albums.Search',
     categories: API_URL + 'AlbumsCategory.Search',
     offSale: API_URL + 'Albums.SalesOff',
-    onSale: API_URL + 'Albums.SalesOn',
-    getById: API_URL + 'Albums.Search',
+    onSale: API_URL + 'Albums.SalesOn'
   },
 
   INTERVIEW: {

@@ -29,7 +29,7 @@ class OrderRefundLayout extends React.Component {
     UserActions.currentUser();
   };
   onUserLoad(user) {
-    if(!user.isLogin){ // 用户未登录，跳转登录页
+    if(!user.isLogin){ // 用户未登录，跳转登陆页
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       OrderActions.get(this.props.params.id);

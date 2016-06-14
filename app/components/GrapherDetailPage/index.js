@@ -1,6 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import SidePage from '../UI/SidePage';
+import HamburgMenu from '../HamburgMenu';
 
 import $ from 'jquery';
 
@@ -19,17 +19,17 @@ var GrapherDetailPage = React.createClass({
         User: {
           NickName: '读取中...'
         }
-      }
+      } 
     };
   },
   componentDidMount: function() {
     const id = this.props.params.Id;
     const grapherInfo = 'Photographer.Get';
     const listWorkDetail = 'Albums.Search';
-    const fields = '&Fields=Id,NickName,CityName,Avatar,Signature,TotalAlbums,Sales,Marks,';
+    const fields = '&Fields=Id,User.NickName,CityName,User.Avatar,Signature';
     const filter = '&Id='+id;
     const url = API_URL + grapherInfo + fields + filter;
-
+    
     $.ajax ({
       url: url,
       dataType: 'json',
@@ -59,17 +59,18 @@ var GrapherDetailPage = React.createClass({
     }
   },
   render: function() {
-    let pageTitle = this.state.NickName || '摄影师';
-    let wechatShareTitle = 'YAOPAI 认证摄影师-'+this.state.grapherInfo.NickName;
-    let wechatShareDesc = this.state.grapherInfo.NickName +' '+this.state.grapherInfo.Signature;
+    let pageTitle = this.state.grapherInfo.User.NickName || '摄影师';
+    let wechatShareTitle = 'YAOPAI 认证摄影师-'+this.state.grapherInfo.User.NickName;
+    let wechatShareDesc = this.state.grapherInfo.User.NickName +' '+this.state.grapherInfo.Signature;
     return (
       <DocumentTitle title={TITLE.grapherDetailPage + pageTitle}>
         <div className="grapherDetailPage">
-          <SidePage />
+          <HamburgMenu />
           <GrapherIntro data={this.state.grapherInfo} />
           <WorkIntroList data={this.state.works}/>
           <ActionBar data={this.state.grapherInfo}/>
-          <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.Avatar}>
+          <Share />
+          <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.User.Avatar}>
           </WechatShare>
         </div>
       </DocumentTitle>

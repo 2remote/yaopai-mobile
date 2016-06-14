@@ -1,6 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
-import SidePage from '../UI/SidePage';
+import HamburgMenu from '../HamburgMenu';
 import DocumentTitle from 'react-document-title';
 
 import {History,Location} from 'react-router';
@@ -35,7 +35,7 @@ var UserEditProfilePage = React.createClass({
     // 处理昵称
     var nickname = this.state.userInfo.userNickName;
     var nickFlag = this.state.userInfo.newNickStatus;
-    if(nickFlag){
+    if(nickFlag){ 
       nickname = this.state.userInfo.newNick;
     }
     nickFlag = true;
@@ -52,7 +52,7 @@ var UserEditProfilePage = React.createClass({
     var cityFlag = this.state.userInfo.newCityStatus;
     if(cityFlag){
       city = this.state.userInfo.newCity;
-    }
+    } 
 
     // 判断changeInfo模式
     if(nickFlag){
@@ -80,7 +80,7 @@ var UserEditProfilePage = React.createClass({
         margin: '24px 0 12px 0'
       }
     };
-
+    
     var nickname = "未命名";
     if( this.state.userInfo.userNickName ){
       nickname = this.state.userInfo.userNickName;
@@ -114,12 +114,12 @@ var UserEditProfilePage = React.createClass({
     }
 
     return (
-      <div
+      <div 
         style={style.page}
         className="userEditProfile">
-        <SidePage />
+        <HamburgMenu />
         <DocumentTitle title="编辑我的资料" />
-        <UserAvatarBox
+        <UserAvatarBox 
           background={true}
           editAvatar={true}
           data={this.state.userInfo}/>
@@ -133,7 +133,7 @@ var UserEditProfilePage = React.createClass({
             <a href="javascript:;" onClick={this.onChangeInfo} className="weui_btn weui_btn_primary color_white">保存</a>
           </p>
         </div>
-
+       
       </div>
     );
   }

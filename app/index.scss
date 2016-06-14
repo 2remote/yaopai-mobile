@@ -1,16 +1,13 @@
-// 第一优先级
 @import "scss/variables";
 @import "scss/mixin";
-@import "scss/placeholder";
-// 第二优先级
-@import "scss/button";
-@import "scss/input";
 @import "scss/utility";
-@import "scss/scaffolding";
-
-@import "scss/components";
 @import "scss/weui_hacks";
 @import "scss/panel";
-
+@import "scss/scaffolding";
 @import "scss/layout/OrderDetailLayout";
 @import "scss/layout/YPUIPurseCard";
+
+*{
+  -webkit-font-smoothing: antialiased;
+  font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+}

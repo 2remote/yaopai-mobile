@@ -30,17 +30,17 @@ describe('Photographer Actions Test', () => {
       photographerActionsHasMethod(method);
     })
   });
-
+  
   const apiFlag = false;
   if ( apiFlag == true ){
     data = {
       Id: 2,
-      Fields : 'Id,User.Id,User.NickName,User.Avatar'
+      Fields : 'Id,BusinessPhone,User.Id,User.NickName,User.Avatar'
     };
     apiOk(API.PHOTOGRAPHER.get, data, 'API.get 获取摄影师信息');
 
     data = {
-      Fields : 'Id,ProvinceId,ProvinceName,RealName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
+      Fields : 'Id,BusinessPhone,ProvinceId,ProvinceName,RealName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
       PageIndex : 1,
       PageSize : 10,
       city : null
@@ -48,7 +48,7 @@ describe('Photographer Actions Test', () => {
     apiOk(API.PHOTOGRAPHER.list, data, 'API.list 查询摄影师');
 
     data = {
-      Fields : 'Id,HomeCover,ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
+      Fields : 'Id,BusinessPhone,HomeCover,ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
       PageIndex : 1,
       PageSize : 3,
       city : null,
