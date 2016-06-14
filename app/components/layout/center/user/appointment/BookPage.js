@@ -3,18 +3,18 @@ import { History, Location } from 'react-router';
 import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
-import OrderActions from '../../actions/OrderActions';
-import OrderStore from '../../stores/OrderStore';
-import AlbumsStore from '../../stores/AlbumsStore';
-import AlbumsActions from '../../actions/AlbumsActions';
-import PhotographerActions from '../../actions/PhotographerActions';
-import PhotographerStore from '../../stores/PhotographerStore';
-import Toaster from '../Toast';
+import UserActions from '../../../../../actions/UserActions';
+import UserStore from '../../../../../stores/UserStore';
+import OrderActions from '../../../../../actions/OrderActions';
+import OrderStore from '../../../../../stores/OrderStore';
+import AlbumsStore from '../../../../../stores/AlbumsStore';
+import AlbumsActions from '../../../../../actions/AlbumsActions';
+import PhotographerActions from '../../../../../actions/PhotographerActions';
+import PhotographerStore from '../../../../../stores/PhotographerStore';
+import Toaster from '../../../../Toast';
 
-import BookIntro from './WorkBookIntro';
-import BookForm from './WorkBookForm';
+import BookIntro from './BookIntro';
+import BookForm from './BookForm';
 
 var BookPage = React.createClass({
   getInitialState : function () {
@@ -59,12 +59,12 @@ var BookPage = React.createClass({
     }
   },
   /*
-    订单提交成功之后，取得订单号，跳转至book_success_dialog
+    订单提交成功之后，取得订单号，跳转至订单详情
   */
   _handleOrderStoreChange : function(data){
     if(data.flag == 'add'){
       if(data.success){
-        console.log('提交订单成功！');
+        this.showMessage("预约成功！");
         var orderID = data.order.Id;
         this.props.history.pushState(null,`/center/u/order/${orderID}`);
       }else{
@@ -130,7 +130,7 @@ var BookPage = React.createClass({
     if(this.state.albums && this.state.albums.Id)
       data.AlbumsId = this.state.albums.Id;
     //摄影师ID
-    data.PhotographerId = this.state.photographer.Id;
+    data.PhotographerId = this.state.albums.Photographer.Id;
     OrderActions.add(data);
   }
 });

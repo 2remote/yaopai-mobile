@@ -34,7 +34,7 @@ AlbumsActions.get.listen(function(id){
     Id : id,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
-    'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
+    'User.Id,Photographer.NickName,Photographer.Avatar,Photographer.Id,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
     'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,' +
     'Detail.UnitCount,Detail.SceneCount,Detail.PeopleCount,Detail.SeatCount,Detail.PlaceType',

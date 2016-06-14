@@ -1,6 +1,6 @@
 import React from 'react';
 import validator from 'validator';
-import Toaster from '../Toast';
+import Toaster from '../../../../Toast';
 import WeUI from 'react-weui';
 const { CellsTitle } = WeUI;
 
