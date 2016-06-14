@@ -61,29 +61,24 @@ var WorkPage = React.createClass({
     });
   },
   handleUpdateTags(tag) {
-    var tags = this.state.selectedTags;
     if (this.props.params.tag[0]) {
-      this.history.push('/work');
-      tags = [];
+      this.history.push('/work')
     }
-    var foundTagLocation = _.indexOf(tags, tag);
-    if( foundTagLocation >= 0 ){
-      // 发现tag存在于选中tags中，判定用户反选该tag
-      tags.splice(foundTagLocation, 1);
-    }else{
-      tags.push(tag);
-    }
-    console.warn(this.state.tags);
-    console.warn('tags',tags);
-    console.warn('tag',tag);
-    this.setState({selectedTags: tags}, function () {
-      console.log(this.state.selectedTags);
+
+    let selectedTags = []
+
+    $('.tagColBoxActive').each(function () {      //注意input前面有个空格
+      selectedTags.push($(this).attr('id'))
+    })
+
+    this.setState({selectedTags: selectedTags}, function () {
+      console.log(this.state.selectedTags)
       // 读取tag过滤的数据
       AlbumsActions.searchByTags(null,
       1,
       10,
-      this.state.selectedTags.join(","));
-    });
+      this.state.selectedTags.join(","))
+    })
 
     // 清空搜索框
     this.setState({searchKey: ''})
