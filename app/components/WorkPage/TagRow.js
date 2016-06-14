@@ -1,10 +1,17 @@
 import React from 'react';
 import $ from 'jquery';
 
-const TagRow = ({data, onSelectedTag}) => {
-  const handleClick = (tagId, onSelectedTag) => {
-    $('#'+tagId).toggleClass('tagColBoxActive');
-    onSelectedTag(tagId);
+const TagRow = ({data, onSelectedTag, tagRowClass}) => {
+  const handleClick = (tagId, onSelectedTag, tagRowClass) => {
+    if ( $('#' + tagId).hasClass('tagColBoxActive') ) {
+      $('#' + tagId).removeClass('tagColBoxActive')
+      onSelectedTag(tagId, tagRowClass)
+    } else {
+      $('.' + tagRowClass).removeClass('tagColBoxActive')
+      $('#' + tagId).addClass('tagColBoxActive')
+      onSelectedTag(tagId, tagRowClass)
+    }
+
   }
 
   let tagNodes;
@@ -14,10 +21,10 @@ const TagRow = ({data, onSelectedTag}) => {
         return (
           <div
             key={i}
-            className="tagColBox"
+            className={"tagColBox " + tagRowClass}
             id={tag.Id}
-            onClick={() => handleClick(tag.Id, onSelectedTag)}
-          >
+            onClick={() => handleClick(tag.Id, onSelectedTag, tagRowClass)}
+            >
             {tag.Name}
           </div>
         );

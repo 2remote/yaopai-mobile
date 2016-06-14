@@ -67,12 +67,15 @@ var WorkPage = React.createClass({
       tags = [];
     }
     var foundTagLocation = _.indexOf(tags, tag);
-    if(  foundTagLocation >= 0 ){
+    if( foundTagLocation >= 0 ){
       // 发现tag存在于选中tags中，判定用户反选该tag
       tags.splice(foundTagLocation, 1);
     }else{
       tags.push(tag);
     }
+    console.warn(this.state.tags);
+    console.warn('tags',tags);
+    console.warn('tag',tag);
     this.setState({selectedTags: tags}, function () {
       console.log(this.state.selectedTags);
       // 读取tag过滤的数据
@@ -115,7 +118,6 @@ var WorkPage = React.createClass({
       }
     }
     if(data.flag == 'searchByTags'){
-      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{

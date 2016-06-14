@@ -29,9 +29,9 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
         </section>
 
         <span className="tag-title">拍摄地区 | Shooting Area</span>
-        <TagRow data={cities} onSelectedTag={onSelectedTag}/>
+        <TagRow data={cities} onSelectedTag={onSelectedTag} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | Shooting Type</span>
-        <TagRow data={catas} onSelectedTag={onSelectedTag}/>
+        <TagRow data={catas} onSelectedTag={onSelectedTag} tagRowClass="tagColBox2"/>
       </div>
     </section>
   );
