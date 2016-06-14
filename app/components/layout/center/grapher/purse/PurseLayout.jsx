@@ -5,7 +5,7 @@ import WeuiCells from '../../../../UI/WeuiCells';
 
 import { History } from 'react-router';
 import UserAvatarBox from '../../../../UserAvatarBox' ;
-import HamburgMenu from'../../../../HamburgMenu';
+import SidePage from'../../../../UI/SidePage';
 
 import UserActions from '../../../../../actions/UserActions';
 import UserStore from '../../../../../stores/UserStore';
@@ -54,7 +54,7 @@ class PurseLayout extends React.Component {
     UserActions.currentUser();
   }
   onUserLoad(user) {
-    if(!user.isLogin){ // 用户未登录，跳转登陆页
+    if(!user.isLogin){ // 用户未登录，跳转登录页
       this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       this.setState({ user });
@@ -80,7 +80,7 @@ class PurseLayout extends React.Component {
   render() {
     return (
       <div>
-        <HamburgMenu />
+        <SidePage />
         <UserAvatarBox background={true} data={this.state.user}/>
         <WeuiCells cellList={this.state.balanceList} access={false} />
         <WeuiCells cellList={operationList} />

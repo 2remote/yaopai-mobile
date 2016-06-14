@@ -1,41 +1,40 @@
 import React from 'react';
-import Reflux from 'reflux';
-import { Router, Route, Link } from 'react-router';
-import TagMenu from './TagMenu';
+import TagRow from './TagRow';
+import $ from 'jquery';
 
-var ShowMenu = React.createClass({
-  getInitialState: function () {
-    return {
-      showState: false
-    }
-  },
-  handleClick: function () {
-    this.refs.tagMenu.toggle();
-    this.setState({showState: !this.state.showState});
-  },
-  render: function () {
-
-    var style = {
-      position: 'fixed',
-      top: 5,
-      right: '22px',
-      zIndex: '99',
-    };
-
-    return (
-      <div>
-        <div style={style} onClick={this.handleClick}>
-          筛选<span
-            className="icon down"
-            style={{fontSize:25, color: 'black'}} />
-        </div>
-        <TagMenu ref="tagMenu" 
-          cities={this.props.cities} 
-          catas={this.props.catas} 
-          onSelectedTag={this.props.onSelectedTag} />
+const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
+  const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
+  let searchText;
+  return (
+    <section className="tagBox">
+      <div className="tagLogo icon yaopainew" />
+      <div className="tagBtn" onClick={handleClick}>
+        筛选 <i className="icon down" />
       </div>
-    );
-  }
-});
 
-export {ShowMenu as default};
+      <div className="tagMenu" id="tagMenu">
+        <section className="input-group-dark">
+          <input
+            className="input input-block search"
+            ref={node => searchText = node}
+            type="text"
+            placeholder="搜索 作品名称/作品标签"
+          />
+          <div onClick={() => {
+            let text = searchText.value.trim();
+            if (text) onSearch(text)
+          }}>
+            <span className="icon icon-right">搜索</span>
+          </div>
+        </section>
+
+        <span className="tag-title">拍摄地区 | Shooting Area</span>
+        <TagRow data={cities} onSelectedTag={onSelectedTag}/>
+        <span className="tag-title">拍摄种类 | Shooting Type</span>
+        <TagRow data={catas} onSelectedTag={onSelectedTag}/>
+      </div>
+    </section>
+  );
+};
+
+export default ShowMenu;

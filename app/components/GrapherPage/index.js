@@ -2,7 +2,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import $ from 'jquery';
 import DocumentTitle from 'react-document-title';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
 import GrapherList from './GrapherList';
 import PhotographerStore from '../../stores/PhotographerStore';
 import PhotographerActions from '../../actions/PhotographerActions';
@@ -12,6 +12,7 @@ import './GrapherPage.scss'
 import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
 import Toaster from '../Toast';
+import ShowMenu from './ShowMenu';
 
 var GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange') ,AutoLoadPageMixin],
@@ -25,6 +26,7 @@ var GrapherPage = React.createClass({
   componentDidMount: function() {
     //this.handleLoadGraphers(this.props.url);
     PhotographerActions.list();
+
   },
   _onPhotographerStoreChange : function(data){
     if(data.flag == 'list'){
@@ -44,10 +46,20 @@ var GrapherPage = React.createClass({
     PhotographerActions.list(pageIndex);
   },
   render: function() {
+    var cities = [];
+    var catas = [];
+
     return (
       <DocumentTitle title={TITLE.grapherPage}>
         <div className="grapherPage">
-          <HamburgMenu />
+            <SidePage />
+            <ShowMenu
+              tagsInUrl={this.props.params.tag}
+              cities={cities}
+              catas={catas}
+              onSelectedTag={this.handleUpdateTags}
+              onSearch = {this.handleUpdateSearch}
+            />
           <GrapherList data={this.state.graphers} />
           <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage}>
           </WechatShare>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
 import Reflux from 'reflux';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
 import DocumentTitle from 'react-document-title';
 
 import {History,Location} from 'react-router';
@@ -49,13 +49,13 @@ var UserCenterPage = React.createClass({
     };
 
     return (
-      <div 
+      <div
         style={style.page}
         className="userCenterPage">
-        <HamburgMenu />
+        <SidePage />
         <DocumentTitle title="个人中心" />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
-        
+
         {/*makeIconButton('order_icon', '我的订单', 'user_tickets', 'react-router')*/}
         {makeIconButton('order_icon', '我的订单', 'center/u/order', 'react-router')}
         {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}
