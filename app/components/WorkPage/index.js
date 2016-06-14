@@ -56,7 +56,7 @@ var WorkPage = React.createClass({
       AlbumsActions.searchByKey(null,
       1,
       10,
-      null,
+      this.state.selectedTags.join(","),
       key);
     });
   },
@@ -74,15 +74,11 @@ var WorkPage = React.createClass({
     this.setState({selectedTags: selectedTags}, function () {
       console.log(this.state.selectedTags)
       // 读取tag过滤的数据
-      AlbumsActions.searchByTags(null,
-      1,
-      10,
-      this.state.selectedTags.join(","))
+      AlbumsActions.searchByTags(null, 1, 10,
+        this.state.selectedTags.join(","),
+        this.state.searchKey
+      )
     })
-
-    // 清空搜索框
-    this.setState({searchKey: ''})
-
   },
   _onAlbumsStoreChange(data) {
 
