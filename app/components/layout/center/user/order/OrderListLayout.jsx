@@ -71,7 +71,6 @@ class OrderListLayout extends React.Component {
     //列表不为空时渲染内容
     return (
       <div>
-        {this.state.success ? '' : <LoadingToast />}
         {theRealList}
         <aside className="footer color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />
