@@ -2,8 +2,14 @@ import React from 'react';
 import TagRow from './TagRow';
 import $ from 'jquery';
 
-const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
+const ShowMenu = ({onSearch, cities, catas, onSelectedTag, reset}) => {
   const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
+  const plzResetAllOfThem = (reset) => {
+    // 清空搜索框，标签，以及重置 state
+    $('.input.search').val('')
+    $('.tagColBoxActive').removeClass('tagColBoxActive')
+    reset()
+  }
   let searchText;
   return (
     <section className="tagBox">
@@ -32,6 +38,9 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
         <TagRow data={cities} onSelectedTag={onSelectedTag} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | Shooting Type</span>
         <TagRow data={catas} onSelectedTag={onSelectedTag} tagRowClass="tagColBox2"/>
+        <button onClick={() => plzResetAllOfThem(reset)}>重置</button>
+        {/*确定实际上就是隐藏*/}
+        <button onClick={handleClick}>确定</button>
       </div>
     </section>
   );

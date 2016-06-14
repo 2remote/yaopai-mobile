@@ -80,6 +80,11 @@ var WorkPage = React.createClass({
       )
     })
   },
+  reset(){
+    // 重置 state 和接口
+    this.setState({searchKey: "", selectedTags: []})
+    AlbumsActions.searchByTags(null, 1, 10)
+  },
   _onAlbumsStoreChange(data) {
 
     if(data.flag == 'search'){
@@ -161,6 +166,7 @@ var WorkPage = React.createClass({
             catas={catas}
             onSelectedTag={this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
+            reset = {this.reset}
           />
 
           <WorkIntroGrapherList data={this.state.works} />

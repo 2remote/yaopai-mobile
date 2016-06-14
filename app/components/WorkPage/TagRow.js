@@ -5,13 +5,11 @@ const TagRow = ({data, onSelectedTag, tagRowClass}) => {
   const handleClick = (tagId, onSelectedTag, tagRowClass) => {
     if ( $('#' + tagId).hasClass('tagColBoxActive') ) {
       $('#' + tagId).removeClass('tagColBoxActive')
-      onSelectedTag(tagId, tagRowClass)
     } else {
       $('.' + tagRowClass).removeClass('tagColBoxActive')
       $('#' + tagId).addClass('tagColBoxActive')
-      onSelectedTag(tagId, tagRowClass)
     }
-
+    onSelectedTag(tagId, tagRowClass)
   }
 
   let tagNodes;
