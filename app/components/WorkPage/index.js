@@ -34,20 +34,21 @@ var WorkPage = React.createClass({
     };
   },
   componentDidMount() {
-    AlbumsActions.search();
-    AlbumsActions.getTagList();
+    AlbumsActions.search()
+    AlbumsActions.getTagList()
 
-    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) );
-    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) );
+    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) )
+    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) )
+    let thisIsACoolSearchKey = this.props.location.query.q
 
-    if (nonemptyTagList[0]){
-      this.setState({selectedTags: nonemptyTagList}, function () {
+    if (nonemptyTagList[0] || thisIsACoolSearchKey){
+      this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.searchByTags(null,
-        1,
-        10,
-        this.state.selectedTags.join(","));
-      });
+        AlbumsActions.searchByTags(null, 1, 10,
+          this.state.selectedTags.join(","),
+          this.state.searchKey
+        )
+      })
     }
   },
   handleUpdateSearch(key) {
@@ -89,7 +90,6 @@ var WorkPage = React.createClass({
     AlbumsActions.searchByTags(null, 1, 10)
   },
   _onAlbumsStoreChange(data) {
-
     if(data.flag == 'search'){
       if(data.hintMessage){
         console.log(data.hintMessage);
