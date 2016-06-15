@@ -36,9 +36,9 @@ const ShowMenu = (args) => {
         </section>
 
         <span className="tag-title">拍摄地区 | Shooting Area</span>
-        <TagRow data={cities} onSelectedTag={onSelectedTag} tagRowClass="tagColBox1"/>
+        <TagRow data={cities} args={args} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | Shooting Type</span>
-        <TagRow data={catas} onSelectedTag={onSelectedTag} tagRowClass="tagColBox2"/>
+        <TagRow data={catas} args={args} tagRowClass="tagColBox2"/>
         <div className="tagButton">
           <button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>
           {/*确定实际上就是隐藏*/}

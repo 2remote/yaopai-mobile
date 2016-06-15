@@ -37,6 +37,7 @@ var WorkPage = React.createClass({
     AlbumsActions.search()
     AlbumsActions.getTagList()
 
+
     let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) )
     let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) )
     let thisIsACoolSearchKey = this.props.location.query.q
@@ -62,11 +63,11 @@ var WorkPage = React.createClass({
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
     })
   },
-  handleUpdateTags(tag) {
+  handleUpdateTags() {
 
     let selectedTags = []
 
-    $('.tagColBoxActive').each(function () {      //注意input前面有个空格
+    $('.tagColBoxActive').each(function () {
       selectedTags.push($(this).attr('id'))
     })
 
@@ -154,7 +155,7 @@ var WorkPage = React.createClass({
       cities = this.state.tags[1].Tags;
       catas = this.state.tags[0].Tags;
     }
-    const { searchKey } = this.state
+    const { searchKey, selectedTags} = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -162,13 +163,13 @@ var WorkPage = React.createClass({
           <SidePage />
 
           <ShowMenu
-            tagsInUrl={this.props.params.tag}
-            cities={cities}
-            catas={catas}
-            onSelectedTag={this.handleUpdateTags}
+            cities = {cities}
+            catas = {catas}
+            onSelectedTag = {this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
             reset = {this.reset}
             searchKey = {searchKey}
+            selectedTags = {selectedTags}
           />
 
           <WorkIntroGrapherList data={this.state.works} />
