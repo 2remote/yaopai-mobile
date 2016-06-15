@@ -2,7 +2,8 @@ import React from 'react';
 import TagRow from './TagRow';
 import $ from 'jquery';
 
-const ShowMenu = ({onSearch, cities, catas, onSelectedTag, reset}) => {
+const ShowMenu = (args) => {
+  const {onSearch, cities, catas, onSelectedTag, reset, searchKey} = args
   const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
@@ -24,7 +25,7 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag, reset}) => {
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
-            placeholder="搜索 作品名称/作品标签"
+            placeholder={searchKey || "搜索 作品名称/作品标签"}
           />
           <div onClick={() => {
             let text = searchText.value.trim();

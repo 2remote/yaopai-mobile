@@ -63,9 +63,6 @@ var WorkPage = React.createClass({
     })
   },
   handleUpdateTags(tag) {
-    if (this.props.params.tag[0]) {
-      this.history.push('/work')
-    }
 
     let selectedTags = []
 
@@ -157,6 +154,7 @@ var WorkPage = React.createClass({
       cities = this.state.tags[1].Tags;
       catas = this.state.tags[0].Tags;
     }
+    const { searchKey } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -170,6 +168,7 @@ var WorkPage = React.createClass({
             onSelectedTag={this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
             reset = {this.reset}
+            searchKey = {searchKey}
           />
 
           <WorkIntroGrapherList data={this.state.works} />
