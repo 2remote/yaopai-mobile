@@ -26,6 +26,10 @@ const ShowMenu = (args) => {
             ref={node => searchText = node}
             type="text"
             placeholder={searchKey || "搜索 作品名称/作品标签"}
+            onChange={() => {
+              let text = searchText.value.trim();
+              if (text) onSearch(text)
+            }}
           />
           <div onClick={() => {
             let text = searchText.value.trim();
