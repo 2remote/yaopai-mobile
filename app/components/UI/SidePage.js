@@ -50,7 +50,7 @@ class SidePage extends Component {
     if(userData.isLogin){ // 用户未登录，跳转登录页
       accountContent = (
         <div className="menu-slide-header">
-          <Link className="link-box" to={userData.userType==0?"/user_center":"/grapher_center"}>
+          <Link className="link-box" to={userData.userType==0?"/user_edit_profile":"/grapher_center"}>
             <img
               width={90}
               height={90}
@@ -112,12 +112,12 @@ class SidePage extends Component {
                     <div className="menu-button"><span>摄影师&nbsp;&nbsp;Grapher</span></div>
                   </Link>
                 </li>
-                {/*<li className="pure-menu-item nav-list-bar">
-                  <Link to="/main/user" activeClassName="active">
-                    <i className="menu-icon settings" />
+                <li className="pure-menu-item nav-list-bar">
+                  <Link className="link-box" to={userData.userType==0?"/user_center":"/grapher_center"} activeClassName="active">
+                    <i className="menu-icon icon settings" />
                     <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                   </Link>
-                </li> */}
+                </li>
               </ul>
             </nav>
 
