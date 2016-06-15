@@ -53,12 +53,13 @@ var WorkPage = React.createClass({
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
-      AlbumsActions.searchByKey(null,
-      1,
-      10,
-      this.state.selectedTags.join(","),
-      key);
-    });
+      AlbumsActions.searchByTags(null, 1, 10,
+        this.state.selectedTags.join(","),
+        key
+      )
+      // 把搜索和筛选结果写入路由
+      this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
+    })
   },
   handleUpdateTags(tag) {
     if (this.props.params.tag[0]) {
@@ -78,6 +79,8 @@ var WorkPage = React.createClass({
         this.state.selectedTags.join(","),
         this.state.searchKey
       )
+      // 把搜索和筛选结果写入路由
+      this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
     })
   },
   reset(){
