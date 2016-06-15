@@ -34,60 +34,60 @@ var WorkPage = React.createClass({
     };
   },
   componentDidMount() {
-    AlbumsActions.search();
-    AlbumsActions.getTagList();
+    AlbumsActions.search()
+    AlbumsActions.getTagList()
 
-    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) );
-    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) );
 
-    if (nonemptyTagList[0]){
-      this.setState({selectedTags: nonemptyTagList}, function () {
+    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) )
+    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) )
+    let thisIsACoolSearchKey = this.props.location.query.q
+
+    if (nonemptyTagList[0] || thisIsACoolSearchKey){
+      this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.searchByTags(null,
-        1,
-        10,
-        this.state.selectedTags.join(","));
-      });
+        AlbumsActions.searchByTags(null, 1, 10,
+          this.state.selectedTags.join(','),
+          this.state.searchKey
+        )
+      })
     }
   },
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
-      AlbumsActions.searchByKey(null,
-      1,
-      10,
-      null,
-      key);
-    });
+      AlbumsActions.searchByTags(null, 1, 10,
+        this.state.selectedTags.join(','),
+        key
+      )
+      // 把搜索和筛选结果写入路由
+      this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
+    })
   },
-  handleUpdateTags(tag) {
-    var tags = this.state.selectedTags;
-    if (this.props.params.tag[0]) {
-      this.history.push('/work');
-      tags = [];
-    }
-    var foundTagLocation = _.indexOf(tags, tag);
-    if(  foundTagLocation >= 0 ){
-      // 发现tag存在于选中tags中，判定用户反选该tag
-      tags.splice(foundTagLocation, 1);
-    }else{
-      tags.push(tag);
-    }
-    this.setState({selectedTags: tags}, function () {
-      console.log(this.state.selectedTags);
+  handleUpdateTags() {
+
+    let selectedTags = []
+
+    $('.tagColBoxActive').each(function () {
+      selectedTags.push($(this).attr('id'))
+    })
+
+    this.setState({selectedTags: selectedTags}, function () {
+      console.log(this.state.selectedTags)
       // 读取tag过滤的数据
-      AlbumsActions.searchByTags(null,
-      1,
-      10,
-      this.state.selectedTags.join(","));
-    });
-
-    // 清空搜索框
-    this.setState({searchKey: ''})
-
+      AlbumsActions.searchByTags(null, 1, 10,
+        this.state.selectedTags.join(','),
+        this.state.searchKey
+      )
+      // 把搜索和筛选结果写入路由
+      this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
+    })
+  },
+  reset(){
+    // 重置 state 和接口
+    this.setState({searchKey: "", selectedTags: []})
+    AlbumsActions.searchByTags(null, 1, 10)
   },
   _onAlbumsStoreChange(data) {
-
     if(data.flag == 'search'){
       if(data.hintMessage){
         console.log(data.hintMessage);
@@ -115,7 +115,6 @@ var WorkPage = React.createClass({
       }
     }
     if(data.flag == 'searchByTags'){
-      console.table(data.workList);
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
@@ -156,6 +155,7 @@ var WorkPage = React.createClass({
       cities = this.state.tags[1].Tags;
       catas = this.state.tags[0].Tags;
     }
+    const { searchKey, selectedTags} = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -163,11 +163,13 @@ var WorkPage = React.createClass({
           <SidePage />
 
           <ShowMenu
-            tagsInUrl={this.props.params.tag}
-            cities={cities}
-            catas={catas}
-            onSelectedTag={this.handleUpdateTags}
+            cities = {cities}
+            catas = {catas}
+            onSelectedTag = {this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
+            reset = {this.reset}
+            searchKey = {searchKey}
+            selectedTags = {selectedTags}
           />
 
           <WorkIntroGrapherList data={this.state.works} />
