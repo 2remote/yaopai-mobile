@@ -16,6 +16,7 @@ class GrapherRow extends React.Component {
   }
 
   photographerAlbumPool(photographerAlbumPool) {
+    // 从接口 Albums.Search （查询作品列表）拿到数据
     this.setState({ photographerAlbumPool })
   }
 
