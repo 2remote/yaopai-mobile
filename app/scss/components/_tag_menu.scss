@@ -33,7 +33,6 @@
     z-index                    : $zindex-hidden !important;
     width                      : 100%;
     box-sizing                 : border-box;
-    padding-bottom             : 15px;
     background                 : #000;
     color                      : #fff;
     @include slide-animation(top-bottom);
@@ -58,4 +57,22 @@
   }
 
   .tagColBoxActive { border-color: gray; }
+}
+
+.tagButton {
+  button {
+    width: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $white;
+    height: 50px;
+    margin-top: 20px;
+  }
+
+  .plzResetAllOfThem {
+    background: #151515;
+  }
+
+  .yesImPretySure {
+    background: transparent;
+  }
 }
