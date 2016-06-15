@@ -1,0 +1,78 @@
+.tagBox {
+  position  : fixed;
+  top       : 0;
+  right     : 0;
+  z-index   : $zindex-tag-box;
+  width     : 100%;
+  background: #fff;
+
+  .tagLogo {
+    font-size       : 20px;
+    background-color: white;
+    color           : black;
+    line-height     : $tag-height;
+    text-align      : center;
+  }
+
+  .tagBtn {
+    position   : absolute;
+    right      : 10px;
+    top        : 0;
+    z-index    : $zindex-menu-link;
+    height     : $tag-height;
+    line-height: $tag-height;
+    color      : $dim-black;
+
+    i { font-size: 20px; }
+  }
+
+  .tagMenu {
+    position                   : absolute;
+    left                       : 0;
+    right                      : 0;
+    z-index                    : $zindex-hidden !important;
+    width                      : 100%;
+    box-sizing                 : border-box;
+    background                 : #000;
+    color                      : #fff;
+    @include slide-animation(top-bottom);
+
+    .tag-title {
+      color      : #CCAC7B;
+      display    : block;
+      padding    : 5px 15px;
+      font-weight: 800;
+    }
+  }
+
+  .tagRowBox { overflow: hidden; }
+
+  .tagColBox {
+    display      : inline-block;
+    padding      : 5px 25px;
+    margin       : 5px;
+    font-size    : 12px;
+    border-radius: 20px;
+    border       : 1px solid rgba(255, 255, 255, .1);
+  }
+
+  .tagColBoxActive { border-color: gray; }
+}
+
+.tagButton {
+  button {
+    width: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $white;
+    height: 50px;
+    margin-top: 20px;
+  }
+
+  .plzResetAllOfThem {
+    background: #151515;
+  }
+
+  .yesImPretySure {
+    background: transparent;
+  }
+}

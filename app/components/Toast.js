@@ -12,7 +12,7 @@ var Toaster = React.createClass({
   },
   getDefaultProps: function() {
     return {
-      duration: 1000,
+      duration: 3000,
       bottom:false,
       css:{}
     };

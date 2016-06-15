@@ -56,23 +56,32 @@ var WorkPage = React.createClass({
       url: LIST_ALL_WORKS
     };
   },
+<<<<<<< HEAD
   componentDidMount: function() {
     AlbumsActions.search();
     AlbumsActions.getTagList();
+=======
+  componentDidMount() {
+    AlbumsActions.search()
+    AlbumsActions.getTagList()
+>>>>>>> dev
 
-    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) );
-    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) );
 
-    if (nonemptyTagList[0]){
-      this.setState({selectedTags: nonemptyTagList}, function () {
+    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) )
+    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) )
+    let thisIsACoolSearchKey = this.props.location.query.q
+
+    if (nonemptyTagList[0] || thisIsACoolSearchKey){
+      this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.searchByTags(null,
-        1,
-        10,
-        this.state.selectedTags.join(","));
-      });
+        AlbumsActions.searchByTags(null, 1, 10,
+          this.state.selectedTags.join(','),
+          this.state.searchKey
+        )
+      })
     }
   },
+<<<<<<< HEAD
   handleUpdateTags: function (tag) {
     var tags = this.state.selectedTags;
     if (this.props.params.tag[0]) {
@@ -98,6 +107,44 @@ var WorkPage = React.createClass({
 
   },
   _onAlbumsStoreChange : function(data){
+=======
+  handleUpdateSearch(key) {
+    this.setState({searchKey: key}, function () {
+      // 读取search过滤的数据
+      AlbumsActions.searchByTags(null, 1, 10,
+        this.state.selectedTags.join(','),
+        key
+      )
+      // 把搜索和筛选结果写入路由
+      this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
+    })
+  },
+  handleUpdateTags() {
+
+    let selectedTags = []
+
+    $('.tagColBoxActive').each(function () {
+      selectedTags.push($(this).attr('id'))
+    })
+
+    this.setState({selectedTags: selectedTags}, function () {
+      console.log(this.state.selectedTags)
+      // 读取tag过滤的数据
+      AlbumsActions.searchByTags(null, 1, 10,
+        this.state.selectedTags.join(','),
+        this.state.searchKey
+      )
+      // 把搜索和筛选结果写入路由
+      this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
+    })
+  },
+  reset(){
+    // 重置 state 和接口
+    this.setState({searchKey: "", selectedTags: []})
+    AlbumsActions.searchByTags(null, 1, 10)
+  },
+  _onAlbumsStoreChange(data) {
+>>>>>>> dev
     if(data.flag == 'search'){
       if(data.hintMessage){
         console.log(data.hintMessage);
@@ -148,6 +195,7 @@ var WorkPage = React.createClass({
       cities = this.state.tags[1].Tags;
       catas = this.state.tags[0].Tags;
     }
+    const { searchKey, selectedTags} = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -161,10 +209,21 @@ var WorkPage = React.createClass({
             zIndex: 99}}/>
           <YaopaiLogo />
           <ShowMenu
+<<<<<<< HEAD
             tagsInUrl={this.props.params.tag}
             cities={cities}
             catas={catas}
             onSelectedTag={this.handleUpdateTags} />
+=======
+            cities = {cities}
+            catas = {catas}
+            onSelectedTag = {this.handleUpdateTags}
+            onSearch = {this.handleUpdateSearch}
+            reset = {this.reset}
+            searchKey = {searchKey}
+            selectedTags = {selectedTags}
+          />
+>>>>>>> dev
 
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>

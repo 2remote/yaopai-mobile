@@ -34,13 +34,30 @@
  *
  */
 .weui_bar_item_on {
-  border-bottom: 2px solid #0bb20c;
+  border-bottom: 2px solid #E6C288;
+}
+
+.weui_navbar_item {
+  font-size: 12px;
 }
 
 .weui_bar_item_on a {
-  color: #0bb20c!important;
+  color: #000!important;
+}
+
+.weui_navbar_item a{
+  color: #999;
 }
 
 .weui_navbar_item:after {
   border-right: 0;
+}
+
+.weui_cells {
+  margin-top: 1em;
+  background-color: #fff;
+  line-height: 30px;
+  font-size: 14px;
+  overflow: hidden;
+  position: relative;
 }

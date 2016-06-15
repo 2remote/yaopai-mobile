@@ -38,17 +38,15 @@ var BookPage = React.createClass({
   /*
     由获取当前用户动作引发至这个方法
     1.如果用户未登录，需要讲当前的路径通过pushState传入到登录页面的props.location.state,让登录界面成功后返回这个地址
-    2.用户登录的情况下，通过传入的参数判断是从摄影师界面进入的预约，还是通过相册进入的预约。
+    2.用户登录的情况下，通过传入的参数判断是从摄影师界面(已经废除)进入的预约，还是通过相册进入的预约。
     3.如果是相册预约，通过AlbumsActions.get(this.props.params.workId) 得到相册的详细信息
-    4.如果是摄影师预约，通过PhotographerActions.get(this.props.params.photographerId)得到摄影师的详细信息。
+    4.如果是摄影师预约，通过PhotographerActions.get(this.props.params.photographerId)得到摄影师的详细信息。(已经废除)
     5.以上的动作引发至后面的_handleAlbumsStoreChange 和 _handlePhotographerStoreChange方法
   */
   _handleUserSotreChange: function(userData){
-    console.log('userData from Store', userData);
     if(!userData.isLogin){
       this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
-      console.log(this.props.params);
       if(this.props.params.workId && this.props.params.workId != '0')
         AlbumsActions.get(this.props.params.workId);
       else if(this.props.params.photographerId){
@@ -93,8 +91,7 @@ var BookPage = React.createClass({
       if(data.hintMessage){
         this.showMessage(data.hintMessage);
       }else{
-        console.log(data);
-        this.setState({albums : '',photographer : data.photographer.User});
+        this.setState({albums : '',photographer : data.photographer});
       }
     }
   },
@@ -119,7 +116,7 @@ var BookPage = React.createClass({
         <div>
           <Toaster ref="toast"/>
           {bookInfo}
-          <BookForm onSubmit={this.HandleBookWorkFormSubmit} subValue="提交订单"/>
+          <BookForm onSubmit={this.HandleBookWorkFormSubmit} subValue="立即预约"/>
         </div>
       </DocumentTitle>
     );

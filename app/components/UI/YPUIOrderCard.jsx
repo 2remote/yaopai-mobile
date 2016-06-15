@@ -3,8 +3,9 @@ import {Dialog, Button} from 'react-weui';
 import { OrderStatus } from '../Tools';
 import ReactMixin from 'react-mixin';
 import { History } from 'react-router';
-
+import {Toast} from 'react-weui';
 import OrderActions from '../../actions/OrderActions';
+import CallActions from '../../actions/CallActions';
 
 const {Alert, Confirm} = Dialog;
 
@@ -37,6 +38,8 @@ class YPUIOrderCard extends React.Component {
       }
     };
   }
+
+
 
   /**
    * 用户：支付订单
@@ -72,6 +75,8 @@ class YPUIOrderCard extends React.Component {
    * @param approve
    */
   receiveOrder = (e, orderId, approve) => {
+    // TODO 添加 alert 组件
+    alert('接单成功，请及时与客户沟通详细的拍摄需求！');
     OrderActions.receive(orderId, approve);
   };
 
@@ -89,10 +94,16 @@ class YPUIOrderCard extends React.Component {
     this.setState({ orderId });
   };
 
+  handleCall() {
+    this.setState({ show: true });
+    setTimeout(() => {
+      this.setState({ show: false });
+    }, 3000);
+  }
+
   hideConfirm = (e) => {
     this.setState({showConfirm: false});
   };
-
   cardFooter = (order, status, utype) => {
     let separator = <hr className="separator" />;
     let leftPortion = <div></div>;
@@ -120,7 +131,7 @@ class YPUIOrderCard extends React.Component {
             <span>&nbsp;&nbsp;</span>
             <button className="weui_btn weui_btn_mini weui_btn_primary"
                     onClick={ e => this.receiveOrder(e, order.Id, true) }>
-              接受
+              接单
             </button>
           </div>
         );
@@ -200,10 +211,15 @@ class YPUIOrderCard extends React.Component {
     } else {
       leftPortion = (
         <div>
-          <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
+          <a onClick = { () => {CallActions.call(order.PhotographerId); this.handleCall()} } className="color_gray">
             <i className="icon phone_icon" />
             联系{order.Photographer.NickName}
           </a>
+          <Toast show={this.state.show} style={{padding: '20px 15px'}}>
+            正在回拨<br/>
+            请注意接听<br/>
+            <small>3秒后关闭...</small>
+          </Toast>
         </div>
       );
     }
@@ -218,6 +234,14 @@ class YPUIOrderCard extends React.Component {
       </div>
     );
   };
+
+
+  handleCall() {
+    this.setState({ show: true });
+    setTimeout(() => {
+      this.setState({ show: false });
+    }, 3000);
+  }
 
   render() {
     const {order} = this.props;
