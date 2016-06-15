@@ -5,6 +5,7 @@ import ReactMixin from 'react-mixin';
 import { History } from 'react-router';
 
 import OrderActions from '../../actions/OrderActions';
+import CallActions from '../../actions/CallActions';
 
 const {Alert, Confirm} = Dialog;
 
@@ -92,7 +93,6 @@ class YPUIOrderCard extends React.Component {
   hideConfirm = (e) => {
     this.setState({showConfirm: false});
   };
-
   cardFooter = (order, status, utype) => {
     let separator = <hr className="separator" />;
     let leftPortion = <div></div>;
@@ -200,7 +200,7 @@ class YPUIOrderCard extends React.Component {
     } else {
       leftPortion = (
         <div>
-          <a href={`tel:${order.Photographer.BusinessPhone}`} className="color_gray">
+          <a onClick = { () => {CallActions.call(order.PhotographerId)} } className="color_gray">
             <i className="icon phone_icon" />
             联系{order.Photographer.NickName}
           </a>
