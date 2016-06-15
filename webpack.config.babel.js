@@ -65,7 +65,7 @@ if(TARGET === 'start' || !TARGET) {
       loaders: [
         {
           test: /\.jsx?$/,
-          loaders: ['react-hot', 'babel'],
+          loaders: ['react-hot', 'babel?optional=runtime'],
           include: path.resolve(ROOT_PATH, 'app')
         }
       ]
@@ -110,7 +110,7 @@ if(TARGET === 'build') {
       loaders: [
         {
           test: /\.jsx?$/,
-          loaders: ['babel'],
+          loaders: ['babel?optional=runtime'],
           include: path.resolve(ROOT_PATH, 'app')
         },
         { test: /\.json$/, loader: 'json-loader' }
