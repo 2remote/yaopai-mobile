@@ -50,7 +50,7 @@ class SidePage extends Component {
     if(userData.isLogin){ // 用户未登录，跳转登录页
       accountContent = (
         <div className="menu-slide-header">
-          <Link className="link-box" to={userData.userType==0?"/user_edit_profile":"/grapher_center"}>
+          <Link className="link-box" to="/user_edit_profile">
             <img
               width={90}
               height={90}
