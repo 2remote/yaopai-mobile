@@ -7,9 +7,13 @@ const ShowMenu = (args) => {
   const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
-    $('.input.search').val('')
+    searchText.value = ''
     $('.tagColBoxActive').removeClass('tagColBoxActive')
     reset()
+  }
+  const searchReadyGo = () => {
+    let text = searchText.value.trim();
+    text && onSearch(text)
   }
   let searchText;
   return (
@@ -26,15 +30,9 @@ const ShowMenu = (args) => {
             ref={node => searchText = node}
             type="text"
             placeholder={searchKey || "搜索 作品名称/作品标签"}
-            onChange={() => {
-              let text = searchText.value.trim();
-              if (text) onSearch(text)
-            }}
+            onChange={searchReadyGo}
           />
-          <div onClick={() => {
-            let text = searchText.value.trim();
-            if (text) onSearch(text)
-          }}>
+        <div onClick={searchReadyGo}>
             <span className="icon icon-right">搜索</span>
           </div>
         </section>

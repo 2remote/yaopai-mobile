@@ -46,7 +46,7 @@ var WorkPage = React.createClass({
       this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
         AlbumsActions.searchByTags(null, 1, 10,
-          this.state.selectedTags.join(","),
+          this.state.selectedTags.join(','),
           this.state.searchKey
         )
       })
@@ -56,7 +56,7 @@ var WorkPage = React.createClass({
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
       AlbumsActions.searchByTags(null, 1, 10,
-        this.state.selectedTags.join(","),
+        this.state.selectedTags.join(','),
         key
       )
       // 把搜索和筛选结果写入路由
@@ -75,7 +75,7 @@ var WorkPage = React.createClass({
       console.log(this.state.selectedTags)
       // 读取tag过滤的数据
       AlbumsActions.searchByTags(null, 1, 10,
-        this.state.selectedTags.join(","),
+        this.state.selectedTags.join(','),
         this.state.searchKey
       )
       // 把搜索和筛选结果写入路由
