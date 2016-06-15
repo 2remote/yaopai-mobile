@@ -21,6 +21,7 @@ class GrapherRow extends React.Component {
   }
 
   componentWillMount() {
+
     if(!this.state.photographerAlbumPool[this.props.data.Id] && !this.state.already) {
       this.setState({
         already: true,
@@ -34,6 +35,7 @@ class GrapherRow extends React.Component {
     let pool = this.state.photographerAlbumPool;
     let currentId = this.props.data.Id;
     let covers = this.state.photographerAlbumPool[currentId] || [];
+
     return (
       <div className="grapherRow">
         <Link to={"/grapherDetail/"+this.props.data.Id} >

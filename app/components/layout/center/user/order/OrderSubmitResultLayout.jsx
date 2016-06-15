@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import Reflux from 'reflux';
-import Toaster from '../../../../Toast';
-
+import { Toast } from 'react-weui';
 import OrderActions from '../../../../../actions/OrderActions';
 import OrderStore from '../../../../../stores/OrderStore';
 
@@ -35,16 +34,19 @@ class OrderSubmitResultLayout extends React.Component {
   showMessage(content) {
     this.refs.toast.show(content)
   }
-  handleCall(e) {
-    e.preventDefault();
-    this.showMessage('正在回拨摄影师,请注意接听来电');
-    return;
+
+  handleCall() {
+    this.setState({ show: true });
+    setTimeout(() => {
+      this.setState({ show: false });
+    }, 3000);
   }
+
   render() {
     const {order} = this.state;
     return (
       <div>
-        <Toaster ref="toast"/>
+
         {/* 1. 预约提醒。The green stuff */}
         <div className="weui_panel weui_panel_access">
           <div className="weui_panel_bd">
@@ -78,11 +80,16 @@ class OrderSubmitResultLayout extends React.Component {
                   {order.Albums.Title}
                 </h4>
                 <p className="weui_media_desc text_right">
-                  <button onClick={ () => { CallActions.call(order.PhotographerId); this.handleCall(event);} } className="weui_btn weui_btn_mini weui_btn_plain_default">
+                  <button onClick={ () => { CallActions.call(order.PhotographerId); this.handleCall();} } className="weui_btn weui_btn_mini weui_btn_plain_default">
                     <i className="icon phone_icon" />
                     致电摄影师
                   </button>
                 </p>
+                <Toast show={this.state.show} style={{padding: '20px 15px'}}>
+                  正在回拨<br/>
+                  请注意接听<br/>
+                  <small>3秒后关闭...</small>
+                </Toast>
               </div>
             </div>
           </div>
