@@ -43,9 +43,6 @@ var UserCenterPage = React.createClass({
         position: 'absolute',
         width: '100%'
       },
-      splitLine: {
-        margin: '24px 0 12px 0'
-      }
     };
 
     return (

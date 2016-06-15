@@ -40,7 +40,7 @@ var BookForm = React.createClass({
           <CellsTitle>备注</CellsTitle>
           <div className="weui_cell weui_panel bg_white">
             <div className="weui_cell_bd weui_cell_primary">
-              <textarea ref="bookComment" maxLength="50" className="weui_textarea" placeholder="请输入评论" rows="3"/>
+              <textarea ref="bookComment" maxLength="50" className="weui_textarea" placeholder="请输入备注" rows="3"/>
             </div>
           </div>
 

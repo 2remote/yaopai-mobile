@@ -118,6 +118,9 @@ var API_CONST = {
     pay: DOMAIN + 'payment/token?tokenId=',
     wechatRedirect: DOMAIN + 'payment/successful?orderId='
   },
+  CALL: {
+    call: API_URL + 'Call.ToAuthUser' // 拨打电话
+  },
   FILE: {
     getToken: API_URL + 'File.Token',
     user_token_url: DOMAIN + 'file/token?type=user',

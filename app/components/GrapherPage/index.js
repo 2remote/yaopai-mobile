@@ -52,17 +52,16 @@ var GrapherPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.grapherPage}>
         <div className="grapherPage">
-            <SidePage />
-            <ShowMenu
-              tagsInUrl={this.props.params.tag}
-              cities={cities}
-              catas={catas}
-              onSelectedTag={this.handleUpdateTags}
-              onSearch = {this.handleUpdateSearch}
-            />
+          <SidePage />
+          <ShowMenu
+            tagsInUrl={this.props.params.tag}
+            cities={cities}
+            catas={catas}
+            onSelectedTag={this.handleUpdateTags}
+            onSearch = {this.handleUpdateSearch}
+          />
           <GrapherList data={this.state.graphers} />
-          <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage}>
-          </WechatShare>
+          <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage} />
           <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>

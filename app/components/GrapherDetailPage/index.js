@@ -6,7 +6,6 @@ import $ from 'jquery';
 
 import GrapherIntro from './GrapherIntro';
 import WorkIntroList from './WorkIntroList';
-import ActionBar from './ActionBar';
 import { API_URL } from '../../api';
 import Share from '../Share';
 import { TITLE } from '../Tools';
@@ -68,7 +67,6 @@ var GrapherDetailPage = React.createClass({
           <SidePage />
           <GrapherIntro data={this.state.grapherInfo} />
           <WorkIntroList data={this.state.works}/>
-          <ActionBar data={this.state.grapherInfo}/>
           <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.Avatar}>
           </WechatShare>
         </div>
