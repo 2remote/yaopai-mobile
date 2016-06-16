@@ -16,22 +16,23 @@ var UserAvatarBox = React.createClass({
   render: function() {
     var style = {
       avatar: {
-        width: 78,
-        height: 78,
-        margin: '42px 0 14px',
+        width: 90,
+        height: 90,
+        margin: '50px 0 0px',
         borderRadius:'50%'
       },
       nick: {
-        color: '#fff'
+        color: '#999',
+        padding: '10px 0 30px'
       },
       background: {
-        height: 208,
+        padding: '20px 0',
         textAlign: 'center',
         background:'#282828'
       },
       updateInfo: {
         position: 'absolute',
-        top: 80,
+        top: 20,
         right: 10,
         color:'#fff'
       }
@@ -65,9 +66,9 @@ var UserAvatarBox = React.createClass({
         className="userAvatarBox">
         {AvatarImage}
         <div style={style.nick} ref="userNick" >
-          {this.props.editAvatar ? "点击上传本人头像" : this.props.data.userName}
+          {this.props.editAvatar ? "点击头像上传" : this.props.data.userName}
         </div>
-        <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "更新资料>"}</div>
+        <div className="updateInfo" style={style.updateInfo}>{this.props.editAvatar ? "" : "修改资料>"}</div>
       </div>
     );
     var children = (

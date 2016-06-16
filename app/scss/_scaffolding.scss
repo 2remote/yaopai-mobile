@@ -1,2 +1,39 @@
+*{
+  -webkit-font-smoothing: antialiased;
+  font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden !important;
+  font-size: 14px;
+  line-height: 1.7;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+#app {
+  min-height: 100%;
+  width: 100%;
+  background: #F2F2F2;
+  position: absolute;
+}
+
+
 li { list-style: none; }
-a  { text-decoration: none; }
+a { color: $black; }
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
