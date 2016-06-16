@@ -85,10 +85,10 @@ if(TARGET === 'start' || !TARGET) {
         template: 'app/templates/index.tpl'
       }),
       new OpenBrowserPlugin({
-        url: 'http://localhost:8080'
+        url: 'http://localhost:8080',
         // 这里写要打开的浏览器名字，若不填，会打开默认浏览器
         // Mac系统下可以选：Safari, Google Chrome, Firefox
-        // ,browser: 'Firefox'
+        browser: 'Google Chrome'
       })
     ]
   });
