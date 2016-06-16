@@ -30,6 +30,7 @@ PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = nul
     PageSize : pageSize,
     CityId : city,
     AlbumsCount : albumsCount,
+    ExistAlbums : true,
   };
   HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed);
 });
