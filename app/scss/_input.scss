@@ -24,7 +24,15 @@
   padding : 0 10px;
 
   .search {
-    padding      : 0 100px 0 0;
+    padding: 0 10px 0 0 ;
+  }
+  .search-icon {
+    padding      : 0 10px 0 0;
+    width:25px!important;
+    font-size:25px;
+    color:  #fff !important;
+    height:60px !important;
+    line-height:60px!important;
   }
 
   input {
@@ -33,6 +41,7 @@
     border-bottom: 1px lighten($dim-black, 5%) solid;
     color        : $white;
     padding      : 0 100px 0 50px;
+    margin-top: 10px;
   }
 
   .icon-left {
