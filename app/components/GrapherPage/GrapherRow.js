@@ -64,9 +64,9 @@ class GrapherRow extends React.Component {
           </div>
           <div className="pics">
             <ul>
-              <li className="cover" style={{backgroundImage:`url(${covers[0]?covers[0].Cover:'/app/imgs/grapherPage/yaopai-bg.png'})`}}></li>
-              <li className="cover" style={{backgroundImage:`url(${covers[1]?covers[1].Cover:'/app/imgs/grapherPage/yaopai-bg.png'})`}}></li>
-              <li className="cover" style={{backgroundImage:`url(${covers[2]?covers[2].Cover:'/app/imgs/grapherPage/yaopai-bg.png'})`}}></li>
+              <li className="cover" style={{backgroundImage:`url(${covers[0]?covers[0].Cover:'http://o7b5y93g1.bkt.clouddn.com/yaopai-bg.png'})`}}></li>
+              <li className="cover" style={{backgroundImage:`url(${covers[1]?covers[1].Cover:'http://o7b5y93g1.bkt.clouddn.com/yaopai-bg.png'})`}}></li>
+              <li className="cover" style={{backgroundImage:`url(${covers[2]?covers[2].Cover:'http://o7b5y93g1.bkt.clouddn.com/yaopai-bg.png'})`}}></li>
             </ul>
           </div>
         </Link>

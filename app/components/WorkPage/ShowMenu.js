@@ -33,7 +33,7 @@ const ShowMenu = (args) => {
             onChange={searchReadyGo}
           />
         <div onClick={searchReadyGo}>
-            <span className="icon icon-right">搜索</span>
+          <span className="icon search search-icon icon-right"></span>
           </div>
         </section>
 
