@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 *{
   -webkit-font-smoothing: antialiased;
   font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
@@ -31,6 +29,11 @@ body {
 }
 
 
->>>>>>> dev
 li { list-style: none; }
-a  { text-decoration: none; }
+a { color: $black; }
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
