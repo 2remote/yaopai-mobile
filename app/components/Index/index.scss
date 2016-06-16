@@ -1,3 +1,72 @@
+html { height: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  font-size: 14px;
+  line-height: 1.7;
+  background: #f9f9f9;
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  cursor: pointer;
+}
+
+#app {
+  min-height: 100%;
+  width: 100%;
+  background: #F2F2F2;
+  /*position: absolute;*/
+}
+
+.index { text-align: center; }
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #000000;
+  text-decoration: none;
+}
+
+:focus {
+  outline: transparent none 0;
+}
+
+/*走马灯*/
+
+.sliderBox { margin-bottom: -7px; }
+
+.sliderButtonsLine {
+  position: absolute;
+  margin: -44px auto 18px;
+  width: 100%;
+}
+
+.sliderButtons {
+  /*  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;*/
+  /*width: 103px;*/
+  margin: 0 auto;
+  z-index: 100;
+}
+
+.sliderButtons>img {
+  height: 100%;
+  width: 6px;
+  margin: 0 9px;
+}
+
+.currentCarousel {
+  margin: -1px 8px 0 8px!important;
+  width: 8px!important;
+}
+
+
 /* 分割线 */
 
 .splitContent { color: #191919; }

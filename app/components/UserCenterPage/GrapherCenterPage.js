@@ -1,11 +1,12 @@
 import React from 'react';
+var Router = require('react-router');
 import {History,Location, Link} from 'react-router';
-import Reflux from 'reflux';
-import SidePage from '../UI/SidePage';
+var Reflux = require('reflux');
+var HamburgMenu = require('../HamburgMenu');
 import UserAvatarBox from '../UserAvatarBox' ;
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
-import _ from 'underscore';
+var UserActions = require('../../actions/UserActions');
+var UserStore = require('../../stores/UserStore');
+var _ = require('underscore');
 import { makeIconButton } from '../Tools';
 
 var GrapherCenterPage = React.createClass({
@@ -24,7 +25,7 @@ var GrapherCenterPage = React.createClass({
       this.setState({userInfo : data});
     }
   },
-
+  
   render: function() {
     var style = {
       page: {
@@ -39,16 +40,16 @@ var GrapherCenterPage = React.createClass({
     };
 
     return (
-      <div
+      <div 
         style={style.page}
         className="grapherCenterPage">
-        <SidePage />
+        <HamburgMenu />
         <UserAvatarBox background={true} data={this.state.userInfo}/>
         {/*makeIconButton('order_icon', '订单管理', 'grapher_tickets', 'react-router')*/}
         {makeIconButton('order_icon', '订单管理', 'center/g/order', 'react-router')}
         {makeIconButton('wallet_icon', '我的钱包', 'center/g/purse', 'react-router')}
         {makeIconButton('home_icon', '我的主页', 'grapherDetail/'+ this.state.userInfo.userId, 'react-router')}
-        {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}
+        {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}  
       </div>
     );
   }

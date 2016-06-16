@@ -1,7 +1,7 @@
 import React from 'react';
 import WeUI from 'react-weui';
 const { CellsTitle } = WeUI;
-import {imgModifier} from '../../../../Tools';
+import {imgModifier} from '../Tools';
 
 var BookIntro = React.createClass({
 
@@ -31,7 +31,7 @@ var BookIntro = React.createClass({
                 {this.props.albums.Title}
               </h4>
               <p className="weui_media_desc">
-                {this.props.albums ? this.props.albums.Photographer.NickName : ` 摄影师：${this.props.photographer.NickName}`}
+                {this.props.albums ? '' : ` 摄影师：${this.props.photographer.NickName}`}
               </p>
             </div>
           </a>

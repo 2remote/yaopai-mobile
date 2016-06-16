@@ -28,7 +28,7 @@ class WithdrawDepositLayout extends React.Component {
     UserActions.currentUser();
   }
   onUserLoad(user) {
-    if(!user.isLogin){ // 用户未登录，跳转登录页
+    if(!user.isLogin){ // 用户未登录，跳转登陆页
       this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       this.setState({ user });

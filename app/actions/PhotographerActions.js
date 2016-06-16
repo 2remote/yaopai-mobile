@@ -13,23 +13,19 @@ var PhotographerActions = Reflux.createActions({
 PhotographerActions.get.listen(function(id){
   var data = {
     Id : id,
-    Fields : 'Id,Views,Marks,NickName,Avatar,Signature,TotalAlbums,Sales',
+    Fields : 'Id,BusinessPhone,User.Id,User.NickName,User.Avatar'
   };
   HttpFactory.post(API.PHOTOGRAPHER.get,data,this.success,this.failed);
 });
-
-
 /*
   list动作，查询摄影师
 */
-PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = null, albumsCount = 3){
+PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = null){
   var data = {
-    Fields : 'ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,' +
-    'Id,NickName,Avatar,Signature,TotalAlbums,Marks,Sales,Albums.Id,Albums.Cut',
+    Fields : 'Id,BusinessPhone,ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
     PageIndex : pageIndex,
     PageSize : pageSize,
-    CityId : city,
-    AlbumsCount : albumsCount,
+    city : city
   };
   HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed);
 });
@@ -39,8 +35,7 @@ PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = nul
 */
 PhotographerActions.recommendList.listen(function(count = 3, city = null){
   var data = {
-    Fields : 'Id,HomeCover,ProvinceId,ProvinceName,CityId,CityName,' +
-    'CountyId,CountyName,NickName,Avatar',
+    Fields : 'Id,BusinessPhone,HomeCover,ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,User.Id,User.NickName,User.Avatar',
     PageIndex : 1,
     PageSize : count,
     city : city,

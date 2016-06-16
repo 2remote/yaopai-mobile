@@ -1,6 +1,6 @@
 import React from 'react';
 import validator from 'validator';
-import Toaster from '../../../../Toast';
+import Toaster from '../Toast';
 import WeUI from 'react-weui';
 const { CellsTitle } = WeUI;
 
@@ -12,7 +12,23 @@ var BookForm = React.createClass({
   showMessage: function (content) {
     this.refs.toast.show(content)
   },
-  render() {
+  render: function() {
+    var iconStyle={
+      marginBottom: -8,
+      marginRight: 23,
+      fontSize: 22
+    };
+    var inputStyle={
+      padding: '1px 0',
+      marginTop: 48,
+      backgroundColor: 'inherit',
+      width: 170,
+      fontSize: '1.2em',
+      lineHeight: '19px',
+      borderWidth: '0 0 2px',
+      borderRadius: 0,
+      borderColor: 'transparent transparent #c4c4c4'
+    };
     return (
       <div>
         <Toaster ref="toast"/>
@@ -82,4 +98,4 @@ var BookForm = React.createClass({
 
 });
 
-export { BookForm as default };
+export {BookForm as default};
