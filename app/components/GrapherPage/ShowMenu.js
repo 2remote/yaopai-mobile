@@ -8,9 +8,9 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
-      <div className="tagBtn" onClick={handleClick}>
+      {/*<div className="tagBtn" onClick={handleClick}>
         筛选 <i className="icon down" />
-      </div>
+      </div> */}
 
       <div className="tagMenu" id="tagMenu">
         <section className="input-group-dark">
@@ -24,7 +24,7 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
             let text = searchText.value.trim();
             if (text) onSearch(text)
           }}>
-            <span className="icon icon-right">搜索</span>
+            <span className="icon search icon-right"></span>
           </div>
         </section>
 
