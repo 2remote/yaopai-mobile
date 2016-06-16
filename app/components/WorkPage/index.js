@@ -1,43 +1,20 @@
+
 import React from 'react';
 import Reflux from 'reflux';
-import { Router, Route, Link, History } from 'react-router';
+import { History } from 'react-router';
 import DocumentTitle from 'react-document-title';
 import $ from 'jquery';
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
 import AlbumsActions from '../../actions/AlbumsActions';
 import AlbumsStore from '../../stores/AlbumsStore';
 import WorkIntroGrapherList from './WorkIntroGrapherList';
-import HamburgMenu from '../HamburgMenu';
+import SidePage from '../UI/SidePage';
+
 import AutoLoadPageMixin from '../AutoLoadPageMixin';
 import { LIST_ALL_WORKS, TITLE } from '../Tools';
-import './index.scss';
 import ShowMenu from './ShowMenu';
 import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
 import Toaster from '../Toast';
-
-var YaopaiLogo = React.createClass({
-  render: function () {
-    var style = {
-      fontSize:20,
-      backgroundColor:'white',
-      color:'black',
-      lineHeight:'57px',
-      display:'block',
-      textAlign: 'center',
-      position: 'fixed',
-      width:'100%',
-      zIndex: '97',
-      top:0,
-      left:0
-    };
-
-    return (
-      <div className="icon yaopainew" style={style} />
-    );
-  }
-});
 
 var WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
@@ -47,24 +24,19 @@ var WorkPage = React.createClass({
       pageCount :0,
       total : 0,
       works: [],
+      searchKey: '',
       tags: [],
       selectedTags: []
     };
   },
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       url: LIST_ALL_WORKS
     };
   },
-<<<<<<< HEAD
-  componentDidMount: function() {
-    AlbumsActions.search();
-    AlbumsActions.getTagList();
-=======
   componentDidMount() {
     AlbumsActions.search()
     AlbumsActions.getTagList()
->>>>>>> dev
 
 
     let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) )
@@ -81,33 +53,6 @@ var WorkPage = React.createClass({
       })
     }
   },
-<<<<<<< HEAD
-  handleUpdateTags: function (tag) {
-    var tags = this.state.selectedTags;
-    if (this.props.params.tag[0]) {
-      this.history.push('/work');
-      tags = [];
-    }
-    var foundTagLocation = _.indexOf(tags, tag);
-    if(  foundTagLocation >= 0 ){
-      // 发现tag存在于选中tags中，判定用户反选该tag
-      tags.splice(foundTagLocation, 1);
-    }else{
-      tags.push(tag);
-    }
-
-    this.setState({selectedTags: tags}, function () {
-      console.log(this.state.selectedTags);
-      // 读取tag过滤的数据
-      AlbumsActions.searchByTags(null,
-      1,
-      10,
-      this.state.selectedTags.join(","));
-    });
-
-  },
-  _onAlbumsStoreChange : function(data){
-=======
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
@@ -144,13 +89,12 @@ var WorkPage = React.createClass({
     AlbumsActions.searchByTags(null, 1, 10)
   },
   _onAlbumsStoreChange(data) {
->>>>>>> dev
     if(data.flag == 'search'){
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
         this.setState({
-          works: this.state.works.concat(_.shuffle(data.workList)),
+          works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
@@ -158,12 +102,25 @@ var WorkPage = React.createClass({
         this.onHideToast()
       }
     }
+    if(data.flag == 'searchByKey'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+        this.setState({
+          works: data.workList,
+          pageIndex: data.pageIndex,
+          total: data.total,
+          pageCount: data.pageCount
+        });
+
+      }
+    }
     if(data.flag == 'searchByTags'){
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
         this.setState({
-          works: _.shuffle(data.workList),
+          works: data.workList,
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
@@ -186,7 +143,11 @@ var WorkPage = React.createClass({
   },
   onChangePage : function(pageIndex){
     this.onShowToast('努力加载中...')
-    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
+    if(this.state.searchKey){
+      AlbumsActions.searchByKey(null, pageIndex, 10, null, this.state.searchKey)
+    } else {
+      AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
+    }
   },
   render: function() {
     var cities = [];
@@ -200,21 +161,9 @@ var WorkPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
-          <HamburgMenu style={{
-            position: 'fixed',
-            top: 5,
-            padding: 10,
-            margin: -10,
-            left: 22,
-            zIndex: 99}}/>
-          <YaopaiLogo />
+          <SidePage />
+
           <ShowMenu
-<<<<<<< HEAD
-            tagsInUrl={this.props.params.tag}
-            cities={cities}
-            catas={catas}
-            onSelectedTag={this.handleUpdateTags} />
-=======
             cities = {cities}
             catas = {catas}
             onSelectedTag = {this.handleUpdateTags}
@@ -223,11 +172,9 @@ var WorkPage = React.createClass({
             searchKey = {searchKey}
             selectedTags = {selectedTags}
           />
->>>>>>> dev
 
           <WorkIntroGrapherList data={this.state.works} />
-          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage}>
-          </WechatShare>
+          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} />
           <Toaster ref="toast" worfPageIs={true} bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
