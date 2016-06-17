@@ -43,7 +43,7 @@ var WorkPage = React.createClass({
     if (nonemptyTagList[0] || thisIsACoolSearchKey){
       this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.query(null, 1, 10,
+        AlbumsActions.query(1, 10,
           this.state.selectedTags.join(','),
           this.state.searchKey
         )
@@ -55,7 +55,7 @@ var WorkPage = React.createClass({
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
-      AlbumsActions.query(null, 1, 10,
+      AlbumsActions.query(1, 10,
         this.state.selectedTags.join(','),
         key
       )
@@ -73,7 +73,7 @@ var WorkPage = React.createClass({
     this.setState({selectedTags: selectedTags}, function () {
       console.log(this.state.selectedTags)
       // 读取tag过滤的数据
-      AlbumsActions.query(null, 1, 10,
+      AlbumsActions.query(1, 10,
         this.state.selectedTags.join(','),
         this.state.searchKey
       )
@@ -84,7 +84,7 @@ var WorkPage = React.createClass({
   reset(){
     // 重置 state 和接口
     this.setState({searchKey: "", selectedTags: []})
-    AlbumsActions.query(null, 1, 10)
+    AlbumsActions.query(1, 10)
   },
   _onAlbumsStoreChange(data) {
     if(data.flag == 'search'){
@@ -121,13 +121,9 @@ var WorkPage = React.createClass({
       }
     }
   },
-  onChangeCategory : function(category){
-    this.setState({works : [],category : category});
-    AlbumsActions.search(category);
-  },
   onChangePage : function(pageIndex){
     this.onShowToast('努力加载中...')
-    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','), this.state.searchKey);
+    AlbumsActions.search(pageIndex, 10, this.state.selectedTags.join(','), this.state.searchKey);
   },
   render: function() {
     var cities = [];
