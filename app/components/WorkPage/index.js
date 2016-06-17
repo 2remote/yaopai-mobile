@@ -43,10 +43,7 @@ var WorkPage = React.createClass({
     if (nonemptyTagList[0] || thisIsACoolSearchKey){
       this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.query(1, 10,
-          this.state.selectedTags.join(','),
-          this.state.searchKey
-        )
+        AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
       })
     } else {
       AlbumsActions.search()
@@ -55,10 +52,7 @@ var WorkPage = React.createClass({
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
-      AlbumsActions.query(1, 10,
-        this.state.selectedTags.join(','),
-        key
-      )
+      AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
     })
@@ -73,10 +67,7 @@ var WorkPage = React.createClass({
     this.setState({selectedTags: selectedTags}, function () {
       console.log(this.state.selectedTags)
       // 读取tag过滤的数据
-      AlbumsActions.query(1, 10,
-        this.state.selectedTags.join(','),
-        this.state.searchKey
-      )
+      AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
     })
@@ -84,7 +75,7 @@ var WorkPage = React.createClass({
   reset(){
     // 重置 state 和接口
     this.setState({searchKey: "", selectedTags: []})
-    AlbumsActions.query(1, 10)
+    AlbumsActions.query()
   },
   _onAlbumsStoreChange(data) {
     if(data.flag == 'search'){
@@ -123,7 +114,11 @@ var WorkPage = React.createClass({
   },
   onChangePage : function(pageIndex){
     this.onShowToast('努力加载中...')
-    AlbumsActions.search(pageIndex, 10, this.state.selectedTags.join(','), this.state.searchKey);
+    AlbumsActions.search(
+      this.state.selectedTags.join(','),
+      this.state.searchKey,
+      pageIndex
+    )
   },
   render: function() {
     var cities = [];
