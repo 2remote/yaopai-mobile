@@ -26,10 +26,8 @@ var AlbumsStore = Reflux.createStore({
     this.listenTo(AlbumsActions.delete.failed,this.onFailed);
     this.listenTo(AlbumsActions.search.success,this.onSearchSuccess);
     this.listenTo(AlbumsActions.search.failed,this.onFailed);
-    this.listenTo(AlbumsActions.searchByKey.success,this.onSearchByKeySuccess);
-    this.listenTo(AlbumsActions.searchByKey.failed,this.onFailed);
-    this.listenTo(AlbumsActions.searchByTags.success,this.onSearchByTagsSuccess);
-    this.listenTo(AlbumsActions.searchByTags.failed,this.onFailed);
+    this.listenTo(AlbumsActions.query.success,this.onQuerySuccess);
+    this.listenTo(AlbumsActions.query.failed,this.onFailed);
 
     this.listenTo(AlbumsActions.getMyAlbums.success,this.onGetMyAlbumsSuccess);
     this.listenTo(AlbumsActions.getMyAlbums.failed,this.onFailed);
@@ -83,7 +81,7 @@ var AlbumsStore = Reflux.createStore({
     this.data.flag = 'delete';
     this.trigger(this.data);
   },
-  onSearchByTagsSuccess : function(res){
+  onQuerySuccess : function(res){
     if(res.Success){
       this.data.count = res.Count;
       this.data.pageCount = res.PageCount;
@@ -96,23 +94,7 @@ var AlbumsStore = Reflux.createStore({
       this.data.workList = [];
       this.data.hintMessage = res.ErrorMsg;
     }
-    this.data.flag = 'searchByTags';
-    this.trigger(this.data);
-  },
-  onSearchByKeySuccess : function(res){
-    if(res.Success){
-      this.data.count = res.Count;
-      this.data.pageCount = res.PageCount;
-      this.data.pageIndex = res.PageIndex;
-      this.data.pageSize = res.PageSize;
-      this.data.total = res.Total;
-      this.data.workList = res.Result;
-      this.data.hintMessage = '';
-    }else{
-      this.data.workList = [];
-      this.data.hintMessage = res.ErrorMsg;
-    }
-    this.data.flag = 'searchByKey';
+    this.data.flag = 'query';
     this.trigger(this.data);
   },
   onSearchSuccess : function(res){
