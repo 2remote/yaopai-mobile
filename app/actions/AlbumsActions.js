@@ -8,8 +8,7 @@ var AlbumsActions = Reflux.createActions({
   'update':{children : ['success','failed']},
   'delete':{children : ['success','failed']},
   'search':{children : ['success','failed']},
-  'searchByKey':{children : ['success','failed']},
-  'searchByTags':{children : ['success','failed']},
+  'query':{children : ['success','failed']},
   'getMyAlbums' : {children : ['success','failed']},
   'onSale' : {children:['success','failed']},
   'offSale' : {children:['success','failed']},
@@ -42,15 +41,14 @@ AlbumsActions.get.listen(function(id){
   HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
 });
 
-AlbumsActions.search.listen( aaSearch );
-AlbumsActions.searchByTags.listen( aaSearch );
-AlbumsActions.searchByKey.listen( aaSearch );
+AlbumsActions.search.listen( searchQuery )
+AlbumsActions.query.listen( searchQuery )
 
-function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null, key = ""){
-  var data = {
-    PageIndex:pageIndex,
-    PageSize:pageSize,
-    CategoryId : categoryId,
+function searchQuery(categoryId = null, pageIndex = 1, pageSize = 10, tags = null, key = "") {
+  const data = {
+    PageIndex: pageIndex,
+    PageSize: pageSize,
+    CategoryId: categoryId,
     Tags: tags,
     Key: key,
     Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
@@ -59,8 +57,8 @@ function aaSearch (categoryId = null ,pageIndex = 1 ,pageSize = 10, tags=null, k
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
     'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,' +
     'Detail.UnitCount,Detail.SceneCount,Detail.PeopleCount,Detail.SeatCount,Detail.PlaceType',
-  };
-  HttpFactory.post(API.ALBUMS.search,data,this.success,this.failed);
+  }
+  HttpFactory.post(API.ALBUMS.search, data,this.success, this.failed)
 }
 
 // http://api.aiyaopai.com/?api=Tag.List&fields=id,name,display,tags.id,tags.name,tags.display

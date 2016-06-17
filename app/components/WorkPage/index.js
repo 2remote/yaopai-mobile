@@ -34,9 +34,7 @@ var WorkPage = React.createClass({
     };
   },
   componentDidMount() {
-    AlbumsActions.search()
     AlbumsActions.getTagList()
-
 
     let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) )
     let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) )
@@ -45,17 +43,19 @@ var WorkPage = React.createClass({
     if (nonemptyTagList[0] || thisIsACoolSearchKey){
       this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.searchByTags(null, 1, 10,
+        AlbumsActions.query(null, 1, 10,
           this.state.selectedTags.join(','),
           this.state.searchKey
         )
       })
+    } else {
+      AlbumsActions.search()
     }
   },
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, function () {
       // 读取search过滤的数据
-      AlbumsActions.searchByTags(null, 1, 10,
+      AlbumsActions.query(null, 1, 10,
         this.state.selectedTags.join(','),
         key
       )
@@ -64,7 +64,6 @@ var WorkPage = React.createClass({
     })
   },
   handleUpdateTags() {
-
     let selectedTags = []
 
     $('.tagColBoxActive').each(function () {
@@ -74,7 +73,7 @@ var WorkPage = React.createClass({
     this.setState({selectedTags: selectedTags}, function () {
       console.log(this.state.selectedTags)
       // 读取tag过滤的数据
-      AlbumsActions.searchByTags(null, 1, 10,
+      AlbumsActions.query(null, 1, 10,
         this.state.selectedTags.join(','),
         this.state.searchKey
       )
@@ -85,7 +84,7 @@ var WorkPage = React.createClass({
   reset(){
     // 重置 state 和接口
     this.setState({searchKey: "", selectedTags: []})
-    AlbumsActions.searchByTags(null, 1, 10)
+    AlbumsActions.query(null, 1, 10)
   },
   _onAlbumsStoreChange(data) {
     if(data.flag == 'search'){
@@ -101,30 +100,16 @@ var WorkPage = React.createClass({
         this.onHideToast()
       }
     }
-    if(data.flag == 'searchByKey'){
+    if(data.flag == 'query'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
-      }else{
+        console.log(data.hintMessage)
+      } else {
         this.setState({
           works: data.workList,
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
-        });
-
-      }
-    }
-    if(data.flag == 'searchByTags'){
-      if(data.hintMessage){
-        console.log(data.hintMessage);
-      }else{
-        this.setState({
-          works: data.workList,
-          pageIndex: data.pageIndex,
-          total: data.total,
-          pageCount: data.pageCount
-        });
-
+        })
       }
     }
     if(data.flag == 'getTagList'){
@@ -142,11 +127,7 @@ var WorkPage = React.createClass({
   },
   onChangePage : function(pageIndex){
     this.onShowToast('努力加载中...')
-    if(this.state.searchKey){
-      AlbumsActions.searchByKey(null, pageIndex, 10, null, this.state.searchKey)
-    } else {
-      AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
-    }
+    AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','), this.state.searchKey);
   },
   render: function() {
     var cities = [];
