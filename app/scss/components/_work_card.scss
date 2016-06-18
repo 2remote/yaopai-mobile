@@ -5,7 +5,7 @@
  *  三角形的布局请参照  scss/_mixin.scss 里的 @mixin triangle
  */
 
-.workIntroGrapherList { margin-top: 49px; }
+.workPage .workIntroGrapherList { margin-top: 49px; }
 
 .workIntroGrapherRow {
   width: 100%;
@@ -63,6 +63,11 @@
       margin-right:10px;
       margin-top: 10px;
     }
+  }
+
+  .card-head-null {
+    width: 100px;
+    height: 67px;
   }
 
   .card-info {

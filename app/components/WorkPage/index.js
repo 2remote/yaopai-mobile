@@ -5,7 +5,7 @@ import DocumentTitle from 'react-document-title';
 import $ from 'jquery';
 import AlbumsActions from '../../actions/AlbumsActions';
 import AlbumsStore from '../../stores/AlbumsStore';
-import WorkIntroGrapherList from './WorkIntroGrapherList';
+import WorkIntroGrapherList from '../common/WorkIntroGrapherList';
 import SidePage from '../UI/SidePage';
 
 import AutoLoadPageMixin from '../AutoLoadPageMixin';

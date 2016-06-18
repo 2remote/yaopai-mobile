@@ -1,50 +1,47 @@
 import React from 'react';
-
+import { ButtonAttention } from '../UI/Button';
 import {imgModifier} from '../Tools';
-import './index.scss';
 
-var GrapherIntro = React.createClass({
-  getDefaultProps: function() {
-    return {
-      data: {
-       
-      }
-    };
-  },
-  render: function() {
-    let avatarSoruce = this.props.data.User ? avatarSoruce = this.props.data.Avatar : null;
-    
-    let name = '读取中...';
-    if ( typeof this.props.data.User != 'undefined'){
-      name = this.props.data.NickName;
-    }
+const GrapherIntro = ({data, from}) => {
+  let avatarSoruce = data.User ? avatarSoruce = data.Avatar : null;
 
-    let cityName = this.props.data.CityName;
-
-    if(this.props.from === 'interview'){
-      if(this.props.data){
-        name = this.props.data.NickName;
-      };
-    };
-    return (
-      <div ref="grapherIntro" className="grapherIntro">
-        <div className="baseInfo">
-          <div className="avatar" style={{backgroundImage:`url('${this.props.data.Avatar}')`}} />
-          <p className="a">{name}</p>
-          <p className="b">{this.props.data.Signature}</p>
-          <p className="c"><i className="icon didian"></i>{cityName}</p>
-
-        </div>
-        <div className="order">
-          <ul>
-            <li><span className="count">{this.props.data.TotalAlbums}</span> 作品</li>
-            <li><span className="count">{this.props.data.Sales}</span> 订单</li>
-            <li><span className="count">{this.props.data.Marks}</span> 关注</li>
-          </ul>
-        </div>
-      </div>
-    );
+  let name = '读取中...';
+  if ( typeof data.User !== 'undefined'){
+    name = data.NickName;
   }
-});
+
+  let cityName = data.CityName;
+
+  if(from === 'interview' && data){
+    name = data.NickName;
+  };
+
+  const attention = () => {
+    
+  }
+
+  return (
+    <section className="grapherIntro">
+      <div className="baseInfo">
+        <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}} />
+        <p className="nickname">{name}</p>
+        <p className="font_small">{data.Signature}</p>
+        <p className="font_small"><i className="icon didian"></i>{cityName}</p>
+        <ButtonAttention
+          buttonType="btn-dark"
+          value="关注我"
+          handleSubmit={attention}
+        />
+      </div>
+      <div className="order">
+        <ul>
+          <li><span className="count">{data.TotalAlbums}</span> 作品</li>
+          <li><span className="count">{data.Sales}</span> 订单</li>
+          <li><span className="count">{data.Marks}</span> 关注</li>
+        </ul>
+      </div>
+    </section>
+  );
+};
 
 export {GrapherIntro as default};

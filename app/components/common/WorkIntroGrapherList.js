@@ -1,8 +1,9 @@
 import React from 'react';
 import WorkIntroGrapherRow from './WorkIntroGrapherRow';
 
-const WorkIntroGrapherList = ({data}) => (
-  <div className="workIntroGrapherList">
+const WorkIntroGrapherList = ({data}) => {
+  console.log(data)
+  return (<div className="workIntroGrapherList">
     {
       data.map((work, i) =>
         <WorkIntroGrapherRow
@@ -12,6 +13,6 @@ const WorkIntroGrapherList = ({data}) => (
       )
     }
   </div>
-);
+)};
 
 export default WorkIntroGrapherList;
