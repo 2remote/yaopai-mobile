@@ -31,7 +31,7 @@ AlbumsActions.getById.listen(function(id){
 AlbumsActions.get.listen(function(id){
   var data = {
     Id : id,
-    Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
+    Fields : 'Id,Title,UserId,Description,Service,Price,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Photographer.Id,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
@@ -44,14 +44,13 @@ AlbumsActions.get.listen(function(id){
 AlbumsActions.search.listen( searchQuery )
 AlbumsActions.query.listen( searchQuery )
 
-function searchQuery(categoryId = null, pageIndex = 1, pageSize = 10, tags = null, key = "") {
+function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10) {
   const data = {
     PageIndex: pageIndex,
     PageSize: pageSize,
-    CategoryId: categoryId,
     Tags: tags,
     Key: key,
-    Fields : 'Id,Title,UserId,CategoryId,Description,Service,Price,' +
+    Fields : 'Id,Title,UserId,Description,Service,Price,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +

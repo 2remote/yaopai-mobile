@@ -10,7 +10,7 @@ var Local_Href="";
 
 if(typeof window != 'undefined'){
   Local_Host = window.location.host;
-  Local_Href = window.location.href;  
+  Local_Href = window.location.href;
 }
 
 //根据local host切换api
@@ -80,7 +80,6 @@ var API_CONST = {
     delete: API_URL + 'Albums.Delete',
     get: API_URL + 'Albums.Get',
     search: API_URL + 'Albums.Search',
-    categories: API_URL + 'AlbumsCategory.Search',
     offSale: API_URL + 'Albums.SalesOff',
     onSale: API_URL + 'Albums.SalesOn',
     getById: API_URL + 'Albums.Search',
@@ -95,11 +94,11 @@ var API_CONST = {
     search: API_URL + 'Activity.Search',
     get: API_URL + 'Activity.Get'
   },
-  
+
   AD: {
     list: API_URL + 'Ad.List'
   },
-  
+
   TAG: {
     list: API_URL + 'Tag.List'
   },
