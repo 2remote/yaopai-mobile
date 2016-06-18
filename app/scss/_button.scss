@@ -2,6 +2,7 @@
 // Buttons
 // --------------------------------------------------
 
+// button 基础样式
 .btn {
   display            : inline-block;
   text-align         : center;
@@ -21,6 +22,7 @@
   }
 }
 
+// button 不同的颜色，背景色
 .btn-dark {
   border: 1px $white solid;
   color : $white;
@@ -66,8 +68,18 @@
 // .btn-xs
 // .btn-sm
 
+// button 不同的大小，是否圆角
 .btn-block {
   margin: 0 10px;
 
   a { width: 100%; }
+}
+
+.btn-attention a {
+  width: 145px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 100px;
+
+  i { font-size: 18px;  }
 }
