@@ -12,7 +12,15 @@ const WorkIntroGrapherRow = ({data}) => {
   }else{
     cover = imgModifier(data.Cover, "workCover");
   }
-  const avatar = imgModifier(data.Photographer.Avatar, "avatar");
+
+  let grapherAvatar;
+  if (data.Photographer.Avatar) {
+    grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
+                      <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
+                    </Link>
+  } else {
+    grapherAvatar = <div className="card-head-null"></div>
+  }
 
   return (
     <div className="workIntroGrapherRow">
@@ -33,9 +41,8 @@ const WorkIntroGrapherRow = ({data}) => {
 
         </div>
       </Link>
-      <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
-        <img src={avatar} />
-      </Link>
+
+      {grapherAvatar}
 
       <div className="card-info">
         <p className="info-title">{data.Title}</p>

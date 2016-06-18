@@ -1,19 +1,17 @@
 import React from 'react';
-
 import {imgModifier} from '../Tools';
-import './index.scss';
 
 var GrapherIntro = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
-       
+
       }
     };
   },
   render: function() {
     let avatarSoruce = this.props.data.User ? avatarSoruce = this.props.data.Avatar : null;
-    
+
     let name = '读取中...';
     if ( typeof this.props.data.User != 'undefined'){
       name = this.props.data.NickName;
