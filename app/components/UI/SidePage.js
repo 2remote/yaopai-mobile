@@ -123,7 +123,7 @@ class SidePage extends Component {
 
             <footer className="menu-slide-footer">
               客服热线<br />
-            <a href="tel:400-1122-3323">0371-65337727</a>
+            <a href="tel:0371-65337727">0371-65337727</a>
             </footer>
           </div>
         </div>
