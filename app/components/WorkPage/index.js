@@ -72,10 +72,11 @@ const WorkPage = React.createClass({
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
     })
   },
-  reset(){
+  reset() {
     // 重置 state 和接口
     this.setState({searchKey: "", selectedTags: []})
     AlbumsActions.query()
+    this.history.pushState(null)
   },
   _onAlbumsStoreChange(data) {
     if(data.flag == 'search'){
