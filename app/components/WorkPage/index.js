@@ -1,19 +1,19 @@
-import React from 'react';
-import Reflux from 'reflux';
-import { History } from 'react-router';
-import DocumentTitle from 'react-document-title';
-import $ from 'jquery';
-import AlbumsActions from '../../actions/AlbumsActions';
-import AlbumsStore from '../../stores/AlbumsStore';
-import WorkIntroGrapherList from '../common/WorkIntroGrapherList';
-import SidePage from '../UI/SidePage';
+import React from 'react'
+import Reflux from 'reflux'
+import { History } from 'react-router'
+import DocumentTitle from 'react-document-title'
+import $ from 'jquery'
+import AlbumsActions from '../../actions/AlbumsActions'
+import AlbumsStore from '../../stores/AlbumsStore'
+import WorkIntroGrapherList from '../common/WorkIntroGrapherList'
+import SidePage from '../UI/SidePage'
 
-import AutoLoadPageMixin from '../AutoLoadPageMixin';
-import { LIST_ALL_WORKS, TITLE } from '../Tools';
-import ShowMenu from './ShowMenu';
-import _ from 'underscore';
-import WechatShare from '../Weixin/WechatShare';
-import Toaster from '../Toast';
+import AutoLoadPageMixin from '../AutoLoadPageMixin'
+import { LIST_ALL_WORKS, TITLE } from '../Tools'
+import ShowMenu from './ShowMenu'
+import _ from 'underscore'
+import WechatShare from '../Weixin/WechatShare'
+import Toaster from '../Toast'
 
 const WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
@@ -26,12 +26,12 @@ const WorkPage = React.createClass({
       searchKey: '',
       tags: [],
       selectedTags: []
-    };
+    }
   },
   getDefaultProps() {
     return {
       url: LIST_ALL_WORKS
-    };
+    }
   },
   componentDidMount() {
     AlbumsActions.getTagList()
@@ -80,14 +80,14 @@ const WorkPage = React.createClass({
   _onAlbumsStoreChange(data) {
     if(data.flag == 'search'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        console.log(data.hintMessage)
       }else{
         this.setState({
           works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
-        });
+        })
         this.onHideToast()
       }
     }
@@ -105,10 +105,10 @@ const WorkPage = React.createClass({
     }
     if(data.flag == 'getTagList'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        console.log(data.hintMessage)
       }else{
-        console.log('getTagList', data);
-        this.setState({tags : data.tags});
+        console.log('getTagList', data)
+        this.setState({tags : data.tags})
       }
     }
   },
@@ -121,12 +121,13 @@ const WorkPage = React.createClass({
     )
   },
   render() {
-    var cities = [];
-    var catas = [];
+    var cities = []
+    var catas = []
     if ( this.state.tags.length > 1 ){
-      cities = this.state.tags[1].Tags;
-      catas = this.state.tags[0].Tags;
+      cities = this.state.tags[1].Tags
+      catas = this.state.tags[0].Tags
     }
+
     const { searchKey, selectedTags } = this.state
 
     return (
@@ -149,7 +150,7 @@ const WorkPage = React.createClass({
           <Toaster ref="toast" worfPageIs={true} bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
-    );
+    )
   }
-});
-export {WorkPage as default};
+})
+export {WorkPage as default}
