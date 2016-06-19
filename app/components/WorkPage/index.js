@@ -41,7 +41,7 @@ const WorkPage = React.createClass({
     let thisIsACoolSearchKey = this.props.location.query.q
 
     if (nonemptyTagList[0] || thisIsACoolSearchKey){
-      this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, function () {
+      this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, () => {
         // 如果存在url的制定tag，会直接执行过滤作品
         AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
       })
@@ -50,7 +50,7 @@ const WorkPage = React.createClass({
     }
   },
   handleUpdateSearch(key) {
-    this.setState({searchKey: key}, function () {
+    this.setState({searchKey: key}, () => {
       // 读取search过滤的数据
       AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
       // 把搜索和筛选结果写入路由
@@ -64,7 +64,7 @@ const WorkPage = React.createClass({
       selectedTags.push($(this).attr('id'))
     })
 
-    this.setState({selectedTags: selectedTags}, function () {
+    this.setState({selectedTags: selectedTags}, () => {
       console.log(this.state.selectedTags)
       // 读取tag过滤的数据
       AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
@@ -121,12 +121,8 @@ const WorkPage = React.createClass({
     )
   },
   render() {
-    var cities = []
-    var catas = []
-    if ( this.state.tags.length > 1 ){
-      cities = this.state.tags[1].Tags
-      catas = this.state.tags[0].Tags
-    }
+
+    const tagType = this.state.tags.map( x => x.Tags )
 
     const { searchKey, selectedTags } = this.state
 
@@ -136,8 +132,7 @@ const WorkPage = React.createClass({
           <SidePage />
 
           <ShowMenu
-            cities = {cities}
-            catas = {catas}
+            tagType = {tagType}
             onSelectedTag = {this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
             reset = {this.reset}
