@@ -32,7 +32,7 @@ var Toaster = React.createClass({
   show: function (content) {
     this.setState({display: 'block', content: content, top: 0});
     this.refs.displayCtrl.style.display = 'block';
-    this.props.worfPageIs ? $("#app").offset({top: 0, left:0}) : $("#app").offset({top: 0, left:0});
+    this.props.isWorkPage ? $("#app").offset({top: 0, left:0}) : $("#app").offset({top: 0, left:0});
   },
   hide: function () {
     if (this.state.display == 'block') {

@@ -16,12 +16,12 @@ import WechatShare from '../Weixin/WechatShare'
 import Toaster from '../Toast'
 
 const WorkPage = React.createClass({
-  mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
+  mixins: [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
   getInitialState() {
     return {
-      pageIndex : 1,
-      pageCount :0,
-      total : 0,
+      pageIndex: 1,
+      pageCount: 0,
+      total: 0,
       works: [],
       searchKey: '',
       tags: [],
@@ -91,8 +91,8 @@ const WorkPage = React.createClass({
         this.onHideToast()
       }
     }
-    if(data.flag == 'query'){
-      if(data.hintMessage){
+    if (data.flag == 'query'){
+      if (data.hintMessage){
         console.log(data.hintMessage)
       } else {
         this.setState({
@@ -103,10 +103,10 @@ const WorkPage = React.createClass({
         })
       }
     }
-    if(data.flag == 'getTagList'){
-      if(data.hintMessage){
+    if (data.flag == 'getTagList'){
+      if (data.hintMessage){
         console.log(data.hintMessage)
-      }else{
+      } else {
         console.log('getTagList', data)
         this.setState({tags : data.tags})
       }
@@ -147,10 +147,11 @@ const WorkPage = React.createClass({
 
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} />
-          <Toaster ref="toast" worfPageIs={true} bottom={true} duration="1000000"/>
+          <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         </div>
       </DocumentTitle>
     )
   }
 })
+
 export {WorkPage as default}
