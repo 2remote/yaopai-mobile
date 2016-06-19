@@ -15,9 +15,9 @@ import _ from 'underscore';
 import WechatShare from '../Weixin/WechatShare';
 import Toaster from '../Toast';
 
-var WorkPage = React.createClass({
+const WorkPage = React.createClass({
   mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
-  getInitialState: function() {
+  getInitialState() {
     return {
       pageIndex : 1,
       pageCount :0,
@@ -112,7 +112,7 @@ var WorkPage = React.createClass({
       }
     }
   },
-  onChangePage : function(pageIndex){
+  onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
     AlbumsActions.search(
       this.state.selectedTags.join(','),
@@ -120,14 +120,14 @@ var WorkPage = React.createClass({
       pageIndex
     )
   },
-  render: function() {
+  render() {
     var cities = [];
     var catas = [];
     if ( this.state.tags.length > 1 ){
       cities = this.state.tags[1].Tags;
       catas = this.state.tags[0].Tags;
     }
-    const { searchKey, selectedTags} = this.state
+    const { searchKey, selectedTags } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
