@@ -44,10 +44,11 @@ AlbumsActions.get.listen(function(id){
 AlbumsActions.search.listen( searchQuery )
 AlbumsActions.query.listen( searchQuery )
 
-function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10) {
+function searchQuery(categoryId = null, pageIndex = 1, pageSize = 10, tags = null, key = "", UserId) {
   const data = {
     PageIndex: pageIndex,
     PageSize: pageSize,
+    UserId,
     Tags: tags,
     Key: key,
     Fields : 'Id,Title,UserId,Description,Service,Price,' +
