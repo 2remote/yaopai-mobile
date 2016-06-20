@@ -72,7 +72,7 @@ var PhotographerStore = Reflux.createStore({
   // 取消关注摄影师
   onUnMarkSuccess: function(res){
     if(res.Success){
-      this.data.mark = res.Success;
+      this.data.unMark = res.Success;
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
