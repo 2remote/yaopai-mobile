@@ -4,7 +4,11 @@ import SidePage from '../UI/SidePage';
 import GrapherIntro from './GrapherIntro';
 import WorkIntroGrapherList from '../common/WorkIntroGrapherList';
 
-import { API_URL } from '../../api';
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import AlbumsActions from '../../actions/AlbumsActions'
+import AlbumsStore from '../../stores/AlbumsStore'
+
 import Share from '../Share';
 import { TITLE } from '../Tools';
 import WechatShare from '../Weixin/WechatShare';
@@ -16,49 +20,22 @@ class GrapherDetailPage extends React.Component {
     super(props);
     this.state = {
       grapherInfo:{
-        User: {
-          NickName: '读取中...'
-        }
-      }
+        User: { NickName: '读取中...', },
+      },
+      works: [],
     }
   }
 
   componentWillMount() {
-    const id = this.props.params.Id;
-    const grapherInfo = 'Photographer.Get';
-    const listWorkDetail = 'Albums.Search';
-    const fields = '&Fields=Id,NickName,CityName,Avatar,Signature,TotalAlbums,Sales,Marks,MarkExist';
-    const filter = '&Id='+id;
-    const url = API_URL + grapherInfo + fields + filter;
+    const UserId = this.props.params.Id;
+    // 蛋疼的传参
+    AlbumsActions.search(null, null, null, null, "", UserId);
+  }
 
-    $.ajax ({
-      url: url,
-      dataType: 'json',
-      cache: false,
-      success: function(data){
-        this.setState({grapherInfo: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-
-    const worksUrl = API_URL + listWorkDetail + '&Fields=Id,Cover,Cut,Title,Price,Photos.id,Views' + '&UserId=' + id;
-
-    if(id){
-      $.ajax ({
-        url: worksUrl,
-        dataType: 'json',
-        cache: false,
-        success: function(data){
-          console.log(data)
-          this.setState({works: data.Result});
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.worksUrl, status, err.toString());
-        }.bind(this)
-      });
-    }
+  onSearchSuccess(data) {
+    this.setState({
+      works: data.workList,
+    })
   }
 
   render() {
@@ -69,8 +46,8 @@ class GrapherDetailPage extends React.Component {
       <DocumentTitle title={TITLE.grapherDetailPage + pageTitle}>
         <div className="grapherDetailPage">
           <SidePage />
-          <GrapherIntro data={this.state.grapherInfo} />
-          {this.state.works ? <WorkIntroGrapherList data={this.state.works} /> : ''}
+          <GrapherIntro id={this.props.params.Id} />
+          <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.Avatar} />
         </div>
       </DocumentTitle>
@@ -78,4 +55,5 @@ class GrapherDetailPage extends React.Component {
   }
 };
 
+ReactMixin.onClass(GrapherDetailPage, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'));
 export {GrapherDetailPage as default};
