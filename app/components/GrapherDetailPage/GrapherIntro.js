@@ -11,6 +11,7 @@ class GrapherIntro extends React.Component {
     super(props);
     this.state = {
       data: {},
+      isClickMark: false,
       markExist: false,
     }
     this.attention = this.attention.bind(this)
@@ -24,30 +25,34 @@ class GrapherIntro extends React.Component {
   onGetSuccess(data) {
     this.setState({
       data: data.photographer,
-      markExist: data.photographer.MarkExist,
+      // markExist: data.photographer.MarkExist,
     })
   }
 
   // 关注
   attention() {
+    this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     PhotographerActions.mark(this.props.id)
   }
   // 取消关注
   unAttention() {
+    this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
     PhotographerActions.unMark(this.props.id)
   }
 
   onMarkSuccess(data){
-    console.log('关注~'+data.mark)
+    this.setState({markExist: data.markExist})
   }
-  onUnMarkSuccess(data){
-    console.log('取关~'+data.unMark)
-  }
+  /* onMarkSuccess(data) 就够了，不需要 onUnMarkSuccess(data）,因为在 PhotographerStore.js 里，
+   * onMarkSuccess、onUnMarkSuccess 改变的是同一个值 markExist
+   */
+  // onUnMarkSuccess(data){
+  //   this.setState({markExist: data.markExist})
+  // }
   render() {
-    console.log('state'+this.state.markExist)
     const {data} = this.state
     return (
       <section className="grapherIntro">
@@ -57,18 +62,20 @@ class GrapherIntro extends React.Component {
           <p className="font_small">{data.Signature}</p>
           <p className="font_small"><i className="icon didian"></i>{data.CityName}</p>
           {
-            this.state.markExist
+            (this.state.isClickMark ? this.state.markExist : data.MarkExist)
             ?
             <ButtonAttention
               buttonType="btn-dark btn-attention-active"
               value="已关注"
               handleSubmit={this.unAttention}
+              iconType="attention_active"
             />
             :
             <ButtonAttention
               buttonType="btn-dark"
               value="关注我"
               handleSubmit={this.attention}
+              iconType="attention"
             />
           }
         </div>
@@ -86,6 +93,6 @@ class GrapherIntro extends React.Component {
 };
 
 ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onMarkSuccess'));
-ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onUnMarkSuccess'));
+// ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onUnMarkSuccess'));
 ReactMixin.onClass(GrapherIntro, Reflux.listenTo(PhotographerStore, 'onGetSuccess'));
 export {GrapherIntro as default};
