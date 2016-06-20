@@ -79,10 +79,8 @@ const WorkPage = React.createClass({
     this.history.pushState(null)
   },
   _onAlbumsStoreChange(data) {
-    if(data.flag == 'search'){
-      if(data.hintMessage){
-        console.log(data.hintMessage)
-      }else{
+    const handleByFlag = {
+      search: () => {
         this.setState({
           works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
@@ -90,28 +88,19 @@ const WorkPage = React.createClass({
           pageCount: data.pageCount
         })
         this.onHideToast()
-      }
-    }
-    if (data.flag == 'query'){
-      if (data.hintMessage){
-        console.log(data.hintMessage)
-      } else {
+      },
+      query: () => {
         this.setState({
           works: data.workList,
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount
         })
-      }
+      },
+      getTagList: () => this.setState({tags : data.tags})
     }
-    if (data.flag == 'getTagList'){
-      if (data.hintMessage){
-        console.log(data.hintMessage)
-      } else {
-        console.log('getTagList', data)
-        this.setState({tags : data.tags})
-      }
-    }
+
+    data.hintMessage ? console.log(data.hintMessage) : handleByFlag[data.flag]()
   },
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
