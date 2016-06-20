@@ -10,52 +10,54 @@ class GrapherIntro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mark: false,
-      unMark: false,
+      data: {},
+      markExist: false,
     }
     this.attention = this.attention.bind(this)
     this.unAttention = this.unAttention.bind(this)
   }
+
+  componentWillMount() {
+    PhotographerActions.get(this.props.id)
+  }
+
+  onGetSuccess(data) {
+    this.setState({
+      data: data.photographer,
+      markExist: data.photographer.MarkExist,
+    })
+  }
+
   // 关注
   attention() {
-    alert('关注成功')
-    PhotographerActions.mark(this.props.data.Id)
+    // TODO 如何防止用户多次提交
+    PhotographerActions.mark(this.props.id)
   }
   // 取消关注
   unAttention() {
-    confirm('确定取消关注吗')
-    PhotographerActions.unMark(this.props.data.Id)
+    // TODO 如何防止用户多次提交
+    // confirm('确定取消关注吗')
+    PhotographerActions.unMark(this.props.id)
   }
 
   onMarkSuccess(data){
-    this.setState({
-      mark: data.mark,
-    });
+    console.log('关注~'+data.mark)
+  }
+  onUnMarkSuccess(data){
+    console.log('取关~'+data.unMark)
   }
   render() {
-    const {data, from} = this.props;
-    let avatarSoruce = data.User ? avatarSoruce = data.Avatar : null;
-
-    let name = '读取中...';
-    if ( typeof data.User !== 'undefined'){
-      name = data.NickName;
-    }
-
-    let cityName = data.CityName;
-
-    if(from === 'interview' && data){
-      name = data.NickName;
-    };
-    console.log(data.MarkExist)
+    console.log('state'+this.state.markExist)
+    const {data} = this.state
     return (
       <section className="grapherIntro">
         <div className="baseInfo">
           <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}} />
-          <p className="nickname">{name}</p>
+          <p className="nickname">{data.NickName}</p>
           <p className="font_small">{data.Signature}</p>
-          <p className="font_small"><i className="icon didian"></i>{cityName}</p>
+          <p className="font_small"><i className="icon didian"></i>{data.CityName}</p>
           {
-            data.MarkExist
+            this.state.markExist
             ?
             <ButtonAttention
               buttonType="btn-dark btn-attention-active"
@@ -77,16 +79,13 @@ class GrapherIntro extends React.Component {
             <li><span className="count">{data.Marks}</span> 关注</li>
           </ul>
         </div>
+        {data.TotalAlbums ? '' : <p className="text_center">该摄影师暂未上传作品！</p>}
       </section>
     );
   }
 };
 
-ReactMixin.onClass(
-  GrapherIntro,
-  [
-    Reflux.listenTo(PhotographerStore, 'onMarkSuccess'),
-    Reflux.listenTo(PhotographerStore, 'onUnMarkSuccess')
-  ]
-);
+ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onMarkSuccess'));
+ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onUnMarkSuccess'));
+ReactMixin.onClass(GrapherIntro, Reflux.listenTo(PhotographerStore, 'onGetSuccess'));
 export {GrapherIntro as default};
