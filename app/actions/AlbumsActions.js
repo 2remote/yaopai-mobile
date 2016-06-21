@@ -53,7 +53,7 @@ function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10, UserId
     UserId,
     Tags: tags,
     Key: key,
-    Fields : 'Id,Title,UserId,Description,Service,Price,' +
+    Fields : 'Id,Title,UserId,Description,Service,Price,MarkExist,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
@@ -78,7 +78,7 @@ AlbumsActions.mark.listen(function(id){
   var data = {
     Id : id,
   };
-  HttpFactory.post(API.PHOTOGRAPHER.mark,data,this.success,this.failed);
+  HttpFactory.post(API.ALBUMS.mark,data,this.success,this.failed);
 });
 
 /*
@@ -88,7 +88,7 @@ AlbumsActions.unMark.listen(function(id){
   var data = {
     Id : id,
   };
-  HttpFactory.post(API.PHOTOGRAPHER.unMark,data,this.success,this.failed);
+  HttpFactory.post(API.ALBUMS.unMark,data,this.success,this.failed);
 });
 
 export {AlbumsActions as default};
