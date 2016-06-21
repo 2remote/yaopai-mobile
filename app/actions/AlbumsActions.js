@@ -14,6 +14,8 @@ var AlbumsActions = Reflux.createActions({
   'offSale' : {children:['success','failed']},
   'getTagList' : {children:['success','failed']},
   'getById' : {children:['success','failed']},
+  'mark' : {children : ['success','failed']},
+  'unMark' : {children : ['success','failed']},
 });
 
 /*
@@ -51,7 +53,7 @@ function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10, UserId
     UserId,
     Tags: tags,
     Key: key,
-    Fields : 'Id,Title,UserId,Description,Service,Price,' +
+    Fields : 'Id,Title,UserId,Description,Service,Price,MarkExist,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
@@ -67,6 +69,26 @@ AlbumsActions.getTagList.listen(function () {
     Fields : 'id,name,display,tags.id,tags.name,tags.display'
   };
   HttpFactory.post(API.TAG.list,data,this.success,this.failed);
+});
+
+/*
+  收藏作品
+*/
+AlbumsActions.mark.listen(function(id){
+  var data = {
+    Id : id,
+  };
+  HttpFactory.post(API.ALBUMS.mark,data,this.success,this.failed);
+});
+
+/*
+  取消收藏作品
+*/
+AlbumsActions.unMark.listen(function(id){
+  var data = {
+    Id : id,
+  };
+  HttpFactory.post(API.ALBUMS.unMark,data,this.success,this.failed);
 });
 
 export {AlbumsActions as default};

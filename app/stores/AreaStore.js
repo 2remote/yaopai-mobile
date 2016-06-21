@@ -7,7 +7,7 @@ var AreaStore = Reflux.createStore({
 
   init: function() {
     console.log('AreaStore initialized');
-    
+
     this.listenTo(AreaActions.getProvince.success,this.onGetProvinceSuccess);
     this.listenTo(AreaActions.getProvince.failed,this.onGetProvinceFailed);
     this.listenTo(AreaActions.getCity.success,this.onGetCitySuccess);
@@ -23,7 +23,6 @@ var AreaStore = Reflux.createStore({
     }
     this.data.flag = "province";
     this.trigger(this.data);
-    console.log(this.data);
   },
   onGetProvinceFailed : function(data){
     this.data.hintMessage = "网络出错了，请重试！";
