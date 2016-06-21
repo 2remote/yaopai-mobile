@@ -65,7 +65,7 @@ var PhotographerStore = Reflux.createStore({
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
-    this.data.flag = 'mark';
+    this.data.flag = 'photographer-mark';
     this.trigger(this.data);
   },
   // 取消关注摄影师
@@ -75,7 +75,7 @@ var PhotographerStore = Reflux.createStore({
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
-    this.data.flag = 'unMark';
+    this.data.flag = 'photographer-unMark';
     this.trigger(this.data);
   },
 });

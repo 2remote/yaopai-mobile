@@ -14,6 +14,8 @@ var AlbumsActions = Reflux.createActions({
   'offSale' : {children:['success','failed']},
   'getTagList' : {children:['success','failed']},
   'getById' : {children:['success','failed']},
+  'mark' : {children : ['success','failed']},
+  'unMark' : {children : ['success','failed']},
 });
 
 /*
@@ -67,6 +69,26 @@ AlbumsActions.getTagList.listen(function () {
     Fields : 'id,name,display,tags.id,tags.name,tags.display'
   };
   HttpFactory.post(API.TAG.list,data,this.success,this.failed);
+});
+
+/*
+  收藏作品
+*/
+AlbumsActions.mark.listen(function(id){
+  var data = {
+    Id : id,
+  };
+  HttpFactory.post(API.PHOTOGRAPHER.mark,data,this.success,this.failed);
+});
+
+/*
+  取消收藏作品
+*/
+AlbumsActions.unMark.listen(function(id){
+  var data = {
+    Id : id,
+  };
+  HttpFactory.post(API.PHOTOGRAPHER.unMark,data,this.success,this.failed);
 });
 
 export {AlbumsActions as default};
