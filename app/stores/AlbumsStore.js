@@ -178,7 +178,7 @@ var AlbumsStore = Reflux.createStore({
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
-    this.data.flag = 'albums-mark';
+    // this.data.flag = 'albums-mark';
     this.trigger(this.data);
   },
   // 取消收藏作品
@@ -188,7 +188,7 @@ var AlbumsStore = Reflux.createStore({
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
-    this.data.flag = 'albums-unMark';
+    // this.data.flag = 'albums-unMark';
     this.trigger(this.data);
   },
 });
