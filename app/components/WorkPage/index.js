@@ -7,7 +7,6 @@ import AlbumsActions from '../../actions/AlbumsActions'
 import AlbumsStore from '../../stores/AlbumsStore'
 import WorkIntroGrapherList from '../common/WorkIntroGrapherList'
 import SidePage from '../UI/SidePage'
-
 import AutoLoadPageMixin from '../AutoLoadPageMixin'
 import { LIST_ALL_WORKS, TITLE } from '../Tools'
 import ShowMenu from './ShowMenu'

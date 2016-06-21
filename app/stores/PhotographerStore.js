@@ -6,7 +6,8 @@ var PhotographerStore = Reflux.createStore({
     photographer : {},
     photographers : [],
     hitMessage : '',
-    flag : ''
+    flag : '',
+    markExist: false,
   },
   init: function() {
     console.log('PAuthStore initialized');
@@ -16,6 +17,10 @@ var PhotographerStore = Reflux.createStore({
     this.listenTo(PhotographerActions.list.failed,this.onFailed);
     this.listenTo(PhotographerActions.recommendList.success,this.onRecommendListSuccess);
     this.listenTo(PhotographerActions.recommendList.failed,this.onFailed);
+    this.listenTo(PhotographerActions.mark.success,this.onMarkSuccess);
+    this.listenTo(PhotographerActions.mark.failed,this.onFailed);
+    this.listenTo(PhotographerActions.unMark.success,this.onUnMarkSuccess);
+    this.listenTo(PhotographerActions.unMark.failed,this.onFailed);
   },
   onGetSuccess : function(res){
     if(res.Success){
@@ -51,7 +56,28 @@ var PhotographerStore = Reflux.createStore({
     }
     this.data.flag = 'recommendList';
     this.trigger(this.data);
-  }
+  },
+
+  // 关注摄影师
+  onMarkSuccess: function(res){
+    if(res.Success){
+      this.data.markExist = true;
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    this.data.flag = 'mark';
+    this.trigger(this.data);
+  },
+  // 取消关注摄影师
+  onUnMarkSuccess: function(res){
+    if(res.Success){
+      this.data.markExist = false;
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    this.data.flag = 'unMark';
+    this.trigger(this.data);
+  },
 });
 
 export {PhotographerStore as default};
