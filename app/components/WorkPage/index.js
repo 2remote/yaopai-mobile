@@ -35,9 +35,8 @@ const WorkPage = React.createClass({
   componentDidMount() {
     AlbumsActions.getTagList()
 
-    let tagListToInt = _.map(this.props.params.tag, num => parseInt(num) )
-    let nonemptyTagList = _.filter(tagListToInt, num => !isNaN(num) )
-    let thisIsACoolSearchKey = this.props.location.query.q
+    const nonemptyTagList = _.filter(this.props.params.tag, x => !_.isUndefined(x) )
+    const thisIsACoolSearchKey = this.props.location.query.q
 
     if (nonemptyTagList[0] || thisIsACoolSearchKey){
       this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, () => {
