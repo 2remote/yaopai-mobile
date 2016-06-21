@@ -2,7 +2,7 @@ import React from 'react';
 import WorkIntroGrapherRow from './WorkIntroGrapherRow';
 
 const WorkIntroGrapherList = ({data}) => {
-  console.log(data)
+  console.table(data)
   return (<div className="workIntroGrapherList">
     {
       data.map((work, i) =>
