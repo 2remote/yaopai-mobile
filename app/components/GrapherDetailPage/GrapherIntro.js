@@ -1,8 +1,11 @@
 import React from 'react';
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
+import { History } from 'react-router';
 import PhotographerActions from '../../actions/PhotographerActions';
 import PhotographerStore from '../../stores/PhotographerStore';
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 import { ButtonAttention } from '../UI/Button';
 import {imgModifier} from '../Tools';
 
@@ -10,6 +13,7 @@ class GrapherIntro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userData : {},
       data: {},
       isClickMark: false,
       markExist: false,
@@ -20,8 +24,14 @@ class GrapherIntro extends React.Component {
 
   componentWillMount() {
     PhotographerActions.get(this.props.id)
+    UserActions.currentUser()
+  }
+  // 获取登录信息
+  onUserLoad(userData) {
+    this.setState({ userData })
   }
 
+  // 获取摄影师基本信息
   onGetSuccess(data) {
     this.setState({
       data: data.photographer,
@@ -29,13 +39,23 @@ class GrapherIntro extends React.Component {
     })
   }
 
-  // 关注
+  // 点击关注
   attention() {
-    this.setState({isClickMark: true})
-    // TODO 如何防止用户多次提交
-    PhotographerActions.mark(this.props.id)
+    if(!this.state.userData.isLogin){ // 用户未登录
+      const confirmMsg = confirm("是否前往登录，然后收藏？");
+      if (confirmMsg == true) {
+        this.history.pushState({nextPage : this.props.pathname},'/login_page');
+      } else {
+
+      }
+
+    } else {
+      this.setState({isClickMark: true})
+      // TODO 如何防止用户多次提交
+      PhotographerActions.mark(this.props.id)
+    }
   }
-  // 取消关注
+  // 点击取消关注
   unAttention() {
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
@@ -44,7 +64,6 @@ class GrapherIntro extends React.Component {
   }
 
   onMarkSuccess(data){
-    console.log(data.markExist)
     this.setState({markExist: data.markExist})
   }
   /* onMarkSuccess(data) 就够了，不需要 onUnMarkSuccess(data）,因为在 PhotographerStore.js 里，
@@ -55,9 +74,6 @@ class GrapherIntro extends React.Component {
   // }
   render() {
     const {data} = this.state
-    console.log(this.state.markExist)
-    console.log(this.state.isClickMark)
-    console.log(data.MarkExist)
     return (
       <section className="grapherIntro">
         <div className="baseInfo">
@@ -98,4 +114,7 @@ class GrapherIntro extends React.Component {
 
 ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onMarkSuccess'));
 ReactMixin.onClass(GrapherIntro, Reflux.listenTo(PhotographerStore, 'onGetSuccess'));
+ReactMixin.onClass(GrapherIntro, Reflux.listenTo(UserStore, 'onUserLoad'));
+ReactMixin.onClass(GrapherIntro, History);
+
 export {GrapherIntro as default};
