@@ -35,6 +35,7 @@
     box-sizing                 : border-box;
     background                 : #000;
     color                      : #fff;
+    opacity: 0.85;
     @include slide-animation(top-bottom);
 
     .tag-title {
