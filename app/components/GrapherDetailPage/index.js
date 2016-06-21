@@ -47,7 +47,7 @@ class GrapherDetailPage extends React.Component {
       <DocumentTitle title={TITLE.grapherDetailPage + pageTitle}>
         <div className="grapherDetailPage">
           <SidePage />
-          <GrapherIntro id={this.props.params.Id} />
+          <GrapherIntro id={this.props.params.Id} pathname={this.props.location.pathname} />
           <WorkIntroGrapherList data={this.state.works} />
           <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={this.state.grapherInfo.Avatar} />
         </div>
