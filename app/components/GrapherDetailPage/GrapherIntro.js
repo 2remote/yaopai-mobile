@@ -42,7 +42,7 @@ class GrapherIntro extends React.Component {
   // 点击关注
   attention() {
     if(!this.state.userData.isLogin){ // 用户未登录
-      const confirmMsg = confirm("是否前往登录，然后收藏？");
+      const confirmMsg = confirm("是否前往登录，然后关注？");
       if (confirmMsg == true) {
         this.history.pushState({nextPage : this.props.pathname},'/login_page');
       } else {
