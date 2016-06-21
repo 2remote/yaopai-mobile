@@ -44,7 +44,7 @@ AlbumsActions.get.listen(function(id){
 AlbumsActions.search.listen( searchQuery )
 AlbumsActions.query.listen( searchQuery )
 
-function searchQuery(categoryId = null, pageIndex = 1, pageSize = 10, tags = null, key = "", UserId) {
+function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10, UserId) {
   const data = {
     PageIndex: pageIndex,
     PageSize: pageSize,
