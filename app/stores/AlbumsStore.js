@@ -13,7 +13,10 @@ var AlbumsStore = Reflux.createStore({
     pageIndex : 0, //当前页
     pageSize : 0, //companent设置页面大小
     total : 0, //当前查询条件下的作品总数
-    markExist: false,
+    markExist: {
+      isMark: false,
+      id: '',
+    },
   },
   init: function() {
     console.log('UploadWorksStore initialized');
@@ -174,7 +177,8 @@ var AlbumsStore = Reflux.createStore({
   // 收藏作品
   onMarkSuccess: function(res){
     if(res.Success){
-      this.data.markExist = true;
+      this.data.markExist.isMark = true
+      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
@@ -184,7 +188,8 @@ var AlbumsStore = Reflux.createStore({
   // 取消收藏作品
   onUnMarkSuccess: function(res){
     if(res.Success){
-      this.data.markExist = false;
+      this.data.markExist.isMark = false;
+      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }

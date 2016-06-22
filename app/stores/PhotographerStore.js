@@ -7,7 +7,11 @@ var PhotographerStore = Reflux.createStore({
     photographers : [],
     hitMessage : '',
     flag : '',
-    markExist: false,
+    markExist: {
+      isMark: false,
+      id: '',
+    },
+
   },
   init: function() {
     console.log('PAuthStore initialized');
@@ -61,7 +65,8 @@ var PhotographerStore = Reflux.createStore({
   // 关注摄影师
   onMarkSuccess: function(res){
     if(res.Success){
-      this.data.markExist = true;
+      this.data.markExist.isMark = true
+      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
@@ -71,7 +76,8 @@ var PhotographerStore = Reflux.createStore({
   // 取消关注摄影师
   onUnMarkSuccess: function(res){
     if(res.Success){
-      this.data.markExist = false;
+      this.data.markExist.isMark = false;
+      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg;
     }
