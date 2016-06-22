@@ -57,7 +57,7 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   onMarkSuccess(data){
-    if (data.markExist.id === this.props.data.Id) {
+    if (data.markExist.id == this.props.data.Id) {
       this.setState({
         markExist: data.markExist.isMark,
       })
@@ -65,7 +65,7 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   onUnMarkSuccess(data){
-    if (data.markExist.id === this.props.data.Id) {
+    if (data.markExist.id == this.props.data.Id) {
       this.setState({
         markExist: data.markExist.isMark,
       })

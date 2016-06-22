@@ -64,14 +64,21 @@ class GrapherIntro extends React.Component {
   }
 
   onMarkSuccess(data){
-    this.setState({markExist: data.markExist})
+    if (data.markExist.id == this.props.id) {
+      this.setState({
+        markExist: data.markExist.isMark,
+      })
+    }
   }
-  /* onMarkSuccess(data) 就够了，不需要 onUnMarkSuccess(data）,因为在 PhotographerStore.js 里，
-   * onMarkSuccess、onUnMarkSuccess 改变的是同一个值 markExist
-   */
-  // onUnMarkSuccess(data){
-  //   this.setState({markExist: data.markExist})
-  // }
+
+  onUnMarkSuccess(data){
+    if (data.markExist.id == this.props.id) {
+      this.setState({
+        markExist: data.markExist.isMark,
+      })
+    }
+  }
+
   render() {
     const {data} = this.state
     return (
@@ -113,6 +120,7 @@ class GrapherIntro extends React.Component {
 };
 
 ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onMarkSuccess'));
+ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onUnMarkSuccess'));
 ReactMixin.onClass(GrapherIntro, Reflux.listenTo(PhotographerStore, 'onGetSuccess'));
 ReactMixin.onClass(GrapherIntro, Reflux.listenTo(UserStore, 'onUserLoad'));
 ReactMixin.onClass(GrapherIntro, History);
