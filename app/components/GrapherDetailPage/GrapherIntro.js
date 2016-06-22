@@ -8,6 +8,8 @@ import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 import { ButtonAttention } from '../UI/Button';
 import {imgModifier} from '../Tools';
+import WechatShare from '../Weixin/WechatShare'
+import DocumentTitle from 'react-document-title'
 
 class GrapherIntro extends React.Component {
   constructor(props) {
@@ -81,8 +83,13 @@ class GrapherIntro extends React.Component {
 
   render() {
     const {data} = this.state
+    const title = this.state.NickName || '摄影师'
+    const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName
+    const wechatShareDesc = data.NickName + ':' + data.Signature
     return (
       <section className="grapherIntro">
+        <DocumentTitle title={title} />
+        <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={data.Avatar} />
         <div className="baseInfo">
           <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}} />
           <p className="nickname">{data.NickName}</p>
