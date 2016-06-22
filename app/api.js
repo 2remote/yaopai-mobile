@@ -85,6 +85,8 @@ var API_CONST = {
     offSale: API_URL + 'Albums.SalesOff',
     onSale: API_URL + 'Albums.SalesOn',
     getById: API_URL + 'Albums.Search',
+    mark: API_URL + 'Albums.Mark',
+    unMark: API_URL + 'Albums.UnMark',
   },
 
   INTERVIEW: {

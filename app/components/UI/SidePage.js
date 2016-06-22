@@ -47,7 +47,7 @@ class SidePage extends Component {
   render() {
     const userData = this.state.userData;
     let accountContent = <div></div>;
-    if(userData.isLogin){ // 用户未登录，跳转登录页
+    if(userData.isLogin){ // 用户已登录
       accountContent = (
         <div className="menu-slide-header">
           <Link className="link-box" to="/user_edit_profile">
@@ -66,7 +66,7 @@ class SidePage extends Component {
           </div>
         </div>
       )
-    } else {
+    } else { // 用户未登录，跳转登录页
       accountContent= (
           <div className="menu-slide-header">
             <Link className="link-box" to="/login_page">

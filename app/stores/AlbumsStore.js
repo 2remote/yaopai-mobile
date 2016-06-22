@@ -12,7 +12,8 @@ var AlbumsStore = Reflux.createStore({
     pageCount : 0, //当前查询条件下的总页数
     pageIndex : 0, //当前页
     pageSize : 0, //companent设置页面大小
-    total : 0 //当前查询条件下的作品总数
+    total : 0, //当前查询条件下的作品总数
+    markExist: false,
   },
   init: function() {
     console.log('UploadWorksStore initialized');
@@ -37,6 +38,11 @@ var AlbumsStore = Reflux.createStore({
     this.listenTo(AlbumsActions.offSale.failed,this.onFailed);
     this.listenTo(AlbumsActions.getTagList.success,this.onTagListSuccess);
     this.listenTo(AlbumsActions.getTagList.failed,this.onFailed);
+
+    this.listenTo(AlbumsActions.mark.success,this.onMarkSuccess);
+    this.listenTo(AlbumsActions.mark.failed,this.onFailed);
+    this.listenTo(AlbumsActions.unMark.success,this.onUnMarkSuccess);
+    this.listenTo(AlbumsActions.unMark.failed,this.onFailed);
   },
   onFailed : function(res){
     this.data.hintMessage = '网络错误';
@@ -163,7 +169,28 @@ var AlbumsStore = Reflux.createStore({
     }
     this.data.flag = 'getTagList';
     this.trigger(this.data);
-  }
+  },
+
+  // 收藏作品
+  onMarkSuccess: function(res){
+    if(res.Success){
+      this.data.markExist = true;
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    // this.data.flag = 'albums-mark';
+    this.trigger(this.data);
+  },
+  // 取消收藏作品
+  onUnMarkSuccess: function(res){
+    if(res.Success){
+      this.data.markExist = false;
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    // this.data.flag = 'albums-unMark';
+    this.trigger(this.data);
+  },
 });
 
 export {AlbumsStore as default};
