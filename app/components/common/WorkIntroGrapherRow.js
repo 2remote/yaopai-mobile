@@ -57,7 +57,19 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   onMarkSuccess(data){
-    this.setState({markExist: data.markExist})
+    if (data.markExist.id === this.props.data.Id) {
+      this.setState({
+        markExist: data.markExist.isMark,
+      })
+    }
+  }
+
+  onUnMarkSuccess(data){
+    if (data.markExist.id === this.props.data.Id) {
+      this.setState({
+        markExist: data.markExist.isMark,
+      })
+    }
   }
 
   render() {
@@ -84,11 +96,11 @@ class WorkIntroGrapherRow extends React.Component {
         {
           (this.state.isClickMark ? this.state.markExist : data.MarkExist)
           ?
-          <i className="button-collect-active icon phone"
+          <i className="button-collect-active icon collect"
              onClick={this.unAttention}
           />
           :
-          <i className="button-collect icon phone"
+          <i className="button-collect icon collect"
              onClick={this.attention}
           />
         }
@@ -122,6 +134,7 @@ class WorkIntroGrapherRow extends React.Component {
 }
 
 ReactMixin.onClass(WorkIntroGrapherRow,Reflux.listenTo(AlbumsStore, 'onMarkSuccess'));
+ReactMixin.onClass(WorkIntroGrapherRow,Reflux.listenTo(AlbumsStore, 'onUnMarkSuccess'));
 ReactMixin.onClass(WorkIntroGrapherRow, Reflux.listenTo(UserStore, 'onUserLoad'));
 ReactMixin.onClass(WorkIntroGrapherRow, History);
 export default WorkIntroGrapherRow;
