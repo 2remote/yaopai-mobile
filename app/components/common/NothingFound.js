@@ -6,7 +6,7 @@ const NothingFound = ({title}) => (
       <i className="icon book_icon" />&nbsp;没有找到想拍的类型？
     </header>
     <div className="card-body">
-      <img src="" className="fl"/>
+      <img src="../imgs/yp_weixin.jpg" className="fl"/>
       <p className="fr">
         长按左侧二维码添加 YAOPAI小秘书<br/>
         <span>为您订制个性拍摄服务</span>
