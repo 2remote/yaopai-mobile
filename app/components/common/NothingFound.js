@@ -8,7 +8,7 @@ const NothingFound = ({title}) => (
     <div className="card-body">
       <img src="" className="fl"/>
       <p className="fr">
-        长按左侧二维码添加YAOPAI小秘书<br/>
+        长按左侧二维码添加 YAOPAI小秘书<br/>
         <span>为您订制个性拍摄服务</span>
       </p>
     </div>
