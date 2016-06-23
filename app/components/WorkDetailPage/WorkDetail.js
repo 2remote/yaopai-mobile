@@ -139,10 +139,13 @@ var WorkDetail = React.createClass({
                   <span className="a">交付天数</span>
                   <span className="b">与摄影师协商</span>
                 </li>
-                <li>
+                <li style={{overflow:'auto',height:'auto'}}>
                   <i className="icon success_icon"></i>
                   <span className="a">实体产品</span>
                   <span className="b">{this.props.data.Detail.PhysicalSupport?'提供':'不提供'}</span>
+                  <div style={{lineHeight:'30px',color:'#888'}}>
+                    {this.props.data.Detail.PhysicalDetail===null?'':this.props.data.Detail.PhysicalDetail}
+                  </div>
                 </li>
                 <li>
                   <i className="icon success_icon"></i>
