@@ -37,7 +37,7 @@ AlbumsActions.get.listen(function(id){
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Photographer.Id,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
-    'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,' +
+    'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,Detail.PhysicalDetail,' +
     'Detail.UnitCount,Detail.SceneCount,Detail.PeopleCount,Detail.SeatCount,Detail.PlaceType',
   };
   HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
@@ -57,7 +57,7 @@ function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10, UserId
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
-    'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,' +
+    'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,Detail.PhysicalDetail,' +
     'Detail.UnitCount,Detail.SceneCount,Detail.PeopleCount,Detail.SeatCount,Detail.PlaceType',
   }
   HttpFactory.post(API.ALBUMS.search, data,this.success, this.failed)
