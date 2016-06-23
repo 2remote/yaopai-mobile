@@ -112,7 +112,7 @@ const WorkPage = React.createClass({
 
     const tagType = this.state.tags.map( x => x.Tags )
 
-    const { searchKey, selectedTags } = this.state
+    const { searchKey, selectedTags, works } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -128,7 +128,11 @@ const WorkPage = React.createClass({
             selectedTags = {selectedTags}
           />
 
-          <WorkIntroGrapherList data={this.state.works} />
+          <WorkIntroGrapherList
+            data = {works}
+            searchKey = {searchKey}
+            selectedTags = {selectedTags}
+          />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} />
           <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         </div>

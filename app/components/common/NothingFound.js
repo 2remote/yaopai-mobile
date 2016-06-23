@@ -1,18 +1,26 @@
 import React from "react"
 
 const NothingFound = ({title}) => (
-  <div style={{marginTop: 50}}>
-    <div className="title">{title}</div>
-    <div className="qrCode">
-      长按左侧二维码添加YAOPAI小秘书 <br />
-      为您订制个性拍摄服务 <br />
+  <section className="nothing-card">
+    <header className="card-header">
+      <i className="icon book_icon" />&nbsp;没有找到想拍的类型？
+    </header>
+    <div className="card-body">
+      <img src="../imgs/yp_weixin.jpg" className="fl"/>
+      <p className="fr">
+        长按左侧二维码添加 YAOPAI小秘书<br/>
+        <span>为您订制个性拍摄服务</span>
+      </p>
     </div>
-    <div>
-      您也可选择<br />
-      <a href="tel:+86-0371-6533-7727">免费电话咨询</a>
-    </div>
-
-  </div>
+    <footer className="card-footer">
+      <span>你也可以选择</span>
+      <div className="btn-block btn-small">
+        <a className="btn btn-black" href="tel:0371-65337727">
+          免费电话咨询
+        </a>
+      </div>
+    </footer>
+  </section>
 )
 
 export default NothingFound
