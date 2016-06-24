@@ -25,6 +25,8 @@ var PhotographerStore = Reflux.createStore({
     this.listenTo(PhotographerActions.mark.failed,this.onFailed);
     this.listenTo(PhotographerActions.unMark.success,this.onUnMarkSuccess);
     this.listenTo(PhotographerActions.unMark.failed,this.onFailed);
+    this.listenTo(PhotographerActions.query.success,this.onQuerySuccess);
+    this.listenTo(PhotographerActions.query.failed,this.onFailed);
   },
   onGetSuccess : function(res){
     if(res.Success){
@@ -82,6 +84,17 @@ var PhotographerStore = Reflux.createStore({
       this.data.hintMessage = res.ErrorMsg;
     }
     this.data.flag = 'photographer-unMark';
+    this.trigger(this.data);
+  },
+  onQuerySuccess: function(res) {
+    if(res.Success){
+      this.data.pageCount = res.PageCount;
+      this.data.photographers = res.Result;
+      this.data.hintMessage = '';
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    this.data.flag = 'photographer-query';
     this.trigger(this.data);
   },
 });

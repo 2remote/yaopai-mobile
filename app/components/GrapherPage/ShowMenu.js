@@ -1,16 +1,25 @@
-import React from 'react';
-import TagRow from './TagRow';
-import $ from 'jquery';
+import React from 'react'
+import $ from 'jquery'
 
-const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
-  const handleClick = () => $("#tagMenu").toggleClass('tagmenu-toggle');
+const ShowMenu = (args) => {
+  const {onSearch, reset, searchKey} = args
+  const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
+  const plzResetAllOfThem = (reset) => {
+    // 清空搜索框，标签，以及重置 state
+    searchText.value = ''
+    reset()
+  }
+  const searchReadyGo = () => {
+    let text = searchText.value.trim();
+    text && onSearch(text)
+  }
   let searchText;
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
-      {/*<div className="tagBtn" onClick={handleClick}>
-        筛选 <i className="icon down" />
-      </div> */}
+      <div className="tagBtn" onClick={handleClick}>
+        搜索 <i className="icon down" />
+      </div>
 
       <div className="tagMenu" id="tagMenu">
         <section className="input-group-dark">
@@ -18,23 +27,22 @@ const ShowMenu = ({onSearch, cities, catas, onSelectedTag}) => {
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
-            placeholder="搜索 作品名称/作品标签"
+            placeholder={searchKey || "搜索 摄影师昵称"}
+            onChange={searchReadyGo}
           />
-          <div onClick={() => {
-            let text = searchText.value.trim();
-            if (text) onSearch(text)
-          }}>
-            <span className="icon search icon-right"></span>
+        <div onClick={searchReadyGo}>
+          <span className="icon search search-icon icon-right"></span>
           </div>
         </section>
 
-        <span className="tag-title">拍摄地区 | Shooting Area</span>
-        <TagRow data={cities} onSelectedTag={onSelectedTag}/>
-        <span className="tag-title">拍摄种类 | Shooting Type</span>
-        <TagRow data={catas} onSelectedTag={onSelectedTag}/>
+        <div className="tagButton">
+          <button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>
+          {/*确定实际上就是隐藏*/}
+          <button className="yesImPretySure" onClick={handleClick}>确定</button>
+        </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ShowMenu;
+export default ShowMenu
