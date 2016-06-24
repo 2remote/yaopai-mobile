@@ -1,50 +1,135 @@
 import React from 'react';
-
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import { History } from 'react-router';
+import PhotographerActions from '../../actions/PhotographerActions';
+import PhotographerStore from '../../stores/PhotographerStore';
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import { ButtonAttention } from '../UI/Button';
 import {imgModifier} from '../Tools';
-import './index.scss';
+import WechatShare from '../Weixin/WechatShare'
+import DocumentTitle from 'react-document-title'
 
-var GrapherIntro = React.createClass({
-  getDefaultProps: function() {
-    return {
-      data: {
-       
-      }
-    };
-  },
-  render: function() {
-    let avatarSoruce = this.props.data.User ? avatarSoruce = this.props.data.Avatar : null;
-    
-    let name = '读取中...';
-    if ( typeof this.props.data.User != 'undefined'){
-      name = this.props.data.NickName;
+class GrapherIntro extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData : {},
+      data: {},
+      isClickMark: false,
+      markExist: false,
     }
+    this.attention = this.attention.bind(this)
+    this.unAttention = this.unAttention.bind(this)
+  }
 
-    let cityName = this.props.data.CityName;
+  componentWillMount() {
+    PhotographerActions.get(this.props.id)
+    UserActions.currentUser()
+  }
+  // 获取登录信息
+  onUserLoad(userData) {
+    this.setState({ userData })
+  }
 
-    if(this.props.from === 'interview'){
-      if(this.props.data){
-        name = this.props.data.NickName;
-      };
-    };
+  // 获取摄影师基本信息
+  onGetSuccess(data) {
+    this.setState({
+      data: data.photographer,
+      // markExist: data.photographer.MarkExist,
+    })
+  }
+
+  // 点击关注
+  attention() {
+    if(!this.state.userData.isLogin){ // 用户未登录
+      const confirmMsg = confirm("是否前往登录，然后关注？");
+      if (confirmMsg == true) {
+        this.history.pushState({nextPage : this.props.pathname},'/login_page');
+      } else {
+
+      }
+
+    } else {
+      this.setState({isClickMark: true})
+      // TODO 如何防止用户多次提交
+      PhotographerActions.mark(this.props.id)
+    }
+  }
+  // 点击取消关注
+  unAttention() {
+    this.setState({isClickMark: true})
+    // TODO 如何防止用户多次提交
+    // confirm('确定取消关注吗')
+    PhotographerActions.unMark(this.props.id)
+  }
+
+  onMarkSuccess(data){
+    if (data.markExist.id == this.props.id) {
+      this.setState({
+        markExist: data.markExist.isMark,
+      })
+    }
+  }
+
+  onUnMarkSuccess(data){
+    if (data.markExist.id == this.props.id) {
+      this.setState({
+        markExist: data.markExist.isMark,
+      })
+    }
+  }
+
+  render() {
+    const {data} = this.state
+    const title = this.state.NickName || '摄影师'
+    const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName
+    const wechatShareDesc = data.NickName + ':' + data.Signature
     return (
-      <div ref="grapherIntro" className="grapherIntro">
+      <section className="grapherIntro">
+        <DocumentTitle title={title} />
+        <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={data.Avatar} />
         <div className="baseInfo">
-          <div className="avatar" style={{backgroundImage:`url('${this.props.data.Avatar}')`}} />
-          <p className="a">{name}</p>
-          <p className="b">{this.props.data.Signature}</p>
-          <p className="c"><i className="icon didian"></i>{cityName}</p>
-
+          <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}} />
+          <p className="nickname">{data.NickName}</p>
+          <p className="font_small">{data.Signature}</p>
+          <p className="font_small"><i className="icon didian"></i>{data.CityName}</p>
+          {
+            (this.state.isClickMark ? this.state.markExist : data.MarkExist)
+            ?
+            <ButtonAttention
+              buttonType="btn-dark btn-attention-active"
+              value="已关注"
+              handleSubmit={this.unAttention}
+              iconType="attention_active"
+            />
+            :
+            <ButtonAttention
+              buttonType="btn-dark"
+              value="关注我"
+              handleSubmit={this.attention}
+              iconType="attention"
+            />
+          }
         </div>
         <div className="order">
           <ul>
-            <li><span className="count">{this.props.data.TotalAlbums}</span> 作品</li>
-            <li><span className="count">{this.props.data.Sales}</span> 订单</li>
-            <li><span className="count">{this.props.data.Marks}</span> 关注</li>
+            <li><span className="count">{data.TotalAlbums}</span> 作品</li>
+            <li><span className="count">{data.Sales}</span> 订单</li>
+            <li><span className="count">{data.Marks}</span> 关注</li>
           </ul>
         </div>
-      </div>
+        {data.TotalAlbums ? '' : <p className="text_center">该摄影师暂未上传作品！</p>}
+      </section>
     );
   }
-});
+};
+
+ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onMarkSuccess'));
+ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onUnMarkSuccess'));
+ReactMixin.onClass(GrapherIntro, Reflux.listenTo(PhotographerStore, 'onGetSuccess'));
+ReactMixin.onClass(GrapherIntro, Reflux.listenTo(UserStore, 'onUserLoad'));
+ReactMixin.onClass(GrapherIntro, History);
 
 export {GrapherIntro as default};

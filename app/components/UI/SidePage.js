@@ -47,7 +47,7 @@ class SidePage extends Component {
   render() {
     const userData = this.state.userData;
     let accountContent = <div></div>;
-    if(userData.isLogin){ // 用户未登录，跳转登录页
+    if(userData.isLogin){ // 用户已登录
       accountContent = (
         <div className="menu-slide-header">
           <Link className="link-box" to="/user_edit_profile">
@@ -66,7 +66,7 @@ class SidePage extends Component {
           </div>
         </div>
       )
-    } else {
+    } else { // 用户未登录，跳转登录页
       accountContent= (
           <div className="menu-slide-header">
             <Link className="link-box" to="/login_page">
@@ -123,7 +123,7 @@ class SidePage extends Component {
 
             <footer className="menu-slide-footer">
               客服热线<br />
-            <a href="tel:400-1122-3323">0371-65337727</a>
+            <a href="tel:0371-65337727">0371-65337727</a>
             </footer>
           </div>
         </div>

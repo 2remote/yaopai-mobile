@@ -66,6 +66,7 @@ var WorkDetailPage = React.createClass({
     console.table(this.state.data);
     return (
       <div className="workDetailPage" onload={this.showTop()}>
+        <DocumentTitle title={this.state.data.Title + TITLE.workDetailPage} />
         <SidePage />
         <WorkTitle data={this.state.data} />
         <WorkDetail data={this.state.data} />

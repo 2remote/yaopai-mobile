@@ -3,7 +3,7 @@ import TagRow from './TagRow';
 import $ from 'jquery';
 
 const ShowMenu = (args) => {
-  const {onSearch, cities, catas, onSelectedTag, reset, searchKey} = args
+  const {tagType, onSearch, onSelectedTag, reset, searchKey} = args
   const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
@@ -38,9 +38,9 @@ const ShowMenu = (args) => {
         </section>
 
         <span className="tag-title">拍摄地区 | Shooting Area</span>
-        <TagRow data={cities} args={args} tagRowClass="tagColBox1"/>
+        <TagRow data={tagType[1] || []} args={args} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | Shooting Type</span>
-        <TagRow data={catas} args={args} tagRowClass="tagColBox2"/>
+        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
         <div className="tagButton">
           <button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>
           {/*确定实际上就是隐藏*/}

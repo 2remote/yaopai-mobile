@@ -10,7 +10,7 @@ var Local_Href="";
 
 if(typeof window != 'undefined'){
   Local_Host = window.location.host;
-  Local_Href = window.location.href;  
+  Local_Href = window.location.href;
 }
 
 //根据local host切换api
@@ -72,7 +72,9 @@ var API_CONST = {
     viewAudit: API_URL + 'Photographer.ViewAudit',
     get: API_URL + 'Photographer.Get',
     list: API_URL + 'Photographer.Search',
-    viewAdd: API_URL + 'Photographer.ViewAdd'
+    viewAdd: API_URL + 'Photographer.ViewAdd',
+    mark: API_URL + 'Photographer.Mark',
+    unMark: API_URL + 'Photographer.UnMark',
   },
   ALBUMS: {
     add: API_URL + 'Albums.Add',
@@ -80,10 +82,11 @@ var API_CONST = {
     delete: API_URL + 'Albums.Delete',
     get: API_URL + 'Albums.Get',
     search: API_URL + 'Albums.Search',
-    categories: API_URL + 'AlbumsCategory.Search',
     offSale: API_URL + 'Albums.SalesOff',
     onSale: API_URL + 'Albums.SalesOn',
     getById: API_URL + 'Albums.Search',
+    mark: API_URL + 'Albums.Mark',
+    unMark: API_URL + 'Albums.UnMark',
   },
 
   INTERVIEW: {
@@ -95,11 +98,11 @@ var API_CONST = {
     search: API_URL + 'Activity.Search',
     get: API_URL + 'Activity.Get'
   },
-  
+
   AD: {
     list: API_URL + 'Ad.List'
   },
-  
+
   TAG: {
     list: API_URL + 'Tag.List'
   },

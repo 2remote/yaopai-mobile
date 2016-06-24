@@ -12,7 +12,11 @@ var AlbumsStore = Reflux.createStore({
     pageCount : 0, //当前查询条件下的总页数
     pageIndex : 0, //当前页
     pageSize : 0, //companent设置页面大小
-    total : 0 //当前查询条件下的作品总数
+    total : 0, //当前查询条件下的作品总数
+    markExist: {
+      isMark: false,
+      id: '',
+    },
   },
   init: function() {
     console.log('UploadWorksStore initialized');
@@ -26,10 +30,8 @@ var AlbumsStore = Reflux.createStore({
     this.listenTo(AlbumsActions.delete.failed,this.onFailed);
     this.listenTo(AlbumsActions.search.success,this.onSearchSuccess);
     this.listenTo(AlbumsActions.search.failed,this.onFailed);
-    this.listenTo(AlbumsActions.searchByKey.success,this.onSearchByKeySuccess);
-    this.listenTo(AlbumsActions.searchByKey.failed,this.onFailed);
-    this.listenTo(AlbumsActions.searchByTags.success,this.onSearchByTagsSuccess);
-    this.listenTo(AlbumsActions.searchByTags.failed,this.onFailed);
+    this.listenTo(AlbumsActions.query.success,this.onQuerySuccess);
+    this.listenTo(AlbumsActions.query.failed,this.onFailed);
 
     this.listenTo(AlbumsActions.getMyAlbums.success,this.onGetMyAlbumsSuccess);
     this.listenTo(AlbumsActions.getMyAlbums.failed,this.onFailed);
@@ -39,6 +41,11 @@ var AlbumsStore = Reflux.createStore({
     this.listenTo(AlbumsActions.offSale.failed,this.onFailed);
     this.listenTo(AlbumsActions.getTagList.success,this.onTagListSuccess);
     this.listenTo(AlbumsActions.getTagList.failed,this.onFailed);
+
+    this.listenTo(AlbumsActions.mark.success,this.onMarkSuccess);
+    this.listenTo(AlbumsActions.mark.failed,this.onFailed);
+    this.listenTo(AlbumsActions.unMark.success,this.onUnMarkSuccess);
+    this.listenTo(AlbumsActions.unMark.failed,this.onFailed);
   },
   onFailed : function(res){
     this.data.hintMessage = '网络错误';
@@ -83,7 +90,7 @@ var AlbumsStore = Reflux.createStore({
     this.data.flag = 'delete';
     this.trigger(this.data);
   },
-  onSearchByTagsSuccess : function(res){
+  onQuerySuccess : function(res){
     if(res.Success){
       this.data.count = res.Count;
       this.data.pageCount = res.PageCount;
@@ -96,23 +103,7 @@ var AlbumsStore = Reflux.createStore({
       this.data.workList = [];
       this.data.hintMessage = res.ErrorMsg;
     }
-    this.data.flag = 'searchByTags';
-    this.trigger(this.data);
-  },
-  onSearchByKeySuccess : function(res){
-    if(res.Success){
-      this.data.count = res.Count;
-      this.data.pageCount = res.PageCount;
-      this.data.pageIndex = res.PageIndex;
-      this.data.pageSize = res.PageSize;
-      this.data.total = res.Total;
-      this.data.workList = res.Result;
-      this.data.hintMessage = '';
-    }else{
-      this.data.workList = [];
-      this.data.hintMessage = res.ErrorMsg;
-    }
-    this.data.flag = 'searchByKey';
+    this.data.flag = 'query';
     this.trigger(this.data);
   },
   onSearchSuccess : function(res){
@@ -181,7 +172,30 @@ var AlbumsStore = Reflux.createStore({
     }
     this.data.flag = 'getTagList';
     this.trigger(this.data);
-  }
+  },
+
+  // 收藏作品
+  onMarkSuccess: function(res){
+    if(res.Success){
+      this.data.markExist.isMark = true
+      this.data.markExist.id = res.DebugData.Id
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    // this.data.flag = 'albums-mark';
+    this.trigger(this.data);
+  },
+  // 取消收藏作品
+  onUnMarkSuccess: function(res){
+    if(res.Success){
+      this.data.markExist.isMark = false;
+      this.data.markExist.id = res.DebugData.Id
+    }else{
+      this.data.hintMessage = res.ErrorMsg;
+    }
+    // this.data.flag = 'albums-unMark';
+    this.trigger(this.data);
+  },
 });
 
 export {AlbumsStore as default};
