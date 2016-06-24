@@ -27,8 +27,16 @@ const GrapherPage = React.createClass({
     }
   },
   componentDidMount() {
-    //this.handleLoadGraphers(this.props.url);
-    PhotographerActions.list()
+    const 众里寻她千百度 = this.props.location.query.q
+
+    if (众里寻她千百度){
+      this.setState({searchKey: 众里寻她千百度}, () => {
+        // 如果存在url的制定tag，会直接执行过滤作品
+        PhotographerActions.query(this.state.searchKey)
+      })
+    } else {
+      PhotographerActions.list()
+    }
   },
   handleUpdateSearch(key) {
     console.warn(key);
@@ -36,14 +44,14 @@ const GrapherPage = React.createClass({
       // 读取search过滤的数据
       PhotographerActions.query(this.state.searchKey)
       // 把搜索和筛选结果写入路由
-      // this.history.pushState(null, , {q: key})
+      this.history.pushState(null, '/grapher', {q: key})
     })
   },
   reset() {
     // 重置 state 和接口
     this.setState({searchKey: ""})
     PhotographerActions.query()
-    this.history.pushState(null)
+    this.history.pushState(null, '/grapher')
   },
   _onPhotographerStoreChange(data) {
     console.table(data.photographers)
