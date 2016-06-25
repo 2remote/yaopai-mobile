@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react'
 import Reflux from 'reflux'
 import { History } from 'react-router'
@@ -15,23 +14,6 @@ import _ from 'underscore'
 import WechatShare from '../Weixin/WechatShare'
 import Toaster from '../Toast'
 import ShowMenu from './ShowMenu'
-=======
-import React from 'react';
-import Reflux from 'reflux';
-import $ from 'jquery';
-import DocumentTitle from 'react-document-title';
-import SidePage from '../UI/SidePage';
-import GrapherList from './GrapherList';
-import PhotographerStore from '../../stores/PhotographerStore';
-import PhotographerActions from '../../actions/PhotographerActions';
-import AutoLoadPageMixin from '../AutoLoadPageMixin';
-import { TITLE } from '../Tools';
-import './GrapherPage.scss'
-import _ from 'underscore';
-import WechatShare from '../Weixin/WechatShare';
-import Toaster from '../Toast';
-import ShowMenu from './ShowMenu';
->>>>>>> master
 
 const GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'), AutoLoadPageMixin, History],
@@ -56,7 +38,6 @@ const GrapherPage = React.createClass({
       PhotographerActions.list()
     }
   },
-<<<<<<< HEAD
   handleUpdateSearch(key) {
     console.warn(key);
     this.setState({searchKey: key}, () => {
@@ -65,12 +46,6 @@ const GrapherPage = React.createClass({
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, '/grapher', {q: key})
     })
-=======
-  componentDidMount: function() {
-    //this.handleLoadGraphers(this.props.url);
-    PhotographerActions.list();
-
->>>>>>> master
   },
   reset() {
     // 重置 state 和接口
@@ -107,15 +82,9 @@ const GrapherPage = React.createClass({
     this.onShowToast('努力加载中...')
     PhotographerActions.list(pageIndex, 10, null, 3, this.state.searchKey)
   },
-<<<<<<< HEAD
   render() {
 
     const { searchKey } = this.state
-=======
-  render: function() {
-    var cities = [];
-    var catas = [];
->>>>>>> master
 
     return (
       <DocumentTitle title={TITLE.grapherPage}>
@@ -135,8 +104,4 @@ const GrapherPage = React.createClass({
   }
 })
 
-<<<<<<< HEAD
 export {GrapherPage as default}
-=======
-export {GrapherPage as default};
->>>>>>> master
