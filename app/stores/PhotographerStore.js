@@ -86,6 +86,7 @@ var PhotographerStore = Reflux.createStore({
     this.data.flag = 'photographer-unMark';
     this.trigger(this.data);
   },
+
   onQuerySuccess: function(res) {
     if(res.Success){
       this.data.pageCount = res.PageCount;
