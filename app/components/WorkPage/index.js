@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import Reflux from 'reflux'
 import { History } from 'react-router'
@@ -17,6 +18,29 @@ import Toaster from '../Toast'
 const WorkPage = React.createClass({
   mixins: [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
   getInitialState() {
+=======
+
+import React from 'react';
+import Reflux from 'reflux';
+import { History } from 'react-router';
+import DocumentTitle from 'react-document-title';
+import $ from 'jquery';
+import AlbumsActions from '../../actions/AlbumsActions';
+import AlbumsStore from '../../stores/AlbumsStore';
+import WorkIntroGrapherList from './WorkIntroGrapherList';
+import SidePage from '../UI/SidePage';
+
+import AutoLoadPageMixin from '../AutoLoadPageMixin';
+import { LIST_ALL_WORKS, TITLE } from '../Tools';
+import ShowMenu from './ShowMenu';
+import _ from 'underscore';
+import WechatShare from '../Weixin/WechatShare';
+import Toaster from '../Toast';
+
+var WorkPage = React.createClass({
+  mixins : [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
+  getInitialState: function() {
+>>>>>>> master
     return {
       pageIndex: 1,
       pageCount: 0,
@@ -34,6 +58,10 @@ const WorkPage = React.createClass({
   },
   componentDidMount() {
     AlbumsActions.getTagList()
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
     const nonemptyTagList = _.filter(this.props.params.tag, x => !_.isUndefined(x) )
     const thisIsACoolSearchKey = this.props.location.query.q
@@ -77,8 +105,15 @@ const WorkPage = React.createClass({
     this.history.pushState(null)
   },
   _onAlbumsStoreChange(data) {
+<<<<<<< HEAD
     const handleByFlag = {
       search: () => {
+=======
+    if(data.flag == 'search'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+>>>>>>> master
         this.setState({
           works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
@@ -86,8 +121,30 @@ const WorkPage = React.createClass({
           pageCount: data.pageCount
         })
         this.onHideToast()
+<<<<<<< HEAD
       },
       query: () => {
+=======
+      }
+    }
+    if(data.flag == 'searchByKey'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+        this.setState({
+          works: data.workList,
+          pageIndex: data.pageIndex,
+          total: data.total,
+          pageCount: data.pageCount
+        });
+
+      }
+    }
+    if(data.flag == 'searchByTags'){
+      if(data.hintMessage){
+        console.log(data.hintMessage);
+      }else{
+>>>>>>> master
         this.setState({
           works: data.workList,
           pageIndex: data.pageIndex,
@@ -102,11 +159,19 @@ const WorkPage = React.createClass({
   },
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
+<<<<<<< HEAD
     AlbumsActions.search(
       this.state.selectedTags.join(','),
       this.state.searchKey,
       pageIndex
     )
+=======
+    if(this.state.searchKey){
+      AlbumsActions.searchByKey(null, pageIndex, 10, null, this.state.searchKey)
+    } else {
+      AlbumsActions.search(null,pageIndex, 10, this.state.selectedTags.join(','));
+    }
+>>>>>>> master
   },
   render() {
 
@@ -120,7 +185,12 @@ const WorkPage = React.createClass({
           <SidePage />
 
           <ShowMenu
+<<<<<<< HEAD
             tagType = {tagType}
+=======
+            cities = {cities}
+            catas = {catas}
+>>>>>>> master
             onSelectedTag = {this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
             reset = {this.reset}
@@ -128,6 +198,7 @@ const WorkPage = React.createClass({
             selectedTags = {selectedTags}
           />
 
+<<<<<<< HEAD
           <WorkIntroGrapherList
             data = {works}
             searchKey = {searchKey}
@@ -135,6 +206,11 @@ const WorkPage = React.createClass({
           />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} />
           <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
+=======
+          <WorkIntroGrapherList data={this.state.works} />
+          <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} />
+          <Toaster ref="toast" worfPageIs={true} bottom={true} duration="1000000"/>
+>>>>>>> master
         </div>
       </DocumentTitle>
     )
