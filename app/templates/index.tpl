@@ -81,7 +81,11 @@
 
     <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
 
+<<<<<<< HEAD
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1466039963_9645805.css">
+=======
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1466562428_0336432.css">
+>>>>>>> dev
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">

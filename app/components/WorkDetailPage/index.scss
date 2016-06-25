@@ -12,16 +12,26 @@
     .title-a {
       height     : 40px;
       line-height: 40px;
-      font-size  : 18px;
+      font-size  : 0;
       padding    : 0 10px;
 
       .title {
         display: inline-block;
+        width: 75%;
+        font-size: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: normal;
+        word-wrap: break-word;
+        word-break: break-all;
       }
 
       .price {
-        display: inline-block;
-        float  : right;
+        font-size: 18px;
+        float: right;
+        width: 25%;
+        text-align: right;
       }
     }
 
