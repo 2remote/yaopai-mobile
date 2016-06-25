@@ -22,7 +22,7 @@ class WorkDetailPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photographer: {},
+      photographer: [],
       detail: {},
       photos: {},
       workData: {

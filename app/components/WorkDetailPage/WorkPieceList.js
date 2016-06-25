@@ -2,9 +2,11 @@ import React from 'react';
 import {imgModifier} from '../Tools';
 
 const WorkPieceList = ({workPieces}) => {
-  // console.log(typeof workPieces) // object
+  // 正常情况拿到 workPieces 后能用 workPieces.map() 方法
+  // console.log(workPieces) 看起来是数组，但是 console.log(typeof workPieces) // object
+  // 如此调用 workPieces.map() 会报错： workPieces.map is not a function
+  // 只好用下面的方法迂回一下 😓
   const workNodesHack = Array.prototype.slice.call(workPieces)
-  // 如果不把这个数组强制在转换成数组, 如此调用 workPieces.map() 会报错： workPieces.map is not a function
   const workNodes = workNodesHack.map((photo, i) =>
     <section key={i} style={{lineHeight: 0}} className="workPieceRow">
       <img
