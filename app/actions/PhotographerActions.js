@@ -8,10 +8,7 @@ var PhotographerActions = Reflux.createActions({
   'recommendList' : {children : ['success','failed']},
   'mark' : {children : ['success','failed']},
   'unMark' : {children : ['success','failed']},
-<<<<<<< HEAD
-=======
   'query' : {children : ['success','failed']},
->>>>>>> dev
 });
 /*
   得到指定id的摄影师信息
@@ -78,8 +75,6 @@ PhotographerActions.unMark.listen(function(id){
   HttpFactory.post(API.PHOTOGRAPHER.unMark,data,this.success,this.failed);
 });
 
-<<<<<<< HEAD
-=======
 // 查询摄影师
 PhotographerActions.query.listen(function (NickName = "", pageIndex = 1, pageSize = 10) {
   const data = {
@@ -94,5 +89,4 @@ PhotographerActions.query.listen(function (NickName = "", pageIndex = 1, pageSiz
   HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed)
 })
 
->>>>>>> dev
 export {PhotographerActions as default};

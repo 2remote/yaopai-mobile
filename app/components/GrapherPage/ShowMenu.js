@@ -17,15 +17,9 @@ const ShowMenu = (args) => {
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
-<<<<<<< HEAD
-      {/*<div className="tagBtn" onClick={handleClick}>
-        筛选 <i className="icon down" />
-      </div> */}
-=======
       <div className="tagBtn" onClick={handleClick}>
         搜索 <i className="icon down" />
       </div>
->>>>>>> dev
 
       <div className="tagMenu" id="tagMenu">
         <section className="input-group-dark">
@@ -36,16 +30,9 @@ const ShowMenu = (args) => {
             placeholder={searchKey || "搜索 摄影师昵称"}
             onChange={searchReadyGo}
           />
-<<<<<<< HEAD
-          <div onClick={() => {
-            let text = searchText.value.trim();
-            if (text) onSearch(text)
-          }}>
-            <span className="icon search icon-right"></span>
-=======
+
         <div onClick={searchReadyGo}>
           <span className="icon search search-icon icon-right"></span>
->>>>>>> dev
           </div>
         </section>
 

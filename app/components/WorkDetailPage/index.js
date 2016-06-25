@@ -85,11 +85,7 @@ class WorkDetailPage extends React.Component {
   render() {
     return (
       <div className="workDetailPage" onload={this.showTop()}>
-<<<<<<< HEAD
-        <DocumentTitle title={this.state.data.Title + TITLE.workDetailPage} />
-=======
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
->>>>>>> dev
         <SidePage />
         <WorkTitle data={this.state.workData} />
         <WorkDetail data={this.state.detail} />

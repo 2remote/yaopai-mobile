@@ -25,11 +25,8 @@ var PhotographerStore = Reflux.createStore({
     this.listenTo(PhotographerActions.mark.failed,this.onFailed);
     this.listenTo(PhotographerActions.unMark.success,this.onUnMarkSuccess);
     this.listenTo(PhotographerActions.unMark.failed,this.onFailed);
-<<<<<<< HEAD
-=======
     this.listenTo(PhotographerActions.query.success,this.onQuerySuccess);
     this.listenTo(PhotographerActions.query.failed,this.onFailed);
->>>>>>> dev
   },
   onGetSuccess : function(res){
     if(res.Success){
@@ -89,8 +86,7 @@ var PhotographerStore = Reflux.createStore({
     this.data.flag = 'photographer-unMark';
     this.trigger(this.data);
   },
-<<<<<<< HEAD
-=======
+
   onQuerySuccess: function(res) {
     if(res.Success){
       this.data.pageCount = res.PageCount;
@@ -102,7 +98,6 @@ var PhotographerStore = Reflux.createStore({
     this.data.flag = 'photographer-query';
     this.trigger(this.data);
   },
->>>>>>> dev
 });
 
 export {PhotographerStore as default};
