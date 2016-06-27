@@ -93,17 +93,19 @@ class WorkIntroGrapherRow extends React.Component {
 
     return (
       <div className="workIntroGrapherRow">
-        {
-          (this.state.isClickMark ? this.state.markExist : data.MarkExist)
-          ?
-          <i className="button-collect-active icon collect"
-             onClick={this.unAttention}
-          />
-          :
-          <i className="button-collect icon collect"
-             onClick={this.attention}
-          />
-        }
+        <div className="work-collect">
+          {
+            (this.state.isClickMark ? this.state.markExist : data.MarkExist)
+            ?
+            <i className="button-collect-active icon collect"
+               onClick={this.unAttention}
+            />
+            :
+            <i className="button-collect icon collect"
+               onClick={this.attention}
+            />
+          }
+        </div>
         <Link to={`/workDetail/${data.Id}`}>
           <div className="card-work" style={{height: 254/375*innerWidth}}>
             <LazyLoad threshold={100} once>
