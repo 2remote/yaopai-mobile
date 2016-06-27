@@ -8,6 +8,7 @@ var PhotographerActions = Reflux.createActions({
   'recommendList' : {children : ['success','failed']},
   'mark' : {children : ['success','failed']},
   'unMark' : {children : ['success','failed']},
+  'query' : {children : ['success','failed']},
 });
 /*
   得到指定id的摄影师信息
@@ -24,13 +25,14 @@ PhotographerActions.get.listen(function(id){
 /*
   list动作，查询摄影师
 */
-PhotographerActions.list.listen(function(pageIndex = 1,pageSize = 10, city = null, albumsCount = 3){
+PhotographerActions.list.listen(function(pageIndex = 1, pageSize = 10, city = null, albumsCount = 3, NickName = ""){
   var data = {
     Fields : 'ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,' +
     'Id,NickName,Avatar,Signature,TotalAlbums,Marks,Sales,Albums.Id,Albums.Cut',
     PageIndex : pageIndex,
     PageSize : pageSize,
     CityId : city,
+    NickName,
     AlbumsCount : albumsCount,
     ExistAlbums : true,
   };
@@ -72,5 +74,19 @@ PhotographerActions.unMark.listen(function(id){
   };
   HttpFactory.post(API.PHOTOGRAPHER.unMark,data,this.success,this.failed);
 });
+
+// 查询摄影师
+PhotographerActions.query.listen(function (NickName = "", pageIndex = 1, pageSize = 10) {
+  const data = {
+    Fields : 'ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,' +
+    'Id,NickName,Avatar,Signature,TotalAlbums,Marks,Sales,Albums.Id,Albums.Cut',
+    PageIndex : pageIndex,
+    PageSize : pageSize,
+    AlbumsCount : 3,
+    ExistAlbums : true,
+    NickName
+  }
+  HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed)
+})
 
 export {PhotographerActions as default};
