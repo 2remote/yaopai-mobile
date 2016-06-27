@@ -33,7 +33,7 @@ AlbumsActions.getById.listen(function(id){
 AlbumsActions.get.listen(function(id){
   var data = {
     Id : id,
-    Fields : 'Id,Title,UserId,Description,Service,Price,' +
+    Fields : 'Id,Title,UserId,Description,Service,Price,MarkExist,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.Avatar,Photographer.Id,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +

@@ -30,6 +30,7 @@ class WorkDetailPage extends React.Component {
         cover: '',
         description: '',
         id: '',
+        MarkExist: false,
       },
     }
   }
@@ -58,6 +59,7 @@ class WorkDetailPage extends React.Component {
             cover: data.workData.Cover,
             description: data.workData.Description,
             id: data.workData.Id,
+            markExist: data.workData.MarkExist,
           }
         });
       }
@@ -85,7 +87,7 @@ class WorkDetailPage extends React.Component {
       <div className="workDetailPage" onload={this.showTop()}>
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
         <SidePage />
-        <WorkTitle data={this.state.workData} />
+        <WorkTitle data={this.state.workData} id={this.state.workData.id} />
         <WorkDetail data={this.state.detail} />
         <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
         <WorkPieceList workPieces={this.state.photos} />
