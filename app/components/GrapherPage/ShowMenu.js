@@ -30,6 +30,7 @@ const ShowMenu = (args) => {
             placeholder={searchKey || "搜索 摄影师昵称"}
             onChange={searchReadyGo}
           />
+
         <div onClick={searchReadyGo}>
           <span className="icon search search-icon icon-right"></span>
           </div>
