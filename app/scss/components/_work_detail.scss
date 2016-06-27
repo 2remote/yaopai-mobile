@@ -9,6 +9,22 @@
       background-position: center center;
     }
 
+    .work-collect {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: $zindex-base;
+      width: 40px;
+      color: $white;
+      text-align: center;
+
+      i { font-size: 22px; }
+    }
+
+    .button-collect-active {
+      color: $red;
+    }
+
     .title-a {
       height     : 40px;
       line-height: 40px;
@@ -228,23 +244,6 @@
 
     .workPieceRow {
       margin-bottom: 10px;
-    }
-
-    .work-collect {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      z-index: $zindex-base;
-      width: 40px;
-      color: $white;
-      text-align: center;
-
-      i { font-size: 22px; }
-    }
-
-    .button-collect-active {
-      @extend .work-collect;
-      color: $red;
     }
   }
 
