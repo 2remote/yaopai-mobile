@@ -15,7 +15,6 @@ import AlbumsStore from '../../stores/AlbumsStore';
 import AlbumsActions from '../../actions/AlbumsActions';
 import { GET_WORK_DETAIL, TITLE } from '../Tools';
 import {History} from 'react-router'
-import './index.scss';
 import WechatShare from '../Weixin/WechatShare';
 
 class WorkDetailPage extends React.Component {
@@ -49,7 +48,6 @@ class WorkDetailPage extends React.Component {
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        console.log(data)
         this.setState({
           photographer : data.workData.Photographer,
           detail : data.workData.Detail,
