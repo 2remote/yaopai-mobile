@@ -6,6 +6,7 @@ class WorkDetail extends React.Component {
     this.state = {
       showPanel : false,
     }
+    this.handleClick = this.handleClick.bind(this)
   }
 
   getPlace(){
