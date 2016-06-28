@@ -37,9 +37,9 @@ const ShowMenu = (args) => {
           </div>
         </section>
 
-        <span className="tag-title">拍摄地区 | Shooting Area</span>
+        <span className="tag-title">拍摄地区 | PLACE</span>
         <TagRow data={tagType[1] || []} args={args} tagRowClass="tagColBox1"/>
-        <span className="tag-title">拍摄种类 | Shooting Type</span>
+        <span className="tag-title">拍摄种类 | CATEGORY</span>
         <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
         <div className="tagButton">
           <button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>
