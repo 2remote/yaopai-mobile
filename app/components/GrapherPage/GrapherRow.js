@@ -30,8 +30,7 @@ class GrapherRow extends React.Component {
     }
   }
   render() {
-    const rondomAvatar = '//user.file.aiyaopai.com/_randomAvatar/' + (parseInt(this.props.data.User.Id) % 47 + 1 ) + '.png';
-    const grapherAvatar = imgModifier(this.props.data.Avatar||rondomAvatar, "grapherAvatar");
+    const grapherAvatar = imgModifier(this.props.data.Avatar, "grapherAvatar");
     let pool = this.state.photographerAlbumPool;
     let currentId = this.props.data.Id;
     let covers = this.state.photographerAlbumPool[currentId] || [];
