@@ -24,7 +24,7 @@ import FindByMobileForm from './components/LoginPage/FindByMobileForm';
 import ChangePassWordForm from './components/LoginPage/ChangePassWordForm';
 import ReactDOM from 'react-dom';
 
-import UserCenterPage from './components/UserCenterPage';
+import UserCenterPage from './components/UserCenterPage/UserCenterPage';
 import UserEditProfile from './components/UserCenterPage/UserEditProfilePage';
 import UserNickNameChange from './components/UserCenterPage/UserNickNameChangePage';
 import UserGenderChange from './components/UserCenterPage/UserGenderChangePage';
