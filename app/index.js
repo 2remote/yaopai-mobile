@@ -102,7 +102,7 @@ function main(){
           </Route>
           {/*摄影师中心*/}
           <Route path="g">
-            <IndexRoute component={UserCenterPage} />
+            <IndexRoute component={GrapherCenterPage} />
             <Route path="order" component={GrapherOrderTabLayout} />
             <Route path="order/:id">
               <IndexRoute component={GrapherOrderDetailLayout}/>
