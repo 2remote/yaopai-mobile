@@ -122,8 +122,8 @@ exports.makeTextButton = function (title, content, link="javascript:;", router="
     return (
       <div className="weui_cells weui_cells_access" >
         <Link className="weui_cell" to={link} >
-            {makeTextButtonTitle(title)}
-            {makeTextButtonContent(content)}
+          {makeTextButtonTitle(title)}
+          {makeTextButtonContent(content)}
         </Link>
       </div>
     )
