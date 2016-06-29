@@ -76,13 +76,10 @@ function main(){
         <Route path="/changePassWordForm" component={ChangePassWordForm} />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
 
-        <Route path="/user_center" component={UserCenterPage} />
         <Route path="/user_edit_profile" component={UserEditProfile} />
         <Route path="/user_nickname_change" component={UserNickNameChange} />
         <Route path="/user_gender_change" component={UserGenderChange} />
         <Route path="/user_city_change" component={UserCityChange} />
-
-        <Route path="/grapher_center" component={GrapherCenterPage} />
 
         <Route path="center">
           {/*用户中心*/}

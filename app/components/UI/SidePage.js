@@ -113,7 +113,7 @@ class SidePage extends Component {
                   </Link>
                 </li>
                 <li className="pure-menu-item nav-list-bar">
-                  <Link className="link-box" to={userData.userType==0?"/user_center":"/grapher_center"} activeClassName="active">
+                  <Link className="link-box" to={userData.userType==0?"/center/u":"/center/g"} activeClassName="active">
                     <i className="menu-icon icon settings" />
                     <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                   </Link>
