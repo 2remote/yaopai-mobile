@@ -22,27 +22,31 @@ class UserAttentionList extends React.Component{
   }
 
   onQuerySuccess(data) {
-    console.log(data.photographers)
     this.setState({
       photoGraphers: data.photographers,
     })
   }
 
   render() {
-    const AttentionRow = this.state.photoGraphers.map((data, i) => (
-      <section className="collect-row" key={i}>
-        <div className="media-hd">
-          <img src={data.Avatar} />
-        </div>
-        <div className="media-bd">
-          <div className="media-header">
-            <p className="media-title">{data.NickName}</p>
-            <span>{data.CityName}</span>
+    let AttentionRow = <div></div>
+    if (!this.state.photoGraphers.length) {
+      AttentionRow = <div>你还没有收藏过作品</div>
+    } else {
+      AttentionRow = this.state.photoGraphers.map((data, i) => (
+        <section className="collect-row" key={i}>
+          <div className="media-hd">
+            <img src={data.Avatar} />
           </div>
-          <p className="media-desc">{data.Signature}</p>
-        </div>
-      </section>
-    ))
+          <div className="media-bd">
+            <div className="media-header">
+              <p className="media-title">{data.NickName}</p>
+              <span>{data.CityName}</span>
+            </div>
+            <p className="media-desc">{data.Signature}</p>
+          </div>
+        </section>
+      ))
+    }
 
     return(
       <section className="attention-list">

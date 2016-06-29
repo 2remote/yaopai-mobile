@@ -28,21 +28,26 @@ class UserCollectList extends React.Component{
   }
 
   render() {
-    const CollectRow = this.state.works.map((data, i) => (
-      <section className="collect-row" key={i}>
-        <div className="media-hd">
-          <img src={data.Cover} />
-        </div>
-        <div className="media-bd">
-          <div className="media-header">
-            <p className="media-title">{data.Title}</p>
-            <span>{data.Photographer.CityName}</span>
+    let CollectRow = <div></div>
+    if (!this.state.works.length) {
+      CollectRow = <div>你还没有关注过摄影师</div>
+    } else {
+      CollectRow = this.state.works.map((data, i) => (
+        <section className="collect-row" key={i}>
+          <div className="media-hd">
+            <img src={data.Cover} />
           </div>
-          <p className="media-desc">{data.Description}</p>
-          <p className="media-price">{data.Prace}</p>
-        </div>
-      </section>
-    ))
+          <div className="media-bd">
+            <div className="media-header">
+              <p className="media-title">{data.Title}</p>
+              <span>{data.Photographer.CityName}</span>
+            </div>
+            <p className="media-desc">{data.Description}</p>
+            <p className="media-price">{data.Prace}</p>
+          </div>
+        </section>
+      ))
+    }
 
     return(
       <section className="collect-list">
