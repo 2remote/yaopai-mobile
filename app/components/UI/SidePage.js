@@ -45,29 +45,35 @@ class SidePage extends Component {
   }
 
   render() {
-    const userData = this.state.userData;
-    let accountContent = <div></div>;
-    if(userData.isLogin){ // 用户已登录
-      accountContent = (
-        <div className="menu-slide-header">
-          <Link className="link-box" to="/user_edit_profile">
-            <img
-              width={90}
-              height={90}
-              src={userData.avatar ? parseImageUrl(userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"}
-            />
-            <div className="nick-name">{userData.userName}</div>
-          </Link>
-          <div className="logout">
-            <span
-              className="icon logout_icon"
-              onClick={this.logout}
-            />
-          </div>
-        </div>
+    // iOS 分享过来的链接隐藏掉菜单栏
+    if (this.props.shareFrom == 'ios') {
+      return (
+        <div />
       )
-    } else { // 用户未登录，跳转登录页
-      accountContent= (
+    } else {
+      const userData = this.state.userData;
+      let accountContent = <div></div>;
+      if(userData.isLogin) { // 用户已登录
+        accountContent = (
+          <div className="menu-slide-header">
+            <Link className="link-box" to="/user_edit_profile">
+              <img
+                width={90}
+                height={90}
+                src={userData.avatar ? parseImageUrl(userData.avatar,90,90) : "../imgs/sidePage/default-avatar.png"}
+              />
+              <div className="nick-name">{userData.userName}</div>
+            </Link>
+            <div className="logout">
+              <span
+                className="icon logout_icon"
+                onClick={this.logout}
+              />
+            </div>
+          </div>
+        )
+      } else { // 用户未登录，跳转登录页
+        accountContent= (
           <div className="menu-slide-header">
             <Link className="link-box" to="/login_page">
               <img
@@ -76,21 +82,19 @@ class SidePage extends Component {
               />
               <div className="login-msg">请登录</div>
             </Link>
-        </div>
-      )
-    }
-    return (
-      <section>
-        {/* Hamburger icon */}
-        <div id="menuLink" className="menu-link">
-          <i className="icon hamburgermenu"/>
-        </div>
-        <div id="actionSheet-wrap">
-          { /* 透明遮罩层 */ }
-          <div className="mask-transition" id="mask-menu"></div>
+          </div>
+        )
+      }
 
-          <div className="actionsheet" id="menu">
-            {accountContent}
+      return (
+        <section>
+          {/* Hamburger icon */}
+          <div id="menuLink" className="menu-link">
+            <i className="icon hamburgermenu"/>
+          </div>
+          <div id="actionSheet-wrap">
+            { /* 透明遮罩层 */ }
+            <div className="mask-transition" id="mask-menu">
 
             <nav className="menu-slide-nav pure-menu">
               <ul className="pure-menu-list">
@@ -121,14 +125,44 @@ class SidePage extends Component {
               </ul>
             </nav>
 
-            <footer className="menu-slide-footer">
-              客服热线<br />
-            <a href="tel:0371-65337727">0371-65337727</a>
-            </footer>
+              <nav className="menu-slide-nav pure-menu">
+                <ul className="pure-menu-list">
+                  <li className="pure-menu-item nav-list-bar">
+                    <Link to="/work" activeClassName="active">
+                      <i className="menu-icon icon home" />
+                      <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
+                    </Link>
+                  </li>
+                  {/*<li className="pure-menu-item nav-list-bar">
+                    <Link to="/main/discovery" activeClassName="active">
+                      <i className="menu-icon grid" />
+                      <div className="menu-button"><span>作品&nbsp;&nbsp;LIBRARY</span></div>
+                    </Link>
+                  </li>*/}
+                  <li className="pure-menu-item nav-list-bar">
+                    <Link to="/grapher" activeClassName="active">
+                      <i className="menu-icon icon camera" />
+                      <div className="menu-button"><span>摄影师&nbsp;&nbsp;Grapher</span></div>
+                    </Link>
+                  </li>
+                  <li className="pure-menu-item nav-list-bar">
+                    <Link className="link-box" to={userData.userType==0?"/user_center":"/grapher_center"} activeClassName="active">
+                      <i className="menu-icon icon settings" />
+                      <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+
+              <footer className="menu-slide-footer">
+                客服热线<br />
+              <a href="tel:0371-65337727">0371-65337727</a>
+              </footer>
+            </div>
           </div>
-        </div>
-      </section>
-    )
+        </section>
+      )
+    }
   }
 }
 

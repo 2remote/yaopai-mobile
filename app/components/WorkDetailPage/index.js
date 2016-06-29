@@ -32,6 +32,7 @@ class WorkDetailPage extends React.Component {
         id: '',
         MarkExist: false,
       },
+      shareFrom: this.props.location.query.sharefrom,
     }
   }
 
@@ -86,7 +87,7 @@ class WorkDetailPage extends React.Component {
     return (
       <div className="workDetailPage" onload={this.showTop()}>
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
-        <SidePage />
+        <SidePage shareFrom={this.state.shareFrom}/>
         <WorkTitle data={this.state.workData} id={this.state.workData.id} />
         <WorkDetail data={this.state.detail} />
         <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
