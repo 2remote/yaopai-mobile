@@ -20,13 +20,13 @@
 
 
     <!--上传图片Product脚本-->
-    <script src="http://cdn.staticfile.org/plupload/2.1.8/plupload.full.min.js"></script>
-    <script src="http://cdn.staticfile.org/plupload/2.1.8/i18n/zh_CN.js"></script>
+    <script type="text/javascript" src="/imgs/js/plupload.full.min.js"></script>
+    <script type="text/javascript" src="/imgs/js/plupload_zh_CN.js"></script>
 
-    <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
+    <script type="text/javascript" src="/imgs/js/qiniu.min.js"></script>
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1466562428_0336432.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
+    <link rel="stylesheet" type="text/css" href="/imgs/css/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
     {% } %}
