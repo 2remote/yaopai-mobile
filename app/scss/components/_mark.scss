@@ -14,3 +14,50 @@
     border-bottom: 1px $black solid;
   }
 }
+
+.collect-row {
+  @extend %flex-align;
+  padding: 10px;
+
+  .media-hd {
+    margin-right: 10px;
+    width: 110px;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+
+    img {
+      width: 100%;
+      max-height: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  .media-bd {
+    @extend %flex-1;
+
+    h4 {
+      font-weight: 400;
+      font-size: 17px;
+      width: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;//文字超过盒子宽度显示省略符号
+      white-space: nowrap;//文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止
+      /*不明白微信为毛写那么多和换行相关的属性*/
+      word-wrap: normal;
+      word-wrap: break-word;//允许长单词换行到下一行
+      word-break: break-all;//使用浏览器默认的换行规则
+    }
+
+    p {
+      color: #999999;
+      font-size: 13px;
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+}
