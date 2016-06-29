@@ -24,7 +24,7 @@ import FindByMobileForm from './components/LoginPage/FindByMobileForm';
 import ChangePassWordForm from './components/LoginPage/ChangePassWordForm';
 import ReactDOM from 'react-dom';
 
-import UserCenterPage from './components/UserCenterPage';
+import UserCenterPage from './components/UserCenterPage/UserCenterPage';
 import UserEditProfile from './components/UserCenterPage/UserEditProfilePage';
 import UserNickNameChange from './components/UserCenterPage/UserNickNameChangePage';
 import UserGenderChange from './components/UserCenterPage/UserGenderChangePage';
@@ -76,15 +76,15 @@ function main(){
         <Route path="/changePassWordForm" component={ChangePassWordForm} />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
 
-        <Route path="/user_center" component={UserCenterPage} />
-        <Route path="/user_edit_profile" component={UserEditProfile} />
-        <Route path="/user_nickname_change" component={UserNickNameChange} />
-        <Route path="/user_gender_change" component={UserGenderChange} />
-        <Route path="/user_city_change" component={UserCityChange} />
-
-        <Route path="/grapher_center" component={GrapherCenterPage} />
-
         <Route path="center">
+          {/*用户修改资料（普通用户和摄影师共用）*/}
+          <Route path="user_edit_profile">
+            <IndexRoute component={UserEditProfile} />
+            <Route path="user_nickname_change" component={UserNickNameChange} />
+            <Route path="user_gender_change" component={UserGenderChange} />
+            <Route path="user_city_change" component={UserCityChange} />
+          </Route>
+
           {/*用户中心*/}
           <Route path="u">
             <IndexRoute component={UserCenterPage} />
@@ -102,7 +102,7 @@ function main(){
           </Route>
           {/*摄影师中心*/}
           <Route path="g">
-            <IndexRoute component={UserCenterPage} />
+            <IndexRoute component={GrapherCenterPage} />
             <Route path="order" component={GrapherOrderTabLayout} />
             <Route path="order/:id">
               <IndexRoute component={GrapherOrderDetailLayout}/>

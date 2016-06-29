@@ -94,10 +94,36 @@ class SidePage extends Component {
           </div>
           <div id="actionSheet-wrap">
             { /* 透明遮罩层 */ }
-            <div className="mask-transition" id="mask-menu"></div>
+            <div className="mask-transition" id="mask-menu">
 
-            <div className="actionsheet" id="menu">
-              {accountContent}
+            <nav className="menu-slide-nav pure-menu">
+              <ul className="pure-menu-list">
+                <li className="pure-menu-item nav-list-bar">
+                  <Link to="/work" activeClassName="active">
+                    <i className="menu-icon icon home" />
+                    <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
+                  </Link>
+                </li>
+                {/*<li className="pure-menu-item nav-list-bar">
+                  <Link to="/main/discovery" activeClassName="active">
+                    <i className="menu-icon grid" />
+                    <div className="menu-button"><span>作品&nbsp;&nbsp;LIBRARY</span></div>
+                  </Link>
+                </li>*/}
+                <li className="pure-menu-item nav-list-bar">
+                  <Link to="/grapher" activeClassName="active">
+                    <i className="menu-icon icon camera" />
+                    <div className="menu-button"><span>摄影师&nbsp;&nbsp;Grapher</span></div>
+                  </Link>
+                </li>
+                <li className="pure-menu-item nav-list-bar">
+                  <Link className="link-box" to={userData.userType==0?"/center/u":"/center/g"} activeClassName="active">
+                    <i className="menu-icon icon settings" />
+                    <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
 
               <nav className="menu-slide-nav pure-menu">
                 <ul className="pure-menu-list">

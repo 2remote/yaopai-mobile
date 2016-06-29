@@ -120,7 +120,6 @@ class GrapherIntro extends React.Component {
             <li><span className="count">{data.Marks}</span> 关注</li>
           </ul>
         </div>
-        {data.TotalAlbums ? '' : <p className="text_center">该摄影师暂未上传作品！</p>}
       </section>
     );
   }
