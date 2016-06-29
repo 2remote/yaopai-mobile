@@ -145,7 +145,7 @@ class OrderSubmitResultLayout extends React.Component {
           </div>
         </div>
         <div style={{ padding: '15px 5px 5px'}}>
-          <button onClick={ () => location.href='#/user_center' } className="weui_btn weui_btn_primary">
+          <button onClick={ () => location.href='#/center/u' } className="weui_btn weui_btn_primary">
             返&nbsp;&nbsp;回
           </button>
         </div>
