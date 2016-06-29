@@ -1,0 +1,16 @@
+.mark-nav {
+  height: 50px;
+  width: 100%;
+  font-size: 0;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    width: 50%;
+    font-size: 14px;
+  }
+
+  .active {
+    border-bottom: 1px $black solid;
+  }
+}
