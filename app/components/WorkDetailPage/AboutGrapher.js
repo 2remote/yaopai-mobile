@@ -6,7 +6,7 @@ const AboutGrapher =({data, id}) => (
     <Link to={`/grapherDetail/${id}`}>
       <div className="avatar" style={
       {backgroundImage:`url(${data.Avatar})`,
-      backgroundSize:'contain',
+      backgroundSize:'cover',
       height:'80px',
       width:'80px',
       borderRadius:'50%'}
