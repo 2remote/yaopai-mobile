@@ -76,12 +76,15 @@ function main(){
         <Route path="/changePassWordForm" component={ChangePassWordForm} />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
 
-        <Route path="/user_edit_profile" component={UserEditProfile} />
-        <Route path="/user_nickname_change" component={UserNickNameChange} />
-        <Route path="/user_gender_change" component={UserGenderChange} />
-        <Route path="/user_city_change" component={UserCityChange} />
-
         <Route path="center">
+          {/*用户修改资料（普通用户和摄影师共用）*/}
+          <Route path="user_edit_profile">
+            <IndexRoute component={UserEditProfile} />
+            <Route path="user_nickname_change" component={UserNickNameChange} />
+            <Route path="user_gender_change" component={UserGenderChange} />
+            <Route path="user_city_change" component={UserCityChange} />
+          </Route>
+
           {/*用户中心*/}
           <Route path="u">
             <IndexRoute component={UserCenterPage} />
