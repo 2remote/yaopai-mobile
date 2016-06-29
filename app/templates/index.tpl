@@ -3,6 +3,7 @@
   manifest="{%=o.htmlWebpackPlugin.files.manifest %}" {% } %}>
   <head>
     <meta charset="UTF-8">
+    <meta name="apple-itunes-app" content="app-id=1105711466">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
@@ -10,62 +11,6 @@
 
     <title>{%=o.htmlWebpackPlugin.options.title %}</title>
 
-    <style>
-      @keyframes rotate {
-        0% {
-          -webkit-transform: rotate(0deg) scale(1);
-                  transform: rotate(0deg) scale(1); }
-        50% {
-          -webkit-transform: rotate(180deg) scale(0.6);
-                  transform: rotate(180deg) scale(0.6); }
-        100% {
-          -webkit-transform: rotate(360deg) scale(1);
-                  transform: rotate(360deg) scale(1); } }
-
-      .ball-clip-rotate-multiple {
-        position: relative; }
-        .ball-clip-rotate-multiple > div {
-          -webkit-animation-fill-mode: both;
-                  animation-fill-mode: both;
-          position: absolute;
-          left: -20px;
-          top: -20px;
-          border: 2px solid #fff;
-          border-bottom-color: transparent;
-          border-top-color: transparent;
-          border-radius: 100%;
-          height: 35px;
-          width: 35px;
-          -webkit-animation: rotate 1s 0s ease-in-out infinite;
-                  animation: rotate 1s 0s ease-in-out infinite; }
-          .ball-clip-rotate-multiple > div:last-child {
-            display: inline-block;
-            top: -10px;
-            left: -10px;
-            width: 15px;
-            height: 15px;
-            -webkit-animation-duration: 0.5s;
-                    animation-duration: 0.5s;
-            border-color: #fff transparent #fff transparent;
-            -webkit-animation-direction: reverse;
-                    animation-direction: reverse; }
-
-      .loader-container {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: black;
-        -webkit-transition: 1s;
-        transition: 1s;
-        z-index: 999; }
-
-      .loader-active {
-        position: relative;
-        left: 50%;
-        top: 50%; }
-    </style>
     <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/0.4.0/weui.min.css"/>
     <script type="text/javascript" src="/imgs/ua-parser.min.js"></script>
 
@@ -76,13 +21,13 @@
 
 
     <!--上传图片Product脚本-->
-    <script src="http://cdn.staticfile.org/plupload/2.1.8/plupload.full.min.js"></script>
-    <script src="http://cdn.staticfile.org/plupload/2.1.8/i18n/zh_CN.js"></script>
+    <script type="text/javascript" src="/imgs/js/plupload.full.min.js"></script>
+    <script type="text/javascript" src="/imgs/js/plupload_zh_CN.js"></script>
 
-    <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
+    <script type="text/javascript" src="/imgs/js/qiniu.min.js"></script>
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1466562428_0336432.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/slick-carousel/1.3.15/slick.css" />
+    <link rel="stylesheet" type="text/css" href="/imgs/css/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
     {% } %}
@@ -115,18 +60,6 @@
       WeChat = ua.indexOf('MicroMessenger') >= 0;
       // alert('ua of browser:' + WeChat);
 
-    </script>
-
-    <div id="loader-container" class="loader-container">
-      <div class="loader loader-active">
-        <div class="loader-inner ball-clip-rotate-multiple" >
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    </div>
-    <script>
-
       // UAParser会取得 iOS，WeChat 和version 8等状态，程序可以需求添加状态
       // 如：
       // Loader 只在iOS下运行，所以 Loader ＝ iOS。模块加载前要判断if(iOS)
@@ -154,17 +87,18 @@
       // +-----+--------+-------+--------+------------+---------+
       // | F   | F      | F     | F      | F          | F       |
       // +-----+--------+-------+--------+------------+---------+
-      if(iOS){
-        setTimeout(function(){
-          document.querySelector('.loader-container').style.opacity=0;
-          setTimeout(function(){
-            document.querySelector('.loader-container').style.display='none';
-          },1000);
-        },3000);
-      }else{
-        document.querySelector('.loader-container').style.display='none';
-      }
+
     </script>
+
+    <div id="loader-container" class="loader-container">
+      <div class="loader loader-active">
+        <div class="loader-inner ball-clip-rotate-multiple" >
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
     <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
     <div id="app"></div>
