@@ -1,16 +1,28 @@
+.collect-list,
+.attention-list { background: $white; }
+
 .mark-nav {
   height: 50px;
   width: 100%;
   font-size: 0;
   text-align: center;
+  border-bottom: 1px solid $gray;
+
+  .link-box {
+    display: inline-block;
+    width: 50%;
+  }
 
   a {
     display: inline-block;
-    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    color: $gray;
     font-size: 14px;
   }
 
   .active {
+    color: $black;
     border-bottom: 1px $black solid;
   }
 }

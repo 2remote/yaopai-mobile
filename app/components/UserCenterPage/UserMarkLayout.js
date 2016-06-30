@@ -3,8 +3,12 @@ import { Link } from 'react-router'
 
 const UserMarkLayout = () => (
   <nav className="mark-nav">
-    <Link to="/center/mark/user_collect" activeClassName="active">收藏</Link>
-    <Link to="/center/mark/user_attention" activeClassName="active">关注</Link>
+    <div className="link-box">
+      <Link to="/center/mark/user_collect" activeClassName="active">作品收藏</Link>
+    </div>
+    <div className="link-box">
+      <Link to="/center/mark/user_attention" activeClassName="active">摄影师关注</Link>
+    </div>
   </nav>
 )
 
