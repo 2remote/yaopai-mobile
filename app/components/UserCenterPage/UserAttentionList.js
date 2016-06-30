@@ -36,16 +36,11 @@ class UserAttentionList extends React.Component{
       AttentionRow = <div className="nothing-found">你还没有关注过摄影师：）</div>
     } else {
       AttentionRow = this.state.photoGraphers.map((data, i) => (
-<<<<<<< HEAD
         <section
           className="attention-row"
           key={i}
           onClick={() => this.props.history.replaceState(null,`grapherDetail/${data.Id}`)}
         >
-
-=======
-        <section className="attention-row" key={i}>
->>>>>>> dev
           <div
             className="media-hd"
             style={{backgroundImage:`url('${data.Avatar}')`, backgroundSize: 'cover'}}
