@@ -31,6 +31,8 @@ import UserGenderChange from './components/UserCenterPage/UserGenderChangePage';
 import UserCityChange from './components/UserCenterPage/UserCityChangePage';
 
 import GrapherCenterPage from './components/UserCenterPage/GrapherCenterPage';
+import UserAttentionList from './components/UserCenterPage/UserAttentionList';
+import UserCollectList from './components/UserCenterPage/UserCollectList';
 
 // imports UserCenter for User
 import UserOrderTabLayout from './components/layout/center/user/order/OrderTabLayout.jsx';
@@ -83,6 +85,13 @@ function main(){
             <Route path="user_nickname_change" component={UserNickNameChange} />
             <Route path="user_gender_change" component={UserGenderChange} />
             <Route path="user_city_change" component={UserCityChange} />
+          </Route>
+
+          {/*用户收藏/关注列表*/}
+          <Route path="mark">
+            <IndexRedirect to="user_collect" />
+            <Route path="user_collect" component={UserCollectList} />
+            <Route path="user_attention" component={UserAttentionList} />
           </Route>
 
           {/*用户中心*/}

@@ -46,16 +46,17 @@ AlbumsActions.get.listen(function(id){
 AlbumsActions.search.listen( searchQuery )
 AlbumsActions.query.listen( searchQuery )
 
-function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10, UserId) {
+function searchQuery(tags = null, key = "", pageIndex = 1, pageSize = 10, UserId, Mark) {
   const data = {
     PageIndex: pageIndex,
     PageSize: pageSize,
     UserId,
     Tags: tags,
     Key: key,
+    Mark,
     Fields : 'Id,Title,UserId,Description,Service,Price,MarkExist,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
-    'User.Id,Photographer.NickName,Photographer.Avatar,Views,Price,' +
+    'User.Id,Photographer.NickName,Photographer.CityName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
     'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,Detail.PhysicalDetail,' +
     'Detail.UnitCount,Detail.SceneCount,Detail.PeopleCount,Detail.SeatCount,Detail.PlaceType',
