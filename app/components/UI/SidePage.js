@@ -53,7 +53,7 @@ class SidePage extends Component {
     } else {
       const userData = this.state.userData;
       let accountContent = <div></div>;
-      if(userData.isLogin) { // 用户已登录
+      if(userData.isLogin){ // 用户已登录
         accountContent = (
           <div className="menu-slide-header">
             <Link className="link-box" to="/user_edit_profile">
@@ -74,18 +74,17 @@ class SidePage extends Component {
         )
       } else { // 用户未登录，跳转登录页
         accountContent= (
-          <div className="menu-slide-header">
-            <Link className="link-box" to="/login_page">
-              <img
-                src="../imgs/sidePage/default-avatar.png"
-                srcSet="../imgs/sidePage/default-avatar@2X.png 2x"
-              />
-              <div className="login-msg">请登录</div>
-            </Link>
+            <div className="menu-slide-header">
+              <Link className="link-box" to="/login_page">
+                <img
+                  src="../imgs/sidePage/default-avatar.png"
+                  srcSet="../imgs/sidePage/default-avatar@2X.png 2x"
+                />
+                <div className="login-msg">请登录</div>
+              </Link>
           </div>
         )
       }
-
       return (
         <section>
           {/* Hamburger icon */}
@@ -94,36 +93,10 @@ class SidePage extends Component {
           </div>
           <div id="actionSheet-wrap">
             { /* 透明遮罩层 */ }
-            <div className="mask-transition" id="mask-menu">
+            <div className="mask-transition" id="mask-menu"></div>
 
-            <nav className="menu-slide-nav pure-menu">
-              <ul className="pure-menu-list">
-                <li className="pure-menu-item nav-list-bar">
-                  <Link to="/work" activeClassName="active">
-                    <i className="menu-icon icon home" />
-                    <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
-                  </Link>
-                </li>
-                {/*<li className="pure-menu-item nav-list-bar">
-                  <Link to="/main/discovery" activeClassName="active">
-                    <i className="menu-icon grid" />
-                    <div className="menu-button"><span>作品&nbsp;&nbsp;LIBRARY</span></div>
-                  </Link>
-                </li>*/}
-                <li className="pure-menu-item nav-list-bar">
-                  <Link to="/grapher" activeClassName="active">
-                    <i className="menu-icon icon camera" />
-                    <div className="menu-button"><span>摄影师&nbsp;&nbsp;Grapher</span></div>
-                  </Link>
-                </li>
-                <li className="pure-menu-item nav-list-bar">
-                  <Link className="link-box" to={userData.userType==0?"/center/u":"/center/g"} activeClassName="active">
-                    <i className="menu-icon icon settings" />
-                    <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <div className="actionsheet" id="menu">
+              {accountContent}
 
               <nav className="menu-slide-nav pure-menu">
                 <ul className="pure-menu-list">
@@ -146,7 +119,7 @@ class SidePage extends Component {
                     </Link>
                   </li>
                   <li className="pure-menu-item nav-list-bar">
-                    <Link className="link-box" to={userData.userType==0?"/user_center":"/grapher_center"} activeClassName="active">
+                    <Link className="link-box" to={userData.userType==0?"/center/u":"/center/g"} activeClassName="active">
                       <i className="menu-icon icon settings" />
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                     </Link>
