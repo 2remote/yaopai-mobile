@@ -59,7 +59,7 @@ class WorkDetailPage extends React.Component {
             price: data.workData.Price,
             cover: data.workData.Cover,
             description: data.workData.Description,
-            id: data.workData.Id,
+            id: data.workData.Photographer.Id,
             markExist: data.workData.MarkExist,
           }
         });
