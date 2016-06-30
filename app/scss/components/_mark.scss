@@ -38,27 +38,45 @@
     line-height: 110px;
     text-align: center;
 
-    img {
-      width: 100%;
-      max-height: 100%;
+    .media-work {
+      display: inline-block;
+      width: 110px;
+      height: 110px;
       vertical-align: middle;
     }
   }
 
   .media-bd {
+    height: 110px;
     @extend %flex-1;
 
-    h4 {
-      font-weight: 400;
-      font-size: 17px;
+    .media-header {
       width: auto;
+      height: 30px;
+    }
+
+    .media-title {
+      width: 70%;
       overflow: hidden;
+      line-height: 30px;
+      font-weight: 400;
+      font-size: 16px;
+      color: $black;
       text-overflow: ellipsis;//文字超过盒子宽度显示省略符号
       white-space: nowrap;//文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止
       /*不明白微信为毛写那么多和换行相关的属性*/
       word-wrap: normal;
       word-wrap: break-word;//允许长单词换行到下一行
       word-break: break-all;//使用浏览器默认的换行规则
+    }
+
+    .media-city {
+      width: 40px;
+      height: 20px;
+      background: $black;
+      color: $white;
+      font-size: 12px;
+      line-height: 20px;
     }
 
     p {

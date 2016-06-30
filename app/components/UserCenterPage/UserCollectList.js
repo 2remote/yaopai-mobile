@@ -35,12 +35,15 @@ class UserCollectList extends React.Component{
       CollectRow = this.state.works.map((data, i) => (
         <section className="collect-row" key={i}>
           <div className="media-hd">
-            <img src={data.Cover} />
+            <span
+              style={{background: `url(${data.Cover}) no-repeat`, backgroundSize: 'cover'}}
+              className="media-work"
+            />
           </div>
           <div className="media-bd">
             <div className="media-header">
-              <p className="media-title">{data.Title}</p>
-              <span>{data.Photographer.CityName}</span>
+              <p className="media-title fl">{data.Title}</p>
+              <span className="media-city fr">{data.Photographer.CityName}</span>
             </div>
             <p className="media-desc">{data.Description}</p>
             <p className="media-price">{data.Prace}</p>
