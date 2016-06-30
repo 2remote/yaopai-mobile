@@ -15,7 +15,6 @@ import AlbumsStore from '../../stores/AlbumsStore';
 import AlbumsActions from '../../actions/AlbumsActions';
 import { GET_WORK_DETAIL, TITLE } from '../Tools';
 import {History} from 'react-router'
-import './index.scss';
 import WechatShare from '../Weixin/WechatShare';
 
 class WorkDetailPage extends React.Component {
@@ -31,7 +30,9 @@ class WorkDetailPage extends React.Component {
         cover: '',
         description: '',
         id: '',
+        MarkExist: false,
       },
+      shareFrom: this.props.location.query.sharefrom,
     }
   }
 
@@ -49,7 +50,6 @@ class WorkDetailPage extends React.Component {
       if(data.hintMessage){
         console.log(data.hintMessage);
       }else{
-        console.log(data)
         this.setState({
           photographer : data.workData.Photographer,
           detail : data.workData.Detail,
@@ -60,6 +60,7 @@ class WorkDetailPage extends React.Component {
             cover: data.workData.Cover,
             description: data.workData.Description,
             id: data.workData.Id,
+            markExist: data.workData.MarkExist,
           }
         });
       }
@@ -86,8 +87,8 @@ class WorkDetailPage extends React.Component {
     return (
       <div className="workDetailPage" onload={this.showTop()}>
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
-        <SidePage />
-        <WorkTitle data={this.state.workData} />
+        <SidePage shareFrom={this.state.shareFrom}/>
+        <WorkTitle data={this.state.workData} id={this.state.workData.id} />
         <WorkDetail data={this.state.detail} />
         <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
         <WorkPieceList workPieces={this.state.photos} />
