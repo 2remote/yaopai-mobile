@@ -76,7 +76,7 @@ PhotographerActions.unMark.listen(function(id){
 });
 
 // 查询摄影师
-PhotographerActions.query.listen(function (NickName = "", pageIndex = 1, pageSize = 10, Mark) {
+PhotographerActions.query.listen(function (Key = "", pageIndex = 1, pageSize = 10, Mark) {
   const data = {
     Fields : 'ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,' +
     'Id,NickName,Avatar,Signature,TotalAlbums,Marks,Sales,Albums.Id,Albums.Cut',
@@ -85,7 +85,7 @@ PhotographerActions.query.listen(function (NickName = "", pageIndex = 1, pageSiz
     AlbumsCount : 3,
     ExistAlbums : true,
     Mark,
-    NickName
+    Key
   }
   HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed)
 })
