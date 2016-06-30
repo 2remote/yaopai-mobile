@@ -30,6 +30,7 @@
 .collect-row {
   @extend %flex-align;
   padding: 10px;
+  border-bottom: 1px solid $gray;
 
   .media-hd {
     margin-right: 10px;
@@ -53,6 +54,7 @@
     .media-header {
       width: auto;
       height: 30px;
+      margin-bottom: 10px;
     }
 
     .media-title {
@@ -71,23 +73,31 @@
     }
 
     .media-city {
+      margin-top: 7px;
       width: 40px;
       height: 20px;
+      text-align: center;
       background: $black;
       color: $white;
       font-size: 12px;
       line-height: 20px;
     }
 
-    p {
-      color: #999999;
-      font-size: 13px;
-      line-height: 1.2;
+    .media-desc {
+      height: 50px;
+      color: $gray;
+      font-size: 12px;
+      line-height: 25px;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+    }
+
+    .media-price {
+      font-size: 14px;
+      color: $black;
     }
   }
 }

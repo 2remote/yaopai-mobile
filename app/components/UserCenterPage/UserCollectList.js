@@ -48,7 +48,7 @@ class UserCollectList extends React.Component{
               </span>
             </div>
             <p className="media-desc">{data.Description}</p>
-            <p className="media-price">{data.Prace}</p>
+            <p className="media-price fr">￥{data.Price}/人</p>
           </div>
         </section>
       ))
