@@ -1,6 +1,15 @@
 .collect-list,
 .attention-list { background: $white; }
 
+.nothing-found {
+  height: 58px;
+  width: 100%;
+  line-height: 58px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .mark-nav {
   height: 50px;
   width: 100%;
