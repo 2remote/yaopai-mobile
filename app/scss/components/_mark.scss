@@ -30,6 +30,7 @@
 .collect-row {
   @extend %flex-align;
   padding: 10px;
+  border-bottom: 1px solid $gray;
 
   .media-hd {
     margin-right: 10px;
@@ -53,6 +54,7 @@
     .media-header {
       width: auto;
       height: 30px;
+      margin-bottom: 10px;
     }
 
     .media-title {
@@ -71,23 +73,58 @@
     }
 
     .media-city {
+      margin-top: 7px;
       width: 40px;
       height: 20px;
+      text-align: center;
       background: $black;
       color: $white;
       font-size: 12px;
       line-height: 20px;
     }
 
-    p {
-      color: #999999;
-      font-size: 13px;
-      line-height: 1.2;
+    .media-desc {
+      height: 50px;
+      color: $gray;
+      font-size: 12px;
+      line-height: 25px;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
     }
+
+    .media-price {
+      font-size: 14px;
+      color: $black;
+    }
+  }
+}
+
+.attention-row {
+  @extend .collect-row;
+  height: 80px;
+
+  .media-hd {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  .media-bd {
+    height: 60px;
+  }
+
+  .media-desc {
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;//文字超过盒子宽度显示省略符号
+    white-space: nowrap;//文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止
+    /*不明白微信为毛写那么多和换行相关的属性*/
+    word-wrap: normal;
+    word-wrap: break-word;//允许长单词换行到下一行
+    word-break: break-all;//使用浏览器默认的换行规则
   }
 }
