@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router';
+
 import UserMarkLayout from './UserMarkLayout';
 import { RouteTransition, presets } from 'react-router-transition'
 import {imgModifier} from '../Tools';
@@ -34,7 +36,12 @@ class UserAttentionList extends React.Component{
       AttentionRow = <div className="nothing-found">你还没有关注过摄影师：）</div>
     } else {
       AttentionRow = this.state.photoGraphers.map((data, i) => (
-        <section className="attention-row" key={i}>
+        <section
+          className="attention-row"
+          key={i}
+          onClick={() => this.props.history.replaceState(null,`grapherDetail/${data.Id}`)}
+        >
+
           <div
             className="media-hd"
             style={{backgroundImage:`url('${data.Avatar}')`, backgroundSize: 'cover'}}

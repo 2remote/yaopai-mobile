@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import UserMarkLayout from './UserMarkLayout';
 import { RouteTransition, presets } from 'react-router-transition'
 
@@ -33,7 +34,11 @@ class UserCollectList extends React.Component{
       CollectRow = <div className="nothing-found">你还没有收藏过作品：）</div>
     } else {
       CollectRow = this.state.works.map((data, i) => (
-        <section className="collect-row" key={i}>
+        <section
+          className="collect-row"
+          key={i}
+          onClick={() => this.props.history.replaceState(null,`workDetail/${data.Id}`)}
+        >
           <div className="media-hd">
             <span
               style={{background: `url(${data.Cover}) no-repeat`, backgroundSize: 'cover'}}
