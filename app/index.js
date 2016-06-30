@@ -89,7 +89,7 @@ function main(){
 
           {/*用户收藏/关注列表*/}
           <Route path="mark">
-            <IndexRoute component={UserCollectList} />
+            <IndexRedirect to="user_collect" />
             <Route path="user_collect" component={UserCollectList} />
             <Route path="user_attention" component={UserAttentionList} />
           </Route>
