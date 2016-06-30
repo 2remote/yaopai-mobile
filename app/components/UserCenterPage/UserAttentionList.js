@@ -31,7 +31,7 @@ class UserAttentionList extends React.Component{
   render() {
     let AttentionRow = <div></div>
     if (!this.state.photoGraphers.length) {
-      AttentionRow = <div>你还没有收藏过作品</div>
+      AttentionRow = <div className="nothing-found">你还没有关注过摄影师：）</div>
     } else {
       AttentionRow = this.state.photoGraphers.map((data, i) => (
         <section className="attention-row" key={i}>
