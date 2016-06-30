@@ -1,6 +1,7 @@
 import React from 'react';
 import UserMarkLayout from './UserMarkLayout';
 import { RouteTransition, presets } from 'react-router-transition'
+import {imgModifier} from '../Tools';
 
 import Reflux from 'reflux';
 import ReactMixin from 'react-mixin';
@@ -33,14 +34,17 @@ class UserAttentionList extends React.Component{
       AttentionRow = <div>你还没有收藏过作品</div>
     } else {
       AttentionRow = this.state.photoGraphers.map((data, i) => (
-        <section className="collect-row" key={i}>
-          <div className="media-hd">
-            <img src={data.Avatar} />
-          </div>
+        <section className="attention-row" key={i}>
+          <div
+            className="media-hd"
+            style={{backgroundImage:`url('${data.Avatar}')`, backgroundSize: 'cover'}}
+          />
           <div className="media-bd">
             <div className="media-header">
-              <p className="media-title">{data.NickName}</p>
-              <span>{data.CityName}</span>
+              <p className="media-title fl">{data.NickName}</p>
+              <span className="media-city fr">
+                {data.CityName.substring(0, data.CityName.length - 1)}
+              </span>
             </div>
             <p className="media-desc">{data.Signature}</p>
           </div>
