@@ -43,7 +43,9 @@ class UserCollectList extends React.Component{
           <div className="media-bd">
             <div className="media-header">
               <p className="media-title fl">{data.Title}</p>
-              <span className="media-city fr">{data.Photographer.CityName}</span>
+              <span className="media-city fr">
+                {data.Photographer.CityName.substring(0, data.Photographer.CityName.length - 1)}
+              </span>
             </div>
             <p className="media-desc">{data.Description}</p>
             <p className="media-price">{data.Prace}</p>
