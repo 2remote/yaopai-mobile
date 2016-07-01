@@ -28,7 +28,7 @@ const WorkPage = React.createClass({
       showNothingFound: false,
     }
   },
-  componentWillMount() {
+  componentDidMount() {
     AlbumsActions.getTagList()
 
     const nonemptyTagList = _.filter(this.props.params.tag, x => !_.isUndefined(x) )
@@ -37,7 +37,10 @@ const WorkPage = React.createClass({
     if (nonemptyTagList[0] || thisIsACoolSearchKey){
       this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, () => {
         // 如果存在url的制定tag，会直接执行过滤作品
-        AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
+        AlbumsActions.query({
+          tags:this.state.selectedTags.join(','),
+          key:this.state.searchKey,
+        })
       })
     } else {
       AlbumsActions.search()
@@ -46,7 +49,10 @@ const WorkPage = React.createClass({
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, () => {
       // 读取search过滤的数据
-      AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
+      AlbumsActions.query({
+        tags: this.state.selectedTags.join(','),
+        key: this.state.searchKey
+      })
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
     })
@@ -59,9 +65,11 @@ const WorkPage = React.createClass({
     })
 
     this.setState({selectedTags: selectedTags}, () => {
-      console.log(this.state.selectedTags)
       // 读取tag过滤的数据
-      AlbumsActions.query(this.state.selectedTags.join(','), this.state.searchKey)
+      AlbumsActions.query({
+        tags: this.state.selectedTags.join(','),
+        key: this.state.searchKey,
+      })
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
     })
@@ -73,14 +81,13 @@ const WorkPage = React.createClass({
     this.history.pushState(null)
   },
   _onAlbumsStoreChange(data) {
-    // debugger
     const handleByFlag = {
       search: () => {
         this.setState({
           works: this.state.works.concat(data.workList),
           pageIndex: data.pageIndex,
           total: data.total,
-          pageCount: data.pageCount
+          pageCount: data.pageCount,
         })
         this.onHideToast()
       },
@@ -100,11 +107,11 @@ const WorkPage = React.createClass({
   },
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
-    AlbumsActions.search(
-      this.state.selectedTags.join(','),
-      this.state.searchKey,
-      pageIndex
-    )
+    AlbumsActions.search({
+      tags: this.state.selectedTags.join(','),
+      key: this.state.searchKey,
+      pageIndex,
+    })
   },
   render() {
 

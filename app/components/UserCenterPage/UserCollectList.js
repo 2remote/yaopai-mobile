@@ -19,7 +19,7 @@ class UserCollectList extends React.Component{
   componentWillMount() {
     // 蛋疼的传参
     // 查询当前用户已收藏作品
-    AlbumsActions.search(null, "", null, null, null, true);
+    AlbumsActions.search({mark: ture})
   }
 
   onSearchSuccess(data) {
