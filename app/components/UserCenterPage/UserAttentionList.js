@@ -21,7 +21,7 @@ class UserAttentionList extends React.Component{
   componentWillMount() {
     // 蛋疼的传参
     // 查询当前用户已关注摄影师
-    PhotographerActions.query(null, null, null, true);
+    PhotographerActions.query({mark: true})
   }
 
   onQuerySuccess(data) {

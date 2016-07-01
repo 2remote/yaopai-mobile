@@ -25,19 +25,34 @@ PhotographerActions.get.listen(function(id){
 /*
   list动作，查询摄影师
 */
-PhotographerActions.list.listen(function(pageIndex = 1, pageSize = 10, city = null, albumsCount = 3, NickName = ""){
-  var data = {
-    Fields : 'ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,' +
+PhotographerActions.list.listen(listQuery)
+// 查询摄影师
+PhotographerActions.query.listen(listQuery)
+
+function listQuery(args = []) {
+  const {
+    key = "",
+    pageIndex = 1,
+    pageSize = 10,
+    mark,
+    city,
+    albumsCount = 3,
+  } = args
+
+  const data = {
+    Fields: 'ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,' +
     'Id,NickName,Avatar,Signature,TotalAlbums,Marks,Sales,Albums.Id,Albums.Cut',
-    PageIndex : pageIndex,
-    PageSize : pageSize,
-    CityId : city,
-    NickName,
-    AlbumsCount : albumsCount,
-    ExistAlbums : true,
-  };
-  HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed);
-});
+    pageIndex,
+    pageSize,
+    CityId: city,
+    albumsCount,
+    ExistAlbums: true,
+    mark,
+    key,
+  }
+  HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed)
+}
+
 
 /*
   得到推荐摄影师列表,目前默认取得3个
@@ -75,19 +90,5 @@ PhotographerActions.unMark.listen(function(id){
   HttpFactory.post(API.PHOTOGRAPHER.unMark,data,this.success,this.failed);
 });
 
-// 查询摄影师
-PhotographerActions.query.listen(function (Key = "", pageIndex = 1, pageSize = 10, Mark) {
-  const data = {
-    Fields : 'ProvinceId,ProvinceName,CityId,CityName,CountyId,CountyName,' +
-    'Id,NickName,Avatar,Signature,TotalAlbums,Marks,Sales,Albums.Id,Albums.Cut',
-    PageIndex : pageIndex,
-    PageSize : pageSize,
-    AlbumsCount : 3,
-    ExistAlbums : true,
-    Mark,
-    Key
-  }
-  HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed)
-})
 
 export {PhotographerActions as default};
