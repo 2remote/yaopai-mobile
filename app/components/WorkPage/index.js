@@ -24,15 +24,11 @@ const WorkPage = React.createClass({
       works: [],
       searchKey: '',
       tags: [],
-      selectedTags: []
+      selectedTags: [],
+      showNothingFound: false,
     }
   },
-  getDefaultProps() {
-    return {
-      url: LIST_ALL_WORKS
-    }
-  },
-  componentDidMount() {
+  componentWillMount() {
     AlbumsActions.getTagList()
 
     const nonemptyTagList = _.filter(this.props.params.tag, x => !_.isUndefined(x) )
@@ -77,6 +73,7 @@ const WorkPage = React.createClass({
     this.history.pushState(null)
   },
   _onAlbumsStoreChange(data) {
+    // debugger
     const handleByFlag = {
       search: () => {
         this.setState({
@@ -92,7 +89,8 @@ const WorkPage = React.createClass({
           works: data.workList,
           pageIndex: data.pageIndex,
           total: data.total,
-          pageCount: data.pageCount
+          pageCount: data.pageCount,
+          showNothingFound: true,
         })
       },
       getTagList: () => this.setState({tags : data.tags})
@@ -112,7 +110,7 @@ const WorkPage = React.createClass({
 
     const tagType = this.state.tags.map( x => x.Tags )
 
-    const { searchKey, selectedTags, works } = this.state
+    const { searchKey, selectedTags, works, showNothingFound } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -130,6 +128,7 @@ const WorkPage = React.createClass({
 
           <WorkIntroGrapherList
             data = {works}
+            showNothingFound = {showNothingFound}
             searchKey = {searchKey}
             selectedTags = {selectedTags}
           />
