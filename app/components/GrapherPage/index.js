@@ -32,7 +32,7 @@ const GrapherPage = React.createClass({
     if (众里寻她千百度){
       this.setState({searchKey: 众里寻她千百度}, () => {
         // 如果存在url的制定tag，会直接执行过滤作品
-        PhotographerActions.query(this.state.searchKey)
+        PhotographerActions.query({key: this.state.searchKey})
       })
     } else {
       PhotographerActions.list()
@@ -42,7 +42,7 @@ const GrapherPage = React.createClass({
     console.warn(key);
     this.setState({searchKey: key}, () => {
       // 读取search过滤的数据
-      PhotographerActions.query(this.state.searchKey)
+      PhotographerActions.query({key: this.state.searchKey})
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, '/grapher', {q: key})
     })
@@ -80,7 +80,10 @@ const GrapherPage = React.createClass({
   },
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
-    PhotographerActions.list(pageIndex, 10, null, 3, this.state.searchKey)
+    PhotographerActions.list({
+      pageIndex,
+      key: this.state.searchKey
+    })
   },
   render() {
 

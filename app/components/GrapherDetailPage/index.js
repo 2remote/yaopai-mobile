@@ -23,9 +23,9 @@ class GrapherDetailPage extends React.Component {
   }
 
   componentWillMount() {
-    const UserId = this.props.params.Id;
+    const userId = this.props.params.Id;
     // 蛋疼的传参
-    AlbumsActions.search(null, "", null, null, UserId);
+    AlbumsActions.search({userId})
   }
 
   onSearchSuccess(data) {
