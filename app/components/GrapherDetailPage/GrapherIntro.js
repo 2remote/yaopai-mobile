@@ -93,7 +93,6 @@ class GrapherIntro extends React.Component {
     const title = this.state.NickName || '摄影师'
     const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName
     const wechatShareDesc = data.NickName + ':' + data.Signature
-    console.log(data.Marks +'dwd'+ this.state.marks)
     return (
       <section className="grapherIntro">
         <DocumentTitle title={title} />
@@ -126,9 +125,10 @@ class GrapherIntro extends React.Component {
             <li><span className="count">{data.TotalAlbums}</span>作品</li>
             <li><span className="count">{data.Sales}</span>订单</li>
             {
-              data.Marks ?
+              data.Marks !== undefined?
               <li><span className="count">{data.Marks + this.state.marks}</span>关注</li>
-              : null
+              :
+              null
             }
           </ul>
         </div>
