@@ -18,6 +18,7 @@ class GrapherDetailPage extends React.Component {
         User: { NickName: '读取中...', },
       },
       works: [],
+      shareFrom: this.props.location.query.sharefrom,
     }
   }
 
@@ -36,7 +37,7 @@ class GrapherDetailPage extends React.Component {
   render() {
     return (
       <div className="grapherDetailPage">
-        <SidePage />
+        <SidePage shareFrom={this.state.shareFrom} />
         <GrapherIntro id={this.props.params.Id} pathname={this.props.location.pathname} />
         <WorkIntroGrapherList data={this.state.works} />
       </div>
