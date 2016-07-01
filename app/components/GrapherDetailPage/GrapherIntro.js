@@ -19,6 +19,7 @@ class GrapherIntro extends React.Component {
       data: {},
       isClickMark: false,
       markExist: false,
+      marks: 0,
     }
     this.attention = this.attention.bind(this)
     this.unAttention = this.unAttention.bind(this)
@@ -55,6 +56,9 @@ class GrapherIntro extends React.Component {
       this.setState({isClickMark: true})
       // TODO 如何防止用户多次提交
       PhotographerActions.mark(this.props.id)
+      this.setState({
+        marks: 1,
+      })
     }
   }
   // 点击取消关注
@@ -63,6 +67,9 @@ class GrapherIntro extends React.Component {
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
     PhotographerActions.unMark(this.props.id)
+    this.setState({
+      marks: 0,
+    })
   }
 
   onMarkSuccess(data){
@@ -86,6 +93,7 @@ class GrapherIntro extends React.Component {
     const title = this.state.NickName || '摄影师'
     const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName
     const wechatShareDesc = data.NickName + ':' + data.Signature
+    console.log(data.Marks +'dwd'+ this.state.marks)
     return (
       <section className="grapherIntro">
         <DocumentTitle title={title} />
@@ -115,9 +123,13 @@ class GrapherIntro extends React.Component {
         </div>
         <div className="order">
           <ul>
-            <li><span className="count">{data.TotalAlbums}</span> 作品</li>
-            <li><span className="count">{data.Sales}</span> 订单</li>
-            <li><span className="count">{data.Marks}</span> 关注</li>
+            <li><span className="count">{data.TotalAlbums}</span>作品</li>
+            <li><span className="count">{data.Sales}</span>订单</li>
+            {
+              data.Marks ?
+              <li><span className="count">{data.Marks + this.state.marks}</span>关注</li>
+              : null
+            }
           </ul>
         </div>
       </section>
