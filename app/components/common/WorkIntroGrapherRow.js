@@ -97,11 +97,11 @@ class WorkIntroGrapherRow extends React.Component {
           (this.state.isClickMark ? this.state.markExist : data.MarkExist)
           ?
           <div className="work-collect" onClick={this.unAttention}>
-            <i className="button-collect-active icon collect"/>
+            <i className="button-collect-active icon mark_active"/>
           </div>
           :
           <div className="work-collect" onClick={this.attention}>
-            <i className="button-collect icon collect"/>
+            <i className="button-collect icon mark"/>
           </div>
         }
         <Link to={`/workDetail/${data.Id}`}>

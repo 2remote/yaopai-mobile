@@ -110,14 +110,14 @@ class GrapherIntro extends React.Component {
               buttonType="btn-dark btn-attention-active"
               value="已关注"
               handleSubmit={this.unAttention}
-              iconType="attention_active"
+              iconType="mark_active"
             />
             :
             <ButtonAttention
               buttonType="btn-dark"
               value="关注我"
               handleSubmit={this.attention}
-              iconType="attention"
+              iconType="mark"
             />
           }
         </div>

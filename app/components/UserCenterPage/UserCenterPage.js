@@ -55,7 +55,7 @@ var UserCenterPage = React.createClass({
 
         {/*makeIconButton('order_icon', '我的订单', 'user_tickets', 'react-router')*/}
         {makeIconButton('order_icon', '我的订单', 'center/u/order', 'react-router')}
-        {makeIconButton('collect', '收藏/关注', 'center/mark', 'react-router')}
+        {makeIconButton('mark', '收藏/关注', 'center/mark', 'react-router')}
         {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}
       </div>
     );
