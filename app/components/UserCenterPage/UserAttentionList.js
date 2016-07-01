@@ -14,7 +14,7 @@ class UserAttentionList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      photoGraphers: [],
+      AttentionRow: <div></div>,
     }
   }
 
@@ -25,44 +25,43 @@ class UserAttentionList extends React.Component{
   }
 
   onQuerySuccess(data) {
-    this.setState({
-      photoGraphers: data.photographers,
-    })
+    if(!data.photographers.length) {
+      this.setState({
+        AttentionRow: <div className="nothing-found">你还没有关注过摄影师：）</div>
+      })
+    } else {
+      this.setState({
+        AttentionRow: data.photographers.map((data, i) => (
+          <section
+            className="attention-row"
+            key={i}
+            onClick={() => this.props.history.replaceState(null,`grapherDetail/${data.Id}`)}
+          >
+            <div
+              className="media-hd"
+              style={{backgroundImage:`url('${data.Avatar}')`, backgroundSize: 'cover'}}
+            />
+            <div className="media-bd">
+              <div className="media-header">
+                <p className="media-title fl">{data.NickName}</p>
+                <span className="media-city fr">
+                  {data.CityName.substring(0, data.CityName.length - 1)}
+                </span>
+              </div>
+              <p className="media-desc">{data.Signature}</p>
+            </div>
+          </section>
+        ))
+      })
+    }
   }
 
   render() {
-    let AttentionRow = <div></div>
-    if (!this.state.photoGraphers.length) {
-      AttentionRow = <div className="nothing-found">你还没有关注过摄影师：）</div>
-    } else {
-      AttentionRow = this.state.photoGraphers.map((data, i) => (
-        <section
-          className="attention-row"
-          key={i}
-          onClick={() => this.props.history.replaceState(null,`grapherDetail/${data.Id}`)}
-        >
-          <div
-            className="media-hd"
-            style={{backgroundImage:`url('${data.Avatar}')`, backgroundSize: 'cover'}}
-          />
-          <div className="media-bd">
-            <div className="media-header">
-              <p className="media-title fl">{data.NickName}</p>
-              <span className="media-city fr">
-                {data.CityName.substring(0, data.CityName.length - 1)}
-              </span>
-            </div>
-            <p className="media-desc">{data.Signature}</p>
-          </div>
-        </section>
-      ))
-    }
-
     return(
       <section className="attention-list">
         <UserMarkLayout />
         <RouteTransition { ...presets.slideRight } pathname="/center/mark/user_attention">
-          {AttentionRow}
+          {this.state.AttentionRow}
         </RouteTransition>
       </section>
     )

@@ -87,9 +87,11 @@
   line-height: 40px;
   border-radius: 100px;
 
-  i { font-size: 18px; }
+  i { font-size: 20px; }
 }
 
 .btn-attention-active {
-  i { color: $red; }
+  i {
+    color: $red;
+  }
 }

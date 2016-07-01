@@ -26,7 +26,7 @@
 
     <script type="text/javascript" src="/imgs/js/qiniu.min.js"></script>
 
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1466562428_0336432.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1467340642_1850102.css">
     <link rel="stylesheet" type="text/css" href="/imgs/css/slick.css" />
     {% if(o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
