@@ -23,7 +23,7 @@ class GrapherDetailPage extends React.Component {
   }
 
   componentWillMount() {
-    const UserId = this.props.params.Id;
+    const userId = this.props.params.Id;
     // 蛋疼的传参
     AlbumsActions.search({userId})
   }
