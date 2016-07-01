@@ -2,7 +2,13 @@ import React from 'react'
 import WorkIntroGrapherRow from './WorkIntroGrapherRow'
 import NothingFound from './NothingFound.js'
 
-const WorkIntroGrapherList = ({ data, searchKey = "", selectedTags = [] }) => {
+const WorkIntroGrapherList = args => {
+  const {
+    data,
+    searchKey = "",
+    selectedTags = [],
+    showNothingFound = false,
+  } = args
   if (data.length > 0) {
     return (
       <div className="workIntroGrapherList">
@@ -16,7 +22,7 @@ const WorkIntroGrapherList = ({ data, searchKey = "", selectedTags = [] }) => {
         }
       </div>
     )
-  } else if ( searchKey || selectedTags[0] ) {
+  } else if ( showNothingFound && (searchKey || selectedTags[0]) ) {
     return <NothingFound title="没有找到想拍的类型？"/>
   } else {
     return (
