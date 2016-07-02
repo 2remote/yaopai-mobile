@@ -81,6 +81,7 @@ class WorkIntroGrapherRow extends React.Component {
 
   render() {
     const {data} = this.props
+    console.log(data)
     let cover;
     if(data.Cut){
       const cut = JSON.parse(data.Cut);
@@ -135,7 +136,7 @@ class WorkIntroGrapherRow extends React.Component {
 
         <div className="card-info">
           <p className="info-title">{data.Title}</p>
-          <p className="info-Subtitle">有{data.Views}人想拍</p>
+          <p className="info-Subtitle">有{data.Marks}人想拍</p>
         </div>
       </div>
     );

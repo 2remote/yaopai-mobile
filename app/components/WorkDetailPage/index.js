@@ -89,7 +89,7 @@ class WorkDetailPage extends React.Component {
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
         <SidePage shareFrom={this.state.shareFrom}/>
         <WorkTitle data={this.state.workData} id={this.state.workData.id} />
-        <WorkDetail data={this.state.detail} />
+        <WorkDetail data={this.state.detail} price={this.state.workData.price} />
         <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
         <WorkPieceList workPieces={this.state.photos} />
         <ActionBar id={this.state.workData.id} price={this.state.workData.price} />
