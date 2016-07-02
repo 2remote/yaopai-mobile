@@ -4,7 +4,7 @@ import ReactMixin from 'react-mixin';
 import WeuiCells from '../../../../UI/WeuiCells';
 
 import { History } from 'react-router';
-import UserAvatarBox from '../../../../UserAvatarBox' ;
+import UserAvatarBox from '../../../../common/UserAvatarBox' ;
 import SidePage from'../../../../UI/SidePage';
 
 import UserActions from '../../../../../actions/UserActions';

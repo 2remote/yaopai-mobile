@@ -6,7 +6,6 @@ import DocumentTitle from 'react-document-title';
 import AreaSelector from './AreaSelector';
 
 import {History,Location} from 'react-router';
-import UserAvatarBox from '../UserAvatarBox' ;
 
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';

@@ -73,7 +73,7 @@ var UserStore = Reflux.createStore({
   },
 
   onChangeUserCity : function (areaId, areaName) {
-    console.log('get areaId from action: ', areaId);    
+    console.log('get areaId from action: ', areaId);
     var exist = false;
     exist = isExist(areaId);
     this.data.newCityStatus = exist;
@@ -82,7 +82,7 @@ var UserStore = Reflux.createStore({
   },
 
   onChangeUserGender : function (gender) {
-    console.log('get gender from action: ', gender);    
+    console.log('get gender from action: ', gender);
     var exist = false;
     exist = isExist(gender);
     this.data.newGenderStatus = exist;
@@ -130,7 +130,7 @@ var UserStore = Reflux.createStore({
       this.data.hintMessage = '';
     } else {
       this.data.hintMessage = data.ErrorMsg;
-      
+
     }
     this.data.flag = "login";
     this.trigger(this.data);
@@ -165,7 +165,7 @@ var UserStore = Reflux.createStore({
         return UserActions.currentServerUser();
       }
     }else{
-      UserActions.currentServerUser();  
+      UserActions.currentServerUser();
     }
   },
   onGetCurrentUser : function(data){
@@ -185,7 +185,6 @@ var UserStore = Reflux.createStore({
     this.trigger(this.data);
   },
   onGetCurrentUserDetail : function (data) {
-    console.log(data);
     if(data.Success){
       data.Type = data.Account.Type;
       this.setCurrentUser(data);
@@ -339,7 +338,7 @@ var UserStore = Reflux.createStore({
       this.data.pingToken = '';
     } else {
       var areaId = 0;
-      // ProvinceId, CityId and CountyId are in same hash table(number=>name) 
+      // ProvinceId, CityId and CountyId are in same hash table(number=>name)
       // which are ordered in desc, so greater number always keeps full location
       // information. We just need the greatest one when modify it.
       areaId = Math.max(0, data.ProvinceId, data.CityId, data.CountyId);
