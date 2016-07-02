@@ -63,7 +63,7 @@ function searchQuery(args = []) {
     pageSize,
     userId,
     mark,
-    Fields : 'Id,Title,UserId,Description,Service,Price,MarkExist,' +
+    Fields : 'Id,Title,UserId,Description,Service,Price,Marks,MarkExist,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
     'User.Id,Photographer.NickName,Photographer.CityName,Photographer.Avatar,Views,Price,' +
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
