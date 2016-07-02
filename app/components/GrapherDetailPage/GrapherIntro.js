@@ -8,6 +8,7 @@ import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 import { ButtonAttention } from '../UI/Button';
 import {imgModifier} from '../Tools';
+import Toaster from '../Toast';
 import WechatShare from '../Weixin/WechatShare'
 import DocumentTitle from 'react-document-title'
 
@@ -48,9 +49,11 @@ class GrapherIntro extends React.Component {
       const confirmMsg = confirm("是否前往登录，然后关注？");
       if (confirmMsg == true) {
         this.history.pushState({nextPage : this.props.pathname},'/login_page');
-      } else {
-
       }
+
+    } else if(this.state.userData.UserId == this.props.id) {
+      this.showMessage('您不能关注自己');
+      return;
 
     } else {
       this.setState({isClickMark: true})
@@ -88,6 +91,10 @@ class GrapherIntro extends React.Component {
     }
   }
 
+  showMessage (content) {
+    this.refs.toast.show(content)
+  }
+
   render() {
     const {data} = this.state
     const title = this.state.NickName || '摄影师'
@@ -97,6 +104,8 @@ class GrapherIntro extends React.Component {
       <section className="grapherIntro">
         <DocumentTitle title={title} />
         <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={data.Avatar} />
+        <Toaster ref="toast"/>
+
         <div className="baseInfo">
           <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}} />
           <p className="nickname">{data.NickName}</p>
