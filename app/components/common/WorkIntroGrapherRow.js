@@ -75,7 +75,7 @@ class WorkIntroGrapherRow extends React.Component {
     }
   }
 
-  showMessage (content) {
+  showMessage(content) {
     this.refs.toast.show(content)
   }
 

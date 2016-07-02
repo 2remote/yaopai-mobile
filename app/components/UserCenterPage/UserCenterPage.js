@@ -5,7 +5,7 @@ import SidePage from '../UI/SidePage';
 import DocumentTitle from 'react-document-title';
 
 import {History,Location} from 'react-router';
-import UserAvatarBox from '../UserAvatarBox' ;
+import UserAvatarBox from '../common/UserAvatarBox' ;
 
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
@@ -27,7 +27,6 @@ var UserCenterPage = React.createClass({
       let type = 'out';
       //得到当前用户的预约订单
       this.setState({userInfo : data});
-      console.log(data);
     }
   },
 

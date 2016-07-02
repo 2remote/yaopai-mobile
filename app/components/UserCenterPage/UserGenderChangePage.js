@@ -4,7 +4,6 @@ import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 
 import {History,Location} from 'react-router';
-import UserAvatarBox from '../UserAvatarBox' ;
 
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
@@ -51,7 +50,6 @@ var UserGenderChange = React.createClass({
   },
 
   render: function() {
-
     return (
       <div className="weui_msg">
         <div className="weui_text_area">
@@ -60,36 +58,45 @@ var UserGenderChange = React.createClass({
         <div className="weui_cells weui_cells_form" >
           <DocumentTitle title="修改我的性别" />
           <div className="weui_cells weui_cells_radio">
-              <label className="weui_cell weui_check_label" htmlFor="x11" >
-                  <div className="weui_cell_bd weui_cell_primary">
-                      <p>男</p>
-                  </div>
-                  <div className="weui_cell_ft" >
-                      <input type="radio"
-                        className="weui_check" name="radio1"
-                        id="x11" value="1"
-                        onClick={this.onChangeCurrentGender} />
-                      <span className="weui_icon_checked"></span>
-                  </div>
-              </label>
-              <label className="weui_cell weui_check_label" htmlFor="x12" >
+            <label className="weui_cell weui_check_label" htmlFor="x11" >
+              <div className="weui_cell_bd weui_cell_primary">
+                <p>男</p>
+              </div>
+              <div className="weui_cell_ft" >
+                <input
+                  type="radio"
+                  className="weui_check"
+                  name="radio1"
+                  id="x11"
+                  value="1"
+                  onClick={this.onChangeCurrentGender}
+                />
+                <span className="weui_icon_checked"></span>
+              </div>
+            </label>
 
-                  <div className="weui_cell_bd weui_cell_primary">
-                      <p>女</p>
-                  </div>
-                  <div className="weui_cell_ft" >
-                      <input type="radio" name="radio1"
-                        className="weui_check" id="x12"
-                        value="0" onClick={this.onChangeCurrentGender} />
-                      <span className="weui_icon_checked"></span>
-                  </div>
-              </label>
+            <label className="weui_cell weui_check_label" htmlFor="x12" >
+              <div className="weui_cell_bd weui_cell_primary">
+                <p>女</p>
+              </div>
+              <div className="weui_cell_ft" >
+                <input
+                  type="radio"
+                  name="radio1"
+                  className="weui_check"
+                  id="x12"
+                  value="0"
+                  onClick={this.onChangeCurrentGender}
+                />
+                <span className="weui_icon_checked"></span>
+              </div>
+            </label>
           </div>
-
         </div>
+
         <div className="weui_opr_area">
           <p className="weui_btn_area">
-              <a href="javascript:;" onClick={this.onChangeUserGender} className="weui_btn weui_btn_primary">修改</a>
+            <a href="javascript:;" onClick={this.onChangeUserGender} className="weui_btn weui_btn_primary">修改</a>
           </p>
         </div>
       </div>
