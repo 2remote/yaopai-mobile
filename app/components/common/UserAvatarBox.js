@@ -72,7 +72,7 @@ var UserAvatarBox = React.createClass({
       </div>
     );
     var children = (
-      <Link to="/user_edit_profile">{content}</Link>
+      <Link to="/center/user_edit_profile">{content}</Link>
     );
     if(this.props.editAvatar){
       children = (<div>{content}</div>)
