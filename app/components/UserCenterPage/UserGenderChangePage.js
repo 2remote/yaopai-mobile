@@ -4,7 +4,6 @@ import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 
 import {History,Location} from 'react-router';
-import UserAvatarBox from '../UserAvatarBox' ;
 
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
