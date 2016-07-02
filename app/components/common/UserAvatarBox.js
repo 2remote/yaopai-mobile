@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import AvatarUploader from '../UserCenterPage/AvatarUploader.js';
 import {parseImageUrl} from '../Tools';
 
-let UserAvatarBox = React.createClass({
+const UserAvatarBox = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
