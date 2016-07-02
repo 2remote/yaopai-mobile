@@ -2,7 +2,7 @@ import React from 'react';
 import {History,Location, Link} from 'react-router';
 import Reflux from 'reflux';
 import SidePage from '../UI/SidePage';
-import UserAvatarBox from '../UserAvatarBox' ;
+import UserAvatarBox from '../common/UserAvatarBox' ;
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 import _ from 'underscore';
