@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
-import AvatarUploader from './UserCenterPage/AvatarUploader.js';
-import {parseImageUrl} from './Tools';
+import AvatarUploader from '../UserCenterPage/AvatarUploader.js';
+import {parseImageUrl} from '../Tools';
 
 var UserAvatarBox = React.createClass({
   getDefaultProps: function() {
