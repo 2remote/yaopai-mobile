@@ -150,7 +150,7 @@ class WorkDetail extends React.Component {
               <li>
                 <i className="icon success_icon"></i>
                 <span className="a">套系价格</span>
-                <span className="b">￥{this.props.data.Price}</span>
+                <span className="b">￥{this.props.price}</span>
               </li>
               <li style={{height:'auto',paddingBottom:'50px'}}>
                 <i className="icon success_icon"></i>

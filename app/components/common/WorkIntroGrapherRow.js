@@ -8,6 +8,7 @@ import AlbumsActions from '../../actions/AlbumsActions';
 import AlbumsStore from '../../stores/AlbumsStore';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
+import Toaster from '../Toast'
 
 import {imgModifier} from '../Tools';
 import LazyLoad from 'react-lazy-load';
@@ -38,9 +39,11 @@ class WorkIntroGrapherRow extends React.Component {
       const confirmMsg = confirm("是否前往登录，然后关注？");
       if (confirmMsg == true) {
         this.history.pushState({nextPage : this.props.pathname},'/login_page');
-      } else {
-
       }
+
+    } else if(this.state.userData.UserId == this.props.data.UserId) {
+      this.showMessage('您不能收藏自己的作品');
+      return;
 
     } else {
       this.setState({isClickMark: true})
@@ -72,6 +75,10 @@ class WorkIntroGrapherRow extends React.Component {
     }
   }
 
+  showMessage(content) {
+    this.refs.toast.show(content)
+  }
+
   render() {
     const {data} = this.props
     let cover
@@ -98,6 +105,8 @@ class WorkIntroGrapherRow extends React.Component {
 
     return (
       <div className="workIntroGrapherRow">
+        <Toaster ref="toast"/>
+
         {
           (this.state.isClickMark ? this.state.markExist : data.MarkExist)
           ?
@@ -131,7 +140,7 @@ class WorkIntroGrapherRow extends React.Component {
 
         <div className="card-info">
           <p className="info-title">{data.Title}</p>
-          <p className="info-Subtitle">有{data.Views}人想拍</p>
+          <p className="info-Subtitle">有{data.Marks}人想拍</p>
         </div>
       </div>
     );
