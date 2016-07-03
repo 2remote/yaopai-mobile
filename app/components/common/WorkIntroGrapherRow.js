@@ -74,15 +74,20 @@ class WorkIntroGrapherRow extends React.Component {
 
   render() {
     const {data} = this.props
-    let cover;
-    if(data.Cut){
-      const cut = JSON.parse(data.Cut);
-      cover = data.Cover + cut.w;
-    }else{
-      cover = imgModifier(data.Cover, "workCover");
+    let cover
+    if(data.Cut) {
+      try {
+        const cut = JSON.parse(data.Cut)
+        cover = data.Cover + cut.w
+      } catch(err) {
+        console.log(err)
+        cover = imgModifier(data.Cover, "workCover")
+      }
+    } else {
+      cover = imgModifier(data.Cover, "workCover")
     }
 
-    let grapherAvatar;
+    let grapherAvatar
     if (data.Photographer.Avatar) {
       grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
                         <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
