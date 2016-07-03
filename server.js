@@ -109,7 +109,7 @@ if(secretId && secretKey && cdnurl){
   })
   qcloud.request({
     Region: 'gz',
-    Action: 'RefreshCdnUrl',
+    Action: 'RefreshCdnDir',
     'urls.0': cdnurl,
   }, function(error, data) {
     console.log('Qcloud RefreshCdn result : ' + data);
