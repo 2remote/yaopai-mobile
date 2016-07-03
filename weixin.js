@@ -4,7 +4,7 @@
 var urlParse = require('url').parse;
 var crypto = require('crypto');
 /**
- * Î¢ĞÅÀà£¬ÊµÏÖÎ¢ĞÅµÄËùÓĞ½Ó¿Ú
+ * å¾®ä¿¡ç±»ï¼Œå®ç°å¾®ä¿¡çš„æ‰€æœ‰æ¥å£
  * @param options
  * @constructor
  */
@@ -17,10 +17,10 @@ var Weixin = function (options) {
   this.accessToken = '';
 };
 /**
- * ³õÊ¹»¯
+ * åˆä½¿åŒ–
  * @param options
  * {
- *     token: ''    //×Ô¼ºÔÚ¹«¹²Æ½Ì¨ÌîĞ´µÄtokenÖµ
+ *     token: ''    //è‡ªå·±åœ¨å…¬å…±å¹³å°å¡«å†™çš„tokenå€¼
  * }
  * @returns {Weixin}
  */
@@ -72,7 +72,7 @@ httpHandle = function (url, method, header, postData, callback) {
     type: urlObj.protocol.replace(':', ''),
     host: urlObj.hostname,
     port: this.type == 'http' ? 80 : 443,
-    path: urlObj.path, // ¾ßÌåÂ·¾¶, ±ØĞëÒÔ'/'¿ªÍ·, ÊÇÏà¶ÔÓÚhost¶øÑÔµÄ
+    path: urlObj.path, // å…·ä½“è·¯å¾„, å¿…é¡»ä»¥'/'å¼€å¤´, æ˜¯ç›¸å¯¹äºhostè€Œè¨€çš„
     method: method,
     headers: header
   };
@@ -85,7 +85,7 @@ httpHandle = function (url, method, header, postData, callback) {
       bufferHelper += data;
     });
 
-    // ÔÚÊı¾İ·¢ËÍÍê±Ïºó´¥·¢
+    // åœ¨æ•°æ®å‘é€å®Œæ¯•åè§¦å‘
     res.on('end', function () {
       callback(JSON.parse(bufferHelper));
     });

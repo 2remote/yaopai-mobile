@@ -8,12 +8,12 @@ var crypto = require('crypto')
 var baseHost = 'api.qcloud.com'
 
 /**
- * API ¹¹Ôìº¯Êı
- * @param {Object} [defaults] Ä¬ÈÏ²ÎÊı¼°ÅäÖÃ
- * @param {String} defaults.serviceType ·şÎñÀàĞÍ. Èç: cvm, vpc, dfw, lb µÈ. ¸ù¾İ `serviceType` ºÍ `baseHost` ½«Æ´×°³ÉÇëÇóÓòÃû, Èç: `vpc.api.qcloud.com`
- * @param {String} defaults.path='/v2/index.php' Api ÇëÇóÂ·¾¶
- * @param {String} defaults.method='POST' ÇëÇó·½·¨
- * @param {String} defaults.baseHost='api.qcloud.com' Api µÄ»ù´¡ÓòÃû. Óë `serviceType` Æ´×°³ÉÇëÇóÓòÃû.
+ * API æ„é€ å‡½æ•°
+ * @param {Object} [defaults] é»˜è®¤å‚æ•°åŠé…ç½®
+ * @param {String} defaults.serviceType æœåŠ¡ç±»å‹. å¦‚: cvm, vpc, dfw, lb ç­‰. æ ¹æ® `serviceType` å’Œ `baseHost` å°†æ‹¼è£…æˆè¯·æ±‚åŸŸå, å¦‚: `vpc.api.qcloud.com`
+ * @param {String} defaults.path='/v2/index.php' Api è¯·æ±‚è·¯å¾„
+ * @param {String} defaults.method='POST' è¯·æ±‚æ–¹æ³•
+ * @param {String} defaults.baseHost='api.qcloud.com' Api çš„åŸºç¡€åŸŸå. ä¸ `serviceType` æ‹¼è£…æˆè¯·æ±‚åŸŸå.
  * @param {String} defaults.SecretId secretId
  * @param {String} defaults.SecretKey secretKey
  * @constructor
@@ -27,7 +27,7 @@ var QcloudApi = function(defaults) {
 }
 
 /**
- * Éú³É API µÄÇëÇóµØÖ·
+ * ç”Ÿæˆ API çš„è¯·æ±‚åœ°å€
  * @param {Object} opts
  * @returns {string}
  */
@@ -39,10 +39,10 @@ QcloudApi.prototype.generateUrl = function(opts) {
 }
 
 /**
- * Éú³ÉÇëÇó²ÎÊı.
- * @param {Object} data ¸Ã´ÎÇëÇóµÄ²ÎÊı. Í¬ `request` ·½·¨µÄ `data` ²ÎÊı
- * @param {Object} [opts] ÇëÇóÅäÖÃ. Í¬ `request` ·½·¨µÄ `opts` ²ÎÊı
- * @returns {string} °üÀ¨Ç©ÃûµÄ²ÎÊı×Ö·û´®
+ * ç”Ÿæˆè¯·æ±‚å‚æ•°.
+ * @param {Object} data è¯¥æ¬¡è¯·æ±‚çš„å‚æ•°. åŒ `request` æ–¹æ³•çš„ `data` å‚æ•°
+ * @param {Object} [opts] è¯·æ±‚é…ç½®. åŒ `request` æ–¹æ³•çš„ `opts` å‚æ•°
+ * @returns {string} åŒ…æ‹¬ç­¾åçš„å‚æ•°å­—ç¬¦ä¸²
  */
 QcloudApi.prototype.generateQueryString = function(data, opts) {
   opts = opts || this.defaults
@@ -65,10 +65,10 @@ QcloudApi.prototype.generateQueryString = function(data, opts) {
 
   keys.sort()
 
-  //Æ´½Ó querystring, ×¢ÒâÕâÀïÆ´½ÓµÄ²ÎÊıÒªºÍÏÂÃæ `qs.stringify` ÀïµÄ²ÎÊıÒ»ÖÂ
+  //æ‹¼æ¥ querystring, æ³¨æ„è¿™é‡Œæ‹¼æ¥çš„å‚æ•°è¦å’Œä¸‹é¢ `qs.stringify` é‡Œçš„å‚æ•°ä¸€è‡´
   keys.forEach(function(key) {
     var val = param[key]
-    // ÅÅ³ıÉÏ´«ÎÄ¼şµÄ²ÎÊı
+    // æ’é™¤ä¸Šä¼ æ–‡ä»¶çš„å‚æ•°
     if(method === 'POST' && val && val[0] === '@'){
       return
     }
@@ -78,7 +78,7 @@ QcloudApi.prototype.generateQueryString = function(data, opts) {
     if(val === undefined || val === null || (typeof val === 'number' && isNaN(val))) {
       val = ''
     }
-    //°Ñ²ÎÊıÖĞµÄ _ Ìæ»»³É .
+    //æŠŠå‚æ•°ä¸­çš„ _ æ›¿æ¢æˆ .
     qstr += '&' + key.replace('_', '.') + '=' + val
   })
 
@@ -92,11 +92,11 @@ QcloudApi.prototype.generateQueryString = function(data, opts) {
 }
 
 /**
- * ÇëÇó API
- * @param {Object} data ¸Ã´ÎÇëÇóµÄ²ÎÊı.
- * @param {Object} [data.SecretId] Api SecrectId, Í¨¹ı `data` ²ÎÊı´«ÈëÊ±½«¸²¸Ç `opt` ´«Èë¼°Ä¬ÈÏµÄ `secretId`
- * @param {Object} [opts] ÇëÇóÅäÖÃ. ÅäÖÃÀïµÄ²ÎÊıÈ±Ê¡Ê¹ÓÃÄ¬ÈÏÅäÖÃ (`this.defaults`) ÀïµÄ¶ÔÓ¦Ïî
- * @param {String} opts.host ¸Ã´ÎÇëÇóÊ¹ÓÃµÄ API host. µ±´«Èë¸Ã²ÎÊıµÄÊ±ºò, ½«ºöÂÔ `serviceType` ¼°Ä¬ÈÏ `host`
+ * è¯·æ±‚ API
+ * @param {Object} data è¯¥æ¬¡è¯·æ±‚çš„å‚æ•°.
+ * @param {Object} [data.SecretId] Api SecrectId, é€šè¿‡ `data` å‚æ•°ä¼ å…¥æ—¶å°†è¦†ç›– `opt` ä¼ å…¥åŠé»˜è®¤çš„ `secretId`
+ * @param {Object} [opts] è¯·æ±‚é…ç½®. é…ç½®é‡Œçš„å‚æ•°ç¼ºçœä½¿ç”¨é»˜è®¤é…ç½® (`this.defaults`) é‡Œçš„å¯¹åº”é¡¹
+ * @param {String} opts.host è¯¥æ¬¡è¯·æ±‚ä½¿ç”¨çš„ API host. å½“ä¼ å…¥è¯¥å‚æ•°çš„æ—¶å€™, å°†å¿½ç•¥ `serviceType` åŠé»˜è®¤ `host`
  * @param {requestCallback} callback
  */
 QcloudApi.prototype.request = function(data, opts, callback) {
@@ -120,10 +120,10 @@ QcloudApi.prototype.request = function(data, opts, callback) {
 
   request(option, function(error, response, body) {
     /**
-     * `.request` µÄÇëÇó»Øµ÷
+     * `.request` çš„è¯·æ±‚å›è°ƒ
      * @callback requestCallback
-     * @param {Error} error ÇëÇó´íÎó
-     * @param {Object} body API ÇëÇó½á¹û
+     * @param {Error} error è¯·æ±‚é”™è¯¯
+     * @param {Object} body API è¯·æ±‚ç»“æœ
      */
     callback(error, body)
   })
@@ -131,10 +131,10 @@ QcloudApi.prototype.request = function(data, opts, callback) {
 
 
 /**
- * Éú³ÉÇ©Ãû
- * @param {String} str ĞèÇ©ÃûµÄ²ÎÊı´®
+ * ç”Ÿæˆç­¾å
+ * @param {String} str éœ€ç­¾åçš„å‚æ•°ä¸²
  * @param {String} secretKey
- * @returns {String} Ç©Ãû
+ * @returns {String} ç­¾å
  */
 QcloudApi.prototype.sign = function(str, secretKey) {
   var hmac = crypto.createHmac('sha1', secretKey || '')
@@ -142,10 +142,10 @@ QcloudApi.prototype.sign = function(str, secretKey) {
 }
 
 /**
- * »ñÈ¡ API host
- * @param opts ÇëÇóÅäÖÃ
- * @param {String} [opts.serviceType] ·şÎñÀàĞÍ. Èç: cvm, vpc, dfw, lb µÈ
- * @param {String} [opts.host] Èç¹ûÅäÖÃÖĞÖ±½Ó´«Èë host, ÔòÖ±½Ó·µ»Ø¸Ã host
+ * è·å– API host
+ * @param opts è¯·æ±‚é…ç½®
+ * @param {String} [opts.serviceType] æœåŠ¡ç±»å‹. å¦‚: cvm, vpc, dfw, lb ç­‰
+ * @param {String} [opts.host] å¦‚æœé…ç½®ä¸­ç›´æ¥ä¼ å…¥ host, åˆ™ç›´æ¥è¿”å›è¯¥ host
  * @returns {String}
  * @private
  */
