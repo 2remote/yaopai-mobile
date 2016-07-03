@@ -19,7 +19,7 @@ app.use(function(err, req, res, next) {
 
 /*************************************** weixin start ***********************************************/
 /**
- * ĞèÒªÎ¢ĞÅ»·¾³±äÁ¿
+ * éœ€è¦å¾®ä¿¡ç¯å¢ƒå˜é‡
  * WEIXIN_APPID
  * WEIXIN_SECRET
  * @type {Weixin}
@@ -89,11 +89,11 @@ var server = app.listen(process.env.PORT || 5000, function () {
 });
 
 /**
- * Èç¹û»·¾³±äÁ¿´æÔÚqcloud µÄSecretId ºÍ SecretKey ¾ÍÈÏÎªĞèÒªË¢ĞÂCDN
- * »·¾³±äÁ¿ĞèÒª:
+ * å¦‚æœç¯å¢ƒå˜é‡å­˜åœ¨qcloud çš„SecretId å’Œ SecretKey å°±è®¤ä¸ºéœ€è¦åˆ·æ–°CDN
+ * ç¯å¢ƒå˜é‡éœ€è¦:
  * QCLOUD_SECRETID : SecretId
  * QCLOUD_SECRETKEY : SecretKey
- * CDNURL : ĞèÒªË¢ĞÂµÄUrl
+ * CDNURL : éœ€è¦åˆ·æ–°çš„Url
  */
 var secretId = process.env.QCLOUD_SECRETID;
 var secretKey = process.env.QCLOUD_SECRETKEY;
@@ -115,5 +115,3 @@ if(secretId && secretKey && cdnurl){
     console.log('Qcloud RefreshCdn result : ' + data);
   })
 }
-
-/****************************************** end ********************************************/
