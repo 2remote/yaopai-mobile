@@ -100,18 +100,32 @@ var secretKey = process.env.QCLOUD_SECRETKEY;
 var cdnurl = process.env.CDNURL;
 
 if(secretId && secretKey && cdnurl){
-  var QcloudApi = require('./QcloudApi')
-  var qcloud = new QcloudApi({
-    SecretId: secretId,
-    SecretKey: secretKey,
-    method: 'GET',
-    serviceType:'cdn',
-  })
-  qcloud.request({
-    Region: 'gz',
-    Action: 'RefreshCdnDir',
-    'urls.0': cdnurl,
-  }, function(error, data) {
-    console.log('Qcloud RefreshCdn result : ' + data);
-  })
-}
+   var QcloudApi = require('./QcloudApi')
+   var qcloud = new QcloudApi({
+     SecretId: secretId,
+     SecretKey: secretKey,
+     method: 'GET',
+     serviceType:'cdn',
+   })
+   var params = {
+     Region: 'gz',
+     Action: 'RefreshCdnUrl',
+   };
+   var cdnurls = cdnurl.split(',');
+   cdnurls.forEach(function (item,index) {
+     params['urls.'+ index] = item;
+   })
+   qcloud.request(params, function(error, data) {
+     console.log('Qcloud RefreshCdnUrl result : ' + JSON.stringify(data));
+   })
+   var params2 = {
+     Region: 'gz',
+     Action: 'RefreshCdnDir',
+   };
+   cdnurls.forEach(function (item,index) {
+     params2['dirs.'+ index] = item;
+   })
+   qcloud.request(params2, function(error, data) {
+     console.log('Qcloud RefreshCdnDir result : ' + JSON.stringify(data));
+   })
+ }
