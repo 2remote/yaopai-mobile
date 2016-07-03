@@ -19,7 +19,7 @@ app.use(function(err, req, res, next) {
 
 /*************************************** weixin start ***********************************************/
 /**
- * ĞèÒªÎ¢ĞÅ»·¾³±äÁ¿
+ * éœ€è¦å¾®ä¿¡ç¯å¢ƒå˜é‡
  * WEIXIN_APPID
  * WEIXIN_SECRET
  * @type {Weixin}
@@ -89,31 +89,43 @@ var server = app.listen(process.env.PORT || 5000, function () {
 });
 
 /**
- * Èç¹û»·¾³±äÁ¿´æÔÚqcloud µÄSecretId ºÍ SecretKey ¾ÍÈÏÎªĞèÒªË¢ĞÂCDN
- * »·¾³±äÁ¿ĞèÒª:
+ * å¦‚æœç¯å¢ƒå˜é‡å­˜åœ¨qcloud çš„SecretId å’Œ SecretKey å°±è®¤ä¸ºéœ€è¦åˆ·æ–°CDN
+ * ç¯å¢ƒå˜é‡éœ€è¦:
  * QCLOUD_SECRETID : SecretId
  * QCLOUD_SECRETKEY : SecretKey
- * CDNURL : ĞèÒªË¢ĞÂµÄUrl
+ * CDNURL : éœ€è¦åˆ·æ–°çš„Url
  */
 var secretId = process.env.QCLOUD_SECRETID;
 var secretKey = process.env.QCLOUD_SECRETKEY;
 var cdnurl = process.env.CDNURL;
 
 if(secretId && secretKey && cdnurl){
-  var QcloudApi = require('./QcloudApi')
-  var qcloud = new QcloudApi({
-    SecretId: secretId,
-    SecretKey: secretKey,
-    method: 'GET',
-    serviceType:'cdn',
-  })
-  qcloud.request({
-    Region: 'gz',
-    Action: 'RefreshCdnUrl',
-    'urls.0': cdnurl,
-  }, function(error, data) {
-    console.log('Qcloud RefreshCdn result : ' + data);
-  })
-}
-
-/****************************************** end ********************************************/
+   var QcloudApi = require('./QcloudApi')
+   var qcloud = new QcloudApi({
+     SecretId: secretId,
+     SecretKey: secretKey,
+     method: 'GET',
+     serviceType:'cdn',
+   })
+   var params = {
+     Region: 'gz',
+     Action: 'RefreshCdnUrl',
+   };
+   var cdnurls = cdnurl.split(',');
+   cdnurls.forEach(function (item,index) {
+     params['urls.'+ index] = item;
+   })
+   qcloud.request(params, function(error, data) {
+     console.log('Qcloud RefreshCdnUrl result : ' + JSON.stringify(data));
+   })
+   var params2 = {
+     Region: 'gz',
+     Action: 'RefreshCdnDir',
+   };
+   cdnurls.forEach(function (item,index) {
+     params2['dirs.'+ index] = item;
+   })
+   qcloud.request(params2, function(error, data) {
+     console.log('Qcloud RefreshCdnDir result : ' + JSON.stringify(data));
+   })
+ }
