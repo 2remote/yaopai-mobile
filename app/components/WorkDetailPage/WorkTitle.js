@@ -33,39 +33,39 @@ class WorkTitle extends React.Component{
       const confirmMsg = confirm("是否前往登录，然后关注？");
       if (confirmMsg == true) {
         this.history.pushState({nextPage : this.props.pathname},'/login_page');
-      } else {
-
       }
 
+    } else if(this.state.userData.userId == this.props.data.id) {
+      this.showMessage('您不能收藏自己的作品');
+      return;
+
     } else {
+      document.getElementById('collect-icon').style.color = '#d42e2e';
       this.setState({isClickMark: true})
       // TODO 如何防止用户多次提交
-      AlbumsActions.mark(this.props.id)
+      AlbumsActions.mark(this.props.data.workId)
     }
   }
   // 点击取消关注
   unAttention() {
+    document.getElementById('collect-icon').style.color = '#fff';
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
-    AlbumsActions.unMark(this.props.id)
+    AlbumsActions.unMark(this.props.data.workId)
   }
 
   onMarkSuccess(data){
-    if (data.markExist.id == this.props.id) {
-      this.setState({
-        markExist: data.markExist.isMark,
-      })
-    }
+    this.setState({
+      markExist: data.markExist.isMark,
+    })
   }
 
-  onUnMarkSuccess(data){
-    if (data.markExist.id == this.props.id) {
-      this.setState({
-        markExist: data.markExist.isMark,
-      })
-    }
-  }
+  // onUnMarkSuccess(data){
+  //   this.setState({
+  //     markExist: data.markExist.isMark,
+  //   })
+  // }
   render(){
     const {data} = this.props
     return (
@@ -74,13 +74,13 @@ class WorkTitle extends React.Component{
           {
             (this.state.isClickMark ? this.state.markExist : data.markExist)
             ?
-            <i className="button-collect-active icon collect"
-               onClick={this.unAttention}
-            />
+            <div className="work-collect" onClick={this.unAttention}>
+              <i id="collect-icon" className="icon mark_active color_red"/>
+            </div>
             :
-            <i className="button-collect icon collect"
-               onClick={this.attention}
-            />
+            <div className="work-collect" onClick={this.attention}>
+              <i id="collect-icon" className="icon mark"/>
+            </div>
           }
         </div>
         <div className="cover" style={{backgroundImage:`url(${data.cover})`,backgroundSize:'cover'}}/>
@@ -95,7 +95,7 @@ class WorkTitle extends React.Component{
 }
 
 ReactMixin.onClass(WorkTitle,Reflux.listenTo(AlbumsStore, 'onMarkSuccess'));
-ReactMixin.onClass(WorkTitle,Reflux.listenTo(AlbumsStore, 'onUnMarkSuccess'));
+// ReactMixin.onClass(WorkTitle,Reflux.listenTo(AlbumsStore, 'onUnMarkSuccess'));
 ReactMixin.onClass(WorkTitle, Reflux.listenTo(UserStore, 'onUserLoad'));
 ReactMixin.onClass(WorkTitle, History);
 export {WorkTitle as default};
