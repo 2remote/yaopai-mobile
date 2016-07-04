@@ -81,16 +81,7 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
     const {data, index} = this.props
-    let cover;
-    if(data.Cut){
-      const cut = JSON.parse(data.Cut);
-      cover = data.Cover + cut.w;
-    }else{
-      cover = imgModifier(data.Cover, "workCover");
-=======
-    const {data} = this.props
     let cover
     if(data.Cut) {
       try {
@@ -102,7 +93,6 @@ class WorkIntroGrapherRow extends React.Component {
       }
     } else {
       cover = imgModifier(data.Cover, "workCover")
->>>>>>> dev
     }
 
     let grapherAvatar
