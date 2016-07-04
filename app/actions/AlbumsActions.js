@@ -46,7 +46,7 @@ AlbumsActions.get.listen(function(id){
 AlbumsActions.search.listen( searchQuery )
 AlbumsActions.query.listen( searchQuery )
 
-function searchQuery(args = []) {
+function searchQuery(args = {}) {
   const {
     tags = null,
     key = "",

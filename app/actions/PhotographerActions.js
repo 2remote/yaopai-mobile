@@ -29,7 +29,7 @@ PhotographerActions.list.listen(listQuery)
 // 查询摄影师
 PhotographerActions.query.listen(listQuery)
 
-function listQuery(args = []) {
+function listQuery(args = {}) {
   const {
     key = "",
     pageIndex = 1,
