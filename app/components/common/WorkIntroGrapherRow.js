@@ -81,7 +81,6 @@ class WorkIntroGrapherRow extends React.Component {
 
   render() {
     const {data} = this.props
-    console.log(data)
     let cover;
     if(data.Cut){
       const cut = JSON.parse(data.Cut);
@@ -107,13 +106,14 @@ class WorkIntroGrapherRow extends React.Component {
           (this.state.isClickMark ? this.state.markExist : data.MarkExist)
           ?
           <div className="work-collect" onClick={this.unAttention}>
-            <i className="button-collect-active icon mark_active"/>
+            <i className="icon mark_active"/>
           </div>
           :
           <div className="work-collect" onClick={this.attention}>
-            <i className="button-collect icon mark"/>
+            <i className="icon mark"/>
           </div>
         }
+
         <Link to={`/workDetail/${data.Id}`}>
           <div className="card-work" style={{height: 254/375*innerWidth}}>
             <LazyLoad threshold={100} once>

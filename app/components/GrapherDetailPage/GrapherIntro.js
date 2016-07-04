@@ -115,7 +115,7 @@ class GrapherIntro extends React.Component {
             (this.state.isClickMark ? this.state.markExist : data.MarkExist)
             ?
             <ButtonAttention
-              buttonType="btn-dark btn-attention-active"
+              buttonType="btn-dark"
               value="已关注"
               handleSubmit={this.unAttention}
               iconType="mark_active"

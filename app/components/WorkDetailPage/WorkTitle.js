@@ -74,11 +74,11 @@ class WorkTitle extends React.Component{
           {
             (this.state.isClickMark ? this.state.markExist : data.markExist)
             ?
-            <i className="button-collect-active icon collect"
+            <i className="icon mark_active"
                onClick={this.unAttention}
             />
             :
-            <i className="button-collect icon collect"
+            <i className="icon mark"
                onClick={this.attention}
             />
           }
