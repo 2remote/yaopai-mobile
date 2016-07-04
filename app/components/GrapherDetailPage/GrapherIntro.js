@@ -56,6 +56,7 @@ class GrapherIntro extends React.Component {
       return;
 
     } else {
+      document.getElementById('collect-icon').style.color = '#d42e2e';
       this.setState({isClickMark: true})
       // TODO 如何防止用户多次提交
       PhotographerActions.mark(this.props.id)
@@ -66,6 +67,7 @@ class GrapherIntro extends React.Component {
   }
   // 点击取消关注
   unAttention() {
+    document.getElementById('collect-icon').style.color = '#fff';
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
@@ -118,7 +120,7 @@ class GrapherIntro extends React.Component {
               buttonType="btn-dark"
               value="已关注"
               handleSubmit={this.unAttention}
-              iconType="mark_active"
+              iconType="mark_active color_red"
             />
             :
             <ButtonAttention
