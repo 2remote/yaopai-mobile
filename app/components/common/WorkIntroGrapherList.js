@@ -16,6 +16,7 @@ const WorkIntroGrapherList = args => {
           data.map((work, i) =>
             <WorkIntroGrapherRow
               key={i}
+              index={i}
               data={work}
             />
           )

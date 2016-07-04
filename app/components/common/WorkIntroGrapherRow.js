@@ -46,13 +46,14 @@ class WorkIntroGrapherRow extends React.Component {
       return;
 
     } else {
-      this.setState({isClickMark: true})
+      document.getElementById(`collect-${this.props.index}`).style.color = '#d42e2e';
       // TODO 如何防止用户多次提交
       AlbumsActions.mark(this.props.data.Id)
     }
   }
   // 点击取消关注
   unAttention() {
+    document.getElementById(`collect-${this.props.index}`).style.color = '#fff';
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
@@ -80,7 +81,7 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   render() {
-    const {data} = this.props
+    const {data, index} = this.props
     let cover;
     if(data.Cut){
       const cut = JSON.parse(data.Cut);
@@ -97,7 +98,6 @@ class WorkIntroGrapherRow extends React.Component {
     } else {
       grapherAvatar = <div className="card-head-null"></div>
     }
-
     return (
       <div className="workIntroGrapherRow">
         <Toaster ref="toast"/>
@@ -106,11 +106,11 @@ class WorkIntroGrapherRow extends React.Component {
           (this.state.isClickMark ? this.state.markExist : data.MarkExist)
           ?
           <div className="work-collect" onClick={this.unAttention}>
-            <i className="icon mark_active"/>
+            <i id={`collect-${index}`} className="icon mark_active color_red"/>
           </div>
           :
           <div className="work-collect" onClick={this.attention}>
-            <i className="icon mark"/>
+            <i id={`collect-${index}`} className="icon mark"/>
           </div>
         }
 
