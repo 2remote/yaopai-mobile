@@ -22,7 +22,8 @@
   left    : 0;
   top     : 0;
   padding : 0 10px;
-
+  margin-top: 10px;
+  
   .search {
     padding: 0 10px 0 0 ;
   }
@@ -41,7 +42,6 @@
     border-bottom: 1px lighten($dim-black, 5%) solid;
     color        : $white;
     padding      : 0 100px 0 50px;
-    margin-top: 10px;
   }
 
   .icon-left {
