@@ -7,6 +7,8 @@ import AlbumsStore from '../../stores/AlbumsStore';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 
+import $ from 'jquery';
+
 class WorkTitle extends React.Component{
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ class WorkTitle extends React.Component{
       return;
 
     } else {
-      document.getElementById('collect-icon').style.color = '#d42e2e';
+      $('#collect-icon').removeClass('mark').addClass('mark_active color_red');
       this.setState({isClickMark: true})
       // TODO 如何防止用户多次提交
       AlbumsActions.mark(this.props.data.workId)
@@ -48,7 +50,7 @@ class WorkTitle extends React.Component{
   }
   // 点击取消关注
   unAttention() {
-    document.getElementById('collect-icon').style.color = '#fff';
+    $('#collect-icon').removeClass('mark_active color_red').addClass('mark');
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
