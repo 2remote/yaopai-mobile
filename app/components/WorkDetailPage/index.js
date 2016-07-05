@@ -30,6 +30,7 @@ class WorkDetailPage extends React.Component {
         cover: '',
         description: '',
         id: '',
+        workId: '',
         MarkExist: false,
       },
       shareFrom: this.props.location.query.sharefrom,
@@ -60,6 +61,7 @@ class WorkDetailPage extends React.Component {
             cover: data.workData.Cover,
             description: data.workData.Description,
             id: data.workData.Photographer.Id,
+            workId: data.workData.Id,
             markExist: data.workData.MarkExist,
           }
         });
@@ -88,11 +90,11 @@ class WorkDetailPage extends React.Component {
       <div className="workDetailPage" onload={this.showTop()}>
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
         <SidePage shareFrom={this.state.shareFrom}/>
-        <WorkTitle data={this.state.workData} id={this.state.workData.id} />
+        <WorkTitle data={this.state.workData} />
         <WorkDetail data={this.state.detail} price={this.state.workData.price} />
         <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
         <WorkPieceList workPieces={this.state.photos} />
-        <ActionBar id={this.state.workData.id} price={this.state.workData.price} />
+        <ActionBar id={this.state.workData.workId} price={this.state.workData.price} />
         <AboutYAOPAILayout />
         <WechatShare title={this.state.workData.title} desc={this.state.workData.description} imgUrl={this.state.workData.cover} />
       </div>
