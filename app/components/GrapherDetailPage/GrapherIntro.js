@@ -12,6 +12,8 @@ import Toaster from '../Toast';
 import WechatShare from '../Weixin/WechatShare'
 import DocumentTitle from 'react-document-title'
 
+import $ from 'jquery';
+
 class GrapherIntro extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +58,7 @@ class GrapherIntro extends React.Component {
       return;
 
     } else {
-      document.getElementById('collect-icon').style.color = '#d42e2e';
+      $('#collect-icon').removeClass('mark').addClass('mark_active color_red');
       this.setState({isClickMark: true})
       // TODO 如何防止用户多次提交
       PhotographerActions.mark(this.props.id)
@@ -67,7 +69,7 @@ class GrapherIntro extends React.Component {
   }
   // 点击取消关注
   unAttention() {
-    document.getElementById('collect-icon').style.color = '#fff';
+    $('#collect-icon').removeClass('mark_active color_red').addClass('mark');
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
