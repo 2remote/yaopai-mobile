@@ -29,7 +29,7 @@ const ShowMenu = (args) => {
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
-            placeholder={searchKey || "搜索 作品名称/作品标签"}
+            placeholder={searchKey || "搜索 作品名称/作品标签/摄影师昵称"}
             onChange={searchReadyGo}
           />
         <div onClick={searchReadyGo}>

@@ -27,7 +27,7 @@ const ShowMenu = (args) => {
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
-            placeholder={searchKey || "搜索 摄影师昵称"}
+            placeholder={searchKey || "搜索 摄影师昵称/地区"}
             onChange={searchReadyGo}
           />
 
