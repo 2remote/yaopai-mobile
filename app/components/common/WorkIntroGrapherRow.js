@@ -13,6 +13,8 @@ import Toaster from '../Toast'
 import {imgModifier} from '../Tools';
 import LazyLoad from 'react-lazy-load';
 
+import $ from 'jquery';
+
 class WorkIntroGrapherRow extends React.Component {
   constructor(props) {
     super(props);
@@ -46,14 +48,14 @@ class WorkIntroGrapherRow extends React.Component {
       return;
 
     } else {
-      document.getElementById(`collect-${this.props.index}`).style.color = '#d42e2e';
+      $(`#collect-${this.props.index}`).removeClass('mark').addClass('mark_active color_red');
       // TODO 如何防止用户多次提交
       AlbumsActions.mark(this.props.data.Id)
     }
   }
   // 点击取消关注
   unAttention() {
-    document.getElementById(`collect-${this.props.index}`).style.color = '#fff';
+    $(`#collect-${this.props.index}`).removeClass('mark_active color_red').addClass('mark');
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
