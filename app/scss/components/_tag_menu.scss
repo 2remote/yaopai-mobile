@@ -27,15 +27,16 @@
   }
 
   .tagMenu {
-    position                   : absolute;
-    left                       : 0;
-    right                      : 0;
-    z-index                    : $zindex-hidden !important;
-    width                      : 100%;
-    box-sizing                 : border-box;
-    background                 : #000;
-    color                      : #fff;
-    opacity: 0.85;
+    position  : fixed;
+    left      : 0;
+    right     : 0;
+    z-index   : $zindex-hidden !important;
+    width     : 100%;
+    height    : 100%;
+    box-sizing: border-box;
+    background: #000;
+    color     : #fff;
+    opacity   : 0.85;
     @include slide-animation(top-bottom);
 
     .tag-title {
@@ -43,6 +44,12 @@
       display    : block;
       padding    : 5px 15px;
       font-weight: 800;
+    }
+
+    .tagButton {
+      position: fixed;
+      bottom: 50px;
+      width: 100%;
     }
   }
 
