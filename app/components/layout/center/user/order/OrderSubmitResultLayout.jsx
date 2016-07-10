@@ -95,14 +95,7 @@ class OrderSubmitResultLayout extends React.Component {
               {order.BuyerName}
             </div>
           </div>
-          <div className="weui_cell">
-            <div className="weui_cell_hd">
-              <label className="yp_label">联系方式</label>
-            </div>
-            <div className="weui_cell_bd weui_cell_primary font_medium color_gray">
-              {order.BuyerTel}
-            </div>
-          </div>
+        
           <div className="weui_cell">
             <div className="weui_cell_hd">
               <label className="yp_label">预约日期</label>
