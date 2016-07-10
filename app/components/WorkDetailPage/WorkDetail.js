@@ -68,7 +68,7 @@ class WorkDetail extends React.Component {
             <span>拍摄时长</span>
           </li>
         </ul>
-        <button onClick={this.handleClick}>查看套餐详情</button>
+        <button onClick={this.handleClick}>查看套餐详情 <i className="icon youjiantou" /></button>
 
         <div className="workDetail-mask" style={style}>
           <div className="panel">
