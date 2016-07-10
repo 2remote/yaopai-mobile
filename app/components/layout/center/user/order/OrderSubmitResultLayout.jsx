@@ -75,22 +75,6 @@ class OrderSubmitResultLayout extends React.Component {
                      alt={order.Albums.Title}
                 />
               </div>
-              <div className="weui_media_bd">
-                <h4 className="weui_media_title">
-                  {order.Albums.Title}
-                </h4>
-                <p className="weui_media_desc text_right">
-                  <button onClick={ () => { CallActions.call(order.PhotographerId); this.handleCall();} } className="weui_btn weui_btn_mini weui_btn_plain_default">
-                    <i className="icon phone_icon" />
-                    致电摄影师
-                  </button>
-                </p>
-                <Toast show={this.state.show} style={{padding: '20px 15px'}}>
-                  正在回拨<br/>
-                  请注意接听<br/>
-                  <small>3秒后关闭...</small>
-                </Toast>
-              </div>
             </div>
           </div>
         </div>
