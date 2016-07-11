@@ -23,7 +23,10 @@
     color: $white;
     text-align: center;
 
-    i { font-size: 22px; }
+    i {
+      color: lighten($red, 5%);
+      font-size: 22px;
+    }
   }
 
   .card-work {
