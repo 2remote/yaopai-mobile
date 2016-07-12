@@ -118,5 +118,11 @@
       })();
     </script>
     <script type="text/javascript" src="https://one.pingxx.com/lib/pingpp_one.js"></script>
-    </body>
+    <script src="https://dn-bts.qbox.me/sdk/bugtags-1.0.3.js"></script>
+    <script>
+      if (window.location.host === "dev.aiyaopai.com") {
+        new Bugtags('ff0aa0f9b4ba989ed064d7eb15d13cbd','1.7.12','1620')
+      }
+    </script>
+  </body>
 </html>
