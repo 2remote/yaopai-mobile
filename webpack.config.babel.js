@@ -82,6 +82,7 @@ if(TARGET === 'start' || !TARGET) {
       new webpack.HotModuleReplacementPlugin(),
       new HtmlwebpackPlugin({
         title: APP_TITLE,
+        dev: true,
         template: 'app/templates/index.tpl'
       }),
       new OpenBrowserPlugin({
