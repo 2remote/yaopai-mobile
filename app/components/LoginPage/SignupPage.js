@@ -19,7 +19,6 @@ let SignupPage = React.createClass({
       phone : '',
       code : '',
       password1 : '',
-      password2 : '',
       codeLeft : 0
     }
   },
@@ -73,14 +72,6 @@ let SignupPage = React.createClass({
       this.showMessage('密码长度应在6-18之间');
       return;
     }
-    if(!password2){
-      this.showMessage('请再次密码');
-      return;
-    }
-    if(password1 !== password2) {
-      this.showMessage('两次的密码不一致');
-      return;
-    }
     if(!code){
       this.showMessage('请输入验证码');
       return;
@@ -118,13 +109,6 @@ let SignupPage = React.createClass({
               updateValue={ password1 => this.setState({password1}) }
               type="password"
               placeholder="请输入密码"
-            />
-
-            <InputGroup
-              iconLeft="mima01"
-              updateValue={ password2 => this.setState({password2}) }
-              type="password"
-              placeholder="请再次输入密码"
             />
 
             <InputGroup

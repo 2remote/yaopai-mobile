@@ -18,7 +18,10 @@
       color: $white;
       text-align: center;
 
-      i { font-size: 22px; }
+      i {
+        color: lighten($red, 5%);
+        font-size: 22px;
+      }
     }
 
     .title-a {
@@ -60,6 +63,7 @@
     margin-top: 15px;
 
     .workDetail-mask {
+      display: none;
       background: rgba(255,255,255,1);
       position  : fixed;
       top       : 0;
