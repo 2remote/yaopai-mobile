@@ -20,6 +20,7 @@ import ActivityDetailPage from './components/ActivityDetailPage';
 
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/LoginPage/SignupPage';
+import EmailSignupPage from './components/LoginPage/EmailSignupPage';
 import FindByMobileForm from './components/LoginPage/FindByMobileForm';
 import ChangePassWordForm from './components/LoginPage/ChangePassWordForm';
 import ReactDOM from 'react-dom';
@@ -74,6 +75,7 @@ function main(){
         <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />
         <Route path="/login_page" component={LoginPage} />
         <Route path="/signupPage" component={SignupPage} />
+        <Route path="/email_signup" component={EmailSignupPage} />
         <Route path="/findByMobileForm" component={FindByMobileForm} />
         <Route path="/changePassWordForm" component={ChangePassWordForm} />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />

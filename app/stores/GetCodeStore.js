@@ -21,6 +21,11 @@ var GetCodeStore = Reflux.createStore({
     this.listenTo(GetCodeActions.sendTelRegister,this.onBeginTelRegister);
     this.listenTo(GetCodeActions.sendTelRestPassword.success, this.onTelRestPasswordSuccess);
     this.listenTo(GetCodeActions.sendTelRestPassword, this.onBeginTelRestPassword);
+
+    this.listenTo(GetCodeActions.sendMailRegister.success,this.onMailRegisterSucess);
+    this.listenTo(GetCodeActions.sendMailRegister,this.onBeginMailRegister);
+    this.listenTo(GetCodeActions.receiveMailRegister.success, this.onReceiveMailSuccess);
+    this.listenTo(GetCodeActions.receiveMailRegister, this.onReceiveMailSuccess);
   },
   onBeginTelRegister : function(){
     this.data.left = 60;
@@ -58,6 +63,51 @@ var GetCodeStore = Reflux.createStore({
     this.data.flag = 'resetCode';
     if(data.Success){
       this.data.result = '验证码已发送';
+    }else{
+      clearTimeout(timer);
+      this.data.result = data.ErrorMsg;
+      this.data.left = 0;
+    }
+    this.trigger(this.data);
+  },
+
+  // 邮箱注册
+  onBeginMailRegister : function(){
+    this.data.left = 60;
+    var countLeft = function(){
+      this.data.left = this.data.left -1;
+      this.trigger(this.data);
+      setTimeout(countLeft, 1000);
+    }.bind(this);
+    countLeft();
+  },
+  onMailRegisterSucess : function(data){
+    this.data.flag = 'registerCode';
+    if(data.Success){
+      this.data.result = '验证码已发送到您邮箱';
+    }else{
+      this.data.result = data.ErrorMsg;
+      this.data.left = 0;
+    }
+    this.trigger(this.data);
+  },
+  onReceiveMailSuccess: function () {
+    this.data.left = 60;
+    var countLeft = function () {
+      this.data.left -= 1;
+      this.trigger(this.data);
+      timer = setTimeout(countLeft, 1000);
+      /*清除定时器*/
+      if (this.data.left <= 0) {
+        clearTimeout(timer);
+      }
+    }.bind(this);
+    countLeft();
+  },
+  onReceiveMailSuccess: function (data) {
+    this.data.flag = 'resetCode';
+    if(data.Success){
+      this.data.result = '验证码已发送到您邮箱';
     }else{
       clearTimeout(timer);
       this.data.result = data.ErrorMsg;

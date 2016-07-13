@@ -4,6 +4,7 @@ import API from '../api';
 
 var UserActions = Reflux.createActions({
   'register' : {children:["success","failed"]},
+  'receiveMailRegister' : {children:["success","failed"]},
   'login' : {children:["success","failed"]},
   'loginWithToken' : {children : ['success','failed']},
   'logout' : {children:["success"]},
@@ -26,7 +27,7 @@ var UserActions = Reflux.createActions({
 
 /*
   https://xiattst.gitbooks.io/yaopai/content/API/User/Login.html
-  
+
   loginname  string  Y 用户手机或邮箱号码
   password  string  Y 用户密码
   autologin boolean N 是否自动登录
@@ -120,6 +121,12 @@ UserActions.changeAvatarOnServer.listen(function(imgLink) {
 UserActions.register.listen(function(data) {
   // $.post(API.user_api.register_url, data).then(this.success, this.failed);
   HttpFactory.post(API.USER.register,data,this.success,this.failed);
+});
+
+// 验证用户邮箱所接收到的验证码
+UserActions.receiveMailRegister.listen(function(data) {
+  // $.post(API.user_api.register_url, data).then(this.success, this.failed);
+  HttpFactory.post(API.USER.receiveMailRegister,data,this.success,this.failed);
 });
 /*
   修改密码
