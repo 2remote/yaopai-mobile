@@ -42,11 +42,13 @@ var API_CONST = {
   isProd: DOMAIN === PRODUCTION_ENV,
   API_URL: API_URL,
   USER: {
-    login: API_URL + 'User.Login',
+    login: API_URL + 'User.Login',// 手机号或者邮箱登录
     login_with_token: API_URL + 'User.LoginWithToken',
     register: API_URL + 'User.ReceiveTelRegister',
     sendTelRegister: API_URL + "User.SendTelRegister",
     sendTelRestPassword: API_URL + "User.SendTelResetPassWord",
+    sendMailRegister: API_URL + "User.SendMailRegister", // 邮箱注册发送注册验证码
+    receiveMailRegister: API_URL + "User.ReceiveMailRegister", // 邮箱注册验证验证码
     modify_password: API_URL + 'User.ChangePassword',
     verifyTelResetPassWord: API_URL + 'User.VerifyTelResetPassWord',
     receiveTelResetPassWord: API_URL + 'User.ReceiveTelResetPassWord',

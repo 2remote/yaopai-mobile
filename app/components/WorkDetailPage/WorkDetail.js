@@ -33,9 +33,9 @@ const WorkDetail = ({data, price}) => {
   }
 
   const showDetail = () => {
-    $('#workDetailMask').show().addClass('animated bounceIn');
+    $('#workDetailMask').show();/*.addClass('animated bounceIn');*/
     // 动画执行完毕后要把 'animated bounceIn' 这两个类给去掉，不然偶尔会导致样式错乱
-    setTimeout(() => $('#workDetailMask').removeClass('animated bounceIn'), 400);
+    // setTimeout(() => $('#workDetailMask').removeClass('animated bounceIn'), 400);
   }
 
   const hideDetail = () => {
