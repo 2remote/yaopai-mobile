@@ -34,16 +34,13 @@
     width     : 100%;
     height    : 100%;
     box-sizing: border-box;
-    background: #000;
-    color     : #fff;
-    opacity   : 0.85;
+    background: #DFDFDF;
     @include slide-animation(top-bottom);
 
     .tag-title {
-      color      : #CCAC7B;
       display    : block;
       padding    : 5px 15px;
-      font-weight: 800;
+      background: white;
     }
 
     .tagButton {
@@ -53,7 +50,10 @@
     }
   }
 
-  .tagRowBox { overflow: hidden; }
+  .tagRowBox {
+    overflow: hidden;
+    background: white;
+  }
 
   .tagColBox {
     display      : inline-block;
@@ -69,7 +69,7 @@
 
 .tagButton {
   button {
-    width: 50%;
+    width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: $white;
     height: 50px;
@@ -81,6 +81,6 @@
   }
 
   .yesImPretySure {
-    background: transparent;
+    background: #151515;
   }
 }

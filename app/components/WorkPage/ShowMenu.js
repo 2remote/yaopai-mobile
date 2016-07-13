@@ -24,17 +24,15 @@ const ShowMenu = (args) => {
       </div>
 
       <div className="tagMenu" id="tagMenu">
-        <section className="input-group-dark">
+        <section className="input-group-light">
+          <span className="icon search search-icon icon-left"></span>
           <input
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
-            placeholder={searchKey || "搜索 作品名称/作品标签/摄影师昵称"}
-            onChange={searchReadyGo}
-          />
-        <div onClick={searchReadyGo}>
-          <span className="icon search search-icon icon-right"></span>
-          </div>
+            placeholder={searchKey || "搜索 作品/标签/摄影师昵称"}
+            onChange={searchReadyGo} />
+          <span className="cancel-search">取消</span>
         </section>
 
         <span className="tag-title">拍摄地区 | PLACE</span>
@@ -42,9 +40,9 @@ const ShowMenu = (args) => {
         <span className="tag-title">拍摄种类 | CATEGORY</span>
         <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
         <div className="tagButton">
-          <button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>
+          {/*<button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>*/}
           {/*确定实际上就是隐藏*/}
-          <button className="yesImPretySure" onClick={handleClick}>确定</button>
+          <button className="yesImPretySure" onClick={handleClick}>立即筛选</button>
         </div>
       </div>
     </section>
