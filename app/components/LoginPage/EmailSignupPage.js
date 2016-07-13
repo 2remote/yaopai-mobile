@@ -16,7 +16,7 @@ let EmailSignupPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(GetCodeStore,'_onGetCodeStoreChange'),History],
   getInitialState : function(){
     return {
-      phone : '',
+      email : '',
       code : '',
       password1 : '',
       codeLeft : 0
@@ -45,25 +45,25 @@ let EmailSignupPage = React.createClass({
 
   _handleGetCode : function(){
     if(this.state.codeLeft > 0) return;
-    let phone = this.state.phone;
-    let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    if(isMobile){
-      GetCodeActions.sendTelRegister({tel:phone});
-    }else{
-      this.showMessage('请输入正确的手机号码');
-    }
+    let email = this.state.email;
+    // let isMobile = validator.isMobilePhone(phone,'zh-CN');
+    // if(isMobile){
+    GetCodeActions.sendMailRegister({email: email});
+    // }else{
+    //   this.showMessage('请输入正确的邮箱');
+    // }
     return false;
   },
   _handleRegister : function(){
-    let phone = this.state.phone;
+    let email = this.state.email;
     let code = this.state.code;
     let password1 = this.state.password1;
     let password2 = this.state.password2;
-    let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    if(!isMobile){
-      this.showMessage('请输入正确的手机号码');
-      return;
-    }
+    // let isMobile = validator.isMobilePhone(phone,'zh-CN');
+    // if(!isMobile){
+    //   this.showMessage('请输入正确的邮箱');
+    //   return;
+    // }
     if(!password1){
       this.showMessage('请输入密码');
       return;
@@ -80,8 +80,8 @@ let EmailSignupPage = React.createClass({
       this.showMessage('请输入4位数字验证码');
       return;
     }
-    let registerData = {tel : phone,password : password1,code : code};
-    UserActions.register(registerData);
+    let registerData = {email : email, password : password1, code : code};
+    UserActions.receiveMailRegister(registerData);
     return false;
   },
   showMessage: function (content) {
@@ -95,7 +95,7 @@ let EmailSignupPage = React.createClass({
           <form className="signup-page">
             <InputGroup
               iconLeft="phone"
-              updateValue={ phone => this.setState({phone}) }
+              updateValue={ email => this.setState({email}) }
               type="tel"
               pattern="[0-9]*"
               placeholder="请输入邮箱"
@@ -127,7 +127,7 @@ let EmailSignupPage = React.createClass({
 
           <ButtonBlock
             buttonType="btn-dark"
-            value="邮箱注册"
+            value="手机号注册"
             handleSubmit={this._handleRegister}
           />
         </RouteTransition>
