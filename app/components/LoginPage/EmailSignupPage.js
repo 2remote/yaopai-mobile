@@ -12,7 +12,7 @@ import { Link, History } from 'react-router';
 import { RouteTransition, presets } from 'react-router-transition'
 import Toaster from '../Toast';
 
-let SignupPage = React.createClass({
+let EmailSignupPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(GetCodeStore,'_onGetCodeStoreChange'),History],
   getInitialState : function(){
     return {
@@ -98,7 +98,7 @@ let SignupPage = React.createClass({
               updateValue={ phone => this.setState({phone}) }
               type="tel"
               pattern="[0-9]*"
-              placeholder="请输入手机号"
+              placeholder="请输入邮箱"
             />
             <div className="get-tel-code" onClick={this._handleGetCode}>
               {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
@@ -137,4 +137,4 @@ let SignupPage = React.createClass({
   }
 });
 
-export {SignupPage as default};
+export {EmailSignupPage as default};
