@@ -46,24 +46,27 @@ let EmailSignupPage = React.createClass({
   _handleGetCode : function(){
     if(this.state.codeLeft > 0) return;
     let email = this.state.email;
-    // let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    // if(isMobile){
-    GetCodeActions.sendMailRegister({email: email});
-    // }else{
-    //   this.showMessage('请输入正确的邮箱');
-    // }
+    const mailFilter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    let isEmail = mailFilter.test(email);
+
+    if(isEmail){
+      GetCodeActions.sendMailRegister({email: email});
+    } else {
+      this.showMessage('请输入正确的邮箱');
+    }
     return false;
   },
   _handleRegister : function(){
     let email = this.state.email;
     let code = this.state.code;
     let password1 = this.state.password1;
-    let password2 = this.state.password2;
-    // let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    // if(!isMobile){
-    //   this.showMessage('请输入正确的邮箱');
-    //   return;
-    // }
+
+    const mailFilter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    let isEmail = mailFilter.test(email);
+    if(!isEmail){
+      this.showMessage('请输入正确的邮箱');
+      return;
+    }
     if(!password1){
       this.showMessage('请输入密码');
       return;
