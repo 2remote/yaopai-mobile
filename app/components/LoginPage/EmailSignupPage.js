@@ -87,8 +87,8 @@ let EmailSignupPage = React.createClass({
     UserActions.receiveMailRegister(registerData);
     return false;
   },
-  showMessage: function (content) {
-    this.refs.toast.show(content)
+  goTelSignup: function() {
+    this.history.pushState({nextPage : this.props.pathname},'/signupPage');
   },
   render() {
     return (
@@ -104,7 +104,7 @@ let EmailSignupPage = React.createClass({
               placeholder="请输入邮箱"
             />
             <div className="get-tel-code" onClick={this._handleGetCode}>
-              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
+              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取邮箱验证码')}
             </div>
 
             <InputGroup
@@ -131,7 +131,7 @@ let EmailSignupPage = React.createClass({
           <ButtonBlock
             buttonType="btn-dark"
             value="手机号注册"
-            handleSubmit={this._handleRegister}
+            handleSubmit={this.goTelSignup}
           />
         </RouteTransition>
         <Toaster ref="toast"/>

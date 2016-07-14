@@ -87,6 +87,10 @@ let SignupPage = React.createClass({
   showMessage: function (content) {
     this.refs.toast.show(content)
   },
+
+  goEmailSignup: function() {
+    this.history.pushState({nextPage : this.props.pathname},'/email_signup');
+  },
   render() {
     return (
       <div className="login-register-container">
@@ -128,7 +132,7 @@ let SignupPage = React.createClass({
           <ButtonBlock
             buttonType="btn-dark"
             value="邮箱注册"
-            handleSubmit={this._handleRegister}
+            handleSubmit={this.goEmailSignup}
           />
         </RouteTransition>
         <Toaster ref="toast"/>
