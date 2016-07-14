@@ -87,6 +87,9 @@ let EmailSignupPage = React.createClass({
     UserActions.receiveMailRegister(registerData);
     return false;
   },
+  showMessage: function (content) {
+    this.refs.toast.show(content)
+  },
   goTelSignup: function() {
     this.history.pushState({nextPage : this.props.pathname},'/signupPage');
   },
