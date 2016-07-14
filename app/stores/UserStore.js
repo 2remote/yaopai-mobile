@@ -43,6 +43,8 @@ var UserStore = Reflux.createStore({
     this.listenTo(UserActions.login.failed, this.onLoginFailed);
     this.listenTo(UserActions.register.success, this.onRegisterSuccess);
     this.listenTo(UserActions.register.failed, this.onRegisterFailed);
+    this.listenTo(UserActions.receiveMailRegister.success, this.onReceiveMailRegisterSuccess);
+    this.listenTo(UserActions.receiveMailRegister.failed, this.onReceiveMailRegisterFailed);
     this.listenTo(UserActions.logout.success, this.onLogoutSuccess);
     this.listenTo(UserActions.loginWithToken.success,this.onLoginWithTokenSuccess);
     this.listenTo(UserActions.loginWithToken.failed,this.onLoginWithTokenFailed);
@@ -285,10 +287,27 @@ var UserStore = Reflux.createStore({
     this.data.flag = "register";
     this.trigger(this.data);
   },
+
+  onReceiveMailRegisterSuccess: function(data) {
+    if (data.Success) {
+      this.data.hintMessage = '';
+      this.setCurrentUser(data.User);
+    } else {
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = "register";
+    this.trigger(this.data);
+  },
   /*
     onRegisterFailed 主要监听网络访问错误
   */
   onRegisterFailed: function(data) {
+    this.data.hintMessage = '网络出错啦！';
+    this.data.flag = "register";
+    this.trigger(this.data);
+  },
+
+  onReceiveMailRegisterFailed: function(data) {
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = "register";
     this.trigger(this.data);
