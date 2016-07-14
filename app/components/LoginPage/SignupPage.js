@@ -123,6 +123,9 @@ let SignupPage = React.createClass({
               placeholder="请输入验证码"
             />
           </form>
+           <a className="terms" href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed">
+             点击创建帐号表示同意《服务条款》
+           </a>
           <span className="email_signup" onClick={this.goEmailSignup}>邮箱注册</span>
           <ButtonBlock
             buttonType="btn-dark"

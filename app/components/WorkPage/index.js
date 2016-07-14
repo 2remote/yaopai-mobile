@@ -133,10 +133,17 @@ const WorkPage = React.createClass({
             selectedTags = {selectedTags}
           />
 
-          <a href="http://www.huodongxing.com/event/2342830121300">
-            <img style={{margin: "61px 0 -45px 0"}} src="./imgs/activity-1.jpg" />
+          <a href="http://www.huodongxing.com/event/6343547043500">
+            <img
+              style={{
+                width: '100%',
+                height: '60%',
+                marginTop: '50px',
+                marginBottom: '-50px',
+              }}
+              src="./imgs/activity-1.jpg" />
           </a>
-          
+
           <WorkIntroGrapherList
             data = {works}
             showNothingFound = {showNothingFound}
