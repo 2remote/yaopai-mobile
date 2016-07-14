@@ -25,7 +25,7 @@ var GetCodeStore = Reflux.createStore({
     this.listenTo(GetCodeActions.sendMailRegister.success,this.onMailRegisterSucess);
     this.listenTo(GetCodeActions.sendMailRegister,this.onBeginMailRegister);
     this.listenTo(GetCodeActions.receiveMailRegister.success, this.onReceiveMailSuccess);
-    this.listenTo(GetCodeActions.receiveMailRegister, this.onReceiveMailSuccess);
+    this.listenTo(GetCodeActions.receiveMailRegister, this.onBeginMailSuccess);
   },
   onBeginTelRegister : function(){
     this.data.left = 60;
@@ -91,7 +91,7 @@ var GetCodeStore = Reflux.createStore({
     }
     this.trigger(this.data);
   },
-  onReceiveMailSuccess: function () {
+  onBeginMailSuccess: function () {
     this.data.left = 60;
     var countLeft = function () {
       this.data.left -= 1;
