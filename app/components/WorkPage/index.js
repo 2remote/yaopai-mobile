@@ -141,7 +141,7 @@ const WorkPage = React.createClass({
                 marginTop: '50px',
                 marginBottom: '-50px',
               }}
-              src="./imgs/activity-1.jpg" />
+              src="http://7xte7j.com1.z0.glb.clouddn.com/activity-1.jpg" />
           </a>
 
           <WorkIntroGrapherList
