@@ -132,11 +132,7 @@ let SignupPage = React.createClass({
           <ButtonBlock
             buttonType="btn-dark"
             value="邮箱注册"
-<<<<<<< HEAD
             handleSubmit={this.goEmailSignup}
-=======
-            handleSubmit={this._handleRegister}
->>>>>>> dev
           />
         </RouteTransition>
         <Toaster ref="toast"/>
