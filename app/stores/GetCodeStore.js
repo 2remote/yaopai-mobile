@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import GetCodeActions from '../actions/GetCodeActions';
 var data = [];
 var timer = null;
+var timerMail = null;
 
 /*
   获取验证码store
@@ -74,12 +75,12 @@ var GetCodeStore = Reflux.createStore({
   // 邮箱注册
   onBeginMailRegister : function(){
     this.data.left = 60;
-    var countLeft = function(){
+    var countLeftMail = function(){
       this.data.left = this.data.left -1;
       this.trigger(this.data);
-      setTimeout(countLeft, 1000);
+      setTimeout(countLeftMail, 1000);
     }.bind(this);
-    countLeft();
+    countLeftMail();
   },
   onMailRegisterSucess : function(data){
     this.data.flag = 'registerCode';
@@ -93,23 +94,23 @@ var GetCodeStore = Reflux.createStore({
   },
   onBeginMailSuccess: function () {
     this.data.left = 60;
-    var countLeft = function () {
+    var countLeftMail = function () {
       this.data.left -= 1;
       this.trigger(this.data);
-      timer = setTimeout(countLeft, 1000);
+      timerMail = setTimeout(countLeftMail, 1000);
       /*清除定时器*/
       if (this.data.left <= 0) {
-        clearTimeout(timer);
+        clearTimeout(timerMail);
       }
     }.bind(this);
-    countLeft();
+    countLeftMail();
   },
   onReceiveMailSuccess: function (data) {
     this.data.flag = 'resetCode';
     if(data.Success){
       this.data.result = '验证码已发送到您邮箱';
     }else{
-      clearTimeout(timer);
+      clearTimeout(timerMail);
       this.data.result = data.ErrorMsg;
       this.data.left = 0;
     }
