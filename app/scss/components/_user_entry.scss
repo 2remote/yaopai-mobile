@@ -7,7 +7,6 @@ $nav-height :50px;
   background-image: url('http://ww2.sinaimg.cn/large/006gDr5Tjw1f453zyd9jjj30v91ao7h0.jpg');
   background-size: cover;
   background-position: 50% 50%;
-  text-align: center;
   // height: 为了适应不同的设备，高度由 JS 计算得到;
 }
 
@@ -32,19 +31,14 @@ $nav-height :50px;
 }
 
 .entry-header {
-  margin-top: 33.3%;
-  display: inline-block;
-  vertical-align: middle;
+  text-align: center;
   color: #000;
 
   i {
     display: inline-block;
+    margin-top: 100px;
     font-size: 30px;
   }
 
-  p {
-    color: $black;
-    line-height: 1;
-    display: inline-block;
-  }
+  p { color: $black; }
 }

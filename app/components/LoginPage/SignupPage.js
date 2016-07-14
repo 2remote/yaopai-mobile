@@ -87,6 +87,10 @@ let SignupPage = React.createClass({
   showMessage: function (content) {
     this.refs.toast.show(content)
   },
+
+  goEmailSignup: function() {
+    this.history.pushState({nextPage : this.props.pathname},'/email_signup');
+  },
   render() {
     return (
       <div className="login-register-container">
@@ -119,15 +123,10 @@ let SignupPage = React.createClass({
               placeholder="请输入验证码"
             />
           </form>
+          <span className="email_signup" onClick={this.goEmailSignup}>邮箱注册</span>
           <ButtonBlock
             buttonType="btn-dark"
             value="创建账号"
-            handleSubmit={this._handleRegister}
-          />
-
-          <ButtonBlock
-            buttonType="btn-dark"
-            value="邮箱注册"
             handleSubmit={this._handleRegister}
           />
         </RouteTransition>

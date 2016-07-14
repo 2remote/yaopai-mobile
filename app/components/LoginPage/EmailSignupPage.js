@@ -90,21 +90,23 @@ let EmailSignupPage = React.createClass({
   showMessage: function (content) {
     this.refs.toast.show(content)
   },
+  goTelSignup: function() {
+    this.history.pushState({nextPage : this.props.pathname},'/signupPage');
+  },
   render() {
     return (
       <div className="login-register-container">
         <UserEntryLayout />
-        <RouteTransition { ...presets.slideRight } pathname="/signupPage">
+        <RouteTransition { ...presets.slideLeft } pathname="/signupPage">
           <form className="signup-page">
             <InputGroup
               iconLeft="phone"
               updateValue={ email => this.setState({email}) }
-              type="tel"
-              pattern="[0-9]*"
+              type="email"
               placeholder="请输入邮箱"
             />
             <div className="get-tel-code" onClick={this._handleGetCode}>
-              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
+              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取邮箱验证码')}
             </div>
 
             <InputGroup
@@ -122,15 +124,11 @@ let EmailSignupPage = React.createClass({
               placeholder="请输入验证码"
             />
           </form>
-          <ButtonBlock
-            buttonType="btn-dark"
-            value="创建账号"
-            handleSubmit={this._handleRegister}
-          />
+          <span className="email_signup" onClick={this.goTelSignup}>手机号注册</span>
 
           <ButtonBlock
             buttonType="btn-dark"
-            value="手机号注册"
+            value="创建账号"
             handleSubmit={this._handleRegister}
           />
         </RouteTransition>
