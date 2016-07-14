@@ -48,9 +48,19 @@
 }
 
 .email_signup {
-  display: block;
   color: $red;
   padding-right: 10px;
   padding-bottom: 10px;
   float: right;
+}
+
+// 服务条款
+.terms {
+  display: block;
+  color: $silver;
+  padding-top: 2px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  float: left;
+  font-size: 12px;
 }

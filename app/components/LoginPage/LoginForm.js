@@ -50,7 +50,7 @@ class LoginForm extends React.Component {
               iconLeft="phone"
               updateValue={ userName => this.setState({userName}) }
               type="text"
-              placeholder="请输入手机号/邮箱"
+              placeholder="手机号/邮箱"
             />
 
             <InputGroup
@@ -60,10 +60,10 @@ class LoginForm extends React.Component {
               placeholder="请输入密码"
             />
             <aside className="aside">
-              <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed"
+              <a href="/#/signupPage"
                 className="fl"
               >
-                YAOPAI 服务条款
+                注册新用户
               </a>
               <a className="fr" href="/#/findByMobileForm">
                 忘记密码
