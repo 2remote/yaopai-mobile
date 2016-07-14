@@ -99,8 +99,7 @@ let EmailSignupPage = React.createClass({
             <InputGroup
               iconLeft="phone"
               updateValue={ email => this.setState({email}) }
-              type="tel"
-              pattern="[0-9]*"
+              type="email"
               placeholder="请输入邮箱"
             />
             <div className="get-tel-code" onClick={this._handleGetCode}>

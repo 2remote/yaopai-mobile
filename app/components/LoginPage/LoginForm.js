@@ -49,9 +49,8 @@ class LoginForm extends React.Component {
             <InputGroup
               iconLeft="phone"
               updateValue={ userName => this.setState({userName}) }
-              type="tel"
-              pattern="[0-9]*"
-              placeholder="请输入手机号"
+              type="text"
+              placeholder="请输入手机号/邮箱"
             />
 
             <InputGroup
