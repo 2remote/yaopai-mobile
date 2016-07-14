@@ -28,7 +28,8 @@ let EmailSignupPage = React.createClass({
         this.showMessage(data.hintMessage);
       }else{
         //注册成功
-        this.history.pushState('/login_page');
+        this.showMessage('注册成功！')
+        this.history.pushState(null, '/login_page');
       }
     }
   },
