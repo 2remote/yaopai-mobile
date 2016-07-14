@@ -94,7 +94,7 @@ let EmailSignupPage = React.createClass({
     return (
       <div className="login-register-container">
         <UserEntryLayout />
-        <RouteTransition { ...presets.slideRight } pathname="/signupPage">
+        <RouteTransition { ...presets.slideLeft } pathname="/signupPage">
           <form className="signup-page">
             <InputGroup
               iconLeft="phone"
@@ -122,16 +122,12 @@ let EmailSignupPage = React.createClass({
               placeholder="请输入验证码"
             />
           </form>
+          <span className="email_signup" onClick={this.goTelSignup}>手机号注册</span>
+
           <ButtonBlock
             buttonType="btn-dark"
             value="创建账号"
             handleSubmit={this._handleRegister}
-          />
-
-          <ButtonBlock
-            buttonType="btn-dark"
-            value="手机号注册"
-            handleSubmit={this.goTelSignup}
           />
         </RouteTransition>
         <Toaster ref="toast"/>

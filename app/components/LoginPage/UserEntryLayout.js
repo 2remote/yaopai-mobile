@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 const windowHeight = document.body.scrollHeight;
 const UserEntryLayout = () => (
-  <section className="entry-container" style={{height: windowHeight * 0.51 + 'px'}}>
+  <section className="entry-container" style={{height: windowHeight * 0.5 + 'px'}}>
     <header className="entry-header">
       <i className="icon yaopainew"></i>
       <p>全球&nbsp;预约&nbsp;摄影师&nbsp;平台</p>

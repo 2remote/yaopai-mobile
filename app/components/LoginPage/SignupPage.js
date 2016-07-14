@@ -123,16 +123,11 @@ let SignupPage = React.createClass({
               placeholder="请输入验证码"
             />
           </form>
+          <span className="email_signup" onClick={this.goEmailSignup}>邮箱注册</span>
           <ButtonBlock
             buttonType="btn-dark"
             value="创建账号"
             handleSubmit={this._handleRegister}
-          />
-
-          <ButtonBlock
-            buttonType="btn-dark"
-            value="邮箱注册"
-            handleSubmit={this.goEmailSignup}
           />
         </RouteTransition>
         <Toaster ref="toast"/>
