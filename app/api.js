@@ -58,7 +58,6 @@ var API_CONST = {
     currentUserDetail: API_URL + 'User.CurrentUserDetail',
     changeInfo: API_URL + 'User.ChangeInfo',
     changeAvatar: API_URL + 'User.ChangeAvatar',
-    updateInfo: API_URL + 'User.ChangeInfo'
   },
   USERFUND: {
     currentAccount: API_URL + 'UserFunds.CurrentAccount',
