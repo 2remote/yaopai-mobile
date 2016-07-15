@@ -79,7 +79,7 @@ class OrderDetailLayout extends React.Component{
         debug: false, //!API.isProd,
         app_id: 'app_HOmP4CHinvvL9Kyv', //Ping++ 后台中的应用Id
         amount: 0,    //金额请填写0
-        channel: ['alipay_wap', 'wx_pub', 'upacp_wap'],//渠道数组,视情况而定
+        channel: ['alipay_wap', 'wx_pub'/*, 'upacp_wap'*/],//渠道数组,视情况而定
         charge_url: `${API.ORDER.pay}${self.state.user.pingToken}`, //token地址
         charge_param: {
           'callback': `#/center/u/order/submit/${self.state.order.Id}/result`,
