@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-
+import $ from 'jquery';
 import './index.scss';
 
 import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
@@ -58,6 +58,9 @@ import WithdrawDepositLayout from './components/layout/center/grapher/purse/With
 main();
 
 function main(){
+  const makeBackgroundDimBlack = () => $('#app').css('backgroundColor', '#282828');
+  const removeBackgroundDimBlack = () => $('#app').css('backgroundColor', '#F2F2F2');
+
   ReactDOM.render((
     <Router>
       <Route path="/">
@@ -73,11 +76,26 @@ function main(){
 
         <Route path="/grapher" component={GrapherPage} />
         <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />
-        <Route path="/login_page" component={LoginPage} />
-        <Route path="/signupPage" component={SignupPage} />
-        <Route path="/email_signup" component={EmailSignupPage} />
-        <Route path="/findByMobileForm" component={FindByMobileForm} />
-        <Route path="/changePassWordForm" component={ChangePassWordForm} />
+        <Route path="/login_page" component={LoginPage}
+          onEnter={() => makeBackgroundDimBlack()}
+          onLeave={() => removeBackgroundDimBlack()}
+        />
+        <Route path="/signupPage" component={SignupPage}
+          onEnter={() => makeBackgroundDimBlack()}
+          onLeave={() => removeBackgroundDimBlack()}
+        />
+        <Route path="/email_signup" component={EmailSignupPage}
+          onEnter={() => makeBackgroundDimBlack()}
+          onLeave={() => removeBackgroundDimBlack()}
+        />
+        <Route path="/findByMobileForm" component={FindByMobileForm}
+          onEnter={() => makeBackgroundDimBlack()}
+          onLeave={() => removeBackgroundDimBlack()}
+        />
+        <Route path="/changePassWordForm" component={ChangePassWordForm}
+          onEnter={() => makeBackgroundDimBlack()}
+          onLeave={() => removeBackgroundDimBlack()}
+        />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
 
         <Route path="center">
