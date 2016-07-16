@@ -46,8 +46,8 @@ let SignupPage = React.createClass({
   _handleGetCode : function(){
     if(this.state.codeLeft > 0) return;
     let phone = this.state.phone;
-    let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    if(isMobile){
+    const pattern = /^1[34578]\d{9}$/;
+    if(pattern.test(phone)){
       GetCodeActions.sendTelRegister({tel:phone});
     }else{
       this.showMessage('请输入正确的手机号码');
@@ -58,9 +58,9 @@ let SignupPage = React.createClass({
     let phone = this.state.phone;
     let code = this.state.code;
     let password1 = this.state.password1;
-    let password2 = this.state.password2;
-    let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    if(!isMobile){
+
+    const pattern = /^1[34578]\d{9}$/;
+    if(!pattern.test(phone)){
       this.showMessage('请输入正确的手机号码');
       return;
     }
