@@ -3,8 +3,8 @@ import UserEntryLayout from './UserEntryLayout';
 import UserActions from '../../actions/UserActions';
 import { ButtonBlock } from '../UI/Button';
 import InputGroup from '../UI/InputGroup';
-import validator from 'validator';
-import { RouteTransition, presets } from 'react-router-transition'
+import { RouteTransition, presets } from 'react-router-transition';
+import Toaster from '../Toast';
 
 class LoginForm extends React.Component {
   constructor(props){
@@ -22,28 +22,44 @@ class LoginForm extends React.Component {
   }
 
   _handleLogin() {
-    var phone = this.state.userName;
-    var password = this.state.password;
-    // if(!validator.isMobilePhone(phone, 'zh-CN') || !validator.isLength(password,6,18)) {
-    //   this.props.showMessage('请输入正确的手机号码和密码格式');
-    //   return false;
-    // }
+    let userName = this.state.userName;
+    let password = this.state.password;
+    const telPattern = /^1[34578]\d{9}$/;
+    const mailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!userName) {
+      this.showMessage('请输入手机号或邮箱');
+      return;
+    }
+    if (!telPattern.test(userName) && !mailPattern.test(userName)) {
+      this.showMessage('手机号或邮箱格式错误');
+      return;
+    }
+
+    if (!password) {
+      this.showMessage('请输入密码');
+      return;
+    }
+
     //登录数据
-    var loginData = {
-      loginname : phone,
+    let loginData = {
+      loginname : userName,
       password : password,
       //autologin : this.state.rememberMe, //记住我的登录需要加上
       autoexpires : 10000
     };
-    console.log(loginData);
     this.props.onLogin(loginData);
     return false;
+  }
+
+  showMessage(content) {
+    this.refs.toast.show(content)
   }
 
   render() {
     return (
       <div>
         <UserEntryLayout />
+        <Toaster ref="toast" />
         <RouteTransition { ...presets.slideLeft } pathname="/login_page">
           <form>
             <InputGroup
