@@ -30,8 +30,6 @@ class LoginForm extends React.Component {
       this.showMessage('请输入手机号或邮箱');
       return;
     }
-    console.log(telPattern.test(userName))
-    console.log(mailPattern.test(userName))
     if (!telPattern.test(userName) && !mailPattern.test(userName)) {
       this.showMessage('手机号或邮箱格式错误');
       return;
@@ -49,7 +47,6 @@ class LoginForm extends React.Component {
       //autologin : this.state.rememberMe, //记住我的登录需要加上
       autoexpires : 10000
     };
-    console.log(loginData);
     this.props.onLogin(loginData);
     return false;
   }
