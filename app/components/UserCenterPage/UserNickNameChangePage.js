@@ -17,7 +17,6 @@ class UserEditProfilePage extends React.Component {
     this.state = {
       userInfo : {}
     }
-    this.onChangeUserNickName = this.onChangeUserNickName.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +24,6 @@ class UserEditProfilePage extends React.Component {
   }
 
   _onUserStoreChange(data){
-    console.log(data)
     if(!data.isLogin){
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
@@ -33,13 +31,13 @@ class UserEditProfilePage extends React.Component {
     }
   }
 
-  onChangeUserNickName(e) {
+  onChangeUserNickName = (e) => {
     let nickname = this.refs.nickname.value.trim();
     if (!nickname){
       alert('请填入昵称');
     } else {
       UserActions.changeUserNickName(nickname);
-      this.history.pushState(null, '/center/user_edit_profile');
+      this.props.history.pushState(null, '/center/user_edit_profile');
     }
   }
 
