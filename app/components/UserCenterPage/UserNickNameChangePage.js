@@ -3,13 +3,13 @@ import Router from'react-router';
 import Reflux from'reflux';
 import ReactMixin from 'react-mixin';
 import DocumentTitle from'react-document-title';
+import { ButtonBlock } from '../UI/Button';
 
 import {History,Location} from 'react-router';
 
 import UserActions from'../../actions/UserActions';
 import UserStore from'../../stores/UserStore';
 
-import _ from'underscore';
 
 class UserEditProfilePage extends React.Component {
   constructor(props){
@@ -17,6 +17,7 @@ class UserEditProfilePage extends React.Component {
     this.state = {
       userInfo : {}
     }
+    this.onChangeUserNickName = this.onChangeUserNickName.bind(this);
   }
 
   componentDidMount() {
@@ -33,11 +34,10 @@ class UserEditProfilePage extends React.Component {
   }
 
   onChangeUserNickName(e) {
-    var nickname = this.refs.nickname.value.trim();
-    console.log('onChangeUserNickName: ', nickname);
-    if(_.isEmpty(nickname)){
+    let nickname = this.refs.nickname.value.trim();
+    if (!nickname){
       alert('请填入昵称');
-    }else{
+    } else {
       UserActions.changeUserNickName(nickname);
       this.history.pushState(null, '/center/user_edit_profile');
     }
@@ -60,11 +60,12 @@ class UserEditProfilePage extends React.Component {
             </div>
           </div>
         </div>
+
         <div className="weui_opr_area">
-          <p className="weui_btn_area">
-            <a href="javascript:;" onClick={this.onChangeUserNickName} className="weui_btn weui_btn_primary">修改</a>
-          </p>
-        </div>
+         <p className="weui_btn_area">
+          <a href="javascript:;" onClick={this.onChangeUserNickName} className="weui_btn weui_btn_primary">修改</a>
+         </p>
+       </div>
       </div>
     )
   }
