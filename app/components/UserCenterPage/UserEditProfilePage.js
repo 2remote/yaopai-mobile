@@ -63,7 +63,7 @@ var UserEditProfilePage = React.createClass({
       console.warn("city:", city);
       return ;
     }
-
+    alert('修改成功');
     this.history.pushState(null, this.state.userInfo.userType==0?'/center/u':'/center/g');
     UserActions.currentUser();
   },

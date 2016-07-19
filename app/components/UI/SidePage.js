@@ -56,7 +56,7 @@ class SidePage extends Component {
       if(userData.isLogin){ // 用户已登录
         accountContent = (
           <div className="menu-slide-header">
-            <Link className="link-box" to="/user_edit_profile">
+            <Link className="link-box" to={userData.userType ? '/center/u' : 'center/g'}>
               <img
                 width={90}
                 height={90}
