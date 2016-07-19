@@ -1,6 +1,7 @@
 import React from 'react';
 import TagRow from './TagRow';
 import $ from 'jquery';
+import { Link } from 'react-router'
 
 const ShowMenu = (args) => {
   const {tagType, onSearch, onSelectedTag, reset, searchKey} = args
@@ -19,9 +20,11 @@ const ShowMenu = (args) => {
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
+      {/*<Link to={"/query"} >*/}
       <div className="tagBtn" onClick={handleClick}>
         筛选 <i className="icon down" />
       </div>
+      {/*</Link>*/}
 
       <div className="tagMenu" id="tagMenu">
         <section className="input-group-light">
@@ -38,8 +41,6 @@ const ShowMenu = (args) => {
         <span className="tag-title">拍摄地区 | PLACE</span>
         <TagRow data={tagType[1] || []} args={args} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | CATEGORY</span>
-        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
-        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
         <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
         <div className="tagButton">
           {/*<button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>*/}
