@@ -4,11 +4,11 @@ import $ from 'jquery';
 import { Link } from 'react-router'
 
 const ShowMenu = (args) => {
+
   const {tagType, onSearch, onSelectedTag, reset, searchKey} = args
-  const handleClick = () => {
-    searchReadyGo()
-    $("#tagMenu").toggleClass('slide-toggle')
-  }
+  let searchText
+
+  const toggleMenu = () => $("#tagMenu").toggleClass('slide-toggle')
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
@@ -17,14 +17,16 @@ const ShowMenu = (args) => {
   }
   const searchReadyGo = () => {
     let text = searchText.value.trim();
-    text && onSearch(text)
+    onSearch(text)
+    toggleMenu()
   }
-  let searchText;
+  const cancle = () => searchText.value = ""
+
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
       {/*<Link to={"/query"} >*/}
-      <div className="tagBtn" onClick={handleClick}>
+      <div className="tagBtn" onClick={toggleMenu}>
         筛选 <i className="icon down" />
       </div>
       {/*</Link>*/}
@@ -36,8 +38,8 @@ const ShowMenu = (args) => {
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
-            placeholder={searchKey || "搜索 作品/标签/摄影师昵称"} />
-          <span className="cancel-search">取消</span>
+            placeholder={searchText || "搜索 作品/标签/摄影师昵称"} />
+          <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 
         <span className="tag-title">拍摄地区 | PLACE</span>
@@ -47,7 +49,7 @@ const ShowMenu = (args) => {
         <div className="tagButton">
           {/*<button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>*/}
           {/*确定实际上就是隐藏*/}
-          <button className="yesImPretySure" onClick={handleClick}>立即筛选</button>
+          <button className="yesImPretySure" onClick={searchReadyGo}>立即筛选</button>
         </div>
       </div>
     </section>
