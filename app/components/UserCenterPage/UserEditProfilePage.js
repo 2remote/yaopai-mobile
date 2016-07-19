@@ -63,7 +63,7 @@ var UserEditProfilePage = React.createClass({
       console.warn("city:", city);
       return ;
     }
-
+    alert('修改成功');
     this.history.pushState(null, this.state.userInfo.userType==0?'/center/u':'/center/g');
     UserActions.currentUser();
   },
@@ -121,11 +121,12 @@ var UserEditProfilePage = React.createClass({
         <UserAvatarBox
           background={true}
           editAvatar={true}
-          data={this.state.userInfo}/>
+          data={this.state.userInfo}
+        />
 
-          {makeTextButton('昵称', nickname, 'user_nickname_change', 'react-router')}
-          {makeTextButton('性别', genderDisplay, 'user_gender_change', 'react-router')}
-          {makeTextButton('城市', city, 'user_city_change', 'react-router')}
+          {makeTextButton('昵称', nickname, 'center/user_edit_profile/user_nickname_change', 'react-router')}
+          {makeTextButton('性别', genderDisplay, 'center/user_edit_profile/user_gender_change', 'react-router')}
+          {makeTextButton('城市', city, 'center/user_edit_profile/user_city_change', 'react-router')}
 
         <div className="weui_opr_area">
           <p className="weui_btn_area">

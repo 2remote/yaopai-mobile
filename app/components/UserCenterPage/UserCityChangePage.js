@@ -37,7 +37,7 @@ var UserCityChangePage = React.createClass({
     console.log(areaId, areaName);
     if(areaId != "0") {
       UserActions.changeUserCity(areaId, areaName);
-      this.history.pushState(null, '/user_edit_profile');
+      this.props.history.pushState(null, '/center/user_edit_profile');
     }else{
       alert('请选择所在城市');
     }
@@ -57,11 +57,12 @@ var UserCityChangePage = React.createClass({
         <AreaSelector
           onProvinceChange={this.onAreaChange}
           onCityChange={this.onAreaChange}
-          onDistrictChange={this.onAreaChange} />
+          onDistrictChange={this.onAreaChange}
+        />
 
         <div className="weui_opr_area">
           <p className="weui_btn_area">
-              <a href="javascript:;" onClick={this.onChangeUserCity} className="weui_btn weui_btn_primary">修改</a>
+            <a href="javascript:;" onClick={this.onChangeUserCity} className="weui_btn weui_btn_primary">修改</a>
           </p>
         </div>
       </div>

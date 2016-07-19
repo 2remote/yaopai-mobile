@@ -9,6 +9,7 @@ import WorkIntroGrapherList from '../common/WorkIntroGrapherList'
 import SidePage from '../UI/SidePage'
 import AutoLoadPageMixin from '../AutoLoadPageMixin'
 import { LIST_ALL_WORKS, TITLE } from '../Tools'
+import AnimationGuide from './AnimationGuide';
 import ShowMenu from './ShowMenu'
 import _ from 'underscore'
 import WechatShare from '../Weixin/WechatShare'
@@ -122,6 +123,7 @@ const WorkPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
+          <AnimationGuide />
           <SidePage />
 
           <ShowMenu
@@ -132,6 +134,17 @@ const WorkPage = React.createClass({
             searchKey = {searchKey}
             selectedTags = {selectedTags}
           />
+
+          <a href="http://www.huodongxing.com/event/6343547043500">
+            <img
+              style={{
+                width: '100%',
+                height: '60%',
+                marginTop: '50px',
+                marginBottom: '-50px',
+              }}
+              src="http://7xte7j.com1.z0.glb.clouddn.com/activity-1.jpg" />
+          </a>
 
           <WorkIntroGrapherList
             data = {works}

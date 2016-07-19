@@ -46,8 +46,8 @@ let SignupPage = React.createClass({
   _handleGetCode : function(){
     if(this.state.codeLeft > 0) return;
     let phone = this.state.phone;
-    let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    if(isMobile){
+    const pattern = /^1[34578]\d{9}$/;
+    if(pattern.test(phone)){
       GetCodeActions.sendTelRegister({tel:phone});
     }else{
       this.showMessage('请输入正确的手机号码');
@@ -58,9 +58,9 @@ let SignupPage = React.createClass({
     let phone = this.state.phone;
     let code = this.state.code;
     let password1 = this.state.password1;
-    let password2 = this.state.password2;
-    let isMobile = validator.isMobilePhone(phone,'zh-CN');
-    if(!isMobile){
+
+    const pattern = /^1[34578]\d{9}$/;
+    if(!pattern.test(phone)){
       this.showMessage('请输入正确的手机号码');
       return;
     }
@@ -86,6 +86,10 @@ let SignupPage = React.createClass({
   },
   showMessage: function (content) {
     this.refs.toast.show(content)
+  },
+
+  goEmailSignup: function() {
+    this.history.pushState({nextPage : this.props.pathname},'/email_signup');
   },
   render() {
     return (
@@ -119,15 +123,13 @@ let SignupPage = React.createClass({
               placeholder="请输入验证码"
             />
           </form>
+           <a className="terms" href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed">
+             点击创建帐号表示同意《服务条款》
+           </a>
+          <span className="email_signup" onClick={this.goEmailSignup}>邮箱注册</span>
           <ButtonBlock
             buttonType="btn-dark"
             value="创建账号"
-            handleSubmit={this._handleRegister}
-          />
-
-          <ButtonBlock
-            buttonType="btn-dark"
-            value="邮箱注册"
             handleSubmit={this._handleRegister}
           />
         </RouteTransition>

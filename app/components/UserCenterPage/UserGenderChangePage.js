@@ -39,7 +39,7 @@ var UserGenderChange = React.createClass({
       alert('请选择性别');
     }else{
       UserActions.changeUserGender(gender);
-      this.history.pushState(null, '/user_edit_profile');
+      this.props.history.pushState(null, '/center/user_edit_profile');
     }
   },
 
