@@ -49,6 +49,10 @@ class SidePage extends Component {
     $('#mask-menu').removeClass('fade-toggle').hide(); // 隐藏黑色蒙版
     $('#downloadApp').show(); // 现实组件
     $('#app-close').click(() => $('#downloadApp').hide()) // 点击关闭隐藏组件
+    $('#app-load').click(() => {
+      // 点击下载 app
+      // @海涛
+    })
   }
 
   render() {
