@@ -15,7 +15,7 @@ const AboutGrapher =({data, id}) => (
     </Link>
     <p className="uName">{data.NickName}</p>
     <p className="uDes">YAOPAI认证摄影师</p>
-    <div className="button btn-dark download-app">
+    <div className="button btn-dark download-app" onClick={() => {/**/}>
       <i className="icon talk" /> 下载 APP 联系我
     </div>
   </div>
