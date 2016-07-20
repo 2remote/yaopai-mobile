@@ -132,6 +132,9 @@ class GrapherIntro extends React.Component {
               iconType="mark"
             />
           }
+          <div className="button btn-dark download-app">
+            <i className="icon talk" /> 下载 APP 联系我
+          </div>
         </div>
         <div className="order">
           <ul>
