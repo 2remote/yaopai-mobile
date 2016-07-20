@@ -45,7 +45,10 @@ class SidePage extends Component {
   }
 
   downloadApp() {
-  
+    $('#menu').removeClass('slide-toggle'); // 隐藏左侧菜单
+    $('#mask-menu').removeClass('fade-toggle').hide(); // 隐藏黑色蒙版
+    $('#downloadApp').show(); // 现实组件
+    $('#app-close').click(() => $('#downloadApp').hide()) // 点击关闭隐藏组件
   }
 
   render() {
@@ -91,6 +94,13 @@ class SidePage extends Component {
       }
       return (
         <section>
+          {/* 引导 APP 下载 */}
+          <div id="downloadApp">
+            <img id="app-close" src="http://7xte7j.com1.z0.glb.clouddn.com/app-close.png" />
+            <img id="app-phone" src="http://7xte7j.com1.z0.glb.clouddn.com/app-phone.png" />
+            <img id="app-load" src="http://7xte7j.com1.z0.glb.clouddn.com/app-load.png" />
+            <p>-&nbsp;体验更流畅的预约服务&nbsp;-</p>
+          </div>
           {/* Hamburger icon */}
           <div id="menuLink" className="menu-link">
             <i className="icon hamburgermenu"/>
@@ -128,7 +138,7 @@ class SidePage extends Component {
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                     </Link>
                   </li>
-                  <li className="pure-menu-item nav-list-bar" onClick="this.downloadApp">
+                  <li className="pure-menu-item nav-list-bar" onClick={this.downloadApp}>
                     <a href="javascript:void(0);" className="link-box">
                       <i className="menu-icon icon app" />
                       <div className="menu-button"><span>客户端下载&nbsp;&nbsp;APP</span></div>
