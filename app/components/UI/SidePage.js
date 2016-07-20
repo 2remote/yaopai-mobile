@@ -44,6 +44,10 @@ class SidePage extends Component {
     UserActions.logout();
   }
 
+  downloadApp() {
+  
+  }
+
   render() {
     // iOS 分享过来的链接隐藏掉菜单栏
     if (this.props.shareFrom == 'ios') {
@@ -123,6 +127,12 @@ class SidePage extends Component {
                       <i className="menu-icon icon settings" />
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                     </Link>
+                  </li>
+                  <li className="pure-menu-item nav-list-bar" onClick="this.downloadApp">
+                    <a href="javascript:void(0);" className="link-box">
+                      <i className="menu-icon icon app" />
+                      <div className="menu-button"><span>客户端下载&nbsp;&nbsp;APP</span></div>
+                    </a>
                   </li>
                 </ul>
               </nav>

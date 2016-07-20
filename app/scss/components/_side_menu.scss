@@ -138,6 +138,10 @@ $menu-footer-lineheight: 25px;
       margin: 0 30px;
     }
 
+    .app {
+      font-size: 18px;
+    }
+
     .menu-button {
       @extend %flex-1;
       border-bottom: 1px lighten($dim-black, 4%) solid;
