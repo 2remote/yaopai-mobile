@@ -99,6 +99,10 @@ class GrapherIntro extends React.Component {
     this.refs.toast.show(content)
   }
 
+  downloadApp () {
+    // 
+  }
+
   render() {
     const {data} = this.state
     const title = this.state.NickName || '摄影师'
@@ -132,7 +136,7 @@ class GrapherIntro extends React.Component {
               iconType="mark"
             />
           }
-          <div className="button btn-dark download-app">
+          <div className="button btn-dark download-app" onClick={this.downloadApp}>
             <i className="icon talk" /> 下载 APP 联系我
           </div>
         </div>
