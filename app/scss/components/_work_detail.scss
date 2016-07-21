@@ -1,6 +1,26 @@
 .workDetailPage {
   padding-bottom: 60px;
 
+  // 下载 APP 按钮
+  .download-app {
+    width: 180px;
+    margin-top: 20px;
+    line-height: 45px;
+    display: inline-block;
+    border: 1px solid $dim-black;
+    vertical-align: top;
+    color: $black;
+
+    i {
+      width: 50px;
+      background: $dim-black;
+      color: $white;
+      font-size: 20px;
+      float: left;
+    }
+  }
+
+
   .workTitlePanel {
     width: 100%;
 
@@ -316,5 +336,4 @@
       }
     }
   }
-
 }

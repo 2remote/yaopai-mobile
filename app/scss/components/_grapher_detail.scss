@@ -21,7 +21,31 @@
       margin-top: 25px;
     }
 
-    .btn-dark { margin-top: 20px; }
+    .btn-attention {
+      width: 90px;
+      margin-top: 20px;
+      margin-right: 20px;
+      display: inline-block;
+
+      a {
+        width: 90px;
+        line-height: 45px;
+        height: 45px;
+       }
+
+      i { color: $gold;   }
+    }
+
+    .download-app {
+      width: 140px;
+      margin-top: 20px;
+      line-height: 45px;
+      display: inline-block;
+      border: 1px solid $white;
+      vertical-align: top;
+
+      i { color: $gold;   }
+    }
   }
 
   .order {
