@@ -19,7 +19,7 @@ const NothingFound = ({title}) => (
       <span>你也可以选择</span>
       <div className="btn-block btn-small">
         <a className="btn btn-green" onClick={toggleMenu}>
-          重新搜索
+          重新筛选
         </a>
       </div>
       <span>或</span>
