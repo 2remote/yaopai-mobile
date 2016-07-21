@@ -167,17 +167,7 @@ class GrapherIntro extends React.Component {
             />
           }
 
-          {
-            isShow ?
-            <a
-              href="https://itunes.apple.com/us/app/yaopai/id1105711466?l=zh&ls=1&mt=8"
-              className="button btn-dark download-app"
-              onClick={this.downloadApp}
-            >
-              <i className="icon talk" /> 下载 APP 联系我
-            </a>
-            : ''
-          }
+          {/* 注释在下面 */}
         </div>
         <div className="order">
           <ul>
@@ -203,3 +193,13 @@ ReactMixin.onClass(GrapherIntro, Reflux.listenTo(UserStore, 'onUserLoad'));
 ReactMixin.onClass(GrapherIntro, History);
 
 export {GrapherIntro as default};
+
+// isShow ?
+// <a
+//   href="https://itunes.apple.com/us/app/yaopai/id1105711466?l=zh&ls=1&mt=8"
+//   className="button btn-dark download-app"
+//   onClick={this.downloadApp}
+// >
+//   <i className="icon talk" /> 下载 APP 联系我
+// </a>
+// : ''

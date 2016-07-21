@@ -49,19 +49,18 @@ const AboutGrapher =({data, id}) => {
       </Link>
       <p className="uName">{data.NickName}</p>
       <p className="uDes">YAOPAI认证摄影师</p>
-      {
-        isShow ?
-        <a
-          href="https://itunes.apple.com/us/app/yaopai/id1105711466?l=zh&ls=1&mt=8"
-          className="button btn-dark download-app"
-          onClick={() => downloadApp()}
-        >
-          <i className="icon talk" /> 下载 APP 联系我
-        </a>
-        : ''
-      }
+      {/* 注释在下面 */}
     </div>
   );
 }
 
 export {AboutGrapher as default};
+// isShow ?
+// <a
+//   href="https://itunes.apple.com/us/app/yaopai/id1105711466?l=zh&ls=1&mt=8"
+//   className="button btn-dark download-app"
+//   onClick={() => downloadApp()}
+// >
+//   <i className="icon talk" /> 下载 APP 联系我
+// </a>
+// : ''
