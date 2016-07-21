@@ -8,19 +8,23 @@ class AnimationGuide extends React.Component {
       return;
     };
     $(() => {
-      $('#guide-1')
-        .fadeIn('slow')
-        .click(() => {
-          $('#guide-1').fadeOut('300');
-          $('#guide-2').fadeIn('slow');
-        })
+      $('#guide-1').fadeIn('slow');
 
-      $('#guide-2').click(() => {
-        $('#guide-2').fadeOut('300');
-        $('#guide-3').fadeIn('slow');
+      $('#animation-guide').on('click', () => {
+        $('#guide-1').fadeOut('300');
+        $('#guide-2').fadeIn('slow', () => {
+          $('#animation-guide').unbind('click');
+
+          $('#animation-guide').on('click', () => {
+            
+            $('#guide-2').fadeOut('300');
+            $('#guide-3').fadeIn('slow', () => {
+              $('#animation-guide').unbind('click');
+              $('#animation-guide').click(() => $('#animation-guide').hide(300));
+            });
+          })
+        });
       })
-
-      $('#guide-3').click(() => $('#animation-guide').hide(300));
 
       localStorage.setItem('isFirstEnter', 'true');
     })
