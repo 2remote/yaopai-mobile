@@ -179,16 +179,7 @@ class SidePage extends Component {
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                     </Link>
                   </li>
-                  <li
-                    style={{display: 'none'}}
-                    id="downloadAppMessage"
-                    className="pure-menu-item nav-list-bar"
-                    onClick={this.downloadApp}>
-                    <a href="javascript:void(0);" className="link-box">
-                      <i className="menu-icon icon app" />
-                      <div className="menu-button"><span>客户端下载&nbsp;&nbsp;APP</span></div>
-                    </a>
-                  </li>
+                  {/* 注释在下面 */}
                 </ul>
               </nav>
 
@@ -206,4 +197,14 @@ class SidePage extends Component {
 
 ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, 'onUserLoad'));
 
-export default SidePage
+export default SidePage;
+// <li
+//   style={{/*display: 'none'*/}}
+//   id="downloadAppMessage"
+//   className="pure-menu-item nav-list-bar"
+//   onClick={/*this.downloadApp*/}>
+//   <a href="javascript:void(0);" className="link-box">
+//     <i className="menu-icon icon app" />
+//     <div className="menu-button"><span>客户端下载&nbsp;&nbsp;APP</span></div>
+//   </a>
+// </li>
