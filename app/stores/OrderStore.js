@@ -10,11 +10,11 @@ var OrderStore = Reflux.createStore({
     hintMessage : '',
     success : false,
     flag : '',
-    filterType: ''
+    filterType: '',
   },
   init : function(){
     this.orders = [];
-    
+
     //listen to the OrderActions
     this.listenTo(OrderActions.list.success,this.onListOrders);
     this.listenTo(OrderActions.list.failed,this.onFailed);
@@ -100,7 +100,7 @@ var OrderStore = Reflux.createStore({
       this.data.hintMessage = res.ErrorMsg;
       this.data.success = false;
     }
-    this.data.flag = 'close';
+    this.data.flag = 'closeOrder';
     this.trigger(this.data);
   },
   onFailed : function(data){
