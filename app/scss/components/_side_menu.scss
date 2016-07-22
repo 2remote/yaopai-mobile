@@ -138,6 +138,10 @@ $menu-footer-lineheight: 25px;
       margin: 0 30px;
     }
 
+    .app {
+      font-size: 18px;
+    }
+
     .menu-button {
       @extend %flex-1;
       border-bottom: 1px lighten($dim-black, 4%) solid;
@@ -157,4 +161,38 @@ $menu-footer-lineheight: 25px;
   line-height: $menu-footer-lineheight;
 
   a { color: $menu-color; }
+}
+
+#downloadApp {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 50px;
+  z-index: $zindex-tooltip;
+  background: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 18px;
+  font-family: 'PingFang SC Light','Heiti SC Light';
+  color: #999;
+
+  #app-close {
+    position: absolute;
+    width: 10%;
+    right: 20px;
+    top: 50px;
+  }
+
+  #app-phone {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    width: 65%;
+  }
+
+  #app-load {
+    width: 65%;
+    margin-bottom: 15px;
+  }
 }

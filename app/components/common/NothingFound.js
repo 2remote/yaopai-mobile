@@ -1,4 +1,7 @@
 import React from "react"
+import $ from 'jquery'
+
+const toggleMenu = () => $("#tagMenu").toggleClass('slide-toggle')
 
 const NothingFound = ({title}) => (
   <section className="nothing-card">
@@ -14,6 +17,12 @@ const NothingFound = ({title}) => (
     </div>
     <footer className="card-footer">
       <span>你也可以选择</span>
+      <div className="btn-block btn-small">
+        <a className="btn btn-green" onClick={toggleMenu}>
+          重新筛选
+        </a>
+      </div>
+      <span>或</span>
       <div className="btn-block btn-small">
         <a className="btn btn-black" href="tel:0371-65337727">
           免费电话咨询

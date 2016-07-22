@@ -1,14 +1,11 @@
 import React from 'react';
-import TagRow from './TagRow';
+import TagRow from '../WorkPage/TagRow';
 import $ from 'jquery';
 import { Link } from 'react-router'
 
-const ShowMenu = (args) => {
-
+const Query = (args) => {
   const {tagType, onSearch, onSelectedTag, reset, searchKey} = args
-  let searchText
-
-  const toggleMenu = () => $("#tagMenu").toggleClass('slide-toggle')
+  const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
@@ -17,19 +14,17 @@ const ShowMenu = (args) => {
   }
   const searchReadyGo = () => {
     let text = searchText.value.trim();
-    onSearch(text)
-    toggleMenu()
+    text && onSearch(text)
   }
-  const cancle = () => searchText.value = ""
-
+  let searchText;
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
-      {/*<Link to={"/query"} >*/}
-      <div className="tagBtn" onClick={toggleMenu}>
+      <Link to={"/query"} >
+      <div className="tagBtn" onClick={handleClick}>
         筛选 <i className="icon down" />
       </div>
-      {/*</Link>*/}
+      </Link>
 
       <div className="tagMenu" id="tagMenu">
         <section className="input-group-light">
@@ -38,8 +33,9 @@ const ShowMenu = (args) => {
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
-            placeholder={searchText || "搜索 作品/标签/摄影师昵称"} />
-          <span className="cancel-search" onClick={cancle}>取消</span>
+            placeholder={searchKey || "搜索 作品/标签/摄影师昵称"}
+            onChange={searchReadyGo} />
+          <span className="cancel-search">取消</span>
         </section>
 
         <span className="tag-title">拍摄地区 | PLACE</span>
@@ -49,11 +45,11 @@ const ShowMenu = (args) => {
         <div className="tagButton">
           {/*<button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>*/}
           {/*确定实际上就是隐藏*/}
-          <button className="yesImPretySure" onClick={searchReadyGo}>立即筛选</button>
+          <button className="yesImPretySure" onClick={handleClick}>立即筛选</button>
         </div>
       </div>
     </section>
   );
 };
 
-export default ShowMenu;
+export default Query;

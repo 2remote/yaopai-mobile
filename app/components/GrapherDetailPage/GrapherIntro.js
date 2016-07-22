@@ -14,6 +14,28 @@ import DocumentTitle from 'react-document-title'
 
 import $ from 'jquery';
 
+var browser = {
+  versions: function() {
+    var u = navigator.userAgent,
+      app = navigator.appVersion;
+    return { //移动终端浏览器版本信息
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      iOS: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+      iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+      iPad: u.indexOf('iPad') > -1, //是否iPad
+      webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+    };
+  }(),
+  language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+
+var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
+
 class GrapherIntro extends React.Component {
   constructor(props) {
     super(props);
@@ -99,11 +121,23 @@ class GrapherIntro extends React.Component {
     this.refs.toast.show(content)
   }
 
+  downloadApp () {
+    if (browser.versions.mobile && browser.versions.iOS && ua.match(/MicroMessenger/i) == "micromessenger") {
+      alert('由于微信限制，请在 Safari 浏览器里打开本网页，再点击下载 APP')
+      return;
+    }
+  }
+
   render() {
     const {data} = this.state
     const title = this.state.NickName || '摄影师'
     const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName
     const wechatShareDesc = data.NickName + ':' + data.Signature
+
+    let isShow = false;
+    if (browser.versions.mobile && browser.versions.iOS /*&& ua.match(/MicroMessenger/i) == "micromessenger" */) {
+      isShow = true;
+    }
     return (
       <section className="grapherIntro">
         <DocumentTitle title={title} />
@@ -132,6 +166,8 @@ class GrapherIntro extends React.Component {
               iconType="mark"
             />
           }
+
+          {/* 注释在下面 */}
         </div>
         <div className="order">
           <ul>
@@ -157,3 +193,13 @@ ReactMixin.onClass(GrapherIntro, Reflux.listenTo(UserStore, 'onUserLoad'));
 ReactMixin.onClass(GrapherIntro, History);
 
 export {GrapherIntro as default};
+
+// isShow ?
+// <a
+//   href="https://itunes.apple.com/us/app/yaopai/id1105711466?l=zh&ls=1&mt=8"
+//   className="button btn-dark download-app"
+//   onClick={this.downloadApp}
+// >
+//   <i className="icon talk" /> 下载 APP 联系我
+// </a>
+// : ''

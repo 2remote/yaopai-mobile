@@ -58,6 +58,7 @@ var BookForm = React.createClass({
     const BuyerTel      = this.refs.phoneImage.value.trim();
     const AppointedTime = this.refs.bookDate.value.trim();
     const BuyerMemo     = this.refs.bookComment.value.trim();
+    const telPattern = /^1[34578]\d{9}$/;
     if (!BuyerName) {
       this.showMessage('请填写预约姓名');
       return;
@@ -66,7 +67,7 @@ var BookForm = React.createClass({
       this.showMessage('请填写预约电话');
       return;
     }
-    if (!validator.isMobilePhone(BuyerTel, 'zh-CN')) {
+    if (!telPattern.test(BuyerTel)) {
       this.showMessage('请输入正确的手机号');
       return;
     }

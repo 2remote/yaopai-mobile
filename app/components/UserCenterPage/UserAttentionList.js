@@ -45,7 +45,7 @@ class UserAttentionList extends React.Component{
               <div className="media-header">
                 <p className="media-title fl">{data.NickName}</p>
                 <span className="media-city fr">
-                  {data.CityName.substring(0, data.CityName.length - 1)}
+                  {data.CityName.substring(0, data.CityName.length)}
                 </span>
               </div>
               <p className="media-desc">{data.Signature}</p>

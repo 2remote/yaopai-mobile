@@ -9,6 +9,28 @@ import UserStore from '../../stores/UserStore';
 import {parseImageUrl} from '../Tools';
 import $ from 'jquery'
 
+var browser = {
+  versions: function() {
+    var u = navigator.userAgent,
+      app = navigator.appVersion;
+    return { //移动终端浏览器版本信息
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      iOS: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+      iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+      iPad: u.indexOf('iPad') > -1, //是否iPad
+      webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+    };
+  }(),
+  language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+
+var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
+
 class SidePage extends Component {
   constructor(props){
     super(props);
@@ -19,6 +41,18 @@ class SidePage extends Component {
 
   componentDidMount() {
     UserActions.currentUser();
+
+    /**
+     * 设备判断
+     * browser.versions.mobile 是否移动端
+     * browser.versions.ios    是否 ios 设备
+     * ua.match(/MicroMessenger/i) == "micromessenger" 是否在微信里
+     */
+
+    if (browser.versions.mobile && browser.versions.iOS /*&& ua.match(/MicroMessenger/i) == "micromessenger" */) {
+      $('#downloadAppMessage').show();
+    }
+
 
     $('#menuLink').click(() => {
       const winHeight = `${$(window).height()}px`
@@ -44,6 +78,18 @@ class SidePage extends Component {
     UserActions.logout();
   }
 
+  downloadApp() {
+    $('#menu').removeClass('slide-toggle'); // 隐藏左侧菜单
+    $('#mask-menu').removeClass('fade-toggle').hide(); // 隐藏黑色蒙版
+    $('#downloadApp').show(); // 现实组件
+    $('#app-close').click(() => $('#downloadApp').hide()) // 点击关闭隐藏组件
+    $('#app-load').click(() => {
+      if (browser.versions.mobile && browser.versions.iOS && ua.match(/MicroMessenger/i) == "micromessenger" ) {
+        alert('由于微信限制，请在 Safari 浏览器里打开本网页，再点击下载 APP')
+      }
+    })
+  }
+
   render() {
     // iOS 分享过来的链接隐藏掉菜单栏
     if (this.props.shareFrom == 'ios') {
@@ -56,7 +102,7 @@ class SidePage extends Component {
       if(userData.isLogin){ // 用户已登录
         accountContent = (
           <div className="menu-slide-header">
-            <Link className="link-box" to={userData.userType ? '/center/u' : 'center/g'}>
+            <Link className="link-box" to={userData.userType ? '/center/g' : 'center/u'}>
               <img
                 width={90}
                 height={90}
@@ -87,6 +133,15 @@ class SidePage extends Component {
       }
       return (
         <section>
+          {/* 引导 APP 下载 */}
+          <div id="downloadApp">
+            <img id="app-close" src="http://7xte7j.com1.z0.glb.clouddn.com/app-close.png" />
+            <img id="app-phone" src="http://7xte7j.com1.z0.glb.clouddn.com/app-phone.png" />
+            <a href="https://itunes.apple.com/us/app/yaopai/id1105711466?l=zh&ls=1&mt=8">
+              <img id="app-load" src="http://7xte7j.com1.z0.glb.clouddn.com/app-load.png" />
+            </a>
+            <p>-&nbsp;体验更流畅的预约服务&nbsp;-</p>
+          </div>
           {/* Hamburger icon */}
           <div id="menuLink" className="menu-link">
             <i className="icon hamburgermenu"/>
@@ -124,6 +179,7 @@ class SidePage extends Component {
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                     </Link>
                   </li>
+                  {/* 注释在下面 */}
                 </ul>
               </nav>
 
@@ -141,4 +197,14 @@ class SidePage extends Component {
 
 ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, 'onUserLoad'));
 
-export default SidePage
+export default SidePage;
+// <li
+//   style={{/*display: 'none'*/}}
+//   id="downloadAppMessage"
+//   className="pure-menu-item nav-list-bar"
+//   onClick={/*this.downloadApp*/}>
+//   <a href="javascript:void(0);" className="link-box">
+//     <i className="menu-icon icon app" />
+//     <div className="menu-button"><span>客户端下载&nbsp;&nbsp;APP</span></div>
+//   </a>
+// </li>

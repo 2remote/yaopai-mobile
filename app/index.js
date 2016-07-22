@@ -12,6 +12,8 @@ import WorkDetailPage from './components/WorkDetailPage';
 import GrapherPage from './components/GrapherPage';
 import GrapherDetailPage from './components/GrapherDetailPage';
 
+import Query from './components/common/Query';
+
 import InterviewPage from './components/InterviewPage';
 import InterviewDetailPage from './components/InterviewDetailPage';
 
@@ -67,6 +69,8 @@ function main(){
         <IndexRedirect to="/work(/:tag)(/:tag)" />
         <Route path="/work(/:tag)(/:tag)" component={WorkPage} />
         <Route path="/workDetail/:Id" component={WorkDetailPage} />
+
+        <Route path="/query" component={Query} />
 
         <Route path="/interview" component={InterviewPage} />
         <Route path="/interviewDetail/:Id" component={InterviewDetailPage} />
