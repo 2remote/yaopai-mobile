@@ -100,7 +100,7 @@ var OrderStore = Reflux.createStore({
       this.data.hintMessage = res.ErrorMsg;
       this.data.success = false;
     }
-    this.data.flag = 'closeOrder';
+    this.data.flag = 'close';
     this.trigger(this.data);
   },
   onFailed : function(data){

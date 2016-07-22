@@ -75,7 +75,7 @@ class YPUIOrderCard extends React.Component {
   }
 
   _onUserStoreChange(data) {
-    if(data.flag == 'closeOrder' && data.success) {
+    if(data.flag == 'close' && data.success) {
       this.setState({showAlert: true});
     }
   }
