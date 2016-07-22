@@ -114,7 +114,7 @@ var API_CONST = {
     get: API_URL + 'Order.Get',
     confirm: API_URL + 'Order.Confirm',
     add: API_URL + 'Order.Add',
-    close: API_URL + 'Order.Close',
+    close: API_URL + 'Order.Cancel',// 取消
     refund: API_URL + 'Order.RefundApply', // 退款
     receive: API_URL + 'Order.Reception', // 接单
     deliver: API_URL + 'Order.Delivery', // 发片

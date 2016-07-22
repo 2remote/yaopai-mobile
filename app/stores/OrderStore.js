@@ -10,11 +10,11 @@ var OrderStore = Reflux.createStore({
     hintMessage : '',
     success : false,
     flag : '',
-    filterType: ''
+    filterType: '',
   },
   init : function(){
     this.orders = [];
-    
+
     //listen to the OrderActions
     this.listenTo(OrderActions.list.success,this.onListOrders);
     this.listenTo(OrderActions.list.failed,this.onFailed);

@@ -1,4 +1,5 @@
 import React from 'react';
+import Reflux from 'reflux';
 import {Dialog, Button} from 'react-weui';
 import { OrderStatus } from '../Tools';
 import ReactMixin from 'react-mixin';
@@ -6,6 +7,7 @@ import { History } from 'react-router';
 import {Toast} from 'react-weui';
 import OrderActions from '../../actions/OrderActions';
 import CallActions from '../../actions/CallActions';
+import OrderStore from '../../stores/OrderStore';
 
 const {Alert, Confirm} = Dialog;
 
@@ -13,6 +15,16 @@ class YPUIOrderCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showAlert: false,
+      alert: {
+        title: '订单取消成功',
+        buttons: [
+          {
+            label: '好的',
+            onClick: this.hideAlert.bind(this),
+          }
+        ]
+      },
       showConfirm: false,
       confirm: {
         title: '温馨提示',
@@ -35,11 +47,38 @@ class YPUIOrderCard extends React.Component {
             }
           }
         ]
-      }
+      },
+      showCloseOrderConfirm: false,
+      closeOrderConfirm: {
+        title: '确定取消订单吗？',
+        buttons: [
+          {
+            type: 'default',
+            label: '取消',
+            onClick: e => {
+              this.setState({ closeOrderId: undefined });
+              this.hideCloseOrderConfirm(e);
+            }
+          },
+          {
+            type: 'primary',
+            label: '确认',
+            onClick: e => {
+              OrderActions.close(this.state.closeOrderId);
+              this.setState({ closeOrderId: undefined });
+              this.hideCloseOrderConfirm(e);
+            }
+          }
+        ]
+      },
     };
   }
 
-
+  _onUserStoreChange(data) {
+    if(data.flag == 'close' && data.success) {
+      this.setState({showAlert: true});
+    }
+  }
 
   /**
    * 用户：支付订单
@@ -49,6 +88,20 @@ class YPUIOrderCard extends React.Component {
   payOrder = (e, orderId) => {
     this.history.pushState(null, `/center/u/order/submit/${orderId}`);
   };
+
+  /**
+   * 用户：取消订单
+   * @param e
+   * @param orderId
+   */
+  closeOrder = (e, closeOrderId) => {
+    this.setState({showCloseOrderConfirm: true});
+    this.setState({ closeOrderId });
+  };
+
+  hideCloseOrderConfirm = (e) => {
+    this.setState({showCloseOrderConfirm: false});
+  }
 
   /**
    * 用户：申请退款
@@ -101,6 +154,11 @@ class YPUIOrderCard extends React.Component {
     }, 3000);
   }
 
+  hideAlert() {
+    this.setState({showAlert: false});
+    location.reload();
+  }
+
   hideConfirm = (e) => {
     this.setState({showConfirm: false});
   };
@@ -112,10 +170,24 @@ class YPUIOrderCard extends React.Component {
     if(status === OrderStatus.UNPAYED) {
       rightPortion = (
         <div>
+          <Button type="disabled" size="small" className="weui_btn weui_btn_mini"
+                  onClick={ e => this.closeOrder(e, order.Id) }>
+            &nbsp;&nbsp;取消订单&nbsp;&nbsp;
+          </Button>
           <Button type="primary" size="small" className="weui_btn weui_btn_mini"
                   onClick={ e => this.payOrder(e, order.Id) }>
             &nbsp;&nbsp;去支付&nbsp;&nbsp;
           </Button>
+          <Confirm
+            show={this.state.showCloseOrderConfirm}
+            title={this.state.closeOrderConfirm.title}
+            buttons={this.state.closeOrderConfirm.buttons}>
+          </Confirm>
+          <Alert
+            show={this.state.showAlert}
+            title={this.state.alert.title}
+            buttons={this.state.alert.buttons}>
+          </Alert>
         </div>
       );
     }
@@ -286,5 +358,6 @@ class YPUIOrderCard extends React.Component {
 }
 
 ReactMixin.onClass(YPUIOrderCard, History);
+ReactMixin.onClass(YPUIOrderCard, Reflux.listenTo(OrderStore, '_onUserStoreChange'));
 
 export {YPUIOrderCard as default};
