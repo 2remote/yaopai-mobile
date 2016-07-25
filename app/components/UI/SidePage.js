@@ -63,7 +63,7 @@ class SidePage extends Component {
       $('#menu').addClass('slide-toggle')
     })
 
-    $('#mask-menu').click(() => {
+    $('#mask-menu, #menu').click(() => {
       $('#mask-menu').removeClass('fade-toggle').hide()
       $('#menu').removeClass('slide-toggle')
       $('body').css({ height: '100%', overflow: 'visible' })
