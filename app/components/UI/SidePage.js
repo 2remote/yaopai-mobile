@@ -156,7 +156,7 @@ class SidePage extends Component {
               <nav className="menu-slide-nav pure-menu">
                 <ul className="pure-menu-list">
                   <li className="pure-menu-item nav-list-bar">
-                    <Link to="/work" activeClassName="active">
+                    <Link to="/work" className={window.location.hash.includes("#/work") && "active"}>
                       <i className="menu-icon icon home" />
                       <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
                     </Link>
