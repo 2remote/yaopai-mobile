@@ -74,7 +74,7 @@ class CardDetailLayout extends React.Component{
         <WeuiCells cellList={this.state.bindOpList}  access={false} />
 
         <footer className="footer" style={{paddingTop:40, paddingBottom:0}}>
-          <Button type="disabled" onClick={this.showConfirm}>更改账户</Button>
+          <Button type="default" onClick={this.showConfirm}>更改账户</Button>
         </footer>
 
         <aside className="footer color_gray font_small">
