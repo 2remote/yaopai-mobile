@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import Reflux from 'reflux';
-import ReactMixin from 'react-mixin';
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
+import UserActions from '../../actions/UserActions'
+import UserStore from '../../stores/UserStore'
 
-import {parseImageUrl} from '../Tools';
+import {parseImageUrl} from '../Tools'
 import $ from 'jquery'
 
 var browser = {
@@ -156,7 +156,8 @@ class SidePage extends Component {
               <nav className="menu-slide-nav pure-menu">
                 <ul className="pure-menu-list">
                   <li className="pure-menu-item nav-list-bar">
-                    <Link to="/work" className={window.location.hash.includes("#/work") && "active"}>
+                    <Link to="/work"
+                          className={window.location.hash.indexOf("#/work") > -1 && "active"}>
                       <i className="menu-icon icon home" />
                       <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
                     </Link>
