@@ -91,6 +91,9 @@ class SidePage extends Component {
   }
 
   render() {
+    // 判断侧边栏「首页」激活状态
+    const isWorkActive = window.location.hash.indexOf("#/work?") > -1 || window.location.hash.indexOf("#/work/") > -1
+
     // iOS 分享过来的链接隐藏掉菜单栏
     if (this.props.shareFrom == 'ios') {
       return (
@@ -157,7 +160,7 @@ class SidePage extends Component {
                 <ul className="pure-menu-list">
                   <li className="pure-menu-item nav-list-bar">
                     <Link to="/work"
-                          className={window.location.hash.indexOf("#/work") > -1 && "active"}>
+                          className={isWorkActive && "active"}>
                       <i className="menu-icon icon home" />
                       <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
                     </Link>
