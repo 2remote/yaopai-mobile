@@ -129,7 +129,15 @@ class YPUIOrderCard extends React.Component {
    */
   receiveOrder = (e, orderId, approve) => {
     // TODO 添加 alert 组件
-    alert('接单成功，请及时与客户沟通详细的拍摄需求！');
+    if(approve) {
+      alert('接单成功，请及时与客户沟通详细的拍摄需求！');
+    } else {
+      if (confirm("确定拒绝接受该订单吗？")) {
+        alert('拒接成功');
+      } else {
+        return;
+      };
+    }
     OrderActions.receive(orderId, approve);
   };
 
