@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import Reflux from 'reflux';
-import ReactMixin from 'react-mixin';
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
+import UserActions from '../../actions/UserActions'
+import UserStore from '../../stores/UserStore'
 
-import {parseImageUrl} from '../Tools';
+import {parseImageUrl} from '../Tools'
 import $ from 'jquery'
 
 var browser = {
@@ -63,7 +63,7 @@ class SidePage extends Component {
       $('#menu').addClass('slide-toggle')
     })
 
-    $('#mask-menu').click(() => {
+    $('#mask-menu, #menu').click(() => {
       $('#mask-menu').removeClass('fade-toggle').hide()
       $('#menu').removeClass('slide-toggle')
       $('body').css({ height: '100%', overflow: 'visible' })
@@ -91,6 +91,9 @@ class SidePage extends Component {
   }
 
   render() {
+    // 判断侧边栏「首页」激活状态
+    const isWorkActive = window.location.hash.indexOf("#/work?") > -1 || window.location.hash.indexOf("#/work/") > -1
+
     // iOS 分享过来的链接隐藏掉菜单栏
     if (this.props.shareFrom == 'ios') {
       return (
@@ -156,7 +159,8 @@ class SidePage extends Component {
               <nav className="menu-slide-nav pure-menu">
                 <ul className="pure-menu-list">
                   <li className="pure-menu-item nav-list-bar">
-                    <Link to="/work" activeClassName="active">
+                    <Link to="/work"
+                          className={isWorkActive && "active"}>
                       <i className="menu-icon icon home" />
                       <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
                     </Link>
@@ -174,7 +178,7 @@ class SidePage extends Component {
                     </Link>
                   </li>
                   <li className="pure-menu-item nav-list-bar">
-                    <Link className="link-box" to={userData.userType==0?"/center/u":"/center/g"} activeClassName="active">
+                    <Link className="link-box" to={userData.userType ? "/center/g":"/center/u"} activeClassName="active">
                       <i className="menu-icon icon settings" />
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
                     </Link>
