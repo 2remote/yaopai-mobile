@@ -30,9 +30,11 @@ class LoginForm extends React.Component {
       this.showMessage('请输入手机号或邮箱');
       return;
     }
-    if (!telPattern.test(userName) && !mailPattern.test(userName)) {
-      this.showMessage('手机号或邮箱格式错误');
-      return;
+    if(!telPattern.test(userName)) {
+      if(!mailPattern.test(userName)) {
+        this.showAlert('手机号或邮箱格式错误');
+        return;
+      }
     }
 
     if (!password) {
