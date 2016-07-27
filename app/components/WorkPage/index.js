@@ -9,11 +9,13 @@ import WorkIntroGrapherList from '../common/WorkIntroGrapherList'
 import SidePage from '../UI/SidePage'
 import AutoLoadPageMixin from '../AutoLoadPageMixin'
 import { LIST_ALL_WORKS, TITLE } from '../Tools'
-import AnimationGuide from './AnimationGuide';
+import AnimationGuide from './AnimationGuide'
 import ShowMenu from './ShowMenu'
 import _ from 'underscore'
 import WechatShare from '../Weixin/WechatShare'
 import Toaster from '../Toast'
+
+let lastPathname
 
 const WorkPage = React.createClass({
   mixins: [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
@@ -45,6 +47,25 @@ const WorkPage = React.createClass({
       })
     } else {
       AlbumsActions.search()
+    }
+  },
+  componentWillUpdate() {
+    lastPathname = this.props.location.pathname + this.props.location.query.q
+  },
+  componentDidUpdate() {
+    if (lastPathname !== this.props.location.pathname + this.props.location.query.q) {
+
+      const nonemptyTagList = _.filter(this.props.params.tag, x => !_.isUndefined(x) )
+      const thisIsACoolSearchKey = this.props.location.query.q
+      
+      this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, () => {
+          // 如果存在url的制定tag，会直接执行过滤作品
+        AlbumsActions.query({
+          tags:this.state.selectedTags.join(','),
+          key:this.state.searchKey,
+        })
+      })
+
     }
   },
   handleUpdateSearch(key) {
