@@ -1,6 +1,6 @@
-import React from 'react';
-import TagRow from './TagRow';
-import $ from 'jquery';
+import React from 'react'
+import TagRow from './TagRow'
+import $ from 'jquery'
 import { Link } from 'react-router'
 
 const ShowMenu = (args) => {
@@ -16,9 +16,8 @@ const ShowMenu = (args) => {
     reset()
   }
   const searchReadyGo = () => {
-    let text = searchText.value.trim();
+    let text = searchText.value.trim()
     onSearch(text)
-    toggleMenu()
   }
   const cancle = () => searchText.value = ""
 
@@ -38,6 +37,7 @@ const ShowMenu = (args) => {
             className="input input-block search"
             ref={node => searchText = node}
             type="text"
+            onBlur={searchReadyGo}
             placeholder={searchText || "搜索 作品/标签/摄影师昵称"} />
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
@@ -47,13 +47,11 @@ const ShowMenu = (args) => {
         <span className="tag-title">拍摄种类 | CATEGORY</span>
         <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
         <div className="tagButton">
-          {/*<button className="plzResetAllOfThem" onClick={() => plzResetAllOfThem(reset)}>重置</button>*/}
-          {/*确定实际上就是隐藏*/}
-          <button className="yesImPretySure" onClick={searchReadyGo}>立即筛选</button>
+          <button className="yesImPretySure" onClick={toggleMenu}>立即筛选</button>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ShowMenu;
+export default ShowMenu
