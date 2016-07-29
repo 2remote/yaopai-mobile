@@ -75,6 +75,7 @@ var UserFundStore = Reflux.createStore({
   onSendTelAccountSuccess: function(data) {//后台发送验证码给用户
     if (data.Success) {
       this.data.hintMessage = '';
+      this.data.checkingState.receive = '';
       this.data.checkingState.send = '验证码发送成功';
     } else {
       this.data.checkingState.send= data.ErrorMsg;
@@ -85,6 +86,7 @@ var UserFundStore = Reflux.createStore({
   onReceiveTelAccountSuccess: function(data) {//检查验证码是否正确
     if (data.Success) {
       this.data.hintMessage = '';
+      this.data.checkingState.send = '';
       this.data.checkingState.receive = '验证码正确';
     } else {
       this.data.checkingState.receive = '验证码错误';
