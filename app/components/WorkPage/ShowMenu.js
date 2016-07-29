@@ -8,7 +8,10 @@ const ShowMenu = (args) => {
   const {tagType, onSearch, onSelectedTag, reset, searchKey} = args
   let searchText
 
-  const toggleMenu = () => $("#tagMenu").toggleClass('slide-toggle')
+  const toggleMenu = () => {
+    $("#tagMenu").toggleClass('slide-toggle')
+    $("#queryIcon").toggleClass('rotateX180deg')
+  }
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
@@ -27,7 +30,7 @@ const ShowMenu = (args) => {
       {/*<Link to={"/query"} >*/}
       <div className="tagBtn" onClick={toggleMenu}>
         筛选
-        <div id="queryIcon" className="rotateX180deg">
+        <div id="queryIcon">
           <i className="icon down" />
         </div>
       </div>
