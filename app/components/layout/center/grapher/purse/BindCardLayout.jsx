@@ -73,9 +73,18 @@ class BindCardLayout extends React.Component {
 
   getTel = (e) => {//点击'获取验证码'
     let Receivable = this.refs.payId.value.trim();
+    const telPattern = /^1[34578]\d{9}$/;
+    const mailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (!Receivable) {
       this.showAlert('请输入支付宝账号！');
       return
+    }
+
+    if(!telPattern.test(Receivable)) {
+      if(!mailPattern.test(Receivable)) {
+        this.showAlert('手机号或邮箱格式错误');
+        return;
+      }
     }
 
     this.setState({
