@@ -26,7 +26,10 @@ const ShowMenu = (args) => {
       <div className="tagLogo icon yaopainew" />
       {/*<Link to={"/query"} >*/}
       <div className="tagBtn" onClick={toggleMenu}>
-        筛选 <i className="icon down" />
+        筛选
+        <div id="queryIcon" className="rotateX180deg">
+          <i className="icon down" />
+        </div>
       </div>
       {/*</Link>*/}
 

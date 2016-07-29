@@ -88,3 +88,14 @@
     background: #151515;
   }
 }
+
+#queryIcon {
+  transition: 1s ease-in-out;
+  -webkit-transition: 1s ease-in-out;
+  display: inline-block;
+}
+
+.rotateX180deg {
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+}
