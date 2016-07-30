@@ -44,8 +44,12 @@ var BookPage = React.createClass({
     5.以上的动作引发至后面的_handleAlbumsStoreChange 和 _handlePhotographerStoreChange方法
   */
   _handleUserSotreChange: function(userData){
+    console.log(userData)
     if(!userData.isLogin){
       this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+    } else if (userData.userType == 1) {
+      alert('摄影师目前不能预约！');
+      this.props.history.goBack();
     }else{
       if(this.props.params.workId && this.props.params.workId != '0')
         AlbumsActions.get(this.props.params.workId);
