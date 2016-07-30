@@ -32,10 +32,6 @@ class BindCardLayout extends React.Component {
           }
         ]
       },
-      checkingState: {
-        send: '',
-        receive: ''
-      }
     };
   }
 
@@ -50,33 +46,37 @@ class BindCardLayout extends React.Component {
   }
 
   onTelLoad(data) {
-    this.setState({
-      checkingState: data.checkingState
-    });
-// TODO 可能有BUG: 第二次修改绑定的支付宝账号时,点击获取验证码会报错
-    if (this.state.checkingState.send == '验证码发送成功') {
-      if (this.state.checkingState.receive === '验证码错误') {
-        this.showAlert('验证码错误！');
-      } else if (this.state.checkingState.receive === '验证码正确') {
-        this.setState({
-          checkingState: {
-            send: '',
-            receive: ''
-          }
-        });
-        this.history.pushState(null, 'center/g/purse');
-      }
-    } else if(this.state.checkingState.receive === '不满足发送间隔时长') {
+    if (data.checkingState.send == '验证码发送成功') {
+      // this.showAlert('验证码发送成功，请查收');
+    } else if(data.checkingState.receive === '不满足发送间隔时长') {
       this.showAlert('提交太频繁,请稍后再试！');
+    }
+
+    if (data.checkingState.receive === '验证码错误') {
+      this.showAlert('验证码错误！');
+    } else if (data.checkingState.receive === '验证码正确') {
+      console.log(data)
+      this.showAlert('支付宝绑定成功！2 秒后自动跳转……');
+      setTimeout(() => this.history.pushState(null, 'center/g/purse'), 3000);
     }
   }
 
   getTel = (e) => {//点击'获取验证码'
     let Receivable = this.refs.payId.value.trim();
+    const telPattern = /^1[34578]\d{9}$/;
+    const mailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (!Receivable) {
       this.showAlert('请输入支付宝账号！');
       return
     }
+
+    if(!telPattern.test(Receivable)) {
+      if(!mailPattern.test(Receivable)) {
+        this.showAlert('手机号或邮箱格式错误');
+        return;
+      }
+    }
+
     this.setState({
       clickSendTel: true,
       clickSendTelAgain: true
@@ -102,6 +102,15 @@ class BindCardLayout extends React.Component {
     event.preventDefault();
     let Code = this.refs.authCode.value.trim();
     let Receivable = this.refs.payId.value.trim();
+    const telPattern = /^1[34578]\d{9}$/;
+    const mailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    console.log(Receivable)
+    if(!telPattern.test(Receivable)) {
+      if(!mailPattern.test(Receivable)) {
+        this.showAlert('手机号或邮箱格式错误');
+        return;
+      }
+    }
     if (!Receivable) {
       this.showAlert('请输入支付宝账号！');
       return

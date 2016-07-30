@@ -10,7 +10,7 @@
     font-size       : 20px;
     background-color: white;
     color           : black;
-    line-height     : $tag-height;
+    line-height     : 49px;
     text-align      : center;
   }
 
@@ -20,7 +20,7 @@
     top        : 0;
     z-index    : $zindex-menu-link;
     height     : $tag-height;
-    line-height: $tag-height;
+    line-height: 45px;
     color      : $dim-black;
 
     i { font-size: 20px; }
@@ -87,4 +87,15 @@
   .yesImPretySure {
     background: #151515;
   }
+}
+
+#queryIcon {
+  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  display: inline-block;
+}
+
+.rotateX180deg {
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
 }
