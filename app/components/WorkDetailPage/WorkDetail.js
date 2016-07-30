@@ -2,7 +2,6 @@ import React from 'react';
 import $ from 'jquery';
 
 const WorkDetail = ({data, price}) => {
-  console.log(data)
   const getPlace = () => {
     let item = data.PlaceType;
     if(typeof(item)=="undefined"){
