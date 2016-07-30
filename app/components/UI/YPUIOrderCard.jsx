@@ -262,7 +262,7 @@ class YPUIOrderCard extends React.Component {
               show={this.state.showConfirm}
               title={this.state.confirm.title}
               buttons={this.state.confirm.buttons}>
-              请您收到照片后再点击“确定”，点击“确定”后将把款打到摄影师的账户中！
+              请您收到照片后再点击“确认”，点击“确认”后将把款打到摄影师的账户中！
             </Confirm>
           </div>
         );
