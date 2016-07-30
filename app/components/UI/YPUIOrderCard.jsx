@@ -177,12 +177,14 @@ class YPUIOrderCard extends React.Component {
     /* 待付款：显然这是买家用户 */
     if(status === OrderStatus.UNPAYED) {
       rightPortion = (
-        <div>
-          <Button type="disabled" size="small" className="weui_btn weui_btn_mini"
+        <div style={{width: '100%'}}>
+          <Button type="disabled" size="small" className="weui_btn weui_btn_mini fl"
+                  style={{padding: 0, backgroundColor: '#D3D3D3'}}
                   onClick={ e => this.closeOrder(e, order.Id) }>
             &nbsp;&nbsp;取消订单&nbsp;&nbsp;
           </Button>
-          <Button type="primary" size="small" className="weui_btn weui_btn_mini"
+          <Button type="primary" size="small" className="weui_btn weui_btn_mini fr"
+                  style={{marginTop: 0}}
                   onClick={ e => this.payOrder(e, order.Id) }>
             &nbsp;&nbsp;去支付&nbsp;&nbsp;
           </Button>
