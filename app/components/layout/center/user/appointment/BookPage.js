@@ -20,7 +20,8 @@ var BookPage = React.createClass({
   getInitialState : function () {
     return {
       albums : '',
-      photographer : ''
+      photographer : '',
+      lock: true
     }
   },
   mixins : [Reflux.listenTo(UserStore,'_handleUserSotreChange'),
@@ -44,8 +45,23 @@ var BookPage = React.createClass({
     5.以上的动作引发至后面的_handleAlbumsStoreChange 和 _handlePhotographerStoreChange方法
   */
   _handleUserSotreChange: function(userData){
+    console.log(userData)
+    console.log(this.state.lock)
     if(!userData.isLogin){
-      this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      if (!this.state.lock) return;
+      const confirmLogin = confirm("是否前往登录，然后继续预约？");
+      if (confirmLogin) {
+        this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      } else {
+        this.setState({
+          lock : false
+        })
+        this.props.history.goBack();
+      }
+
+    } else if (userData.userType == 1) {
+      alert('摄影师目前不能预约！');
+      this.props.history.goBack();
     }else{
       if(this.props.params.workId && this.props.params.workId != '0')
         AlbumsActions.get(this.props.params.workId);

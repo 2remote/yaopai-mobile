@@ -81,7 +81,8 @@ class WorkDetailPage extends React.Component {
     <span
       style={{color:'#050505',fontWeight:'bold'}}
       ref="workPrice"
-      className="workPrice">{priceResult}</span>
+      className="workPrice">{priceResult}
+    </span>
     )
   }
 
