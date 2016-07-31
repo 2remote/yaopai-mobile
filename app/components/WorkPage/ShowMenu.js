@@ -9,7 +9,7 @@ const ShowMenu = (args) => {
   let searchText
 
   const toggleMenu = () => {
-    $("#tagMenu").toggleClass('slide-toggle')
+    $("#tagMenu, .tagButton").toggleClass('hide')
     $("#queryIcon").toggleClass('rotateX180deg')
   }
   const plzResetAllOfThem = (reset) => {
@@ -52,9 +52,18 @@ const ShowMenu = (args) => {
         <TagRow data={tagType[1] || []} args={args} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | CATEGORY</span>
         <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
-        <div className="tagButton">
-          <button className="yesImPretySure" onClick={toggleMenu}>立即筛选</button>
-        </div>
+        <span className="tag-title">拍摄种类 | CATEGORY</span>
+        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
+        <span className="tag-title">拍摄种类 | CATEGORY</span>
+        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
+        <span className="tag-title">拍摄种类 | CATEGORY</span>
+        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
+        <span className="tag-title">拍摄种类 | CATEGORY</span>
+        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
+      </div>
+
+      <div className="tagButton">
+        <button className="yesImPretySure" onClick={toggleMenu}>立即筛选</button>
       </div>
     </section>
   )
