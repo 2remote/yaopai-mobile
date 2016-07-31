@@ -35,8 +35,7 @@ const ShowMenu = (args) => {
         </div>
       </div>
       {/*</Link>*/}
-
-      <div className="tagMenu" id="tagMenu">
+      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight-99}}>
         <section className="input-group-light">
           <span className="icon search search-icon icon-left"></span>
           <input
