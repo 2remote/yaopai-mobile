@@ -112,7 +112,7 @@ class WorkIntroGrapherRow extends React.Component {
         <Toaster ref="toast"/>
 
         <div className="work-collect" onClick={switchAttention ? this.unAttention : this.attention}>
-          <i className={switchAttention ? `icon mark_active color_red` : `icon mark`}/>
+          <i className={data.MarkExist ? `icon mark_active color_red` : `icon mark`}/>
         </div>
 
         <Link to={`/workDetail/${data.Id}`}>
