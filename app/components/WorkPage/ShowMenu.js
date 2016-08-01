@@ -51,14 +51,6 @@ const ShowMenu = (args) => {
         <TagRow data={tagType[1] || []} args={args} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | CATEGORY</span>
         <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
-        <span className="tag-title">拍摄种类 | CATEGORY</span>
-        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
-        <span className="tag-title">拍摄种类 | CATEGORY</span>
-        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
-        <span className="tag-title">拍摄种类 | CATEGORY</span>
-        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
-        <span className="tag-title">拍摄种类 | CATEGORY</span>
-        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
       </div>
 
       <div className="tagButton">
