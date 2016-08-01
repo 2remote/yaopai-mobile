@@ -88,11 +88,13 @@
   transition: 0.5s ease-in-out;
   -webkit-transition: 0.5s ease-in-out;
   display: inline-block;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .rotateX180deg {
-  transform: rotateX(180deg);
-  -webkit-transform: rotateX(180deg);
+  transform: rotate(90deg) !important;
+  -webkit-transform: rotate(90deg) !important;
 }
 
 .hide {
