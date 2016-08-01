@@ -44,9 +44,10 @@ class WorkIntroGrapherRow extends React.Component {
       }
 
     } else if(this.state.userData.UserId == this.props.data.UserId) {
-      this.showMessage('您不能收藏自己的作品');
+      alert('您不能收藏自己的作品');
       return;
     } else {
+      this.setState({isClickMark: true})
       $(e.target).removeClass('mark').addClass('mark_active color_red');
       // TODO 如何防止用户多次提交
       AlbumsActions.mark(this.props.data.Id)
@@ -104,21 +105,15 @@ class WorkIntroGrapherRow extends React.Component {
     } else {
       grapherAvatar = <div className="card-head-null"></div>
     }
+
+    let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist;
     return (
       <div className="workIntroGrapherRow">
         <Toaster ref="toast"/>
 
-        {
-          (this.state.isClickMark ? this.state.markExist : data.MarkExist)
-          ?
-          <div className="work-collect" onClick={this.unAttention}>
-            <i className="icon mark_active color_red"/>
-          </div>
-          :
-          <div className="work-collect" onClick={this.attention}>
-            <i className="icon mark"/>
-          </div>
-        }
+        <div className="work-collect" onClick={switchAttention ? this.unAttention : this.attention}>
+          <i className={switchAttention ? `icon mark_active color_red` : `icon mark`}/>
+        </div>
 
         <Link to={`/workDetail/${data.Id}`}>
           <div className="card-work" style={{height: 254/375*innerWidth}}>
