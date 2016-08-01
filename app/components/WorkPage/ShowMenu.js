@@ -9,7 +9,7 @@ const ShowMenu = (args) => {
   let searchText
 
   const toggleMenu = () => {
-    $("#tagMenu").toggleClass('slide-toggle')
+    $("#tagMenu, .tagButton").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
   }
   const plzResetAllOfThem = (reset) => {
@@ -35,8 +35,7 @@ const ShowMenu = (args) => {
         </div>
       </div>
       {/*</Link>*/}
-
-      <div className="tagMenu" id="tagMenu">
+      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight-99}}>
         <section className="input-group-light">
           <span className="icon search search-icon icon-left"></span>
           <input
@@ -52,9 +51,10 @@ const ShowMenu = (args) => {
         <TagRow data={tagType[1] || []} args={args} tagRowClass="tagColBox1"/>
         <span className="tag-title">拍摄种类 | CATEGORY</span>
         <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
-        <div className="tagButton">
-          <button className="yesImPretySure" onClick={toggleMenu}>立即筛选</button>
-        </div>
+      </div>
+
+      <div className="tagButton">
+        <button className="yesImPretySure" onClick={toggleMenu}>立即筛选</button>
       </div>
     </section>
   )

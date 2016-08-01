@@ -90,11 +90,20 @@
     transform                  : translate(-100%, 0);
   }
 
+  @if $direction == 'right-left' {
+    -webkit-transform          : translate(100%, 0);
+    transform                  : translate(100%, 0);
+  }
+
   @if $direction == 'top-bottom' {
     -webkit-transform          : translate(0, -100%);
     transform                  : translate(0, -100%);
   }
-  /* bottom-top、right-left等待补充 */
+
+  @if $direction == 'bottom-top' {
+    -webkit-transform          : translate(0, 100%);
+    transform                  : translate(0, 100%);
+  }
 }
 /* 一个公共类放在这是不规范的，但是放在这更合适 */
 .slide-toggle {
