@@ -36,6 +36,7 @@
     height    : 570px;
     box-sizing: border-box;
     background: #DFDFDF;
+    @include slide-animation(right-left);
 
     .tag-title {
       display    : block;
@@ -68,6 +69,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  @include slide-animation(right-left);
 
   button {
     width: 100%;

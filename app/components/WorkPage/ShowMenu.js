@@ -9,7 +9,7 @@ const ShowMenu = (args) => {
   let searchText
 
   const toggleMenu = () => {
-    $("#tagMenu, .tagButton").toggleClass('hide')
+    $("#tagMenu, .tagButton").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
   }
   const plzResetAllOfThem = (reset) => {
