@@ -40,8 +40,14 @@
 
     .tag-title {
       display    : block;
-      padding    : 5px 15px;
+      padding: 10px 15px 5px;
       background: white;
+      margin-top: 1px;
+      line-height: initial;
+    }
+
+    .tag-titile-button {
+      float: right;
     }
   }
 

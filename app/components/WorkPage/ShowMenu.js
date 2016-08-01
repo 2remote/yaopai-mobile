@@ -27,11 +27,14 @@ const ShowMenu = (args) => {
   let tagRows
   if (tags) {
     tagRows = tags.map((tag, i) => {
-      console.warn(tag);
       if (tag.Display) {
         return (
           <div key={i}>
-            <span className="tag-title">{tag.Name}</span>
+            <span className="tag-title">
+              {tag.Name}
+              <i className="icon down tag-titile-button" />
+            </span>
+
             <TagRow
               data={tag.Tags || []}
               args={args}
@@ -65,7 +68,7 @@ const ShowMenu = (args) => {
         </section>
 
         {tagRows}
-        
+
       </div>
 
       <div className="tagButton">
