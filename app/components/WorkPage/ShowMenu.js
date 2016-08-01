@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 const ShowMenu = (args) => {
 
-  const {tagType, onSearch, onSelectedTag, reset, searchKey} = args
+  const {tags, onSearch, onSelectedTag, reset, searchKey} = args
   let searchText
 
   const toggleMenu = () => {
@@ -24,17 +24,34 @@ const ShowMenu = (args) => {
   }
   const cancle = () => searchText.value = ""
 
+  let tagRows
+  if (tags) {
+    tagRows = tags.map((tag, i) => {
+      console.warn(tag);
+      if (tag.Display) {
+        return (
+          <div key={i}>
+            <span className="tag-title">{tag.Name}</span>
+            <TagRow
+              data={tag.Tags || []}
+              args={args}
+              tagRowClass={"tagColBox" + i} />
+          </div>
+        )
+      }
+    })
+  }
+
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
-      {/*<Link to={"/query"} >*/}
       <div className="tagBtn" onClick={toggleMenu}>
         筛选
         <div id="queryIcon">
           <i className="icon down" />
         </div>
       </div>
-      {/*</Link>*/}
+
       <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight-99}}>
         <section className="input-group-light">
           <span className="icon search search-icon icon-left"></span>
@@ -47,10 +64,8 @@ const ShowMenu = (args) => {
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 
-        <span className="tag-title">拍摄地区 | PLACE</span>
-        <TagRow data={tagType[1] || []} args={args} tagRowClass="tagColBox1"/>
-        <span className="tag-title">拍摄种类 | CATEGORY</span>
-        <TagRow data={tagType[0] || []} args={args} tagRowClass="tagColBox2"/>
+        {tagRows}
+        
       </div>
 
       <div className="tagButton">
