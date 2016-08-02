@@ -54,7 +54,9 @@
   .tagRowBox {
     background: white;
     width: 100%;
-    padding: 0 0 10px;
+    transition: 0.2s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
   }
 
   .tagColBox {
@@ -104,10 +106,7 @@
   -webkit-transform: rotate(90deg) !important;
 }
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
+.showTagRowBox {
+  max-height: 500px !important;
+  padding: 0 0 10px;
 }
