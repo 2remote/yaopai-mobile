@@ -55,6 +55,7 @@
     background: white;
     width: 100%;
     transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
     max-height: 0;
     overflow: hidden;
   }
