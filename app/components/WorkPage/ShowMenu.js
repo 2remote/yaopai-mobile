@@ -12,6 +12,7 @@ const ShowMenu = (args) => {
     $("#tagMenu, .tagButton").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
   }
+  const toggleTagRow = (i) => $(".tagRowBox" + i).toggleClass('showTagRowBox')
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
@@ -30,7 +31,7 @@ const ShowMenu = (args) => {
       if (tag.Display) {
         return (
           <div key={i}>
-            <span className="tag-title">
+            <span className="tag-title" onClick={() => toggleTagRow(i)}>
               {tag.Name}
               <i className="icon down tag-titile-button" />
             </span>
@@ -38,7 +39,7 @@ const ShowMenu = (args) => {
             <TagRow
               data={tag.Tags || []}
               args={args}
-              tagRowClass={"tagColBox" + i} />
+              i={i} />
           </div>
         )
       }
