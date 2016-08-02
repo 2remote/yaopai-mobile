@@ -36,7 +36,7 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   // 点击关注
-  attention() {
+  attention(e) {
     if(!this.state.userData.isLogin){ // 用户未登录
       const confirmMsg = confirm("是否前往登录，然后关注？");
       if (confirmMsg == true) {
@@ -44,18 +44,18 @@ class WorkIntroGrapherRow extends React.Component {
       }
 
     } else if(this.state.userData.UserId == this.props.data.UserId) {
-      this.showMessage('您不能收藏自己的作品');
+      alert('您不能收藏自己的作品');
       return;
-
     } else {
-      $(`#collect-${this.props.index}`).removeClass('mark').addClass('mark_active color_red');
+      this.setState({isClickMark: true})
+      $(e.target).removeClass('mark').addClass('mark_active color_red');
       // TODO 如何防止用户多次提交
       AlbumsActions.mark(this.props.data.Id)
     }
   }
   // 点击取消关注
-  unAttention() {
-    $(`#collect-${this.props.index}`).removeClass('mark_active color_red').addClass('mark');
+  unAttention(e) {
+    $(e.target).removeClass('mark_active color_red').addClass('mark');
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
@@ -83,7 +83,7 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   render() {
-    const {data, index} = this.props
+    const {data} = this.props
     let cover
     if(data.Cut) {
       try {
@@ -105,21 +105,15 @@ class WorkIntroGrapherRow extends React.Component {
     } else {
       grapherAvatar = <div className="card-head-null"></div>
     }
+
+    let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist;
     return (
       <div className="workIntroGrapherRow">
         <Toaster ref="toast"/>
 
-        {
-          (this.state.isClickMark ? this.state.markExist : data.MarkExist)
-          ?
-          <div className="work-collect" onClick={this.unAttention}>
-            <i id={`collect-${index}`} className="icon mark_active color_red"/>
-          </div>
-          :
-          <div className="work-collect" onClick={this.attention}>
-            <i id={`collect-${index}`} className="icon mark"/>
-          </div>
-        }
+        <div className="work-collect" onClick={switchAttention ? this.unAttention : this.attention}>
+          <i className={data.MarkExist ? `icon mark_active color_red` : `icon mark`}/>
+        </div>
 
         <Link to={`/workDetail/${data.Id}`}>
           <div className="card-work" style={{height: 254/375*innerWidth}}>
