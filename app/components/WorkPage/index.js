@@ -57,7 +57,7 @@ const WorkPage = React.createClass({
 
       const nonemptyTagList = _.filter(this.props.params.tag, x => !_.isUndefined(x) )
       const thisIsACoolSearchKey = this.props.location.query.q
-      
+
       this.setState({selectedTags: nonemptyTagList, searchKey: thisIsACoolSearchKey}, () => {
           // 如果存在url的制定tag，会直接执行过滤作品
         AlbumsActions.query({
@@ -137,9 +137,7 @@ const WorkPage = React.createClass({
   },
   render() {
 
-    const tagType = this.state.tags.map( x => x.Tags )
-
-    const { searchKey, selectedTags, works, showNothingFound } = this.state
+    const { searchKey, selectedTags, works, showNothingFound, tags } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -148,7 +146,7 @@ const WorkPage = React.createClass({
           <SidePage />
 
           <ShowMenu
-            tagType = {tagType}
+            tags = {tags}
             onSelectedTag = {this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
             reset = {this.reset}

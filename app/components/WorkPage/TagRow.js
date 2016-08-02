@@ -1,15 +1,18 @@
 import React from 'react';
 import $ from 'jquery';
 
-const TagRow = ({data, args, tagRowClass}) => {
+const TagRow = ({data, args, i}) => {
+
+  const tagRowClass = 'tagRowBox' + i
+  const tagColClass = 'tagColBox' + i
 
   const { onSelectedTag, selectedTags } = args
 
-  const handleClick = (tagId, onSelectedTag, tagRowClass) => {
+  const handleClick = (tagId, onSelectedTag, tagColClass) => {
     if ( $('#' + tagId).hasClass('tagColBoxActive') ) {
       $('#' + tagId).removeClass('tagColBoxActive')
     } else {
-      $('.' + tagRowClass).removeClass('tagColBoxActive')
+      $('.' + tagColClass).removeClass('tagColBoxActive')
       $('#' + tagId).addClass('tagColBoxActive')
     }
     onSelectedTag()
@@ -26,9 +29,9 @@ const TagRow = ({data, args, tagRowClass}) => {
         return (
           <div
             key={i}
-            className={"tagColBox " + tagRowClass + isTagShoudActive}
+            className={"tagColBox " + tagColClass + isTagShoudActive}
             id={tag.Id}
-            onClick={() => handleClick(tag.Id, onSelectedTag, tagRowClass)}
+            onClick={() => handleClick(tag.Id, onSelectedTag, tagColClass)}
             >
             {tag.Name}
           </div>
@@ -37,7 +40,13 @@ const TagRow = ({data, args, tagRowClass}) => {
     });
   }
 
-  return <div className="tagRowBox">{tagNodes}</div>
+  // 默认展开前两个标签 row
+  let showTagRowBox = i < 2 ? " showTagRowBox" : ""
+  return (
+    <div className={ "tagRowBox " + tagRowClass + showTagRowBox } >
+      {tagNodes}
+    </div>
+  )
 }
 
 export default TagRow;
