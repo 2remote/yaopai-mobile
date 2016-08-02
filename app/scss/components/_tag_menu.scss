@@ -40,14 +40,23 @@
 
     .tag-title {
       display    : block;
-      padding    : 5px 15px;
+      padding: 10px 15px;
       background: white;
+      margin-top: 1px;
+      line-height: initial;
+    }
+
+    .tag-titile-button {
+      float: right;
     }
   }
 
   .tagRowBox {
     background: white;
     width: 100%;
+    transition: 0.2s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
   }
 
   .tagColBox {
@@ -97,10 +106,7 @@
   -webkit-transform: rotate(90deg) !important;
 }
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
+.showTagRowBox {
+  max-height: 500px !important;
+  padding: 0 0 10px;
 }
