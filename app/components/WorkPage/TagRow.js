@@ -40,7 +40,13 @@ const TagRow = ({data, args, i}) => {
     });
   }
 
-  return <div className={ "tagRowBox " + tagRowClass}>{tagNodes}</div>
+  // 默认展开前两个标签 row
+  let showTagRowBox = i < 2 ? " showTagRowBox" : ""
+  return (
+    <div className={ "tagRowBox " + tagRowClass + showTagRowBox } >
+      {tagNodes}
+    </div>
+  )
 }
 
 export default TagRow;
