@@ -24,7 +24,7 @@
     <script type="text/javascript" src="/imgs/js/plupload.full.min.js"></script>
     <script type="text/javascript" src="/imgs/js/plupload_zh_CN.js"></script>
 
-    <script type="text/javascript" src="/imgs/js/qiniu.js"></script>
+    <script type="text/javascript" src="/imgs/js/qiniu.min.js"></script>
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1468975937_683718.css">
     <link rel="stylesheet" type="text/css" href="/imgs/css/slick.css" />
