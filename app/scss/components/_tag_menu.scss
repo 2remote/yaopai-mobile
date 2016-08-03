@@ -1,5 +1,5 @@
 .tagBox {
-  position  : fixed;
+  position  : absolute;
   top       : 0;
   right     : 0;
   z-index   : $zindex-tag-box;
@@ -102,12 +102,18 @@
   transform: rotate(-90deg);
 }
 
+.showTagRowBox {
+  max-height: 500px !important;
+  padding: 0 0 10px;
+}
+
+// @zaxlct 下面这两个放到哪里比较合适
 .rotateX180deg {
   transform: rotate(90deg) !important;
   -webkit-transform: rotate(90deg) !important;
 }
 
-.showTagRowBox {
-  max-height: 500px !important;
-  padding: 0 0 10px;
+.overflowHidden {
+  overflow-y: hidden !important;
+  position: absolute;
 }

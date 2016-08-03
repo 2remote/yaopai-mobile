@@ -10,6 +10,7 @@ const ShowMenu = (args) => {
   const toggleMenu = () => {
     $("#tagMenu, .tagButton").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
+    $('body').toggleClass('overflowHidden')
   }
   const toggleTagRow = (i) => $(".tagRowBox" + i).toggleClass('showTagRowBox')
   const plzResetAllOfThem = (reset) => {
