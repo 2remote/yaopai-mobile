@@ -1,7 +1,6 @@
 import React from 'react'
 import TagRow from './TagRow'
 import $ from 'jquery'
-import { Link } from 'react-router'
 
 const ShowMenu = (args) => {
 
