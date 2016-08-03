@@ -154,7 +154,8 @@ var AvatarUploader = React.createClass({
         <div id="container">
           <img id="avatarUploader"
             style={this.props.style}
-            src={avatarImage} />
+            src={avatarImage}
+          />
         </div>
 
         <Toast

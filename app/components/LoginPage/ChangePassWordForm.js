@@ -53,11 +53,6 @@ var ChangePassWordForm = React.createClass({
         <div>
           <Toaster ref="toast" />
           <form className="find-password">
-            <input className="input" ref="newPassword"
-              type="password" placeholder="输入新密码" />
-            <input className="input" ref="confirmPassword"
-              type="password" placeholder="确认密码" />
-
             <InputGroup
               iconLeft="mima01"
               updateValue={ newPassword => this.setState({newPassword}) }

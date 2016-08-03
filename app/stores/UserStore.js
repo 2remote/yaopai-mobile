@@ -368,7 +368,8 @@ var UserStore = Reflux.createStore({
       this.data.userType = data.Type;
       this.data.userSex = data.Sex;
       this.data.userNickName = data.NickName || data.Name;
-      this.data.userCity = isExist(data.ProvinceName) ? data.ProvinceName + " " + data.CityName + " " + data.CountyName : '未指定';
+      let CountyName = data.CountyName || '';
+      this.data.userCity = isExist(data.ProvinceName) ? data.ProvinceName + " " + data.CityName + " " + CountyName : '未指定';
       if (data.Avatar) {
         this.data.avatar = data.Avatar;
       } else {
