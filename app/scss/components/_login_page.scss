@@ -31,14 +31,19 @@
 }
 
 .find-password {
-  padding-top: 20px;
   width: 100%;
 
   .get-tel-code {
-    top: 35px;
+    top: 15px;
   }
 
   .btn-dark { margin-top: 20px; }
+}
+
+.find-password-go-home {
+  padding-top: 10px;
+  padding-right: 10px;
+  color: $white;
 }
 
 .email_signup {

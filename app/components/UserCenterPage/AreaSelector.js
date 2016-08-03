@@ -34,7 +34,7 @@ var AreaSelect = React.createClass({
     provinceList.map(function (province) {
       if(province.Id == id){
         if(found){
-          found = found + " " + province.Name;  
+          found = found + " " + province.Name;
         }else{
           found = province.Name;
         }
@@ -45,7 +45,7 @@ var AreaSelect = React.createClass({
     cityList.map(function (city) {
       if(city.Id == id){
         if(found){
-          found = found + " " + city.Name;  
+          found = found + " " + city.Name;
         }else{
           found = city.Name;
         }
@@ -56,7 +56,7 @@ var AreaSelect = React.createClass({
     districtList.map(function (district) {
       if(district.Id == id){
         if(found){
-          found = found + " " + district.Name;  
+          found = found + " " + district.Name;
         }else{
           found = district.Name;
         }
@@ -140,9 +140,9 @@ var AreaSelect = React.createClass({
           <div className="weui_cell_bd weui_cell_primary">
             <select className="weui_select"
               name="select1"
-              ref="province" 
-              type="select" 
-              disabled={this.props.disabled} 
+              ref="province"
+              type="select"
+              disabled={this.props.disabled}
               value = {this.props.province}
               onChange={this.onProvinceChange}>
               <option value={0}>选择省份</option>
@@ -157,9 +157,9 @@ var AreaSelect = React.createClass({
           </div>
           <div className="weui_cell_bd weui_cell_primary">
             <select className="weui_select"
-              ref="city" 
+              ref="city"
               type="select"
-              disabled={this.props.disabled}  
+              disabled={this.props.disabled}
               value ={this.props.city}
               onChange={this.onCityChange}>
               <option value={0}>选择城市</option>

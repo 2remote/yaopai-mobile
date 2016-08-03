@@ -117,6 +117,7 @@ var FindByMobileForm = React.createClass({
               handleSubmit={this._handleNextStep}
             />
           </form>
+          <a className="find-password-go-home fr" href="#/work">返回首页</a>
         </div>
       </DocumentTitle>
 

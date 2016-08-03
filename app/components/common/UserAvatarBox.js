@@ -59,17 +59,18 @@ const UserAvatarBox = React.createClass({
               />
             </div>
             :
-            <div>
+            <Link to="/center/user_edit_profile">
               <img
                 style={style.avatar}
                 ref="userAvatar"
                 src={avatar || 'imgs/sidePage/default-avatar.png'}
-                srcSet={avatar || 'imgs/sidePage/default-avatar@2X.png 2x'} />
-            </div>
+                srcSet={avatar || 'imgs/sidePage/default-avatar@2X.png 2x'}
+              />
+            </Link>
           }
 
           <div style={style.nick} ref="userNick" >
-            {this.props.editAvatar ? "点击头像上传" : this.props.data.userName}
+            {this.props.editAvatar ? "" : this.props.data.userName}
           </div>
 
           <Link
