@@ -3,7 +3,10 @@ import $ from 'jquery'
 
 const ShowMenu = (args) => {
   const {onSearch, reset, searchKey} = args
-  const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
+  const handleClick = () => {
+    $("#tagMenu, .tagButton").toggleClass('slide-toggle')
+    $("#queryIcon").toggleClass('rotateX180deg')
+  }
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
@@ -18,7 +21,10 @@ const ShowMenu = (args) => {
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
       <div className="tagBtn" onClick={handleClick}>
-        搜索 <i className="icon down" />
+        搜索
+        <div id="queryIcon">
+          <i className="icon down" />
+        </div>
       </div>
 
       <div className="tagMenu" id="tagMenu">
