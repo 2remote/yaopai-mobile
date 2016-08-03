@@ -58,7 +58,7 @@ class SidePage extends Component {
       const winHeight = `${$(window).height()}px`
       // TODO 打开侧边导航后禁止页面滚动
       // 在 Chrome 里测试正常，苹果手机测试失败，仍然可以滚动
-      $('body').css({ overflow: 'hidden' })
+      // $('body').addClass('overflowHidden')
       $('#mask-menu').show().addClass('fade-toggle')
       $('#menu').addClass('slide-toggle')
     })
@@ -66,7 +66,7 @@ class SidePage extends Component {
     $('#mask-menu, #menu').click(() => {
       $('#mask-menu').removeClass('fade-toggle').hide()
       $('#menu').removeClass('slide-toggle')
-      $('body').css({ overflow: 'auto' })
+      // $('body').removeClass('overflowHidden')
     })
   }
 
