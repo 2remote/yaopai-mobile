@@ -1,7 +1,6 @@
 import React from 'react'
 import TagRow from './TagRow'
 import $ from 'jquery'
-import { Link } from 'react-router'
 
 const ShowMenu = (args) => {
 
@@ -11,6 +10,7 @@ const ShowMenu = (args) => {
   const toggleMenu = () => {
     $("#tagMenu, .tagButton").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
+    $('body').toggleClass('overflowHidden')
   }
   const toggleTagRow = (i) => $(".tagRowBox" + i).toggleClass('showTagRowBox')
   const plzResetAllOfThem = (reset) => {
