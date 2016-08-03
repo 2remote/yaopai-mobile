@@ -9,6 +9,7 @@ const ShowMenu = (args) => {
   const toggleMenu = () => {
     $("#tagMenu, .tagButton").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
+    $('body').toggleClass('overflowHidden')
   }
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
