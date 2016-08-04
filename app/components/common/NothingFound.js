@@ -24,7 +24,7 @@ const NothingFound = ({title}) => (
       </div>
       <span>或</span>
       <div className="btn-block btn-small">
-        <a className="btn btn-black" href="tel:0371-65337727">
+        <a className="btn btn-black" href="tel:400-876-5981">
           免费电话咨询
         </a>
       </div>

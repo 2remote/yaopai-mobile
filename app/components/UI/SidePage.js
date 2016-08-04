@@ -58,7 +58,7 @@ class SidePage extends Component {
       const winHeight = `${$(window).height()}px`
       // TODO 打开侧边导航后禁止页面滚动
       // 在 Chrome 里测试正常，苹果手机测试失败，仍然可以滚动
-      $('body').css({ height: winHeight, overflow: 'hidden' })
+      // $('body').addClass('overflowHidden')
       $('#mask-menu').show().addClass('fade-toggle')
       $('#menu').addClass('slide-toggle')
     })
@@ -66,7 +66,7 @@ class SidePage extends Component {
     $('#mask-menu, #menu').click(() => {
       $('#mask-menu').removeClass('fade-toggle').hide()
       $('#menu').removeClass('slide-toggle')
-      $('body').css({ height: '100%', overflow: 'visible' })
+      // $('body').removeClass('overflowHidden')
     })
   }
 
@@ -189,7 +189,7 @@ class SidePage extends Component {
 
               <footer className="menu-slide-footer">
                 客服热线<br />
-              <a href="tel:0371-65337727">0371-65337727</a>
+              <a href="tel:400-876-5981">400-876-5981</a>
               </footer>
             </div>
           </div>

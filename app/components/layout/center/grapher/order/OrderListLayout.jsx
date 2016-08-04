@@ -72,7 +72,7 @@ class OrderListLayout extends React.Component {
         {theRealList}
         <aside className="footer color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />
-          请拨打客服热线：<a className="color_green" href="tel:0371-65337727">0371-65337727</a>
+          请拨打客服热线：<a className="color_green" href="tel:400-876-5981">400-876-5981</a>
         </aside>
       </div>
     );
