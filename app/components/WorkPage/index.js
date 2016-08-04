@@ -142,6 +142,16 @@ const WorkPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
+          <a href="http://www.huodongxing.com/event/2346705010400">
+            <img
+               style={{
+                 width: '100%',
+                 height: '60%',
+                 marginTop: '50px',
+                 marginBottom: '-50px',
+               }}
+               src="http://7xte7j.com1.z0.glb.clouddn.com/activity.jpg" />
+          </a>
           <AnimationGuide />
           <SidePage />
 
