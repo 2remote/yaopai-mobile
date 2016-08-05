@@ -142,6 +142,8 @@ const WorkPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
+          {/* 一定要确保 AnimationGuide 这个组件在最上面 ！！！ */}
+          <AnimationGuide />
           <a href="http://www.huodongxing.com/event/2346705010400">
             <img
                style={{
@@ -152,7 +154,6 @@ const WorkPage = React.createClass({
                }}
                src="http://7xte7j.com1.z0.glb.clouddn.com/activity.jpg" />
           </a>
-          <AnimationGuide />
           <SidePage />
 
           <ShowMenu
