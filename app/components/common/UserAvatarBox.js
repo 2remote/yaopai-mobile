@@ -70,7 +70,7 @@ const UserAvatarBox = React.createClass({
           }
 
           <div style={style.nick} ref="userNick" >
-            {this.props.editAvatar ? "" : this.props.data.userName}
+            {this.props.editAvatar ? "点击头像上传" : this.props.data.userName}
           </div>
 
           <Link
