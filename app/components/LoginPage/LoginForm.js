@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
     }
     if(!telPattern.test(userName)) {
       if(!mailPattern.test(userName)) {
-        this.showAlert('手机号或邮箱格式错误');
+        this.showMessage('手机号或邮箱格式错误');
         return;
       }
     }

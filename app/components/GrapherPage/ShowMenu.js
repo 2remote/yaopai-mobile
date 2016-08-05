@@ -20,6 +20,7 @@ const ShowMenu = (args) => {
   const searchReadyGo = () => {
     let text = searchText.value.trim()
     onSearch(text)
+    $('.tagButton').delay( 400 ).fadeIn( 400 )
   }
   const cancle = () => searchText.value = ""
 
@@ -42,6 +43,7 @@ const ShowMenu = (args) => {
             ref={node => searchText = node}
             type="text"
             onBlur={searchReadyGo}
+            onClick={() => $('.tagButton').hide()}
             placeholder={searchText || "搜索 摄影师昵称/地区"} />
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
