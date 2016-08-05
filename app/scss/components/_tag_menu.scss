@@ -5,6 +5,7 @@
   z-index   : $zindex-tag-box;
   width     : 100%;
   background: #fff;
+  visibility: visible;
 
   .tagLogo {
     font-size       : 20px;
@@ -116,4 +117,5 @@
 .overflowHidden {
   overflow-y: hidden !important;
   position: absolute;
+  visibility: hidden;
 }
