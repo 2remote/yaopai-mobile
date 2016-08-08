@@ -22,7 +22,7 @@ const ShowMenu = (args) => {
   const searchReadyGo = () => {
     let text = searchText.value.trim()
     onSearch(text)
-    $('.tagButton').delay( 400 ).fadeIn( 400 )
+    $('.tagButton').delay( 950 ).fadeIn( 150 )
   }
   const cancle = () => searchText.value = ""
 
@@ -58,6 +58,8 @@ const ShowMenu = (args) => {
       </div>
 
       <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight-99}}>
+
+        {/*搜索框*/}
         <section className="input-group-light">
           <span className="icon search search-icon icon-left"></span>
           <input
@@ -66,7 +68,7 @@ const ShowMenu = (args) => {
             type="text"
             onBlur={searchReadyGo}
             onClick={() => $('.tagButton').hide()}
-            placeholder={searchText || "搜索 作品/标签/摄影师昵称"} />
+            placeholder={searchKey || "搜索 作品/标签/摄影师昵称"} />
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 
