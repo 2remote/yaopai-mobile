@@ -104,9 +104,6 @@ let SignupPage = React.createClass({
               pattern="[0-9]*"
               placeholder="请输入手机号"
             />
-            <div className="get-tel-code" onClick={this._handleGetCode}>
-              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
-            </div>
 
             <InputGroup
               iconLeft="mima01"
@@ -122,6 +119,10 @@ let SignupPage = React.createClass({
               pattern="[0-9]*"
               placeholder="请输入验证码"
             />
+
+            <div className="get-tel-code" onClick={this._handleGetCode}>
+              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
+            </div>
           </form>
            <a className="terms" href="http://mp.weixin.qq.com/s?__biz=MzA4MzMxNTA1Mg==&mid=402209588&idx=1&sn=52c84ffcaba44931aaf1e49d1a41e3ed">
              点击创建帐号表示同意《服务条款》
