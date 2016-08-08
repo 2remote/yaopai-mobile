@@ -106,9 +106,6 @@ let EmailSignupPage = React.createClass({
               type="email"
               placeholder="请输入邮箱"
             />
-            <div className="get-tel-code" onClick={this._handleGetCode}>
-              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取邮箱验证码')}
-            </div>
 
             <InputGroup
               iconLeft="mima01"
@@ -124,6 +121,9 @@ let EmailSignupPage = React.createClass({
               pattern="[0-9]*"
               placeholder="请输入验证码"
             />
+            <div className="get-tel-code" onClick={this._handleGetCode}>
+              {(this.state.codeLeft>0 ? '('+this.state.codeLeft+')' : '获取验证码')}
+            </div>
           </form>
           <span className="email_signup" onClick={this.goTelSignup}>手机号注册</span>
 
