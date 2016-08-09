@@ -72,6 +72,9 @@ const ShowMenu = (args) => {
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 
+        <div className="title">
+          筛选条件
+        </div>
         {tagRows}
 
       </div>
