@@ -50,8 +50,8 @@ var FindByMobileForm = React.createClass({
     if (this.state.codeLeft > 0) return;
     var phone = this.state.mobileNumber;
     if (phone) {
-      var isMobile = validator.isMobilePhone(phone,['zh-CN']);
-      if (isMobile) {
+      const telPattern = /^1[34578]\d{9}$/;
+      if (telPattern.test(phone)) {
         GetCodeActions.sendTelRestPassword({tel: phone});
         return;
       } else {
@@ -67,6 +67,11 @@ var FindByMobileForm = React.createClass({
     e.preventDefault();
     var phone = this.state.mobileNumber;
     var code = this.state.vertificationCode;
+    const telPattern = /^1[34578]\d{9}$/;
+    if (!telPattern.test(phone)) {
+      this.showMessage('手机号格式错误');
+      return;
+    }
     if (!phone) {
       this.showMessage('手机号不能为空');
       return;
