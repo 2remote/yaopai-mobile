@@ -27,6 +27,13 @@
     i { font-size: 20px; }
   }
 
+  .title {
+    display    : block;
+    padding: 10px 15px;
+    line-height: initial;
+    border-top: #bebebe solid 1px;
+  }
+
   .tagMenu {
     position  : fixed;
     left      : 0;
