@@ -1,11 +1,35 @@
 import React from 'react'
 import TagRow from './TagRow'
 import $ from 'jquery'
+import _ from 'underscore'
 
 const ShowMenu = (args) => {
 
-  const {tags, onSearch, onSelectedTag, reset, searchKey} = args
+  const {tags, onSearch, onSelectedTag, reset, searchKey, selectedTags} = args
   let searchText
+
+  const handleClick = (tagId, onSelectedTag) => {
+    $('#' + tagId).removeClass('tagColBoxActive')
+    onSelectedTag()
+  }
+  // 我的选择
+  let myChoices
+  const intSelectedTags = selectedTags.map((x) => parseInt(x))
+  if (tags != 'undefined') {
+    myChoices = tags.map((data, i) => {
+      return (
+        data.Tags.map((tag, i) => {
+          if (_.contains(intSelectedTags, tag.Id)) {
+            return (
+              <div onClick={() => handleClick(tag.Id, onSelectedTag)}>
+                {tag.Name}
+              </div>
+            )
+          }
+        })
+      )
+    })
+  }
 
   const toggleMenu = () => {
     $("#tagMenu").toggleClass('slide-toggle')
@@ -14,7 +38,7 @@ const ShowMenu = (args) => {
     $('.tagBtnLabel').toggle()
   }
   const toggleTagRow = (i) => $(".tagRowBox" + i).toggleClass('showTagRowBox')
-  const plzResetAllOfThem = (reset) => {
+  const plzResetAllOfThem = () => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
     $('.tagColBoxActive').removeClass('tagColBoxActive')
@@ -76,6 +100,7 @@ const ShowMenu = (args) => {
           <span className="reset" onClick={plzResetAllOfThem}>清除</span>
         </div>
 
+        {myChoices}
 
         <div className="title">
           筛选条件
