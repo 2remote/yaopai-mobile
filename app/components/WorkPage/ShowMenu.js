@@ -11,6 +11,7 @@ const ShowMenu = (args) => {
     $("#tagMenu").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
     $('body').toggleClass('overflowHidden')
+    $('.tagBtnLabel').toggle()
   }
   const toggleTagRow = (i) => $(".tagRowBox" + i).toggleClass('showTagRowBox')
   const plzResetAllOfThem = (reset) => {
@@ -50,7 +51,7 @@ const ShowMenu = (args) => {
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
       <div className="tagBtn" onClick={toggleMenu}>
-        筛选
+        <span className="tagBtnLabel">立即</span>筛选
         <div id="queryIcon">
           <i className="icon down" />
         </div>

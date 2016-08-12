@@ -10,6 +10,7 @@ const ShowMenu = (args) => {
     $("#tagMenu").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
     $('body').toggleClass('overflowHidden')
+    $('.tagBtnLabel').toggle()
   }
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
@@ -28,7 +29,7 @@ const ShowMenu = (args) => {
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
       <div className="tagBtn" onClick={toggleMenu}>
-        搜索
+        <span className="tagBtnLabel">立即</span>搜索
         <div id="queryIcon">
           <i className="icon down" />
         </div>
