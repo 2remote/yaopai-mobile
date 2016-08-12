@@ -19,11 +19,11 @@ const TagRow = ({data, args, i}) => {
   }
 
   let tagNodes;
+  const intSelectedTags = selectedTags.map((x) => parseInt(x))
   if (data != 'undefined'){
     tagNodes = data.map((tag, i) => {
       if(tag.Display){
         // 第一次载入的时候，判断 tag 是否应该处于激活状态
-        const intSelectedTags = selectedTags.map((x) => parseInt(x))
         const isTagSelected = intSelectedTags.indexOf(tag.Id)
         const isTagShoudActive = isTagSelected < 0 ? "" : " tagColBoxActive"
         return (
