@@ -21,9 +21,12 @@ const ShowMenu = (args) => {
         data.Tags.map((tag, i) => {
           if (_.contains(intSelectedTags, tag.Id)) {
             return (
-              <div onClick={() => handleClick(tag.Id, onSelectedTag)}>
+              <span
+                className="my-choice"
+                onClick={() => handleClick(tag.Id, onSelectedTag)} >
                 {tag.Name}
-              </div>
+                <span className="close">X</span>
+              </span>
             )
           }
         })
@@ -100,7 +103,9 @@ const ShowMenu = (args) => {
           <span className="reset" onClick={plzResetAllOfThem}>清除</span>
         </div>
 
-        {myChoices}
+        <div className="my-choices">
+          {myChoices}
+        </div>
 
         <div className="title">
           筛选条件

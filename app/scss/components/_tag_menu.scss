@@ -43,6 +43,25 @@
     }
   }
 
+  .my-choices {
+    margin-bottom: 10px;
+  }
+
+  .my-choice {
+    display: inline-block;
+    padding: 1.35% 2%;
+    margin: 1.35%;
+    font-size: 12px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .close {
+      color: #bebebe;
+      margin-left: 7px;
+    }
+  }
+
+
   .tagMenu {
     position  : fixed;
     left      : 0;
