@@ -8,11 +8,11 @@ const ShowMenu = (args) => {
   const {tags, onSearch, onSelectedTag, reset, searchKey, selectedTags} = args
   let searchText
 
+  // 我的选择
   const handleClick = (tagId, onSelectedTag) => {
     $('#' + tagId).removeClass('tagColBoxActive')
     onSelectedTag()
   }
-  // 我的选择
   let myChoices
   const intSelectedTags = selectedTags.map((x) => parseInt(x))
   if (tags != 'undefined') {
@@ -32,6 +32,12 @@ const ShowMenu = (args) => {
         })
       )
     })
+  }
+  // 未选择标签的时候隐藏整个「我的选择」
+  if ( $( ".my-choices" ).has( ".my-choice" ).length ) {
+    $('.my-choices-label').show()
+  } else {
+    $('.my-choices-label').hide()
   }
 
   const toggleMenu = () => {
@@ -98,7 +104,7 @@ const ShowMenu = (args) => {
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 
-        <div className="title">
+        <div className="title my-choices-label">
           我的选择
           <span className="reset" onClick={plzResetAllOfThem}>清除</span>
         </div>
