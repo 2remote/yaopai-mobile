@@ -8,9 +8,10 @@ const ShowMenu = (args) => {
   let searchText
 
   const toggleMenu = () => {
-    $("#tagMenu, .tagButton").toggleClass('slide-toggle')
+    $("#tagMenu").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
     $('body').toggleClass('overflowHidden')
+    $('.tagBtnLabel').toggle()
   }
   const toggleTagRow = (i) => $(".tagRowBox" + i).toggleClass('showTagRowBox')
   const plzResetAllOfThem = (reset) => {
@@ -22,7 +23,6 @@ const ShowMenu = (args) => {
   const searchReadyGo = () => {
     let text = searchText.value.trim()
     onSearch(text)
-    $('.tagButton').delay( 950 ).fadeIn( 150 )
   }
   const cancle = () => searchText.value = ""
 
@@ -51,13 +51,13 @@ const ShowMenu = (args) => {
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
       <div className="tagBtn" onClick={toggleMenu}>
-        筛选
+        <span className="tagBtnLabel">立即</span>筛选
         <div id="queryIcon">
           <i className="icon down" />
         </div>
       </div>
 
-      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight-99}}>
+      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight}}>
 
         {/*搜索框*/}
         <section className="input-group-light">
@@ -67,7 +67,6 @@ const ShowMenu = (args) => {
             ref={node => searchText = node}
             type="text"
             onBlur={searchReadyGo}
-            onClick={() => $('.tagButton').hide()}
             placeholder={searchKey || "搜索 作品/标签/摄影师昵称"} />
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
@@ -75,13 +74,12 @@ const ShowMenu = (args) => {
         <div className="title">
           筛选条件
         </div>
+
         {tagRows}
 
       </div>
 
-      <div className="tagButton">
-        <button className="yesImPretySure" onClick={toggleMenu}>立即筛选</button>
-      </div>
+
     </section>
   )
 }
