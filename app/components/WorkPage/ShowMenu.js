@@ -72,6 +72,12 @@ const ShowMenu = (args) => {
         </section>
 
         <div className="title">
+          我的选择
+          <span className="reset" onClick={plzResetAllOfThem}>清除</span>
+        </div>
+
+
+        <div className="title">
           筛选条件
         </div>
 
