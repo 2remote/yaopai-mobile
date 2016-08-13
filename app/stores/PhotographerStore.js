@@ -5,7 +5,6 @@ var PhotographerStore = Reflux.createStore({
   data : {
     photographer : {},
     photographers : [],
-    hitMessage : '',
     flag : '',
     markExist: {
       isMark: false,

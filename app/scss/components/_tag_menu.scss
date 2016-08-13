@@ -25,6 +25,10 @@
     color      : $dim-black;
 
     i { font-size: 20px; }
+
+    .tagBtnLabel {
+      display: none;
+    }
   }
 
   .title {
@@ -32,7 +36,31 @@
     padding: 10px 15px;
     line-height: initial;
     border-top: #bebebe solid 1px;
+
+    .reset {
+      float: right;
+      color:#0b98ff;
+    }
   }
+
+  .my-choices {
+    margin-bottom: 10px;
+  }
+
+  .my-choice {
+    display: inline-block;
+    padding: 1.35% 2%;
+    margin: 1.35%;
+    font-size: 12px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .close {
+      color: #bebebe;
+      margin-left: 7px;
+    }
+  }
+
 
   .tagMenu {
     position  : fixed;
@@ -80,25 +108,6 @@
   .tagColBoxActive {
     background-color: black;
     color: white;
-  }
-}
-
-.tagButton {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  @include slide-animation(right-left);
-
-  button {
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: $white;
-    height: 50px;
-    margin-top: 20px;
-  }
-
-  .yesImPretySure {
-    background: #151515;
   }
 }
 

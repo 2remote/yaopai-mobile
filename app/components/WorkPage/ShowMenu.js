@@ -1,19 +1,53 @@
 import React from 'react'
 import TagRow from './TagRow'
 import $ from 'jquery'
+import _ from 'underscore'
 
 const ShowMenu = (args) => {
 
-  const {tags, onSearch, onSelectedTag, reset, searchKey} = args
+  const {tags, onSearch, onSelectedTag, reset, searchKey, selectedTags} = args
   let searchText
 
+  // 我的选择
+  const handleClick = (tagId, onSelectedTag) => {
+    $('#' + tagId).removeClass('tagColBoxActive')
+    onSelectedTag()
+  }
+  let myChoices
+  const intSelectedTags = selectedTags.map((x) => parseInt(x))
+  if (tags != 'undefined') {
+    myChoices = tags.map((data, i) => {
+      return (
+        data.Tags.map((tag, i) => {
+          if (_.contains(intSelectedTags, tag.Id)) {
+            return (
+              <span
+                className="my-choice"
+                onClick={() => handleClick(tag.Id, onSelectedTag)} >
+                {tag.Name}
+                <span className="close">X</span>
+              </span>
+            )
+          }
+        })
+      )
+    })
+  }
+  // 未选择标签的时候隐藏整个「我的选择」
+  if ( $( ".my-choices" ).has( ".my-choice" ).length ) {
+    $('.my-choices-label').show()
+  } else {
+    $('.my-choices-label').hide()
+  }
+
   const toggleMenu = () => {
-    $("#tagMenu, .tagButton").toggleClass('slide-toggle')
+    $("#tagMenu").toggleClass('slide-toggle')
     $("#queryIcon").toggleClass('rotateX180deg')
     $('body').toggleClass('overflowHidden')
+    $('.tagBtnLabel').toggle()
   }
   const toggleTagRow = (i) => $(".tagRowBox" + i).toggleClass('showTagRowBox')
-  const plzResetAllOfThem = (reset) => {
+  const plzResetAllOfThem = () => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
     $('.tagColBoxActive').removeClass('tagColBoxActive')
@@ -22,7 +56,6 @@ const ShowMenu = (args) => {
   const searchReadyGo = () => {
     let text = searchText.value.trim()
     onSearch(text)
-    $('.tagButton').delay( 950 ).fadeIn( 150 )
   }
   const cancle = () => searchText.value = ""
 
@@ -51,13 +84,13 @@ const ShowMenu = (args) => {
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
       <div className="tagBtn" onClick={toggleMenu}>
-        筛选
+        <span className="tagBtnLabel">立即</span>筛选
         <div id="queryIcon">
           <i className="icon down" />
         </div>
       </div>
 
-      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight-99}}>
+      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight}}>
 
         {/*搜索框*/}
         <section className="input-group-light">
@@ -67,21 +100,28 @@ const ShowMenu = (args) => {
             ref={node => searchText = node}
             type="text"
             onBlur={searchReadyGo}
-            onClick={() => $('.tagButton').hide()}
             placeholder={searchKey || "搜索 作品/标签/摄影师昵称"} />
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 
+        <div className="title my-choices-label">
+          我的选择
+          <span className="reset" onClick={plzResetAllOfThem}>清除</span>
+        </div>
+
+        <div className="my-choices">
+          {myChoices}
+        </div>
+
         <div className="title">
           筛选条件
         </div>
+
         {tagRows}
 
       </div>
 
-      <div className="tagButton">
-        <button className="yesImPretySure" onClick={toggleMenu}>立即筛选</button>
-      </div>
+
     </section>
   )
 }

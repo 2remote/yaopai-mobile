@@ -100,8 +100,10 @@ $menu-footer-lineheight: 25px;
     position: absolute;
     top: 58px;
     right: 0;
+    width: 40px;
+    height: 40px;
 
-    span {
+    icon {
       float: right;
       margin: 51px 15px 0 -53px;
     }
