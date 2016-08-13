@@ -113,11 +113,8 @@ class SidePage extends Component {
               />
               <div className="nick-name">{userData.userName}</div>
             </Link>
-            <div className="logout">
-              <span
-                className="icon logout_icon"
-                onClick={this.logout}
-              />
+            <div className="logout" onClick={this.logout}>
+              <i className="icon logout_icon"/>
             </div>
           </div>
         )
