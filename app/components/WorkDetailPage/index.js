@@ -48,8 +48,11 @@ class WorkDetailPage extends React.Component {
 
   _onAlbumsStoreChange(data){
     if(data.flag == 'get'){
-      if(data.hintMessage){
+      if(data.hintMessage == '数据未找到'){
         console.log(data.hintMessage);
+        alert('该摄影师已被禁用！')
+        this.history.replaceState(null, '/work');
+        return;
       }else{
         this.setState({
           photographer : data.workData.Photographer,

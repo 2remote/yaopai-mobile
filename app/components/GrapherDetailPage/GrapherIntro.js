@@ -61,6 +61,11 @@ class GrapherIntro extends React.Component {
 
   // 获取摄影师基本信息
   onGetSuccess(data) {
+    if(data.hintMessage == '数据未找到') {
+      alert('该摄影师已被禁用！')
+      this.history.replaceState(null, '/work');
+      return;
+    }
     this.setState({
       data: data.photographer,
       // markExist: data.photographer.MarkExist,
