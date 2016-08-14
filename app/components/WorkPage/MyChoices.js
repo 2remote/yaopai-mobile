@@ -26,6 +26,7 @@ const MyChoices = ({args}) => {
           if (_.contains(intSelectedTags, tag.Id)) {
             return (
               <span
+                key={i}
                 className="my-choice"
                 onClick={() => handleClick(tag.Id, onSelectedTag)} >
                 {tag.Name}
