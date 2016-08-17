@@ -21,7 +21,8 @@ var UserFundStore = Reflux.createStore({
       checkingState: {
         send: '',
         receive: ''
-      }
+      },
+      userToken: '',
     };
     this.listenTo(UserFundActions.currentAccount.success, this.onCurrentAccountSuccess);
     this.listenTo(UserFundActions.currentAccount.failed, this.onFailed);
@@ -34,6 +35,9 @@ var UserFundStore = Reflux.createStore({
 
     this.listenTo(UserFundActions.receiveTelAccount.success, this.onReceiveTelAccountSuccess);
     this.listenTo(UserFundActions.receiveTelAccount.failed, this.onFailed);
+    // 得到 token
+    this.listenTo(UserFundActions.getUserToken.success, this.onGetUserTokenSuccess);
+    this.listenTo(UserFundActions.getUserToken.failed, this.onFailed);
 
     this.listenTo(UserFundActions.type,this.onType);
   },
@@ -103,7 +107,17 @@ var UserFundStore = Reflux.createStore({
     this.data.filterType = filterType;
     this.data.flag = 'type';
     this.trigger(this.data);
-  }
+  },
+
+  onGetUserTokenSuccess: function (data) {
+    console.log(data)
+    if (data.Success) {
+      this.data.userToken = data
+    } else {
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.trigger(this.data);
+  },
 });
 
 export {UserFundStore as default};
