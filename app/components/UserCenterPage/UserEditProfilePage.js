@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
 import SidePage from '../UI/SidePage';
 import DocumentTitle from 'react-document-title';
 
@@ -9,46 +10,57 @@ import UserAvatarBox from '../common/UserAvatarBox' ;
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 
+import UserFundActions from '../../actions/UserFundActions';
+import UserFundStore from '../../stores/UserFundStore';
+
 import { makeTextButton } from '../Tools';
 
-var UserEditProfilePage = React.createClass({
-  mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
-  getInitialState : function(){
-    return {
+class UserEditProfilePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       userInfo : {}
     }
-  },
-  _onUserStoreChange : function(data){
+    this.onChangeInfo = this.onChangeInfo.bind(this)
+  }
+
+  _onUserStoreChange(data){
+    console.log(data)
     if(!data.isLogin){
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       this.setState({userInfo : data});
     }
-  },
+  }
 
-  componentDidMount : function(){
+  onGetUserToken(data){
+    console.log(data)
+  }
+
+  componentDidMount(){
     UserActions.currentUserDetail();
-  },
+    UserFundActions.getUserToken(); // 为用户上传头像做准备
+  }
 
-  onChangeInfo : function () {
+  onChangeInfo() {
     // 处理昵称
-    var nickname = this.state.userInfo.userNickName;
-    var nickFlag = this.state.userInfo.newNickStatus;
+    let nickname = this.state.userInfo.userNickName;
+    let nickFlag = this.state.userInfo.newNickStatus;
     if(nickFlag){
       nickname = this.state.userInfo.newNick;
     }
     nickFlag = true;
 
     // 处理性别
-    var gender = this.state.userInfo.userSex;
-    var genderFlag = this.state.userInfo.newGenderStatus;
+    let gender = this.state.userInfo.userSex;
+    let genderFlag = this.state.userInfo.newGenderStatus;
     if(genderFlag){
       gender = this.state.userInfo.newGender;
     }
 
     // 处理城市
-    var city = this.state.userInfo.location;
-    var cityFlag = this.state.userInfo.newCityStatus;
+    let city = this.state.userInfo.location;
+    let cityFlag = this.state.userInfo.newCityStatus;
     if(cityFlag){
       city = this.state.userInfo.newCity;
     }
@@ -66,9 +78,9 @@ var UserEditProfilePage = React.createClass({
     alert('修改成功');
     this.history.pushState(null, this.state.userInfo.userType==0?'/center/u':'/center/g');
     UserActions.currentUser();
-  },
-  render: function() {
-    var style = {
+  }
+  render(){
+    let style = {
       page: {
         backgroundColor: '#f2f2f2',
         minHeight: '100%',
@@ -80,7 +92,7 @@ var UserEditProfilePage = React.createClass({
       }
     };
 
-    var nickname = "未命名";
+    let nickname = "未命名";
     if( this.state.userInfo.userNickName ){
       nickname = this.state.userInfo.userNickName;
     }
@@ -88,7 +100,7 @@ var UserEditProfilePage = React.createClass({
       nickname = this.state.userInfo.newNick;
     }
 
-    var city = "未知";
+    let city = "未知";
     if( this.state.userInfo.userCity){
       city = this.state.userInfo.userCity;
     }
@@ -96,18 +108,18 @@ var UserEditProfilePage = React.createClass({
       city = this.state.userInfo.newCityName;
     }
 
-    var gender = "未指定";
-    var genderOnServer = this.state.userInfo.userSex;
+    let gender = "未指定";
+    let genderOnServer = this.state.userInfo.userSex;
     if( genderOnServer == 0 ||  genderOnServer == 1){
       gender = genderOnServer;
     }
 
-    var genderOnClient = this.state.userInfo.newGender;
+    let genderOnClient = this.state.userInfo.newGender;
     if ( this.state.userInfo.newGenderStatus){
       gender = genderOnClient;
     }
 
-    var genderDisplay = "男";
+    let genderDisplay = "男";
     if ( gender == 0){
       genderDisplay = "女";
     }
@@ -137,6 +149,9 @@ var UserEditProfilePage = React.createClass({
       </div>
     );
   }
-});
+};
 
+ReactMixin.onClass(UserEditProfilePage, Reflux.listenTo(UserFundStore, 'onGetUserToken'));
+ReactMixin.onClass(UserEditProfilePage, Reflux.listenTo(UserStore, '_onUserStoreChange'));
+ReactMixin.onClass(UserEditProfilePage, History);
 export {UserEditProfilePage as default};
