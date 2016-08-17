@@ -10,8 +10,6 @@ import UserAvatarBox from '../common/UserAvatarBox' ;
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 
-import UserFundActions from '../../actions/UserFundActions';
-import UserFundStore from '../../stores/UserFundStore';
 
 import { makeTextButton } from '../Tools';
 
@@ -19,13 +17,12 @@ class UserEditProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo : {}
+      userInfo : {},
     }
     this.onChangeInfo = this.onChangeInfo.bind(this)
   }
 
   _onUserStoreChange(data){
-    console.log(data)
     if(!data.isLogin){
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
@@ -33,13 +30,8 @@ class UserEditProfilePage extends React.Component {
     }
   }
 
-  onGetUserToken(data){
-    console.log(data)
-  }
-
   componentDidMount(){
     UserActions.currentUserDetail();
-    UserFundActions.getUserToken(); // 为用户上传头像做准备
   }
 
   onChangeInfo() {
@@ -151,7 +143,6 @@ class UserEditProfilePage extends React.Component {
   }
 };
 
-ReactMixin.onClass(UserEditProfilePage, Reflux.listenTo(UserFundStore, 'onGetUserToken'));
 ReactMixin.onClass(UserEditProfilePage, Reflux.listenTo(UserStore, '_onUserStoreChange'));
 ReactMixin.onClass(UserEditProfilePage, History);
 export {UserEditProfilePage as default};

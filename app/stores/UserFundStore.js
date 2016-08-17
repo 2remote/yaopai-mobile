@@ -110,9 +110,8 @@ var UserFundStore = Reflux.createStore({
   },
 
   onGetUserTokenSuccess: function (data) {
-    console.log(data)
     if (data.Success) {
-      this.data.userToken = data
+      this.data.userToken = data.Token
     } else {
       this.data.hintMessage = data.ErrorMsg;
     }
