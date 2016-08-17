@@ -2,16 +2,19 @@ import React from 'react';
 import _ from 'underscore';
 
 import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import UserFundActions from '../../actions/UserFundActions';
+import UserFundStore from '../../stores/UserFundStore';
 import {History,Location} from 'react-router';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 import {Button, Toast} from 'react-weui';
 import {parseImageUrl} from '../Tools';
 
-var AvatarUploader = React.createClass({
-  mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
-  getInitialState : function(){
-    return {
+class AvatarUploader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       uploadFailedShow: false,
       uploadingShow: false,
       uploadedShow: false,
@@ -35,25 +38,26 @@ var AvatarUploader = React.createClass({
           'UploadComplete': function() {},
           'FileUploaded': function(up, file, info) {},
           'Error': function(up, err, errTip) {}
-        }
+        },
       },
+      token: '',
     }
-  },
+  }
 
-  getDefaultProps : function(){
-    return {
-      width : '80',  //图片高度
-      height : '80', //指定图片高度
-      type : 'user',  //必须指定图片类型 user, work...
-      progress:0,
-      token: {},
-      onUpload : function(data){},  //上传成功后回调函数
-      //onFileUploaded : function(up, file, info){},
-      //onUploadProgress : function(up, file){}
+  componentDidMount(){
+    UserActions.currentUser();
+    UserFundActions.getUserToken();
+  }
+
+  onGetUserToken(data){ // 获取上传头像所需 Token
+    if(data.userToken){
+      this.setState({
+        token: data.userToken
+      })
     }
-  },
+  }
 
-  _onUserStoreChange : function(data){
+  _onUserStoreChange(data){
     if(!data.isLogin){
       if (!this.props.location) {
         this.history.pushState(null,'/login_page');
@@ -73,30 +77,34 @@ var AvatarUploader = React.createClass({
         if(data.flag == 'currentUser'){
           this.initUploader(data.pingToken);
         }
-        // console.log(qiniu);
       }
     }
-  },
-  initUploader : function(sessionToken){
+  }
+
+  initUploader(sessionToken){
     var option = this.state.uploaderOption;
-    const {token} = this.props;
-    option.uptoken_func = function(){    // 在需要获取uptoken时，该方法会被调用
+    option.uptoken_func = function(){ // 在需要获取uptoken时，该方法会被调用
+      // 如何拿到 this.state ？
+      if(!token) {
+        console.error('没拿到 token !');
+      }
       return token;
     };
-    option.init.FileUploaded = this.onFileUploaded;
-    option.init.UploadProgress = this.onUploadProgress;
-    option.init.Error = this.onErrors;
-    option.init.BeforeUpload = this.onBeforeUpload;
+    option.init.FileUploaded = this.onFileUploaded.bind(this);
+    option.init.UploadProgress = this.onUploadProgress.bind(this);
+    option.init.Error = this.onErrors.bind(this);
+    option.init.BeforeUpload = this.onBeforeUpload.bind(this);
     var qiniu = Qiniu.uploader(option);
     this.setState({qiniu: qiniu});
-  },
-  onErrors : function (up, err, errTip) {
+  }
+
+  onErrors(up, err, errTip) {
     this.handleUploadFailedClick();
     this.setState({uploadingShow : false});
     console.log(up, err, errTip);
-  },
+  }
 
-  onFileUploaded : function(up,file,info){
+  onFileUploaded(up,file,info){
     var res = JSON.parse(info);
 
     // 上传成功后，更新头像
@@ -109,37 +117,34 @@ var AvatarUploader = React.createClass({
 
     this.handleUploadedClick();
     UserActions.currentUser();
-  },
+  }
 
-  onBeforeUpload : function (up, file) {
+  onBeforeUpload(up, file) {
     this.setState({uploadingShow : true});
-  },
+  }
 
-  onUploadProgress : function(up,file){
+  onUploadProgress(up,file){
     this.setState({progress :file.percent});
-  },
+  }
 
-  componentDidMount : function() {
-    UserActions.currentUser();
-  },
-
-  handleUploadedClick : function () {
+  handleUploadedClick() {
     this.setState({uploadedShow: true}, function () {
       setTimeout(function () {
         this.setState({uploadedShow: false});
       }.bind(this), 2000);
     });
-  },
+  }
 
-  handleUploadFailedClick : function () {
+  handleUploadFailedClick() {
     this.setState({uploadFailedShow: true}, function () {
       setTimeout(function () {
         this.setState({uploadFailedShow: false});
       }.bind(this), 3000);
     });
-  },
+  }
 
-  render: function () {
+  render() {
+    console.log(AvatarUploader)
     var avatarImage = this.props.defaultImage;
     if(!_.isEmpty(this.state.userInfo.avatar)){
       avatarImage = parseImageUrl(this.state.userInfo.avatar,78,78);
@@ -176,6 +181,10 @@ var AvatarUploader = React.createClass({
       </div>
     );
   }
-});
+};
+
+ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserFundStore, 'onGetUserToken'));
+ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserStore, '_onUserStoreChange'));
+ReactMixin.onClass(AvatarUploader, History);
 
 export {AvatarUploader as default};
