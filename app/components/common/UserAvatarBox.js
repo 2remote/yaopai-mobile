@@ -1,19 +1,37 @@
 import React from 'react';
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import UserFundActions from '../../actions/UserFundActions';
+import UserFundStore from '../../stores/UserFundStore';
 import {Link} from 'react-router';
 import AvatarUploader from '../UserCenterPage/AvatarUploader.js';
 import {parseImageUrl} from '../Tools';
 
-const UserAvatarBox = React.createClass({
-  getDefaultProps: function() {
-    return {
+class UserAvatarBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       data: {
         userName: '未命名',
         editAvatar: false
-      }
-    };
-  },
+      },
+      token: {},
+    }
+  }
 
-  render: function() {
+  componentDidMount(){
+    UserFundActions.getUserToken();
+  }
+
+  onGetUserToken(data){ // 获取上传头像所需 Token
+    if(data.userToken){
+      this.setState({
+        token: data.userToken
+      })
+    }
+  }
+
+  render() {
     let style = {
       avatar: {
         width: 90,
@@ -36,7 +54,7 @@ const UserAvatarBox = React.createClass({
         right: 10,
         color:'#fff'
       }
-    };
+    }
 
     const avatar = this.props.data.avatar ? parseImageUrl(this.props.data.avatar,78,78) : null
 
@@ -56,6 +74,7 @@ const UserAvatarBox = React.createClass({
               <AvatarUploader
                 style={style.avatar}
                 defaultImage={avatar || 'imgs/sidePage/default-avatar.png'}
+                token={this.state.token}
               />
             </div>
             :
@@ -83,6 +102,7 @@ const UserAvatarBox = React.createClass({
       </div>
     );
   }
-});
+}
 
+ReactMixin.onClass(UserAvatarBox, Reflux.listenTo(UserFundStore, 'onGetUserToken'));
 export {UserAvatarBox as default};

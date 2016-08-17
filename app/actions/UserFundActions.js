@@ -9,6 +9,7 @@ var UserFundActions = Reflux.createActions({
   'sendTelAccount': {children: ['success', 'failed']},
   'receiveTelAccount': {children: ['success', 'failed']},
   'withdrawalAdd': {children: ['success', 'failed']},
+  'getUserToken' : {children:['success', 'failed']},
   'type': {}
 });
 
@@ -52,6 +53,12 @@ UserFundActions.withdrawalAdd.listen(function(amount) {
     Amount: amount
   };
   HttpFactory.post(API.USERFUND.withdrawalAdd,data,this.success,this.failed);
+});
+
+/*得到用户上传头像时的 token*/
+UserFundActions.getUserToken.listen(function (data) {
+  var data = {};
+  HttpFactory.post(API.FILE.getToken, data, this.success, this.failed);
 });
 
 export {UserFundActions as default};

@@ -126,8 +126,8 @@ var API_CONST = {
     call: API_URL + 'Call.ToAuthUser' // 拨打电话
   },
   FILE: {
-    getToken: API_URL + 'File.Token',
-    user_token_url: DOMAIN + 'file/token?type=user',
+    getToken: API_URL + 'file.token&type=user',
+    get_user_token: DOMAIN + 'file/token?type=user',
     work_token_url: DOMAIN + 'file/token?type=work'
   },
   COMMON: {
