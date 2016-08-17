@@ -22,7 +22,7 @@ var UserActions = Reflux.createActions({
 
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
-  'receiveTelResetPassWord': {children: ['success', 'failed']}
+  'receiveTelResetPassWord': {children: ['success', 'failed']},
 });
 
 /*
