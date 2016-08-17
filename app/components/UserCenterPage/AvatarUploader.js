@@ -83,8 +83,10 @@ class AvatarUploader extends React.Component {
 
   initUploader(sessionToken){
     var option = this.state.uploaderOption;
+    const self = this;
     option.uptoken_func = function(){ // 在需要获取uptoken时，该方法会被调用
       // 如何拿到 this.state ？
+      let token = self.state.token;
       if(!token) {
         console.error('没拿到 token !');
       }
@@ -144,7 +146,6 @@ class AvatarUploader extends React.Component {
   }
 
   render() {
-    console.log(AvatarUploader)
     var avatarImage = this.props.defaultImage;
     if(!_.isEmpty(this.state.userInfo.avatar)){
       avatarImage = parseImageUrl(this.state.userInfo.avatar,78,78);
