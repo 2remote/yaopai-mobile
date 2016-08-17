@@ -1,19 +1,20 @@
 import React from 'react';
-import API from '../../api';
-
 import _ from 'underscore';
 
 import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import UserFundActions from '../../actions/UserFundActions';
+import UserFundStore from '../../stores/UserFundStore';
 import {History,Location} from 'react-router';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 import {Button, Toast} from 'react-weui';
 import {parseImageUrl} from '../Tools';
 
-var AvatarUploader = React.createClass({
-  mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
-  getInitialState : function(){
-    return {
+class AvatarUploader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       uploadFailedShow: false,
       uploadingShow: false,
       uploadedShow: false,
@@ -26,7 +27,6 @@ var AvatarUploader = React.createClass({
         browse_button: 'avatarUploader',
         max_file_size: '10mb',
         chunk_size: '4mb',
-        //uptoken_url: API.FILE.user_token_url,
         domain: 'http://qiniu-plupload.qiniudn.com/',
         auto_start: true,
         get_new_uptoken: true,
@@ -38,26 +38,27 @@ var AvatarUploader = React.createClass({
           'UploadComplete': function() {},
           'FileUploaded': function(up, file, info) {},
           'Error': function(up, err, errTip) {}
-        }
+        },
       },
+      token: '',
     }
-  },
+  }
 
-  getDefaultProps : function(){
-    return {
-      width : '80',  //图片高度
-      height : '80', //指定图片高度
-      type : 'user',  //必须指定图片类型 user, work...
-      progress:0,
-      onUpload : function(data){},  //上传成功后回调函数
-      //onFileUploaded : function(up, file, info){},
-      //onUploadProgress : function(up, file){}
+  componentDidMount(){
+    UserActions.currentUser();
+    UserFundActions.getUserToken();
+  }
+
+  onGetUserToken(data){ // 获取上传头像所需 Token
+    if(data.userToken){
+      this.setState({
+        token: data.userToken
+      })
     }
-  },
+  }
 
-  _onUserStoreChange : function(data){
+  _onUserStoreChange(data){
     if(!data.isLogin){
-      console.log(this.props)
       if (!this.props.location) {
         this.history.pushState(null,'/login_page');
       } else {
@@ -67,7 +68,6 @@ var AvatarUploader = React.createClass({
     }else{
       //得到当前用户的预约订单
       this.setState({userInfo : data})
-      // console.log(this.state.userInfo);
 
       var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin);
       var definedLogin = ! undefinedLogin;
@@ -77,28 +77,36 @@ var AvatarUploader = React.createClass({
         if(data.flag == 'currentUser'){
           this.initUploader(data.pingToken);
         }
-        // console.log(qiniu);
       }
     }
-  },
-  initUploader : function(sessionToken){
+  }
+
+  initUploader(sessionToken){
     var option = this.state.uploaderOption;
-    option.uptoken_url = API.FILE.user_token_url+'&tokenid='+sessionToken;
-    option.init.FileUploaded = this.onFileUploaded;
-    option.init.UploadProgress = this.onUploadProgress;
-    option.init.Error = this.onErrors;
-    option.init.BeforeUpload = this.onBeforeUpload;
+    const self = this;
+    option.uptoken_func = function(){ // 在需要获取uptoken时，该方法会被调用
+      // 如何拿到 this.state ？
+      let token = self.state.token;
+      if(!token) {
+        console.error('没拿到 token !');
+      }
+      return token;
+    };
+    option.init.FileUploaded = this.onFileUploaded.bind(this);
+    option.init.UploadProgress = this.onUploadProgress.bind(this);
+    option.init.Error = this.onErrors.bind(this);
+    option.init.BeforeUpload = this.onBeforeUpload.bind(this);
     var qiniu = Qiniu.uploader(option);
     this.setState({qiniu: qiniu});
-  },
-  onErrors : function (up, err, errTip) {
+  }
+
+  onErrors(up, err, errTip) {
     this.handleUploadFailedClick();
     this.setState({uploadingShow : false});
     console.log(up, err, errTip);
-  },
+  }
 
-  onFileUploaded : function(up,file,info){
-    // console.log("onFileUploaded");
+  onFileUploaded(up,file,info){
     var res = JSON.parse(info);
 
     // 上传成功后，更新头像
@@ -111,44 +119,37 @@ var AvatarUploader = React.createClass({
 
     this.handleUploadedClick();
     UserActions.currentUser();
-  },
+  }
 
-  onBeforeUpload : function (up, file) {
+  onBeforeUpload(up, file) {
     this.setState({uploadingShow : true});
-  },
+  }
 
-  onUploadProgress : function(up,file){
-    // console.log("onUploadProgress");
-    // console.log(JSON.stringify(file))
+  onUploadProgress(up,file){
     this.setState({progress :file.percent});
-  },
+  }
 
-  componentDidMount : function() {
-    UserActions.currentUser();
-  },
-
-  handleUploadedClick : function () {
+  handleUploadedClick() {
     this.setState({uploadedShow: true}, function () {
       setTimeout(function () {
         this.setState({uploadedShow: false});
       }.bind(this), 2000);
     });
-  },
+  }
 
-  handleUploadFailedClick : function () {
+  handleUploadFailedClick() {
     this.setState({uploadFailedShow: true}, function () {
       setTimeout(function () {
         this.setState({uploadFailedShow: false});
       }.bind(this), 3000);
     });
-  },
+  }
 
-  render: function () {
+  render() {
     var avatarImage = this.props.defaultImage;
     if(!_.isEmpty(this.state.userInfo.avatar)){
       avatarImage = parseImageUrl(this.state.userInfo.avatar,78,78);
     }
-
     return (
       <div>
         <div id="container">
@@ -181,6 +182,10 @@ var AvatarUploader = React.createClass({
       </div>
     );
   }
-});
+};
+
+ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserFundStore, 'onGetUserToken'));
+ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserStore, '_onUserStoreChange'));
+ReactMixin.onClass(AvatarUploader, History);
 
 export {AvatarUploader as default};

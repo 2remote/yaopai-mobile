@@ -28,7 +28,7 @@ var UserStore = Reflux.createStore({
       hintMessage: '',
       flag : '',
       pingToken: '',
-      loginDate : ''
+      loginDate : '',
     };
     /*
       获取第三方登录的返回值，并得到当前用户
@@ -409,7 +409,7 @@ var UserStore = Reflux.createStore({
   onreceiveTelResetPassWordFailed: function (data) {
     this.data.hintMessage = '网络出错啦！';
     this.data.flag = 'resetPassword';
-  }
+  },
 });
 
 export {UserStore as default};

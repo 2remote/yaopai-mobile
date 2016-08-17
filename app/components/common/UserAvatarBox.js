@@ -3,17 +3,18 @@ import {Link} from 'react-router';
 import AvatarUploader from '../UserCenterPage/AvatarUploader.js';
 import {parseImageUrl} from '../Tools';
 
-const UserAvatarBox = React.createClass({
-  getDefaultProps: function() {
-    return {
+class UserAvatarBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       data: {
         userName: '未命名',
         editAvatar: false
-      }
-    };
-  },
+      },
+    }
+  }
 
-  render: function() {
+  render() {
     let style = {
       avatar: {
         width: 90,
@@ -36,7 +37,7 @@ const UserAvatarBox = React.createClass({
         right: 10,
         color:'#fff'
       }
-    };
+    }
 
     const avatar = this.props.data.avatar ? parseImageUrl(this.props.data.avatar,78,78) : null
 
@@ -83,6 +84,6 @@ const UserAvatarBox = React.createClass({
       </div>
     );
   }
-});
+}
 
 export {UserAvatarBox as default};
