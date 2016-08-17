@@ -1,6 +1,4 @@
 import React from 'react';
-import API from '../../api';
-
 import _ from 'underscore';
 
 import Reflux from 'reflux';
@@ -26,7 +24,6 @@ var AvatarUploader = React.createClass({
         browse_button: 'avatarUploader',
         max_file_size: '10mb',
         chunk_size: '4mb',
-        //uptoken_url: API.FILE.user_token_url,
         domain: 'http://qiniu-plupload.qiniudn.com/',
         auto_start: true,
         get_new_uptoken: true,
@@ -49,6 +46,7 @@ var AvatarUploader = React.createClass({
       height : '80', //指定图片高度
       type : 'user',  //必须指定图片类型 user, work...
       progress:0,
+      token: {},
       onUpload : function(data){},  //上传成功后回调函数
       //onFileUploaded : function(up, file, info){},
       //onUploadProgress : function(up, file){}
@@ -57,7 +55,6 @@ var AvatarUploader = React.createClass({
 
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      console.log(this.props)
       if (!this.props.location) {
         this.history.pushState(null,'/login_page');
       } else {
@@ -67,7 +64,6 @@ var AvatarUploader = React.createClass({
     }else{
       //得到当前用户的预约订单
       this.setState({userInfo : data})
-      // console.log(this.state.userInfo);
 
       var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin);
       var definedLogin = ! undefinedLogin;
@@ -83,7 +79,10 @@ var AvatarUploader = React.createClass({
   },
   initUploader : function(sessionToken){
     var option = this.state.uploaderOption;
-    option.uptoken_url = API.FILE.user_token_url+'&tokenid='+sessionToken;
+    const {token} = this.props;
+    option.uptoken_func = function(){    // 在需要获取uptoken时，该方法会被调用
+      return token;
+    };
     option.init.FileUploaded = this.onFileUploaded;
     option.init.UploadProgress = this.onUploadProgress;
     option.init.Error = this.onErrors;
@@ -98,7 +97,6 @@ var AvatarUploader = React.createClass({
   },
 
   onFileUploaded : function(up,file,info){
-    // console.log("onFileUploaded");
     var res = JSON.parse(info);
 
     // 上传成功后，更新头像
@@ -118,8 +116,6 @@ var AvatarUploader = React.createClass({
   },
 
   onUploadProgress : function(up,file){
-    // console.log("onUploadProgress");
-    // console.log(JSON.stringify(file))
     this.setState({progress :file.percent});
   },
 
@@ -148,7 +144,6 @@ var AvatarUploader = React.createClass({
     if(!_.isEmpty(this.state.userInfo.avatar)){
       avatarImage = parseImageUrl(this.state.userInfo.avatar,78,78);
     }
-
     return (
       <div>
         <div id="container">
