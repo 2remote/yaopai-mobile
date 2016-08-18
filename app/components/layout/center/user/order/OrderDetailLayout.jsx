@@ -13,19 +13,7 @@ import UserActions from '../../../../../actions/UserActions';
 import OrderActions from '../../../../../actions/OrderActions';
 import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
-
 const { CellsTitle } = WeUI;
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0)==' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-  }
-  return "";
-}
 
 class OrderDetailLayout extends React.Component{
   constructor(props) {
@@ -43,18 +31,21 @@ class OrderDetailLayout extends React.Component{
         BuyerMemo:''
       },
       user: {},
-      success: false
+      success: false,
+      wexinPayToken: {},
     };
   }
 
   componentDidMount() {
     UserActions.currentUser();
+    //请求 wexinPayToken
+    OrderActions.wexinPayToken(this.props.params.id);
   }
 
   onUserLoad(user) {
     if(!user.isLogin){ // 用户未登录，跳转登录页
       this.setState({success: true});
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      // this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       OrderActions.get(this.props.params.id);
       this.setState({
@@ -64,80 +55,60 @@ class OrderDetailLayout extends React.Component{
   }
 
   onOrderLoad(data) {
-    this.setState({
-      order: data.order,
-      success: data.success
-    })
+    console.log(data)
+    if(data.success){
+      this.setState({
+        order: data.order,
+        success: data.success,
+        wexinPayToken: data.wexinPayToken,
+      })
+    } else {
+      console.error(data.hintMessage)
+    }
   }
 
   pay = e => {
     e.preventDefault();
     let self = this;
-    let pingppPay = (self, openid) => {
-      let initData = {
-        // 后台所有环境均已切换至真实支付，需在dev环境进行真实支付测试
-        debug: false, //!API.isProd,
-        app_id: 'app_HOmP4CHinvvL9Kyv', //Ping++ 后台中的应用Id
-        amount: 0,    //金额请填写0
-        channel: ['alipay_wap', 'wx_pub'/*, 'upacp_wap'*/],//渠道数组,视情况而定
-        charge_url: `${API.ORDER.pay}${self.state.user.pingToken}`, //token地址
-        charge_param: {
-          'callback': `#/center/u/order/submit/${self.state.order.Id}/result`,
-          'orderId': self.state.order.Id
-        }  //订单Id
-      };
-      if(openid) {
-        initData.open_id = openid;
+    alert(self.state.wexinPayToken.AppId)
+    alert(self.state.wexinPayToken.TimeStamp)
+    alert(self.state.wexinPayToken.NonceStr)
+    alert(self.state.wexinPayToken.Package)
+    alert(self.state.wexinPayToken.PaySign)
+    function onBridgeReady(){
+      WeixinJSBridge.invoke(
+        'getBrandWCPayRequest', {
+          "appId": self.state.wexinPayToken.AppId,     //公众号名称，由商户传入
+          "timeStamp": self.state.wexinPayToken.TimeStamp,         //时间戳，自1970年以来的秒数
+          "nonceStr": self.state.wexinPayToken.NonceStr, //随机串
+          "package": self.state.wexinPayToken.Package,
+          "signType": "MD5",         //微信签名方式：
+          "paySign": self.state.wexinPayToken.PaySign //微信签名
+        },
+        function(res){
+          if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+            // 支付成功
+            alert('支付成功');
+          } else {
+            alert('支付失败');
+          }
+        }
+      );
+    }
+    if (typeof WeixinJSBridge == "undefined") {
+      if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+      }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
       }
-      pingpp_one.init(initData, res => {
-        if(res.debug&&res.chargeUrlOutput){
-          //alert('charge ' + res.chargeUrlOutput);
-        }
-        if(!res.status) { // 付款失败，处理错误
-          // alert('付款失败，请稍后再试');
-          // shows the exact error message
-          alert(res.msg);
-        } else { // 付款成功
-          //debug 模式下调用 charge_url 后会暂停，可以调用 pingpp_one.resume 方法继续执行
-          if(res.debug&&!res.wxSuccess){
-            if(confirm('当前为 debug 模式，是否继续支付？')){
-              pingpp_one.resume();
-            }
-          } else {
-            window.location.href = `${API.ORDER.wechatRedirect}${self.state.order.Id}`;
-          }
-        }
-      });
-    };
-    if(WeChat) {//WeChat) { // 在微信内部
-      $.ajax({
-        url : API.USERFUND.weixinAuthGet,
-        type : 'POST',
-        dataType : 'json',
-        timeout : 5000,
-        crossDomain : true,
-        xhrFields:{
-          withCredentials : true
-        },
-        success: function(data) {
-          if(data.Success && data.Result){
-            pingppPay(self, data.Result);
-          } else {
-            // 未能获取openid
-            pingppPay(self);
-          }
-        },
-        error: function() {
-          pingppPay(self);
-        }
-      });
-    } else {
-      pingppPay(self);
+    }else{
+      onBridgeReady();
     }
   };
 
   render() {
-    const {order} = this.state;
+    const {order} = this.state
     return (
       <div>
         <LoadingToast displayState={this.state.success ? 'none' : 'block'} />

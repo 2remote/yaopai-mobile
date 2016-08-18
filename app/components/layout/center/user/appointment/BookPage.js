@@ -45,8 +45,6 @@ var BookPage = React.createClass({
     5.以上的动作引发至后面的_handleAlbumsStoreChange 和 _handlePhotographerStoreChange方法
   */
   _handleUserSotreChange: function(userData){
-    console.log(userData)
-    console.log(this.state.lock)
     if(!userData.isLogin){
       if (!this.state.lock) return;
       const confirmLogin = confirm("是否前往登录，然后继续预约？");
@@ -78,9 +76,17 @@ var BookPage = React.createClass({
   _handleOrderStoreChange : function(data){
     if(data.flag == 'add'){
       if(data.success){
-        this.showMessage("预约成功！");
         var orderID = data.order.Id;
-        this.props.history.pushState(null,`/center/u/order/${orderID}`);
+        const ua = navigator.userAgent.toLowerCase(); //获取判断浏览器用的对象
+        // if (ua.match(/MicroMessenger/i) != "micromessenger") {
+        //   alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作');
+        //   return
+        // }
+        this.showMessage("预约成功！");
+        const orderId = data.order.Id;
+        const Origin = location.origin;
+        const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
+        location.href = `http://dev.api.aiyaopai.com/?api=OpenUser.WeixinAuthSend&redirecturl=${callBackUrl}`;
       }else{
         this.showMessage(data.hintMessage);
       }
