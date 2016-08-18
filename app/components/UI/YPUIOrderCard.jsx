@@ -86,7 +86,14 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   payOrder = (e, orderId) => {
-    this.history.pushState(null, `/center/u/order/submit/${orderId}`);
+    const ua = navigator.userAgent.toLowerCase(); //获取判断浏览器用的对象
+    if (ua.match(/MicroMessenger/i) != "micromessenger") {
+      alert('由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作');
+      return
+    }
+    const Origin = location.origin;
+    const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
+    location.href = `http://dev.api.aiyaopai.com/?api=OpenUser.WeixinAuthSend&redirecturl=${callBackUrl}`;
   };
 
   /**
