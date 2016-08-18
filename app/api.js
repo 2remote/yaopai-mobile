@@ -120,7 +120,8 @@ var API_CONST = {
     deliver: API_URL + 'Order.Delivery', // 发片
     accept: API_URL + 'Order.Acceptance', // 收片
     pay: DOMAIN + 'payment/token?tokenId=',
-    wechatRedirect: DOMAIN + 'payment/successful?orderId='
+    wechatRedirect: DOMAIN + 'payment/successful?orderId=',
+    wexinPayToken: API_URL + 'Order.WeixinWebPayToken',
   },
   CALL: {
     call: API_URL + 'Call.ToAuthUser' // 拨打电话
