@@ -70,12 +70,12 @@ class OrderDetailLayout extends React.Component{
   pay = e => {
     e.preventDefault();
     let self = this;
-    alert(self.state.wexinPayToken.AppId)
-    alert(self.state.wexinPayToken.TimeStamp)
-    alert(self.state.wexinPayToken.NonceStr)
-    alert(self.state.wexinPayToken.Package)
-    alert(self.state.wexinPayToken.PaySign)
     function onBridgeReady(){
+      alert(self.state.wexinPayToken.AppId)
+      alert(self.state.wexinPayToken.TimeStamp)
+      alert(self.state.wexinPayToken.NonceStr)
+      alert(self.state.wexinPayToken.Package)
+      alert(self.state.wexinPayToken.PaySign)
       WeixinJSBridge.invoke(
         'getBrandWCPayRequest', {
           "appId": self.state.wexinPayToken.AppId,     //公众号名称，由商户传入
@@ -86,6 +86,7 @@ class OrderDetailLayout extends React.Component{
           "paySign": self.state.wexinPayToken.PaySign //微信签名
         },
         function(res){
+          alert(res.err_msg);
           if(res.err_msg == "get_brand_wcpay_request：ok" ) {
             // 支付成功
             alert('支付成功');
