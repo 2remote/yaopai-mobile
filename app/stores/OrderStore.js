@@ -11,6 +11,7 @@ var OrderStore = Reflux.createStore({
     success : false,
     flag : '',
     filterType: '',
+    wexinPayToken: '',
   },
   init : function(){
     this.orders = [];
@@ -40,6 +41,9 @@ var OrderStore = Reflux.createStore({
     this.listenTo(OrderActions.accept.success,this.onAcceptOrder);
     this.listenTo(OrderActions.accept.failed,this.onFailed);
 
+    /* 微信支付 */
+    this.listenTo(OrderActions.wexinPayToken.success,this.onGetPayTokenSuccess);
+    this.listenTo(OrderActions.wexinPayToken.failed,this.onFailed);
   },
   onListOrders : function(data){
     //从服务器api接口获得定单的列表
@@ -188,7 +192,20 @@ var OrderStore = Reflux.createStore({
     }
     this.data.flag = 'accept';
     this.trigger(this.data);
-  }
+  },
+  onGetPayTokenSuccess: function(data) {
+    if(data.Success) {
+      console.log(data)
+      this.data.wexinPayToken = data
+      this.data.hintMessage = '拿到微信支付 Token';
+      this.data.success = true;
+    } else {
+      this.data.success = false;
+      this.data.hintMessage = data.ErrorMsg;
+    }
+    this.data.flag = 'getPayToken';
+    this.trigger(this.data);
+  },
 });
 
 export {OrderStore as default};
