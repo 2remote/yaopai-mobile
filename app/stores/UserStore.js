@@ -260,7 +260,6 @@ var UserStore = Reflux.createStore({
     this.trigger(this.data);
   },
   onchangeAvatarOnServerSuccess : function(data){
-    console.log(data);
     if(data.Success){
       this.data.hintMessage = '';
     }else{
