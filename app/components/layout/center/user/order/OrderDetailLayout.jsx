@@ -13,19 +13,7 @@ import UserActions from '../../../../../actions/UserActions';
 import OrderActions from '../../../../../actions/OrderActions';
 import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
-
 const { CellsTitle } = WeUI;
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0)==' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-  }
-  return "";
-}
 
 class OrderDetailLayout extends React.Component{
   constructor(props) {
@@ -57,7 +45,7 @@ class OrderDetailLayout extends React.Component{
   onUserLoad(user) {
     if(!user.isLogin){ // 用户未登录，跳转登录页
       this.setState({success: true});
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      // this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       OrderActions.get(this.props.params.id);
       this.setState({
@@ -82,19 +70,28 @@ class OrderDetailLayout extends React.Component{
   pay = e => {
     e.preventDefault();
     let self = this;
+    alert(self.state.wexinPayToken.AppId)
+    alert(self.state.wexinPayToken.TimeStamp)
+    alert(self.state.wexinPayToken.NonceStr)
+    alert(self.state.wexinPayToken.Package)
+    alert(self.state.wexinPayToken.PaySign)
     function onBridgeReady(){
       WeixinJSBridge.invoke(
         'getBrandWCPayRequest', {
-          "appId": "wx2421b1c4370ec43b",     //公众号名称，由商户传入
-          "timeStamp":" 1395712654",         //时间戳，自1970年以来的秒数
-          "nonceStr": "e61463f8efa94090b1f366cccfbbb444", //随机串
-          "package":"prepay_id=u802345jgfjsdfgsdg888",
+          "appId": self.state.wexinPayToken.AppId,     //公众号名称，由商户传入
+          "timeStamp": self.state.wexinPayToken.TimeStamp,         //时间戳，自1970年以来的秒数
+          "nonceStr": self.state.wexinPayToken.NonceStr, //随机串
+          "package": self.state.wexinPayToken.Package,
           "signType": "MD5",         //微信签名方式：
-          "paySign": "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
+          "paySign": self.state.wexinPayToken.PaySign //微信签名
         },
         function(res){
-          if(res.err_msg == "get_brand_wcpay_request：ok" ) {}
-          // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回  ok，但并不保证它绝对可靠。
+          if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+            // 支付成功
+            alert('支付成功');
+          } else {
+            alert('支付失败');
+          }
         }
       );
     }
