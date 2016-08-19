@@ -213,7 +213,6 @@ var OrderStore = Reflux.createStore({
 
   onGetTicketSuccess: function(data) {
     if(data.Success) {
-      console.log(data)
       this.data.wexinTicket = data;
       this.data.hintMessage = '拿到微信支付 Ticket';
       this.data.success = true;

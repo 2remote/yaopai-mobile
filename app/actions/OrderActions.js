@@ -142,6 +142,6 @@ OrderActions.wexinPayToken.listen(function(id){
  */
 OrderActions.wexinTicket.listen(function(){
   var data = {}
-  HttpFactory.post(API.ORDER.wexinTicket,data,data => this.success,this.failed);
+  HttpFactory.post(API.ORDER.wexinTicket,data,data => this.success(data),this.failed);
 });
 export {OrderActions as default};
