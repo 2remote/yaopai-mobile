@@ -33,6 +33,7 @@ class OrderDetailLayout extends React.Component{
       user: {},
       success: false,
       wexinPayToken: {},
+      wexinTicket: {},
     };
   }
 
@@ -40,12 +41,13 @@ class OrderDetailLayout extends React.Component{
     UserActions.currentUser();
     //请求 wexinPayToken
     OrderActions.wexinPayToken(this.props.params.id);
+    OrderActions.wexinTicket();
   }
 
   onUserLoad(user) {
     if(!user.isLogin){ // 用户未登录，跳转登录页
       this.setState({success: true});
-      // this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       OrderActions.get(this.props.params.id);
       this.setState({
@@ -61,6 +63,7 @@ class OrderDetailLayout extends React.Component{
         order: data.order,
         success: data.success,
         wexinPayToken: data.wexinPayToken,
+        wexinTicket: data.wexinTicket,
       })
     } else {
       console.error(data.hintMessage)
@@ -70,42 +73,51 @@ class OrderDetailLayout extends React.Component{
   pay = e => {
     e.preventDefault();
     let self = this;
-    function onBridgeReady(){
-      alert(self.state.wexinPayToken.AppId)
-      alert(self.state.wexinPayToken.TimeStamp)
-      alert(self.state.wexinPayToken.NonceStr)
-      alert(self.state.wexinPayToken.Package)
-      alert(self.state.wexinPayToken.PaySign)
-      WeixinJSBridge.invoke(
-        'getBrandWCPayRequest', {
-          "appId": self.state.wexinPayToken.AppId,     //公众号名称，由商户传入
-          "timeStamp": self.state.wexinPayToken.TimeStamp,         //时间戳，自1970年以来的秒数
-          "nonceStr": self.state.wexinPayToken.NonceStr, //随机串
-          "package": self.state.wexinPayToken.Package,
-          "signType": "MD5",         //微信签名方式：
-          "paySign": self.state.wexinPayToken.PaySign //微信签名
+    alert(self.state.wexinTicket.AppId)
+    alert(self.state.wexinTicket.TimeStamp)
+    alert(self.state.wexinTicket.NonceStr)
+    alert(self.state.wexinTicket.Signature)
+    alert('接下来是 token')
+    alert(self.state.wexinPayToken.AppId)
+    alert(self.state.wexinPayToken.TimeStamp)
+    alert(self.state.wexinPayToken.NonceStr)
+    alert(self.state.wexinPayToken.Package)
+    alert(self.state.wexinPayToken.PaySign)
+    wx.config({
+      debug: true,
+      appId: self.state.wexinTicket.AppId, // 必填，公众号的唯一标识
+      timestamp: self.state.wexinTicket.TimeStamp, // 必填，生成签名的时间戳,后端注意返回string类型
+      nonceStr: self.state.wexinTicket.NonceStr, // 必填，生成签名的随机串,自己生成，最长32位。
+      signature: self.state.wexinTicket.Signature, // 必填，微信签名，这个签名，和下面的paySign,所需用到的随机字符串和时间戳，最好和生成paySgin的保持一致。不是同一个。生成方法参考 http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html，可在页面 http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign 进行校验。
+      jsApiList: [
+        'chooseWXPay'
+      ] // 必填，需要使用的JS接口列表，列表可选参数，参考 http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html 附录2.
+    });
+
+    // js-sdk配置验证成功
+    wx.ready(function(){// 调用支付函数
+      wx.chooseWXPay({
+        timestamp: self.state.wexinPayToken.TimeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+        nonceStr: self.state.wexinPayToken.NonceStr, // 支付签名随机串，不长于 32 位
+        package: self.state.wexinPayToken.Package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+        signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+        paySign: self.state.wexinPayToken.Package, // 支付签名
+        success: function (res) {// 支付成功后的回调函数
+          alert('pay success');
         },
-        function(res){
-          alert(res.err_msg);
-          if(res.err_msg == "get_brand_wcpay_request：ok" ) {
-            // 支付成功
-            alert('支付成功');
-          } else {
-            alert('支付失败');
-          }
+        cencel:function(res){// 支付取消回调函数
+          alert('cencel pay');
+        },
+        fail: function(res){// 支付失败回调函数
+          alert('pay fail');
+          alert(JSON.stringify(res));
         }
-      );
-    }
-    if (typeof WeixinJSBridge == "undefined") {
-      if( document.addEventListener ){
-        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-      }else if (document.attachEvent){
-        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-      }
-    }else{
-      onBridgeReady();
-    }
+      });
+    });
+    // js-sdk调用异常回调函数
+    wx.error(function(res){
+      alert(res.err_msg);
+    });
   };
 
   render() {
