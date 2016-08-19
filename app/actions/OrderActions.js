@@ -141,6 +141,7 @@ OrderActions.wexinPayToken.listen(function(id){
  * 微信支付 Ticket
  */
 OrderActions.wexinTicket.listen(function(){
+  var data = {}
   HttpFactory.post(API.ORDER.wexinTicket,data,data => this.success,this.failed);
 });
 export {OrderActions as default};

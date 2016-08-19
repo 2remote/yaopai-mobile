@@ -86,6 +86,7 @@ var BookPage = React.createClass({
         const orderId = data.order.Id;
         const Origin = location.origin;
         const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
+        // this.history.pushState(null, `/center/u/order/submit/${orderId}`);
         location.href = `http://dev.api.aiyaopai.com/?api=OpenUser.WeixinAuthSend&redirecturl=${callBackUrl}`;
       }else{
         this.showMessage(data.hintMessage);
