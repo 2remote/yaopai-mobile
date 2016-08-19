@@ -121,7 +121,8 @@ var API_CONST = {
     accept: API_URL + 'Order.Acceptance', // 收片
     pay: DOMAIN + 'payment/token?tokenId=',
     wechatRedirect: DOMAIN + 'payment/successful?orderId=',
-    wexinPayToken: API_URL + 'Order.WeixinWebPayToken',
+    wexinPayToken: API_URL + 'Order.WeixinWebPayToken',// 微信支付 Token
+    wexinTicket: API_URL + 'Order.WeixinJsapiTicket', //微信支付 Ticket
   },
   CALL: {
     call: API_URL + 'Call.ToAuthUser' // 拨打电话

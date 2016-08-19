@@ -13,7 +13,8 @@ var OrderActions = Reflux.createActions({
   'receive': {children:['success','failed']}, // 摄影师接单
   'deliver': {children:['success','failed']}, // 摄影师发片
   'accept': {children:['success','failed']}, // 用户收片
-  'wexinPayToken': {children:['success','failed']}, // 微信支付
+  'wexinPayToken': {children:['success','failed']}, // 微信支付 Token
+  'wexinTicket': {children:['success','failed']}, // 微信支付 Ticket
 });
 
 /*
@@ -127,12 +128,19 @@ OrderActions.accept.listen(function(id){
 });
 
 /**
- * 微信支付
+ * 微信支付 Token
  */
 OrderActions.wexinPayToken.listen(function(id){
   var data = {
     Id: id // 订单 ID
   };
   HttpFactory.post(API.ORDER.wexinPayToken,data,data => this.success(data, id),this.failed);
+});
+
+/**
+ * 微信支付 Ticket
+ */
+OrderActions.wexinTicket.listen(function(){
+  HttpFactory.post(API.ORDER.wexinTicket,data,data => this.success,this.failed);
 });
 export {OrderActions as default};
