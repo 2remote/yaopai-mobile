@@ -97,11 +97,11 @@ class OrderDetailLayout extends React.Component{
     // js-sdk配置验证成功
     wx.ready(function(){// 调用支付函数
       wx.chooseWXPay({
-        timeStamp: self.state.wexinPayToken.TimeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+        timestamp: self.state.wexinPayToken.TimeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
         nonceStr: self.state.wexinPayToken.NonceStr, // 支付签名随机串，不长于 32 位
         package: self.state.wexinPayToken.Package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
         signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-        paySign: self.state.wexinPayToken.Package, // 支付签名
+        paySign: self.state.wexinPayToken.PaySign, // 支付签名
         success: function (res) {// 支付成功后的回调函数
           alert('pay success');
         },
