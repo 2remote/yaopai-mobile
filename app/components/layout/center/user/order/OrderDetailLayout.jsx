@@ -73,6 +73,7 @@ class OrderDetailLayout extends React.Component{
   pay = e => {
     e.preventDefault();
     let self = this;
+    const Origin = location.origin;
     wx.config({
       debug: false,
       appId: self.state.wexinTicket.AppId, // 必填，公众号的唯一标识
@@ -94,15 +95,15 @@ class OrderDetailLayout extends React.Component{
         paySign: self.state.wexinPayToken.PaySign, // 支付签名
         success: function (res) {// 支付成功后的回调函数
           alert('支付成功！');
-          location.href = `http://localhost:8080/#/center/u/order/submit/${self.props.params.id}/result`;
+          location.href = `${Origin}/#/center/u/order/submit/${self.props.params.id}/result`;
         },
         cencel:function(res){// 支付取消回调函数
           alert('您已取消支付');
-          location.href = `http://localhost:8080/#/center/u/order`;
+          location.href = `${Origin}/#/center/u/order`;
         },
         fail: function(res){// 支付失败回调函数
           alert('支付失败');
-          location.href = `http://localhost:8080/#/center/u/order`;
+          location.href = `${Origin}/#/center/u/order`;
           console.error(JSON.stringify(res));
         }
       });
