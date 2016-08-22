@@ -22,6 +22,9 @@ var GrapherCenterPage = React.createClass({
     }else{
       let type = 'in';
       this.setState({userInfo : data});
+      if(data.userType == 0) {
+        this.history.replaceState(null,'/center/u');
+      }
     }
   },
 
