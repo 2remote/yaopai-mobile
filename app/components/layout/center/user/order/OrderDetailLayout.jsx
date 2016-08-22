@@ -73,16 +73,7 @@ class OrderDetailLayout extends React.Component{
   pay = e => {
     e.preventDefault();
     let self = this;
-    alert(self.state.wexinTicket.AppId)
-    alert(self.state.wexinTicket.TimeStamp)
-    alert(self.state.wexinTicket.NonceStr)
-    alert(self.state.wexinTicket.Signature)
-    alert('接下来是 token')
-    alert(self.state.wexinPayToken.AppId)
-    alert(self.state.wexinPayToken.TimeStamp)
-    alert(self.state.wexinPayToken.NonceStr)
-    alert(self.state.wexinPayToken.Package)
-    alert(self.state.wexinPayToken.PaySign)
+    const Origin = location.origin;
     wx.config({
       debug: false,
       appId: self.state.wexinTicket.AppId, // 必填，公众号的唯一标识
@@ -103,14 +94,17 @@ class OrderDetailLayout extends React.Component{
         signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
         paySign: self.state.wexinPayToken.PaySign, // 支付签名
         success: function (res) {// 支付成功后的回调函数
-          alert('pay success');
+          alert('支付成功！');
+          location.href = `${Origin}/#/center/u/order/submit/${self.props.params.id}/result`;
         },
         cencel:function(res){// 支付取消回调函数
-          alert('cencel pay');
+          alert('您已取消支付');
+          location.href = `${Origin}/#/center/u/order`;
         },
         fail: function(res){// 支付失败回调函数
-          alert('pay fail');
-          alert(JSON.stringify(res));
+          alert('支付失败');
+          location.href = `${Origin}/#/center/u/order`;
+          console.error(JSON.stringify(res));
         }
       });
     });

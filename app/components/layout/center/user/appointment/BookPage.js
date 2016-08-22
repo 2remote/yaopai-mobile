@@ -1,6 +1,7 @@
 import React from 'react';
 import { History, Location } from 'react-router';
 import Reflux from 'reflux';
+import API from '../../../../../api';
 import DocumentTitle from 'react-document-title';
 
 import UserActions from '../../../../../actions/UserActions';
@@ -78,16 +79,15 @@ var BookPage = React.createClass({
       if(data.success){
         var orderID = data.order.Id;
         const ua = navigator.userAgent.toLowerCase(); //获取判断浏览器用的对象
-        // if (ua.match(/MicroMessenger/i) != "micromessenger") {
-        //   alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作');
-        //   return
-        // }
+        if (ua.match(/MicroMessenger/i) != "micromessenger") {
+          alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作');
+          return
+        }
         this.showMessage("预约成功！");
         const orderId = data.order.Id;
         const Origin = location.origin;
         const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
-        // this.history.pushState(null, `/center/u/order/submit/${orderId}`);
-        location.href = `http://dev.api.aiyaopai.com/?api=OpenUser.WeixinAuthSend&redirecturl=${callBackUrl}`;
+        location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`;
       }else{
         this.showMessage(data.hintMessage);
       }
@@ -122,7 +122,7 @@ var BookPage = React.createClass({
     this.refs.toast.show(content)
   },
   render: function() {
-    var bookInfo = '';
+    let bookInfo = '';
     if(this.state.albums){
       bookInfo = (
         <BookIntro albums={this.state.albums} />

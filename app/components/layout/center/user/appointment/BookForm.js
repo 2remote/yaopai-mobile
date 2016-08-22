@@ -27,7 +27,7 @@ var BookForm = React.createClass({
           <div className="weui_cell bg_white">
             <div className="weui_cell_hd"><label className="weui_label">电话</label></div>
             <div className="weui_cell_bd weui_cell_primary">
-              <input ref="phoneImage" className="weui_input" type="tel" pattern="[0-9]*" placeholder="填写预约电话" />
+              <input ref="phoneImage" className="weui_input" type="number" pattern="[0-9]*" placeholder="填写预约电话" />
             </div>
           </div>
           <div className="weui_cell bg_white">
