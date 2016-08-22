@@ -211,7 +211,7 @@ class YPUIOrderCard extends React.Component {
     }
     /* 待确认 */
     if(status === OrderStatus.UNCONFIRMED) {
-      if(utype === 1){
+      if(utype != 0){
         rightPortion = (
           <div>
             <button className="weui_btn weui_btn_mini weui_btn_default"
@@ -238,7 +238,7 @@ class YPUIOrderCard extends React.Component {
     }
     /* 进行中 */
     if(status === OrderStatus.ONGOING) {
-      if(utype === 1) {
+      if(utype != 0) {
         rightPortion = (
           <div>
             {
@@ -288,7 +288,6 @@ class YPUIOrderCard extends React.Component {
     }
     /* 已关闭 */
     if(status === OrderStatus.CLOSED) {
-      //separator = '';
       rightPortion = (
         <div>
           <span className="color_gray">已关闭</span>
@@ -296,7 +295,7 @@ class YPUIOrderCard extends React.Component {
       );
     }
     /* 调整footer左侧 */
-    if(utype === 1 || status === OrderStatus.CLOSED) {
+    if(utype != 0 || status === OrderStatus.CLOSED) {
       leftPortion = <div></div>;
     } else {
       leftPortion = (
