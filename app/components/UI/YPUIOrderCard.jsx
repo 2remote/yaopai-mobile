@@ -8,6 +8,7 @@ import {Toast} from 'react-weui';
 import OrderActions from '../../actions/OrderActions';
 import CallActions from '../../actions/CallActions';
 import OrderStore from '../../stores/OrderStore';
+import API from '../../api';
 
 const {Alert, Confirm} = Dialog;
 
@@ -93,7 +94,7 @@ class YPUIOrderCard extends React.Component {
     }
     const Origin = location.origin;
     const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
-    location.href = `http://dev.api.aiyaopai.com/?api=OpenUser.WeixinAuthSend&redirecturl=${callBackUrl}`;
+    location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`;
   };
 
   /**
