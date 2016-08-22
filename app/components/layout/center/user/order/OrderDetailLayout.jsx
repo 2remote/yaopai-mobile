@@ -40,8 +40,12 @@ class OrderDetailLayout extends React.Component{
   componentDidMount() {
     UserActions.currentUser();
     //请求 wexinPayToken
-    OrderActions.wexinPayToken(this.props.params.id);
-    OrderActions.wexinTicket();
+    if(!this.state.wexinPayToken.TimeStamp) {
+      OrderActions.wexinPayToken(this.props.params.id);
+    }
+    if(!this.state.wexinTicket.TimeStamp) {
+      OrderActions.wexinTicket();
+    }
   }
 
   onUserLoad(user) {
@@ -57,7 +61,6 @@ class OrderDetailLayout extends React.Component{
   }
 
   onOrderLoad(data) {
-    console.log(data)
     if(data.success){
       this.setState({
         order: data.order,
