@@ -35,7 +35,6 @@ function isProdHost(host) {
 if (hasHost(Local_Host) && isProdHost(Local_Host)) {
   DOMAIN = PRODUCTION_ENV;
 }
-
 const API_URL = DOMAIN + '?api=';
 
 var API_CONST = {
@@ -123,6 +122,7 @@ var API_CONST = {
     wechatRedirect: DOMAIN + 'payment/successful?orderId=',
     wexinPayToken: API_URL + 'Order.WeixinWebPayToken',// 微信支付 Token
     wexinTicket: API_URL + 'Order.WeixinJsapiTicket', //微信支付 Ticket
+    wexinRedirect: API_URL + 'OpenUser.WeixinAuthSend&redirecturl',// 微信获取授权重定向
   },
   CALL: {
     call: API_URL + 'Call.ToAuthUser' // 拨打电话
