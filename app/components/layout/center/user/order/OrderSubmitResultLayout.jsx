@@ -75,16 +75,15 @@ class OrderSubmitResultLayout extends React.Component {
                      alt={order.Albums.Title}
                 />
               </div>
+              <div className="weui_media_bd">
+                <h4 className="weui_media_title">{order.Albums.Title}</h4>
+                <p className="weui_media_desc">{order.Albums.Description}</p>
+              </div>
             </div>
           </div>
         </div>
         {/* 3. 预约信息 */}
         <div className="weui_cells weui_cells_form">
-          <div className="weui_cell">
-            <div className="weui_cell_bd weui_cell_primary">
-              <p>预约信息</p>
-            </div>
-          </div>
           <div className="weui_cell">
             <div className="weui_cell_hd">
               <label className="yp_label font_medium" style={{ width: '4em' }}>
@@ -95,7 +94,7 @@ class OrderSubmitResultLayout extends React.Component {
               {order.BuyerName}
             </div>
           </div>
-        
+
           <div className="weui_cell">
             <div className="weui_cell_hd">
               <label className="yp_label">预约日期</label>
@@ -104,23 +103,37 @@ class OrderSubmitResultLayout extends React.Component {
               {order.AppointedTime.substring(0,10)}
             </div>
           </div>
+
+          <div className="weui_cell">
+            <div className="weui_cell_hd">
+              <label className="yp_label">备注</label>
+            </div>
+            <div className="weui_cell_bd weui_cell_primary font_medium color_gray">
+              {order.BuyerMemo}
+            </div>
+          </div>
         </div>
         {/* 4. 包含服务 */}
         <div className="weui_cells weui_cells_form">
           <div className="weui_cell">
-            <div className="weui_cell_bd weui_cell_primary">
-              <p>包含服务</p>
-            </div>
-          </div>
-          <div className="weui_cell align_items_start">
             <div className="weui_cell_hd">
-              <label className="yp_label font_medium color_gray">预约人</label>
+              <label className="yp_label">摄影师昵称</label>
             </div>
             <div className="weui_cell_bd weui_cell_primary font_medium color_gray">
-              {order.Albums.Service}
+              {order.Photographer.NickName}
+            </div>
+          </div>
+
+          <div className="weui_cell">
+            <div className="weui_cell_hd">
+              <label className="yp_label">包含服务</label>
+            </div>
+            <div className="weui_cell_bd weui_cell_primary font_medium color_gray">
+              {order.Albums.Service || '无'}
             </div>
           </div>
         </div>
+
         <div style={{ padding: '15px 5px 5px'}}>
           <button onClick={ () => location.href='#/center/u' } className="weui_btn weui_btn_primary">
             返&nbsp;&nbsp;回
