@@ -73,16 +73,6 @@ class OrderDetailLayout extends React.Component{
   pay = e => {
     e.preventDefault();
     let self = this;
-    alert(self.state.wexinTicket.AppId)
-    alert(self.state.wexinTicket.TimeStamp)
-    alert(self.state.wexinTicket.NonceStr)
-    alert(self.state.wexinTicket.Signature)
-    alert('接下来是 token')
-    alert(self.state.wexinPayToken.AppId)
-    alert(self.state.wexinPayToken.TimeStamp)
-    alert(self.state.wexinPayToken.NonceStr)
-    alert(self.state.wexinPayToken.Package)
-    alert(self.state.wexinPayToken.PaySign)
     wx.config({
       debug: false,
       appId: self.state.wexinTicket.AppId, // 必填，公众号的唯一标识
@@ -110,7 +100,7 @@ class OrderDetailLayout extends React.Component{
         },
         fail: function(res){// 支付失败回调函数
           alert('pay fail');
-          alert(JSON.stringify(res));
+          console.error(JSON.stringify(res));
         }
       });
     });
