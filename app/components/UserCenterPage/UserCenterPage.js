@@ -27,6 +27,9 @@ var UserCenterPage = React.createClass({
       let type = 'out';
       //得到当前用户的预约订单
       this.setState({userInfo : data});
+      if(data.userType == 1) {
+        this.history.replaceState(null,'/center/g');
+      }
     }
   },
 

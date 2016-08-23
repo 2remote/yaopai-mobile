@@ -13,19 +13,9 @@ import UserActions from '../../../../../actions/UserActions';
 import OrderActions from '../../../../../actions/OrderActions';
 import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
-
 const { CellsTitle } = WeUI;
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0)==' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-  }
-  return "";
-}
+let lock = true;
 
 class OrderDetailLayout extends React.Component{
   constructor(props) {
@@ -43,7 +33,9 @@ class OrderDetailLayout extends React.Component{
         BuyerMemo:''
       },
       user: {},
-      success: false
+      success: false,
+      wexinPayToken: {},
+      wexinTicket: {},
     };
   }
 
@@ -54,7 +46,7 @@ class OrderDetailLayout extends React.Component{
   onUserLoad(user) {
     if(!user.isLogin){ // 用户未登录，跳转登录页
       this.setState({success: true});
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      // this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     } else {
       OrderActions.get(this.props.params.id);
       this.setState({
@@ -64,84 +56,73 @@ class OrderDetailLayout extends React.Component{
   }
 
   onOrderLoad(data) {
-    this.setState({
-      order: data.order,
-      success: data.success
-    })
+    if(data.success){
+      this.setState({
+        order: data.order,
+        success: data.success,
+        wexinPayToken: data.wexinPayToken,
+        wexinTicket: data.wexinTicket,
+      })
+    } else {
+      console.error(data.hintMessage)
+    }
+    if(OrderStatus.UNPAYED === OrderStatus.parse(this.state.order.State)) {
+      if(lock) {
+        lock = false;
+        OrderActions.wexinPayToken(this.props.params.id);
+        OrderActions.wexinTicket();
+      }
+    }
   }
 
   pay = e => {
     e.preventDefault();
     let self = this;
-    let pingppPay = (self, openid) => {
-      let initData = {
-        // 后台所有环境均已切换至真实支付，需在dev环境进行真实支付测试
-        debug: false, //!API.isProd,
-        app_id: 'app_HOmP4CHinvvL9Kyv', //Ping++ 后台中的应用Id
-        amount: 0,    //金额请填写0
-        channel: ['alipay_wap', 'wx_pub'/*, 'upacp_wap'*/],//渠道数组,视情况而定
-        charge_url: `${API.ORDER.pay}${self.state.user.pingToken}`, //token地址
-        charge_param: {
-          'callback': `#/center/u/order/submit/${self.state.order.Id}/result`,
-          'orderId': self.state.order.Id
-        }  //订单Id
-      };
-      if(openid) {
-        initData.open_id = openid;
-      }
-      pingpp_one.init(initData, res => {
-        if(res.debug&&res.chargeUrlOutput){
-          //alert('charge ' + res.chargeUrlOutput);
-        }
-        if(!res.status) { // 付款失败，处理错误
-          // alert('付款失败，请稍后再试');
-          // shows the exact error message
-          alert(res.msg);
-        } else { // 付款成功
-          //debug 模式下调用 charge_url 后会暂停，可以调用 pingpp_one.resume 方法继续执行
-          if(res.debug&&!res.wxSuccess){
-            if(confirm('当前为 debug 模式，是否继续支付？')){
-              pingpp_one.resume();
-            }
-          } else {
-            window.location.href = `${API.ORDER.wechatRedirect}${self.state.order.Id}`;
-          }
+    const Origin = location.origin;
+    wx.config({
+      debug: false,
+      appId: self.state.wexinTicket.AppId, // 必填，公众号的唯一标识
+      timestamp: self.state.wexinTicket.TimeStamp, // 必填，生成签名的时间戳,后端注意返回string类型
+      nonceStr: self.state.wexinTicket.NonceStr, // 必填，生成签名的随机串,自己生成，最长32位。
+      signature: self.state.wexinTicket.Signature, // 必填，微信签名，这个签名，和下面的paySign,所需用到的随机字符串和时间戳，最好和生成paySgin的保持一致。不是同一个。生成方法参考 http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html，可在页面 http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign 进行校验。
+      jsApiList: [
+        'chooseWXPay'
+      ] // 必填，需要使用的JS接口列表，列表可选参数，参考 http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html 附录2.
+    });
+
+    // js-sdk配置验证成功
+    wx.ready(function(){// 调用支付函数
+      wx.chooseWXPay({
+        timestamp: self.state.wexinPayToken.TimeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+        nonceStr: self.state.wexinPayToken.NonceStr, // 支付签名随机串，不长于 32 位
+        package: self.state.wexinPayToken.Package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+        signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+        paySign: self.state.wexinPayToken.PaySign, // 支付签名
+        success: function (res) {// 支付成功后的回调函数
+          alert('支付成功！');
+          location.href = `${Origin}/#/center/u/order/submit/${self.props.params.id}/result`;
+        },
+        cencel:function(res){// 支付取消回调函数
+          alert('您已取消支付');
+          location.href = `${Origin}/#/center/u/order`;
+        },
+        fail: function(res){// 支付失败回调函数
+          alert('支付失败');
+          location.href = `${Origin}/#/center/u/order`;
+          console.error(JSON.stringify(res));
         }
       });
-    };
-    if(WeChat) {//WeChat) { // 在微信内部
-      $.ajax({
-        url : API.USERFUND.weixinAuthGet,
-        type : 'POST',
-        dataType : 'json',
-        timeout : 5000,
-        crossDomain : true,
-        xhrFields:{
-          withCredentials : true
-        },
-        success: function(data) {
-          if(data.Success && data.Result){
-            pingppPay(self, data.Result);
-          } else {
-            // 未能获取openid
-            pingppPay(self);
-          }
-        },
-        error: function() {
-          pingppPay(self);
-        }
-      });
-    } else {
-      pingppPay(self);
-    }
+    });
+    // js-sdk调用异常回调函数
+    wx.error(function(res){
+      alert(res.err_msg);
+    });
   };
 
   render() {
-    const {order} = this.state;
+    const {order} = this.state
     return (
       <div>
-        <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
-
         <div className="OrderDetailLayout" >
           <CellsTitle>支付流程说明</CellsTitle>
           <section className="icon_box font_small color_gray">
@@ -200,6 +181,10 @@ class OrderDetailLayout extends React.Component{
             <p>
               <span>预约姓名</span>
               <span>{order.BuyerName}</span>
+            </p>
+            <p>
+              <span>买家电话</span>
+              <span>{order.BuyerTel}</span>
             </p>
             {order.BuyerMemo ?
               <p className="last-layout">

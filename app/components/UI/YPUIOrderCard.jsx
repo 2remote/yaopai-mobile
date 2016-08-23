@@ -8,6 +8,7 @@ import {Toast} from 'react-weui';
 import OrderActions from '../../actions/OrderActions';
 import CallActions from '../../actions/CallActions';
 import OrderStore from '../../stores/OrderStore';
+import API from '../../api';
 
 const {Alert, Confirm} = Dialog;
 
@@ -86,7 +87,14 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   payOrder = (e, orderId) => {
-    this.history.pushState(null, `/center/u/order/submit/${orderId}`);
+    const ua = navigator.userAgent.toLowerCase(); //获取判断浏览器用的对象
+    if (ua.match(/MicroMessenger/i) != "micromessenger") {
+      alert('由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作');
+      return
+    }
+    const Origin = location.origin;
+    const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
+    location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`;
   };
 
   /**
@@ -203,7 +211,7 @@ class YPUIOrderCard extends React.Component {
     }
     /* 待确认 */
     if(status === OrderStatus.UNCONFIRMED) {
-      if(utype === 1){
+      if(utype != 0){
         rightPortion = (
           <div>
             <button className="weui_btn weui_btn_mini weui_btn_default"
@@ -230,7 +238,7 @@ class YPUIOrderCard extends React.Component {
     }
     /* 进行中 */
     if(status === OrderStatus.ONGOING) {
-      if(utype === 1) {
+      if(utype != 0) {
         rightPortion = (
           <div>
             {
@@ -280,7 +288,6 @@ class YPUIOrderCard extends React.Component {
     }
     /* 已关闭 */
     if(status === OrderStatus.CLOSED) {
-      //separator = '';
       rightPortion = (
         <div>
           <span className="color_gray">已关闭</span>
@@ -288,20 +295,12 @@ class YPUIOrderCard extends React.Component {
       );
     }
     /* 调整footer左侧 */
-    if(utype === 1 || status === OrderStatus.CLOSED) {
+    if(utype != 0 || status === OrderStatus.CLOSED) {
       leftPortion = <div></div>;
     } else {
       leftPortion = (
         <div>
-          <a onClick = { () => {CallActions.call(order.PhotographerId); this.handleCall()} } className="color_gray">
-            <i className="icon phone_icon" />
-            联系{order.Photographer.NickName}
-          </a>
-          <Toast show={this.state.show} style={{padding: '20px 15px'}}>
-            正在回拨<br/>
-            请注意接听<br/>
-            <small>3秒后关闭...</small>
-          </Toast>
+        
         </div>
       );
     }
