@@ -181,6 +181,10 @@ class OrderDetailLayout extends React.Component{
               <span>预约姓名</span>
               <span>{order.BuyerName}</span>
             </p>
+            <p>
+              <span>买家电话</span>
+              <span>{order.BuyerTel}</span>
+            </p>
             {order.BuyerMemo ?
               <p className="last-layout">
                 <span>备注</span>

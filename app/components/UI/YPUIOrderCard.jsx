@@ -300,15 +300,7 @@ class YPUIOrderCard extends React.Component {
     } else {
       leftPortion = (
         <div>
-          <a onClick = { () => {CallActions.call(order.PhotographerId); this.handleCall()} } className="color_gray">
-            <i className="icon phone_icon" />
-            联系{order.Photographer.NickName}
-          </a>
-          <Toast show={this.state.show} style={{padding: '20px 15px'}}>
-            正在回拨<br/>
-            请注意接听<br/>
-            <small>3秒后关闭...</small>
-          </Toast>
+        
         </div>
       );
     }
