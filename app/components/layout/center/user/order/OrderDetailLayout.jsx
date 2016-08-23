@@ -15,6 +15,8 @@ import UserStore from '../../../../../stores/UserStore';
 import OrderStore from '../../../../../stores/OrderStore';
 const { CellsTitle } = WeUI;
 
+let lock = true;
+
 class OrderDetailLayout extends React.Component{
   constructor(props) {
     super(props);
@@ -65,10 +67,9 @@ class OrderDetailLayout extends React.Component{
       console.error(data.hintMessage)
     }
     if(OrderStatus.UNPAYED === OrderStatus.parse(this.state.order.State)) {
-      if(!this.state.wexinPayToken.TimeStamp){
+      if(lock) {
+        lock = false;
         OrderActions.wexinPayToken(this.props.params.id);
-      }
-      if(!this.state.wexinTicket.TimeStam) {
         OrderActions.wexinTicket();
       }
     }
