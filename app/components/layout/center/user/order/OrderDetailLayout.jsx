@@ -66,7 +66,7 @@ class OrderDetailLayout extends React.Component{
     }
     if(OrderStatus.UNPAYED === OrderStatus.parse(this.state.order.State)) {
       if(!this.state.wexinPayToken.TimeStamp){
-        this.state.wexinTicket.TimeStam
+        OrderActions.wexinPayToken(this.props.params.id);
       }
       if(!this.state.wexinTicket.TimeStam) {
         OrderActions.wexinTicket();
