@@ -39,13 +39,6 @@ class OrderDetailLayout extends React.Component{
 
   componentDidMount() {
     UserActions.currentUser();
-    //请求 wexinPayToken
-    if(!this.state.wexinPayToken.TimeStamp) {
-      OrderActions.wexinPayToken(this.props.params.id);
-    }
-    if(!this.state.wexinTicket.TimeStamp) {
-      OrderActions.wexinTicket();
-    }
   }
 
   onUserLoad(user) {
@@ -70,6 +63,14 @@ class OrderDetailLayout extends React.Component{
       })
     } else {
       console.error(data.hintMessage)
+    }
+    if(OrderStatus.UNPAYED === OrderStatus.parse(this.state.order.State)) {
+      if(!this.state.wexinPayToken.TimeStamp){
+        this.state.wexinTicket.TimeStam
+      }
+      if(!this.state.wexinTicket.TimeStam) {
+        OrderActions.wexinTicket();
+      }
     }
   }
 
@@ -121,8 +122,6 @@ class OrderDetailLayout extends React.Component{
     const {order} = this.state
     return (
       <div>
-        {/**<LoadingToast displayState={this.state.success ? 'none' : 'block'} />**/}
-
         <div className="OrderDetailLayout" >
           <CellsTitle>支付流程说明</CellsTitle>
           <section className="icon_box font_small color_gray">
