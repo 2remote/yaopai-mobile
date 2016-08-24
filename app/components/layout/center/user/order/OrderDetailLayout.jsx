@@ -115,7 +115,7 @@ class OrderDetailLayout extends React.Component{
     });
     // js-sdk调用异常回调函数
     wx.error(function(res){
-      alert(res.err_msg);
+      console.log('js-sdk 调用异常');
     });
   };
 
