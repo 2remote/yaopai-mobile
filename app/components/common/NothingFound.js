@@ -6,7 +6,7 @@ const toggleMenu = () => $("#tagMenu").toggleClass('slide-toggle')
 const NothingFound = ({title}) => (
   <section className="nothing-card">
     <header className="card-header">
-      <i className="icon book_icon" />&nbsp;没有找到想拍的类型？
+      <i className="icon book_icon" />&nbsp;{title}
     </header>
     <div className="card-body">
       <img src="../imgs/yp_weixin.jpg" className="fl"/>
@@ -19,7 +19,7 @@ const NothingFound = ({title}) => (
       <span>你也可以选择</span>
       <div className="btn-block btn-small">
         <a className="btn btn-green" onClick={toggleMenu}>
-          重新筛选
+          重新筛选/搜索
         </a>
       </div>
       <span>或</span>

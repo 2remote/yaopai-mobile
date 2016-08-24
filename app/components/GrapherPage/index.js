@@ -24,6 +24,7 @@ const GrapherPage = React.createClass({
       pageCount: 0,
       total: 0,
       searchKey: '',
+      showNothingFound: false,
     }
   },
   componentDidMount() {
@@ -72,7 +73,8 @@ const GrapherPage = React.createClass({
       }else{
         this.setState({
           graphers: data.photographers,
-          pageCount: data.pageCount
+          pageCount: data.pageCount,
+          showNothingFound: true,
         });
         this.onHideToast()
       }
@@ -87,7 +89,7 @@ const GrapherPage = React.createClass({
   },
   render() {
 
-    const { searchKey } = this.state
+    const { searchKey, graphers, showNothingFound } = this.state
 
     return (
       <DocumentTitle title={TITLE.grapherPage}>
@@ -98,7 +100,11 @@ const GrapherPage = React.createClass({
             reset = {this.reset}
             searchKey = {searchKey}
           />
-          <GrapherList data={this.state.graphers} />
+          <GrapherList
+            data={graphers}
+            showNothingFound={showNothingFound}
+            searchKey = {searchKey}
+          />
           <WechatShare title={TITLE.grapherPage} desc={TITLE.indexPage} />
           <Toaster ref="toast" bottom={true} duration="1000000"/>
         </div>
