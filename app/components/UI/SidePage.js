@@ -132,7 +132,7 @@ class SidePage extends Component {
         )
       }
       return (
-        <section>
+        <section style={{minHeight: '1px'}}>
           {/* 引导 APP 下载 */}
           <div id="downloadApp">
             <img id="app-close" src="http://7xte7j.com1.z0.glb.clouddn.com/app-close.png" />
