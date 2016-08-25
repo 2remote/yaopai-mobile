@@ -1,7 +1,12 @@
 import React from "react"
 import $ from 'jquery'
 
-const toggleMenu = () => $("#tagMenu").toggleClass('slide-toggle')
+const toggleMenu = () => {
+  $("#tagMenu").toggleClass('slide-toggle')
+  $("#queryIcon").toggleClass('rotateX180deg')
+  $('body').toggleClass('overflowHidden')
+  $('.tagBtnLabel').toggle()
+}
 
 const NothingFound = ({title}) => (
   <section className="nothing-card">
