@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-const WorkDetail = ({data, price}) => {
+const WorkDetail = ({data, workData}) => {
   const getPlace = () => {
     let item = data.PlaceType;
     if(typeof(item)=="undefined"){
@@ -40,6 +40,7 @@ const WorkDetail = ({data, price}) => {
   const hideDetail = () => {
     $('#workDetailMask').hide();
   }
+
 
   return (
     <div className="workDetail">
@@ -95,7 +96,7 @@ const WorkDetail = ({data, price}) => {
             <li>
               <i className="icon success_icon"></i>
               <span className="a">拍摄时长</span>
-              <span className="b">{data.Duration}</span>
+              <span className="b">{data.Duration || '与摄影师协商'}</span>
             </li>
             <li>
               <i className="icon success_icon"></i>
@@ -136,20 +137,25 @@ const WorkDetail = ({data, price}) => {
               <i className="icon success_icon"></i>
               <span className="a">实体产品</span>
               <span className="b">{data.PhysicalSupport?'提供':'不提供'}</span>
-              <div style={{lineHeight:'30px',color:'#888'}}>
-                {data.PhysicalDetail===null?'':data.PhysicalDetail}
-              </div>
+              {
+                data.PhysicalSupport ?
+                <div style={{lineHeight:'30px',color:'#888'}}>
+                  {data.PhysicalDetail===null?'':data.PhysicalDetail}
+                </div>
+                :
+                ''
+              }
             </li>
             <li>
               <i className="icon success_icon"></i>
               <span className="a">套系价格</span>
-              <span className="b">￥{price}</span>
+              <span className="b">￥{workData.price}</span>
             </li>
             <li style={{height:'auto',paddingBottom:'50px'}}>
               <i className="icon success_icon"></i>
               <span className="a">补充服务说明</span>
               <div style={{lineHeight:'30px',color:'#888'}}>
-                {data.Service === '' ? '暂无说明' : data.Service}
+                {workData.service || '暂无说明'}
               </div>
             </li>
           </ul>

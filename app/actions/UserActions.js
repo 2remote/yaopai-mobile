@@ -8,7 +8,6 @@ var UserActions = Reflux.createActions({
   'login' : {children:["success","failed"]},
   'loginWithToken' : {children : ['success','failed']},
   'logout' : {children:["success"]},
-  'openLogin' : {children:["success","failed"]},
   'currentServerUser' : {children:['success','failed']},
   'currentUserDetail' : {children:['success','failed']},
   'currentUser' : {children:[]},
@@ -47,13 +46,6 @@ UserActions.loginWithToken.listen(function(data){
   HttpFactory.post(API.USER.login_with_token,data,this.success,this.failed);
 });
 
-/*
-  第三方登录
-*/
-
-UserActions.openLogin.listen(function(data){
-  window.location.href = API.USER.weixin_login;
-});
 /*
   得到当前用户
 */

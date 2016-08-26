@@ -14,7 +14,7 @@ import SidePage from '../UI/SidePage';
 import AlbumsStore from '../../stores/AlbumsStore';
 import AlbumsActions from '../../actions/AlbumsActions';
 import { GET_WORK_DETAIL, TITLE } from '../Tools';
-import {History} from 'react-router'
+import {History} from 'react-router';
 import WechatShare from '../Weixin/WechatShare';
 
 class WorkDetailPage extends React.Component {
@@ -28,6 +28,7 @@ class WorkDetailPage extends React.Component {
         title: '',
         price: '',
         cover: '',
+        service: '',
         description: '',
         id: '',
         workId: '',
@@ -47,6 +48,7 @@ class WorkDetailPage extends React.Component {
   }
 
   _onAlbumsStoreChange(data){
+    console.log(data)
     if(data.flag == 'get'){
       if(data.hintMessage == '数据未找到'){
         console.log(data.hintMessage);
@@ -62,6 +64,7 @@ class WorkDetailPage extends React.Component {
             title: data.workData.Title,
             price: data.workData.Price,
             cover: data.workData.Cover,
+            service: data.workData.Service,
             description: data.workData.Description,
             id: data.workData.Photographer.Id,
             workId: data.workData.Id,
@@ -95,7 +98,7 @@ class WorkDetailPage extends React.Component {
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
         <SidePage shareFrom={this.state.shareFrom}/>
         <WorkTitle data={this.state.workData} />
-        <WorkDetail data={this.state.detail} price={this.state.workData.price} />
+        <WorkDetail data={this.state.detail} workData={this.state.workData} />
         <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
         <WorkPieceList workPieces={this.state.photos} />
         <ActionBar id={this.state.workData.workId} price={this.state.workData.price} />

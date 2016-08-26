@@ -45,7 +45,11 @@ var LoginPage = React.createClass({
     return (
       <DocumentTitle title="登录">
         <div className="login-register-container">
-          <LoginForm showMessage={this.showMessage} onLogin={this.handleLoginPost} />
+          <LoginForm
+            showMessage={this.showMessage}
+            onLogin={this.handleLoginPost}
+            nextPageUrl={this.props.location.state}
+          />
           <Toaster ref="toast"/>
         </div>
       </DocumentTitle>
