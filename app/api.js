@@ -6,11 +6,9 @@ let DOMAIN = DEV_ENV;
 
 //获取当前网站的根目录
 var Local_Host = "";
-var Local_Href="";
 
 if(typeof window != 'undefined'){
   Local_Host = window.location.host;
-  Local_Href = window.location.href;
 }
 
 //根据local host切换api
@@ -52,7 +50,7 @@ var API_CONST = {
     verifyTelResetPassWord: API_URL + 'User.VerifyTelResetPassWord',
     receiveTelResetPassWord: API_URL + 'User.ReceiveTelResetPassWord',
     logout: API_URL + "User.Logout",
-    weixin_login: API_URL + "openuser.login&serviceid=weixin&redirecturl=" + Local_Href,
+    weixin_login: API_URL + "openuser.login&serviceid=weixin&redirecturl=",
     current_user: API_URL + 'User.CurrentUser',
     currentUserDetail: API_URL + 'User.CurrentUserDetail',
     changeInfo: API_URL + 'User.ChangeInfo',
