@@ -14,7 +14,7 @@ import SidePage from '../UI/SidePage';
 import AlbumsStore from '../../stores/AlbumsStore';
 import AlbumsActions from '../../actions/AlbumsActions';
 import { GET_WORK_DETAIL, TITLE } from '../Tools';
-import {History} from 'react-router'
+import {History} from 'react-router';
 import WechatShare from '../Weixin/WechatShare';
 
 class WorkDetailPage extends React.Component {
