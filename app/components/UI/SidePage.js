@@ -5,6 +5,7 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import UserActions from '../../actions/UserActions'
 import UserStore from '../../stores/UserStore'
+import LinkToApp from '../common/LinkToApp'
 
 import {parseImageUrl} from '../Tools'
 import $ from 'jquery'
@@ -132,7 +133,7 @@ class SidePage extends Component {
         )
       }
       return (
-        <section>
+        <section style={{minHeight: '1px'}}>
           {/* 引导 APP 下载 */}
           <div id="downloadApp">
             <img id="app-close" src="http://7xte7j.com1.z0.glb.clouddn.com/app-close.png" />
@@ -177,9 +178,10 @@ class SidePage extends Component {
                   <li className="pure-menu-item nav-list-bar">
                     <Link className="link-box" to={userData.userType ? "/center/g":"/center/u"} activeClassName="active">
                       <i className="menu-icon icon settings" />
-                      <div className="menu-button"><span>个人中心&nbsp;&nbsp;USER</span></div>
+                      <div className="menu-button"><span>个人中心&nbsp;&nbsp;User</span></div>
                     </Link>
                   </li>
+                  <LinkToApp />
                   {/* 注释在下面 */}
                 </ul>
               </nav>

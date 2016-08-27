@@ -19,7 +19,10 @@ const ShowMenu = (args) => {
     let text = searchText.value.trim()
     onSearch(text)
   }
-  const cancle = () => searchText.value = ""
+  const cancle = () => {
+    searchText.value = ""
+    searchReadyGo()
+  }
 
   let tagRows
   if (tags) {
@@ -62,7 +65,7 @@ const ShowMenu = (args) => {
             ref={node => searchText = node}
             type="text"
             onBlur={searchReadyGo}
-            placeholder={searchKey || "搜索 作品/标签/摄影师昵称"} />
+            placeholder={searchText || "搜索 作品/标签/摄影师昵称"} />
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 

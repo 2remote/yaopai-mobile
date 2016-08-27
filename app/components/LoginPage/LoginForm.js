@@ -1,10 +1,10 @@
 import React from 'react';
 import UserEntryLayout from './UserEntryLayout';
-import UserActions from '../../actions/UserActions';
 import { ButtonBlock } from '../UI/Button';
 import InputGroup from '../UI/InputGroup';
 import { RouteTransition, presets } from 'react-router-transition';
 import Toaster from '../Toast';
+import API from '../../api';
 
 class LoginForm extends React.Component {
   constructor(props){
@@ -18,7 +18,12 @@ class LoginForm extends React.Component {
   }
 
   _weChatLogin() {
-    UserActions.openLogin();
+    const Origin = location.origin;
+    if(this.props.nextPageUrl){
+      location.href = `${API.USER.weixin_login}${encodeURIComponent(`${Origin}/#${this.props.nextPageUrl.nextPage}`)}`;
+    } else {
+      location.href = `${API.USER.weixin_login}${encodeURIComponent(`${Origin}/#/work`)}`;
+    }
   }
 
   _handleLogin() {
