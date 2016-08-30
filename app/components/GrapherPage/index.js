@@ -15,6 +15,8 @@ import WechatShare from '../Weixin/WechatShare'
 import Toaster from '../Toast'
 import ShowMenu from './ShowMenu'
 
+let lastQuery
+
 const GrapherPage = React.createClass({
   mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'), AutoLoadPageMixin, History],
   getInitialState() {
@@ -37,6 +39,22 @@ const GrapherPage = React.createClass({
       })
     } else {
       PhotographerActions.list()
+    }
+  },
+  componentWillUpdate() {
+    lastQuery = this.props.location.query.q
+  },
+  componentDidUpdate() {
+    if (lastQuery !== this.props.location.query.q) {
+
+      const thisIsACoolSearchKey = this.props.location.query.q
+
+      this.setState({searchKey: thisIsACoolSearchKey}, () => {
+          // 如果存在url的制定tag，会直接执行过滤作品
+        PhotographerActions.query({key: thisIsACoolSearchKey})
+      })
+
+      console.log(this.state.searchKey);
     }
   },
   handleUpdateSearch(key) {

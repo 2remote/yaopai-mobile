@@ -55,7 +55,7 @@ const ShowMenu = (args) => {
         </div>
       </div>
 
-      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight}}>
+      <div className="tagMenu" id="tagMenu" style={{height: window.innerHeight-49}}>
 
         {/*搜索框*/}
         <section className="input-group-light">
@@ -65,7 +65,7 @@ const ShowMenu = (args) => {
             ref={node => searchText = node}
             type="text"
             onBlur={searchReadyGo}
-            placeholder={searchText || "搜索 作品/标签/摄影师昵称"} />
+            placeholder={searchKey || "搜索 作品/标签/摄影师昵称"} />
           <span className="cancel-search" onClick={cancle}>取消</span>
         </section>
 
