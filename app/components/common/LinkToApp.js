@@ -1,10 +1,11 @@
 import React from 'react'
+import $ from 'jquery'
 
 // 用 app 打开或者下载 app
 const LinkToApp = () => {
 
   const close = () => {
-    console.log('close');
+    $(".linkToApp").hide()
   }
 
   if (iOS) {
