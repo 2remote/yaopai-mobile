@@ -4,8 +4,13 @@ import $ from 'jquery'
 // 用 app 打开或者下载 app
 const LinkToApp = () => {
 
+  if (!localStorage.getItem('linkToApp')) {
+    $(".linkToApp").show()
+  }
+
   const close = () => {
     $(".linkToApp").hide()
+    localStorage.setItem('linkToApp', 'hide');
   }
 
   if (iOS) {
