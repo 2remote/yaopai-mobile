@@ -5,7 +5,6 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import UserActions from '../../actions/UserActions'
 import UserStore from '../../stores/UserStore'
-import LinkToApp from '../common/LinkToApp'
 
 import {parseImageUrl} from '../Tools'
 import $ from 'jquery'

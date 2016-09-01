@@ -1,0 +1,48 @@
+.linkToApp {
+  position: fixed;
+  bottom: 0;
+  height: 55px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.64);
+  color: white;
+
+  .cancel {
+    padding: 11px 3.5%;
+    display: block;
+    float: left;
+  }
+
+  .cancel_circle_icon {
+    font-size: 20px;
+  }
+
+  img {
+    width: 37px;
+    border-radius: 7px;
+  }
+
+  .img {
+    margin: 9px 0;
+    float: left;
+  }
+
+  .description {
+    color: white;
+    width: 42%;
+    margin: 6px 0 0 10px;
+    display: inline-block;
+  }
+
+  .des2 {
+    font-size: 12px;
+  }
+
+  .download {
+    background: white;
+    float: right;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    padding: 16px 0px;
+  }
+}
