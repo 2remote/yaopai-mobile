@@ -48,11 +48,11 @@ var ActivityDetailPage = React.createClass({
       style={{color:'#050505',fontWeight:'bold'}}
       ref="workPrice"
       className="workPrice">{priceResult}</span>
-    )
+    );
   },
   render: function() {
     const contentText = this.state.data.Content;
-    function makeContent() {return {__html: contentText};};
+    function makeContent() {return {__html: contentText};}
 
     let coverSoruce = this.state.data.Cover;
     const cover = imgModifier(coverSoruce, "ad");

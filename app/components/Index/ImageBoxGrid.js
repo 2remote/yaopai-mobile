@@ -43,63 +43,63 @@
 //         "Url": ""
 //    }]
 
-import React from 'react';
-import { Router, Route, Link } from 'react-router';
-import LazyLoad from 'react-lazy-load';
-import './ImageBoxGrid.scss';
+import React from 'react'
+import { Router, Route, Link } from 'react-router'
+import LazyLoad from 'react-lazy-load'
+import './ImageBoxGrid.scss'
 import {imgModifier, actionLinkMaker } from '../Tools'
 
 var ImageBoxGrid = React.createClass({
   getDefaultProps: function() {
-    var deviceWidth = parseInt(window.innerWidth);
+    var deviceWidth = parseInt(window.innerWidth)
     return {
       deviceWidth: deviceWidth,
       works: []
-    };
+    }
   },
   render: function() {
-    let filter = this.props.filter;
-    let deviceWidth = this.props.deviceWidth;
+    let filter = this.props.filter
+    let deviceWidth = this.props.deviceWidth
 
-    let borderWidth;
-    let borderHeight;
+    let borderWidth
+    let borderHeight
     if (filter == 'HomeGrapher') {
-      borderWidth = 171/750*deviceWidth;
-      borderHeight = 398/750*deviceWidth;
+      borderWidth = 171/750*deviceWidth
+      borderHeight = 398/750*deviceWidth
     } 
     
-    let borderSize = deviceWidth/this.props.cols;
+    let borderSize = deviceWidth/this.props.cols
     let style = {
       width:  borderWidth || borderSize,
       height: borderHeight || borderSize
-    };
+    }
     let homeGrapherLastStyle = {
       width:  237/750*deviceWidth,
       height: borderHeight
-    };
+    }
   
 
-    var initNodes = [];
-    const number = this.props.cols * this.props.rows;
+    var initNodes = []
+    const number = this.props.cols * this.props.rows
     for (var i = 0; i < number; i++) {
       // 每次load生成不同颜色
-      var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      var bkColor = '#'+Math.floor(Math.random()*16777215).toString(16)
       initNodes.push((<li key={i} style={{
         width: borderWidth || borderSize,
         height: borderHeight || borderSize,
         backgroundColor: bkColor
-      }} className="imageCell"></li>));
-    };
+      }} className="imageCell"></li>))
+    }
 
     var work = this.props.works.filter(function(item){
       return item.Position == filter
-    }).slice(0,number);
+    }).slice(0,number)
     var imgNodes = work.map(function(work, i){
-      var extraId = work.ExtraId;
+      var extraId = work.ExtraId
       
-      var url = work.Url;
+      var url = work.Url
       if (work.Action !== 'Link'){
-        url = "#" + actionLinkMaker(work.Action, work.ExtraId); 
+        url = "#" + actionLinkMaker(work.Action, work.ExtraId) 
       }
 
       initNodes[i] = (
@@ -114,15 +114,15 @@ var ImageBoxGrid = React.createClass({
             </LazyLoad>
           </a>
         </li>
-      );
-    });
+      )
+    })
 
     return (
       <ul className="imageBoxGrid">
         {initNodes}
       </ul>
-    );
+    )
   }
-});
+})
 
-export {ImageBoxGrid as default};
+export {ImageBoxGrid as default}

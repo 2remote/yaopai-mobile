@@ -55,11 +55,11 @@ const GrapherPage = React.createClass({
         PhotographerActions.query({key: thisIsACoolSearchKey})
       })
 
-      console.log(this.state.searchKey);
+      console.log(this.state.searchKey)
     }
   },
   handleUpdateSearch(key) {
-    console.warn(key);
+    console.warn(key)
     this.setState({searchKey: key}, () => {
       // 读取search过滤的数据
       PhotographerActions.query({key: this.state.searchKey})
@@ -77,24 +77,24 @@ const GrapherPage = React.createClass({
     console.table(data.photographers)
     if(data.flag == 'list'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        console.log(data.hintMessage)
       }else{
         this.setState({
           graphers: this.state.graphers.concat(data.photographers),
           pageCount: data.pageCount
-        });
+        })
         this.onHideToast()
       }
     }
     if(data.flag == 'photographer-query') {
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        console.log(data.hintMessage)
       }else{
         this.setState({
           graphers: data.photographers,
           pageCount: data.pageCount,
           showNothingFound: true,
-        });
+        })
         this.onHideToast()
       }
     }

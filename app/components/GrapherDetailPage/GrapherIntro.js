@@ -9,8 +9,8 @@ import UserStore from '../../stores/UserStore';
 import { ButtonAttention } from '../UI/Button';
 import {imgModifier} from '../Tools';
 import Toaster from '../Toast';
-import WechatShare from '../Weixin/WechatShare'
-import DocumentTitle from 'react-document-title'
+import WechatShare from '../Weixin/WechatShare';
+import DocumentTitle from 'react-document-title';
 
 import $ from 'jquery';
 
@@ -32,7 +32,7 @@ var browser = {
     };
   }(),
   language: (navigator.browserLanguage || navigator.language).toLowerCase()
-}
+};
 
 var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
 
@@ -45,31 +45,31 @@ class GrapherIntro extends React.Component {
       isClickMark: false,
       markExist: false,
       marks: 0,
-    }
-    this.attention = this.attention.bind(this)
-    this.unAttention = this.unAttention.bind(this)
+    };
+    this.attention = this.attention.bind(this);
+    this.unAttention = this.unAttention.bind(this);
   }
 
   componentWillMount() {
-    PhotographerActions.get(this.props.id)
-    UserActions.currentUser()
+    PhotographerActions.get(this.props.id);
+    UserActions.currentUser();
   }
   // 获取登录信息
   onUserLoad(userData) {
-    this.setState({ userData })
+    this.setState({ userData });
   }
 
   // 获取摄影师基本信息
   onGetSuccess(data) {
     if(data.hintMessage == '数据未找到') {
-      alert('该摄影师已被禁用！')
+      alert('该摄影师已被禁用！');
       this.history.replaceState(null, '/work');
       return;
     }
     this.setState({
       data: data.photographer,
       // markExist: data.photographer.MarkExist,
-    })
+    });
   }
 
   // 点击关注
@@ -86,31 +86,31 @@ class GrapherIntro extends React.Component {
 
     } else {
       $('#collect-icon').removeClass('mark').addClass('mark_active color_red');
-      this.setState({isClickMark: true})
+      this.setState({isClickMark: true});
       // TODO 如何防止用户多次提交
-      PhotographerActions.mark(this.props.id)
+      PhotographerActions.mark(this.props.id);
       this.setState({
         marks: 1,
-      })
+      });
     }
   }
   // 点击取消关注
   unAttention() {
     $('#collect-icon').removeClass('mark_active color_red').addClass('mark');
-    this.setState({isClickMark: true})
+    this.setState({isClickMark: true});
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
-    PhotographerActions.unMark(this.props.id)
+    PhotographerActions.unMark(this.props.id);
     this.setState({
       marks: 0,
-    })
+    });
   }
 
   onMarkSuccess(data){
     if (data.markExist.id == this.props.id) {
       this.setState({
         markExist: data.markExist.isMark,
-      })
+      });
     }
   }
 
@@ -118,26 +118,26 @@ class GrapherIntro extends React.Component {
     if (data.markExist.id == this.props.id) {
       this.setState({
         markExist: data.markExist.isMark,
-      })
+      });
     }
   }
 
   showMessage (content) {
-    this.refs.toast.show(content)
+    this.refs.toast.show(content);
   }
 
   downloadApp () {
     if (browser.versions.mobile && browser.versions.iOS && ua.match(/MicroMessenger/i) == "micromessenger") {
-      alert('由于微信限制，请在 Safari 浏览器里打开本网页，再点击下载 APP')
+      alert('由于微信限制，请在 Safari 浏览器里打开本网页，再点击下载 APP');
       return;
     }
   }
 
   render() {
-    const {data} = this.state
-    const title = this.state.NickName || '摄影师'
-    const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName
-    const wechatShareDesc = data.NickName + ':' + data.Signature
+    const {data} = this.state;
+    const title = this.state.NickName || '摄影师';
+    const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName;
+    const wechatShareDesc = data.NickName + ':' + data.Signature;
 
     let isShow = false;
     if (browser.versions.mobile && browser.versions.iOS /*&& ua.match(/MicroMessenger/i) == "micromessenger" */) {
@@ -189,7 +189,7 @@ class GrapherIntro extends React.Component {
       </section>
     );
   }
-};
+}
 
 ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onMarkSuccess'));
 ReactMixin.onClass(GrapherIntro,Reflux.listenTo(PhotographerStore, 'onUnMarkSuccess'));

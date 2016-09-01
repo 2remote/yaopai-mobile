@@ -1,6 +1,6 @@
-import Reflux from 'reflux';
-import HttpFactory from '../HttpFactory';
-import API from '../api';
+import Reflux from 'reflux'
+import HttpFactory from '../HttpFactory'
+import API from '../api'
 
 var PhotographerActions = Reflux.createActions({
   'get' : {children : ['success','failed']},
@@ -9,7 +9,7 @@ var PhotographerActions = Reflux.createActions({
   'mark' : {children : ['success','failed']},
   'unMark' : {children : ['success','failed']},
   'query' : {children : ['success','failed']},
-});
+})
 /*
   得到指定id的摄影师信息
 */
@@ -17,9 +17,9 @@ PhotographerActions.get.listen(function(id){
   var data = {
     Id : id,
     Fields : 'Id,Views,Marks,Sales,MarkExist,CityName,NickName,Avatar,Signature,TotalAlbums,Sales',
-  };
-  HttpFactory.post(API.PHOTOGRAPHER.get,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.PHOTOGRAPHER.get,data,this.success,this.failed)
+})
 
 
 /*
@@ -66,9 +66,9 @@ PhotographerActions.recommendList.listen(function(count = 3, city = null){
     city : city,
     HomeRecommended : true,
     HomeSortingDesc : true
-  };
-  HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.PHOTOGRAPHER.list,data,this.success,this.failed)
+})
 
 /*
   关注摄影师
@@ -76,9 +76,9 @@ PhotographerActions.recommendList.listen(function(count = 3, city = null){
 PhotographerActions.mark.listen(function(id){
   var data = {
     Id : id,
-  };
-  HttpFactory.post(API.PHOTOGRAPHER.mark,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.PHOTOGRAPHER.mark,data,this.success,this.failed)
+})
 
 /*
   取消关注摄影师
@@ -86,9 +86,9 @@ PhotographerActions.mark.listen(function(id){
 PhotographerActions.unMark.listen(function(id){
   var data = {
     Id : id,
-  };
-  HttpFactory.post(API.PHOTOGRAPHER.unMark,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.PHOTOGRAPHER.unMark,data,this.success,this.failed)
+})
 
 
-export {PhotographerActions as default};
+export {PhotographerActions as default}

@@ -39,7 +39,7 @@ var ActivityPage = React.createClass({
         console.log(data.hintMessage);
       }else{
         this.setState({Activitys : this.state.Activitys.concat(data.workList),pageIndex: data.pageIndex,total : data.total ,pageCount:data.pageCount});
-        this.onHideToast()
+        this.onHideToast();
       }
     }
   },
