@@ -12,14 +12,6 @@ import WorkDetailPage from './components/WorkDetailPage'
 import GrapherPage from './components/GrapherPage'
 import GrapherDetailPage from './components/GrapherDetailPage'
 
-import Query from './components/common/Query'
-
-import InterviewPage from './components/InterviewPage'
-import InterviewDetailPage from './components/InterviewDetailPage'
-
-import ActivityPage from './components/ActivityPage'
-import ActivityDetailPage from './components/ActivityDetailPage'
-
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/LoginPage/SignupPage'
 import EmailSignupPage from './components/LoginPage/EmailSignupPage'
@@ -71,12 +63,6 @@ function main(){
         <Route path="/workDetail/:Id" component={WorkDetailPage} />
 
         <Route path="/query" component={Query} />
-
-        <Route path="/interview" component={InterviewPage} />
-        <Route path="/interviewDetail/:Id" component={InterviewDetailPage} />
-
-        <Route path="/activity" component={ActivityPage} />
-        <Route path="/activityDetail/:Id" component={ActivityDetailPage} />
 
         <Route path="/grapher" component={GrapherPage} />
         <Route path="/grapherDetail/:Id" component={GrapherDetailPage} />
