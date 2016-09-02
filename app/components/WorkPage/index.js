@@ -14,6 +14,7 @@ import ShowMenu from './ShowMenu'
 import _ from 'underscore'
 import WechatShare from '../Weixin/WechatShare'
 import Toaster from '../Toast'
+import LinkToApp from '../common/LinkToApp'
 
 let lastPathname
 
@@ -167,6 +168,8 @@ const WorkPage = React.createClass({
           />
           <WechatShare title={TITLE.workPage} desc={TITLE.indexPage} />
           <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
+
+          <LinkToApp />
         </div>
       </DocumentTitle>
     )

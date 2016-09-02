@@ -5,7 +5,6 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import UserActions from '../../actions/UserActions'
 import UserStore from '../../stores/UserStore'
-import LinkToApp from '../common/LinkToApp'
 
 import {parseImageUrl} from '../Tools'
 import $ from 'jquery'
@@ -50,11 +49,6 @@ class SidePage extends Component {
      * ua.match(/MicroMessenger/i) == "micromessenger" 是否在微信里
      */
 
-    if (browser.versions.mobile && browser.versions.iOS /*&& ua.match(/MicroMessenger/i) == "micromessenger" */) {
-      $('#downloadAppMessage').show();
-    }
-
-
     $('#menuLink').click(() => {
       const winHeight = `${$(window).height()}px`
       // TODO 打开侧边导航后禁止页面滚动
@@ -77,18 +71,6 @@ class SidePage extends Component {
 
   logout() {
     UserActions.logout();
-  }
-
-  downloadApp() {
-    $('#menu').removeClass('slide-toggle'); // 隐藏左侧菜单
-    $('#mask-menu').removeClass('fade-toggle').hide(); // 隐藏黑色蒙版
-    $('#downloadApp').show(); // 现实组件
-    $('#app-close').click(() => $('#downloadApp').hide()) // 点击关闭隐藏组件
-    $('#app-load').click(() => {
-      if (browser.versions.mobile && browser.versions.iOS && ua.match(/MicroMessenger/i) == "micromessenger" ) {
-        alert('由于微信限制，请在 Safari 浏览器里打开本网页，再点击下载 APP')
-      }
-    })
   }
 
   render() {
@@ -134,15 +116,6 @@ class SidePage extends Component {
       }
       return (
         <section style={{minHeight: '1px'}}>
-          {/* 引导 APP 下载 */}
-          <div id="downloadApp">
-            <img id="app-close" src="http://7xte7j.com1.z0.glb.clouddn.com/app-close.png" />
-            <img id="app-phone" src="http://7xte7j.com1.z0.glb.clouddn.com/app-phone.png" />
-            <a href="https://itunes.apple.com/us/app/yaopai/id1105711466?l=zh&ls=1&mt=8">
-              <img id="app-load" src="http://7xte7j.com1.z0.glb.clouddn.com/app-load.png" />
-            </a>
-            <p>-&nbsp;体验更流畅的预约服务&nbsp;-</p>
-          </div>
           {/* Hamburger icon */}
           <div id="menuLink" className="menu-link">
             <i className="icon hamburgermenu"/>
@@ -163,12 +136,6 @@ class SidePage extends Component {
                       <div className="menu-button"><span>首页&nbsp;&nbsp;Home</span></div>
                     </Link>
                   </li>
-                  {/*<li className="pure-menu-item nav-list-bar">
-                    <Link to="/main/discovery" activeClassName="active">
-                      <i className="menu-icon grid" />
-                      <div className="menu-button"><span>作品&nbsp;&nbsp;LIBRARY</span></div>
-                    </Link>
-                  </li>*/}
                   <li className="pure-menu-item nav-list-bar">
                     <Link to="/grapher" activeClassName="active">
                       <i className="menu-icon icon camera" />
@@ -181,8 +148,6 @@ class SidePage extends Component {
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;User</span></div>
                     </Link>
                   </li>
-                  <LinkToApp />
-                  {/* 注释在下面 */}
                 </ul>
               </nav>
 
@@ -201,13 +166,3 @@ class SidePage extends Component {
 ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, 'onUserLoad'));
 
 export default SidePage;
-// <li
-//   style={{/*display: 'none'*/}}
-//   id="downloadAppMessage"
-//   className="pure-menu-item nav-list-bar"
-//   onClick={/*this.downloadApp*/}>
-//   <a href="javascript:void(0);" className="link-box">
-//     <i className="menu-icon icon app" />
-//     <div className="menu-button"><span>客户端下载&nbsp;&nbsp;APP</span></div>
-//   </a>
-// </li>

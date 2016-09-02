@@ -7,6 +7,7 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import AlbumsActions from '../../actions/AlbumsActions'
 import AlbumsStore from '../../stores/AlbumsStore'
+import LinkToApp from '../common/LinkToApp'
 
 import $ from 'jquery'
 
@@ -40,6 +41,7 @@ class GrapherDetailPage extends React.Component {
         <SidePage shareFrom={this.state.shareFrom} />
         <GrapherIntro id={this.props.params.Id} pathname={this.props.location.pathname} />
         <WorkIntroGrapherList data={this.state.works} />
+        <LinkToApp />
       </div>
     );
   }
