@@ -1,5 +1,5 @@
-'use strict';
-import React from 'react';
+'use strict'
+import React from 'react'
 
 /**
  * 订单列表:
@@ -12,7 +12,7 @@ class OrderList extends React.Component {
       <div className="orderlist">
         This is an order list.
       </div>
-    );
+    )
   }
 }
 

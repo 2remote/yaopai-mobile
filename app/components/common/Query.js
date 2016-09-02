@@ -1,11 +1,11 @@
-import React from 'react';
-import TagRow from '../WorkPage/TagRow';
-import $ from 'jquery';
+import React from 'react'
+import TagRow from '../WorkPage/TagRow'
+import $ from 'jquery'
 import { Link } from 'react-router'
 
 const Query = (args) => {
   const {tagType, onSearch, onSelectedTag, reset, searchKey} = args
-  const handleClick = () => $("#tagMenu").toggleClass('slide-toggle');
+  const handleClick = () => $("#tagMenu").toggleClass('slide-toggle')
   const plzResetAllOfThem = (reset) => {
     // 清空搜索框，标签，以及重置 state
     searchText.value = ''
@@ -13,10 +13,10 @@ const Query = (args) => {
     reset()
   }
   const searchReadyGo = () => {
-    let text = searchText.value.trim();
+    let text = searchText.value.trim()
     text && onSearch(text)
   }
-  let searchText;
+  let searchText
   return (
     <section className="tagBox">
       <div className="tagLogo icon yaopainew" />
@@ -49,7 +49,7 @@ const Query = (args) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Query;
+export default Query

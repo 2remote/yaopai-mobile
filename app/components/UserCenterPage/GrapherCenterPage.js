@@ -1,12 +1,12 @@
-import React from 'react';
-import {History,Location, Link} from 'react-router';
-import Reflux from 'reflux';
-import SidePage from '../UI/SidePage';
-import UserAvatarBox from '../common/UserAvatarBox' ;
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
-import _ from 'underscore';
-import { makeIconButton } from '../Tools';
+import React from 'react'
+import {History,Location, Link} from 'react-router'
+import Reflux from 'reflux'
+import SidePage from '../UI/SidePage'
+import UserAvatarBox from '../common/UserAvatarBox' 
+import UserActions from '../../actions/UserActions'
+import UserStore from '../../stores/UserStore'
+import _ from 'underscore'
+import { makeIconButton } from '../Tools'
 
 var GrapherCenterPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -18,12 +18,12 @@ var GrapherCenterPage = React.createClass({
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
     }else{
-      let type = 'in';
-      this.setState({userInfo : data});
+      let type = 'in'
+      this.setState({userInfo : data})
       if(data.userType == 0) {
-        this.history.replaceState(null,'/center/u');
+        this.history.replaceState(null,'/center/u')
       }
     }
   },
@@ -39,7 +39,7 @@ var GrapherCenterPage = React.createClass({
       splitLine: {
         margin: '24px 0 12px 0'
       }
-    };
+    }
 
     return (
       <div
@@ -54,8 +54,8 @@ var GrapherCenterPage = React.createClass({
         {makeIconButton('mark', '收藏/关注', 'center/mark', 'react-router')}
         {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}
       </div>
-    );
+    )
   }
-});
+})
 
-export {GrapherCenterPage as default};
+export {GrapherCenterPage as default}

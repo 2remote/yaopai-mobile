@@ -1,68 +1,68 @@
-import React from 'react';
-import Reflux from 'reflux';
-import $ from 'jquery';
-import DocumentTitle from 'react-document-title';
+import React from 'react'
+import Reflux from 'reflux'
+import $ from 'jquery'
+import DocumentTitle from 'react-document-title'
 
-import GrapherIntro from '../GrapherDetailPage/GrapherIntro';
-import SidePage from '../UI/SidePage';
-import UserActions from '../../actions/UserActions';
-import ActivityStore from '../../stores/ActivityStore';
-import ActivityActions from '../../actions/ActivityActions';
-import { GET_WORK_DETAIL, imgModifier, TITLE } from '../Tools';
-import {History, Link} from 'react-router';
-import Share from '../Share';
-import WechatShare from '../Weixin/WechatShare';
+import GrapherIntro from '../GrapherDetailPage/GrapherIntro'
+import SidePage from '../UI/SidePage'
+import UserActions from '../../actions/UserActions'
+import ActivityStore from '../../stores/ActivityStore'
+import ActivityActions from '../../actions/ActivityActions'
+import { GET_WORK_DETAIL, imgModifier, TITLE } from '../Tools'
+import {History, Link} from 'react-router'
+import Share from '../Share'
+import WechatShare from '../Weixin/WechatShare'
 
 var ActivityDetailPage = React.createClass({
   mixins : [Reflux.listenTo(ActivityStore,'_onActivityStoreChange'),History],
   getInitialState: function() {
     return {
       data:[]
-    };
+    }
   },
 
   componentDidMount: function() {
     if(!this.props.params.Id)
-      return this.history.pushState(null,'/Activity');
-    ActivityActions.get(this.props.params.Id);
+      return this.history.pushState(null,'/Activity')
+    ActivityActions.get(this.props.params.Id)
   },
   _onActivityStoreChange :function(data){
     if(data.flag == 'get'){
       if(data.hintMessage){
-        console.log(data.hintMessage);
+        console.log(data.hintMessage)
       }else{
-        this.setState({data : data.workData});
+        this.setState({data : data.workData})
       }
     }
   },
   renderPrice: function(){
-    const negotiable = this.state.data.Negotiable;
-    const price = this.state.data.Price;
-    let priceResult = "面议";
+    const negotiable = this.state.data.Negotiable
+    const price = this.state.data.Price
+    let priceResult = "面议"
 
     if(!negotiable){
-      priceResult = price;
+      priceResult = price
     }
     return (
     <span
       style={{color:'#050505',fontWeight:'bold'}}
       ref="workPrice"
       className="workPrice">{priceResult}</span>
-    );
+    )
   },
   render: function() {
-    const contentText = this.state.data.Content;
-    function makeContent() {return {__html: contentText};}
+    const contentText = this.state.data.Content
+    function makeContent() {return {__html: contentText}}
 
-    let coverSoruce = this.state.data.Cover;
-    const cover = imgModifier(coverSoruce, "ad");
+    let coverSoruce = this.state.data.Cover
+    const cover = imgModifier(coverSoruce, "ad")
 
-    let grapherId = '';
+    let grapherId = ''
     if (this.state.data.User) {
-      grapherId = this.state.data.User.Id;
+      grapherId = this.state.data.User.Id
     }
-    let wechatShareTitle = this.state.data.Title;
-    let wechatShareDesc = this.state.data.Title +' YAOPAI，一个全球预约摄影师的平台';
+    let wechatShareTitle = this.state.data.Title
+    let wechatShareDesc = this.state.data.Title +' YAOPAI，一个全球预约摄影师的平台'
     return (
       <div style={{height: '100%'}} className="ActivityDetailPage">
         <SidePage />
@@ -98,8 +98,8 @@ var ActivityDetailPage = React.createClass({
         <WechatShare title={wechatShareTitle} desc={wechatShareDesc}>
         </WechatShare>
       </div>
-    );
+    )
   }
-});
+})
 
-export {ActivityDetailPage as default};
+export {ActivityDetailPage as default}

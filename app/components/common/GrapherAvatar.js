@@ -1,6 +1,6 @@
-import React from 'react';
-import {Link} from 'react-router';
-import {imgModifier} from '../Tools';
+import React from 'react'
+import {Link} from 'react-router'
+import {imgModifier} from '../Tools'
 
 var GrapherAvatar = React.createClass({
   getDefaultProps: function() {
@@ -8,11 +8,11 @@ var GrapherAvatar = React.createClass({
       data: {
         
       }
-    };
+    }
   },
 
   render: function() {
-    const avatar = this.props.data?imgModifier(this.props.data.Avatar, 'avatar'):'';
+    const avatar = this.props.data?imgModifier(this.props.data.Avatar, 'avatar'):''
 
     return (
       <div 
@@ -28,8 +28,8 @@ var GrapherAvatar = React.createClass({
           ref="grapherNick">{this.props.data?this.props.data.NickName:''}</div>
         </Link>
       </div>
-    );
+    )
   }
-});
+})
 
-export {GrapherAvatar as default};
+export {GrapherAvatar as default}

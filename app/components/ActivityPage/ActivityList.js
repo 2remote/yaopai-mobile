@@ -1,11 +1,11 @@
-import React from 'react';
-import ActivityRow from'./ActivityRow';
+import React from 'react'
+import ActivityRow from'./ActivityRow'
 
 var ActivityList = React.createClass({
   getDefaultProps: function() {
     return {
       data: []
-    };
+    }
   },
 
   render: function() {
@@ -15,19 +15,19 @@ var ActivityList = React.createClass({
           <ActivityRow 
             key={i}
             data={work} />
-        );  
+        )  
       }else{
-        console.warn('User data should not be null, checkout back-end database!');
+        console.warn('User data should not be null, checkout back-end database!')
       }
       
-    });
+    })
 
     return (
       <div className="workIntroGrapherList">
         {workNodes}
       </div>
-    );
+    )
   }
-});
+})
 
-export {ActivityList as default};
+export {ActivityList as default}
