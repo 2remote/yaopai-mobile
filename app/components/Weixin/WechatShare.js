@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-import React from 'react';
-import $ from'jquery';
+import React from 'react'
+import $ from'jquery'
 
 var WechatShare = React.createClass({
   propTypes: {
@@ -20,34 +20,34 @@ var WechatShare = React.createClass({
       title:'',
       desc:'',
       imgUrl:"http://"+location.host +'/imgs/yaopai-logo-weixin.png'
-    };
+    }
   },
   getDefaultProps() {
     return {
       apis:['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage']
-    };
+    }
   },
   componentDidMount() {
-    let self=this;
+    let self=this
     self.setState({
       title:self.props.title,
       desc:self.props.desc
-    });
+    })
     if(self.props.imgUrl){
       self.setState({
         imgUrl:self.props.imgUrl
       })
     }
-    var targetUrl = location.href.split('#')[0];
-    targetUrl = targetUrl.replace('&', '%26');
-    console.log("location.href="+location.href);
-    console.log("targetUrl="+targetUrl);
+    var targetUrl = location.href.split('#')[0]
+    targetUrl = targetUrl.replace('&', '%26')
+    console.log("location.href="+location.href)
+    console.log("targetUrl="+targetUrl)
     $.ajax({
       url: "//"+location.host + '/signPackage?url=' + targetUrl,
       dataType: 'json',
       type: "GET",
       success: function (data) {
-        console.log("signPackage data= "+data);
+        console.log("signPackage data= "+data)
         if(data.error){
           console.log(data.error)
         }else{
@@ -55,7 +55,7 @@ var WechatShare = React.createClass({
         }
       },
       error : function() {
-        console.log('fail');
+        console.log('fail')
       }
     })
     function initWechat(data){
@@ -67,7 +67,7 @@ var WechatShare = React.createClass({
         signature: data.signature,// 必填，签名，见附录1
         jsApiList: self.props.apis, // 必填，需要使用的JS接口列表，所有JS接口列表见附录2,
         currentUrl:self.state.link //hack wechat js, you must
-      });
+      })
       wx.ready(function(){
         self.setState({
           isWechatReady:true
@@ -80,7 +80,7 @@ var WechatShare = React.createClass({
       this.setState({
         title:nextProps.title,
         desc:nextProps.desc
-      });
+      })
       if(nextProps.imgUrl){
         this.setState({
           imgUrl:nextProps.imgUrl
@@ -89,24 +89,24 @@ var WechatShare = React.createClass({
     }
   },
   render(){
-    let title = this.state.title;
-    let desc = this.state.desc;
-    let link = this.state.link;
-    let imgUrl = this.state.imgUrl;
+    let title = this.state.title
+    let desc = this.state.desc
+    let link = this.state.link
+    let imgUrl = this.state.imgUrl
     if(this.state.isWechatReady){
       wx.onMenuShareTimeline({
         title: title, // 分享标题
         link: link, // 分享链接
         imgUrl: imgUrl, // 分享图标
         success: function () {
-          console.log("onMenuShareTimeline success");
+          console.log("onMenuShareTimeline success")
           // 用户确认分享后执行的回调函数
         },
         cancel: function () {
           // 用户取消分享后执行的回调函数
           console.log("onMenuShareTimeline cancel")
         }
-      });
+      })
 
       wx.onMenuShareAppMessage({
         title: title, // 分享标题
@@ -114,17 +114,17 @@ var WechatShare = React.createClass({
         link: link, // 分享链接
         imgUrl: imgUrl, // 分享图标
         success: function () {
-          console.log("onMenuShareAppMessage success");
+          console.log("onMenuShareAppMessage success")
           // 用户确认分享后执行的回调函数
         },
         cancel: function () {
           // 用户取消分享后执行的回调函数
           console.log("onMenuShareAppMessage cancel")
         }
-      });
+      })
     }
     return <div></div>
   }
-});
+})
 
-export {WechatShare as default};
+export {WechatShare as default}

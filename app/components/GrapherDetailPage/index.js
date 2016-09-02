@@ -1,38 +1,38 @@
-import React from 'react';
-import SidePage from '../UI/SidePage';
-import GrapherIntro from './GrapherIntro';
-import WorkIntroGrapherList from '../common/WorkIntroGrapherList';
+import React from 'react'
+import SidePage from '../UI/SidePage'
+import GrapherIntro from './GrapherIntro'
+import WorkIntroGrapherList from '../common/WorkIntroGrapherList'
 
-import Reflux from 'reflux';
-import ReactMixin from 'react-mixin';
-import AlbumsActions from '../../actions/AlbumsActions';
-import AlbumsStore from '../../stores/AlbumsStore';
-import LinkToApp from '../common/LinkToApp';
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
+import AlbumsActions from '../../actions/AlbumsActions'
+import AlbumsStore from '../../stores/AlbumsStore'
+import LinkToApp from '../common/LinkToApp'
 
-import $ from 'jquery';
+import $ from 'jquery'
 
 class GrapherDetailPage extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       grapherInfo:{
         User: { NickName: '读取中...', },
       },
       works: [],
       shareFrom: this.props.location.query.sharefrom,
-    };
+    }
   }
 
   componentWillMount() {
-    const userId = this.props.params.Id;
+    const userId = this.props.params.Id
     // 蛋疼的传参
-    AlbumsActions.search({userId});
+    AlbumsActions.search({userId})
   }
 
   onSearchSuccess(data) {
     this.setState({
       works: data.workList,
-    });
+    })
   }
 
   render() {
@@ -43,9 +43,9 @@ class GrapherDetailPage extends React.Component {
         <WorkIntroGrapherList data={this.state.works} />
         <LinkToApp />
       </div>
-    );
+    )
   }
 }
 
-ReactMixin.onClass(GrapherDetailPage, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'));
-export {GrapherDetailPage as default};
+ReactMixin.onClass(GrapherDetailPage, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'))
+export {GrapherDetailPage as default}

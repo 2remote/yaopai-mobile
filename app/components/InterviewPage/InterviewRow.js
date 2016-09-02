@@ -1,19 +1,19 @@
-import React from 'react';
-import { Router, Route, Link } from 'react-router';
+import React from 'react'
+import { Router, Route, Link } from 'react-router'
 
-import {imgModifier} from '../Tools';
-import LazyLoad from 'react-lazy-load';
+import {imgModifier} from '../Tools'
+import LazyLoad from 'react-lazy-load'
 
 var InterviewRow = React.createClass({
   getDefaultProps: function() {
     return {
       data: {
       }
-    };
+    }
   },
   render: function() {
 
-    const cover = imgModifier(this.props.data.Cover, "ad");
+    const cover = imgModifier(this.props.data.Cover, "ad")
     
     return (
       <div 
@@ -30,8 +30,8 @@ var InterviewRow = React.createClass({
           </div>
         </Link>
       </div>
-    );
+    )
   }
-});
+})
 
-export {InterviewRow as default};
+export {InterviewRow as default}
