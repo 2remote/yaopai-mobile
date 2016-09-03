@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import PurseListLayout from './PurseListLayout.jsx';
-import WeuiNavbar from '../../../../UI/WeuiNavbar';
-import { OrderStatus } from '../../../../Tools';
-import UserFundActions from '../../../../../actions/UserFundActions';
+import PurseListLayout from './PurseListLayout.jsx'
+import WeuiNavbar from '../../../../UI/WeuiNavbar'
+import { OrderStatus } from '../../../../Tools'
+import UserFundActions from '../../../../../actions/UserFundActions'
 
 let navList = [{
   filterType: 'Completed',
@@ -17,16 +17,16 @@ let navList = [{
 },{
   filterType: 'Withdrew',
   text: '提现'
-}];
+}]
 
-let whichSelect = 0;
+let whichSelect = 0
 class OrderTabLayout extends React.Component{
   /**
    * 我也不知道为什么要把整个data传出来
    * @param data
    */
   getIndex(data) {
-    UserFundActions.type(data.filterType);
+    UserFundActions.type(data.filterType)
   }
   render() {
     return (
@@ -36,8 +36,8 @@ class OrderTabLayout extends React.Component{
           <PurseListLayout location={{ pathname: this.props.location.pathname }} />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default OrderTabLayout;
+export default OrderTabLayout

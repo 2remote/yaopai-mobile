@@ -1,11 +1,11 @@
-'use strict';
-import React from 'react';
+'use strict'
+import React from 'react'
 
-import WeuiNavbar from '../../UI/WeuiNavbar';
+import WeuiNavbar from '../../UI/WeuiNavbar'
 
 class Order extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state={
       navList: [{
         id: '1',
@@ -39,8 +39,8 @@ class Order extends React.Component {
           {this.props.children}
         </div>
       </div>
-    );
+    )
   }
 }
 
-export { Order as default };
+export { Order as default }

@@ -1,32 +1,32 @@
-import React from 'react';
-import $ from 'jquery';
+import React from 'react'
+import $ from 'jquery'
 
 class AnimationGuide extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('isFirstEnter') === 'true') {
-      $('#animation-guide').hide();
-      return;
-    };
+      $('#animation-guide').hide()
+      return
+    }
     $(() => {
-      $('#guide-1').fadeIn('slow');
+      $('#guide-1').fadeIn('slow')
 
       $('#animation-guide').on('click', () => {
-        $('#guide-1').fadeOut('300');
+        $('#guide-1').fadeOut('300')
         $('#guide-2').fadeIn('slow', () => {
-          $('#animation-guide').unbind('click');
+          $('#animation-guide').unbind('click')
 
           $('#animation-guide').on('click', () => {
             
-            $('#guide-2').fadeOut('300');
+            $('#guide-2').fadeOut('300')
             $('#guide-3').fadeIn('slow', () => {
-              $('#animation-guide').unbind('click');
-              $('#animation-guide').click(() => $('#animation-guide').hide(300));
-            });
+              $('#animation-guide').unbind('click')
+              $('#animation-guide').click(() => $('#animation-guide').hide(300))
+            })
           })
-        });
+        })
       })
 
-      localStorage.setItem('isFirstEnter', 'true');
+      localStorage.setItem('isFirstEnter', 'true')
     })
   }
 
@@ -51,4 +51,4 @@ class AnimationGuide extends React.Component {
   }
 }
 
-export default AnimationGuide;
+export default AnimationGuide

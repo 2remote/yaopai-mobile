@@ -1,21 +1,21 @@
-import React from 'react';
-import { History, Location } from 'react-router';
-import Reflux from 'reflux';
-import API from '../../../../../api';
-import DocumentTitle from 'react-document-title';
+import React from 'react'
+import { History, Location } from 'react-router'
+import Reflux from 'reflux'
+import API from '../../../../../api'
+import DocumentTitle from 'react-document-title'
 
-import UserActions from '../../../../../actions/UserActions';
-import UserStore from '../../../../../stores/UserStore';
-import OrderActions from '../../../../../actions/OrderActions';
-import OrderStore from '../../../../../stores/OrderStore';
-import AlbumsStore from '../../../../../stores/AlbumsStore';
-import AlbumsActions from '../../../../../actions/AlbumsActions';
-import PhotographerActions from '../../../../../actions/PhotographerActions';
-import PhotographerStore from '../../../../../stores/PhotographerStore';
-import Toaster from '../../../../Toast';
+import UserActions from '../../../../../actions/UserActions'
+import UserStore from '../../../../../stores/UserStore'
+import OrderActions from '../../../../../actions/OrderActions'
+import OrderStore from '../../../../../stores/OrderStore'
+import AlbumsStore from '../../../../../stores/AlbumsStore'
+import AlbumsActions from '../../../../../actions/AlbumsActions'
+import PhotographerActions from '../../../../../actions/PhotographerActions'
+import PhotographerStore from '../../../../../stores/PhotographerStore'
+import Toaster from '../../../../Toast'
 
-import BookIntro from './BookIntro';
-import BookForm from './BookForm';
+import BookIntro from './BookIntro'
+import BookForm from './BookForm'
 
 var BookPage = React.createClass({
   getInitialState : function () {
@@ -35,7 +35,7 @@ var BookPage = React.createClass({
   */
   componentDidMount: function() {
     //判断是否登录
-    UserActions.currentUser();
+    UserActions.currentUser()
   },
   /*
     由获取当前用户动作引发至这个方法
@@ -47,27 +47,27 @@ var BookPage = React.createClass({
   */
   _handleUserSotreChange: function(userData){
     if(!userData.isLogin){
-      if (!this.state.lock) return;
-      const confirmLogin = confirm("是否前往登录，然后继续预约？");
+      if (!this.state.lock) return
+      const confirmLogin = confirm("是否前往登录，然后继续预约？")
       if (confirmLogin) {
-        this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+        this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page')
       } else {
         this.setState({
           lock : false
         })
-        this.props.history.goBack();
+        this.props.history.goBack()
       }
 
     } else if (userData.userType == 1) {
-      alert('摄影师目前不能预约！');
-      this.props.history.goBack();
+      alert('摄影师目前不能预约！')
+      this.props.history.goBack()
     }else{
       if(this.props.params.workId && this.props.params.workId != '0')
-        AlbumsActions.get(this.props.params.workId);
+        AlbumsActions.get(this.props.params.workId)
       else if(this.props.params.photographerId){
-        PhotographerActions.get(this.props.params.photographerId);
+        PhotographerActions.get(this.props.params.photographerId)
       }else{
-        this.history.pushState(null,'/work');
+        this.history.pushState(null,'/work')
       }
     }
   },
@@ -77,19 +77,19 @@ var BookPage = React.createClass({
   _handleOrderStoreChange : function(data){
     if(data.flag == 'add'){
       if(data.success){
-        var orderID = data.order.Id;
-        const ua = navigator.userAgent.toLowerCase(); //获取判断浏览器用的对象
+        var orderID = data.order.Id
+        const ua = navigator.userAgent.toLowerCase() //获取判断浏览器用的对象
         if (ua.match(/MicroMessenger/i) != "micromessenger") {
-          alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作');
+          alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作')
           return
         }
-        this.showMessage("预约成功！");
-        const orderId = data.order.Id;
-        const Origin = location.origin;
-        const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
-        location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`;
+        this.showMessage("预约成功！")
+        const orderId = data.order.Id
+        const Origin = location.origin
+        const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`)
+        location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
       }else{
-        this.showMessage(data.hintMessage);
+        this.showMessage(data.hintMessage)
       }
     }
   },
@@ -99,9 +99,9 @@ var BookPage = React.createClass({
   _handleAlbumsStoreChange: function(data){
     if(data.flag == 'get'){
       if(data.hintMessage){
-        this.showMessage(data.hintMessage);
+        this.showMessage(data.hintMessage)
       }else{
-        this.setState({albums : data.workData,photographer : data.workData.User});
+        this.setState({albums : data.workData,photographer : data.workData.User})
       }
     }
   },
@@ -112,9 +112,9 @@ var BookPage = React.createClass({
   _handlePhotographerStoreChange : function(data){
     if(data.flag == 'get'){
       if(data.hintMessage){
-        this.showMessage(data.hintMessage);
+        this.showMessage(data.hintMessage)
       }else{
-        this.setState({albums : '',photographer : data.photographer});
+        this.setState({albums : '',photographer : data.photographer})
       }
     }
   },
@@ -122,11 +122,11 @@ var BookPage = React.createClass({
     this.refs.toast.show(content)
   },
   render: function() {
-    let bookInfo = '';
+    let bookInfo = ''
     if(this.state.albums){
       bookInfo = (
         <BookIntro albums={this.state.albums} />
-      );
+      )
     }else{
       if(this.state.photographer){
         bookInfo =(
@@ -142,17 +142,17 @@ var BookPage = React.createClass({
           <BookForm onSubmit={this.HandleBookWorkFormSubmit} subValue="立即预约"/>
         </div>
       </DocumentTitle>
-    );
+    )
   },
 
   HandleBookWorkFormSubmit: function(data) {
     //相册ID
     if(this.state.albums && this.state.albums.Id)
-      data.AlbumsId = this.state.albums.Id;
+      data.AlbumsId = this.state.albums.Id
     //摄影师ID
-    data.PhotographerId = this.state.albums.Photographer.Id;
-    OrderActions.add(data);
+    data.PhotographerId = this.state.albums.Photographer.Id
+    OrderActions.add(data)
   }
-});
+})
 
-export {BookPage as default};
+export {BookPage as default}
