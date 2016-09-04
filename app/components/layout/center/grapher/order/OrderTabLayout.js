@@ -1,8 +1,8 @@
-import React from 'react';
-import OrderListLayout from './OrderListLayout.jsx';
-import WeuiNavbar from '../../../../UI/WeuiNavbar';
-import { OrderStatus } from '../../../../Tools';
-import OrderActions from '../../../../../actions/OrderActions';
+import React from 'react'
+import OrderListLayout from './OrderListLayout.jsx'
+import WeuiNavbar from '../../../../UI/WeuiNavbar'
+import { OrderStatus } from '../../../../Tools'
+import OrderActions from '../../../../../actions/OrderActions'
 
 let navList = [{
   filterType: OrderStatus.UNCONFIRMED,
@@ -16,7 +16,7 @@ let navList = [{
 },{
   filterType: OrderStatus.CLOSED,
   text: '已关闭'
-}];
+}]
 
 class OrderTabLayout extends React.Component {
   /**
@@ -24,7 +24,7 @@ class OrderTabLayout extends React.Component {
    * @param data
    */
   getIndex(data) {
-    OrderActions.type(data.filterType);
+    OrderActions.type(data.filterType)
   }
   render() {
     return (
@@ -34,8 +34,8 @@ class OrderTabLayout extends React.Component {
           <OrderListLayout location={{ pathname: this.props.location.pathname }} />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default OrderTabLayout;
+export default OrderTabLayout
