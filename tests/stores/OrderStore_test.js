@@ -1,4 +1,4 @@
-import Reflux from 'reflux';
+import Reflux from 'reflux'
 import {
   storeIsDefined,
   storeHasData,
@@ -8,41 +8,41 @@ import {
   makeCheckStoreData,
   makeStoreHasMethod
 }
-from '../refluxTestHelpers';
+from '../refluxTestHelpers'
 import {
   expect
 }
-from 'chai';
+from 'chai'
 
-import OrderStore from '../../app/stores/OrderStore';
+import OrderStore from '../../app/stores/OrderStore'
 
 describe('Order Store Test', () => {
   const successfulRes = {
     Success: true,
     Result: [1, 2, 3]
-  };
+  }
 
-  const errorMsg = 'error message';
+  const errorMsg = 'error message'
 
   const failedRes = {
     Success: false,
     ErrorMsg: errorMsg
-  };
+  }
 
-  const checkOrderStoreData = makeCheckStoreData(OrderStore);
-  const orderStoreHasMethod = makeStoreHasMethod(OrderStore);
+  const checkOrderStoreData = makeCheckStoreData(OrderStore)
+  const orderStoreHasMethod = makeStoreHasMethod(OrderStore)
 
   beforeEach(() => {
     OrderStore.data = {
       hintMessage: '',
       flag: '',
-    };
-  });
+    }
+  })
 
   it('has store', () => {
-    storeIsDefined(OrderStore);
-    storeHasData(OrderStore);
-  });
+    storeIsDefined(OrderStore)
+    storeHasData(OrderStore)
+  })
 
 
 
@@ -54,100 +54,100 @@ describe('Order Store Test', () => {
       'onBookOrder',
       'onCloseOrder',
       'onFailed'
-    ];
+    ]
     methods.forEach((method) => {
-      orderStoreHasMethod(method);
+      orderStoreHasMethod(method)
     })
-  });
+  })
 
   describe('onListOrders', () => {
     it('works on successfulRes', () => {
-      OrderStore.onListOrders(successfulRes);
-      checkOrderStoreData('orders', successfulRes.Result);
-      checkOrderStoreData('hintMessage', '');
-      checkOrderStoreData('success', true);
-      checkOrderStoreData('flag', 'list');
-    });
+      OrderStore.onListOrders(successfulRes)
+      checkOrderStoreData('orders', successfulRes.Result)
+      checkOrderStoreData('hintMessage', '')
+      checkOrderStoreData('success', true)
+      checkOrderStoreData('flag', 'list')
+    })
 
     it('works on failedRes', () => {
-      OrderStore.onListOrders(failedRes);
-      expect(OrderStore.data.orders).is.empty;
-      checkOrderStoreData('hintMessage', errorMsg);
-      checkOrderStoreData('success', false);
-      checkOrderStoreData('flag', 'list');
-    });
-  });
+      OrderStore.onListOrders(failedRes)
+      expect(OrderStore.data.orders).is.empty
+      checkOrderStoreData('hintMessage', errorMsg)
+      checkOrderStoreData('success', false)
+      checkOrderStoreData('flag', 'list')
+    })
+  })
 
   describe('onGetOrder', () => {
     it('works on successfulRes', () => {
-      OrderStore.onGetOrder(successfulRes);
-      checkOrderStoreData('order', successfulRes);
-      checkOrderStoreData('hintMessage', '');
-      checkOrderStoreData('success', true);
-      checkOrderStoreData('flag', 'get');
-    });
+      OrderStore.onGetOrder(successfulRes)
+      checkOrderStoreData('order', successfulRes)
+      checkOrderStoreData('hintMessage', '')
+      checkOrderStoreData('success', true)
+      checkOrderStoreData('flag', 'get')
+    })
 
     it('works on failedRes', () => {
-      OrderStore.onGetOrder(failedRes);
-      expect(OrderStore.data.order).is.empty;
-      checkOrderStoreData('hintMessage', errorMsg);
-      checkOrderStoreData('success', false);
-      checkOrderStoreData('flag', 'get');
-    });
-  });
+      OrderStore.onGetOrder(failedRes)
+      expect(OrderStore.data.order).is.empty
+      checkOrderStoreData('hintMessage', errorMsg)
+      checkOrderStoreData('success', false)
+      checkOrderStoreData('flag', 'get')
+    })
+  })
 
   describe('onComfirmOrder', () => {
     it('work on successfulRes', () => {
-      OrderStore.onComfirmOrder(successfulRes);
-      checkOrderStoreData('hintMessage', '确认订单成功！');
-      checkOrderStoreData('success', true);
-      checkOrderStoreData('flag', 'confirm');
-    });
+      OrderStore.onComfirmOrder(successfulRes)
+      checkOrderStoreData('hintMessage', '确认订单成功！')
+      checkOrderStoreData('success', true)
+      checkOrderStoreData('flag', 'confirm')
+    })
 
     it('works on failedRes', () => {
-      OrderStore.onComfirmOrder(failedRes);
-      checkOrderStoreData('hintMessage', errorMsg);
-      checkOrderStoreData('success', false);
-      checkOrderStoreData('flag', 'confirm');
-    });
-  });
+      OrderStore.onComfirmOrder(failedRes)
+      checkOrderStoreData('hintMessage', errorMsg)
+      checkOrderStoreData('success', false)
+      checkOrderStoreData('flag', 'confirm')
+    })
+  })
 
   describe('onBookOrder', () => {
     it('works on successfulRes', () => {
-      OrderStore.onBookOrder(successfulRes);
-      checkOrderStoreData('hintMessage', '预订成功！');
-      expect(OrderStore.data.order).is.deep.equal({Id: successfulRes.Result});
-      checkOrderStoreData('success', true);
-      checkOrderStoreData('flag', 'add');
-    });
+      OrderStore.onBookOrder(successfulRes)
+      checkOrderStoreData('hintMessage', '预订成功！')
+      expect(OrderStore.data.order).is.deep.equal({Id: successfulRes.Result})
+      checkOrderStoreData('success', true)
+      checkOrderStoreData('flag', 'add')
+    })
 
     it('works on failedRes', () => {
-      OrderStore.onBookOrder(failedRes);
-      checkOrderStoreData('hintMessage', errorMsg);
-      checkOrderStoreData('success', false);
-      checkOrderStoreData('flag', 'add');
-    });
-  });
+      OrderStore.onBookOrder(failedRes)
+      checkOrderStoreData('hintMessage', errorMsg)
+      checkOrderStoreData('success', false)
+      checkOrderStoreData('flag', 'add')
+    })
+  })
 
   describe('onCloseOrder', () => {
     it('works on successfulRes', () => {
-      OrderStore.onCloseOrder(successfulRes);
-      checkOrderStoreData('hintMessage', '关闭订单成功！');
-      checkOrderStoreData('success', true);
-      checkOrderStoreData('flag', 'close');
-    });
+      OrderStore.onCloseOrder(successfulRes)
+      checkOrderStoreData('hintMessage', '关闭订单成功！')
+      checkOrderStoreData('success', true)
+      checkOrderStoreData('flag', 'close')
+    })
 
     it('works on failedRes', () => {
-      OrderStore.onCloseOrder(failedRes);
-      checkOrderStoreData('hintMessage', errorMsg);
-      checkOrderStoreData('success', false);
-      checkOrderStoreData('flag', 'close');
-    });
-  });
+      OrderStore.onCloseOrder(failedRes)
+      checkOrderStoreData('hintMessage', errorMsg)
+      checkOrderStoreData('success', false)
+      checkOrderStoreData('flag', 'close')
+    })
+  })
 
   it('onFailed', () => {
-    OrderStore.onFailed();
-    checkOrderStoreData('hintMessage', '网络错误！');
-    checkOrderStoreData('flag', 'failed');
-  });
-});
+    OrderStore.onFailed()
+    checkOrderStoreData('hintMessage', '网络错误！')
+    checkOrderStoreData('flag', 'failed')
+  })
+})

@@ -1,4 +1,4 @@
-import Reflux from 'reflux';
+import Reflux from 'reflux'
 import {
   storeIsDefined,
   storeHasData,
@@ -6,38 +6,38 @@ import {
   storeCheckCommonUsage,
   makeStoreHasMethod
 }
-from '../refluxTestHelpers';
+from '../refluxTestHelpers'
 import {
   expect
 }
-from 'chai';
+from 'chai'
 
-import PhotographerStore from '../../app/stores/PhotographerStore';
+import PhotographerStore from '../../app/stores/PhotographerStore'
 
-const photographerStoreHasMethod = makeStoreHasMethod(PhotographerStore);
+const photographerStoreHasMethod = makeStoreHasMethod(PhotographerStore)
 
 describe('Photographer Store Test', () => {
   const successfulRes = {
     Success: true,
     Result: [1, 2, 3]
-  };
+  }
 
-  const errorMsg = 'error message';
+  const errorMsg = 'error message'
 
   const failedRes = {
     Success: false,
     ErrorMsg: errorMsg
-  };
+  }
 
   beforeEach(() => {
-    PhotographerStore.data.hintMessage = '';
-    PhotographerStore.data.flag = '';
-  });
+    PhotographerStore.data.hintMessage = ''
+    PhotographerStore.data.flag = ''
+  })
 
   it('has store', () => {
-    storeIsDefined(PhotographerStore);
-    storeHasData(PhotographerStore);
-  });
+    storeIsDefined(PhotographerStore)
+    storeHasData(PhotographerStore)
+  })
 
   describe('has methods', () => {
     const methods = [
@@ -45,19 +45,19 @@ describe('Photographer Store Test', () => {
       'onListSuccess',
       'onFailed',
       'onRecommendListSuccess'
-    ];
+    ]
     methods.forEach((method) => {
-      photographerStoreHasMethod(method);
+      photographerStoreHasMethod(method)
     })
-  });
+  })
 
   describe('works on get success', () => {
-    storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get');
-    PhotographerStore.onGetSuccess(successfulRes);
-    expect(PhotographerStore.data.photographer).to.equal(successfulRes);
-  });
+    storeCheckCommonUsage(PhotographerStore, 'onGetSuccess', 'get')
+    PhotographerStore.onGetSuccess(successfulRes)
+    expect(PhotographerStore.data.photographer).to.equal(successfulRes)
+  })
 
-  storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list', 'photographers');
+  storeCheckCommonUsage(PhotographerStore, 'onListSuccess', 'list', 'photographers')
 
-  storeCheckCommonUsage(PhotographerStore, 'onRecommendListSuccess', 'recommendList', 'photographers');
-});
+  storeCheckCommonUsage(PhotographerStore, 'onRecommendListSuccess', 'recommendList', 'photographers')
+})
