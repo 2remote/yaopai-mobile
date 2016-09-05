@@ -6,7 +6,7 @@ import {Button, Toast} from 'react-weui'
 import ReactMixin from 'react-mixin'
 import { OrderStatus } from '../../../../Tools'
 
-import YPUIOrderCard from '../../../../UI/YPUIOrderCard.jsx'
+import YPUIOrderCard from '../../../../UI/YPUIOrderCard'
 import OrderStore from '../../../../../stores/OrderStore'
 import UserStore from '../../../../../stores/UserStore'
 import { History } from 'react-router'

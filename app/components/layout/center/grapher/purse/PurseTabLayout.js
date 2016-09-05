@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PurseListLayout from './PurseListLayout.jsx'
+import PurseListLayout from './PurseListLayout'
 import WeuiNavbar from '../../../../UI/WeuiNavbar'
 import { OrderStatus } from '../../../../Tools'
 import UserFundActions from '../../../../../actions/UserFundActions'
