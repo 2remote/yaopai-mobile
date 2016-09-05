@@ -1,20 +1,20 @@
 import {
   storeIsDefined, storeHasMethod, storeHasData, storeCheckCommonUsage
 }
-from './refluxTestHelpers';
+from './refluxTestHelpers'
 
 describe('test helpers test', () => {
   it('is a defined store', ()=> {
-    let store = {};
-    storeIsDefined(store);
-  });
+    let store = {}
+    storeIsDefined(store)
+  })
 
   describe('has a defined method', ()=> {
     let store = {
       demoMethod: () => {}
-    };
-    storeHasMethod(store, 'demoMethod');
-  });
+    }
+    storeHasMethod(store, 'demoMethod')
+  })
 
   describe('has a data', ()=> {
     let store = {
@@ -22,9 +22,9 @@ describe('test helpers test', () => {
         demo: 1,
       }
     }
-    storeHasData(store);
-    storeHasData(store, 'demo');
-  });
+    storeHasData(store)
+    storeHasData(store, 'demo')
+  })
 
   describe('will check a method for common usage', () => {
     const store = {
@@ -32,15 +32,15 @@ describe('test helpers test', () => {
       data: {},
       onGetDemoSuccess: function (res) {
         if(res.Success){
-          this.data.photographer = res;
-          this.data.hintMessage = '';
+          this.data.photographer = res
+          this.data.hintMessage = ''
         }else{
-          this.data.hintMessage = res.ErrorMsg;
+          this.data.hintMessage = res.ErrorMsg
         }
-        this.data.flag = 'get';
+        this.data.flag = 'get'
       }
-    };
+    }
 
-    storeCheckCommonUsage(store, 'onGetDemoSuccess', 'get');
-  });
+    storeCheckCommonUsage(store, 'onGetDemoSuccess', 'get')
+  })
 })

@@ -11,7 +11,7 @@ import UserStore from '../../../../../stores/UserStore';
 import UserFundActions from '../../../../../actions/UserFundActions';
 import UserFundStore from '../../../../../stores/UserFundStore';
 
-import YPUIPurseCard from '../../../../UI/YPUIPurseCard.jsx';
+import YPUIPurseCard from '../../../../UI/YPUIPurseCard';
 
 class PurseListLayout extends React.Component {
   constructor() {

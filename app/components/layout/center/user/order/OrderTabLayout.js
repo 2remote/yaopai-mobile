@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OrderListLayout from './OrderListLayout.jsx';
+import OrderListLayout from './OrderListLayout';
 import WeuiNavbar from '../../../../UI/WeuiNavbar';
 import { OrderStatus } from '../../../../Tools';
 import OrderActions from '../../../../../actions/OrderActions';
