@@ -1,13 +1,13 @@
-import React from 'react'
-import validator from 'validator'
-import Toaster from '../../../../Toast'
-import WeUI from 'react-weui'
-const { CellsTitle } = WeUI
+import React from 'react';
+import validator from 'validator';
+import Toaster from '../../../../Toast';
+import WeUI from 'react-weui';
+const { CellsTitle } = WeUI;
 
 var BookForm = React.createClass({
   getDefaultProps: function () {
-    var nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toJSON().slice(0,10)
-    return {userInput: nextDay}
+    var nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toJSON().slice(0,10);
+    return {userInput: nextDay};
   },
   showMessage: function (content) {
     this.refs.toast.show(content)
@@ -49,38 +49,38 @@ var BookForm = React.createClass({
           </div>
         </form>
       </div>
-    )
+    );
   },
   handleSubmit: function(e) {
-    e.preventDefault()
+    e.preventDefault();
     // 获得用户输入
-    const BuyerName     = this.refs.bookName.value.trim()
-    const BuyerTel      = this.refs.phoneImage.value.trim()
-    const AppointedTime = this.refs.bookDate.value.trim()
-    const BuyerMemo     = this.refs.bookComment.value.trim()
-    const telPattern = /^1[34578]\d{9}$/
+    const BuyerName     = this.refs.bookName.value.trim();
+    const BuyerTel      = this.refs.phoneImage.value.trim();
+    const AppointedTime = this.refs.bookDate.value.trim();
+    const BuyerMemo     = this.refs.bookComment.value.trim();
+    const telPattern = /^1[34578]\d{9}$/;
     if (!BuyerName) {
-      this.showMessage('请填写预约姓名')
-      return
+      this.showMessage('请填写预约姓名');
+      return;
     }
     if (!BuyerTel) {
-      this.showMessage('请填写预约电话')
-      return
+      this.showMessage('请填写预约电话');
+      return;
     }
     if (!telPattern.test(BuyerTel)) {
-      this.showMessage('请输入正确的手机号')
-      return
+      this.showMessage('请输入正确的手机号');
+      return;
     }
     if (+new Date(AppointedTime) < +new Date(this.props.userInput)) {
-      this.showMessage('预约时间不能早于当前日期')
-      return
+      this.showMessage('预约时间不能早于当前日期');
+      return;
     }
     // console.log('预约信息', {BuyerName, BuyerTel, AppointedTime});
 
     // 网络存储
-    this.props.onSubmit({BuyerName, BuyerTel, AppointedTime, BuyerMemo})
+    this.props.onSubmit({BuyerName, BuyerTel, AppointedTime, BuyerMemo});
   }
 
-})
+});
 
-export { BookForm as default }
+export { BookForm as default };

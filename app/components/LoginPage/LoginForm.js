@@ -1,14 +1,14 @@
-import React from 'react'
-import UserEntryLayout from './UserEntryLayout'
-import { ButtonBlock } from '../UI/Button'
-import InputGroup from '../UI/InputGroup'
-import { RouteTransition, presets } from 'react-router-transition'
-import Toaster from '../Toast'
-import API from '../../api'
+import React from 'react';
+import UserEntryLayout from './UserEntryLayout';
+import { ButtonBlock } from '../UI/Button';
+import InputGroup from '../UI/InputGroup';
+import { RouteTransition, presets } from 'react-router-transition';
+import Toaster from '../Toast';
+import API from '../../api';
 
 class LoginForm extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       userName : '',
       password : '',
@@ -18,33 +18,33 @@ class LoginForm extends React.Component {
   }
 
   _weChatLogin() {
-    const Origin = location.origin
+    const Origin = location.origin;
     if(this.props.nextPageUrl){
-      location.href = `${API.USER.weixin_login}${encodeURIComponent(`${Origin}/#${this.props.nextPageUrl.nextPage}`)}`
+      location.href = `${API.USER.weixin_login}${encodeURIComponent(`${Origin}/#${this.props.nextPageUrl.nextPage}`)}`;
     } else {
-      location.href = `${API.USER.weixin_login}${encodeURIComponent(`${Origin}/#/work`)}`
+      location.href = `${API.USER.weixin_login}${encodeURIComponent(`${Origin}/#/work`)}`;
     }
   }
 
   _handleLogin() {
-    let userName = this.state.userName
-    let password = this.state.password
-    const telPattern = /^1[34578]\d{9}$/
-    const mailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+    let userName = this.state.userName;
+    let password = this.state.password;
+    const telPattern = /^1[34578]\d{9}$/;
+    const mailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (!userName) {
-      this.showMessage('请输入手机号或邮箱')
-      return
+      this.showMessage('请输入手机号或邮箱');
+      return;
     }
     if(!telPattern.test(userName)) {
       if(!mailPattern.test(userName)) {
-        this.showMessage('手机号或邮箱格式错误')
-        return
+        this.showMessage('手机号或邮箱格式错误');
+        return;
       }
     }
 
     if (!password) {
-      this.showMessage('请输入密码')
-      return
+      this.showMessage('请输入密码');
+      return;
     }
 
     //登录数据
@@ -53,9 +53,9 @@ class LoginForm extends React.Component {
       password : password,
       //autologin : this.state.rememberMe, //记住我的登录需要加上
       autoexpires : 10000
-    }
-    this.props.onLogin(loginData)
-    return false
+    };
+    this.props.onLogin(loginData);
+    return false;
   }
 
   showMessage(content) {
@@ -106,8 +106,8 @@ class LoginForm extends React.Component {
           </form>
         </RouteTransition>
       </div>
-    )
+    );
   }
-}
+};
 
-export default LoginForm
+export default LoginForm;

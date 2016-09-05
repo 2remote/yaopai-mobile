@@ -12,7 +12,7 @@ import $ from 'jquery'
 var browser = {
   versions: function() {
     var u = navigator.userAgent,
-      app = navigator.appVersion
+      app = navigator.appVersion;
     return { //移动终端浏览器版本信息
       trident: u.indexOf('Trident') > -1, //IE内核
       presto: u.indexOf('Presto') > -1, //opera内核
@@ -24,23 +24,23 @@ var browser = {
       iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
       iPad: u.indexOf('iPad') > -1, //是否iPad
       webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
-    }
+    };
   }(),
   language: (navigator.browserLanguage || navigator.language).toLowerCase()
 }
 
-var ua = navigator.userAgent.toLowerCase() //获取判断用的对象
+var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
 
 class SidePage extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       userData : {}
     }
   }
 
   componentDidMount() {
-    UserActions.currentUser()
+    UserActions.currentUser();
 
     /**
      * 设备判断
@@ -70,7 +70,7 @@ class SidePage extends Component {
   }
 
   logout() {
-    UserActions.logout()
+    UserActions.logout();
   }
 
   render() {
@@ -83,8 +83,8 @@ class SidePage extends Component {
         <div />
       )
     } else {
-      const userData = this.state.userData
-      let accountContent = <div></div>
+      const userData = this.state.userData;
+      let accountContent = <div></div>;
       if(userData.isLogin){ // 用户已登录
         accountContent = (
           <div className="menu-slide-header">
@@ -163,6 +163,6 @@ class SidePage extends Component {
   }
 }
 
-ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, 'onUserLoad'))
+ReactMixin.onClass(SidePage, Reflux.listenTo(UserStore, 'onUserLoad'));
 
-export default SidePage
+export default SidePage;

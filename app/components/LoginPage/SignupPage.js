@@ -1,16 +1,16 @@
-import React from 'react'
-import Reflux from 'reflux'
-import UserEntryLayout from './UserEntryLayout'
-import { ButtonBlock } from '../UI/Button'
-import InputGroup from '../UI/InputGroup'
-import validator from 'validator'
-import UserActions from '../../actions/UserActions'
-import UserStore from '../../stores/UserStore'
-import GetCodeActions from '../../actions/GetCodeActions'
-import GetCodeStore from '../../stores/GetCodeStore'
-import { Link, History } from 'react-router'
+import React from 'react';
+import Reflux from 'reflux';
+import UserEntryLayout from './UserEntryLayout';
+import { ButtonBlock } from '../UI/Button';
+import InputGroup from '../UI/InputGroup';
+import validator from 'validator';
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import GetCodeActions from '../../actions/GetCodeActions';
+import GetCodeStore from '../../stores/GetCodeStore';
+import { Link, History } from 'react-router';
 import { RouteTransition, presets } from 'react-router-transition'
-import Toaster from '../Toast'
+import Toaster from '../Toast';
 
 let SignupPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),Reflux.listenTo(GetCodeStore,'_onGetCodeStoreChange'),History],
@@ -25,10 +25,10 @@ let SignupPage = React.createClass({
   _onUserStoreChange : function(data){
     if(data.flag == 'register'){
       if(data.hintMessage){
-        this.showMessage(data.hintMessage)
+        this.showMessage(data.hintMessage);
       }else{
         //注册成功
-        this.history.pushState('/login_page')
+        this.history.pushState('/login_page');
       }
     }
   },
@@ -36,60 +36,60 @@ let SignupPage = React.createClass({
   _onGetCodeStoreChange : function(data){
     if (data.flag == 'registerCode') {
       if (data.left == 0) {
-        this.showMessage(data.result)
-        return
+        this.showMessage(data.result);
+        return;
       }
-      this.setState({codeLeft : data.left})
+      this.setState({codeLeft : data.left});
     }
   },
 
   _handleGetCode : function(){
-    if(this.state.codeLeft > 0) return
-    let phone = this.state.phone
-    const pattern = /^1[34578]\d{9}$/
+    if(this.state.codeLeft > 0) return;
+    let phone = this.state.phone;
+    const pattern = /^1[34578]\d{9}$/;
     if(pattern.test(phone)){
-      GetCodeActions.sendTelRegister({tel:phone})
+      GetCodeActions.sendTelRegister({tel:phone});
     }else{
-      this.showMessage('请输入正确的手机号码')
+      this.showMessage('请输入正确的手机号码');
     }
-    return false
+    return false;
   },
   _handleRegister : function(){
-    let phone = this.state.phone
-    let code = this.state.code
-    let password1 = this.state.password1
+    let phone = this.state.phone;
+    let code = this.state.code;
+    let password1 = this.state.password1;
 
-    const pattern = /^1[34578]\d{9}$/
+    const pattern = /^1[34578]\d{9}$/;
     if(!pattern.test(phone)){
-      this.showMessage('请输入正确的手机号码')
-      return
+      this.showMessage('请输入正确的手机号码');
+      return;
     }
     if(!password1){
-      this.showMessage('请输入密码')
-      return
+      this.showMessage('请输入密码');
+      return;
     }
     if(password1.length < 6 || password1.length > 18){
-      this.showMessage('密码长度应在6-18之间')
-      return
+      this.showMessage('密码长度应在6-18之间');
+      return;
     }
     if(!code){
-      this.showMessage('请输入验证码')
-      return
+      this.showMessage('请输入验证码');
+      return;
     }
     if(!validator.isNumeric(code) || !validator.isLength(code,4,4)){
-      this.showMessage('请输入4位数字验证码')
-      return
+      this.showMessage('请输入4位数字验证码');
+      return;
     }
-    let registerData = {tel : phone,password : password1,code : code}
-    UserActions.register(registerData)
-    return false
+    let registerData = {tel : phone,password : password1,code : code};
+    UserActions.register(registerData);
+    return false;
   },
   showMessage: function (content) {
     this.refs.toast.show(content)
   },
 
   goEmailSignup: function() {
-    this.history.pushState({nextPage : this.props.pathname},'/email_signup')
+    this.history.pushState({nextPage : this.props.pathname},'/email_signup');
   },
   render() {
     return (
@@ -136,8 +136,8 @@ let SignupPage = React.createClass({
         </RouteTransition>
         <Toaster ref="toast"/>
       </div>
-    )
+    );
   }
-})
+});
 
-export {SignupPage as default}
+export {SignupPage as default};

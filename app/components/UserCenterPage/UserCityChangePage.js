@@ -1,17 +1,17 @@
-import React from 'react'
-import Router from 'react-router'
-import Reflux from 'reflux'
-import DocumentTitle from 'react-document-title'
+import React from 'react';
+import Router from 'react-router';
+import Reflux from 'reflux';
+import DocumentTitle from 'react-document-title';
 
-import AreaSelector from './AreaSelector'
+import AreaSelector from './AreaSelector';
 
-import {History,Location} from 'react-router'
+import {History,Location} from 'react-router';
 
-import UserActions from '../../actions/UserActions'
-import UserStore from '../../stores/UserStore'
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 
-import _ from 'underscore'
-import { makeTextButton } from '../Tools'
+import _ from 'underscore';
+import { makeTextButton } from '../Tools';
 
 var UserCityChangePage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -24,28 +24,28 @@ var UserCityChangePage = React.createClass({
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       this.setState({userInfo : data})
-      console.log('getCurrentUserDetail: ', data)
+      console.log('getCurrentUserDetail: ', data);
     }
   },
 
   onChangeUserCity : function (e) {
-    var areaId = this.state.areaId
-    var areaName = this.state.areaName
-    console.log(areaId, areaName)
+    var areaId = this.state.areaId;
+    var areaName = this.state.areaName;
+    console.log(areaId, areaName);
     if(areaId != "0") {
-      UserActions.changeUserCity(areaId, areaName)
-      this.props.history.pushState(null, '/center/user_edit_profile')
+      UserActions.changeUserCity(areaId, areaName);
+      this.props.history.pushState(null, '/center/user_edit_profile');
     }else{
-      alert('请选择所在城市')
+      alert('请选择所在城市');
     }
   },
 
   onAreaChange : function  (areaId, areaName) {
-    this.setState({areaId: areaId})
-    this.setState({areaName : areaName})
+    this.setState({areaId: areaId});
+    this.setState({areaName : areaName});
   },
 
   render: function() {
@@ -66,8 +66,8 @@ var UserCityChangePage = React.createClass({
           </p>
         </div>
       </div>
-    )
+    );
   }
-})
+});
 
-export {UserCityChangePage as default}
+export {UserCityChangePage as default};

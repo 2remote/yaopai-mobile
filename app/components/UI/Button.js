@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const ButtonBlock = ({buttonType, value, handleSubmit}) => (
   <div className="btn-block">

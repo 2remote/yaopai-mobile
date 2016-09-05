@@ -1,39 +1,39 @@
 // var API_URL = 'http://localhost:3000';
-const DEV_ENV = '//dev.api.aiyaopai.com/'
-const PRODUCTION_ENV = '//api.aiyaopai.com/'
+const DEV_ENV = '//dev.api.aiyaopai.com/';
+const PRODUCTION_ENV = '//api.aiyaopai.com/';
 
-let DOMAIN = DEV_ENV
+let DOMAIN = DEV_ENV;
 
 //获取当前网站的根目录
-var Local_Host = ""
+var Local_Host = "";
 
 if(typeof window != 'undefined'){
-  Local_Host = window.location.host
+  Local_Host = window.location.host;
 }
 
 //根据local host切换api
 function hasHost(host) {
-  return host.length > 0
+  return host.length > 0;
 }
 
 function isDevHost(host) {
-  const re = /mobile-pr|dev\.|192\.|localhost|0\./i
-  const founds = host.match(re)
+  const re = /mobile-pr|dev\.|192\.|localhost|0\./i;
+  const founds = host.match(re);
   if (founds != null) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
 function isProdHost(host) {
-  return !isDevHost(host)
+  return !isDevHost(host);
 }
 
 if (hasHost(Local_Host) && isProdHost(Local_Host)) {
-  DOMAIN = PRODUCTION_ENV
+  DOMAIN = PRODUCTION_ENV;
 }
-const API_URL = DOMAIN + '?api='
+const API_URL = DOMAIN + '?api=';
 
 var API_CONST = {
   isProd: DOMAIN === PRODUCTION_ENV,
@@ -133,15 +133,15 @@ var API_CONST = {
   COMMON: {
     area_list: API_URL + 'Area.List'
   }
-}
+};
 
 function getRootPath_web() {
-  var strFullPath = window.document.location.href
-  var strPath = window.document.location.pathname
-  var pos = strFullPath.indexOf(strPath)
-  var prePath = strFullPath.substring(0, pos)
-  var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1)
-  return (prePath + postPath)
+  var strFullPath = window.document.location.href;
+  var strPath = window.document.location.pathname;
+  var pos = strFullPath.indexOf(strPath);
+  var prePath = strFullPath.substring(0, pos);
+  var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
+  return (prePath + postPath);
 }
 
-module.exports = API_CONST
+module.exports = API_CONST;

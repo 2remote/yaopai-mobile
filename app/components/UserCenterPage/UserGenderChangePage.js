@@ -1,15 +1,15 @@
-import React from 'react'
-import Router from 'react-router'
-import Reflux from 'reflux'
-import DocumentTitle from 'react-document-title'
+import React from 'react';
+import Router from 'react-router';
+import Reflux from 'reflux';
+import DocumentTitle from 'react-document-title';
 
-import {History,Location} from 'react-router'
+import {History,Location} from 'react-router';
 
-import UserActions from '../../actions/UserActions'
-import UserStore from '../../stores/UserStore'
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
 
-import _ from 'underscore'
-import { makeTextButton } from '../Tools'
+import _ from 'underscore';
+import { makeTextButton } from '../Tools';
 
 var UserGenderChange = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -22,7 +22,7 @@ var UserGenderChange = React.createClass({
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
     }else{
       this.setState({userInfo : data})
     }
@@ -33,20 +33,20 @@ var UserGenderChange = React.createClass({
   },
 
   onChangeUserGender : function (e) {
-    var gender = this.state.gender
-    console.log('onChangeUserGender: ', gender)
+    var gender = this.state.gender;
+    console.log('onChangeUserGender: ', gender);
     if(_.isEmpty(gender)){
-      alert('请选择性别')
+      alert('请选择性别');
     }else{
-      UserActions.changeUserGender(gender)
-      this.props.history.pushState(null, '/center/user_edit_profile')
+      UserActions.changeUserGender(gender);
+      this.props.history.pushState(null, '/center/user_edit_profile');
     }
   },
 
   onChangeCurrentGender : function (e) {
-    var flag = e.target.value.trim()
-    this.setState({gender: flag})
-    console.log("flag changed to:", flag)
+    var flag = e.target.value.trim();
+    this.setState({gender: flag});
+    console.log("flag changed to:", flag);
   },
 
   render: function() {
@@ -100,8 +100,8 @@ var UserGenderChange = React.createClass({
           </p>
         </div>
       </div>
-    )
+    );
   }
-})
+});
 
-export {UserGenderChange as default}
+export {UserGenderChange as default};

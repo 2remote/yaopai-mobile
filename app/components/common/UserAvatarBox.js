@@ -1,11 +1,11 @@
-import React from 'react'
-import {Link} from 'react-router'
-import AvatarUploader from '../UserCenterPage/AvatarUploader.js'
-import {parseImageUrl} from '../Tools'
+import React from 'react';
+import {Link} from 'react-router';
+import AvatarUploader from '../UserCenterPage/AvatarUploader.js';
+import {parseImageUrl} from '../Tools';
 
 class UserAvatarBox extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       data: {
         userName: '未命名',
@@ -41,11 +41,11 @@ class UserAvatarBox extends React.Component {
 
     const avatar = this.props.data.avatar ? parseImageUrl(this.props.data.avatar,78,78) : null
 
-    let goCenterPath = ''
+    let goCenterPath = '';
     if (this.props.data.userType === 0) { // 如果登录的是普通用户
-      goCenterPath = "/center/u"
+      goCenterPath = "/center/u";
     } else if (this.props.data.userType === 1) { // 如果登录的用户是摄影师
-      goCenterPath = "/center/g"
+      goCenterPath = "/center/g";
     }
 
     return (
@@ -82,8 +82,8 @@ class UserAvatarBox extends React.Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export {UserAvatarBox as default}
+export {UserAvatarBox as default};

@@ -1,6 +1,6 @@
-import Reflux from 'reflux'
-import UserFundActions from '../actions/UserFundActions'
-import assert from 'assert'
+import Reflux from 'reflux';
+import UserFundActions from '../actions/UserFundActions';
+import assert from 'assert';
 
 var UserFundStore = Reflux.createStore({
   init: function() {
@@ -23,100 +23,100 @@ var UserFundStore = Reflux.createStore({
         receive: ''
       },
       userToken: '',
-    }
-    this.listenTo(UserFundActions.currentAccount.success, this.onCurrentAccountSuccess)
-    this.listenTo(UserFundActions.currentAccount.failed, this.onFailed)
+    };
+    this.listenTo(UserFundActions.currentAccount.success, this.onCurrentAccountSuccess);
+    this.listenTo(UserFundActions.currentAccount.failed, this.onFailed);
 
-    this.listenTo(UserFundActions.recordsSearch.success, this.onRecordsSearchSuccess)
-    this.listenTo(UserFundActions.recordsSearch.failed, this.onFailed)
+    this.listenTo(UserFundActions.recordsSearch.success, this.onRecordsSearchSuccess);
+    this.listenTo(UserFundActions.recordsSearch.failed, this.onFailed);
 
-    this.listenTo(UserFundActions.sendTelAccount.success, this.onSendTelAccountSuccess)
-    this.listenTo(UserFundActions.sendTelAccount.failed, this.onFailed)
+    this.listenTo(UserFundActions.sendTelAccount.success, this.onSendTelAccountSuccess);
+    this.listenTo(UserFundActions.sendTelAccount.failed, this.onFailed);
 
-    this.listenTo(UserFundActions.receiveTelAccount.success, this.onReceiveTelAccountSuccess)
-    this.listenTo(UserFundActions.receiveTelAccount.failed, this.onFailed)
+    this.listenTo(UserFundActions.receiveTelAccount.success, this.onReceiveTelAccountSuccess);
+    this.listenTo(UserFundActions.receiveTelAccount.failed, this.onFailed);
     // 得到 token
-    this.listenTo(UserFundActions.getUserToken.success, this.onGetUserTokenSuccess)
-    this.listenTo(UserFundActions.getUserToken.failed, this.onFailed)
+    this.listenTo(UserFundActions.getUserToken.success, this.onGetUserTokenSuccess);
+    this.listenTo(UserFundActions.getUserToken.failed, this.onFailed);
 
-    this.listenTo(UserFundActions.type,this.onType)
+    this.listenTo(UserFundActions.type,this.onType);
   },
   _fillData: function(data) {
-    this.data.purse.userId = data.Id
-    this.data.purse.Available = data.Available
-    this.data.purse.Receivable = data.Receivable
-    this.data.purse.Frozen = data.Frozen
-    this.data.purse.TotalRevenue = data.TotalRevenue
+    this.data.purse.userId = data.Id;
+    this.data.purse.Available = data.Available;
+    this.data.purse.Receivable = data.Receivable;
+    this.data.purse.Frozen = data.Frozen;
+    this.data.purse.TotalRevenue = data.TotalRevenue;
 
-    this.data.list = data.Result
+    this.data.list = data.Result;
 
-    this.data.Success =  data.Success
+    this.data.Success =  data.Success;
   },
   onCurrentAccountSuccess: function (data) {
     if (data.Success) {
-      this.data.hintMessage = ''
-      this.data.success = true
-      this._fillData(data)
+      this.data.hintMessage = '';
+      this.data.success = true;
+      this._fillData(data);
     } else {
-      this.data.hintMessage = data.ErrorMsg
-      this.data.success = false
+      this.data.hintMessage = data.ErrorMsg;
+      this.data.success = false;
     }
-    this.trigger(this.data)
+    this.trigger(this.data);
   },
 
   onRecordsSearchSuccess: function(data) {
     if (data.Success) {
-      this.data.hintMessage = ''
-      this.data.success = true
-      this._fillData(data)
+      this.data.hintMessage = '';
+      this.data.success = true;
+      this._fillData(data);
     } else {
-      this.data.hintMessage = data.ErrorMsg
-      this.data.success = false
+      this.data.hintMessage = data.ErrorMsg;
+      this.data.success = false;
     }
-    this.trigger(this.data)
+    this.trigger(this.data);
   },
 
   onSendTelAccountSuccess: function(data) {//后台发送验证码给用户
     if (data.Success) {
-      this.data.hintMessage = ''
-      this.data.checkingState.receive = ''
-      this.data.checkingState.send = '验证码发送成功'
+      this.data.hintMessage = '';
+      this.data.checkingState.receive = '';
+      this.data.checkingState.send = '验证码发送成功';
     } else {
-      this.data.checkingState.send= data.ErrorMsg
+      this.data.checkingState.send= data.ErrorMsg;
     }
-    this.trigger(this.data)
+    this.trigger(this.data);
   },
 
   onReceiveTelAccountSuccess: function(data) {//检查验证码是否正确
     if (data.Success) {
-      this.data.hintMessage = ''
-      this.data.checkingState.send = ''
-      this.data.checkingState.receive = '验证码正确'
+      this.data.hintMessage = '';
+      this.data.checkingState.send = '';
+      this.data.checkingState.receive = '验证码正确';
     } else {
-      this.data.checkingState.receive = '验证码错误'
+      this.data.checkingState.receive = '验证码错误';
     }
-    this.trigger(this.data)
+    this.trigger(this.data);
   },
 
   onFailed: function(data) {
-    this.data.hintMessage = "网络出错啦！"
-    this.trigger(this.data)
+    this.data.hintMessage = "网络出错啦！";
+    this.trigger(this.data);
   },
 
   onType(filterType) {
-    this.data.filterType = filterType
-    this.data.flag = 'type'
-    this.trigger(this.data)
+    this.data.filterType = filterType;
+    this.data.flag = 'type';
+    this.trigger(this.data);
   },
 
   onGetUserTokenSuccess: function (data) {
     if (data.Success) {
       this.data.userToken = data.Token
     } else {
-      this.data.hintMessage = data.ErrorMsg
+      this.data.hintMessage = data.ErrorMsg;
     }
-    this.trigger(this.data)
+    this.trigger(this.data);
   },
-})
+});
 
-export {UserFundStore as default}
+export {UserFundStore as default};

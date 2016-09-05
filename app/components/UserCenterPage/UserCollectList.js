@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router'
-import UserMarkLayout from './UserMarkLayout'
+import React from 'react';
+import { Link } from 'react-router';
+import UserMarkLayout from './UserMarkLayout';
 import { RouteTransition, presets } from 'react-router-transition'
 
-import Reflux from 'reflux'
-import ReactMixin from 'react-mixin'
-import AlbumsActions from '../../actions/AlbumsActions'
-import AlbumsStore from '../../stores/AlbumsStore'
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import AlbumsActions from '../../actions/AlbumsActions';
+import AlbumsStore from '../../stores/AlbumsStore';
 
 class UserCollectList extends React.Component{
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       CollectRow: <div></div>,
     }
@@ -53,7 +53,7 @@ class UserCollectList extends React.Component{
             </div>
           </section>
         ))
-      })
+      });
     }
   }
 
@@ -69,5 +69,5 @@ class UserCollectList extends React.Component{
   }
 }
 
-ReactMixin.onClass(UserCollectList, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'))
+ReactMixin.onClass(UserCollectList, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'));
 export default UserCollectList

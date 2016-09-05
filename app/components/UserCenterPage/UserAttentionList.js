@@ -1,18 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
 
-import UserMarkLayout from './UserMarkLayout'
+import UserMarkLayout from './UserMarkLayout';
 import { RouteTransition, presets } from 'react-router-transition'
-import {imgModifier} from '../Tools'
+import {imgModifier} from '../Tools';
 
-import Reflux from 'reflux'
-import ReactMixin from 'react-mixin'
-import PhotographerActions from '../../actions/PhotographerActions'
-import PhotographerStore from '../../stores/PhotographerStore'
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import PhotographerActions from '../../actions/PhotographerActions';
+import PhotographerStore from '../../stores/PhotographerStore';
 
 class UserAttentionList extends React.Component{
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       AttentionRow: <div></div>,
     }
@@ -68,5 +68,5 @@ class UserAttentionList extends React.Component{
   }
 }
 
-ReactMixin.onClass(UserAttentionList, Reflux.listenTo(PhotographerStore, 'onQuerySuccess'))
+ReactMixin.onClass(UserAttentionList, Reflux.listenTo(PhotographerStore, 'onQuerySuccess'));
 export default UserAttentionList

@@ -13,7 +13,7 @@ import $ from 'jquery'
 
 class GrapherDetailPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       grapherInfo:{
         User: { NickName: '读取中...', },
@@ -24,7 +24,7 @@ class GrapherDetailPage extends React.Component {
   }
 
   componentWillMount() {
-    const userId = this.props.params.Id
+    const userId = this.props.params.Id;
     // 蛋疼的传参
     AlbumsActions.search({userId})
   }
@@ -43,9 +43,9 @@ class GrapherDetailPage extends React.Component {
         <WorkIntroGrapherList data={this.state.works} />
         <LinkToApp />
       </div>
-    )
+    );
   }
-}
+};
 
-ReactMixin.onClass(GrapherDetailPage, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'))
-export {GrapherDetailPage as default}
+ReactMixin.onClass(GrapherDetailPage, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'));
+export {GrapherDetailPage as default};

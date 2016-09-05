@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const windowHeight = document.body.scrollHeight
+const windowHeight = document.body.scrollHeight;
 const UserEntryLayout = () => (
   <section className="entry-container" style={{height: windowHeight * 0.5 + 'px'}}>
     <header className="entry-header">

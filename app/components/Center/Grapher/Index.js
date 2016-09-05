@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import WeuiCells from '../../UI/WeuiCells'
+import WeuiCells from '../../UI/WeuiCells';
 
 
 class Grapher extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state={
       cells: {
         list1: [{
@@ -40,8 +40,8 @@ class Grapher extends React.Component {
         <WeuiCells cellList={this.state.cells.list1} />
         <WeuiCells cellList={this.state.cells.list2} />
       </div>
-    )
+    );
   }
 }
 
-export { Grapher as default }
+export { Grapher as default };

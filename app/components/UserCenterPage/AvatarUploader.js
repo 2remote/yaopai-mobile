@@ -1,19 +1,19 @@
-import React from 'react'
-import _ from 'underscore'
+import React from 'react';
+import _ from 'underscore';
 
-import Reflux from 'reflux'
-import ReactMixin from 'react-mixin'
-import UserFundActions from '../../actions/UserFundActions'
-import UserFundStore from '../../stores/UserFundStore'
-import {History,Location} from 'react-router'
-import UserActions from '../../actions/UserActions'
-import UserStore from '../../stores/UserStore'
-import {Button, Toast} from 'react-weui'
-import {parseImageUrl} from '../Tools'
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import UserFundActions from '../../actions/UserFundActions';
+import UserFundStore from '../../stores/UserFundStore';
+import {History,Location} from 'react-router';
+import UserActions from '../../actions/UserActions';
+import UserStore from '../../stores/UserStore';
+import {Button, Toast} from 'react-weui';
+import {parseImageUrl} from '../Tools';
 
 class AvatarUploader extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       uploadFailedShow: false,
       uploadingShow: false,
@@ -45,8 +45,8 @@ class AvatarUploader extends React.Component {
   }
 
   componentDidMount(){
-    UserActions.currentUser()
-    UserFundActions.getUserToken()
+    UserActions.currentUser();
+    UserFundActions.getUserToken();
   }
 
   onGetUserToken(data){ // 获取上传头像所需 Token
@@ -60,7 +60,7 @@ class AvatarUploader extends React.Component {
   _onUserStoreChange(data){
     if(!data.isLogin){
       if (!this.props.location) {
-        this.history.pushState(null,'/login_page')
+        this.history.pushState(null,'/login_page');
       } else {
         this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
       }
@@ -69,86 +69,86 @@ class AvatarUploader extends React.Component {
       //得到当前用户的预约订单
       this.setState({userInfo : data})
 
-      var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin)
-      var definedLogin = ! undefinedLogin
-      var emptyQiniu = _.isEmpty(this.state.qiniu)
+      var undefinedLogin = _.isUndefined(this.state.userInfo.isLogin);
+      var definedLogin = ! undefinedLogin;
+      var emptyQiniu = _.isEmpty(this.state.qiniu);
 
       if(emptyQiniu && definedLogin && this.state.userInfo.isLogin){
         if(data.flag == 'currentUser'){
-          this.initUploader(data.pingToken)
+          this.initUploader(data.pingToken);
         }
       }
     }
   }
 
   initUploader(sessionToken){
-    var option = this.state.uploaderOption
-    const self = this
+    var option = this.state.uploaderOption;
+    const self = this;
     option.uptoken_func = function(){ // 在需要获取uptoken时，该方法会被调用
       // 如何拿到 this.state ？
-      let token = self.state.token
+      let token = self.state.token;
       if(!token) {
-        console.error('没拿到 token !')
+        console.error('没拿到 token !');
       }
-      return token
-    }
-    option.init.FileUploaded = this.onFileUploaded.bind(this)
-    option.init.UploadProgress = this.onUploadProgress.bind(this)
-    option.init.Error = this.onErrors.bind(this)
-    option.init.BeforeUpload = this.onBeforeUpload.bind(this)
-    var qiniu = Qiniu.uploader(option)
-    this.setState({qiniu: qiniu})
+      return token;
+    };
+    option.init.FileUploaded = this.onFileUploaded.bind(this);
+    option.init.UploadProgress = this.onUploadProgress.bind(this);
+    option.init.Error = this.onErrors.bind(this);
+    option.init.BeforeUpload = this.onBeforeUpload.bind(this);
+    var qiniu = Qiniu.uploader(option);
+    this.setState({qiniu: qiniu});
   }
 
   onErrors(up, err, errTip) {
-    this.handleUploadFailedClick()
-    this.setState({uploadingShow : false})
-    console.log(up, err, errTip)
+    this.handleUploadFailedClick();
+    this.setState({uploadingShow : false});
+    console.log(up, err, errTip);
   }
 
   onFileUploaded(up,file,info){
-    var res = JSON.parse(info)
+    var res = JSON.parse(info);
 
     // 上传成功后，更新头像
-    UserActions.changeAvatarOnServer(res.Url)
+    UserActions.changeAvatarOnServer(res.Url);
 
     // 本地更新头像
-    var newUserInfo = this.state.userInfo
-    newUserInfo.avatar = res.Url
-    this.setState({userInfo : newUserInfo}, this.setState({uploadingShow : false}))
+    var newUserInfo = this.state.userInfo;
+    newUserInfo.avatar = res.Url;
+    this.setState({userInfo : newUserInfo}, this.setState({uploadingShow : false}));
 
-    this.handleUploadedClick()
-    UserActions.currentUser()
+    this.handleUploadedClick();
+    UserActions.currentUser();
   }
 
   onBeforeUpload(up, file) {
-    this.setState({uploadingShow : true})
+    this.setState({uploadingShow : true});
   }
 
   onUploadProgress(up,file){
-    this.setState({progress :file.percent})
+    this.setState({progress :file.percent});
   }
 
   handleUploadedClick() {
     this.setState({uploadedShow: true}, function () {
       setTimeout(function () {
-        this.setState({uploadedShow: false})
-      }.bind(this), 2000)
-    })
+        this.setState({uploadedShow: false});
+      }.bind(this), 2000);
+    });
   }
 
   handleUploadFailedClick() {
     this.setState({uploadFailedShow: true}, function () {
       setTimeout(function () {
-        this.setState({uploadFailedShow: false})
-      }.bind(this), 3000)
-    })
+        this.setState({uploadFailedShow: false});
+      }.bind(this), 3000);
+    });
   }
 
   render() {
-    var avatarImage = this.props.defaultImage
+    var avatarImage = this.props.defaultImage;
     if(!_.isEmpty(this.state.userInfo.avatar)){
-      avatarImage = parseImageUrl(this.state.userInfo.avatar,78,78)
+      avatarImage = parseImageUrl(this.state.userInfo.avatar,78,78);
     }
     return (
       <div>
@@ -180,12 +180,12 @@ class AvatarUploader extends React.Component {
           头像上传失败，请重试！
         </Toast>
       </div>
-    )
+    );
   }
-}
+};
 
-ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserFundStore, 'onGetUserToken'))
-ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserStore, '_onUserStoreChange'))
-ReactMixin.onClass(AvatarUploader, History)
+ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserFundStore, 'onGetUserToken'));
+ReactMixin.onClass(AvatarUploader, Reflux.listenTo(UserStore, '_onUserStoreChange'));
+ReactMixin.onClass(AvatarUploader, History);
 
-export {AvatarUploader as default}
+export {AvatarUploader as default};

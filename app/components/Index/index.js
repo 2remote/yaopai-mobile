@@ -1,21 +1,21 @@
-import React from 'react'
-import Reflux from 'reflux'
-import { Router, Route, Link } from 'react-router'
+import React from 'react';
+import Reflux from 'reflux';
+import { Router, Route, Link } from 'react-router';
 
-import ReactSwipe from 'react-swipe'
-import DocumentTitle from 'react-document-title'
-import UserActions from '../../actions/UserActions'
-import PhotographerActions from '../../actions/PhotographerActions'
-import PhotographerStore from '../../stores/PhotographerStore'
-import AdActions from '../../actions/AdActions'
-import AdStore from '../../stores/AdStore'
-import './index.scss'
-import { TITLE } from '../Tools'
+import ReactSwipe from 'react-swipe';
+import DocumentTitle from 'react-document-title';
+import UserActions from '../../actions/UserActions';
+import PhotographerActions from '../../actions/PhotographerActions';
+import PhotographerStore from '../../stores/PhotographerStore';
+import AdActions from '../../actions/AdActions';
+import AdStore from '../../stores/AdStore';
+import './index.scss';
+import { TITLE } from '../Tools';
 
-import SidePage from '../UI/SidePage'
-import ImageBoxGrid from './ImageBoxGrid'
-import Slider from './Slider'
-import WechatShare from '../Weixin/WechatShare'
+import SidePage from '../UI/SidePage';
+import ImageBoxGrid from './ImageBoxGrid';
+import Slider from './Slider';
+import WechatShare from '../Weixin/WechatShare';
 
 var Index = React.createClass({
   mixins : [
@@ -29,33 +29,33 @@ var Index = React.createClass({
       recommendGraphers : [],
       recommendWorks : [],
       adWorks:[]
-    }
+    };
   },
   componentDidMount : function () {
-    UserActions.currentUser()
+    UserActions.currentUser();
     //得到推荐摄影师
-    PhotographerActions.recommendList()
+    PhotographerActions.recommendList();
 
     // 获得Ad
-    AdActions.list()
+    AdActions.list();
   },
 
   _onAdStoreChange : function (data) {
-    console.log('_onAdStoreChange.data', data)
+    console.log('_onAdStoreChange.data', data);
     if(data.flag == 'list'){
       if(data.hintMessage){
-        console.log(data.hintMessage)
+        console.log(data.hintMessage);
       }else{
-        this.setState({adWorks : data.workList})
+        this.setState({adWorks : data.workList});
       }
     }
   },
   _onPhotographerStoreChange : function(data){
     if(data.flag == 'recommendList'){
       if(data.hintMessage){
-        console.log(data.hintMessage)
+        console.log(data.hintMessage);
       }else{
-        this.setState({recommendGraphers : data.photographers})
+        this.setState({recommendGraphers : data.photographers});
       }
     }
   },
@@ -141,8 +141,8 @@ var Index = React.createClass({
 
       </div>
       </DocumentTitle>
-      )
+      );
   }
-})
+});
 
-export {Index as default}
+export {Index as default};

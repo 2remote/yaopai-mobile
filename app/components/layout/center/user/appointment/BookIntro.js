@@ -1,14 +1,14 @@
-import React from 'react'
-import WeUI from 'react-weui'
-const { CellsTitle } = WeUI
-import {imgModifier} from '../../../../Tools'
+import React from 'react';
+import WeUI from 'react-weui';
+const { CellsTitle } = WeUI;
+import {imgModifier} from '../../../../Tools';
 
 var BookIntro = React.createClass({
 
   getDefaultProps: function() {
     return {
       photographer:[]
-    }
+    };
   },
 
   render: function() {
@@ -37,8 +37,8 @@ var BookIntro = React.createClass({
           </a>
         </section>
       </div>
-    )
+    );
   }
-})
+});
 
-export {BookIntro as default}
+export {BookIntro as default};

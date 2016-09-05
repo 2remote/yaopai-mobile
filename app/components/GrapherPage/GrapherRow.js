@@ -1,15 +1,15 @@
-import React from 'react'
-import Reflux from 'reflux'
-import ReactMixin from 'react-mixin'
-import { Link } from 'react-router'
-import {imgModifier} from '../Tools'
+import React from 'react';
+import Reflux from 'reflux';
+import ReactMixin from 'react-mixin';
+import { Link } from 'react-router';
+import {imgModifier} from '../Tools';
 
-import PhotographerAlbumPoolAction from '../../actions/PhotographerAlbumPoolAction'
-import PhotographerAlbumPoolStore from '../../stores/PhotographerAlbumPoolStore'
+import PhotographerAlbumPoolAction from '../../actions/PhotographerAlbumPoolAction';
+import PhotographerAlbumPoolStore from '../../stores/PhotographerAlbumPoolStore';
 
 class GrapherRow extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       photographerAlbumPool : {},
     }
@@ -25,15 +25,15 @@ class GrapherRow extends React.Component {
     if(!this.state.photographerAlbumPool[this.props.data.Id] && !this.state.already) {
       this.setState({
         already: true,
-      })
-      PhotographerAlbumPoolAction.update(this.props.data.Id)
+      });
+      PhotographerAlbumPoolAction.update(this.props.data.Id);
     }
   }
   render() {
-    const grapherAvatar = imgModifier(this.props.data.Avatar, "grapherAvatar")
-    let pool = this.state.photographerAlbumPool
-    let currentId = this.props.data.Id
-    let covers = this.state.photographerAlbumPool[currentId] || []
+    const grapherAvatar = imgModifier(this.props.data.Avatar, "grapherAvatar");
+    let pool = this.state.photographerAlbumPool;
+    let currentId = this.props.data.Id;
+    let covers = this.state.photographerAlbumPool[currentId] || [];
 
     return (
       <div className="grapherRow">
@@ -70,10 +70,10 @@ class GrapherRow extends React.Component {
           </div>
         </Link>
       </div>
-    )
+    );
   }
-}
+};
 
-ReactMixin.onClass(GrapherRow, Reflux.listenTo(PhotographerAlbumPoolStore, 'photographerAlbumPool'))
+ReactMixin.onClass(GrapherRow, Reflux.listenTo(PhotographerAlbumPoolStore, 'photographerAlbumPool'));
 
-export {GrapherRow as default}
+export {GrapherRow as default};

@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import $ from 'jquery';
 var HttpFactory = {
   post : function (url,data,success,failed) {
     //json post
@@ -14,8 +14,8 @@ var HttpFactory = {
       },
       success : success,
       error : failed
-    })
+    });
   }
-}
+};
 
-export {HttpFactory as default}
+export {HttpFactory as default};

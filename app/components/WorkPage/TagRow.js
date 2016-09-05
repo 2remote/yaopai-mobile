@@ -1,5 +1,5 @@
-import React from 'react'
-import $ from 'jquery'
+import React from 'react';
+import $ from 'jquery';
 
 const TagRow = ({data, args, i}) => {
 
@@ -18,7 +18,7 @@ const TagRow = ({data, args, i}) => {
     onSelectedTag()
   }
 
-  let tagNodes
+  let tagNodes;
   const intSelectedTags = selectedTags.map((x) => parseInt(x))
   if (data != 'undefined'){
     tagNodes = data.map((tag, i) => {
@@ -35,9 +35,9 @@ const TagRow = ({data, args, i}) => {
             >
             {tag.Name}
           </div>
-        )
+        );
       }
-    })
+    });
   }
 
   // 默认展开前两个标签 row
@@ -49,4 +49,4 @@ const TagRow = ({data, args, i}) => {
   )
 }
 
-export default TagRow
+export default TagRow;
