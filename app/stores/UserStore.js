@@ -205,7 +205,6 @@ var UserStore = Reflux.createStore({
     自动登录，如果用了loginToken，是否不用存user的其他信息？
   */
   onLoginWithTokenSuccess : function(data){
-    console.log(data)
     if(data.Success){
       console.log('login with token success')
       localStorage.setItem(this.userKey,JSON.stringify(this.data))
@@ -225,7 +224,6 @@ var UserStore = Reflux.createStore({
     this.trigger(this.data)
   },
   onChangeUserNickNameOnServerSuccess : function(data){
-    console.log(data)
     if(data.Success){
       this.data.hintMessage = ''
     }else{
@@ -240,7 +238,6 @@ var UserStore = Reflux.createStore({
     this.trigger(this.data)
   },
   onChangeUserInfoOnServerSuccess : function(data){
-    console.log(data)
     if(data.Success){
       this.data.hintMessage = ''
     }else{

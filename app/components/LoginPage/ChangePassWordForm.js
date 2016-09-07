@@ -17,7 +17,6 @@ var ChangePassWordForm = React.createClass({
     }
   },
   _onPdSubmit: function (data) {
-    console.log(data)
     if (data.flag == 'resetPassword') {
       if (data.hintMessage) {
         this.showMessage(data.hintMessage)
@@ -41,7 +40,6 @@ var ChangePassWordForm = React.createClass({
       return
     }
     var data = {tel: this.props.location.state.phone, code: this.props.location.state.code, password: newPassword}
-    console.log(data)
     UserActions.receiveTelResetPassWord(data)
   },
   showMessage(content) {
