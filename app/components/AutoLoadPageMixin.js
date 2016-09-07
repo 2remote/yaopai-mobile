@@ -1,5 +1,6 @@
 /**
  * Created by zoey on 2015/11/28.
+ * 滚动刷新 mixin 没注释 差评
  */
 import { findDOMNode } from 'react-dom'
 
