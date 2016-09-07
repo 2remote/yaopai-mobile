@@ -13,7 +13,6 @@ function isExist (string) {
 var UserStore = Reflux.createStore({
   userKey : 'yaopai_user',
   init: function() {
-    console.log('UserStore initialized')
 
     /*
         需要增加从localStorage读取用户信息的方法来初始化data

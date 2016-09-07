@@ -13,7 +13,6 @@ var PhotographerStore = Reflux.createStore({
 
   },
   init: function() {
-    console.log('PAuthStore initialized')
     this.listenTo(PhotographerActions.get.success,this.onGetSuccess)
     this.listenTo(PhotographerActions.get.failed,this.onFailed)
     this.listenTo(PhotographerActions.list.success,this.onListSuccess)

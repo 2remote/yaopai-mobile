@@ -19,7 +19,6 @@ var AlbumsStore = Reflux.createStore({
     },
   },
   init: function() {
-    console.log('UploadWorksStore initialized')
     this.listenTo(AlbumsActions.add.success,this.onAddSuccess)
     this.listenTo(AlbumsActions.add.failed,this.onFailed)
     this.listenTo(AlbumsActions.get.success,this.onGetSuccess)

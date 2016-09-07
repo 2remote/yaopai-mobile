@@ -33,7 +33,6 @@ var UserActions = Reflux.createActions({
   autoexpires integer N 自动登录过期时间，单位（分钟）
 */
 UserActions.login.listen(function(data) {
-  console.log("login begin")
   //$.post(API.user_api.login_url, data).then(this.success, this.failed);
   HttpFactory.post(API.USER.login,data,this.success,this.failed)
 })
@@ -42,7 +41,6 @@ UserActions.login.listen(function(data) {
   用Token登录
 */
 UserActions.loginWithToken.listen(function(data){
-  console.log("begin login with token")
   HttpFactory.post(API.USER.login_with_token,data,this.success,this.failed)
 })
 
@@ -50,7 +48,6 @@ UserActions.loginWithToken.listen(function(data){
   得到当前用户
 */
 UserActions.currentServerUser.listen(function(data){
-  console.log('get currentUser from server')
   HttpFactory.post(API.USER.current_user,data,this.success,this.failed)
 })
 /*
@@ -67,7 +64,6 @@ UserActions.currentUserDetail.listen(function(){
   修改 当前用户 昵称
 */
 UserActions.changeUserNickNameOnServer.listen(function(nickname){
-  console.log('get changeUserNickNameOnServer')
   var data = {
     NickName: nickname
   }
@@ -79,8 +75,6 @@ UserActions.changeUserNickNameOnServer.listen(function(nickname){
   修改 当前用户 性别（必须附上昵称）
 */
 UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
-  console.log('get changeUserInfoOnServer')
-
   var data = {
     NickName: nickname,
     Sex: parseInt(gender),
@@ -141,19 +135,16 @@ UserActions.modifyPassword.listen(function(data){
   用户登出
 */
 UserActions.logout.listen(function(data) {
-  console.log('begin to logout!')
   HttpFactory.post(API.USER.logout,data,this.success,this.failed)
 })
 
 /*用户重置密码验证码的验证*/
 UserActions.verifyTelResetPassWord.listen(function (data) {
-  console.log('check phone && code!')
   HttpFactory.post(API.USER.verifyTelResetPassWord, data, this.success, this.failed)
 })
 
 /*用户重置密码的密码提交*/
 UserActions.receiveTelResetPassWord.listen(function (data) {
-  console.log('new password start')
   HttpFactory.post(API.USER.receiveTelResetPassWord, data, this.success, this.failed)
 })
 
