@@ -139,16 +139,6 @@ const WorkPage = React.createClass({
         <div className="workPage">
           {/* 一定要确保 AnimationGuide 这个组件在最上面 ！！！ */}
           <AnimationGuide />
-          <a href="http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=2652147338&idx=1&sn=024c366da98fe7f1edda56258270cff5&scene=1&srcid=0811mhWqfkgDQCOgI2EBTFOs#rd">
-            <img
-               style={{
-                 width: '100%',
-                 height: '60%',
-                 marginTop: '50px',
-                 marginBottom: '-50px',
-               }}
-               src="http://7xte7j.com1.z0.glb.clouddn.com/join.jpg" />
-          </a>
           <SidePage />
 
           <ShowMenu
