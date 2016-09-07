@@ -10,7 +10,6 @@ var AreaActions = Reflux.createActions({
 })
 
 AreaActions.getProvince.listen(function(){
-  console.log('begin get province')
   var data = {ParentId : 0}
   HttpFactory.post(API.COMMON.area_list,data,this.success,this.failed)
 
