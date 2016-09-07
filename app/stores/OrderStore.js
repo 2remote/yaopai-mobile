@@ -13,6 +13,9 @@ var OrderStore = Reflux.createStore({
     filterType: '',
     wexinPayToken: {},
     wexinTicket: {},
+    pageIndex: '',
+    pageCount: '',
+    total: '',
   },
   init : function(){
     this.orders = []
@@ -53,6 +56,9 @@ var OrderStore = Reflux.createStore({
   onListOrders : function(data){
     //从服务器api接口获得定单的列表
     if(data.Success){
+      this.data.pageIndex = data.PageIndex
+      this.data.pageCount = data.PageCount
+      this.data.total = data.Total
       this.data.orders = data.Result
       this.data.hintMessage = ''
       this.data.success = true

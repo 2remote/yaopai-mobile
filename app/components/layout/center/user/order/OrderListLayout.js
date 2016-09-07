@@ -3,8 +3,9 @@ import Reflux from 'reflux'
 import {LoadingToast} from '../../../../UI/WeuiToast'
 
 import ReactMixin from 'react-mixin'
+import AutoLoadPageMixin from '../../../../AutoLoadPageMixin'
 import { OrderStatus } from '../../../../Tools'
-
+import Toaster from '../../../../Toast'
 import YPUIOrderCard from '../../../../UI/YPUIOrderCard'
 import OrderStore from '../../../../../stores/OrderStore'
 import UserStore from '../../../../../stores/UserStore'
@@ -16,10 +17,13 @@ class OrderListLayout extends React.Component {
   constructor() {
     super()
     this.state = {
+      pageIndex: 1,
+      pageCount: 0,
+      total: 0,
       filterType: OrderStatus.UNPAYED,
       orders: [],
       hintMessage: '订单加载中。。。',
-      success: false
+      success: false,
     }
   }
 
@@ -33,6 +37,7 @@ class OrderListLayout extends React.Component {
     } else {
       // 手动为默认展示选择“待付款”栏数据
       OrderActions.type(OrderStatus.UNPAYED)
+      // 可传递三个参数，具体请看 OrderAction.js
       OrderActions.list('out')
       this.setState({userType: user.userType})
     }
@@ -41,11 +46,19 @@ class OrderListLayout extends React.Component {
   onOrderLoad(order) {
     // TODO: if else and more
     this.setState({
+      pageIndex: order.pageIndex,
+      total: order.total,
+      pageCount: order.pageCount,
       filterType: order.filterType,
       orders: order.orders,
       hintMessage: order.hintMessage,
-      success: order.success
+      success: order.success,
     })
+  }
+
+  onChangePage(pageIndex) {
+    this.onShowToast('努力加载中...')
+    OrderActions.list('out', pageIndex)
   }
 
   render() {
@@ -71,6 +84,7 @@ class OrderListLayout extends React.Component {
     //列表不为空时渲染内容
     return (
       <div>
+        <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         {theRealList}
         <aside className="footer color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />
@@ -83,6 +97,7 @@ class OrderListLayout extends React.Component {
 
 ReactMixin.onClass(OrderListLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'))
 ReactMixin.onClass(OrderListLayout, Reflux.listenTo(UserStore, 'onUserLoad'))
+ReactMixin.onClass(OrderListLayout, AutoLoadPageMixin)
 ReactMixin.onClass(OrderListLayout, History)
 
 export {OrderListLayout as default}
