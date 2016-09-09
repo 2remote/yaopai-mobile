@@ -1,5 +1,6 @@
 import React from 'react'
 import TagRow from './TagRow'
+import PriceTag from './PriceTag'
 import MyChoices from './MyChoices'
 import $ from 'jquery'
 
@@ -74,6 +75,9 @@ const ShowMenu = (args) => {
         <div className="title">
           筛选条件
         </div>
+
+        {/*价格筛选*/}
+        <PriceTag />
 
         {tagRows}
 
