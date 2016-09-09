@@ -34,7 +34,7 @@ class OrderTabLayout extends React.Component{
     return (
 	    <div className="weui_tab">
 		    <WeuiNavbar list={navList} onClick={this.getIndex.bind(this)} />
-			  <OrderListLayout location={{ pathname: this.props.location.pathname }} />
+        <OrderListLayout location={{ pathname: this.props.location.pathname }} />
 	    </div>
     );
   }

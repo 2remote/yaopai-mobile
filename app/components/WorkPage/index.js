@@ -30,6 +30,7 @@ const WorkPage = React.createClass({
       tags: [],
       selectedTags: [],
       showNothingFound: false,
+      componentName: 'WorkPage' // 请和组件的名字保持一致
     }
   },
   componentDidMount() {
