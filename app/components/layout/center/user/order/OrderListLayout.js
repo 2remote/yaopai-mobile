@@ -3,7 +3,6 @@ import Reflux from 'reflux'
 import {LoadingToast} from '../../../../UI/WeuiToast'
 
 import ReactMixin from 'react-mixin'
-import AutoLoadPageMixin from '../../../../AutoLoadPageMixin'
 import { OrderStatus } from '../../../../Tools'
 import Toaster from '../../../../Toast'
 import YPUIOrderCard from '../../../../UI/YPUIOrderCard'
@@ -56,11 +55,6 @@ class OrderListLayout extends React.Component {
     })
   }
 
-  onChangePage(pageIndex) {
-    this.onShowToast('努力加载中...')
-    OrderActions.list('out', pageIndex)
-  }
-
   render() {
     let theRealList
     if (this.state.success) {
@@ -83,7 +77,7 @@ class OrderListLayout extends React.Component {
     }
     //列表不为空时渲染内容
     return (
-      <div>
+      <div className="weui_tab_bd" id="orderList">
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         {theRealList}
         <aside className="footer color_gray text_center font_small">
@@ -97,7 +91,6 @@ class OrderListLayout extends React.Component {
 
 ReactMixin.onClass(OrderListLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'))
 ReactMixin.onClass(OrderListLayout, Reflux.listenTo(UserStore, 'onUserLoad'))
-ReactMixin.onClass(OrderListLayout, AutoLoadPageMixin)
 ReactMixin.onClass(OrderListLayout, History)
 
 export {OrderListLayout as default}
