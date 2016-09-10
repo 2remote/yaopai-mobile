@@ -66,6 +66,7 @@ class GrapherIntro extends React.Component {
       $('#collect-icon').removeClass('mark').addClass('mark_active color_red')
       this.setState({isClickMark: true})
       // TODO 如何防止用户多次提交
+      PhotographerActions.getGrapherId(this.props.id)
       PhotographerActions.mark(this.props.id)
       this.setState({
         marks: 1,
@@ -78,6 +79,7 @@ class GrapherIntro extends React.Component {
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
+    PhotographerActions.getGrapherId(this.props.id)
     PhotographerActions.unMark(this.props.id)
     this.setState({
       marks: 0,
