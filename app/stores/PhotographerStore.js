@@ -25,6 +25,7 @@ var PhotographerStore = Reflux.createStore({
     this.listenTo(PhotographerActions.unMark.failed,this.onFailed)
     this.listenTo(PhotographerActions.query.success,this.onQuerySuccess)
     this.listenTo(PhotographerActions.query.failed,this.onFailed)
+    this.listenTo(PhotographerActions.getGrapherId, this.onGetGrapherId)
   },
   onGetSuccess : function(res){
     if(res.Success){
@@ -62,11 +63,14 @@ var PhotographerStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
+  onGetGrapherId: function(id) {
+    this.data.markExist.id = id
+  },
+
   // 关注摄影师
   onMarkSuccess: function(res){
     if(res.Success){
       this.data.markExist.isMark = true
-      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg
     }
@@ -77,7 +81,6 @@ var PhotographerStore = Reflux.createStore({
   onUnMarkSuccess: function(res){
     if(res.Success){
       this.data.markExist.isMark = false
-      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg
     }

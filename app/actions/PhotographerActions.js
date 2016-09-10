@@ -9,6 +9,7 @@ var PhotographerActions = Reflux.createActions({
   'mark' : {children : ['success','failed']},
   'unMark' : {children : ['success','failed']},
   'query' : {children : ['success','failed']},
+  'getGrapherId': {},
 })
 /*
   得到指定id的摄影师信息

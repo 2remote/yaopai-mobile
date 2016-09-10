@@ -8,7 +8,6 @@ import AlbumsActions from '../../actions/AlbumsActions'
 import AlbumsStore from '../../stores/AlbumsStore'
 import UserActions from '../../actions/UserActions'
 import UserStore from '../../stores/UserStore'
-import Toaster from '../Toast'
 
 import {imgModifier} from '../Tools'
 import LazyLoad from 'react-lazy-load'
@@ -50,6 +49,7 @@ class WorkIntroGrapherRow extends React.Component {
       this.setState({isClickMark: true})
       $(e.target).removeClass('mark').addClass('mark_active color_red')
       // TODO 如何防止用户多次提交
+      AlbumsActions.getAlbumId(this.props.data.Id)
       AlbumsActions.mark(this.props.data.Id)
     }
   }
@@ -59,6 +59,7 @@ class WorkIntroGrapherRow extends React.Component {
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
+    AlbumsActions.getAlbumId(this.props.data.Id)
     AlbumsActions.unMark(this.props.data.Id)
   }
 
@@ -76,10 +77,6 @@ class WorkIntroGrapherRow extends React.Component {
         markExist: data.markExist.isMark,
       })
     }
-  }
-
-  showMessage(content) {
-    this.refs.toast.show(content)
   }
 
   render() {
@@ -109,8 +106,6 @@ class WorkIntroGrapherRow extends React.Component {
     let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist
     return (
       <div className="workIntroGrapherRow">
-        <Toaster ref="toast"/>
-
         <div className="work-collect" onClick={switchAttention ? this.unAttention : this.attention}>
           <i className={data.MarkExist ? `icon mark_active color_red` : `icon mark`}/>
         </div>
