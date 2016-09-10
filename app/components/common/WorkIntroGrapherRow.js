@@ -49,6 +49,7 @@ class WorkIntroGrapherRow extends React.Component {
       this.setState({isClickMark: true})
       $(e.target).removeClass('mark').addClass('mark_active color_red')
       // TODO 如何防止用户多次提交
+      AlbumsActions.getAlbumId(this.props.data.Id)
       AlbumsActions.mark(this.props.data.Id)
     }
   }
@@ -58,6 +59,7 @@ class WorkIntroGrapherRow extends React.Component {
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
+    AlbumsActions.getAlbumId(this.props.data.Id)
     AlbumsActions.unMark(this.props.data.Id)
   }
 
@@ -102,7 +104,6 @@ class WorkIntroGrapherRow extends React.Component {
     }
 
     let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist
-    // console.log(switchAttention)
     return (
       <div className="workIntroGrapherRow">
         <div className="work-collect" onClick={switchAttention ? this.unAttention : this.attention}>

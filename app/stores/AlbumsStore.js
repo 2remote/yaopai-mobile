@@ -45,6 +45,8 @@ var AlbumsStore = Reflux.createStore({
     this.listenTo(AlbumsActions.mark.failed,this.onFailed)
     this.listenTo(AlbumsActions.unMark.success,this.onUnMarkSuccess)
     this.listenTo(AlbumsActions.unMark.failed,this.onFailed)
+
+    this.listenTo(AlbumsActions.getAlbumId, this.onGetAlbumId)
   },
   onFailed : function(res){
     this.data.hintMessage = '网络错误'
@@ -173,11 +175,14 @@ var AlbumsStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
+  onGetAlbumId: function(id) {
+    this.data.markExist.id = id
+  },
+
   // 收藏作品
   onMarkSuccess: function(res){
     if(res.Success){
       this.data.markExist.isMark = true
-      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg
     }
@@ -188,7 +193,6 @@ var AlbumsStore = Reflux.createStore({
   onUnMarkSuccess: function(res){
     if(res.Success){
       this.data.markExist.isMark = false
-      this.data.markExist.id = res.DebugData.Id
     }else{
       this.data.hintMessage = res.ErrorMsg
     }

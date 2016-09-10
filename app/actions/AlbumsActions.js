@@ -16,6 +16,7 @@ var AlbumsActions = Reflux.createActions({
   'getById' : {children:['success','failed']},
   'mark' : {children : ['success','failed']},
   'unMark' : {children : ['success','failed']},
+  'getAlbumId': {},
 })
 
 /*
