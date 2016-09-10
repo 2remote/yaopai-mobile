@@ -22,8 +22,8 @@ var ChangePassWordForm = React.createClass({
         this.showMessage(data.hintMessage)
         return
       } else {
-        this.showMessage('修改成功，请登录')
-        this.history.pushState(null, '/login_page')
+        this.showMessage('修改密码成功，请重新登录！')
+        setTimeout(() => this.history.pushState(null, '/login_page'), 2000)
       }
     }
   },
