@@ -8,7 +8,6 @@ import AlbumsActions from '../../actions/AlbumsActions'
 import AlbumsStore from '../../stores/AlbumsStore'
 import UserActions from '../../actions/UserActions'
 import UserStore from '../../stores/UserStore'
-import Toaster from '../Toast'
 
 import {imgModifier} from '../Tools'
 import LazyLoad from 'react-lazy-load'
@@ -78,10 +77,6 @@ class WorkIntroGrapherRow extends React.Component {
     }
   }
 
-  showMessage(content) {
-    this.refs.toast.show(content)
-  }
-
   render() {
     const {data} = this.props
     let cover
@@ -107,10 +102,9 @@ class WorkIntroGrapherRow extends React.Component {
     }
 
     let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist
+    // console.log(switchAttention)
     return (
       <div className="workIntroGrapherRow">
-        <Toaster ref="toast"/>
-
         <div className="work-collect" onClick={switchAttention ? this.unAttention : this.attention}>
           <i className={data.MarkExist ? `icon mark_active color_red` : `icon mark`}/>
         </div>
