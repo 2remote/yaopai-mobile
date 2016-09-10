@@ -92,6 +92,14 @@ var AutoLoadPageMixin = {
       this.refs.toast.hide()
     }
   },
+  componentWillUnmount: function() { // 取消绑定
+    let node = window
+    if(this.state.componentName == 'OrderListLayout') { // 判断是 OrderListLayout 组件 还是 WorkPage 组件
+      node = $('#orderListContainer').get(0)
+    }
+    node.removeEventListener('scroll', this.onWindowScroll)
+    node.removeEventListener('resize', this.onWindowScroll)
+  }
 }
 
 export {AutoLoadPageMixin as default}
