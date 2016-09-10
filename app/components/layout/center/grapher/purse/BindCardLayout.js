@@ -55,7 +55,6 @@ class BindCardLayout extends React.Component {
     if (data.checkingState.receive === '验证码错误') {
       this.showAlert('验证码错误！');
     } else if (data.checkingState.receive === '验证码正确') {
-      console.log(data)
       this.showAlert('支付宝绑定成功！2 秒后自动跳转……');
       setTimeout(() => this.history.pushState(null, 'center/g/purse'), 3000);
     }

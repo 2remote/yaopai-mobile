@@ -11,7 +11,6 @@ var timerMail = null
 var GetCodeStore = Reflux.createStore({
 
   init: function() {
-    console.log('GetCodeStore initialized')
     //记录发送验证码的时间
     this.data = {
       flag: '',

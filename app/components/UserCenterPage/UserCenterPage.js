@@ -5,7 +5,7 @@ import SidePage from '../UI/SidePage'
 import DocumentTitle from 'react-document-title'
 
 import {History,Location} from 'react-router'
-import UserAvatarBox from '../common/UserAvatarBox' 
+import UserAvatarBox from '../common/UserAvatarBox'
 
 import UserActions from '../../actions/UserActions'
 import UserStore from '../../stores/UserStore'
@@ -57,7 +57,7 @@ var UserCenterPage = React.createClass({
 
         {makeIconButton('order_icon', '我的订单', 'center/u/order', 'react-router')}
         {makeIconButton('mark', '收藏/关注', 'center/mark', 'react-router')}
-        {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}
+        {makeIconButton('customer_icon', '联系客服', 'tel:4008765981')}
       </div>
     )
   }

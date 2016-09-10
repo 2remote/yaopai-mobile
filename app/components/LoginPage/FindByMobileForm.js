@@ -34,7 +34,6 @@ var FindByMobileForm = React.createClass({
     }
   },
   _onverifyTel: function (data) {
-    console.log(data)
     if (data.flag == "check") {
       if (data.hintMessage) {
         this.showMessage(data.hintMessage)
