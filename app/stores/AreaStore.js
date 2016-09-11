@@ -4,10 +4,7 @@ import AreaActions from '../actions/AreaActions'
 
 var AreaStore = Reflux.createStore({
   data:{},
-
   init: function() {
-    console.log('AreaStore initialized')
-
     this.listenTo(AreaActions.getProvince.success,this.onGetProvinceSuccess)
     this.listenTo(AreaActions.getProvince.failed,this.onGetProvinceFailed)
     this.listenTo(AreaActions.getCity.success,this.onGetCitySuccess)

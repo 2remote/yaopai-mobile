@@ -63,11 +63,6 @@ class WorkTitle extends React.Component{
     })
   }
 
-  // onUnMarkSuccess(data){
-  //   this.setState({
-  //     markExist: data.markExist.isMark,
-  //   })
-  // }
   render(){
     const {data} = this.props
     return (

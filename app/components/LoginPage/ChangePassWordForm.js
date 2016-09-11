@@ -17,14 +17,13 @@ var ChangePassWordForm = React.createClass({
     }
   },
   _onPdSubmit: function (data) {
-    console.log(data)
     if (data.flag == 'resetPassword') {
       if (data.hintMessage) {
         this.showMessage(data.hintMessage)
         return
       } else {
-        this.showMessage('修改成功，请登录')
-        this.history.pushState(null, '/login_page')
+        this.showMessage('修改密码成功，请重新登录！')
+        setTimeout(() => this.history.pushState(null, '/login_page'), 2000)
       }
     }
   },
@@ -41,7 +40,6 @@ var ChangePassWordForm = React.createClass({
       return
     }
     var data = {tel: this.props.location.state.phone, code: this.props.location.state.code, password: newPassword}
-    console.log(data)
     UserActions.receiveTelResetPassWord(data)
   },
   showMessage(content) {
