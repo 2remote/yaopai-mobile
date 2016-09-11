@@ -86,7 +86,9 @@ const WorkPage = React.createClass({
     let selectedTags = []
 
     $('.tagColBoxActive').each(function () {
-      selectedTags.push($(this).attr('id'))
+      if ( $.isNumeric( $(this).attr('id') ) ) {
+        selectedTags.push($(this).attr('id'))
+      }
     })
 
     this.setState({selectedTags: selectedTags}, () => {
