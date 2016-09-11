@@ -6,7 +6,7 @@ import $ from 'jquery'
 
 const ShowMenu = (args) => {
 
-  const {tags, onSearch, onSelectedTag, reset, searchKey, selectedTags} = args
+  const {tags, priceTag, onSearch, onSelectedTag, onPriceTag, reset, searchKey, selectedTags} = args
   let searchText
 
   const toggleMenu = () => {
@@ -77,7 +77,7 @@ const ShowMenu = (args) => {
         </div>
 
         {/*价格筛选*/}
-        <PriceTag />
+        <PriceTag priceTag={priceTag} onPriceTag={onPriceTag}/>
 
         {tagRows}
 

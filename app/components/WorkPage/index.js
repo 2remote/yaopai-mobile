@@ -28,6 +28,7 @@ const WorkPage = React.createClass({
       works: [],
       searchKey: '',
       tags: [],
+      priceTag: 0,
       selectedTags: [],
       showNothingFound: false,
       componentName: 'WorkPage' // 请和组件的名字保持一致
@@ -98,6 +99,9 @@ const WorkPage = React.createClass({
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
     })
   },
+  handleUpdatePriceTag(i) {
+    console.warn('test',i);
+  },
   _onAlbumsStoreChange(data) {
     const handleByFlag = {
       search: () => {
@@ -133,7 +137,7 @@ const WorkPage = React.createClass({
   },
   render() {
 
-    const { searchKey, selectedTags, works, showNothingFound, tags } = this.state
+    const { searchKey, selectedTags, works, showNothingFound, tags, priceTag } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
@@ -144,8 +148,10 @@ const WorkPage = React.createClass({
 
           <ShowMenu
             tags = {tags}
+            priceTag = {priceTag}
             onSelectedTag = {this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
+            onPriceTag = {this.handleUpdatePriceTag}
             reset = {this.reset}
             searchKey = {searchKey}
             selectedTags = {selectedTags}
