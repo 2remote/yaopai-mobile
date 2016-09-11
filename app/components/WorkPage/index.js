@@ -66,6 +66,7 @@ const WorkPage = React.createClass({
         AlbumsActions.query({
           tags:this.state.selectedTags.join(','),
           key:this.state.searchKey,
+          priceTag: this.state.priceTag,
         })
       })
 
@@ -76,7 +77,8 @@ const WorkPage = React.createClass({
       // 读取search过滤的数据
       AlbumsActions.query({
         tags: this.state.selectedTags.join(','),
-        key: this.state.searchKey
+        key: this.state.searchKey,
+        priceTag: this.state.priceTag,
       })
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
@@ -96,6 +98,7 @@ const WorkPage = React.createClass({
       AlbumsActions.query({
         tags: this.state.selectedTags.join(','),
         key: this.state.searchKey,
+        priceTag: this.state.priceTag,
       })
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
@@ -103,6 +106,14 @@ const WorkPage = React.createClass({
   },
   handleUpdatePriceTag(i) {
     console.warn('test',i);
+    this.setState({priceTag: i}, () => {
+      // 读取tag过滤的数据
+      AlbumsActions.query({
+        tags: this.state.selectedTags.join(','),
+        key: this.state.searchKey,
+        priceTag: i
+      })
+    })
   },
   _onAlbumsStoreChange(data) {
     const handleByFlag = {
@@ -134,6 +145,7 @@ const WorkPage = React.createClass({
     AlbumsActions.search({
       tags: this.state.selectedTags.join(','),
       key: this.state.searchKey,
+      priceTag: this.state.priceTag,
       pageIndex,
     })
   },

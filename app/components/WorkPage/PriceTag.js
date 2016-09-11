@@ -9,11 +9,12 @@ const PriceTag = ({priceTag, onPriceTag}) => {
   const handleClick = (tagId, tagColClass) => {
     if ( $('#P' + tagId).hasClass('tagColBoxActive') ) {
       $('#P' + tagId).removeClass('tagColBoxActive')
+      onPriceTag()
     } else {
       $('.' + tagColClass).removeClass('tagColBoxActive')
       $('#P' + tagId).addClass('tagColBoxActive')
+      onPriceTag(tagId)
     }
-    onPriceTag(tagId)
   }
 
   const priceList = ['0 - 99', '100 - 499', '500 - 1999', '2000 - 4999', '5000 以上']

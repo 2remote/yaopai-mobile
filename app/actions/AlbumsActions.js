@@ -53,13 +53,42 @@ function searchQuery(args = {}) {
     key = "",
     pageIndex = 1,
     pageSize = 10,
+    priceTag = 100,
     userId,
     mark
   } = args
 
+  let priceStart, priceEnd
+
+  const priceList = {
+    100: () => {},
+    0: () => {
+      priceEnd = 99
+    },
+    1: () => {
+      priceStart = 100
+      priceEnd = 499
+    },
+    2: () => {
+      priceStart = 500
+      priceEnd = 1999
+    },
+    3: () => {
+      priceStart = 2000
+      priceEnd = 4999
+    },
+    4: () => {
+      priceStart = 5000
+    },
+  }
+
+  priceList[priceTag]()
+
   const data = {
     tags,
     key,
+    priceStart,
+    priceEnd,
     pageIndex,
     pageSize,
     userId,
