@@ -6,6 +6,11 @@ const MyChoices = ({args}) => {
 
   const {onSelectedTag, tags = [], selectedTags = [], priceTag, onPriceTag} = args
 
+  const removePriceChoice = () => {
+    onPriceTag()
+    $('.tagColBoxP.tagColBoxActive').removeClass('tagColBoxActive')
+  }
+
   const handleClick = (tagId, onSelectedTag) => {
     $('#' + tagId).removeClass('tagColBoxActive')
     onSelectedTag()
@@ -15,6 +20,7 @@ const MyChoices = ({args}) => {
     // 清空标签，以及重置 state
     $('.tagColBoxActive').removeClass('tagColBoxActive')
     onSelectedTag()
+    onPriceTag()
   }
 
   let priceChoice
@@ -24,7 +30,7 @@ const MyChoices = ({args}) => {
       <span
         key={priceList[priceTag]}
         className="my-choice"
-        onClick={onPriceTag} >
+        onClick={removePriceChoice} >
         {priceList[priceTag]}
         <span className="close">X</span>
       </span>
