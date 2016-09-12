@@ -28,7 +28,7 @@ const WorkPage = React.createClass({
       works: [],
       searchKey: '',
       tags: [],
-      priceTag: 0,
+      priceTag: 100,
       selectedTags: [],
       showNothingFound: false,
       componentName: 'WorkPage' // 请和组件的名字保持一致

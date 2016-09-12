@@ -4,7 +4,7 @@ import _ from 'underscore'
 
 const MyChoices = ({args}) => {
 
-  const {onSelectedTag, tags= [], selectedTags = []} = args
+  const {onSelectedTag, tags = [], selectedTags = [], priceTag, onPriceTag} = args
 
   const handleClick = (tagId, onSelectedTag) => {
     $('#' + tagId).removeClass('tagColBoxActive')
@@ -17,10 +17,24 @@ const MyChoices = ({args}) => {
     onSelectedTag()
   }
 
+  let priceChoice
+  const priceList = ['0 - 99', '100 - 499', '500 - 1999', '2000 - 4999', '5000 以上']
+  if (priceList[priceTag]) {
+    priceChoice = (
+      <span
+        key={priceList[priceTag]}
+        className="my-choice"
+        onClick={onPriceTag} >
+        {priceList[priceTag]}
+        <span className="close">X</span>
+      </span>
+    )
+  }
+
   let myChoices
   const intSelectedTags = selectedTags.map((x) => parseInt(x))
   if (tags != 'undefined') {
-    myChoices = tags.map((data, i) => {
+    myChoices = tags.map((data) => {
       return (
         data.Tags.map((tag, i) => {
           if (_.contains(intSelectedTags, tag.Id)) {
@@ -54,6 +68,7 @@ const MyChoices = ({args}) => {
       </div>
 
       <div className="my-choices">
+        {priceChoice}
         {myChoices}
       </div>
     </div>
