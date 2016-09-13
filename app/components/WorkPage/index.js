@@ -105,7 +105,6 @@ const WorkPage = React.createClass({
     })
   },
   handleUpdatePriceTag(i) {
-    console.warn('test',i);
     this.setState({priceTag: i}, () => {
       // 读取tag过滤的数据
       AlbumsActions.query({
