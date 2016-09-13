@@ -6,6 +6,10 @@ const PriceTag = ({priceTag, onPriceTag}) => {
   const tagRowClass = 'tagRowBoxP'
   const tagColClass = 'tagColBoxP'
 
+  const togglePriceTag = () => {
+    $(".tagRowBoxP").toggleClass('showTagRowBox')
+  }
+
   const handleClick = (tagId, tagColClass) => {
     if ( $('#P' + tagId).hasClass('tagColBoxActive') ) {
       $('#P' + tagId).removeClass('tagColBoxActive')
@@ -36,7 +40,7 @@ const PriceTag = ({priceTag, onPriceTag}) => {
   return (
     <div>
 
-      <span className="tag-title">
+      <span className="tag-title" onClick={togglePriceTag}>
         价格
         <i className="icon down tag-titile-button" />
       </span>
