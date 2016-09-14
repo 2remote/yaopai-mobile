@@ -5,7 +5,7 @@ import SidePage from '../UI/SidePage'
 import DocumentTitle from 'react-document-title'
 
 import {History,Location} from 'react-router'
-import UserAvatarBox from '../common/UserAvatarBox' 
+import UserAvatarBox from '../common/UserAvatarBox'
 
 import UserActions from '../../actions/UserActions'
 import UserStore from '../../stores/UserStore'
@@ -27,6 +27,7 @@ class UserEditProfilePage extends React.Component {
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
     }else{
       this.setState({userInfo : data})
+      console.log(data)
     }
   }
 
@@ -59,13 +60,14 @@ class UserEditProfilePage extends React.Component {
 
     // 判断changeInfo模式
     if(nickFlag){
-      UserActions.changeUserInfoOnServer(nickname, gender, city)
+      console.log(this.state)
+      UserActions.changeUserInfoOnServer(nickname, gender, this.state.userInfo.newCityId)
     }else{
       console.warn("输入的修改内容不全，请重试。")
       console.warn("nickname:", nickname)
       console.warn("gender:", gender)
       console.warn("city:", city)
-      return 
+      return
     }
     alert('修改成功')
     this.history.pushState(null, this.state.userInfo.userType==0?'/center/u':'/center/g')
@@ -92,7 +94,15 @@ class UserEditProfilePage extends React.Component {
       nickname = this.state.userInfo.newNick
     }
 
-    let city = "未知"
+    let city
+    const {userInfo} = this.state
+    if(userInfo.newCityId) {// 如果 selector 组件筛选的地区结果 ID 存在
+      city = `${userInfo.newAreaName.countryName || ''} ${userInfo.newAreaName.provinceName || ''} ${userInfo.newAreaName.cityName || ''}`
+    } else {
+      city = `${userInfo.countryName || ''} ${userInfo.provinceName || ''} ${userInfo.cityName || ''}`
+    }
+    city = city.trim() ? city.trim() : '未知'
+
     if( this.state.userInfo.userCity){
       city = this.state.userInfo.userCity
     }
@@ -128,9 +138,9 @@ class UserEditProfilePage extends React.Component {
           data={this.state.userInfo}
         />
 
-          {makeTextButton('昵称', nickname, 'center/user_edit_profile/user_nickname_change', 'react-router')}
-          {makeTextButton('性别', genderDisplay, 'center/user_edit_profile/user_gender_change', 'react-router')}
-          {makeTextButton('城市', city, 'center/user_edit_profile/user_city_change', 'react-router')}
+        {makeTextButton('昵称', nickname, 'center/user_edit_profile/user_nickname_change', 'react-router')}
+        {makeTextButton('性别', genderDisplay, 'center/user_edit_profile/user_gender_change', 'react-router')}
+        {makeTextButton('城市', city, 'center/user_edit_profile/user_city_change', 'react-router')}
 
         <div className="weui_opr_area">
           <p className="weui_btn_area">
