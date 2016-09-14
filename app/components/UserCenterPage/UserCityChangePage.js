@@ -12,7 +12,7 @@ const {Button} = WeUI
 class UserCityChangePage extends React.Component {
   constructor(props){
     super(props)
-    this.state({
+    this.state = ({
       userInfo : {},
       areaId: '0',
       areaName: '未知',

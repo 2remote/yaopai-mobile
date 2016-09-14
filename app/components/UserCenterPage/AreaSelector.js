@@ -1,5 +1,5 @@
 import React from 'react'
-import areaData from './areaData'
+import areaData from '../areaData'
 import WeUI from 'react-weui'
 
 const {
@@ -10,7 +10,7 @@ const {
   Select,
 } = WeUI
 
-class AreaSelect extends React.Component {
+class AreaSelector extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -122,7 +122,6 @@ class AreaSelect extends React.Component {
             : null
           }
 
-
           {
             this.state.cityItem.length ?
             <FormCell select selectPos="after">
@@ -131,7 +130,7 @@ class AreaSelect extends React.Component {
               <CellBody>
               </CellBody>
             </FormCell>
-            :null
+            : null
           }
         </Form>
 			</div>
@@ -139,4 +138,4 @@ class AreaSelect extends React.Component {
   }
 }
 
-export default AreaSelect
+export default AreaSelector
