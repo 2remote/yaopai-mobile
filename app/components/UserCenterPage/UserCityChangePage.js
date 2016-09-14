@@ -41,10 +41,19 @@ class UserCityChangePage extends React.Component {
     }
 
     let areaId = selectResult[selectResult.length - 1]
-    let areaName = {
-      countryName: countryData[0].Cn || '',
-      provinceName: provinceData[0].Cn || '',
-      cityName: cityData[0].Cn || '',
+    let areaName = {}
+    areaName.countryName = countryData[0].Cn
+    
+    try {
+      areaName.provinceName = provinceData[0].Cn
+    } catch(err) {
+      areaName.provinceName = ''
+    }
+
+    try {
+      areaName.cityName = cityData[0].Cn || ''
+    } catch(err) {
+      areaName.cityName = ''
     }
 
     UserActions.changeUserCity(areaId, areaName)
