@@ -1,6 +1,7 @@
 import React from 'react'
 import areaData from '../areaData'
 import WeUI from 'react-weui'
+import './areaSelector.scss'
 
 const {
   Form,
@@ -23,22 +24,24 @@ class AreaSelector extends React.Component {
   componentDidMount() {
     let countryItem = []
     let provinceItem = []
+    let cityItem = [{value: 10002, label: '北京'}] // 设置初始化城市为北京
 
-    areaData.map((country, index) => countryItem[index] = {
+    areaData.forEach((country, index) => countryItem[index] = {
       value: country.Id,
       label: country.Cn
     })
 
     const ChinaProvinceList = areaData.filter(country => country.Id == 10000)[0].Provinces
-    ChinaProvinceList.map((province, index) => provinceItem[index] = {
+    ChinaProvinceList.forEach((province, index) => provinceItem[index] = {
       value: province.Id,
       label: province.Cn,
-      cities: province.Cities
+      cities: province.Cities,
     })
 
     this.setState({
       countryItem,
       provinceItem,
+      cityItem,
     })
   }
 
@@ -67,7 +70,7 @@ class AreaSelector extends React.Component {
   provinceListRender(country) {
     let provinceItem = []
       // 储存 value 和 label 的同时把 cities 也存了进来
-    country.Provinces.map((province, index) => provinceItem[index] = {
+    country.Provinces.forEach((province, index) => provinceItem[index] = {
       value: province.Id,
       label: province.Cn,
       cities: province.Cities
@@ -91,20 +94,18 @@ class AreaSelector extends React.Component {
 
   cityListRender(cityData) {
     let cityItem = []
-    cityData.map((city, index) => cityItem[index] = {
+    cityData.forEach((city, index) => cityItem[index] = {
       value: city.Id,
       label: city.Cn
     })
-    this.setState({
-      cityItem
-    })
+    this.setState({cityItem})
   }
 
   render() {
     return (
-			<div>
+			<div className="area-selector">
         <Form>
-          <FormCell select selectPos="">
+          <FormCell select selectPos="after">
             <CellHeader>国家/地区</CellHeader>
             <CellBody>
               <Select className="select"  defaultValue="10000" data={this.state.countryItem} onChange={this.countrySelect.bind(this)} />
