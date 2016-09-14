@@ -12,21 +12,9 @@ import WeUI from 'react-weui'
 const {Button} = WeUI
 
 class UserCityChangePage extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = ({
-      userInfo : {},
-      areaId: '0',
-      areaName: '未知',
-    })
-  }
-
   _onUserStoreChange(data){
     if(!data.isLogin){
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
-    }else{
-      this.setState({userInfo : data})
-      console.log('getCurrentUserDetail: ', data)
     }
   }
 
