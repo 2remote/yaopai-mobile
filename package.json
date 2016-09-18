@@ -96,7 +96,7 @@
     "react-slick": "^0.9.3",
     "react-swipe": "^2.3.0",
     "react-tappable": "^0.6.0",
-    "react-weui": "^0.2.0",
+    "react-weui": "^0.4.0",
     "reflux": "^0.3.0",
     "request": "^2.69.0",
     "swipe-js-iso": "^2.0.1",
