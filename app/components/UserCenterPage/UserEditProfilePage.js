@@ -27,7 +27,6 @@ class UserEditProfilePage extends React.Component {
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
     }else{
       this.setState({userInfo : data})
-      console.log(data)
     }
   }
 
