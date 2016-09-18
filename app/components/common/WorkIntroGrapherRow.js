@@ -1,23 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
-import Reflux from 'reflux';
-import ReactMixin from 'react-mixin';
-import { History } from 'react-router';
-import AlbumsActions from '../../actions/AlbumsActions';
-import AlbumsStore from '../../stores/AlbumsStore';
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
-import Toaster from '../Toast'
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
+import { History } from 'react-router'
+import AlbumsActions from '../../actions/AlbumsActions'
+import AlbumsStore from '../../stores/AlbumsStore'
+import UserActions from '../../actions/UserActions'
+import UserStore from '../../stores/UserStore'
 
-import {imgModifier} from '../Tools';
-import LazyLoad from 'react-lazy-load';
+import {imgModifier} from '../Tools'
+import LazyLoad from 'react-lazy-load'
 
-import $ from 'jquery';
+import $ from 'jquery'
 
 class WorkIntroGrapherRow extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       userData : {},
       isClickMark: false,
@@ -38,27 +37,29 @@ class WorkIntroGrapherRow extends React.Component {
   // 点击关注
   attention(e) {
     if(!this.state.userData.isLogin){ // 用户未登录
-      const confirmMsg = confirm("是否前往登录，然后关注？");
+      const confirmMsg = confirm("是否前往登录，然后关注？")
       if (confirmMsg == true) {
-        this.history.pushState({nextPage : this.props.pathname},'/login_page');
+        this.history.pushState({nextPage : this.props.pathname},'/login_page')
       }
 
     } else if(this.state.userData.UserId == this.props.data.UserId) {
-      alert('您不能收藏自己的作品');
-      return;
+      alert('您不能收藏自己的作品')
+      return
     } else {
       this.setState({isClickMark: true})
-      $(e.target).removeClass('mark').addClass('mark_active color_red');
+      $(e.target).removeClass('mark').addClass('mark_active color_red')
       // TODO 如何防止用户多次提交
+      AlbumsActions.getAlbumId(this.props.data.Id)
       AlbumsActions.mark(this.props.data.Id)
     }
   }
   // 点击取消关注
   unAttention(e) {
-    $(e.target).removeClass('mark_active color_red').addClass('mark');
+    $(e.target).removeClass('mark_active color_red').addClass('mark')
     this.setState({isClickMark: true})
     // TODO 如何防止用户多次提交
     // confirm('确定取消关注吗')
+    AlbumsActions.getAlbumId(this.props.data.Id)
     AlbumsActions.unMark(this.props.data.Id)
   }
 
@@ -76,10 +77,6 @@ class WorkIntroGrapherRow extends React.Component {
         markExist: data.markExist.isMark,
       })
     }
-  }
-
-  showMessage(content) {
-    this.refs.toast.show(content)
   }
 
   render() {
@@ -106,11 +103,9 @@ class WorkIntroGrapherRow extends React.Component {
       grapherAvatar = <div className="card-head-null"></div>
     }
 
-    let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist;
+    let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist
     return (
       <div className="workIntroGrapherRow">
-        <Toaster ref="toast"/>
-
         <div className="work-collect" onClick={switchAttention ? this.unAttention : this.attention}>
           <i className={data.MarkExist ? `icon mark_active color_red` : `icon mark`}/>
         </div>
@@ -140,12 +135,12 @@ class WorkIntroGrapherRow extends React.Component {
           <p className="info-Subtitle">有{data.Marks}人想拍</p>
         </div>
       </div>
-    );
+    )
   }
 }
 
-ReactMixin.onClass(WorkIntroGrapherRow,Reflux.listenTo(AlbumsStore, 'onMarkSuccess'));
-ReactMixin.onClass(WorkIntroGrapherRow,Reflux.listenTo(AlbumsStore, 'onUnMarkSuccess'));
-ReactMixin.onClass(WorkIntroGrapherRow, Reflux.listenTo(UserStore, 'onUserLoad'));
-ReactMixin.onClass(WorkIntroGrapherRow, History);
-export default WorkIntroGrapherRow;
+ReactMixin.onClass(WorkIntroGrapherRow,Reflux.listenTo(AlbumsStore, 'onMarkSuccess'))
+ReactMixin.onClass(WorkIntroGrapherRow,Reflux.listenTo(AlbumsStore, 'onUnMarkSuccess'))
+ReactMixin.onClass(WorkIntroGrapherRow, Reflux.listenTo(UserStore, 'onUserLoad'))
+ReactMixin.onClass(WorkIntroGrapherRow, History)
+export default WorkIntroGrapherRow

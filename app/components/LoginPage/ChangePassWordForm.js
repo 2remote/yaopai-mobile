@@ -1,12 +1,12 @@
-import React from 'react';
-import Reflux from 'reflux';
-import InputGroup from '../UI/InputGroup';
-import { ButtonBlock } from '../UI/Button';
-import DocumentTitle from 'react-document-title';
-import Toaster from '../Toast';
-import {History} from 'react-router';
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
+import React from 'react'
+import Reflux from 'reflux'
+import InputGroup from '../UI/InputGroup'
+import { ButtonBlock } from '../UI/Button'
+import DocumentTitle from 'react-document-title'
+import Toaster from '../Toast'
+import {History} from 'react-router'
+import UserActions from '../../actions/UserActions'
+import UserStore from '../../stores/UserStore'
 
 var ChangePassWordForm = React.createClass({
   mixins: [Reflux.listenTo(UserStore, '_onPdSubmit'),History],
@@ -17,35 +17,33 @@ var ChangePassWordForm = React.createClass({
     }
   },
   _onPdSubmit: function (data) {
-    console.log(data);
     if (data.flag == 'resetPassword') {
       if (data.hintMessage) {
-        this.showMessage(data.hintMessage);
-        return;
+        this.showMessage(data.hintMessage)
+        return
       } else {
-        this.showMessage('修改成功，请登录');
-        this.history.pushState(null, '/login_page');
+        this.showMessage('修改密码成功，请重新登录！')
+        setTimeout(() => this.history.pushState(null, '/login_page'), 2000)
       }
     }
   },
   _handleSubmit: function (e) {
-    e.preventDefault();
-    var newPassword = this.state.newPassword;
-    var confirmPassword = this.state.confirmPassword;
+    e.preventDefault()
+    var newPassword = this.state.newPassword
+    var confirmPassword = this.state.confirmPassword
     if (!newPassword) {
-      this.showMessage("新密码不能为空！");
-      return;
+      this.showMessage("新密码不能为空！")
+      return
     }
     if (newPassword != confirmPassword) {
-      this.showMessage("前后密码不一样！");
-      return;
+      this.showMessage("前后密码不一样！")
+      return
     }
-    var data = {tel: this.props.location.state.phone, code: this.props.location.state.code, password: newPassword};
-    console.log(data);
-    UserActions.receiveTelResetPassWord(data);
+    var data = {tel: this.props.location.state.phone, code: this.props.location.state.code, password: newPassword}
+    UserActions.receiveTelResetPassWord(data)
   },
   showMessage(content) {
-    this.refs.toast.show(content);
+    this.refs.toast.show(content)
   },
   render() {
     return (
@@ -75,8 +73,8 @@ var ChangePassWordForm = React.createClass({
           </form>
         </div>
       </DocumentTitle>
-    );
+    )
   }
-});
+})
 
-export {ChangePassWordForm as default};
+export {ChangePassWordForm as default}

@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from'react-dom';
-import Reflux from'reflux';
+import React from 'react'
+import ReactDOM from'react-dom'
+import Reflux from'reflux'
 // var Input from'react-bootstrap').Input;
 
-import AreaActions from'../../actions/AreaActions';
-import AreaStore from'../../stores/AreaStore';
+import AreaActions from'../../actions/AreaActions'
+import AreaStore from'../../stores/AreaStore'
 
 var AreaSelect = React.createClass({
   mixins : [Reflux.listenTo(AreaStore,'onGetAreaList')],
@@ -17,118 +17,118 @@ var AreaSelect = React.createClass({
     }
   },
   componentDidMount : function(){
-    AreaActions.getProvince();
+    AreaActions.getProvince()
   },
   componentWillReceiveProps : function(nextProps){
     if(nextProps.province != this.props.province){
-      AreaActions.getCity({ParentId : nextProps.province});
+      AreaActions.getCity({ParentId : nextProps.province})
     }
     if(nextProps.city != this.props.city){
-      AreaActions.getDistrict({ParentId : nextProps.city});
+      AreaActions.getDistrict({ParentId : nextProps.city})
     }
   },
   getNameById : function (id) {
-    var found = this.state.found;
+    var found = this.state.found
 
-    var provinceList = this.state.provinceList;
+    var provinceList = this.state.provinceList
     provinceList.map(function (province) {
       if(province.Id == id){
         if(found){
-          found = found + " " + province.Name;
+          found = found + " " + province.Name
         }else{
-          found = province.Name;
+          found = province.Name
         }
       }
-    });
+    })
 
-    var cityList = this.state.cityList;
+    var cityList = this.state.cityList
     cityList.map(function (city) {
       if(city.Id == id){
         if(found){
-          found = found + " " + city.Name;
+          found = found + " " + city.Name
         }else{
-          found = city.Name;
+          found = city.Name
         }
       }
-    });
+    })
 
-    var districtList = this.state.districtList;
+    var districtList = this.state.districtList
     districtList.map(function (district) {
       if(district.Id == id){
         if(found){
-          found = found + " " + district.Name;
+          found = found + " " + district.Name
         }else{
-          found = district.Name;
+          found = district.Name
         }
       }
-    });
+    })
 
-    this.setState({found: found});
-    return found;
+    this.setState({found: found})
+    return found
   },
 
   onGetAreaList : function(data){
     if(data.flag == 'province'){
-      this.setState({provinceList:data.province});
+      this.setState({provinceList:data.province})
     }
     if(data.flag == 'city'){
       this.setState({cityList : data.city})
     }
     if(data.flag == 'district'){
-      this.setState({districtList : data.district});
+      this.setState({districtList : data.district})
     }
   },
   onProvinceChange : function(){
-    this.setState({cityList:[],districtList:[]});
-    var v = ReactDOM.findDOMNode(this.refs.province).value;
-    var vname = this.getNameById(v);
+    this.setState({cityList:[],districtList:[]})
+    var v = ReactDOM.findDOMNode(this.refs.province).value
+    var vname = this.getNameById(v)
     if(v != '0'){
-      AreaActions.getCity({ParentId : v});
+      AreaActions.getCity({ParentId : v})
     }else{
-      this.setState({cityList : []});
+      this.setState({cityList : []})
     }
-    this.props.onProvinceChange(v, vname);
+    this.props.onProvinceChange(v, vname)
   },
   onCityChange : function(){
-    this.setState({districtList:[]});
-    var v = ReactDOM.findDOMNode(this.refs.city).value;
-    var vname = this.getNameById(v);
+    this.setState({districtList:[]})
+    var v = ReactDOM.findDOMNode(this.refs.city).value
+    var vname = this.getNameById(v)
     if(v != '0'){
-      AreaActions.getDistrict({ParentId : v});
+      AreaActions.getDistrict({ParentId : v})
     }else{
-      this.setState({districtList : []});
+      this.setState({districtList : []})
     }
-    this.props.onCityChange(v, vname);
+    this.props.onCityChange(v, vname)
   },
   onDistrictChange : function(){
-    var v = ReactDOM.findDOMNode(this.refs.district).value;
-    var vname = this.getNameById(v);
-    this.props.onDistrictChange(v, vname);
+    var v = ReactDOM.findDOMNode(this.refs.district).value
+    var vname = this.getNameById(v)
+    this.props.onDistrictChange(v, vname)
   },
   getValue : function(){
-    var p = ReactDOM.findDOMNode(this.refs.province).value;
-    var c = ReactDOM.findDOMNode(this.refs.city).value;
-    var d = ReactDOM.findDOMNode(this.refs.district).value;
-    if(d && d != '0') return d;
-    if(c && c != '0') return c;
-    if(p && p != '0') return p;
-    return null;
+    var p = ReactDOM.findDOMNode(this.refs.province).value
+    var c = ReactDOM.findDOMNode(this.refs.city).value
+    var d = ReactDOM.findDOMNode(this.refs.district).value
+    if(d && d != '0') return d
+    if(c && c != '0') return c
+    if(p && p != '0') return p
+    return null
   },
   setValue : function(province,city,country){
-    ReactDOM.findDOMNode(this.refs.province).value = province;
-    ReactDOM.findDOMNode(this.refs.city).value = city;
+    ReactDOM.findDOMNode(this.refs.province).value = province
+    ReactDOM.findDOMNode(this.refs.city).value = city
     ReactDOM.findDOMNode(this.refs.district).value = country
   },
   render : function(){
     var province = this.state.provinceList.map(function(item){
       return <option key={item.Id} value={item.Id}>{item.Name}</option>
-    });
+    })
     var city = this.state.cityList.map(function(item){
       return <option key={item.Id} value={item.Id}>{item.Name}</option>
-    });
+    })
     var district = this.state.districtList.map(function(item){
       return <option key={item.Id} value={item.Id}>{item.Name}</option>
-    });
+    })
 
     return (
       <div className="weui_cells">
@@ -183,8 +183,8 @@ var AreaSelect = React.createClass({
           </select>
         </div>
       </div>
-    );
+    )
   }
-});
+})
 
-export {AreaSelect as default};
+export {AreaSelect as default}

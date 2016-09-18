@@ -1,6 +1,6 @@
-import Reflux from 'reflux';
-import HttpFactory from '../HttpFactory';
-import API from '../api';
+import Reflux from 'reflux'
+import HttpFactory from '../HttpFactory'
+import API from '../api'
 
 var UserActions = Reflux.createActions({
   'register' : {children:["success","failed"]},
@@ -22,7 +22,7 @@ var UserActions = Reflux.createActions({
   'modifyPassword':{children:["success","failed"]},
   'verifyTelResetPassWord': {children: ['success', "failed"]},
   'receiveTelResetPassWord': {children: ['success', 'failed']},
-});
+})
 
 /*
   https://xiattst.gitbooks.io/yaopai/content/API/User/Login.html
@@ -33,62 +33,56 @@ var UserActions = Reflux.createActions({
   autoexpires integer N 自动登录过期时间，单位（分钟）
 */
 UserActions.login.listen(function(data) {
-  console.log("login begin");
   //$.post(API.user_api.login_url, data).then(this.success, this.failed);
-  HttpFactory.post(API.USER.login,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.login,data,this.success,this.failed)
+})
 
 /*
   用Token登录
 */
 UserActions.loginWithToken.listen(function(data){
-  console.log("begin login with token");
-  HttpFactory.post(API.USER.login_with_token,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.login_with_token,data,this.success,this.failed)
+})
 
 /*
   得到当前用户
 */
 UserActions.currentServerUser.listen(function(data){
-  console.log('get currentUser from server');
-  HttpFactory.post(API.USER.current_user,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.current_user,data,this.success,this.failed)
+})
 /*
   得到当前用户详细信息
 */
 UserActions.currentUserDetail.listen(function(){
   var data = {
     Fields : 'Id,NickName,Sex,Avatar,ProvinceName,CityName,CountyName,ProvinceId,CityId,CountyId,Account.Type'
-  };
-  HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.USER.currentUserDetail,data,this.success,this.failed)
+})
 
 /*
   修改 当前用户 昵称
 */
 UserActions.changeUserNickNameOnServer.listen(function(nickname){
-  console.log('get changeUserNickNameOnServer');
   var data = {
     NickName: nickname
-  };
-  HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed)
+})
 
 
 /*
   修改 当前用户 性别（必须附上昵称）
 */
 UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
-  console.log('get changeUserInfoOnServer');
-
   var data = {
     NickName: nickname,
     Sex: parseInt(gender),
     Location: parseInt(city)
-  };
+  }
 
-  HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.changeInfo,data,this.success,this.failed)
+})
 
 /*
   修改 当前用户 头像
@@ -96,9 +90,9 @@ UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
 UserActions.changeAvatarOnServer.listen(function(imgLink) {
   var data = {
     Avatar: imgLink
-  };
-  HttpFactory.post(API.USER.changeAvatar,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.USER.changeAvatar,data,this.success,this.failed)
+})
 
 
 /*
@@ -112,14 +106,14 @@ UserActions.changeAvatarOnServer.listen(function(imgLink) {
 */
 UserActions.register.listen(function(data) {
   // $.post(API.user_api.register_url, data).then(this.success, this.failed);
-  HttpFactory.post(API.USER.register,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.register,data,this.success,this.failed)
+})
 
 // 验证用户邮箱所接收到的验证码
 UserActions.receiveMailRegister.listen(function(data) {
   // $.post(API.user_api.register_url, data).then(this.success, this.failed);
-  HttpFactory.post(API.USER.receiveMailRegister,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.receiveMailRegister,data,this.success,this.failed)
+})
 /*
   修改密码
   ##请求data结构
@@ -135,26 +129,23 @@ UserActions.receiveMailRegister.listen(function(data) {
   }
 */
 UserActions.modifyPassword.listen(function(data){
-  HttpFactory.post(API.USER.modify_password,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.modify_password,data,this.success,this.failed)
+})
 /*
   用户登出
 */
 UserActions.logout.listen(function(data) {
-  console.log('begin to logout!');
-  HttpFactory.post(API.USER.logout,data,this.success,this.failed);
-});
+  HttpFactory.post(API.USER.logout,data,this.success,this.failed)
+})
 
 /*用户重置密码验证码的验证*/
 UserActions.verifyTelResetPassWord.listen(function (data) {
-  console.log('check phone && code!');
-  HttpFactory.post(API.USER.verifyTelResetPassWord, data, this.success, this.failed);
-});
+  HttpFactory.post(API.USER.verifyTelResetPassWord, data, this.success, this.failed)
+})
 
 /*用户重置密码的密码提交*/
 UserActions.receiveTelResetPassWord.listen(function (data) {
-  console.log('new password start');
-  HttpFactory.post(API.USER.receiveTelResetPassWord, data, this.success, this.failed);
-});
+  HttpFactory.post(API.USER.receiveTelResetPassWord, data, this.success, this.failed)
+})
 
-export {UserActions as default};
+export {UserActions as default}

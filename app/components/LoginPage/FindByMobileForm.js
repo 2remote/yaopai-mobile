@@ -1,15 +1,15 @@
-import React from 'react';
-import Reflux from 'reflux';
-import GetCodeActions from'../../actions/GetCodeActions';
-import GetCodeStore from'../../stores/GetCodeStore';
-import UserActions from'../../actions/UserActions';
-import UserStore from'../../stores/UserStore';
-import Toaster from'../Toast';
-import InputGroup from '../UI/InputGroup';
-import { ButtonBlock } from '../UI/Button';
-import validator from'validator';
-import {History} from 'react-router';
-import DocumentTitle from 'react-document-title';
+import React from 'react'
+import Reflux from 'reflux'
+import GetCodeActions from'../../actions/GetCodeActions'
+import GetCodeStore from'../../stores/GetCodeStore'
+import UserActions from'../../actions/UserActions'
+import UserStore from'../../stores/UserStore'
+import Toaster from'../Toast'
+import InputGroup from '../UI/InputGroup'
+import { ButtonBlock } from '../UI/Button'
+import validator from'validator'
+import {History} from 'react-router'
+import DocumentTitle from 'react-document-title'
 
 var FindByMobileForm = React.createClass({
   mixins: [Reflux.listenTo(GetCodeStore, '_onGetCodeStoreChange'),
@@ -25,70 +25,69 @@ var FindByMobileForm = React.createClass({
   _onGetCodeStoreChange: function (data) {
     if (data.flag == 'resetCode') {
       if (data.left <= 0) {
-        console.log(data.result);
-        this.setState({codeLeft: 0});
-        this.showMessage(data.result);
+        console.log(data.result)
+        this.setState({codeLeft: 0})
+        this.showMessage(data.result)
       } else {
-        this.setState({codeLeft: data.left});
+        this.setState({codeLeft: data.left})
       }
     }
   },
   _onverifyTel: function (data) {
-    console.log(data);
     if (data.flag == "check") {
       if (data.hintMessage) {
-        this.showMessage(data.hintMessage);
-        return;
+        this.showMessage(data.hintMessage)
+        return
       } else {
-        var phone = this.state.mobileNumber;
-        var code = this.state.vertificationCode;
+        var phone = this.state.mobileNumber
+        var code = this.state.vertificationCode
         this.history.pushState({phone: phone, code: code}, '/changePassWordForm')
       }
     }
   },
   _handleCheck: function () {
-    if (this.state.codeLeft > 0) return;
-    var phone = this.state.mobileNumber;
+    if (this.state.codeLeft > 0) return
+    var phone = this.state.mobileNumber
     if (phone) {
-      const telPattern = /^1[34578]\d{9}$/;
+      const telPattern = /^1[34578]\d{9}$/
       if (telPattern.test(phone)) {
-        GetCodeActions.sendTelRestPassword({tel: phone});
-        return;
+        GetCodeActions.sendTelRestPassword({tel: phone})
+        return
       } else {
-        this.showMessage('手机号不正确，请输入正确手机号');
-        return;
+        this.showMessage('手机号不正确，请输入正确手机号')
+        return
       }
     } else {
-      this.showMessage('手机号不能为空');
-      return;
+      this.showMessage('手机号不能为空')
+      return
     }
   },
   _handleNextStep: function (e) {
-    e.preventDefault();
-    var phone = this.state.mobileNumber;
-    var code = this.state.vertificationCode;
-    const telPattern = /^1[34578]\d{9}$/;
+    e.preventDefault()
+    var phone = this.state.mobileNumber
+    var code = this.state.vertificationCode
+    const telPattern = /^1[34578]\d{9}$/
     if (!telPattern.test(phone)) {
-      this.showMessage('手机号格式错误');
-      return;
+      this.showMessage('手机号格式错误')
+      return
     }
     if (!phone) {
-      this.showMessage('手机号不能为空');
-      return;
+      this.showMessage('手机号不能为空')
+      return
     }
     if (!code) {
-      this.showMessage('验证码不能为空');
-      return;
+      this.showMessage('验证码不能为空')
+      return
     } else {
       if (code.length != 4) {
-        this.showMessage('验证码长度为4');
+        this.showMessage('验证码长度为4')
       } else {
-        UserActions.verifyTelResetPassWord({tel: phone, code: code});
+        UserActions.verifyTelResetPassWord({tel: phone, code: code})
       }
     }
   },
   showMessage(content) {
-    this.refs.toast.show(content);
+    this.refs.toast.show(content)
   },
   render() {
     return (
@@ -126,8 +125,8 @@ var FindByMobileForm = React.createClass({
         </div>
       </DocumentTitle>
 
-    );
+    )
   }
-});
+})
 
-export {FindByMobileForm as default};
+export {FindByMobileForm as default}

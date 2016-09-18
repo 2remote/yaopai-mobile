@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 class Update extends React.Component {
   render() {
@@ -6,8 +6,8 @@ class Update extends React.Component {
       <div>
         This is Grapher Update.
       </div>
-    );
+    )
   }
 }
 
-export { Update as default };
+export { Update as default }

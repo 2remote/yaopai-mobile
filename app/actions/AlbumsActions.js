@@ -1,6 +1,6 @@
-import Reflux from 'reflux';
-import HttpFactory from '../HttpFactory';
-import API from '../api';
+import Reflux from 'reflux'
+import HttpFactory from '../HttpFactory'
+import API from '../api'
 
 var AlbumsActions = Reflux.createActions({
   'get':{children : ['success','failed']},
@@ -16,7 +16,8 @@ var AlbumsActions = Reflux.createActions({
   'getById' : {children:['success','failed']},
   'mark' : {children : ['success','failed']},
   'unMark' : {children : ['success','failed']},
-});
+  'getAlbumId': {},
+})
 
 /*
  根据摄影师Id查询摄影师列表
@@ -25,9 +26,9 @@ AlbumsActions.getById.listen(function(id){
   var data = {
     UserId : id,
     Fields : 'Id,Result.Title,Service,Cut',
-  };
-  HttpFactory.post(API.ALBUMS.getById,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.ALBUMS.getById,data,this.success,this.failed)
+})
 
 
 AlbumsActions.get.listen(function(id){
@@ -39,9 +40,9 @@ AlbumsActions.get.listen(function(id){
     'Detail.Duration,Detail.PlateCount,Detail.TruingCount,Detail.CostumeCount,' +
     'Detail.MakeUpSupport,Detail.OriginalSupport,Detail.PhysicalSupport,Detail.PhysicalDetail,' +
     'Detail.UnitCount,Detail.SceneCount,Detail.PeopleCount,Detail.SeatCount,Detail.PlaceType',
-  };
-  HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.ALBUMS.get,data,this.success,this.failed)
+})
 
 AlbumsActions.search.listen( searchQuery )
 AlbumsActions.query.listen( searchQuery )
@@ -52,13 +53,42 @@ function searchQuery(args = {}) {
     key = "",
     pageIndex = 1,
     pageSize = 10,
+    priceTag = 100,
     userId,
     mark
   } = args
 
+  let priceStart, priceEnd
+
+  const priceList = {
+    100: () => {},
+    0: () => {
+      priceEnd = 99
+    },
+    1: () => {
+      priceStart = 100
+      priceEnd = 499
+    },
+    2: () => {
+      priceStart = 500
+      priceEnd = 1999
+    },
+    3: () => {
+      priceStart = 2000
+      priceEnd = 4999
+    },
+    4: () => {
+      priceStart = 5000
+    },
+  }
+
+  priceList[priceTag]()
+
   const data = {
     tags,
     key,
+    priceStart,
+    priceEnd,
     pageIndex,
     pageSize,
     userId,
@@ -77,9 +107,9 @@ function searchQuery(args = {}) {
 AlbumsActions.getTagList.listen(function () {
   var data = {
     Fields : 'id,name,display,tags.id,tags.name,tags.display'
-  };
-  HttpFactory.post(API.TAG.list,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.TAG.list,data,this.success,this.failed)
+})
 
 /*
   收藏作品
@@ -87,9 +117,9 @@ AlbumsActions.getTagList.listen(function () {
 AlbumsActions.mark.listen(function(id){
   var data = {
     Id : id,
-  };
-  HttpFactory.post(API.ALBUMS.mark,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.ALBUMS.mark,data,this.success,this.failed)
+})
 
 /*
   取消收藏作品
@@ -97,8 +127,8 @@ AlbumsActions.mark.listen(function(id){
 AlbumsActions.unMark.listen(function(id){
   var data = {
     Id : id,
-  };
-  HttpFactory.post(API.ALBUMS.unMark,data,this.success,this.failed);
-});
+  }
+  HttpFactory.post(API.ALBUMS.unMark,data,this.success,this.failed)
+})
 
-export {AlbumsActions as default};
+export {AlbumsActions as default}

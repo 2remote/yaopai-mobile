@@ -1,19 +1,19 @@
-import React from 'react';
-import Reflux from 'reflux';
-import ReactMixin from 'react-mixin';
-import { History } from 'react-router';
-import {LoadingToast} from '../../../../UI/WeuiToast';
+import React from 'react'
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
+import { History } from 'react-router'
+import {LoadingToast} from '../../../../UI/WeuiToast'
 
-import UserActions from '../../../../../actions/UserActions';
-import OrderActions from '../../../../../actions/OrderActions';
-import UserStore from '../../../../../stores/UserStore';
-import OrderStore from '../../../../../stores/OrderStore';
+import UserActions from '../../../../../actions/UserActions'
+import OrderActions from '../../../../../actions/OrderActions'
+import UserStore from '../../../../../stores/UserStore'
+import OrderStore from '../../../../../stores/OrderStore'
 
-import {Button} from 'react-weui';
+import {Button} from 'react-weui'
 
 class OrderDetailLayout extends React.Component{
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       order:{
         Albums:{},
@@ -27,19 +27,19 @@ class OrderDetailLayout extends React.Component{
         BuyerMemo:''
       },
       success: false
-    };
+    }
   }
 
   componentDidMount() {
-    UserActions.currentUser();
+    UserActions.currentUser()
   }
 
   onUserLoad(user) {
     if(!user.isLogin){ // 用户未登录，跳转登录页
-      this.setState({success: true});
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      this.setState({success: true})
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
     } else {
-      OrderActions.get(this.props.params.id);
+      OrderActions.get(this.props.params.id)
     }
   }
 
@@ -51,7 +51,7 @@ class OrderDetailLayout extends React.Component{
   }
 
   render() {
-    const {order} = this.state;
+    const {order} = this.state
     return (
       <div>
         <LoadingToast displayState={this.state.success ? 'none' : 'block'} />
@@ -130,12 +130,12 @@ class OrderDetailLayout extends React.Component{
           </footer>
         </div>
       </div>
-    );
+    )
   }
 }
 
-ReactMixin.onClass(OrderDetailLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
-ReactMixin.onClass(OrderDetailLayout, Reflux.listenTo(UserStore, 'onUserLoad'));
-ReactMixin.onClass(OrderDetailLayout, History);
+ReactMixin.onClass(OrderDetailLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'))
+ReactMixin.onClass(OrderDetailLayout, Reflux.listenTo(UserStore, 'onUserLoad'))
+ReactMixin.onClass(OrderDetailLayout, History)
 
-export default OrderDetailLayout;
+export default OrderDetailLayout

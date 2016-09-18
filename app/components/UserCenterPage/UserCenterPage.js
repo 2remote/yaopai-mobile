@@ -1,17 +1,17 @@
-import React from 'react';
-import Router from 'react-router';
-import Reflux from 'reflux';
-import SidePage from '../UI/SidePage';
-import DocumentTitle from 'react-document-title';
+import React from 'react'
+import Router from 'react-router'
+import Reflux from 'reflux'
+import SidePage from '../UI/SidePage'
+import DocumentTitle from 'react-document-title'
 
-import {History,Location} from 'react-router';
-import UserAvatarBox from '../common/UserAvatarBox' ;
+import {History,Location} from 'react-router'
+import UserAvatarBox from '../common/UserAvatarBox'
 
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
+import UserActions from '../../actions/UserActions'
+import UserStore from '../../stores/UserStore'
 
-import _ from 'underscore';
-import { makeIconButton } from '../Tools';
+import _ from 'underscore'
+import { makeIconButton } from '../Tools'
 
 var UserCenterPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History],
@@ -22,19 +22,19 @@ var UserCenterPage = React.createClass({
   },
   _onUserStoreChange : function(data){
     if(!data.isLogin){
-      this.history.pushState({nextPage : this.props.location.pathname},'/login_page');
+      this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
     }else{
-      let type = 'out';
+      let type = 'out'
       //得到当前用户的预约订单
-      this.setState({userInfo : data});
+      this.setState({userInfo : data})
       if(data.userType == 1) {
-        this.history.replaceState(null,'/center/g');
+        this.history.replaceState(null,'/center/g')
       }
     }
   },
 
   componentDidMount : function(){
-    UserActions.currentUser();
+    UserActions.currentUser()
   },
 
   render: function() {
@@ -45,7 +45,7 @@ var UserCenterPage = React.createClass({
         position: 'absolute',
         width: '100%'
       },
-    };
+    }
 
     return (
       <div
@@ -57,10 +57,10 @@ var UserCenterPage = React.createClass({
 
         {makeIconButton('order_icon', '我的订单', 'center/u/order', 'react-router')}
         {makeIconButton('mark', '收藏/关注', 'center/mark', 'react-router')}
-        {makeIconButton('customer_icon', '联系客服', 'tel:+86-0371-6533-7727')}
+        {makeIconButton('customer_icon', '联系客服', 'tel:4008765981')}
       </div>
-    );
+    )
   }
-});
+})
 
-export {UserCenterPage as default};
+export {UserCenterPage as default}

@@ -1,5 +1,5 @@
-import React from 'react';
-import $ from 'jquery';
+import React from 'react'
+import $ from 'jquery'
 
 var Toaster = React.createClass({
   displayName: 'ReactToaster',
@@ -15,34 +15,34 @@ var Toaster = React.createClass({
       duration: 3000,
       bottom:false,
       css:{}
-    };
+    }
   },
   timeId:false,
   componentDidUpdate: function () {
     if (this.state.display == 'block') {
       this.timeId = setTimeout(function () {
-        this.hide();
-        this.timeId = false;
-      }.bind(this), this.props.duration);
+        this.hide()
+        this.timeId = false
+      }.bind(this), this.props.duration)
     }
   },
   componentWillUnmount () {
-    this.timeId && clearTimeout(this.timeId);
+    this.timeId && clearTimeout(this.timeId)
   },
   show: function (content) {
-    this.setState({display: 'block', content: content, top: 0});
-    this.refs.displayCtrl.style.display = 'block';
-    this.props.isWorkPage ? $("#app").offset({top: 0, left:0}) : $("#app").offset({top: 0, left:0});
+    this.setState({display: 'block', content: content, top: 0})
+    this.refs.displayCtrl.style.display = 'block'
+    this.props.isWorkPage ? $("#app").offset({top: 0, left:0}) : $("#app").offset({top: 0, left:0})
   },
   hide: function () {
     if (this.state.display == 'block') {
-      this.timeId && clearTimeout(this.timeId);
-      this.timeId = false;
+      this.timeId && clearTimeout(this.timeId)
+      this.timeId = false
       setTimeout(function () {
-        this.setState({display: 'none', content: '', top: '-200px'});
-        this.refs.displayCtrl.style.display = 'none';
-        $("#app").offset({top: 0, left:0}).css("top","0");
-      }.bind(this), 200);
+        this.setState({display: 'none', content: '', top: '-200px'})
+        this.refs.displayCtrl.style.display = 'none'
+        $("#app").offset({top: 0, left:0}).css("top","0")
+      }.bind(this), 200)
     }
   },
   render: function () {
@@ -59,16 +59,16 @@ var Toaster = React.createClass({
       fontSize: '14px',
       WebkitTransition:'all ease 1s',
       transition: 'all ease 1s'
-    };
+    }
     if (this.props.bottom) {
-      styles.top = undefined;
-      styles.display = 'none';
-      styles.bottom = 0;
+      styles.top = undefined
+      styles.display = 'none'
+      styles.bottom = 0
     }
     if (this.props.css) {
-      var css = this.props.css;
+      var css = this.props.css
       for (var p in css) {
-        styles[p] = css[p];
+        styles[p] = css[p]
       }
     }
     return (
@@ -77,6 +77,6 @@ var Toaster = React.createClass({
       </div>
     )
   }
-});
+})
 
-export {Toaster as default};
+export {Toaster as default}

@@ -10,7 +10,7 @@ const LinkToApp = () => {
 
   const close = () => {
     $(".linkToApp").hide()
-    localStorage.setItem('linkToApp', 'hide');
+    localStorage.setItem('linkToApp', 'hide')
   }
 
   if (iOS) {

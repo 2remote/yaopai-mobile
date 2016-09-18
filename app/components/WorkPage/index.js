@@ -28,8 +28,10 @@ const WorkPage = React.createClass({
       works: [],
       searchKey: '',
       tags: [],
+      priceTag: 100,
       selectedTags: [],
       showNothingFound: false,
+      componentName: 'WorkPage' // 请和组件的名字保持一致
     }
   },
   componentDidMount() {
@@ -64,6 +66,7 @@ const WorkPage = React.createClass({
         AlbumsActions.query({
           tags:this.state.selectedTags.join(','),
           key:this.state.searchKey,
+          priceTag: this.state.priceTag,
         })
       })
 
@@ -74,7 +77,8 @@ const WorkPage = React.createClass({
       // 读取search过滤的数据
       AlbumsActions.query({
         tags: this.state.selectedTags.join(','),
-        key: this.state.searchKey
+        key: this.state.searchKey,
+        priceTag: this.state.priceTag,
       })
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
@@ -84,7 +88,9 @@ const WorkPage = React.createClass({
     let selectedTags = []
 
     $('.tagColBoxActive').each(function () {
-      selectedTags.push($(this).attr('id'))
+      if ( $.isNumeric( $(this).attr('id') ) ) {
+        selectedTags.push($(this).attr('id'))
+      }
     })
 
     this.setState({selectedTags: selectedTags}, () => {
@@ -92,9 +98,20 @@ const WorkPage = React.createClass({
       AlbumsActions.query({
         tags: this.state.selectedTags.join(','),
         key: this.state.searchKey,
+        priceTag: this.state.priceTag,
       })
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
+    })
+  },
+  handleUpdatePriceTag(i) {
+    this.setState({priceTag: i}, () => {
+      // 读取tag过滤的数据
+      AlbumsActions.query({
+        tags: this.state.selectedTags.join(','),
+        key: this.state.searchKey,
+        priceTag: i
+      })
     })
   },
   _onAlbumsStoreChange(data) {
@@ -127,34 +144,27 @@ const WorkPage = React.createClass({
     AlbumsActions.search({
       tags: this.state.selectedTags.join(','),
       key: this.state.searchKey,
+      priceTag: this.state.priceTag,
       pageIndex,
     })
   },
   render() {
 
-    const { searchKey, selectedTags, works, showNothingFound, tags } = this.state
+    const { searchKey, selectedTags, works, showNothingFound, tags, priceTag } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
           {/* 一定要确保 AnimationGuide 这个组件在最上面 ！！！ */}
           <AnimationGuide />
-          <a href="http://mp.weixin.qq.com/s?__biz=MzIxMzAyNjg1Nw==&mid=2652147338&idx=1&sn=024c366da98fe7f1edda56258270cff5&scene=1&srcid=0811mhWqfkgDQCOgI2EBTFOs#rd">
-            <img
-               style={{
-                 width: '100%',
-                 height: '60%',
-                 marginTop: '50px',
-                 marginBottom: '-50px',
-               }}
-               src="http://7xte7j.com1.z0.glb.clouddn.com/join.jpg" />
-          </a>
           <SidePage />
 
           <ShowMenu
             tags = {tags}
+            priceTag = {priceTag}
             onSelectedTag = {this.handleUpdateTags}
             onSearch = {this.handleUpdateSearch}
+            onPriceTag = {this.handleUpdatePriceTag}
             reset = {this.reset}
             searchKey = {searchKey}
             selectedTags = {selectedTags}

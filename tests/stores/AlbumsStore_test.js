@@ -1,4 +1,4 @@
-import Reflux from 'reflux';
+import Reflux from 'reflux'
 import {
   storeIsDefined,
   storeHasData,
@@ -6,38 +6,38 @@ import {
   storeCheckCommonUsage,
   makeStoreHasMethod
 }
-from '../refluxTestHelpers';
+from '../refluxTestHelpers'
 import {
   expect
 }
-from 'chai';
+from 'chai'
 
-import AlbumsStore from '../../app/stores/AlbumsStore';
+import AlbumsStore from '../../app/stores/AlbumsStore'
 
-const albumsStoreHasMethod = makeStoreHasMethod(AlbumsStore);
+const albumsStoreHasMethod = makeStoreHasMethod(AlbumsStore)
 
 describe('Albums Store Test', () => {
   const successfulRes = {
     Success: true,
     Result: [1, 2, 3]
-  };
+  }
 
-  const errorMsg = 'error message';
+  const errorMsg = 'error message'
 
   const failedRes = {
     Success: false,
     ErrorMsg: errorMsg
-  };
+  }
 
   beforeEach(() => {
-    AlbumsStore.data.hintMessage = '';
-    AlbumsStore.data.flag = '';
-  });
+    AlbumsStore.data.hintMessage = ''
+    AlbumsStore.data.flag = ''
+  })
 
   it('has store', () => {
-    storeIsDefined(AlbumsStore);
-    storeHasData(AlbumsStore);
-  });
+    storeIsDefined(AlbumsStore)
+    storeHasData(AlbumsStore)
+  })
 
   describe('has methods', () => {
     const methods = [
@@ -51,32 +51,32 @@ describe('Albums Store Test', () => {
       'onSaleSuccess',
       'offSaleSuccess',
       'onRecommendListSuccess'
-    ];
+    ]
     methods.forEach((method) => {
-      albumsStoreHasMethod(method);
+      albumsStoreHasMethod(method)
     })
-  });
+  })
 
   it('works on failed', () => {
-    AlbumsStore.onFailed();
-    expect(AlbumsStore.data.hintMessage).to.equal('网络错误');
-    expect(AlbumsStore.data.flag).to.equal('failed');
-  });
+    AlbumsStore.onFailed()
+    expect(AlbumsStore.data.hintMessage).to.equal('网络错误')
+    expect(AlbumsStore.data.flag).to.equal('failed')
+  })
 
-  storeCheckCommonUsage(AlbumsStore, 'onAddSuccess', 'add');
+  storeCheckCommonUsage(AlbumsStore, 'onAddSuccess', 'add')
 
   describe('works on get success', () => {
-    storeCheckCommonUsage(AlbumsStore, 'onGetSuccess', 'get');
-    AlbumsStore.onGetSuccess(successfulRes);
-    expect(AlbumsStore.data.workData).to.equal(successfulRes);
+    storeCheckCommonUsage(AlbumsStore, 'onGetSuccess', 'get')
+    AlbumsStore.onGetSuccess(successfulRes)
+    expect(AlbumsStore.data.workData).to.equal(successfulRes)
 
-    AlbumsStore.onGetSuccess(failedRes);
-    expect(AlbumsStore.data.workData).is.empty;
-  });
+    AlbumsStore.onGetSuccess(failedRes)
+    expect(AlbumsStore.data.workData).is.empty
+  })
 
-  storeCheckCommonUsage(AlbumsStore, 'onUpdateSuccess', 'update');
+  storeCheckCommonUsage(AlbumsStore, 'onUpdateSuccess', 'update')
 
-  storeCheckCommonUsage(AlbumsStore, 'onDeleteSuccess', 'delete');
+  storeCheckCommonUsage(AlbumsStore, 'onDeleteSuccess', 'delete')
 
   describe('works on search success', () => {
     // 有数据的时候
@@ -88,11 +88,11 @@ describe('Albums Store Test', () => {
       PageSize: 1,
       Total: 1,
       Result: [1, 2, 3]
-    };
+    }
 
-    AlbumsStore.onSearchSuccess(res);
-    expect(AlbumsStore.data.hintMessage).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('search');
+    AlbumsStore.onSearchSuccess(res)
+    expect(AlbumsStore.data.hintMessage).is.empty
+    expect(AlbumsStore.data.flag).to.equal('search')
 
     it('has datas', () => {
       const keys = [
@@ -102,27 +102,27 @@ describe('Albums Store Test', () => {
         'pageSize',
         'total',
         'workList'
-      ];
+      ]
       keys.map(function (key) {
-        storeHasData(AlbumsStore, key);
+        storeHasData(AlbumsStore, key)
       })
-    });
+    })
 
     // 没有数据的时候
-    AlbumsStore.onSearchSuccess(failedRes);
-    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg);
-    expect(AlbumsStore.data.workList).is.empty;
-    expect(AlbumsStore.data.flag).to.equal('search');
-  });
+    AlbumsStore.onSearchSuccess(failedRes)
+    expect(AlbumsStore.data.hintMessage).to.equal(errorMsg)
+    expect(AlbumsStore.data.workList).is.empty
+    expect(AlbumsStore.data.flag).to.equal('search')
+  })
 
   describe('works on get my albums success', () => {
-    storeCheckCommonUsage(AlbumsStore, 'onGetMyAlbumsSuccess', 'getMyAlbums', 'workList');
+    storeCheckCommonUsage(AlbumsStore, 'onGetMyAlbumsSuccess', 'getMyAlbums', 'workList')
 
-    AlbumsStore.onGetMyAlbumsSuccess(failedRes);
-    expect(AlbumsStore.data.workList).is.empty;
-  });
+    AlbumsStore.onGetMyAlbumsSuccess(failedRes)
+    expect(AlbumsStore.data.workList).is.empty
+  })
 
-  storeCheckCommonUsage(AlbumsStore, 'onSaleSuccess', 'onSale');
+  storeCheckCommonUsage(AlbumsStore, 'onSaleSuccess', 'onSale')
 
-  storeCheckCommonUsage(AlbumsStore, 'offSaleSuccess', 'offSale');
-});
+  storeCheckCommonUsage(AlbumsStore, 'offSaleSuccess', 'offSale')
+})

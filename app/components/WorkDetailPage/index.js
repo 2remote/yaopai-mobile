@@ -48,7 +48,6 @@ class WorkDetailPage extends React.Component {
   }
 
   _onAlbumsStoreChange(data){
-    console.log(data)
     if(data.flag == 'get'){
       if(data.hintMessage == '数据未找到'){
         console.log(data.hintMessage);
