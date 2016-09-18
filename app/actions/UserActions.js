@@ -12,7 +12,7 @@ var UserActions = Reflux.createActions({
   'currentUserDetail' : {children:['success','failed']},
   'currentUser' : {children:[]},
   'changeUserNickName' : {children:[]}, // 不是Async，可以不写下面的listen，直接在store里指定
-  'changeUserGender' : {children:[]},
+  'changeUserGender' : {children:[]}, // 不是 Async 直接写个空对象就行 @by zaxlct
   'changeUserCity' : {children:[]},
   'changeUserNickNameOnServer' : {children:['success','failed']},
   'changeUserInfoOnServer' : {children:['success','failed']},
@@ -72,7 +72,7 @@ UserActions.changeUserNickNameOnServer.listen(function(nickname){
 
 
 /*
-  修改 当前用户 性别（必须附上昵称）
+  修改 当前用户 性别（必须附上昵称和地区）
 */
 UserActions.changeUserInfoOnServer.listen(function(nickname, gender, city){
   var data = {

@@ -28,6 +28,8 @@ var UserStore = Reflux.createStore({
       flag : '',
       pingToken: '',
       loginDate : '',
+      newCityId: '',
+      newAreaName: '',
     }
     /*
       获取第三方登录的返回值，并得到当前用户
@@ -78,8 +80,9 @@ var UserStore = Reflux.createStore({
     var exist = false
     exist = isExist(areaId)
     this.data.newCityStatus = exist
-    this.data.newCity = areaId
-    this.data.newCityName = areaName
+    this.data.newCityId = areaId
+    this.data.newAreaName = areaName
+    this.trigger(this.data)
   },
 
   onChangeUserGender : function (gender) {
@@ -363,8 +366,11 @@ var UserStore = Reflux.createStore({
       this.data.userType = data.Type
       this.data.userSex = data.Sex
       this.data.userNickName = data.NickName || data.Name
+      this.data.countryName = data.CountryName
+      this.data.provinceName = data.ProvinceName
+      this.data.cityName = data.CityName
       let CountyName = data.CountyName || ''
-      this.data.userCity = isExist(data.ProvinceName) ? data.ProvinceName + " " + data.CityName + " " + CountyName : '未指定'
+      // this.data.userCity = isExist(data.ProvinceName) ? data.ProvinceName + " " + data.CityName + " " + CountyName : '未指定'
       if (data.Avatar) {
         this.data.avatar = data.Avatar
       } else {
