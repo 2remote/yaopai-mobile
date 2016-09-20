@@ -28,8 +28,8 @@ let EmailSignupPage = React.createClass({
         this.showMessage(data.hintMessage)
       }else{
         //注册成功
-        this.showMessage('注册成功！')
-        this.history.pushState(null, '/login_page')
+        this.showMessage('注册成功！请重新登录')
+        setTimeout(() => this.history.pushState(null, '/login_page'), 2000)
       }
     }
   },
