@@ -12,15 +12,20 @@ import UserStore from '../../../../../stores/UserStore'
 import { History } from 'react-router'
 import OrderActions from '../../../../../actions/OrderActions'
 import UserActions from '../../../../../actions/UserActions'
+import AutoLoadPageMixin from '../../../../AutoLoadPageMixin';
 
 class OrderListLayout extends React.Component {
   constructor() {
     super()
     this.state = {
+      pageIndex: 1, // 当前页
+      pageCount: 0, // 总页数
+      total: 0,
       filterType: OrderStatus.UNPAYED,
       orders: [],
       hintMessage : '订单加载中。。。',
-      success : false
+      success : false,
+      componentName: 'OrderListLayout', // 请和组件的名字保持一致
     }
   }
   componentDidMount() {
@@ -32,19 +37,35 @@ class OrderListLayout extends React.Component {
     } else {
       // 手动为默认展示选择“待付款”栏数据
       OrderActions.type(OrderStatus.UNCONFIRMED)
-      OrderActions.list('in')
+      OrderActions.list('in', '', 1)
       this.setState({ userType: user.userType })
     }
   }
   onOrderLoad(order) {
     // TODO: if else and more
+    let newOrderlist = []
+    if(order.orders.length === this.state.orders.length) {
+      newOrderlist = order.orders
+    } else {
+      newOrderlist = this.state.orders.concat(order.orders)
+    }
     this.setState({
+      pageIndex: order.pageIndex,
+      total: order.total,
+      pageCount: order.pageCount,
       filterType: order.filterType,
-      orders: order.orders,
+      orders: newOrderlist,
       hintMessage : order.hintMessage,
       success : order.success
     })
   }
+
+  // AutoLoadPageMixin 回调函数，orderList 滚动到底部执行
+  onChangePage(pageIndex) {
+    this.onShowToast('努力加载中...')
+    OrderActions.list('in', '', pageIndex)
+  }
+
   render() {
     let theRealList
     if(this.state.success) {
@@ -82,5 +103,6 @@ class OrderListLayout extends React.Component {
 ReactMixin.onClass(OrderListLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'))
 ReactMixin.onClass(OrderListLayout, Reflux.listenTo(UserStore, 'onUserLoad'))
 ReactMixin.onClass(OrderListLayout, History)
+ReactMixin.onClass(OrderListLayout, AutoLoadPageMixin)
 
 export default OrderListLayout
