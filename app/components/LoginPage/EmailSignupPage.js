@@ -40,7 +40,7 @@ let EmailSignupPage = React.createClass({
         this.showMessage(data.result)
         return
       }
-      this.setState({codeLeft : data.left})
+      this.setState({codeLeft : data.mailLeft})
     }
   },
 
