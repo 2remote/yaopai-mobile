@@ -12,7 +12,7 @@ import { History } from 'react-router'
 import OrderActions from '../../../../../actions/OrderActions'
 import UserActions from '../../../../../actions/UserActions'
 
-import AutoLoadPageMixin from '../../../../AutoLoadPageMixin';
+import AutoLoadPageMixin from '../../../../AutoLoadPageMixin'
 
 class OrderListLayout extends React.Component {
   constructor() {
