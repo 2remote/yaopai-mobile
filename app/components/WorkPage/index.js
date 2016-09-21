@@ -9,6 +9,7 @@ import WorkIntroGrapherList from '../common/WorkIntroGrapherList'
 import SidePage from '../UI/SidePage'
 import AutoLoadPageMixin from '../AutoLoadPageMixin'
 import { LIST_ALL_WORKS, TITLE } from '../Tools'
+import AnimationGuide from './AnimationGuide'
 import ShowMenu from './ShowMenu'
 import _ from 'underscore'
 import WechatShare from '../Weixin/WechatShare'
@@ -154,6 +155,8 @@ const WorkPage = React.createClass({
     return (
       <DocumentTitle title={TITLE.workPage}>
         <div className="workPage">
+          {/* 一定要确保 AnimationGuide 这个组件在最上面 ！！！ */}
+          <AnimationGuide />
           <SidePage />
 
           <ShowMenu
