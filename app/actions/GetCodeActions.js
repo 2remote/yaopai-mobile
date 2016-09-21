@@ -2,7 +2,6 @@ import Reflux from 'reflux'
 import HttpFactory from '../HttpFactory'
 import API from '../api'
 
-
 var GetCodeActions = Reflux.createActions({
   'sendTelRegister' : {children:["success","failed"]},
   'sendTelRestPassword': {children: ["success", "failed"]},

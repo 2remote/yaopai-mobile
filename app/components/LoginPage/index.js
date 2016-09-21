@@ -11,7 +11,6 @@ import Toaster from '../Toast'
 var LoginPage = React.createClass({
   mixins : [Reflux.listenTo(UserStore,'_onUserStoreChange'),History,Location],
   _onUserStoreChange : function(data){
-    console.log('登录页面 后台data', data)
     if(data.flag == 'login'){
       if(data.hintMessage){
         this.showMessage(data.hintMessage)

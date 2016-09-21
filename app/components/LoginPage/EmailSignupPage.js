@@ -28,19 +28,19 @@ let EmailSignupPage = React.createClass({
         this.showMessage(data.hintMessage)
       }else{
         //注册成功
-        this.showMessage('注册成功！')
-        this.history.pushState(null, '/login_page')
+        this.showMessage('注册成功！请重新登录')
+        setTimeout(() => this.history.pushState(null, '/login_page'), 2000)
       }
     }
   },
 
   _onGetCodeStoreChange : function(data){
     if (data.flag == 'registerCode') {
-      if (data.left == 0) {
+      if (data.mailLeft == 0) {
         this.showMessage(data.result)
         return
       }
-      this.setState({codeLeft : data.left})
+      this.setState({codeLeft : data.mailLeft})
     }
   },
 

@@ -14,7 +14,8 @@ var GetCodeStore = Reflux.createStore({
     //记录发送验证码的时间
     this.data = {
       flag: '',
-      left : 0,
+      left : 0, //手机注册倒计时
+      mailLeft: 0,// 邮箱注册倒计时
       result : ''
     }
     this.listenTo(GetCodeActions.sendTelRegister.success,this.onTelRegisterSucess)
@@ -73,9 +74,9 @@ var GetCodeStore = Reflux.createStore({
 
   // 邮箱注册
   onBeginMailRegister : function(){
-    this.data.left = 60
+    this.data.mailLeft = 60
     var countLeftMail = function(){
-      this.data.left = this.data.left -1
+      this.data.mailLeft--
       this.trigger(this.data)
       setTimeout(countLeftMail, 1000)
     }.bind(this)
@@ -87,18 +88,18 @@ var GetCodeStore = Reflux.createStore({
       this.data.result = '验证码已发送到您邮箱'
     }else{
       this.data.result = data.ErrorMsg
-      this.data.left = 0
+      this.data.mailLeft = 0
     }
     this.trigger(this.data)
   },
   onBeginMailSuccess: function () {
-    this.data.left = 60
+    this.data.mailLeft = 60
     var countLeftMail = function () {
-      this.data.left -= 1
+      this.data.mailLef--
       this.trigger(this.data)
       timerMail = setTimeout(countLeftMail, 1000)
       /*清除定时器*/
-      if (this.data.left <= 0) {
+      if (this.data.mailLeft <= 0) {
         clearTimeout(timerMail)
       }
     }.bind(this)
@@ -111,7 +112,7 @@ var GetCodeStore = Reflux.createStore({
     }else{
       clearTimeout(timerMail)
       this.data.result = data.ErrorMsg
-      this.data.left = 0
+      this.data.mailLeft = 0
     }
     this.trigger(this.data)
   }
