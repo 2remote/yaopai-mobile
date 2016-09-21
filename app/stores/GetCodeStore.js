@@ -76,7 +76,7 @@ var GetCodeStore = Reflux.createStore({
   onBeginMailRegister : function(){
     this.data.mailLeft = 60
     var countLeftMail = function(){
-      this.data.mailLeft = this.data.mailLeft -1
+      this.data.mailLeft--
       this.trigger(this.data)
       setTimeout(countLeftMail, 1000)
     }.bind(this)
@@ -95,7 +95,7 @@ var GetCodeStore = Reflux.createStore({
   onBeginMailSuccess: function () {
     this.data.mailLeft = 60
     var countLeftMail = function () {
-      this.data.mailLeft -= 1
+      this.data.mailLef--
       this.trigger(this.data)
       timerMail = setTimeout(countLeftMail, 1000)
       /*清除定时器*/
