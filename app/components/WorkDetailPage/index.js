@@ -51,7 +51,7 @@ class WorkDetailPage extends React.Component {
     if(data.flag == 'get'){
       if(data.hintMessage == '数据未找到'){
         console.log(data.hintMessage);
-        alert('该摄影师已被禁用！')
+        alert('该作品已下架或被删除！')
         this.history.replaceState(null, '/work');
         return;
       }else{
