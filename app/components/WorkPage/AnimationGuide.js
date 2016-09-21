@@ -16,11 +16,6 @@ class AnimationGuide extends React.Component {
           $('#animation-guide').unbind('click')
 
           $('#animation-guide').on('click', () => {
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> origin/dev
             $('#guide-2').fadeOut('300')
             $('#guide-3').fadeIn('slow', () => {
               $('#animation-guide').unbind('click')
@@ -38,28 +33,16 @@ class AnimationGuide extends React.Component {
     return(
       <section className="animation-guide" id="animation-guide">
         <img
-<<<<<<< HEAD
-          src="http://7xte7j.com1.z0.glb.clouddn.com/guide_cat_1.png"
-          id="guide-1"
-        />
-        <img
-          src="http://7xte7j.com1.z0.glb.clouddn.com/guide_cat_2.png"
-=======
           src="http://oawjlomvj.bkt.clouddn.com/cat-1.png"
           id="guide-1"
         />
         <img
           src="http://oawjlomvj.bkt.clouddn.com/cat-2.png"
->>>>>>> origin/dev
           id="guide-2"
 
         />
         <img
-<<<<<<< HEAD
-          src="http://7xte7j.com1.z0.glb.clouddn.com/guide_cat_3.png"
-=======
           src="http://oawjlomvj.bkt.clouddn.com/cat-3.png"
->>>>>>> origin/dev
           id="guide-3"
         />
       </section>
