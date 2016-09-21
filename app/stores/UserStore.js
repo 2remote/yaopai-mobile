@@ -178,7 +178,6 @@ var UserStore = Reflux.createStore({
       this.data.flag = 'currentUser'
       this.trigger(this.data)
     }else{
-      console.log(data.ErrorMsg)
       //若未得到当前用户，尝试loginwithtoken
       this.getTokenToLogin()
     }
