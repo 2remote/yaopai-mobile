@@ -16,8 +16,8 @@ import AutoLoadPageMixin from '../../../../AutoLoadPageMixin'
 import Toaster from '../../../../Toast'
 
 class OrderListLayout extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       pageIndex: 1, // 当前页
       pageCount: 0, // 总页数
@@ -62,7 +62,8 @@ class OrderListLayout extends React.Component {
       filterType: order.filterType,
       orders: newOrderlist,
       hintMessage : order.hintMessage,
-      success : order.success
+      searchText: order.searchText,
+      success : order.success,
     })
   }
 

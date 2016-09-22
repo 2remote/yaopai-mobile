@@ -9,6 +9,7 @@ var OrderActions = Reflux.createActions({
   'confirm' : {children:['success','failed']} ,
   'close' : {children:['success','failed']} ,
   'type': {},
+  'getSearchText': {},
   'refund': {children:['success','failed']}, // 用户申请退款
   'receive': {children:['success','failed']}, // 摄影师接单
   'deliver': {children:['success','failed']}, // 摄影师发片
