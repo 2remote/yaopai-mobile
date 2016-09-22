@@ -50,16 +50,21 @@ class OrderListLayout extends React.Component {
   }
   onOrderLoad(order) {
     let newOrderlist = []
-    if(order.orders.length === this.state.orders.length) {
-      newOrderlist = order.orders
-    } else {
-      if(order.searchText) this.setState({orders: []})
+    if(this.state.orders.length < 20 * order.pageIndex) {
       newOrderlist = [...this.state.orders, ...order.orders]
+    } else {
+      newOrderlist = this.state.orders
     }
-
-    if(order.searchText != this.state.searchText) {
-      OrderActions.list('in', '', 1, order.searchText)
-    }
+    // if(order.orders.length === this.state.orders.length) {
+    //   newOrderlist = order.orders
+    // } else {
+    //   if(order.searchText) this.setState({orders: []})
+    //   newOrderlist = [...this.state.orders, ...order.orders]
+    // }
+    //
+    // if(order.searchText != this.state.searchText) {
+    //   OrderActions.list('in', '', 1, order.searchText)
+    // }
 
     this.setState({
       pageIndex: order.pageIndex,
