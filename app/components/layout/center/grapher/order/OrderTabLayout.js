@@ -4,19 +4,23 @@ import WeuiNavbar from '../../../../UI/WeuiNavbar'
 import { OrderStatus } from '../../../../Tools'
 import OrderActions from '../../../../../actions/OrderActions'
 
-let navList = [{
-  filterType: OrderStatus.UNCONFIRMED,
-  text: '待确认'
-},{
-  filterType: OrderStatus.ONGOING,
-  text: '进行中'
-},{
-  filterType: OrderStatus.COMPLETE,
-  text: '已完成'
-},{
-  filterType: OrderStatus.CLOSED,
-  text: '已关闭'
-}]
+let navList = [
+  {
+    filterType: OrderStatus.ALL,
+    text: '全部订单'
+  },{
+    filterType: OrderStatus.UNCONFIRMED,
+    text: '待确认'
+  },{
+    filterType: OrderStatus.ONGOING,
+    text: '进行中'
+  },{
+    filterType: OrderStatus.COMPLETE,
+    text: '已完成'
+  },{
+    filterType: OrderStatus.CLOSED,
+    text: '已关闭'
+  }]
 
 class OrderTabLayout extends React.Component {
   /**
