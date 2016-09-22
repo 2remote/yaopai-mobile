@@ -36,8 +36,13 @@ class OrderListLayout extends React.Component {
     if(!user.isLogin){ // 用户未登录，跳转登录页
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
     } else {
-      // 手动为默认展示选择“待付款”栏数据
-      OrderActions.type(OrderStatus.UNCONFIRMED)
+      // 手动为默认展示选择“全部订单”栏数据
+      OrderActions.type(OrderStatus.ALL)
+      // 参数依次是：
+      //1.  in or out 摄影师还是用户
+      //2. state ，订单状态
+      //3. 请求第几页的订单数据
+      //4. 买家姓名
       OrderActions.list('in', '', 1)
       this.setState({ userType: user.userType })
     }
@@ -69,7 +74,7 @@ class OrderListLayout extends React.Component {
 
   render() {
     let theRealList
-    if(this.state.success) {
+    if(this.state.success && this.state.filterType != 0) {
       let isOrderNull = true
       theRealList = this.state.orders.map((order, index) => {
         if(OrderStatus.parse(order.State) !== this.state.filterType) return
@@ -87,7 +92,11 @@ class OrderListLayout extends React.Component {
             </div>
           </section>
       }
+
+    } else if(this.state.filterType == 0) {
+      theRealList = this.state.orders.map((order, index) => <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>)
     }
+
     return (
       <div className="weui_tab_bd" id="orderListContainer">
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
