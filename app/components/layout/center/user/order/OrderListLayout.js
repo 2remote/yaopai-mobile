@@ -51,7 +51,7 @@ class OrderListLayout extends React.Component {
     if(order.orders.length === this.state.orders.length) {
       newOrderlist = order.orders
     } else {
-      newOrderlist = this.state.orders.concat(order.orders)
+      newOrderlist = [...this.state.orders, ...order.orders]
     }
     this.setState({
       pageIndex: order.pageIndex,
