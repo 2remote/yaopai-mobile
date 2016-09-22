@@ -26,6 +26,7 @@ class OrderListLayout extends React.Component {
       orders: [],
       hintMessage : '订单加载中。。。',
       success : false,
+      searchText: '',
       componentName: 'OrderListLayout', // 请和组件的名字保持一致
     }
   }
@@ -48,13 +49,18 @@ class OrderListLayout extends React.Component {
     }
   }
   onOrderLoad(order) {
-    // TODO: if else and more
     let newOrderlist = []
     if(order.orders.length === this.state.orders.length) {
       newOrderlist = order.orders
     } else {
+      if(order.searchText) this.setState({orders: []})
       newOrderlist = [...this.state.orders, ...order.orders]
     }
+
+    if(order.searchText != this.state.searchText) {
+      OrderActions.list('in', '', 1, order.searchText)
+    }
+
     this.setState({
       pageIndex: order.pageIndex,
       total: order.total,
