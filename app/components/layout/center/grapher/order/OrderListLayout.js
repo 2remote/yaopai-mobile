@@ -50,21 +50,20 @@ class OrderListLayout extends React.Component {
   }
   onOrderLoad(order) {
     let newOrderlist = []
-    if(this.state.orders.length < 20 * order.pageIndex) {
-      newOrderlist = [...this.state.orders, ...order.orders]
-    } else {
-      newOrderlist = this.state.orders
+
+    if (order.flag == 'list') {
+      if(this.state.orders.length < 20 * order.pageIndex) {
+        newOrderlist = [...this.state.orders, ...order.orders]
+      } else {
+        newOrderlist = this.state.orders
+      }
     }
-    // if(order.orders.length === this.state.orders.length) {
-    //   newOrderlist = order.orders
-    // } else {
-    //   if(order.searchText) this.setState({orders: []})
-    //   newOrderlist = [...this.state.orders, ...order.orders]
-    // }
-    //
-    // if(order.searchText != this.state.searchText) {
-    //   OrderActions.list('in', '', 1, order.searchText)
-    // }
+
+    if(order.searchText != this.state.searchText && order.flag == 'onGetSearchText') {
+      this.setState({orders: []})
+      // 请求搜索的订单
+      OrderActions.list('in', '', 1, order.searchText)
+    }
 
     this.setState({
       pageIndex: order.pageIndex,
@@ -106,8 +105,18 @@ class OrderListLayout extends React.Component {
           </section>
       }
 
-    } else if(this.state.filterType == 0) {
-      theRealList = this.state.orders.map((order, index) => <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>)
+    } else if(this.state.filterType == 0) { // 如果NavBar 是「全部订单」
+      if(!this.state.orders.length) { // 如果搜索的结果为空
+        theRealList =
+          <section className="text_center">
+            <div style={{ padding:'50px 0' }}>
+              <i className="weui_icon_msg weui_icon_waiting"/>
+              <p>暂无数据</p>
+            </div>
+          </section>
+      } else { // 渲染全部订单的数据
+        theRealList = this.state.orders.map((order, index) => <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>)
+      }
     }
 
     return (
