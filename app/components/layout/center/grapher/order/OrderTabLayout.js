@@ -23,18 +23,34 @@ const navList = [
     text: '已关闭'
   }]
 
-const OrderTabLayout = ({location}) => {
-  const getIndex = data => OrderActions.type(data.filterType)
+class OrderTabLayout extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchSwitch: 0,
+    }
+  }
 
-  const getSearchText = selectText => OrderActions.getSearchText(selectText)
+  getIndex(data) {
+    this.setState({
+      searchSwitch: data.filterType
+    })
+    OrderActions.type(data.filterType)
+  }
 
-  return (
-    <div className="weui_tab">
-      <WeuiNavbar list={navList} onClick={getIndex} />
-      <OrderSearchBar onSearch={getSearchText} />
-      <OrderListLayout location={{ pathname: location.pathname }} />
-    </div>
-  )
+  getSearchText(selectText){
+    OrderActions.getSearchText(selectText)
+  }
+
+  render() {
+    return (
+      <div className="weui_tab">
+        <WeuiNavbar list={navList} onClick={this.getIndex.bind(this)} />
+        { this.state.searchSwitch == 0 ? <OrderSearchBar onSearch={this.getSearchText} /> : null }
+        <OrderListLayout location={{ pathname: this.props.location.pathname }} />
+      </div>
+    )
+  }
 }
 
 export default OrderTabLayout

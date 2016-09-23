@@ -120,7 +120,11 @@ class OrderListLayout extends React.Component {
     }
 
     return (
-      <div className="weui_tab_bd" style={{paddingTop: 94}} id="orderListContainer">
+      <div
+        className="weui_tab_bd"
+        style={this.state.filterType == 0 ? {paddingTop: 94 } : null} 
+        id="orderListContainer"
+      >
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         <section id="orderList">{theRealList}</section>
         <aside className="footer color_gray text_center font_small">
