@@ -81,6 +81,7 @@ class OrderListLayout extends React.Component {
   // AutoLoadPageMixin 回调函数，orderList 滚动到底部执行
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
+    setTimeout(() => this.onHideToast(), 350)
     OrderActions.list('in', '', pageIndex)
   }
 
