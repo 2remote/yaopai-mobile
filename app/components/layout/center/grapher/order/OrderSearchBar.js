@@ -9,12 +9,14 @@ const OrderSearchBar = ({onSearch}) => {
   const onSearchSubmit = e => {
     e.preventDefault()
     let searchText = $('#search_input').val().trim()
+    // 如果用户没有输入搜索内容，或者点击【取消】，把 「搜索内容为空」作为 flag 传递出去
+    if (!searchText) searchText = '搜索内容为空'
     onSearch(searchText)
   }
 
   const closeSearch = () => {
     $('#search_bar').removeClass('weui_search_focusing')
-    onSearch('')
+    onSearch('搜索内容为空')
   }
 
   return (
@@ -28,7 +30,6 @@ const OrderSearchBar = ({onSearch}) => {
             id="search_input"
             placeholder="输入订单联系人，搜索所有订单"
             onFocus={onSearchFocus}
-            required
           />
         <a href="javascript:" onClick={clearText} className="weui_icon_clear" id="search_clear" />
         </div>

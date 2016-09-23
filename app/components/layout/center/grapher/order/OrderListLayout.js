@@ -50,16 +50,22 @@ class OrderListLayout extends React.Component {
   }
   onOrderLoad(order) {
     let newOrderlist = []
+    if(order.flag == 'type') {
+      OrderActions.list('in', '', 1, '', )
+    }
 
     if (order.flag == 'list') {
-      if(this.state.orders.length < 20 * order.pageIndex) {
+      if(this.state.orders.length < 100 * order.pageIndex) {
         newOrderlist = [...this.state.orders, ...order.orders]
       } else {
         newOrderlist = this.state.orders
       }
     }
 
-    if(order.searchText != this.state.searchText && order.flag == 'onGetSearchText') {
+    if(order.searchText == '搜索内容为空' && order.flag == 'onGetSearchText') {
+      this.setState({orders: []})
+      OrderActions.list('in', '', 1)
+    } else if (order.searchText != this.state.searchText && order.flag == 'onGetSearchText') {
       this.setState({orders: []})
       // 请求搜索的订单
       OrderActions.list('in', '', 1, order.searchText)
@@ -89,7 +95,6 @@ class OrderListLayout extends React.Component {
     if(this.state.success && this.state.filterType != 0) {
       let isOrderNull = true
       theRealList = this.state.orders.map((order, index) => {
-        if(OrderStatus.parse(order.State) !== this.state.filterType) return
         isOrderNull = false
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>
       })
@@ -122,7 +127,7 @@ class OrderListLayout extends React.Component {
     return (
       <div
         className="weui_tab_bd"
-        style={this.state.filterType == 0 ? {paddingTop: 94 } : null} 
+        style={this.state.filterType == 0 ? {paddingTop: 94 } : null}
         id="orderListContainer"
       >
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
