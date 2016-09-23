@@ -8,9 +8,13 @@ const OrderSearchBar = ({onSearch}) => {
 
   const onSearchSubmit = e => {
     e.preventDefault()
-    $('#search_bar').removeClass('weui_search_focusing')
     let searchText = $('#search_input').val().trim()
     onSearch(searchText)
+  }
+
+  const closeSearch = () => {
+    $('#search_bar').removeClass('weui_search_focusing')
+    onSearch('')
   }
 
   return (
@@ -33,8 +37,7 @@ const OrderSearchBar = ({onSearch}) => {
           <span>输入订单联系人，搜索所有订单</span>
         </label>
       </form>
-      <a onClick={() => $('#search_bar').removeClass('weui_search_focusing')}
-         href="javascript:" className="weui_search_cancel" id="search_cancel">
+      <a onClick={closeSearch} href="javascript:" className="weui_search_cancel" id="search_cancel">
         取消
       </a>
     </div>
