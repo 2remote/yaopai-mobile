@@ -22,7 +22,7 @@ const OrderSearchBar = ({onSearch}) => {
             type="search"
             className="weui_search_input"
             id="search_input"
-            placeholder="搜索"
+            placeholder="输入订单联系人，搜索所有订单"
             onFocus={onSearchFocus}
             required
           />
@@ -30,7 +30,7 @@ const OrderSearchBar = ({onSearch}) => {
         </div>
         <label htmlFor="search_input" className="weui_search_text" id="search_text">
           <i className="weui_icon_search" />
-          <span>搜索</span>
+          <span>输入订单联系人，搜索所有订单</span>
         </label>
       </form>
       <a onClick={() => $('#search_bar').removeClass('weui_search_focusing')}
