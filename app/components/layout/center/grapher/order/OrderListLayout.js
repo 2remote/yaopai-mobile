@@ -110,8 +110,8 @@ class OrderListLayout extends React.Component {
         theRealList =
           <section className="text_center">
             <div style={{ padding:'50px 0' }}>
-              <i className="weui_icon_msg weui_icon_waiting"/>
-              <p>暂无数据</p>
+              <i className="weui_icon_msg weui_icon_warn"/>
+              <h2>没找着：(</h2>
             </div>
           </section>
       } else { // 渲染全部订单的数据
