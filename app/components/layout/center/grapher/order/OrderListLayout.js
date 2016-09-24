@@ -51,10 +51,10 @@ class OrderListLayout extends React.Component {
   onOrderLoad(order) {
     let newOrderlist = []
     if(order.flag == 'type') {
-      OrderActions.list('in', '', 1, '', )
+      // OrderActions.list('in', '', 1, '', )
     }
 
-    if (order.flag == 'list') {
+    if (order.flag == 'list' || order.flag == 'type') {
       if(this.state.orders.length < 100 * order.pageIndex) {
         newOrderlist = [...this.state.orders, ...order.orders]
       } else {
@@ -95,6 +95,7 @@ class OrderListLayout extends React.Component {
     if(this.state.success && this.state.filterType != 0) {
       let isOrderNull = true
       theRealList = this.state.orders.map((order, index) => {
+        if(OrderStatus.parse(order.State) !== this.state.filterType) return
         isOrderNull = false
         return <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>
       })
