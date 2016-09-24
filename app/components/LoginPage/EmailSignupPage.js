@@ -36,10 +36,10 @@ let EmailSignupPage = React.createClass({
 
   _onGetCodeStoreChange : function(data){
     if (data.flag == 'registerCode') {
-      // if (data.mailLeft == 0) {
-      //   this.showMessage(data.result)
-      //   return
-      // }
+      if (data.mailLeft == 0) {
+        this.showMessage(data.result)
+        return
+      }
       this.setState({codeLeft : data.mailLeft})
     }
   },
