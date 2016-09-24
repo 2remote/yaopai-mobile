@@ -40,8 +40,6 @@ var WechatShare = React.createClass({
     }
     var targetUrl = location.href.split('#')[0]
     targetUrl = targetUrl.replace('&', '%26')
-    console.log("location.href="+location.href)
-    console.log("targetUrl="+targetUrl)
     $.ajax({
       url: "//"+location.host + '/signPackage?url=' + targetUrl,
       dataType: 'json',

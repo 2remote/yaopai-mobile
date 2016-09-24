@@ -80,7 +80,7 @@ const GrapherPage = React.createClass({
         console.log(data.hintMessage)
       }else{
         this.setState({
-          graphers: this.state.graphers.concat(data.photographers),
+          graphers: [...this.state.graphers, ...data.photographers],
           pageCount: data.pageCount
         })
         this.onHideToast()

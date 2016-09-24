@@ -118,7 +118,7 @@ const WorkPage = React.createClass({
     const handleByFlag = {
       search: () => {
         this.setState({
-          works: this.state.works.concat(data.workList),
+          works: [...this.state.works, ...data.workList],
           pageIndex: data.pageIndex,
           total: data.total,
           pageCount: data.pageCount,

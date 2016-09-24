@@ -12,7 +12,7 @@ import { History } from 'react-router'
 import OrderActions from '../../../../../actions/OrderActions'
 import UserActions from '../../../../../actions/UserActions'
 
-import AutoLoadPageMixin from '../../../../AutoLoadPageMixin';
+import AutoLoadPageMixin from '../../../../AutoLoadPageMixin'
 
 class OrderListLayout extends React.Component {
   constructor() {
@@ -47,12 +47,18 @@ class OrderListLayout extends React.Component {
 
   onOrderLoad(order) {
     // TODO: if else and more
+    let newOrderlist = []
+    if(order.orders.length === this.state.orders.length) {
+      newOrderlist = order.orders
+    } else {
+      newOrderlist = [...this.state.orders, ...order.orders]
+    }
     this.setState({
       pageIndex: order.pageIndex,
       total: order.total,
       pageCount: order.pageCount,
       filterType: order.filterType,
-      orders: order.orders,
+      orders: newOrderlist,
       hintMessage: order.hintMessage,
       success: order.success,
     })

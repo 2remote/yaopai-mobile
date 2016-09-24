@@ -59,19 +59,20 @@ class PurseListLayout extends React.Component {
             </div>
           </section>
       } else {
-        accountList = accountDataList.map((account, index) => {
-          return <YPUIPurseCard
+        accountList = accountDataList.map((account, index) => (
+          <YPUIPurseCard
             Amount={account.Amount}
             CreationTime={account.CreationTime}
             FundsType = {account.FundsType}
             Id = {account.AssociatedId}
             key={index}
-          />;
-        });
+          />
+        ))
       }
     }
+
     return (
-      <div>
+      <div className="weui_tab_bd">
         {this.state.success ? '' : <LoadingToast />}
         { accountList }
         <aside className="footer color_gray text_center font_small">
@@ -79,7 +80,7 @@ class PurseListLayout extends React.Component {
           请拨打客服热线：<a className="color_green" href="tel:400-876-5981">400-876-5981</a>
         </aside>
       </div>
-    );
+    )
   }
 }
 

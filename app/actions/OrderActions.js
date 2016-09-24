@@ -36,7 +36,7 @@ OrderActions.list.listen(function(type,state,pageIndex = 1){
   }
   var data = {
     State : s,
-    pageSize: 50,
+    pageSize: 100,
     pageIndex,
     Fields : 'Id,UserId,BuyerName,BuyerTel,BuyerMemo,Price,AppointedTime,PhotographerId,CreationTime,State,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id,Albums.Cover,Albums.Title,Amount,CompleteTime,HasRefund,Refund.CompletionTime,Refund.Compensation'
   }
