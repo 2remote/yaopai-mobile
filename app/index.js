@@ -100,7 +100,7 @@ function main(){
           <IndexRoute component={DiscoverLayout} />
           { /* 化妆师 */ }
           <Route path="makeupArtist">
-            <IndexRoute to="makeupArtistWorkPage" />
+            <IndexRedirect to="makeupArtistWorkPage" />
             <Route path="makeupArtistWorkPage" component={MakeupArtistWorkPage} />
             <Route path="/workDetail/:Id" component={MakeWorkDetailPage} />
             <Route path="makeupArtistProfile" component={MakeupArtistProfile} />
@@ -108,7 +108,7 @@ function main(){
 
           { /* 模特 */ }
           <Route path="mote">
-            <IndexRoute to="moteWorkPage" />
+            <IndexRedirect to="moteWorkPage" />
             <Route path="moteWorkPage" component={MoteWorkPage} />
             <Route path="/workDetail/:Id" component={MoteWorkDetailPage} />
             <Route path="moteProfile" component={MoteProfile} />
