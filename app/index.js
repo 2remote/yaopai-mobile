@@ -50,13 +50,10 @@ import WithdrawDepositLayout from './components/layout/center/grapher/purse/With
 // 发现页面
 import DiscoverLayout from './components/UI/DiscoverLayout'
 // 化妆师
-import MakeupArtistWorkPage from './components/MakeupArtist/WorkPage/WorkPage'
-import MakeWorkDetailPage from './components/MakeupArtist/WorkDetailPage/WorkDetailPage'
-import MakeupArtistProfile from './components/MakeupArtist/MakeupArtistProfile/MakeupArtistProfile'
+import makeupArtistRouter from './components/MakeupArtist'
 // 模特
-import MoteWorkPage from './components/Mote/WorkPage/WorkPage'
-import MoteWorkDetailPage from './components/Mote/WorkDetailPage/WorkDetailPage'
-import MoteProfile from './components/Mote/MoteProfile/MoteProfile'
+import moteRouter from './components/Mote'
+
 
 main()
 
@@ -99,20 +96,9 @@ function main(){
         <Route path="discover">
           <IndexRoute component={DiscoverLayout} />
           { /* 化妆师 */ }
-          <Route path="makeupArtist">
-            <IndexRedirect to="makeupArtistWorkPage" />
-            <Route path="makeupArtistWorkPage" component={MakeupArtistWorkPage} />
-            <Route path="/workDetail/:Id" component={MakeWorkDetailPage} />
-            <Route path="makeupArtistProfile" component={MakeupArtistProfile} />
-          </Route>
-
+          {makeupArtistRouter}
           { /* 模特 */ }
-          <Route path="mote">
-            <IndexRedirect to="moteWorkPage" />
-            <Route path="moteWorkPage" component={MoteWorkPage} />
-            <Route path="/workDetail/:Id" component={MoteWorkDetailPage} />
-            <Route path="moteProfile" component={MoteProfile} />
-          </Route>
+          {moteRouter}
         </Route>
 
         <Route path="center">
