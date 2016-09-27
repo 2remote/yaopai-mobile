@@ -47,6 +47,17 @@ import BindCardLayout from './components/layout/center/grapher/purse/BindCardLay
 import CardDetailLayout from './components/layout/center/grapher/purse/CardDetailLayout'
 import WithdrawDepositLayout from './components/layout/center/grapher/purse/WithdrawDepositLayout'
 
+// 发现页面
+import DiscoverLayout from './components/UI/DiscoverLayout'
+// 化妆师
+import MakeupArtistWorkPage from './components/MakeupArtist/WorkPage/WorkPage'
+import MakeWorkDetailPage from './components/MakeupArtist/WorkDetailPage/WorkDetailPage'
+import MakeupArtistProfile from './components/MakeupArtist/MakeupArtistProfile/MakeupArtistProfile'
+// 模特
+import MoteWorkPage from './components/Mote/WorkPage/WorkPage'
+import MoteWorkDetailPage from './components/Mote/WorkDetailPage/WorkDetailPage'
+import MoteProfile from './components/Mote/MoteProfile/MoteProfile'
+
 main()
 
 function main(){
@@ -83,6 +94,26 @@ function main(){
           onLeave={() => removeBackgroundDimBlack()}
         />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
+
+        {/* 发现页面 */}
+        <Route path="discover">
+          <IndexRoute component={DiscoverLayout} />
+          { /* 化妆师 */ }
+          <Route path="makeupArtist">
+            <IndexRoute to="makeupArtistWorkPage" />
+            <Route path="makeupArtistWorkPage" component={MakeupArtistWorkPage} />
+            <Route path="/workDetail/:Id" component={MakeWorkDetailPage} />
+            <Route path="makeupArtistProfile" component={MakeupArtistProfile} />
+          </Route>
+
+          { /* 模特 */ }
+          <Route path="mote">
+            <IndexRoute to="moteWorkPage" />
+            <Route path="moteWorkPage" component={MoteWorkPage} />
+            <Route path="/workDetail/:Id" component={MoteWorkDetailPage} />
+            <Route path="moteProfile" component={MoteProfile} />
+          </Route>
+        </Route>
 
         <Route path="center">
           {/*用户修改资料（普通用户和摄影师共用）*/}
