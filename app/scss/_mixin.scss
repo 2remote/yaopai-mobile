@@ -1,68 +1,59 @@
-@mixin flex {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
+@mixin font_color($color) {
+  color: $color !important;
 }
-
-@mixin flex_1 {
-  -webkit-box-flex: 1;
-          box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+@mixin bg_color($color) {
+  background-color: $color;
 }
-
-@mixin font_color($color) { color: $color !important; }
-@mixin bg_color($color)   { background-color: $color; }
 
 /*flex模块*/
 @mixin justify_content_space_around {
-  -webkit-box-pack:justify;
-          box-pack:justify;
+  -webkit-box-pack       : justify;
+  box-pack               : justify;
   -webkit-justify-content: space-around;
-          justify-content: space-around;
+  justify-content        : space-around;
 }
-
 @mixin flex_align($direction) {
   -webkit-box-align: $direction;
-          box-align: $direction;
+  box-align        : $direction;
   @if $direction == start {
     -webkit-align-items: flex- + $direction;
-            align-items: flex- + $direction;
-  } @else if $direction == end {
+    align-items        : flex- + $direction;
+  }
+  @else if $direction == end {
     -webkit-align-items: flex- + $direction;
-            align-items: flex- + $direction;
-  } @else {
+    align-items        : flex- + $direction;
+  }
+  @else {
     -webkit-align-items: $direction;
-            align-items: $direction;
+    align-items        : $direction;
   }
 }
 
 /*三角形*/
-@mixin triangle ($direction, $size, $color){
-  content: '';
-  width: 0;
-  height: 0;
-  font-size: 0;
+@mixin triangle ($direction, $size, $color) {
+  content    : '';
+  width      : 0;
+  height     : 0;
+  font-size  : 0;
   line-height: 0;
 
   @if $direction == 'right' {
     border-bottom: $size solid transparent;
-    border-top: $size solid transparent;
-    border-left: $size solid $color;
+    border-top   : $size solid transparent;
+    border-left  : $size solid $color;
   }
 
   @if $direction == 'top-left' {
-    border-top: $size solid $color;
+    border-top  : $size solid $color;
     border-right: $size solid transparent;
   }
 
   @if $direction == 'bottom-left' {
     border-bottom: $size solid $color;
-    border-right: $size solid transparent;
+    border-right : $size solid transparent;
   }
   // TODO 待补充其他方向的三角形
 }
-
 
 //  @mixin 滑动动画*/
 //  调用方法：
@@ -86,27 +77,209 @@
   transition                 : transform .2s, -webkit-transform .2s ease-in-out;
 
   @if $direction == 'left-right' {
-    -webkit-transform          : translate(-100%, 0);
-    transform                  : translate(-100%, 0);
+    -webkit-transform: translate(-100%, 0);
+    transform        : translate(-100%, 0);
   }
 
   @if $direction == 'right-left' {
-    -webkit-transform          : translate(100%, 0);
-    transform                  : translate(100%, 0);
+    -webkit-transform: translate(100%, 0);
+    transform        : translate(100%, 0);
   }
 
   @if $direction == 'top-bottom' {
-    -webkit-transform          : translate(0, -100%);
-    transform                  : translate(0, -100%);
+    -webkit-transform: translate(0, -100%);
+    transform        : translate(0, -100%);
   }
 
   @if $direction == 'bottom-top' {
-    -webkit-transform          : translate(0, 100%);
-    transform                  : translate(0, 100%);
+    -webkit-transform: translate(0, 100%);
+    transform        : translate(0, 100%);
   }
 }
 /* 一个公共类放在这是不规范的，但是放在这更合适 */
 .slide-toggle {
   -webkit-transform: translate(0, 0) !important;
   transform        : translate(0, 0) !important;
+}
+@mixin flex($num) {
+  // 在移动端只支持 flexbox 协议（旧的 flex API）的浏览器下，只有当你设置了 display: flex 属性后，其子元素的 flex 才会生效，因此这里同时设置了 display 以及 box-flex 属性
+  display         : -webkit-box;
+  display         : -moz-box;
+  display         : -ms-flexbox;
+  -webkit-box-flex: $num;
+  -moz-box-flex   : $num;
+  -o-box-flex     : $num;
+  -ms-box-flex    : $num;
+  -webkit-flex    : $num;
+  -moz-flex       : $num;
+  -o-flex         : $num;
+  -ms-flex        : $num;
+  flex            : $num;
+}
+@mixin flex_direction_ForOld($direction) {
+   @if $direction == row{
+    // old 版本还有 inline-axis | block-axis，暂不考虑
+    -webkit-box-orient: horizontal;
+    -moz-box-orient   : horizontal;
+    box-orient        : horizontal;
+  }
+  @else if $direction == column {
+    -webkit-box-orient: vertical;
+    -moz-box-orient   : vertical;
+    box-orient        : vertical;
+  }
+  @else if $direction == row-reverse {
+    -webkit-box-orient   : horizontal;
+    -moz-box-orient      : horizontal;
+    box-orient           : horizontal;
+    -webkit-box-direction: reverse;
+    -moz-box-direction   : reverse;
+    box-direction        : reverse;
+  }
+  @else {
+    -webkit-box-orient   : vertical;
+    -moz-box-orient      : vertical;
+    box-orient           : vertical;
+    -webkit-box-direction: reverse;
+    -moz-box-direction   : reverse;
+    box-direction        : reverse;
+  }
+}
+
+/// 设置 flex 元素的伸缩流方向，即 box-orient 的兼容性方法
+///
+/// @group 布局
+/// @name flex_direction
+/// @param {String} $direction - 伸缩流方向，有 row，row-reverse，column，column-reverse 四个可选值
+@mixin flex_direction($direction) {
+   @include flex_direction_ForOld($direction);
+  -ms-flex-direction    : $direction;
+  -webkit-flex-direction: $direction;
+  flex-direction        : $direction;
+}
+
+/// flex-grow 的兼容性方法
+///
+/// @group 布局
+/// @name flex_grow
+/// @param {Number} $num - CSS flex-grow 的属性值，即在父元素中的权重
+@mixin flex_grow($num) {
+  -webkit-box-flex  : $num;
+  -moz-box-flex     : $num;
+  -o-box-flex       : $num;
+  -ms-box-flex      : $num;
+  -ms-flex          : $num; // for IE10
+  -moz-box-flex-grow: $num;
+  -webkit-flex-grow : $num;
+  -ms-flex-grow     : $num;
+  flex-grow         : $num;
+}
+
+/// flex-shrink 的兼容性方法
+///
+/// @group 布局
+/// @name flex_shrink
+/// @param {Number} $num - CSS flex-shrink 的属性值
+@mixin flex_shrink($num) {
+  -webkit-box-flex-shrink: $num;
+  -moz-box-flex-shrink   : $num;
+  -webkit-flex-shrink    : $num;
+  -ms-flex-shrink        : $num;
+  flex-shrink            : $num;
+}
+
+/// flex-basis 的兼容性方法
+///
+/// @group 布局
+/// @name flex_basis
+/// @param {Number} $num - CSS flex-basis 的属性值
+@mixin flex_basis($num) {
+  -webkit-box-flex-basis: $num;
+  -moz-box-flex-basis   : $num;
+  -webkit-flex-basis    : $num;
+  -ms-flex-basis        : $num;
+  flex-basis            : $num;
+}
+
+/// align-items 的兼容性方法
+///
+/// @group 布局
+/// @name flex_align_items
+/// @param {String} $value - 对齐方式，有 flex-start，flex-end，center，baseline，stretch 5个可选值
+@mixin flex_align_items($value) {
+  @if $value == 'flex-start' {
+    -webkit-box-align: start;
+    -moz-box-align   : start;
+    -o-box-align     : start;
+    -ms-box-align    : start;
+  }
+
+  @else if $value == 'flex-end' {
+    -webkit-box-align: end;
+    -moz-box-align   : end;
+    -o-box-align     : end;
+    -ms-box-align    : end;
+  }
+  @else {
+    -webkit-box-align: $value;
+    -moz-box-align   : $value;
+    -o-box-align     : $value;
+    -ms-box-align    : $value;
+  }
+  -webkit-align-items: $value;
+  -moz-align-items   : $value;
+  -o-align-items     : $value;
+  -ms-align-items    : $value;
+  -ms-flex-align     : $value; // for IE10
+  align-items        : $value;
+}
+
+/// justify-content 的兼容性方法
+///
+/// @group 布局
+/// @name flex_justify_content
+/// @param {String} $value - CSS 属性 justify-content 的属性值，即 flex-start，flex-end，center，space-between，space-around 5个可选值
+@mixin flex_justify_content($value) {
+  @if $value == 'space-around' {
+    -webkit-box-pack: justify;
+    -moz-box-pack   : justify;
+    -ms-flex-pack   : distribute;
+  }
+
+  @else if $value == 'flex-start' {
+    -webkit-box-pack: start;
+    -moz-box-pack   : start;
+    -ms-flex-pack   : start;
+  }
+
+  @else if $value == 'flex-end' {
+    -webkit-box-pack: end;
+    -moz-box-pack   : end;
+    -ms-flex-pack   : end;
+  }
+  @else {
+    -webkit-box-pack: $value;
+    -moz-box-pack   : $value;
+    -ms-flex-pack   : $value;
+  }
+  -webkit-justify-content: $value;
+  -ms-justify-content    : $value;
+  -ms-flex-pack          : $value; // for IE10
+  justify-content        : $value;
+}
+
+/// 根据子元素的布局方向，控制其对齐方式
+///
+/// @group 布局
+/// @name flex_childPos
+/// @param {String} $dir - 子元素当前的布局方向，可选值为 vertical 和 horizontal
+/// @param {String} $value - 希望子元素对齐的方式，可选值为 flex-start，flex-end，center
+@mixin flex_childPos($dir, $value) {
+  @if $dir == 'vertical' {
+    @include flex_align_items($value);
+  }
+
+  @if $dir == 'horizontal' {
+    @include flex_justify_content($value);
+  }
 }
