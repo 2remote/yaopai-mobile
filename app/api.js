@@ -85,6 +85,9 @@ var API_CONST = {
     mark: API_URL + 'Albums.Mark',
     unMark: API_URL + 'Albums.UnMark',
   },
+  Mote: {
+    albumsSearch: API_URL + 'MoteAlbums.Search',
+  },
 
   INTERVIEW: {
     search: API_URL + 'Interview.Search',
