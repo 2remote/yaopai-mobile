@@ -6,7 +6,7 @@ const WorkPieceList = ({workPieces, photographerId}) => {
   const workNodes = _.map(workPieces, (photo, i) => {
     let margin = {}
     if(photographerId == 7300) {
-      margin = {marginBottom: 0}
+      margin = {marginBottom: -7}
     }
     return (
       <section key={i} style={{lineHeight: 0}, margin} className="workPieceRow">
