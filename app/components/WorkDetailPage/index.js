@@ -111,7 +111,7 @@ class WorkDetailPage extends React.Component {
           :
           <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
         }
-        <WorkPieceList workPieces={this.state.photos} />
+        <WorkPieceList workPieces={this.state.photos} photographerId={this.state.photographer.Id} />
         <ActionBar id={this.state.workData.workId} price={this.state.workData.price} />
         <AboutYAOPAILayout />
         <WechatShare title={this.state.workData.title} desc={this.state.workData.description} imgUrl={this.state.workData.cover} />
