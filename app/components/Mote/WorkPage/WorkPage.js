@@ -15,8 +15,8 @@ class WorkPage extends React.Component {
     }
   }
 
-  _onAlbumsStoreChange() {
-
+  _onAlbumsStoreChange(data) {
+    
   }
 
   onSearch() {

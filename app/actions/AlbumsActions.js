@@ -20,6 +20,9 @@ const AlbumsActions = Reflux.createActions({
 
   // 模特
   'moteAlbumsSearch': {children : ['success','failed']},
+
+  // 化妆师
+  'makeupArtistAlbumsSearch': {children : ['success','failed']},
 })
 
 /*
@@ -142,6 +145,16 @@ AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
     Fields: 'Id,Title,Description,Cover,Marks,MarkExist,'
   }
   HttpFactory.post(API.Mote.albumsSearch,data,this.success,this.failed)
+})
+
+// 模特
+AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
+  let data = {
+    pageSize,
+    pageIndex,
+    Fields: 'Id,Title,Description,Cover,Marks,MarkExist,'
+  }
+  HttpFactory.post(API.MakeupArtist.albumsSearch,data,this.success,this.failed)
 })
 
 export {AlbumsActions as default}
