@@ -70,7 +70,6 @@ var API_CONST = {
     viewAudit: API_URL + 'Photographer.ViewAudit',
     get: API_URL + 'Photographer.Get',
     list: API_URL + 'Photographer.Search',
-    viewAdd: API_URL + 'Photographer.ViewAdd',
     mark: API_URL + 'Photographer.Mark',
     unMark: API_URL + 'Photographer.UnMark',
   },

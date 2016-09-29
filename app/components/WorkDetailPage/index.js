@@ -96,10 +96,22 @@ class WorkDetailPage extends React.Component {
       <div className="workDetailPage" onload={this.showTop()}>
         <DocumentTitle title={this.state.workData.title + TITLE.workDetailPage} />
         <SidePage shareFrom={this.state.shareFrom}/>
-        <WorkTitle data={this.state.workData} />
-        <WorkDetail data={this.state.detail} workData={this.state.workData} />
-        <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
-        <WorkPieceList workPieces={this.state.photos} />
+        {
+          this.state.photographer.Id == 7300 ? ''
+          :
+          <WorkTitle data={this.state.workData} />
+        }
+        {
+          this.state.photographer.Id == 7300 ? ''
+          :
+          <WorkDetail data={this.state.detail} workData={this.state.workData} />
+        }
+        {
+          this.state.photographer.Id == 7300 ? ''
+          :
+          <AboutGrapher data={this.state.photographer} id={this.state.workData.id} />
+        }
+        <WorkPieceList workPieces={this.state.photos} photographerId={this.state.photographer.Id} />
         <ActionBar id={this.state.workData.workId} price={this.state.workData.price} />
         <AboutYAOPAILayout />
         <WechatShare title={this.state.workData.title} desc={this.state.workData.description} imgUrl={this.state.workData.cover} />

@@ -32,13 +32,6 @@ CircleCI
 * [ES6](https://github.com/yuche/javascript)
 * [CSS / SASS](https://github.com/Zhangjd/css-style-guide)
 
-## 编码规范总结
-1. JS 里不能出现行内样式以及样式对象，除非其中的样式值需要 JS 计算。
-2. 对上面的补充：样式只能写在 app/scss 目录下。假设样式写在了 app/components/某个模块/index.scss 里，那么这个index.scss享有不到 app/scss 里定义的所有东西。
-3. 用 `a` 还是 `Link` ？这里约定下：组件里能用 `a` 标签的话就不用 `Link`，除非要用 `Link` 的私有属性 `activeClassName`,
-4. 避免无意义的标签嵌套（这虽然是一条老生常谈的规范，但是项目里这种错误很多），同时举一反三下，避免无意义的 `react` 组件嵌套。
-5. className 命名用 input-group 方式，不建议用 inpntGroup
-6. JSX 语法使用下列的对其方式 [react 规范]
 
 ## 黄金定律
 >不管有多少人共同参与同一项目，一定要确保每一行代码都像是同一个人编写的。
