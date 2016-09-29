@@ -8,6 +8,7 @@ import ReactMixin from 'react-mixin'
 import AlbumsActions from '../../actions/AlbumsActions'
 import AlbumsStore from '../../stores/AlbumsStore'
 import LinkToApp from '../common/LinkToApp'
+import _ from 'underscore'
 
 import $ from 'jquery'
 
@@ -36,10 +37,20 @@ class GrapherDetailPage extends React.Component {
   }
 
   render() {
+    let activityId
+    _.map(this.state.works, (data, i) => {
+      if(i == 0) {
+        activityId = data.Photographer.Id
+      }
+    })
     return (
       <div className="grapherDetailPage">
         <SidePage shareFrom={this.state.shareFrom} />
-        <GrapherIntro id={this.props.params.Id} pathname={this.props.location.pathname} />
+        {
+          activityId == 7300 ? ''
+          :
+          <GrapherIntro id={this.props.params.Id} pathname={this.props.location.pathname} />
+        }
         <WorkIntroGrapherList data={this.state.works} />
         <LinkToApp />
       </div>
