@@ -8,7 +8,7 @@ import MoteProfile from './MoteProfile/MoteProfile'
 const moteRouter =
   <Route path="mote">
     <IndexRedirect to="moteWorkPage" />
-    <Route path="moteWorkPage" component={MoteWorkPage} />
+    <Route path="workPage" component={MoteWorkPage} />
     <Route path="/workDetail/:Id" component={MoteWorkDetailPage} />
     <Route path="moteProfile" component={MoteProfile} />
   </Route>

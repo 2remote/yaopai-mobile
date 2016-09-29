@@ -8,7 +8,7 @@ import MakeupArtistProfile from './MakeupArtistProfile/MakeupArtistProfile'
 const makeupArtistRouter =
   <Route path="makeupArtist">
     <IndexRedirect to="makeupArtistWorkPage" />
-    <Route path="makeupArtistWorkPage" component={MakeupArtistWorkPage} />
+    <Route path="workPage" component={MakeupArtistWorkPage} />
     <Route path="/workDetail/:Id" component={MakeWorkDetailPage} />
     <Route path="makeupArtistProfile" component={MakeupArtistProfile} />
   </Route>
