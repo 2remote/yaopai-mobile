@@ -95,7 +95,7 @@ class WorkIntroGrapherRow extends React.Component {
     }
 
     let grapherAvatar
-    if (data.Photographer.Avatar) {
+    if (data.Photographer.Avatar && data.Id != 5272) {
       grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
                         <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
                       </Link>

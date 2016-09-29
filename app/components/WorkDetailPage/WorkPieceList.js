@@ -3,6 +3,13 @@ import {imgModifier} from '../Tools'
 import _ from 'underscore'
 
 const WorkPieceList = ({workPieces}) => {
+  let activityAlbumsId;
+  _.map(workPieces, (photo, i) => {
+    if (i == 0) {
+      activityAlbumsId = photo.AlbumsId
+    }
+  })
+
   const workNodes = _.map(workPieces, (photo, i) =>
     <section key={i} style={{lineHeight: 0}} className="workPieceRow">
       <img
@@ -14,8 +21,14 @@ const WorkPieceList = ({workPieces}) => {
 
   return (
     <div className="workPieceList">
-      <hr className="moreWork"/>
-      <span className="des">客片展示</span>
+      {activityAlbumsId == 5272 ? ''
+        :
+        <hr className="moreWork"/>
+      }
+      {activityAlbumsId == 5272 ? ''
+        :
+        <span className="des">客片展示</span>
+      }
       {workNodes}
     </div>
   )
