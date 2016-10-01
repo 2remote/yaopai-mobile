@@ -18,7 +18,7 @@ var baseHost = 'api.qcloud.com'
  * @param {String} defaults.SecretKey secretKey
  * @constructor
  */
-var QcloudApi = function(defaults) {
+var QcloudApi = function (defaults) {
   this.defaults = assign({
     path: '/v2/index.php',
     method: 'POST',
@@ -31,7 +31,7 @@ var QcloudApi = function(defaults) {
  * @param {Object} opts
  * @returns {string}
  */
-QcloudApi.prototype.generateUrl = function(opts) {
+QcloudApi.prototype.generateUrl = function (opts) {
   opts = opts || {}
   var host = this._getHost(opts)
 
@@ -44,7 +44,7 @@ QcloudApi.prototype.generateUrl = function(opts) {
  * @param {Object} [opts] 请求配置. 同 `request` 方法的 `opts` 参数
  * @returns {string} 包括签名的参数字符串
  */
-QcloudApi.prototype.generateQueryString = function(data, opts) {
+QcloudApi.prototype.generateQueryString = function (data, opts) {
   opts = opts || this.defaults
 
   var defaults = this.defaults
@@ -58,24 +58,26 @@ QcloudApi.prototype.generateQueryString = function(data, opts) {
   param = dotQs.flatten(param)
 
   var keys = Object.keys(param)
-  var qstr = '', signStr
+  var qstr = '',
+    signStr
 
   var host = this._getHost(opts)
-  var method = (opts.method || defaults.method).toUpperCase()
+  var method = (opts.method || defaults.method)
+    .toUpperCase()
 
   keys.sort()
 
   //拼接 querystring, 注意这里拼接的参数要和下面 `qs.stringify` 里的参数一致
-  keys.forEach(function(key) {
+  keys.forEach(function (key) {
     var val = param[key]
-    // 排除上传文件的参数
-    if(method === 'POST' && val && val[0] === '@'){
+      // 排除上传文件的参数
+    if (method === 'POST' && val && val[0] === '@') {
       return
     }
-    if(key === '') {
+    if (key === '') {
       return
     }
-    if(val === undefined || val === null || (typeof val === 'number' && isNaN(val))) {
+    if (val === undefined || val === null || (typeof val === 'number' && isNaN(val))) {
       val = ''
     }
     //把参数中的 _ 替换成 .
@@ -99,8 +101,8 @@ QcloudApi.prototype.generateQueryString = function(data, opts) {
  * @param {String} opts.host 该次请求使用的 API host. 当传入该参数的时候, 将忽略 `serviceType` 及默认 `host`
  * @param {requestCallback} callback
  */
-QcloudApi.prototype.request = function(data, opts, callback) {
-  if(typeof opts === 'function') {
+QcloudApi.prototype.request = function (data, opts, callback) {
+  if (typeof opts === 'function') {
     callback = opts
     opts = this.defaults
   }
@@ -108,17 +110,23 @@ QcloudApi.prototype.request = function(data, opts, callback) {
   callback = callback || Function.prototype
 
   var url = this.generateUrl(opts)
-  var method = (opts.method || this.defaults.method).toUpperCase()
+  var method = (opts.method || this.defaults.method)
+    .toUpperCase()
   var dataStr = this.generateQueryString(data, opts)
-  var option = {url: url, method: method, json: true, strictSSL: false}
+  var option = {
+    url: url,
+    method: method,
+    json: true,
+    strictSSL: false
+  }
 
-  if(method === 'POST') {
+  if (method === 'POST') {
     option.form = qs.parse(dataStr)
-  }else{
+  } else {
     option.url += '?' + dataStr
   }
 
-  request(option, function(error, response, body) {
+  request(option, function (error, response, body) {
     /**
      * `.request` 的请求回调
      * @callback requestCallback
@@ -136,9 +144,10 @@ QcloudApi.prototype.request = function(data, opts, callback) {
  * @param {String} secretKey
  * @returns {String} 签名
  */
-QcloudApi.prototype.sign = function(str, secretKey) {
+QcloudApi.prototype.sign = function (str, secretKey) {
   var hmac = crypto.createHmac('sha1', secretKey || '')
-  return hmac.update(new Buffer(str, 'utf8')).digest('base64')
+  return hmac.update(new Buffer(str, 'utf8'))
+    .digest('base64')
 }
 
 /**
@@ -149,9 +158,9 @@ QcloudApi.prototype.sign = function(str, secretKey) {
  * @returns {String}
  * @private
  */
-QcloudApi.prototype._getHost = function(opts) {
+QcloudApi.prototype._getHost = function (opts) {
   var host = opts.host
-  if(!host) {
+  if (!host) {
     host = (opts.serviceType || this.defaults.serviceType) + '.' + (opts.baseHost || this.defaults.baseHost)
   }
   return host

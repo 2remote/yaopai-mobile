@@ -1,16 +1,18 @@
-var path = require('path');
-var HtmlwebpackPlugin = require('html-webpack-plugin');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
-var webpack = require('webpack');
-var merge = require('webpack-merge');
-var Clean = require('clean-webpack-plugin');
-import { TITLE } from './app/components/Tools.js';
-var pkg = require('./package.json');
+var path = require('path')
+var HtmlwebpackPlugin = require('html-webpack-plugin')
+var OpenBrowserPlugin = require('open-browser-webpack-plugin')
+var webpack = require('webpack')
+var merge = require('webpack-merge')
+var Clean = require('clean-webpack-plugin')
+import {
+  TITLE
+} from './app/components/Tools.js'
+var pkg = require('./package.json')
 
-var TARGET = process.env.npm_lifecycle_event;
-var ROOT_PATH = path.resolve(__dirname);
+var TARGET = process.env.npm_lifecycle_event
+var ROOT_PATH = path.resolve(__dirname)
 
-const APP_TITLE = TITLE.indexPage;
+const APP_TITLE = TITLE.indexPage
 
 var common = {
   entry: path.resolve(ROOT_PATH, 'app'),
@@ -35,7 +37,8 @@ var common = {
         loaders: ['style', 'css'],
         include: path.resolve(ROOT_PATH, 'app')
       },
-      { test: /\.scss$/,
+      {
+        test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
       }
       /**
@@ -56,9 +59,9 @@ var common = {
     net: 'empty',
     tls: 'empty'
   }
-};
+}
 
-if(TARGET === 'start' || !TARGET) {
+if (TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
     devtool: 'source-map',
     module: {
@@ -75,7 +78,9 @@ if(TARGET === 'start' || !TARGET) {
       hot: true,
       inline: true,
       progress: true,
-      proxy: { '/imgs/*' : 'http://localhost:5000/' },
+      proxy: {
+        '/imgs/*': 'http://localhost:5000/'
+      },
       host: '0.0.0.0', // 允许局域网访问
     },
     plugins: [
@@ -92,10 +97,10 @@ if(TARGET === 'start' || !TARGET) {
         browser: 'Google Chrome'
       })
     ]
-  });
+  })
 }
 
-if(TARGET === 'build') {
+if (TARGET === 'build') {
   module.exports = merge(common, {
     entry: {
       app: path.resolve(ROOT_PATH, 'app'),
@@ -114,7 +119,10 @@ if(TARGET === 'build') {
           loaders: ['babel?optional=runtime'],
           include: path.resolve(ROOT_PATH, 'app')
         },
-        { test: /\.json$/, loader: 'json-loader' }
+        {
+          test: /\.json$/,
+          loader: 'json-loader'
+        }
       ]
     },
     plugins: [
@@ -134,10 +142,10 @@ if(TARGET === 'build') {
         template: 'app/templates/index.tpl'
       })
     ]
-  });
+  })
 }
 
-if(TARGET === 'test' || TARGET === 'tdd') {
+if (TARGET === 'test' || TARGET === 'tdd') {
   module.exports = merge(common, {
     entry: {}, // karma will set this
     output: {}, // karma will set this
@@ -166,5 +174,5 @@ if(TARGET === 'test' || TARGET === 'tdd') {
         }
       ]
     }
-  });
+  })
 }
