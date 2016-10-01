@@ -1,11 +1,6 @@
-# yaopai-mobile
-web app for YAOPAI
+# yaopai-mobile 
 
-本项目已开光，拉面神教保佑: 
-[![RamenBless](https://cdn.rawgit.com/LunaGao/BlessYourCodeTag/master/tags/ramen.svg)](https://github.com/LunaGao/BlessYourCodeTag)
-
-CircleCI
-[![Circle CI](https://circleci.com/gh/2remote/yaopai-mobile/tree/master.svg?style=svg&circle-token=1cc3f1e118023c56b38a5ab98154fcd893baaf06)](https://circleci.com/gh/2remote/yaopai-mobile/tree/master)
+[![Circle CI](https://circleci.com/gh/2remote/yaopai-mobile/tree/master.svg?style=svg&circle-token=1cc3f1e118023c56b38a5ab98154fcd893baaf06)](https://circleci.com/gh/2remote/yaopai-mobile/tree/master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b9037712f324170a0441faafe9f923a)](https://www.codacy.com/app/liubiantao/yaopai-mobile?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=2remote/yaopai-mobile&amp;utm_campaign=Badge_Grade) [![RamenBless](https://cdn.rawgit.com/LunaGao/BlessYourCodeTag/master/tags/ramen.svg)](https://github.com/LunaGao/BlessYourCodeTag)
 
 [![Throughput Graph](https://graphs.waffle.io/2remote/yaopai-mobile/throughput.svg)](https://waffle.io/2remote/yaopai-mobile/metrics)
 
@@ -34,4 +29,4 @@ CircleCI
 
 
 ## 黄金定律
->不管有多少人共同参与同一项目，一定要确保每一行代码都像是同一个人编写的。
+> 不管有多少人共同参与同一项目，一定要确保每一行代码都像是同一个人编写的。
