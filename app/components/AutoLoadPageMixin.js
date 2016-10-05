@@ -7,16 +7,11 @@
  * 注意 bind(this) 的坑
  */
 import { findDOMNode } from 'react-dom'
-<<<<<<< HEAD
-import $ from 'jquery';
+import $ from 'jquery'
+
 let nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
 let nScrollTop = 0;   //滚动到的当前位置
 let lock = false
-=======
-import $ from 'jquery'
-var nScrollHight = 0 //滚动距离总长(注意不是滚动条的长度)
-var nScrollTop = 0   //滚动到的当前位置
->>>>>>> 化妆师模特功能
 
 let AutoLoadPageMixin = {
   // 监听滚动事件
@@ -59,16 +54,10 @@ let AutoLoadPageMixin = {
       // 判断 orderList 是否滚动到底部
       const node = findDOMNode(this)
       const nDivHight = $(node).outerHeight()
-<<<<<<< HEAD
-      nScrollHight = $(node)[0].scrollHeight;
-      nScrollTop = $(node)[0].scrollTop;
-
-      if(nScrollTop + nDivHight == nScrollHight) {
-=======
       nScrollHight = $(node)[0].scrollHeight
       nScrollTop = $(node)[0].scrollTop
+      
       if(nScrollTop + nDivHight >= nScrollHight) {
->>>>>>> 化妆师模特功能
         // console.log("滚动条到底部了")
         // TODO 一旦滚动到底部会多次执行这个函数，用 lock 解决
         if(lock) return
