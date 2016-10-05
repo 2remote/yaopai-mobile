@@ -70,7 +70,6 @@ var API_CONST = {
     viewAudit: API_URL + 'Photographer.ViewAudit',
     get: API_URL + 'Photographer.Get',
     list: API_URL + 'Photographer.Search',
-    viewAdd: API_URL + 'Photographer.ViewAdd',
     mark: API_URL + 'Photographer.Mark',
     unMark: API_URL + 'Photographer.UnMark',
   },
@@ -86,7 +85,12 @@ var API_CONST = {
     mark: API_URL + 'Albums.Mark',
     unMark: API_URL + 'Albums.UnMark',
   },
-
+  Mote: { // 模特
+    albumsSearch: API_URL + 'MoteAlbums.Search',
+  },
+  MakeupArtist: { // 化妆师
+    albumsSearch: API_URL + 'MakeupArtistAlbums.Search',
+  },
   INTERVIEW: {
     search: API_URL + 'Interview.Search',
     get: API_URL + 'Interview.Get'
