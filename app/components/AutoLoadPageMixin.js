@@ -7,11 +7,13 @@
  * 注意 bind(this) 的坑
  */
 import { findDOMNode } from 'react-dom'
-import $ from 'jquery';
-var nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
-var nScrollTop = 0;   //滚动到的当前位置
+import $ from 'jquery'
 
-var AutoLoadPageMixin = {
+let nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
+let nScrollTop = 0;   //滚动到的当前位置
+let lock = false
+
+let AutoLoadPageMixin = {
   // 监听滚动事件
   componentDidMount: function() {
     if(this.state.componentName == 'OrderListLayout') { // 判断是 OrderListLayout 组件 还是 WorkPage 组件
@@ -34,7 +36,7 @@ var AutoLoadPageMixin = {
     window.addEventListener('resize', this.onWindowScroll)
   },
   onWindowScroll : function () {
-    let bounds; // 拿到 ClientRect 对象
+    let bounds // 拿到 ClientRect 对象
     if(this.state.componentName == 'OrderListLayout') { // 判断是 OrderListLayout 组件 还是 WorkPage 组件
       const $cardList = $(findDOMNode(this)).children('#orderList').get(0)
       bounds = ($cardList.getBoundingClientRect())
@@ -52,20 +54,24 @@ var AutoLoadPageMixin = {
       // 判断 orderList 是否滚动到底部
       const node = findDOMNode(this)
       const nDivHight = $(node).outerHeight()
-      nScrollHight = $(node)[0].scrollHeight;
-      nScrollTop = $(node)[0].scrollTop;
+      nScrollHight = $(node)[0].scrollHeight
+      nScrollTop = $(node)[0].scrollTop
+      
       if(nScrollTop + nDivHight >= nScrollHight) {
         // console.log("滚动条到底部了")
-        // TODO 一旦滚动到底部会多次执行这个函数，不过目前还没发现问题
+        // TODO 一旦滚动到底部会多次执行这个函数，用 lock 解决
+        if(lock) return
+        lock = true // 防止多次执行函数
         this.onNext()
       }
     }
   },
 
   onNext : function() {
-    var pageIndex = this.state.pageIndex + 1
+    setTimeout(() => lock = false, 300)
+    let pageIndex = this.state.pageIndex + 1
     if(this.state.pageCount != 0 && this.state.pageCount <= pageIndex){
-      let node = window;
+      let node = window
       if(this.state.componentName == 'OrderListLayout') node = $('#orderListContainer').get(0)
       node.removeEventListener('scroll', this.onWindowScroll)
       node.removeEventListener('resize', this.onWindowScroll)
