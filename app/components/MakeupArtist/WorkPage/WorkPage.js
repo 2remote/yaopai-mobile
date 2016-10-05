@@ -1,6 +1,7 @@
 import React from 'react'
 import CharacterBar from '../../UI/CharacterBar'
 import CharacterSelect from '../../common/CharacterSelect'
+import WorkIntroGrapherList from '../../common/WorkIntroGrapherList'
 
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
@@ -11,16 +12,30 @@ class WorkPage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-
+      pageIndex: 1,
+      pageCount: 0,
+      total: 0,
+      result: [],
+      // searchKey: '',
+      // tags: [],
+      // priceTag: 100,
+      // selectedTags: [],
+      // showNothingFound: false,
+      componentName: 'WorkPage' // 请和组件的名字保持一致
     }
+    AlbumsActions.makeupArtistAlbumsSearch()
   }
 
   _onAlbumsStoreChange(data) {
-
-  }
-
-  onSearch() {
-    AlbumsActions.makeupArtistAlbumsSearch()
+    if(data.flag == 'onMakeupArtistAlbumsSearchSuccess') {
+      const {pageIndex, pageCount, total, result} = data
+      this.setState({
+        pageIndex,
+        pageCount,
+        total,
+        result,
+      })
+    }
   }
 
   render() {
@@ -29,7 +44,7 @@ class WorkPage extends React.Component {
       <div>
         <CharacterBar />
         <CharacterSelect />
-        <button onClick={this.onSearch}>测试</button>
+        {<WorkIntroGrapherList data={this.state.result} />}
       </div>
     )
   }
