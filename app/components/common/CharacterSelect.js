@@ -14,20 +14,20 @@ class CharacterSelect extends React.Component {
   }
 
   render() {
+    let nodeList = []
+    const {data} = this.props
+    for(let i = 0; i < data.length; i += 4) {
+      let node = data.slice(i, i + 4).map((tag, index) =>
+        <a key={index} href="javascript:void(0)" style={{background: `url(${tag.Cover}) center cnnter no-repeat`, backgroundSize: 'cover'}}>{tag.Name}</a>
+      )
+      nodeList.push(node)
+    }
     return (
       <div id="mySwipe" className="swipe">
         <div className="swipe-wrap">
-          <div className="swipe-item">
-            <a style={{background: 'red'}} href="javascript:void(0)">平面模特</a>
-            <a style={{background: 'yellow'}} href="javascript:void(0)">甜美私房</a>
-            <a style={{background: '#f60'}} href="javascript:void(0)">COS 专区</a>
-            <a style={{background: 'green'}} href="javascript:void(0)">淘宝商拍</a>
-          </div>
-          <div className="swipe-item">
-            <a style={{background: 'blue'}} href="javascript:void(0)">小清新</a>
-            <a style={{background: 'gold'}} href="javascript:void(0)">美丽大方</a>
-            <a style={{background: '#f60'}} href="javascript:void(0)">秀色可餐</a>
-          </div>
+          {
+            nodeList.map((node, index) => <div key={index} className="swipe-item">{node}</div>)
+          }
         </div>
       </div>
     )
