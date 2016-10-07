@@ -19,6 +19,8 @@ class WorkPage extends React.Component {
       pageCount: 0,
       total: 0,
       result: [],
+      tagListResult: [],
+      tagListTotal: '',
       // searchKey: '',
       // tags: [],
       // priceTag: 100,
@@ -27,6 +29,7 @@ class WorkPage extends React.Component {
       componentName: 'WorkPage' // 请和组件的名字保持一致
     }
     AlbumsActions.makeupArtistAlbumsSearch()
+    AlbumsActions.makeupArtistTagList()
   }
 
   _onAlbumsStoreChange(data) {
@@ -37,6 +40,12 @@ class WorkPage extends React.Component {
         pageCount,
         total,
         result,
+      })
+    } else if (data.flag == 'onMakeupArtistTagListuccess') {
+      const {tagListResult, tagListTotal} = data
+      this.setState({
+        tagListResult,
+        tagListTotal,
       })
     }
   }

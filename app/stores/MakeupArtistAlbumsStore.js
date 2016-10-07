@@ -10,6 +10,8 @@ const MakeupArtistAlbumsStore = Reflux.createStore({
     total: '', // 总数据条数
     pageIndex : 0, //当前页
     success: false,
+    tagListResult: [],
+    tagListTotal: '',
     // count : 0,  //当前查询条件下的列表总数
     // pageSize : 0, //companent设置页面大小
     // markExist: {
@@ -20,6 +22,9 @@ const MakeupArtistAlbumsStore = Reflux.createStore({
   init: function() {
     this.listenTo(AlbumsActions.makeupArtistAlbumsSearch.success,this.onMakeupArtistAlbumsSearchSuccess)
     this.listenTo(AlbumsActions.makeupArtistAlbumsSearch.failed,this.onFailed)
+
+    this.listenTo(AlbumsActions.makeupArtistTagList.success,this.onMakeupArtistTagListuccess)
+    this.listenTo(AlbumsActions.makeupArtistTagList.failed,this.onFailed)
   },
 
   onFailed : function(data){
@@ -44,6 +49,20 @@ const MakeupArtistAlbumsStore = Reflux.createStore({
     this.data.flag = 'onMakeupArtistAlbumsSearchSuccess'
     this.trigger(this.data)
   },
+
+  onMakeupArtistTagListuccess(data) {
+    if(data.Success) {
+      this.data.tagListResult = data.Result
+      this.data.tagListTotal = data.Total
+      this.data.hintMessage = '查询化妆师标签列表'
+      this.data.success = true
+    } else {
+      this.data.success = false
+      this.data.hintMessage = data.ErrorMsg
+    }
+    this.data.flag = 'onMakeupArtistTagListuccess'
+    this.trigger(this.data)
+  }
 })
 
 export default MakeupArtistAlbumsStore

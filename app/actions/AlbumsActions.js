@@ -23,6 +23,7 @@ const AlbumsActions = Reflux.createActions({
 
   // 化妆师
   'makeupArtistAlbumsSearch': {children : ['success','failed']},
+  'makeupArtistTagList': {children : ['success','failed']},
 })
 
 /*
@@ -155,6 +156,16 @@ AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex 
     Fields: 'Id,Title,Description,Cover,Marks,MarkExist,'
   }
   HttpFactory.post(API.MakeupArtist.albumsSearch,data,this.success,this.failed)
+})
+
+// 化妆师
+AlbumsActions.makeupArtistTagList.listen(function(pageSize = 50, pageIndex = 1) {
+  let data = {
+    pageSize: null,
+    pageIndex: null,
+    Fields: 'Id,Name,Cover,Pinyin'
+  }
+  HttpFactory.post(API.MakeupArtist.tagList,data,this.success,this.failed)
 })
 
 export {AlbumsActions as default}
