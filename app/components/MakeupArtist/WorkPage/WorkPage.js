@@ -8,6 +8,9 @@ import ReactMixin from 'react-mixin'
 import AlbumsActions from '../../../actions/AlbumsActions'
 import MakeupArtistAlbumsStore from '../../../stores/MakeupArtistAlbumsStore'
 
+import AutoLoadPageMixin from '../../AutoLoadPageMixin'
+import Toaster from '../../Toast'
+
 class WorkPage extends React.Component {
   constructor(props){
     super(props)
@@ -38,12 +41,18 @@ class WorkPage extends React.Component {
     }
   }
 
+  onChangePage(pageIndex) {
+    this.onShowToast('努力加载中...')
+    AlbumsActions.makeupArtistAlbumsSearch(50, pageIndex)
+  }
+
   render() {
     return (
       // TODO: DocumentTitle
       <div>
         <CharacterBar />
         <CharacterSelect />
+        <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         {<WorkIntroGrapherList data={this.state.result} />}
       </div>
     )
@@ -51,4 +60,5 @@ class WorkPage extends React.Component {
 }
 
 ReactMixin.onClass(WorkPage,Reflux.listenTo(MakeupArtistAlbumsStore, '_onAlbumsStoreChange'))
+ReactMixin.onClass(WorkPage, AutoLoadPageMixin)
 export default WorkPage

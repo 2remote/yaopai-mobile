@@ -147,7 +147,7 @@ AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
   HttpFactory.post(API.Mote.albumsSearch,data,this.success,this.failed)
 })
 
-// 模特
+// 化妆师
 AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
   let data = {
     pageSize,

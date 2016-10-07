@@ -22,8 +22,8 @@ let AutoLoadPageMixin = {
       node.addEventListener('resize', this.onWindowScroll.bind(this))
       return
     }
-    window.addEventListener('scroll', this.onWindowScroll)
-    window.addEventListener('resize', this.onWindowScroll)
+    window.addEventListener('scroll', this.onWindowScroll.bind(this))
+    window.addEventListener('resize', this.onWindowScroll.bind(this))
   },
   componentDidUpdate: function() {
     if(this.state.componentName == 'OrderListLayout') { // 判断是 OrderListLayout 组件 还是 WorkPage 组件
@@ -32,8 +32,8 @@ let AutoLoadPageMixin = {
       node.addEventListener('resize', this.onWindowScroll.bind(this))
       return
     }
-    window.addEventListener('scroll', this.onWindowScroll)
-    window.addEventListener('resize', this.onWindowScroll)
+    window.addEventListener('scroll', this.onWindowScroll.bind(this))
+    window.addEventListener('resize', this.onWindowScroll.bind(this))
   },
   onWindowScroll : function () {
     let bounds // 拿到 ClientRect 对象
@@ -56,7 +56,7 @@ let AutoLoadPageMixin = {
       const nDivHight = $(node).outerHeight()
       nScrollHight = $(node)[0].scrollHeight
       nScrollTop = $(node)[0].scrollTop
-      
+
       if(nScrollTop + nDivHight >= nScrollHight) {
         // console.log("滚动条到底部了")
         // TODO 一旦滚动到底部会多次执行这个函数，用 lock 解决
