@@ -1,5 +1,5 @@
 import React from 'react'
-import Swipe from '../Swipe'
+import Swipe from '../swipe'
 import $ from 'jquery'
 
 class CharacterSelect extends React.Component {
