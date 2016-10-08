@@ -94,11 +94,16 @@ class WorkIntroGrapherRow extends React.Component {
       cover = imgModifier(data.Cover, "workCover")
     }
 
+    // 化妆师不用上传头像
     let grapherAvatar
-    if (data.Photographer.Avatar) {
-      grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
-                        <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
-                      </Link>
+    if(data.Photographer) {
+      if (data.Photographer.Avatar) {
+        grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
+                          <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
+                        </Link>
+      } else {
+        grapherAvatar = <div className="card-head-null"></div>
+      }
     } else {
       grapherAvatar = <div className="card-head-null"></div>
     }

@@ -16,8 +16,8 @@ import AutoLoadPageMixin from '../../../../AutoLoadPageMixin'
 import Toaster from '../../../../Toast'
 
 class OrderListLayout extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       pageIndex: 1, // 当前页
       pageCount: 0, // 总页数
@@ -26,7 +26,6 @@ class OrderListLayout extends React.Component {
       orders: [],
       hintMessage : '订单加载中。。。',
       success : false,
-      searchText: '',
       componentName: 'OrderListLayout', // 请和组件的名字保持一致
     }
   }
@@ -37,40 +36,20 @@ class OrderListLayout extends React.Component {
     if(!user.isLogin){ // 用户未登录，跳转登录页
       this.history.pushState({nextPage : this.props.location.pathname},'/login_page')
     } else {
-      // 手动为默认展示选择“全部订单”栏数据
-      OrderActions.type(OrderStatus.ALL)
-      // 参数依次是：
-      //1.  in or out 摄影师还是用户
-      //2. state ，订单状态
-      //3. 请求第几页的订单数据
-      //4. 买家姓名
+      // 手动为默认展示选择“待付款”栏数据
+      OrderActions.type(OrderStatus.UNCONFIRMED)
       OrderActions.list('in', '', 1)
       this.setState({ userType: user.userType })
     }
   }
   onOrderLoad(order) {
+    // TODO: if else and more
     let newOrderlist = []
-    if(order.flag == 'type') {
-      // OrderActions.list('in', '', 1, '', )
+    if(order.orders.length === this.state.orders.length) {
+      newOrderlist = order.orders
+    } else {
+      newOrderlist = [...this.state.orders, ...order.orders]
     }
-
-    if (order.flag == 'list' || order.flag == 'type') {
-      if(this.state.orders.length < 100 * order.pageIndex) {
-        newOrderlist = [...this.state.orders, ...order.orders]
-      } else {
-        newOrderlist = this.state.orders
-      }
-    }
-
-    if(order.searchText == '搜索内容为空' && order.flag == 'onGetSearchText') {
-      this.setState({orders: []})
-      OrderActions.list('in', '', 1)
-    } else if (order.searchText != this.state.searchText && order.flag == 'onGetSearchText') {
-      this.setState({orders: []})
-      // 请求搜索的订单
-      OrderActions.list('in', '', 1, order.searchText)
-    }
-
     this.setState({
       pageIndex: order.pageIndex,
       total: order.total,
@@ -78,21 +57,19 @@ class OrderListLayout extends React.Component {
       filterType: order.filterType,
       orders: newOrderlist,
       hintMessage : order.hintMessage,
-      searchText: order.searchText,
-      success : order.success,
+      success : order.success
     })
   }
 
   // AutoLoadPageMixin 回调函数，orderList 滚动到底部执行
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
-    setTimeout(() => this.onHideToast(), 350)
     OrderActions.list('in', '', pageIndex)
   }
 
   render() {
     let theRealList
-    if(this.state.success && this.state.filterType != 0) {
+    if(this.state.success) {
       let isOrderNull = true
       theRealList = this.state.orders.map((order, index) => {
         if(OrderStatus.parse(order.State) !== this.state.filterType) return
@@ -110,27 +87,9 @@ class OrderListLayout extends React.Component {
             </div>
           </section>
       }
-
-    } else if(this.state.filterType == 0) { // 如果NavBar 是「全部订单」
-      if(!this.state.orders.length) { // 如果搜索的结果为空
-        theRealList =
-          <section className="text_center">
-            <div style={{ padding:'50px 0' }}>
-              <i className="weui_icon_msg weui_icon_warn"/>
-              <h2>没找着：(</h2>
-            </div>
-          </section>
-      } else { // 渲染全部订单的数据
-        theRealList = this.state.orders.map((order, index) => <YPUIOrderCard order={order} key={index} utype={this.state.userType}/>)
-      }
     }
-
     return (
-      <div
-        className="weui_tab_bd"
-        style={this.state.filterType == 0 ? {paddingTop: 94 } : null}
-        id="orderListContainer"
-      >
+      <div className="weui_tab_bd" id="orderListContainer">
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         <section id="orderList">{theRealList}</section>
         <aside className="footer color_gray text_center font_small">

@@ -16,7 +16,6 @@ var OrderStore = Reflux.createStore({
     pageIndex: '',
     pageCount: '',
     total: '',
-    searchText: '',
   },
   init : function(){
     this.orders = []
@@ -33,7 +32,6 @@ var OrderStore = Reflux.createStore({
     this.listenTo(OrderActions.close.success,this.onCloseOrder)
     this.listenTo(OrderActions.close.failed,this.onFailed)
     this.listenTo(OrderActions.type,this.onType)
-    this.listenTo(OrderActions.getSearchText,this.onGetSearchText)
     /* 用户退款 */
     this.listenTo(OrderActions.refund.success,this.onRefundOrder)
     this.listenTo(OrderActions.refund.failed,this.onFailed)
@@ -128,11 +126,6 @@ var OrderStore = Reflux.createStore({
   onType: function(filterType) {
     this.data.filterType = filterType
     this.data.flag = 'type'
-    this.trigger(this.data)
-  },
-  onGetSearchText: function(searchText) {
-    this.data.searchText = searchText
-    this.data.flag = 'onGetSearchText'
     this.trigger(this.data)
   },
   onRefundOrder: function(data, id) {

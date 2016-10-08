@@ -32,6 +32,8 @@
 
 .character-bar  + .swipe {
   margin-top: 50px;
+  border-bottom: 15px #f9f9f9 solid;
+  background: white;
 }
 
 .swipe {
@@ -64,8 +66,6 @@
       font-size: 16px;
       color: $black;
       text-align: center;
-      background: url(http://ww4.sinaimg.cn/large/006y8lVagw1f88cbli2tsj30fi0hs75x.jpg) center no-repeat;
-      background-size: cover;
     }
   }
 }
