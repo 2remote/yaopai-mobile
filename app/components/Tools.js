@@ -223,7 +223,7 @@ export const GET_WORK_INTRO = API + listWorkDetail + workIntroFileds
 
 // 调取 预约作品 接口
 const bookWork = 'Order.Add'
-export const BOOK_A_WORK = API + bookWork
+export const BOOK_A_WORK = API + bookWork 
 
 // 页面标题
 export const TITLE = {
@@ -242,7 +242,6 @@ export const TITLE = {
  * 订单状态前后端转换
  */
 export const OrderStatus = {
-  ALL: '0', // 全部订单
   UNPAYED: '1', // 未支付
   UNCONFIRMED: '2', // 待确定
   ONGOING: '3', // 进行中

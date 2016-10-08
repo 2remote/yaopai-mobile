@@ -9,7 +9,6 @@ var OrderActions = Reflux.createActions({
   'confirm' : {children:['success','failed']} ,
   'close' : {children:['success','failed']} ,
   'type': {},
-  'getSearchText': {},
   'refund': {children:['success','failed']}, // 用户申请退款
   'receive': {children:['success','failed']}, // 摄影师接单
   'deliver': {children:['success','failed']}, // 摄影师发片
@@ -24,7 +23,7 @@ var OrderActions = Reflux.createActions({
   state : 'pending','finished','closed'
   state : 订单状态，0：待确认，1：完成，2：关闭，为null表示不指定
 */
-OrderActions.list.listen(function(type,state,pageIndex = 1,buyerName = ''){
+OrderActions.list.listen(function(type,state,pageIndex = 1){
   var s = null
   if(state == 'pending'){
     s = 0
@@ -39,7 +38,6 @@ OrderActions.list.listen(function(type,state,pageIndex = 1,buyerName = ''){
     State : s,
     pageSize: 100,
     pageIndex,
-    buyerName,
     Fields : 'Id,UserId,BuyerName,BuyerTel,BuyerMemo,Price,AppointedTime,PhotographerId,CreationTime,State,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id,Albums.Cover,Albums.Title,Amount,CompleteTime,HasRefund,Refund.CompletionTime,Refund.Compensation'
   }
   if(type == 'out')
