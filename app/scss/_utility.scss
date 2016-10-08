@@ -26,11 +26,11 @@ body {
 }
 
 .yp_media_box {
-  @include flex;
+  @extend %flex;
   padding: 10px 15px;
 
   > .flex_spring {
-    @include flex_1;
+  @extend %flex-1;
   }
 
   a:not(.weui_btn_dialog) {

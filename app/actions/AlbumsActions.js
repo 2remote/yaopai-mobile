@@ -2,7 +2,7 @@ import Reflux from 'reflux'
 import HttpFactory from '../HttpFactory'
 import API from '../api'
 
-var AlbumsActions = Reflux.createActions({
+const AlbumsActions = Reflux.createActions({
   'get':{children : ['success','failed']},
   'add':{children : ['success','failed']},
   'update':{children : ['success','failed']},
@@ -17,13 +17,20 @@ var AlbumsActions = Reflux.createActions({
   'mark' : {children : ['success','failed']},
   'unMark' : {children : ['success','failed']},
   'getAlbumId': {},
+
+  // 模特
+  'moteAlbumsSearch': {children : ['success','failed']},
+
+  // 化妆师
+  'makeupArtistAlbumsSearch': {children : ['success','failed']},
+  'makeupArtistTagList': {children : ['success','failed']},
 })
 
 /*
  根据摄影师Id查询摄影师列表
  */
 AlbumsActions.getById.listen(function(id){
-  var data = {
+  let data = {
     UserId : id,
     Fields : 'Id,Result.Title,Service,Cut',
   }
@@ -32,7 +39,7 @@ AlbumsActions.getById.listen(function(id){
 
 
 AlbumsActions.get.listen(function(id){
-  var data = {
+  let data = {
     Id : id,
     Fields : 'Id,Title,UserId,Description,Service,Price,MarkExist,' +
     'Cover,Cut,Photos.Id,Photos.AlbumsId,Photos.Url,Photos.Description,' +
@@ -105,7 +112,7 @@ function searchQuery(args = {}) {
 
 // http://api.aiyaopai.com/?api=Tag.List&fields=id,name,display,tags.id,tags.name,tags.display
 AlbumsActions.getTagList.listen(function () {
-  var data = {
+  let data = {
     Fields : 'id,name,display,tags.id,tags.name,tags.display'
   }
   HttpFactory.post(API.TAG.list,data,this.success,this.failed)
@@ -115,7 +122,7 @@ AlbumsActions.getTagList.listen(function () {
   收藏作品
 */
 AlbumsActions.mark.listen(function(id){
-  var data = {
+  let data = {
     Id : id,
   }
   HttpFactory.post(API.ALBUMS.mark,data,this.success,this.failed)
@@ -125,10 +132,40 @@ AlbumsActions.mark.listen(function(id){
   取消收藏作品
 */
 AlbumsActions.unMark.listen(function(id){
-  var data = {
+  let data = {
     Id : id,
   }
   HttpFactory.post(API.ALBUMS.unMark,data,this.success,this.failed)
+})
+
+// 模特
+AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
+  let data = {
+    pageSize,
+    pageIndex,
+    Fields: 'Id,Title,Description,Cover,Marks,MarkExist,'
+  }
+  HttpFactory.post(API.Mote.albumsSearch,data,this.success,this.failed)
+})
+
+// 化妆师
+AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
+  let data = {
+    pageSize,
+    pageIndex,
+    Fields: 'Id,Title,Description,Cover,Marks,MarkExist,'
+  }
+  HttpFactory.post(API.MakeupArtist.albumsSearch,data,this.success,this.failed)
+})
+
+// 化妆师
+AlbumsActions.makeupArtistTagList.listen(function(pageSize = 50, pageIndex = 1) {
+  let data = {
+    pageSize: null,
+    pageIndex: null,
+    Fields: 'Id,Name,Cover,Pinyin'
+  }
+  HttpFactory.post(API.MakeupArtist.tagList,data,this.success,this.failed)
 })
 
 export {AlbumsActions as default}
