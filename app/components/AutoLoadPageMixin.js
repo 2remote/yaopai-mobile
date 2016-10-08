@@ -20,34 +20,40 @@ let AutoLoadPageMixin = {
       let node = $('#orderListContainer').get(0)
       node.addEventListener('scroll', this.onWindowScroll.bind(this))
       node.addEventListener('resize', this.onWindowScroll.bind(this))
-      return
+    } else if (this.state.componentName == 'makeupArtistWorkPage') {
+      window.addEventListener('scroll', this.onWindowScroll.bind(this))
+      window.addEventListener('resize', this.onWindowScroll.bind(this))
+    } else {
+      window.addEventListener('scroll', this.onWindowScroll)
+      window.addEventListener('resize', this.onWindowScroll)
     }
-    window.addEventListener('scroll', this.onWindowScroll.bind(this))
-    window.addEventListener('resize', this.onWindowScroll.bind(this))
   },
   componentDidUpdate: function() {
     if(this.state.componentName == 'OrderListLayout') { // 判断是 OrderListLayout 组件 还是 WorkPage 组件
       let node = $('#orderListContainer').get(0)
       node.addEventListener('scroll', this.onWindowScroll.bind(this))
       node.addEventListener('resize', this.onWindowScroll.bind(this))
-      return
+    } else if (this.state.componentName == 'makeupArtistWorkPage') {
+      window.addEventListener('scroll', this.onWindowScroll.bind(this))
+      window.addEventListener('resize', this.onWindowScroll.bind(this))
+    } else {
+      window.addEventListener('scroll', this.onWindowScroll)
+      window.addEventListener('resize', this.onWindowScroll)
     }
-    window.addEventListener('scroll', this.onWindowScroll.bind(this))
-    window.addEventListener('resize', this.onWindowScroll.bind(this))
   },
   onWindowScroll : function () {
     let bounds // 拿到 ClientRect 对象
     if(this.state.componentName == 'OrderListLayout') { // 判断是 OrderListLayout 组件 还是 WorkPage 组件
       const $cardList = $(findDOMNode(this)).children('#orderList').get(0)
       bounds = ($cardList.getBoundingClientRect())
-    } else if(this.state.componentName == 'WorkPage') {
+    } else if(this.state.componentName == 'WorkPage' || this.state.componentName == 'makeupArtistWorkPage') {
       bounds = findDOMNode(this).getBoundingClientRect()
     }
     const scrollTop = window.pageYOffset
     const top = bounds.top + scrollTop
     const height = bounds.bottom - bounds.top
     // 判断 workList 是否滚动到底部
-    if(this.state.componentName == 'WorkPage') {
+    if(this.state.componentName == 'WorkPage' || this.state.componentName == 'makeupArtistWorkPage') {
       if (scrollTop > 0 && height - scrollTop < window.screen.height) this.onNext()
 
     } else if (this.state.componentName == 'OrderListLayout') {

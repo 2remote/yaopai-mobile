@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, IndexRedirect } from 'react-router'
+import {Route, IndexRedirect} from 'react-router'
 
 import MakeupArtistWorkPage from './WorkPage/WorkPage'
 import MakeWorkDetailPage from './WorkDetailPage/WorkDetailPage'
