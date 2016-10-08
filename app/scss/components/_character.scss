@@ -64,8 +64,16 @@
       margin-left: 2.4%;
       line-height: 5;
       font-size: 16px;
-      color: $black;
+      color: $white;
       text-align: center;
+      background: rgba(0, 0, 0, .8);
+
+      .mask {
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, .5);
+      }
     }
   }
 }
