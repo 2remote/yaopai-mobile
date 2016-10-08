@@ -1,7 +1,7 @@
 // needed given our Webpack configuration uses ES6 and JSX
-require('babel-core/register');
+require('babel-core/register')
 
-module.exports = function karmaConfig (config) {
+module.exports = function karmaConfig(config) {
   config.set({
     frameworks: [
       // Set framework to mocha
@@ -49,5 +49,5 @@ module.exports = function karmaConfig (config) {
     webpackMiddleware: {
       noInfo: true
     }
-  });
-};
+  })
+}

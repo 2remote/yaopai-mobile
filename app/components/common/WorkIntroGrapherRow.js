@@ -96,6 +96,7 @@ class WorkIntroGrapherRow extends React.Component {
 
     // 化妆师不用上传头像
     let grapherAvatar
+<<<<<<< HEAD
     if(data.Photographer) {
       if (data.Photographer.Avatar) {
         grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
@@ -104,6 +105,12 @@ class WorkIntroGrapherRow extends React.Component {
       } else {
         grapherAvatar = <div className="card-head-null"></div>
       }
+=======
+    if (data.Photographer.Avatar && data.Photographer.Id != 7300) {
+      grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
+                        <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
+                      </Link>
+>>>>>>> dev
     } else {
       grapherAvatar = <div className="card-head-null"></div>
     }
