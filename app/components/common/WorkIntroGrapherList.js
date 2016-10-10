@@ -9,7 +9,7 @@ const WorkIntroGrapherList = args => {
     selectedTags = [],
     showNothingFound = false,
   } = args
-  if (data.length > 0) {
+  if (data.length) {
     return (
       <div className="workIntroGrapherList">
         {
