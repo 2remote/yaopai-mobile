@@ -148,17 +148,17 @@ AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
   HttpFactory.post(API.Mote.albumsSearch,data,this.success,this.failed)
 })
 
-// 化妆师
+// 化妆师作品
 AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
   let data = {
     pageSize,
     pageIndex,
-    Fields: 'Id,Title,Description,Cover,Marks,MarkExist,'
+    Fields: 'Id,Title,Description,Cover,Marks,MarkExist'
   }
   HttpFactory.post(API.MakeupArtist.albumsSearch,data,this.success,this.failed)
 })
 
-// 化妆师
+// 化妆师标签
 AlbumsActions.makeupArtistTagList.listen(function(pageSize = 50, pageIndex = 1) {
   let data = {
     pageSize: null,
