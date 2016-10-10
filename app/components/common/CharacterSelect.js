@@ -17,11 +17,17 @@ const CharacterSelect = ({data}) => {
           </a>
         )
   return (
-    <div className="swipe">
-      <div className="swipe-wrap" style={{width: `${tagNum}00%`}}>
-        {tagNode}
+    <section className="tag-list">
+      <div className="swipe">
+        <div className="swipe-wrap" style={{width: `${tagNum}00%`}}>
+          {tagNode}
+        </div>
       </div>
-    </div>
+      <div className="authentication">
+        化妆作品
+        <span className="btn"><i className="icon renzheng"/> 我要认证 &#62;</span>
+      </div>
+    </section>
   )
 }
 
