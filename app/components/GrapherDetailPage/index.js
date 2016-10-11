@@ -16,7 +16,7 @@ class GrapherDetailPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      grapherInfo:{
+      grapherInfo        :{
         User: { NickName: '读取中...', },
       },
       works: [],
