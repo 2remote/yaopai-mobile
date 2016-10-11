@@ -91,6 +91,7 @@ var API_CONST = {
   MakeupArtist: { // 化妆师
     albumsSearch: API_URL + 'MakeupArtistAlbums.Search',
     tagList: API_URL + 'MakeupArtistTag.List',
+    getInfo: API_URL + 'MakeupArtist.Get',
   },
   INTERVIEW: {
     search: API_URL + 'Interview.Search',
