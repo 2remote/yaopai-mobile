@@ -28,6 +28,7 @@ const GrapherPage = React.createClass({
       total: 0,
       searchKey: '',
       showNothingFound: false,
+      componentName: 'WorkPage',
     }
   },
   componentDidMount() {
