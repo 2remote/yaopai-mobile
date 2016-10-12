@@ -7,6 +7,9 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import AlbumsActions from '../../../actions/AlbumsActions'
 import AlbumsStore from '../../../stores/MakeupArtistAlbumsStore'
+import MakeupArtistActions from '../../../actions/MakeupArtistActions'
+import MakeupArtistStore from '../../../stores/MakeupArtistStore'
+
 import LinkToApp from '../../common/LinkToApp'
 import _ from 'underscore'
 
@@ -16,37 +19,60 @@ class MakeupArtistProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      grapherInfo:{
-        User: { NickName: '读取中...', },
-      },
-      works: [],
-      shareFrom: this.props.location.query.sharefrom,
+      result: [],
+      makeupArtistInfo: {
+        cityName: '',
+        marks: '',
+        nickName: '',
+        signature: '',
+        totalAlbums: '',
+        views: '',
+        avatar: '',
+        tags: [],
+      }
     }
   }
 
   componentWillMount() {
     const userId = this.props.params.Id
-    AlbumsActions.search({userId})
+    MakeupArtistActions.getInfo(userId)
+    AlbumsActions.makeupArtistAlbumsSearch({userId})
   }
 
   onSearchSuccess(data) {
     this.setState({
-      works: data.workList,
+      result: data.result,
+    })
+  }
+
+  // 获取摄影师基本信息
+  onGetMakeupArtistInfo(data) {
+    if(data.hintMessage == '数据未找到') {
+      // alert('该摄影师已被禁用！')
+      this.history.replaceState(null, '/work')
+      return
+    }
+    const {cityName, marks, nickName, signature, totalAlbums, views, avatar, tags} = data
+    this.setState({
+      makeupArtistInfo: {
+        cityName,
+        marks,
+        nickName,
+        signature,
+        totalAlbums,
+        views,
+        avatar,
+        tags,
+      }
     })
   }
 
   render() {
-    let activityId
-    _.map(this.state.works, (data, i) => {
-      if(i == 0) {
-        activityId = data.Photographer.Id
-      }
-    })
     return (
       <div className="grapherDetailPage">
-        <SidePage shareFrom={this.state.shareFrom} />
-        <MakeupArtistIntro id={this.props.params.Id} pathname={this.props.location.pathname} />
-        <WorkIntroGrapherList data={this.state.works} />
+        <SidePage shareFrom={this.props.location.query.sharefrom} />
+        <MakeupArtistIntro data={this.state.makeupArtistInfo} pathname={this.props.location.pathname} />
+        <WorkIntroGrapherList data={this.state.result} />
         <LinkToApp />
       </div>
     )
@@ -54,4 +80,5 @@ class MakeupArtistProfile extends React.Component {
 }
 
 ReactMixin.onClass(MakeupArtistProfile, Reflux.listenTo(AlbumsStore, 'onSearchSuccess'))
+ReactMixin.onClass(MakeupArtistProfile, Reflux.listenTo(MakeupArtistStore, 'onGetMakeupArtistInfo'))
 export default MakeupArtistProfile

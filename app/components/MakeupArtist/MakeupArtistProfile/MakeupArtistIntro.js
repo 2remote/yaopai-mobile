@@ -3,8 +3,7 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import { History } from 'react-router'
 
-import MakeupArtistActions from '../../../actions/MakeupArtistActions'
-import MakeupArtistStore from '../../../stores/MakeupArtistStore'
+
 import UserActions from '../../../actions/UserActions'
 import UserStore from '../../../stores/UserStore'
 
@@ -20,21 +19,11 @@ class MakeupArtistIntro extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      makeupArtistInfo: {
-        cityName: '',
-        marks: '',
-        nickName: '',
-        signature: '',
-        totalAlbums: '',
-        views: '',
-        avatar: '',
-        tags: [],
-      }
+      marks: 0,
     }
   }
 
   componentWillMount() {
-    MakeupArtistActions.getInfo(this.props.id)
     // UserActions.currentUser()
   }
   // 获取登录信息
@@ -42,59 +31,44 @@ class MakeupArtistIntro extends React.Component {
   //   this.setState({ userData })
   // }
 
-  // 获取摄影师基本信息
-  onGetMakeupArtistInfo(data) {
-    console.log(data)
-    if(data.hintMessage == '数据未找到') {
-      // alert('该摄影师已被禁用！')
-      this.history.replaceState(null, '/work')
-      return
-    }
-    const {cityName, marks, nickName, signature, totalAlbums, views, avatar, tags} = data
-    this.setState({
-      cityName,
-      marks,
-      nickName,
-      signature,
-      totalAlbums,
-      views,
-      avatar,
-      tags,
-    })
-  }
+
 
   showMessage (content) {
     this.refs.toast.show(content)
   }
 
   render() {
-    const {data} = this.state
-    console.log(data)
-    const title = this.state.NickName || '摄影师'
-    const wechatShareTitle = 'YAOPAI 认证摄影师-' + data.NickName
-    const wechatShareDesc = data.NickName + ':' + data.Signature
+    const {data} = this.props
 
     return (
       <section className="grapherIntro">
-        <DocumentTitle title={title} />
-        <WechatShare title={wechatShareTitle} desc={wechatShareDesc} imgUrl={data.Avatar} />
         <Toaster ref="toast"/>
 
         <div className="baseInfo">
-          <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}}>
+          <div className="avatar" style={{backgroundImage:`url('${data.avatar}')`}}>
 
           </div>
-          <p className="nickname">{data.CityName}·<strong>{data.NickName}</strong>&nbsp;<i className="icon renzheng"/></p>
-          <p className="font_small"><i className="icon pencil" />&nbsp;{data.Signature}</p>
+          <p className="nickname">{data.cityName}·<strong>{data.nickName}</strong>&nbsp;<i className="icon renzheng"/></p>
+          <p className="font_small"><i className="icon pencil" />&nbsp;{data.signature}</p>
         </div>
+
+        {/* 化妆师标签 */
+          data.tags.length && Object.keys(data.tags[0]).length ?
+            (
+              <ul className="tags">
+                {data.tags.slice(0, 3).map((tag, index) => <li key={index}>{tag.Name}</li>)}
+              </ul>
+            )
+          : null
+        }
 
         <div className="order">
           <ul>
-            <li><span className="count">{data.TotalAlbums}</span>作品</li>
-            <li><span className="count">{data.Sales}</span>订单</li>
+            <li><span className="count">{data.totalAlbums}</span>作品</li>
+            <li><span className="count">{data.sales || 0}</span>订单</li>
             {
-              data.Marks !== undefined?
-              <li><span className="count">{data.Marks + this.state.marks}</span>关注</li>
+              data.marks !== undefined ?
+              <li><span className="count">{data.marks + this.state.marks}</span>关注</li>
               :
               null
             }
@@ -105,7 +79,6 @@ class MakeupArtistIntro extends React.Component {
   }
 }
 
-ReactMixin.onClass(MakeupArtistIntro, Reflux.listenTo(MakeupArtistStore, 'onGetMakeupArtistInfo'))
 ReactMixin.onClass(MakeupArtistIntro, History)
 
 export default MakeupArtistIntro
