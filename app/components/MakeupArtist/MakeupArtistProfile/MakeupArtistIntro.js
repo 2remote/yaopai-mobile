@@ -53,7 +53,7 @@ class MakeupArtistIntro extends React.Component {
         </div>
 
         {/* 化妆师标签 */
-          data.tags.length && Object.keys(data.tags[0]).length ?
+          data.tags.length ?
             (
               <ul className="tags">
                 {data.tags.slice(0, 3).map((tag, index) => <li key={index}>{tag.Name}</li>)}
