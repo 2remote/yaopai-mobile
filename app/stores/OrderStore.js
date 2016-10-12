@@ -1,4 +1,3 @@
-import React from 'react'
 import Reflux from 'reflux'
 
 var OrderActions = require('../actions/OrderActions')
