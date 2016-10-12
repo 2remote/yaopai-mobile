@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
 import AlbumsActions from '../actions/AlbumsActions'
 
-const MakeupArtistAlbumsStore = Reflux.createStore({
+var MakeupArtistAlbumsStore = Reflux.createStore({
   data : {
     flag : '',
     hintMessage : '',

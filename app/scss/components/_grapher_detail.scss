@@ -5,7 +5,7 @@
   .baseInfo{
     text-align: center;
     color: #e1e2e4;
-    padding: 40px 0;
+    padding: 40px 0 20px 0;
     line-height: 30px;
 
     .avatar {
@@ -41,6 +41,7 @@
       a {
         width: 90px;
         border-radius: 60px;
+        border: 1px solid #8c8b8b;
         line-height: 36px;
         height: 36px;
        }
@@ -70,6 +71,21 @@
           text-align: center;
         }
       }
+    }
+  }
+
+  .tags {
+    margin-bottom: 15px;
+    padding: 0 34px;
+    height: 25px;
+    @extend %flex;
+    @include flex_justify_content(space-around)
+
+    li {
+      height: 25px;
+      padding: 0 5px;
+      color: $white;
+      border: 1px solid #8c8b8b;
     }
   }
 }

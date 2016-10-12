@@ -9,8 +9,8 @@ const makeupArtistRouter =
   <Route path="makeupArtist">
     <IndexRedirect to="makeupArtistWorkPage" />
     <Route path="workPage" component={MakeupArtistWorkPage} />
-    <Route path="/workDetail/:Id" component={MakeWorkDetailPage} />
-    <Route path="makeupArtistProfile" component={MakeupArtistProfile} />
+    <Route path="workDetail/:Id" component={MakeWorkDetailPage} />
+    <Route path="makeupArtistProfile/:Id" component={MakeupArtistProfile} />
   </Route>
 
 export default makeupArtistRouter
