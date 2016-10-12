@@ -71,7 +71,7 @@ const BookForm = React.createClass({
             </div>
           </div>
 
-          <p style={{paddingRight: '15px', textAlign: 'right', fontSize: '12px'}} onClick={this.showAlert}>点击查看退款说明 &#62;</p>
+          <p style={{paddingRight: '15px', textAlign: 'right', fontSize: '12px'}} onClick={this.showAlert}>点击查看YAOPAI服务保障及退款说明 &#62;</p>
           <Alert
             show={this.state.showAlert}
             title={this.state.alert.title}
