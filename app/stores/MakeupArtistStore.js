@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
 import MakeupArtistActions from '../actions/MakeupArtistActions'
 
-const MakeupArtistStore = Reflux.createStore({
+let MakeupArtistStore = Reflux.createStore({
   data: {
     makeupArtistInfo: {
       cityName: '',

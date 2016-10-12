@@ -11,7 +11,7 @@ const MakeupArtistActions = Reflux.createActions({
 MakeupArtistActions.getInfo.listen(function(id){
   let data = {
     Id : id,
-    Fields : 'Id,Views,Marks,MarkExist,CityName,NickName,Avatar,Signature,TotalAlbums',
+    Fields : 'Id,Sales,TotalAlbums,Views,Marks,MarkExist,CityName,NickName,Avatar,Signature',
   }
   HttpFactory.post(API.MakeupArtist.getInfo,data,this.success,this.failed)
 })
