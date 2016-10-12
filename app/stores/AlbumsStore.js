@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
 import AlbumsActions from '../actions/AlbumsActions'
 
-var AlbumsStore = Reflux.createStore({
+const AlbumsStore = Reflux.createStore({
   data : {
     flag : '',
     hintMessage : '',
@@ -201,4 +201,4 @@ var AlbumsStore = Reflux.createStore({
   },
 })
 
-export {AlbumsStore as default}
+export default AlbumsStore

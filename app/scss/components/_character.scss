@@ -1,0 +1,88 @@
+.character-bar {
+  position     : fixed;
+  top          : 0;
+  right        : 0;
+  z-index      : $zindex-tag-box;
+  width        : 100%;
+  height       : $tag-height;
+  background   : #fff;
+  visibility   : visible;
+  border-bottom: 1px #ccc solid;
+
+  .navbar {
+    @extend %flex;
+    width      : 100%;
+    height     : $tag-height;
+    margin-left: -40px;
+    @media (device-height:568px) and (-webkit-min-device-pixel-ratio:2) {
+      /* 兼容iphone5 */
+      margin-left: -34px;
+    }
+    text-align : center;
+
+    a {
+      @extend %flex-1;
+      line-height: $tag-height;
+    }
+
+    .active {
+      border-bottom: 2px #000 solid;
+    }
+  }
+}
+
+.character-bar + .tag-list {
+  margin-top    : 50px;
+  background    : white;
+  padding-bottom: 10px;
+}
+
+.swipe {
+  width     : 100%;
+  height    : auto;
+  overflow-x: scroll;
+  padding-bottom: 10px;
+  border-bottom : 10px #d9d9d9 solid;
+
+  .swipe-wrap {
+    margin-top: 15px;
+    // 宽度 JS 控制
+  }
+
+  a {
+    display    : inline-block;
+    // 宽度 JS 控制
+    height     : 80px;
+    line-height: 80px;
+    font-size  : 16px;
+    color      : $white;
+    text-align : center;
+
+    .mask {
+      display   : block;
+      height    : 100%;
+      width     : 100%;
+      background: rgba(0, 0, 0, .5);
+    }
+  }
+}
+
+// authentication
+.authentication {
+  margin: auto;
+  width: 90%;
+  border-bottom: 1px #dedede solid;
+  font-size     : 14px;
+  color         : black;
+  line-height   : 50px;
+
+  .btn {
+    margin-left: 10px;
+    width: 88px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    border-radius: 100px;
+    border: 1px $dark solid;
+  }
+}

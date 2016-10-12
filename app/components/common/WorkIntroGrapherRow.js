@@ -94,15 +94,15 @@ class WorkIntroGrapherRow extends React.Component {
       cover = imgModifier(data.Cover, "workCover")
     }
 
-    let grapherAvatar
-    if (data.Photographer.Avatar && data.Photographer.Id != 7300) {
-      grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
-                        <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
-                      </Link>
-    } else {
-      grapherAvatar = <div className="card-head-null"></div>
+    // 化妆师不用上传头像
+    let grapherAvatar = <div className="card-head-null"></div>
+    if(data.Photographer) {
+      if (data.Photographer.Avatar && data.Photographer.Id != 7300) {
+        grapherAvatar = <Link className="card-head-face" to={"/grapherDetail/"+data.UserId} >
+                          <img src={imgModifier(data.Photographer.Avatar, "avatar")} />
+                        </Link>
+      }
     }
-
     let switchAttention = this.state.isClickMark ? this.state.markExist : data.MarkExist
     return (
       <div className="workIntroGrapherRow">

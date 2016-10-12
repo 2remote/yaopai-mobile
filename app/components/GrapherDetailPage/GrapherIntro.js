@@ -119,28 +119,29 @@ class GrapherIntro extends React.Component {
         <Toaster ref="toast"/>
 
         <div className="baseInfo">
-          <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}} />
-          <p className="nickname">{data.NickName}</p>
-          <p className="font_small">{data.Signature}</p>
-          <p className="font_small"><i className="icon didian"></i>{data.CityName}</p>
-          {
-            (this.state.isClickMark ? this.state.markExist : data.MarkExist)
-            ?
-            <ButtonAttention
-              buttonType="btn-dark"
-              value="已关注"
-              handleSubmit={this.unAttention}
-              iconType="mark_active color_red"
-            />
-            :
-            <ButtonAttention
-              buttonType="btn-dark"
-              value="关注我"
-              handleSubmit={this.attention}
-              iconType="mark"
-            />
-          }
+          <div className="avatar" style={{backgroundImage:`url('${data.Avatar}')`}}>
+            {
+              (this.state.isClickMark ? this.state.markExist : data.MarkExist)
+              ?
+              <ButtonAttention
+                buttonType="btn-dark"
+                value="已关注"
+                handleSubmit={this.unAttention}
+                iconType="mark_active color_red"
+              />
+              :
+              <ButtonAttention
+                buttonType="btn-dark"
+                value="关注我"
+                handleSubmit={this.attention}
+                iconType="mark"
+              />
+            }
+          </div>
+          <p className="nickname">{data.CityName}·<strong>{data.NickName}</strong>&nbsp;<i className="icon renzheng"/></p>
+          <p className="font_small"><i className="icon pencil" />&nbsp;{data.Signature}</p>
         </div>
+        
         <div className="order">
           <ul>
             <li><span className="count">{data.TotalAlbums}</span>作品</li>

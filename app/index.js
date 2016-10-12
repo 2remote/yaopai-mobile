@@ -47,6 +47,14 @@ import BindCardLayout from './components/layout/center/grapher/purse/BindCardLay
 import CardDetailLayout from './components/layout/center/grapher/purse/CardDetailLayout'
 import WithdrawDepositLayout from './components/layout/center/grapher/purse/WithdrawDepositLayout'
 
+// 发现页面
+import DiscoverLayout from './components/UI/DiscoverLayout'
+// 化妆师
+import makeupArtistRouter from './components/MakeupArtist'
+// 模特
+import moteRouter from './components/Mote'
+
+
 main()
 
 function main(){
@@ -83,6 +91,15 @@ function main(){
           onLeave={() => removeBackgroundDimBlack()}
         />
         <Route path="/work_book_page/:workId/:photographerId" component={WorkBookPage} />
+
+        {/* 发现页面 */}
+        <Route path="discover">
+          <IndexRoute component={DiscoverLayout} />
+          { /* 化妆师 */ }
+          {makeupArtistRouter}
+          { /* 模特 */ }
+          {moteRouter}
+        </Route>
 
         <Route path="center">
           {/*用户修改资料（普通用户和摄影师共用）*/}

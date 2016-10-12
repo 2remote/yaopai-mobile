@@ -1,3 +1,13 @@
+%flex {
+  display: -o-box;
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
 %flex-align {
   display            : -webkit-box;
   display            : -webkit-flex;
