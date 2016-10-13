@@ -24,8 +24,6 @@ class GrapherIntro extends React.Component {
       markExist: false,
       marks: 0,
     }
-    this.attention = this.attention.bind(this)
-    this.unAttention = this.unAttention.bind(this)
   }
 
   componentWillMount() {
@@ -126,14 +124,14 @@ class GrapherIntro extends React.Component {
               <ButtonAttention
                 buttonType="btn-dark"
                 value="已关注"
-                handleSubmit={this.unAttention}
+                handleSubmit={this.unAttention.bind(this)}
                 iconType="mark_active color_red"
               />
               :
               <ButtonAttention
                 buttonType="btn-dark"
                 value="关注我"
-                handleSubmit={this.attention}
+                handleSubmit={this.attention.bind(this)}
                 iconType="mark"
               />
             }
@@ -141,7 +139,7 @@ class GrapherIntro extends React.Component {
           <p className="nickname">{data.CityName}·<strong>{data.NickName}</strong>&nbsp;<i className="icon renzheng"/></p>
           <p className="font_small"><i className="icon pencil" />&nbsp;{data.Signature}</p>
         </div>
-        
+
         <div className="order">
           <ul>
             <li><span className="count">{data.TotalAlbums}</span>作品</li>

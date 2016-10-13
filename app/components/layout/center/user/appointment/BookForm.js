@@ -10,6 +10,7 @@ import './index.scss'
 const BookForm = React.createClass({
   getInitialState : function () {
     return {
+      agree: false,
       showAlert: false,
       alert: {
         title: '退款说明',
@@ -37,6 +38,11 @@ const BookForm = React.createClass({
 
   hideAlert(){
     this.setState({showAlert: false});
+  },
+
+  handleAgree: function(e) {
+    let agree = e.target.checked
+    this.setState({agree});
   },
 
   render() {
@@ -71,7 +77,12 @@ const BookForm = React.createClass({
             </div>
           </div>
 
-          <p style={{paddingRight: '15px', textAlign: 'right', fontSize: '12px'}} onClick={this.showAlert}>点击查看YAOPAI服务保障及退款说明 &#62;</p>
+          <div style={{paddingLeft: '15px', fontSize: '12px'}}>
+            <input type="checkbox" checked={this.state.agree} onChange={this.handleAgree} />
+            阅读并接受
+            <span style={{color: '#04be02'}} onClick={this.showAlert}>《YAOPAI服务保障及退款说明》</span>
+          </div>
+
           <Alert
             show={this.state.showAlert}
             title={this.state.alert.title}
@@ -91,8 +102,8 @@ const BookForm = React.createClass({
                  3.如有疑问，请拨打客服热线： 400-876-5981
            </Alert>
 
-          <div className="weui_btn_area" onClick={this.handleSubmit} style={{marginTop: '8px'}}>
-            <button type="button" className="weui_btn weui_btn_primary">{this.props.subValue}</button>
+          <div className="weui_btn_area" onClick={this.state.agree ? this.handleSubmit : null} style={{marginTop: '8px'}}>
+            <button type="button" className={`weui_btn ${this.state.agree ? 'weui_btn_primary' : 'weui-btn_disabled'}`}>{this.props.subValue}</button>
           </div>
         </form>
       </div>
