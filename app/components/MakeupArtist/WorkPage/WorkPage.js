@@ -60,7 +60,7 @@ class WorkPage extends React.Component {
       // TODO: DocumentTitle
       <div>
         <CharacterBar />
-        <CharacterSelect data={this.state.tagListResult} />
+        <CharacterSelect data={this.state.tagListResult} character="化妆师 / MakeupArtist"  />
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         <WorkIntroGrapherList data={this.state.result} />
       </div>
