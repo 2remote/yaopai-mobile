@@ -2,7 +2,6 @@
   // 封面
   .cover {
     height: 245px;
-    background: #f60;
   }
 
 
@@ -85,5 +84,19 @@
       font-size  : 12px;
       color      : #bebebe;
     }
+  }
+
+  // 分享低栏
+  .share-bar {
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 0 20px;
+    height: 50px;
+    width: 100%;
+    font-size: 12px;
+    line-height: 50px;
+    background: rgba(255, 255, 255, .5);
   }
 }
