@@ -3,7 +3,7 @@ import MakeupArtistActions from '../actions/MakeupArtistActions'
 
 let MakeupArtistStore = Reflux.createStore({
   data: {
-    makeupArtistInfo: {
+    info: {
       cityName: '',
       marks: '',
       nickName: '',
@@ -12,8 +12,9 @@ let MakeupArtistStore = Reflux.createStore({
       views: '',
       avatar: '',
       tags: [],
-      hintMessage: '',
-    }
+    },
+    hintMessage: '',
+    flag: '',
   },
   init: function() {
     this.listenTo(MakeupArtistActions.getInfo.success,this.onGetSuccess)
@@ -28,14 +29,14 @@ let MakeupArtistStore = Reflux.createStore({
 
   onGetSuccess : function(res){
     if(res.Success){
-      this.data.cityName = res.CityName
-      this.data.marks = res.Marks
-      this.data.nickName = res.NickName
-      this.data.signature = res.Signature
-      this.data.totalAlbums = res.TotalAlbums
-      this.data.views = res.Views
-      this.data.avatar = res.Avatar
-      this.data.tags = res.Tags
+      this.data.info.cityName = res.CityName
+      this.data.info.marks = res.Marks
+      this.data.info.nickName = res.NickName
+      this.data.info.signature = res.Signature
+      this.data.info.totalAlbums = res.TotalAlbums
+      this.data.info.views = res.Views
+      this.data.info.avatar = res.Avatar
+      this.data.info.tags = res.Tags
     }else{
       this.data.hintMessage = res.ErrorMsg
     }
