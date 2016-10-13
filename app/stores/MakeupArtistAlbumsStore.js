@@ -67,6 +67,7 @@ const MakeupArtistAlbumsStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
+  // 标签
   onMakeupArtistTagListSuccess(data) {
     if(data.Success) {
       this.data.tagListResult = data.Result
@@ -103,7 +104,7 @@ const MakeupArtistAlbumsStore = Reflux.createStore({
     }
     this.data.flag = 'onMakeupArtistGetAlbumsDetailSuccess'
     this.trigger(this.data)
-  }
+  },
 })
 
 export default MakeupArtistAlbumsStore
