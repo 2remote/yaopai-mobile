@@ -78,6 +78,7 @@
     margin-bottom: 15px;
     padding: 0 34px;
     height: 25px;
+    line-height: 25px;
     @extend %flex;
     @include flex_justify_content(space-around)
 

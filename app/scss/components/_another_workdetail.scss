@@ -1,0 +1,102 @@
+.another-workdetail {
+  // 封面
+  .cover {
+    height: 245px;
+  }
+
+
+  // 个人信息
+  .info {
+    padding: 0 10px;
+    font-size: 12px;
+
+    .title {
+      @extend %text_ellipsis;
+      line-height: 40px;
+      font-size: 18px;
+    }
+
+    .description {
+      @include text_multiLine_ellipsis(2, 20px)
+      color: #bebebe;
+    }
+  }
+
+  // 标签
+  .tags {
+    margin-top: 10px;
+    margin-bottom: 35px;
+    height: auto;
+    @extend %flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    li {
+      margin-bottom: 5px;
+      height: 25px;
+      line-height: 25px;
+      padding: 0 10px;
+      margin-right: 10px;
+      color: #bebebe;
+      border: 1px solid #bebebe;
+    }
+  }
+
+  //分割线
+  .more-work {
+    margin: 20px 10px;
+    border: 0;
+    border-top: 1px dashed #bebebe;
+  }
+
+  .des {
+    display: block;
+    text-align: center;
+    background: #f2f2f2;
+    margin: -30px auto 20px;
+    width: 100px;
+    color: #bebebe;
+    font-size: 12px;
+  }
+
+
+  // user-panel
+  .user-panel {
+    text-align: center;
+    padding   : 40px 0;
+
+    .avatar {
+      margin: 0 auto;
+    }
+
+    .uName {
+      height     : 30px;
+      line-height: 30px;
+      font-size  : 16px;
+      margin-top : 10px;
+    }
+
+    .uDes {
+      padding: 0 10px;
+      height     : 20px;
+      @include text_multiLine_ellipsis(3, 20px)
+      color: #bebebe;
+      font-size  : 12px;
+      color      : #bebebe;
+    }
+  }
+
+  // 分享低栏
+  .share-bar {
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 0 20px;
+    height: 50px;
+    width: 100%;
+    font-size: 12px;
+    line-height: 50px;
+    background: rgba(255, 255, 255, .5);
+  }
+}

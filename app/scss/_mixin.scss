@@ -5,6 +5,30 @@
   background-color: $color;
 }
 
+/// 多行省略号
+///
+/// @group 外观
+/// @name text_multiLine_ellipsis
+/// @param {Number} $line - 文字的行数
+/// @param {Measure} $lineHeight - 文字行高
+/// @throw 不支持多行省略的浏览器降级处理为结尾处没有省略号，直接裁剪掉。
+/// @support css-line-clamp
+@mixin text_multiLine_ellipsis($line: 2, $lineHeight: 20px){
+  line-height: $lineHeight;
+  overflow: hidden;
+  height: $lineHeight * $line;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line;
+  -moz-line-clamp: $line;
+  line-clamp: $line;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+}
+
 /*flex模块*/
 @mixin justify_content_space_around {
   -webkit-box-pack       : justify;
@@ -101,6 +125,7 @@
   -webkit-transform: translate(0, 0) !important;
   transform        : translate(0, 0) !important;
 }
+
 @mixin flex($num) {
   // 在移动端只支持 flexbox 协议（旧的 flex API）的浏览器下，只有当你设置了 display: flex 属性后，其子元素的 flex 才会生效，因此这里同时设置了 display 以及 box-flex 属性
   display         : -webkit-box;

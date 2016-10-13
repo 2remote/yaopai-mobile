@@ -94,6 +94,7 @@ var API_CONST = {
     albumsSearch: API_URL + 'MakeupArtistAlbums.Search',
     tagList: API_URL + 'MakeupArtistTag.List',
     getInfo: API_URL + 'MakeupArtist.Get',
+    getAlbumsDetail: API_URL + 'MakeupArtistAlbums.Get',
   },
   INTERVIEW: {
     search: API_URL + 'Interview.Search',
