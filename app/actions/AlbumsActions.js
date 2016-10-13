@@ -24,6 +24,7 @@ const AlbumsActions = Reflux.createActions({
   // 化妆师
   'makeupArtistAlbumsSearch': {children : ['success','failed']},
   'makeupArtistTagList': {children : ['success','failed']},
+  'makeupArtistGetAlbumsDetail': {children : ['success','failed']},
 })
 
 /*
@@ -157,6 +158,16 @@ AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex 
   }
   HttpFactory.post(API.MakeupArtist.albumsSearch,data,this.success,this.failed)
 })
+
+// 化妆师作品详情
+AlbumsActions.makeupArtistGetAlbumsDetail.listen(function(id) {
+  let data = {
+    id,
+    Fields: 'Title,Description,Cover,MarkExist,Tags.Name,Photos.Url,MakeupArtist.Id,MakeupArtist.NickName,MakeupArtist.Avatar,MakeupArtist.Signature'
+  }
+  HttpFactory.post(API.MakeupArtist.getAlbumsDetail,data,this.success,this.failed)
+})
+
 
 // 化妆师标签
 AlbumsActions.makeupArtistTagList.listen(function(pageSize = 50, pageIndex = 1) {
