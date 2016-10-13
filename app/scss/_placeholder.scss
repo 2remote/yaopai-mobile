@@ -26,3 +26,17 @@
   flex            : 1;
   min-width       : 0;
 }
+
+/// 单行省略号
+///
+/// @group 外观
+/// @name text_ellipsis
+%text_ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  word-break:break-all;
+  //在IE9的<td>中，如果之前已经设置了word-wrap:break-word，则这里的white-space:nowrap会失效，所以要在这里加上word-wrap:normal来以防万一
+  word-wrap: normal;
+}
