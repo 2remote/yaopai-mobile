@@ -34,7 +34,6 @@ class WorkDetailPage extends React.Component {
     if(data.flag != 'onMakeupArtistGetAlbumsDetailSuccess') return
     const {title, description, cover, markExist, tags, photos, makeupArtist} = data.albumsDetail
     const {id, nickName, avatar, signature} = makeupArtist
-    console.log(id)
     this.setState({
       albumsDetail: {
         title,
