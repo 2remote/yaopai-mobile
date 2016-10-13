@@ -1,7 +1,8 @@
 import React from 'react'
 
 const CharacterSelect = ({data}) => {
-  let tagNum = Math.ceil(data.length/4)
+  let num = (data.length % 4 === 0) ? data.length + 1 : data.length
+  let tagNum = Math.ceil(num/4)
   let tagNode = data.map((tag, index) =>
           <a
             key={index}
