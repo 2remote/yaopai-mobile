@@ -1,5 +1,6 @@
 import React from 'react'
+import WorkDetailLayout from './WorkDetailLayout'
 
-const WorkDetailPage = () => <div>WorkDetailPage</div>
+const WorkDetailPage = () => <WorkDetailLayout />
 
 export default WorkDetailPage
