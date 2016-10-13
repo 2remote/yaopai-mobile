@@ -65,7 +65,7 @@ class MakeupArtistIntro extends React.Component {
         <div className="order">
           <ul>
             <li><span className="count">{data.totalAlbums}</span>作品</li>
-            <li><span className="count">{data.sales || 0}</span>订单</li>
+            <li><span className="count">{data.views}</span>访问</li>
             {
               data.marks !== undefined ?
               <li><span className="count">{data.marks + this.state.marks}</span>关注</li>
