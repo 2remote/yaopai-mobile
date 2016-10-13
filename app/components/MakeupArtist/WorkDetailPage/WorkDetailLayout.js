@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router'
 
 const WorkDetailLayout= ({data}) => {
+  let userInfo = data.makeupArtist || data.mote
+
   return (
     <section className="another-workdetail">
       <div className="cover" style={{backgroundImage:`url(${data.cover})`,backgroundSize:'cover'}}/>
@@ -25,9 +27,9 @@ const WorkDetailLayout= ({data}) => {
       </div>
 
       <div className="user-panel">
-        <Link to={`/makeupArtistProfile/${data.makeupArtist.id}`}>
+        <Link to={`/makeupArtistProfile/${userInfo.id}`}>
           <div className="avatar" style={
-            {backgroundImage:`url(${data.makeupArtist.avatar})`,
+            {backgroundImage:`url(${userInfo.avatar})`,
             backgroundSize:'cover',
             height:'80px',
             width:'80px',
@@ -35,8 +37,8 @@ const WorkDetailLayout= ({data}) => {
           }>
           </div>
         </Link>
-        <p className="uName">{data.makeupArtist.nickName}</p>
-        <p className="uDes">{data.makeupArtist.signature}</p>
+        <p className="uName">{userInfo.nickName}</p>
+        <p className="uDes">{userInfo.signature}</p>
       </div>
 
        <div>
