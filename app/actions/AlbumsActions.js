@@ -20,6 +20,8 @@ const AlbumsActions = Reflux.createActions({
 
   // 模特
   'moteAlbumsSearch': {children : ['success','failed']},
+  'moteTagList': {children : ['success','failed']},
+  'moteGetAlbumsDetail': {children : ['success','failed']},
 
   // 化妆师
   'makeupArtistAlbumsSearch': {children : ['success','failed']},
@@ -139,7 +141,7 @@ AlbumsActions.unMark.listen(function(id){
   HttpFactory.post(API.ALBUMS.unMark,data,this.success,this.failed)
 })
 
-// 模特
+// 模特作品列表
 AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
   let data = {
     pageSize,
@@ -148,6 +150,26 @@ AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
   }
   HttpFactory.post(API.Mote.albumsSearch,data,this.success,this.failed)
 })
+
+// 模特作品详情
+AlbumsActions.moteGetAlbumsDetail.listen(function(id) {
+  let data = {
+    id,
+    Fields: 'Title,Description,Cover,MarkExist,Tags.Name,Photos.Url,Mote.Id,Mote.NickName,Mote.Avatar,Mote.Signature'
+  }
+  HttpFactory.post(API.Mote.getAlbumsDetail,data,this.success,this.failed)
+})
+
+// 模特标签
+AlbumsActions.moteTagList.listen(function(pageSize = 50, pageIndex = 1) {
+  let data = {
+    pageSize: null,
+    pageIndex: null,
+    Fields: 'Id,Name,Cover,Pinyin'
+  }
+  HttpFactory.post(API.Mote.tagList,data,this.success,this.failed)
+})
+
 
 // 化妆师作品
 AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
@@ -179,4 +201,4 @@ AlbumsActions.makeupArtistTagList.listen(function(pageSize = 50, pageIndex = 1) 
   HttpFactory.post(API.MakeupArtist.tagList,data,this.success,this.failed)
 })
 
-export {AlbumsActions as default}
+export default AlbumsActions
