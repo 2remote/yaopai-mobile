@@ -1,20 +1,22 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-const WorkDetailLayout= () => {
+const WorkDetailLayout= ({data}) => {
   return (
     <section className="another-workdetail">
-      <div className="cover"></div>
+      <div className="cover" style={{backgroundImage:`url(${data.cover})`,backgroundSize:'cover'}}/>
       <div className="info">
-        <p className="title">匆匆那年</p>
-        <p className="description">作品描述作品描述作品描述作品描述作品描述作品描述作品描述作
-        品描述作品描述作品描述作品描述作品描述
-        </p>
-        <div className="tags">
-          <li>浓妆</li>
-          <li>浓妆</li>
-          <li>浓妆</li>
-        </div>
+        <p className="title">{data.title}</p>
+        <p className="description">{data.description}</p>
+        {/* 化妆师标签 */
+          data.tags.length ?
+            (
+              <ul className="tags">
+                {data.tags.slice(0, 5).map((tag, index) => <li key={index}>{tag.Name}</li>)}
+              </ul>
+            )
+          : null
+        }
       </div>
 
       <div>
@@ -23,9 +25,9 @@ const WorkDetailLayout= () => {
       </div>
 
       <div className="user-panel">
-        <Link to={`/grapherDetail/${2}`}>
+        <Link to={`/makeupArtistProfile/${data.makeupArtist.id}`}>
           <div className="avatar" style={
-            {backgroundImage:`url(${'data.Avatar'})`,
+            {backgroundImage:`url(${data.makeupArtist.avatar})`,
             backgroundSize:'cover',
             height:'80px',
             width:'80px',
@@ -33,10 +35,8 @@ const WorkDetailLayout= () => {
           }>
           </div>
         </Link>
-        <p className="uName">糖包</p>
-        <p className="uDes">
-          个性签名个性签名个性签名个性签名个性签名个性签名个性签名个性签名个性签名个性签名
-        </p>
+        <p className="uName">{data.makeupArtist.nickName}</p>
+        <p className="uDes">{data.makeupArtist.signature}</p>
       </div>
 
        <div>
@@ -46,8 +46,20 @@ const WorkDetailLayout= () => {
 
       { /* 客片展示 */ }
       <article>
-
+        {
+          data.photos.map((photo, index) => <img src={photo.Url} key={index} />)
+        }
       </article>
+
+      <footer className="share-bar">
+        <strong className="fl">喜欢我就分享吧~</strong>
+
+        <div className="fr">
+          <span><i className="icon mark" /> 收藏</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span><i className="icon share_icon" /> 分享</span>
+        </div>
+      </footer>
     </section>
   )
 }
