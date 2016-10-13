@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
-import MakeupArtistActions from '../actions/MakeupArtistActions'
+import MoteActions from '../actions/MoteActions'
 
-let MakeupArtistStore = Reflux.createStore({
+const MoteStore = Reflux.createStore({
   data: {
     info: {
       cityName: '',
@@ -17,8 +17,8 @@ let MakeupArtistStore = Reflux.createStore({
     flag: '',
   },
   init: function() {
-    this.listenTo(MakeupArtistActions.getInfo.success,this.onGetSuccess)
-    this.listenTo(MakeupArtistActions.getInfo.failed,this.onFailed)
+    this.listenTo(MoteActions.getInfo.success,this.onGetSuccess)
+    this.listenTo(MoteActions.getInfo.failed,this.onFailed)
   },
 
   onFailed : function(data){
@@ -45,4 +45,4 @@ let MakeupArtistStore = Reflux.createStore({
   },
 })
 
-export default MakeupArtistStore
+export default MoteStore

@@ -20,7 +20,7 @@ class MakeupArtistProfile extends React.Component {
     super(props)
     this.state = {
       result: [],
-      makeupArtistInfo: {
+      info: {
         cityName: '',
         marks: '',
         nickName: '',
@@ -40,6 +40,7 @@ class MakeupArtistProfile extends React.Component {
   }
 
   onSearchSuccess(data) {
+    if(data.flag != 'onMakeupArtistAlbumsSearchSuccess') return 
     this.setState({
       result: data.result,
     })
@@ -47,14 +48,15 @@ class MakeupArtistProfile extends React.Component {
 
   // 获取摄影师基本信息
   onGetMakeupArtistInfo(data) {
+    if(data.flag != 'getInfo') return
     if(data.hintMessage == '数据未找到') {
-      // alert('该摄影师已被禁用！')
+      alert('该化妆师已被禁用！')
       this.history.replaceState(null, '/work')
       return
     }
-    const {cityName, marks, nickName, signature, totalAlbums, views, avatar, tags} = data
+    const {cityName, marks, nickName, signature, totalAlbums, views, avatar, tags} = data.info
     this.setState({
-      makeupArtistInfo: {
+      info: {
         cityName,
         marks,
         nickName,
@@ -71,7 +73,7 @@ class MakeupArtistProfile extends React.Component {
     return (
       <div className="grapherDetailPage">
         <SidePage shareFrom={this.props.location.query.sharefrom} />
-        <MakeupArtistIntro data={this.state.makeupArtistInfo} pathname={this.props.location.pathname} />
+        <MakeupArtistIntro data={this.state.info} pathname={this.props.location.pathname} />
         <WorkIntroGrapherList data={this.state.result} />
         <LinkToApp />
       </div>

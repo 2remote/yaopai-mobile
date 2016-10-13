@@ -9,8 +9,8 @@ const moteRouter =
   <Route path="mote">
     <IndexRedirect to="moteWorkPage" />
     <Route path="workPage" component={MoteWorkPage} />
-    <Route path="/workDetail/:Id" component={MoteWorkDetailPage} />
-    <Route path="moteProfile" component={MoteProfile} />
+    <Route path="workDetail/:Id" component={MoteWorkDetailPage} />
+    <Route path="moteProfile/:Id" component={MoteProfile} />
   </Route>
 
 export default moteRouter
