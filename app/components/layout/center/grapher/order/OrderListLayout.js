@@ -89,9 +89,9 @@ class OrderListLayout extends React.Component {
       }
     }
     return (
-      <div className="weui_tab_bd" id="orderListContainer">
+      <div className="weui_tab_bd" ref="orderListContainer">
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
-        <section id="orderList">{theRealList}</section>
+        <section ref="orderList">{theRealList}</section>
         <aside className="footer color_gray text_center font_small">
           温馨提示：交易过程中如有异常<br />
           请拨打客服热线：<a className="color_green" href="tel:400-876-5981">400-876-5981</a>

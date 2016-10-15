@@ -1,27 +1,32 @@
 import React from 'react'
-import Reflux from 'reflux'
 import { History } from 'react-router'
 import DocumentTitle from 'react-document-title'
-import $ from 'jquery'
+
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
 import AlbumsActions from '../../actions/AlbumsActions'
 import AlbumsStore from '../../stores/AlbumsStore'
+
 import WorkIntroGrapherList from '../common/WorkIntroGrapherList'
 import SidePage from '../UI/SidePage'
 import AutoLoadPageMixin from '../AutoLoadPageMixin'
 import { LIST_ALL_WORKS, TITLE } from '../Tools'
 import AnimationGuide from './AnimationGuide'
 import ShowMenu from './ShowMenu'
+
 import _ from 'underscore'
+import $ from 'jquery'
+
 import WechatShare from '../Weixin/WechatShare'
 import Toaster from '../Toast'
 import LinkToApp from '../common/LinkToApp'
 
 let lastPathname
 
-const WorkPage = React.createClass({
-  mixins: [Reflux.listenTo(AlbumsStore,'_onAlbumsStoreChange'), AutoLoadPageMixin, History],
-  getInitialState() {
-    return {
+class WorkPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = ({
       pageIndex: 1,
       pageCount: 0,
       total: 0,
@@ -31,9 +36,10 @@ const WorkPage = React.createClass({
       priceTag: 100,
       selectedTags: [],
       showNothingFound: false,
-      componentName: 'WorkPage' // 请和组件的名字保持一致
-    }
-  },
+      componentName: 'WorkPage', // 请和组件的名字保持一致
+    })
+  }
+
   componentDidMount() {
     AlbumsActions.getTagList()
 
@@ -51,10 +57,12 @@ const WorkPage = React.createClass({
     } else {
       AlbumsActions.search()
     }
-  },
+  }
+
   componentWillUpdate() {
     lastPathname = this.props.location.pathname + this.props.location.query.q
-  },
+  }
+
   componentDidUpdate() {
     if (lastPathname !== this.props.location.pathname + this.props.location.query.q) {
 
@@ -71,7 +79,8 @@ const WorkPage = React.createClass({
       })
 
     }
-  },
+  }
+
   handleUpdateSearch(key) {
     this.setState({searchKey: key}, () => {
       // 读取search过滤的数据
@@ -83,7 +92,8 @@ const WorkPage = React.createClass({
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: key})
     })
-  },
+  }
+
   handleUpdateTags() {
     let selectedTags = []
 
@@ -103,7 +113,8 @@ const WorkPage = React.createClass({
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, `/work/${this.state.selectedTags.join("/")}`, {q: this.state.searchKey})
     })
-  },
+  }
+
   handleUpdatePriceTag(i) {
     this.setState({priceTag: i}, () => {
       // 读取tag过滤的数据
@@ -113,7 +124,8 @@ const WorkPage = React.createClass({
         priceTag: i
       })
     })
-  },
+  }
+
   _onAlbumsStoreChange(data) {
     const handleByFlag = {
       search: () => {
@@ -138,7 +150,8 @@ const WorkPage = React.createClass({
     }
 
     data.hintMessage ? console.log(data.hintMessage) : handleByFlag[data.flag]()
-  },
+  }
+
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
     AlbumsActions.search({
@@ -147,14 +160,14 @@ const WorkPage = React.createClass({
       priceTag: this.state.priceTag,
       pageIndex,
     })
-  },
-  render() {
+  }
 
+  render() {
     const { searchKey, selectedTags, works, showNothingFound, tags, priceTag } = this.state
 
     return (
       <DocumentTitle title={TITLE.workPage}>
-        <div className="workPage">
+        <div className="workPage" ref="workpage">
           {/* 一定要确保 AnimationGuide 这个组件在最上面 ！！！ */}
           <AnimationGuide />
           <SidePage />
@@ -184,6 +197,9 @@ const WorkPage = React.createClass({
       </DocumentTitle>
     )
   }
-})
+}
 
-export {WorkPage as default}
+ReactMixin.onClass(WorkPage,Reflux.listenTo(AlbumsStore, '_onAlbumsStoreChange'))
+ReactMixin.onClass(WorkPage, AutoLoadPageMixin)
+ReactMixin.onClass(WorkPage, History)
+export default WorkPage

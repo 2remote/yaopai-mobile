@@ -58,7 +58,7 @@ class WorkPage extends React.Component {
   render() {
     return (
       // TODO: DocumentTitle
-      <div>
+      <div ref="workpage">
         <CharacterBar />
         <CharacterSelect data={this.state.tagListResult} character="化妆师 / MakeupArtist"  />
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
