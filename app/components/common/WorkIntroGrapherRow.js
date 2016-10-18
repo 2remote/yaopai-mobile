@@ -80,7 +80,14 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   render() {
-    const {data} = this.props
+    const {data, character} = this.props
+    let workDetailPath = `/workDetail/${data.Id}`
+    if(character === 'mote') {
+      workDetailPath = `/discover/mote/workDetail/${data.Id}`
+    } else if (character === 'makeupArtist') {
+      workDetailPath = `/discover/makeupArtist/workDetail/${data.Id}`
+    }
+
     let cover
     if(data.Cut) {
       try {
@@ -110,7 +117,7 @@ class WorkIntroGrapherRow extends React.Component {
           <i className={data.MarkExist ? `icon mark_active color_red` : `icon mark`}/>
         </div>
 
-        <Link to={`/workDetail/${data.Id}`}>
+        <Link to={workDetailPath}>
           <div className="card-work" style={{height: 254/375*innerWidth}}>
             <LazyLoad threshold={100} once>
               <div className="card-price">

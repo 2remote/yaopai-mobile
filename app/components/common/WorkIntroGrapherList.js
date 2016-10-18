@@ -5,6 +5,7 @@ import NothingFound from './NothingFound.js'
 const WorkIntroGrapherList = args => {
   const {
     data,
+    character,
     searchKey = "",
     selectedTags = [],
     showNothingFound = false,
@@ -17,6 +18,7 @@ const WorkIntroGrapherList = args => {
             <WorkIntroGrapherRow
               key={i}
               data={work}
+              character={character}
             />
           )
         }

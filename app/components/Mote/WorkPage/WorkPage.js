@@ -26,7 +26,7 @@ class WorkPage extends React.Component {
       // priceTag: 100,
       // selectedTags: [],
       // showNothingFound: false,
-      componentName: 'moteWorkPage', 
+      componentName: 'moteWorkPage',
     }
     AlbumsActions.moteAlbumsSearch()
     AlbumsActions.moteTagList()
@@ -62,7 +62,7 @@ class WorkPage extends React.Component {
         <CharacterBar />
         <CharacterSelect data={this.state.tagListResult} character="模特 / Model"  />
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
-        <WorkIntroGrapherList data={this.state.result} />
+        <WorkIntroGrapherList data={this.state.result} character="mote" />
       </div>
     )
   }
