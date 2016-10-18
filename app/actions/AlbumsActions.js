@@ -142,10 +142,11 @@ AlbumsActions.unMark.listen(function(id){
 })
 
 // 模特作品列表
-AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
+AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1, userId = null) {
   let data = {
     pageSize,
     pageIndex,
+    userId,
     Fields: 'Id,Title,Description,Cover,Marks,MarkExist,'
   }
   HttpFactory.post(API.Mote.albumsSearch,data,this.success,this.failed)
@@ -172,10 +173,11 @@ AlbumsActions.moteTagList.listen(function(pageSize = 50, pageIndex = 1) {
 
 
 // 化妆师作品
-AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1) {
+AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1, userId = null) {
   let data = {
     pageSize,
     pageIndex,
+    userId,
     Fields: 'Id,Title,Description,Cover,Marks,MarkExist'
   }
   HttpFactory.post(API.MakeupArtist.albumsSearch,data,this.success,this.failed)
