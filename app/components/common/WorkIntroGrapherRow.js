@@ -82,9 +82,12 @@ class WorkIntroGrapherRow extends React.Component {
   render() {
     const {data, character} = this.props
     let workDetailPath = `/workDetail/${data.Id}`
+    let priceIsHidden = true // 暂时隐藏
     if(character === 'mote') {
+      priceIsHidden = false
       workDetailPath = `/discover/mote/workDetail/${data.Id}`
     } else if (character === 'makeupArtist') {
+      priceIsHidden = false
       workDetailPath = `/discover/makeupArtist/workDetail/${data.Id}`
     }
 
@@ -120,11 +123,17 @@ class WorkIntroGrapherRow extends React.Component {
         <Link to={workDetailPath}>
           <div className="card-work" style={{height: 254/375*innerWidth}}>
             <LazyLoad threshold={100} once>
-              <div className="card-price">
-                ￥{data.Price} <span className="font_small">/套</span>
-                <div className="triangle-top-left"></div>
-                <div className="triangle-bottom-left"></div>
-              </div>
+
+              {
+                priceIsHidden ?
+                <div className="card-price">
+                  ￥{data.Price} <span className="font_small">/套</span>
+                  <div className="triangle-top-left"></div>
+                  <div className="triangle-bottom-left"></div>
+                </div>
+              : ''
+              }
+
 
               <img
                 style={{width:'100%',height:254/375*innerWidth}}
