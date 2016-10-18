@@ -148,7 +148,6 @@ class WorkPage extends React.Component {
       },
       getTagList: () => this.setState({tags : data.tags})
     }
-
     data.hintMessage ? console.log(data.hintMessage) : handleByFlag[data.flag]()
   }
 

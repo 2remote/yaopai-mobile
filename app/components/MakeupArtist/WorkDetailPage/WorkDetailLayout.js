@@ -23,11 +23,11 @@ const WorkDetailLayout= ({data}) => {
 
       <div>
         <hr className="more-work" />
-        <span className="des">化妆师信息</span>
+        <span className="des">{data.makeupArtist ? '化妆师' : '模特'}信息</span>
       </div>
 
       <div className="user-panel">
-        <Link to={`/makeupArtistProfile/${userInfo.id}`}>
+        <Link to={`discover${data.makeupArtist ? '/makeupArtist/makeupArtistProfile/' : '/mote/moteProfile/'}${userInfo.id}`}>
           <div className="avatar" style={
             {backgroundImage:`url(${userInfo.avatar})`,
             backgroundSize:'cover',
