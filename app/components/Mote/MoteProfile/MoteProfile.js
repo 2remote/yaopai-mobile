@@ -36,7 +36,7 @@ class MoteProfile extends React.Component {
   componentWillMount() {
     const userId = this.props.params.Id
     MoteActions.getInfo(userId)
-    AlbumsActions.moteAlbumsSearch({userId})
+    AlbumsActions.moteAlbumsSearch(50, 1, userId)
   }
 
   onSearchSuccess(data) {

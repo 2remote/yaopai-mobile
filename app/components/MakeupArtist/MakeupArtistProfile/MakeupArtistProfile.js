@@ -36,7 +36,7 @@ class MakeupArtistProfile extends React.Component {
   componentWillMount() {
     const userId = this.props.params.Id
     MakeupArtistActions.getInfo(userId)
-    AlbumsActions.makeupArtistAlbumsSearch({userId})
+    AlbumsActions.makeupArtistAlbumsSearch(50, 1, userId)
   }
 
   onSearchSuccess(data) {
