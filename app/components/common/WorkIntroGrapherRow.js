@@ -148,7 +148,7 @@ class WorkIntroGrapherRow extends React.Component {
 
         <div className="card-info">
           <p className="info-title">{data.Title}</p>
-          <p className="info-Subtitle">有{data.Marks}人想拍</p>
+          <p className="info-Subtitle">有&nbsp;{data.Marks}&nbsp;人喜欢</p>
         </div>
       </div>
     )

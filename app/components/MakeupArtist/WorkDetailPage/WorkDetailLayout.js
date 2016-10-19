@@ -49,7 +49,7 @@ const WorkDetailLayout= ({data}) => {
       { /* 客片展示 */ }
       <article>
         {
-          data.photos.map((photo, index) => <img src={photo.Url} key={index} />)
+          data.photos.map((photo, index) => <img className="photo-list" src={photo.Url} key={index} />)
         }
       </article>
 
