@@ -89,11 +89,13 @@ var API_CONST = {
     albumsSearch: API_URL + 'MoteAlbums.Search',
     tagList: API_URL + 'MoteTag.List',
     getInfo: API_URL + 'Mote.Get',
+    getAlbumsDetail: API_URL + 'MoteAlbums.Get',
   },
   MakeupArtist: { // 化妆师
     albumsSearch: API_URL + 'MakeupArtistAlbums.Search',
     tagList: API_URL + 'MakeupArtistTag.List',
     getInfo: API_URL + 'MakeupArtist.Get',
+    getAlbumsDetail: API_URL + 'MakeupArtistAlbums.Get',
   },
   INTERVIEW: {
     search: API_URL + 'Interview.Search',

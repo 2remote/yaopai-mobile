@@ -36,11 +36,11 @@ class MoteProfile extends React.Component {
   componentWillMount() {
     const userId = this.props.params.Id
     MoteActions.getInfo(userId)
-    AlbumsActions.moteAlbumsSearch({userId})
+    AlbumsActions.moteAlbumsSearch(50, 1, userId)
   }
 
   onSearchSuccess(data) {
-    if(data.flag != 'onMoteAlbumsSearchSuccess') return 
+    if(data.flag != 'onMoteAlbumsSearchSuccess') return
     this.setState({
       result: data.result,
     })
@@ -74,7 +74,7 @@ class MoteProfile extends React.Component {
       <div className="grapherDetailPage">
         <SidePage shareFrom={this.props.location.query.sharefrom} />
         <MakeupArtistIntro data={this.state.info} pathname={this.props.location.pathname} />
-        <WorkIntroGrapherList data={this.state.result} />
+        <WorkIntroGrapherList data={this.state.result} character="mote" />
         <LinkToApp />
       </div>
     )

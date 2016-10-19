@@ -1,16 +1,23 @@
 import React from 'react'
-import Reflux from 'reflux'
 import { History } from 'react-router'
-import $ from 'jquery'
 import DocumentTitle from 'react-document-title'
-import SidePage from '../UI/SidePage'
-import GrapherList from './GrapherList'
+
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
 import PhotographerStore from '../../stores/PhotographerStore'
 import PhotographerActions from '../../actions/PhotographerActions'
 import AutoLoadPageMixin from '../AutoLoadPageMixin'
+
+import SidePage from '../UI/SidePage'
+import GrapherList from './GrapherList'
+
 import { TITLE } from '../Tools'
+
 import './GrapherPage.scss'
 import _ from 'underscore'
+import $ from 'jquery'
+
+
 import WechatShare from '../Weixin/WechatShare'
 import Toaster from '../Toast'
 import ShowMenu from './ShowMenu'
@@ -18,10 +25,10 @@ import LinkToApp from '../common/LinkToApp'
 
 let lastQuery
 
-const GrapherPage = React.createClass({
-  mixins : [Reflux.listenTo(PhotographerStore,'_onPhotographerStoreChange'), AutoLoadPageMixin, History],
-  getInitialState() {
-    return {
+class GrapherPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = ({
       graphers: [],
       pageIndex: 1,
       pageCount: 0,
@@ -29,8 +36,9 @@ const GrapherPage = React.createClass({
       searchKey: '',
       showNothingFound: false,
       componentName: 'WorkPage',
-    }
-  },
+    })
+  }
+
   componentDidMount() {
     const 众里寻她千百度 = this.props.location.query.q
 
@@ -42,10 +50,12 @@ const GrapherPage = React.createClass({
     } else {
       PhotographerActions.list()
     }
-  },
+  }
+
   componentWillUpdate() {
     lastQuery = this.props.location.query.q
-  },
+  }
+
   componentDidUpdate() {
     if (lastQuery !== this.props.location.query.q) {
 
@@ -58,7 +68,8 @@ const GrapherPage = React.createClass({
 
       console.log(this.state.searchKey)
     }
-  },
+  }
+
   handleUpdateSearch(key) {
     console.warn(key)
     this.setState({searchKey: key}, () => {
@@ -67,15 +78,17 @@ const GrapherPage = React.createClass({
       // 把搜索和筛选结果写入路由
       this.history.pushState(null, '/grapher', {q: key})
     })
-  },
+  }
+
   reset() {
     // 重置 state 和接口
     this.setState({searchKey: ""})
     PhotographerActions.query()
     this.history.pushState(null, '/grapher')
-  },
+  }
+
   _onPhotographerStoreChange(data) {
-    console.table(data.photographers)
+    // console.table(data.photographers)
     if(data.flag == 'list'){
       if(data.hintMessage){
         console.log(data.hintMessage)
@@ -99,21 +112,22 @@ const GrapherPage = React.createClass({
         this.onHideToast()
       }
     }
-  },
+  }
+
   onChangePage(pageIndex) {
     this.onShowToast('努力加载中...')
     PhotographerActions.list({
       pageIndex,
       key: this.state.searchKey
     })
-  },
-  render() {
+  }
 
+  render() {
     const { searchKey, graphers, showNothingFound } = this.state
 
     return (
       <DocumentTitle title={TITLE.grapherPage}>
-        <div className="grapherPage">
+        <div className="grapherPage" ref="workpage">
           <SidePage />
           <ShowMenu
             onSearch = {this.handleUpdateSearch}
@@ -132,6 +146,9 @@ const GrapherPage = React.createClass({
       </DocumentTitle>
     )
   }
-})
+}
 
-export {GrapherPage as default}
+ReactMixin.onClass(GrapherPage,Reflux.listenTo(PhotographerStore, '_onPhotographerStoreChange'))
+ReactMixin.onClass(GrapherPage, AutoLoadPageMixin)
+ReactMixin.onClass(GrapherPage, History)
+export default GrapherPage

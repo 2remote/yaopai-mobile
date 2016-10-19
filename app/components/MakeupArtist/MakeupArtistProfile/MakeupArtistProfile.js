@@ -36,11 +36,11 @@ class MakeupArtistProfile extends React.Component {
   componentWillMount() {
     const userId = this.props.params.Id
     MakeupArtistActions.getInfo(userId)
-    AlbumsActions.makeupArtistAlbumsSearch({userId})
+    AlbumsActions.makeupArtistAlbumsSearch(50, 1, userId)
   }
 
   onSearchSuccess(data) {
-    if(data.flag != 'onMakeupArtistAlbumsSearchSuccess') return 
+    if(data.flag != 'onMakeupArtistAlbumsSearchSuccess') return
     this.setState({
       result: data.result,
     })
@@ -74,7 +74,7 @@ class MakeupArtistProfile extends React.Component {
       <div className="grapherDetailPage">
         <SidePage shareFrom={this.props.location.query.sharefrom} />
         <MakeupArtistIntro data={this.state.info} pathname={this.props.location.pathname} />
-        <WorkIntroGrapherList data={this.state.result} />
+        <WorkIntroGrapherList data={this.state.result} character="makeupArtist" />
         <LinkToApp />
       </div>
     )

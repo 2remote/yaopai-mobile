@@ -80,7 +80,17 @@ class WorkIntroGrapherRow extends React.Component {
   }
 
   render() {
-    const {data} = this.props
+    const {data, character} = this.props
+    let workDetailPath = `/workDetail/${data.Id}`
+    let priceIsHidden = true // 暂时隐藏
+    if(character === 'mote') {
+      priceIsHidden = false
+      workDetailPath = `/discover/mote/workDetail/${data.Id}`
+    } else if (character === 'makeupArtist') {
+      priceIsHidden = false
+      workDetailPath = `/discover/makeupArtist/workDetail/${data.Id}`
+    }
+
     let cover
     if(data.Cut) {
       try {
@@ -110,14 +120,20 @@ class WorkIntroGrapherRow extends React.Component {
           <i className={data.MarkExist ? `icon mark_active color_red` : `icon mark`}/>
         </div>
 
-        <Link to={`/workDetail/${data.Id}`}>
+        <Link to={workDetailPath}>
           <div className="card-work" style={{height: 254/375*innerWidth}}>
             <LazyLoad threshold={100} once>
-              <div className="card-price">
-                ￥{data.Price} <span className="font_small">/套</span>
-                <div className="triangle-top-left"></div>
-                <div className="triangle-bottom-left"></div>
-              </div>
+
+              {
+                priceIsHidden ?
+                <div className="card-price">
+                  ￥{data.Price} <span className="font_small">/套</span>
+                  <div className="triangle-top-left"></div>
+                  <div className="triangle-bottom-left"></div>
+                </div>
+              : ''
+              }
+
 
               <img
                 style={{width:'100%',height:254/375*innerWidth}}
@@ -132,7 +148,7 @@ class WorkIntroGrapherRow extends React.Component {
 
         <div className="card-info">
           <p className="info-title">{data.Title}</p>
-          <p className="info-Subtitle">有{data.Marks}人想拍</p>
+          <p className="info-Subtitle">有&nbsp;{data.Marks}&nbsp;人喜欢</p>
         </div>
       </div>
     )
