@@ -26,7 +26,7 @@ const GrapherList = args => {
       </div>
     )
   } else if ( showNothingFound && searchKey ) {
-    console.log('没有找到心仪的摄影师？')
+    // console.log('没有找到心仪的摄影师？')
     return <NothingFound title="没有找到心仪的摄影师？"/>
   } else {
     return (
