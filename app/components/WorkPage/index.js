@@ -174,9 +174,9 @@ class WorkPage extends React.Component {
           <ShowMenu
             tags = {tags}
             priceTag = {priceTag}
-            onSelectedTag = {this.handleUpdateTags}
-            onSearch = {this.handleUpdateSearch}
-            onPriceTag = {this.handleUpdatePriceTag}
+            onSelectedTag = {this.handleUpdateTags.bind(this)}
+            onSearch = {this.handleUpdateSearch.bind(this)}
+            onPriceTag = {this.handleUpdatePriceTag.bind(this)}
             reset = {this.reset}
             searchKey = {searchKey}
             selectedTags = {selectedTags}
