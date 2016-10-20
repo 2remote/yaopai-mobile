@@ -130,8 +130,8 @@ class GrapherPage extends React.Component {
         <div className="grapherPage" ref="workpage">
           <SidePage />
           <ShowMenu
-            onSearch = {this.handleUpdateSearch}
-            reset = {this.reset}
+            onSearch = {this.handleUpdateSearch.bind(this)}
+            reset = {this.reset.bind(this)}
             searchKey = {searchKey}
           />
           <GrapherList
