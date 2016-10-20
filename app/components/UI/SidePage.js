@@ -110,6 +110,18 @@ class SidePage extends Component {
                     </Link>
                   </li>
                   <li className="pure-menu-item nav-list-bar">
+                    <Link to="/discover/mote/workPage" activeClassName="active">
+                      <i className="menu-icon icon camera" />
+                      <div className="menu-button"><span>模特&nbsp;&nbsp;Mote</span></div>
+                    </Link>
+                  </li>
+                  <li className="pure-menu-item nav-list-bar">
+                    <Link to="/discover/makeupArtist/workPage" activeClassName="active">
+                      <i className="menu-icon icon camera" />
+                      <div className="menu-button"><span>化妆师&nbsp;&nbsp;MakeupArtist</span></div>
+                    </Link>
+                  </li>
+                  <li className="pure-menu-item nav-list-bar">
                     <Link className="link-box" to={userData.userType ? "/center/g":"/center/u"} activeClassName="active">
                       <i className="menu-icon icon settings" />
                       <div className="menu-button"><span>个人中心&nbsp;&nbsp;User</span></div>
