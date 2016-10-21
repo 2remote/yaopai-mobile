@@ -26,7 +26,7 @@ const CharacterSelect = ({data, character}) => {
       </div>
       <div className="authentication">
         {character}
-        <span className="btn"><i className="icon renzheng"/> 我要认证 &#62;</span>
+        <span className="btn"><i className="icon renzheng"/> 我要认证 <i className="icon youjiantou" /></span>
       </div>
     </section>
   )
