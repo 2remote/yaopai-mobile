@@ -19,8 +19,6 @@
 3. 运行指令：`npm install`
 4. 启动开发用服务器：`npm start`
 
-由于项目使用了 [SASS](http://sass-lang.com/)，作为 CSS 预处理器，Mac 用户直接`gem install sass`即可，Win 用户应先安装 [Ruby](https://www.ruby-lang.org/en/)。
-
 
 ## 编码规范列表
 * [React](https://github.com/vikingmute/javascript/tree/master/react)
