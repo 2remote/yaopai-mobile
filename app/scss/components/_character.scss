@@ -51,7 +51,8 @@
 
   a {
     display    : inline-block;
-    // 宽度 JS 控制
+    width: 150px;
+    margin-left: 10px;
     height     : 80px;
     line-height: 80px;
     font-size  : 16px;
@@ -85,4 +86,6 @@
     border-radius: 100px;
     border: 1px $dark solid;
   }
+
+  i { font-size: 12px; }
 }

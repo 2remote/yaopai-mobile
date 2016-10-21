@@ -48,7 +48,7 @@ class MakeupArtistIntro extends React.Component {
           <div className="avatar" style={{backgroundImage:`url('${data.avatar}')`}}>
 
           </div>
-          <p className="nickname">{data.cityName}·<strong>{data.nickName}</strong>&nbsp;<i className="icon renzheng"/></p>
+          <p className="nickname">{data.cityName}·<strong>{data.nickName}</strong></p>
           <p className="font_small"><i className="icon pencil" />&nbsp;{data.signature}</p>
         </div>
 
@@ -64,11 +64,11 @@ class MakeupArtistIntro extends React.Component {
 
         <div className="order">
           <ul>
-            <li><span className="count">{data.totalAlbums}</span>作品</li>
-            <li><span className="count">{data.views}</span>访问</li>
+            <li><span className="count">{data.totalAlbums}</span>&nbsp;&nbsp;作品</li>
+            <li><span className="count">{data.views}</span>&nbsp;&nbsp;访问</li>
             {
               data.marks !== undefined ?
-              <li><span className="count">{data.marks + this.state.marks}</span>关注</li>
+              <li><span className="count">{data.marks + this.state.marks}</span>&nbsp;&nbsp;关注</li>
               :
               null
             }

@@ -1,15 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router'
+import SidePage from '../../UI/SidePage'
 
 const WorkDetailLayout= ({data}) => {
   let userInfo = data.makeupArtist || data.mote
 
   return (
-    <section className="another-workdetail">
+    <section className="another-workdetail" style={{marginBottom: 50}}>
+      <SidePage />
       <div className="cover" style={{backgroundImage:`url(${data.cover})`,backgroundSize:'cover'}}/>
       <div className="info">
         <p className="title">{data.title}</p>
-        <p className="description">{data.description}</p>
+        <p className="description">{data.description || '暂无描述'}</p>
         {/* 化妆师标签 */
           data.tags.length ?
             (
