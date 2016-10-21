@@ -137,7 +137,7 @@ class GrapherIntro extends React.Component {
             }
           </div>
           <p className="nickname">{data.CityName}·<strong>{data.NickName}</strong>&nbsp;<i className="icon renzheng"/></p>
-          <p className="font_small"><i className="icon pencil" />&nbsp;{data.Signature}</p>
+          <p className="font_small"><i className="icon pencil" />&nbsp;{data.Signature || '暂无描述'}</p>
         </div>
 
         <div className="order">
