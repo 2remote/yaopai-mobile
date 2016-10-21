@@ -1,8 +1,7 @@
 import React from 'react'
 
 const CharacterSelect = ({data, character}) => {
-  let num = (data.length % 4 === 0) ? data.length + 1 : data.length
-  let tagNum = Math.ceil(num/4)
+  let tagNum = data.length
   let tagNode = data.map((tag, index) =>
           <a
             key={index}
@@ -10,8 +9,6 @@ const CharacterSelect = ({data, character}) => {
             style={{
               background: `url(${tag.Cover}) center center no-repeat`,
               backgroundSize: 'cover',
-              width: `${36/tagNum}%`,
-              marginLeft: `${2/tagNum}%`,
             }}
           >
             <span className="mask">{tag.Name}</span>
@@ -20,7 +17,7 @@ const CharacterSelect = ({data, character}) => {
   return (
     <section className="tag-list">
       <div className="swipe">
-        <div className="swipe-wrap" style={{width: `${tagNum}00%`}}>
+        <div className="swipe-wrap" style={{width: `${tagNum * 160}px`}}>
           {tagNode}
         </div>
       </div>
