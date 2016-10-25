@@ -21,10 +21,15 @@ const MoteStore = Reflux.createStore({
     }
   },
 
-  onGetInfoFailed(res){
+  // 通用方法
+  onFailed(res) {
     this.data.hintMessage = '网络错误'
     this.data.flag = 'failed'
     this.trigger(this.data)
+  },
+
+  onGetInfoFailed(res){
+    this.onFailed(res)
   },
 
   onGetInfoCompleted(res){
