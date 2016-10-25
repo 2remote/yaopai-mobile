@@ -1,21 +1,22 @@
 import $ from 'jquery'
-var HttpFactory = {
-  post : function (url,data,success,failed) {
+
+const HttpFactory = {
+  post: function (url,data,success,failed) {
     //json post
     $.ajax({
-      url : url,
+      url,
       type : 'POST',
       dataType : 'json',
-      data : data,
+      data,
       timeout : 5000,
       crossDomain : true,
       xhrFields:{
         withCredentials : true
       },
-      success : success,
-      error : failed
     })
+    .done(success)
+    .fail(failed)
   }
 }
 
-export {HttpFactory as default}
+export default HttpFactory
