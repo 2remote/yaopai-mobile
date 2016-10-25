@@ -2,32 +2,32 @@ import Reflux from 'reflux'
 import MoteActions from '../actions/MoteActions'
 
 const MoteStore = Reflux.createStore({
-  data: {
-    info: {
-      cityName: '',
-      marks: '',
-      nickName: '',
-      signature: '',
-      totalAlbums: '',
-      views: '',
-      avatar: '',
-      tags: [],
-    },
-    hintMessage: '',
-    flag: '',
-  },
-  init: function() {
-    this.listenTo(MoteActions.getInfo.success,this.onGetSuccess)
-    this.listenTo(MoteActions.getInfo.failed,this.onFailed)
+  listenables: MoteActions,
+
+  init() {
+    this.data =  {
+      info: {
+        cityName: '',
+        marks: '',
+        nickName: '',
+        signature: '',
+        totalAlbums: '',
+        views: '',
+        avatar: '',
+        tags: [],
+      },
+      hintMessage: '',
+      flag: '',
+    }
   },
 
-  onFailed : function(data){
+  onGetInfoFailed(res){
     this.data.hintMessage = '网络错误'
     this.data.flag = 'failed'
     this.trigger(this.data)
   },
 
-  onGetSuccess : function(res){
+  onGetInfoCompleted(res){
     if(res.Success){
       this.data.info.cityName = res.CityName
       this.data.info.marks = res.Marks
