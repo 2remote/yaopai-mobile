@@ -54,9 +54,6 @@ class GrapherRow extends React.Component {
                 <i className="icon grid"></i>{this.props.data.TotalAlbums}套作品
               </li>
               <li>
-                <i className="icon dingdan" style={{fontSize:'13px'}}></i> {this.props.data.Sales}个订单
-              </li>
-              <li>
                 <i className="icon xiazai11" style={{fontSize:'14px'}}></i> {this.props.data.Marks}个关注
               </li>
             </ul>

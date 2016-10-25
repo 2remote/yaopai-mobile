@@ -143,7 +143,6 @@ class GrapherIntro extends React.Component {
         <div className="order">
           <ul>
             <li><span className="count">{data.TotalAlbums}</span>&nbsp;&nbsp;作品</li>
-            <li><span className="count">{data.Sales}</span>&nbsp;&nbsp;订单</li>
             {
               data.Marks !== undefined?
               <li><span className="count">{data.Marks + this.state.marks}</span>&nbsp;&nbsp;关注</li>
