@@ -12,7 +12,7 @@ MoteActions.getInfo.listen(function(id){
     Id : id,
     Fields : 'Id,Sales,TotalAlbums,Views,Marks,MarkExist,CityName,NickName,Avatar,Signature,Tags.Name',
   }
-  HttpFactory.post(API.Mote.getInfo,data,this.completed,this.failed)
+  HttpFactory.post(API.Mote.getInfo, data, this.completed, this.failed)
 })
 
 export default MoteActions
