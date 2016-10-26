@@ -28,10 +28,6 @@ const MakeupArtistStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
-  onGetInfoFailed(res){
-    this.onFailed(res)
-  },
-
   onGetInfoCompleted(res){
     if(res.Success){
       this.data.info.cityName = res.CityName
@@ -48,6 +44,27 @@ const MakeupArtistStore = Reflux.createStore({
     this.data.flag = 'getInfo'
     this.trigger(this.data)
   },
+
+  onGetInfoFailed(res){
+    this.onFailed(res)
+  },
+
+  onAlbumsMarkCompleted(res){
+    console.log(res)
+  },
+
+  onAlbumsMarkFailed(res){
+    this.onFailed(res)
+  },
+
+  onAlbumsUnMarkCompleted(res){
+    console.log(res)
+  },
+
+  onAlbumsUnMarkFailed(res){
+    this.onFailed(res)
+  },
+
 })
 
 export default MakeupArtistStore

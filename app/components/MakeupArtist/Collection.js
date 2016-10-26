@@ -1,5 +1,14 @@
 import React from 'react'
+
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
+
+import MakeupArtistActions from '../../actions/MakeupArtistActions'
+import MakeupArtistStore from '../../stores/MakeupArtistStore'
+
 import $ from 'jquery'
+
+let albumId = ''
 
 class Collection extends React.Component {
   componentDidMount() {
@@ -22,14 +31,28 @@ class Collection extends React.Component {
         return this.click(toggle);
       }
 
+      $('#mark').toggle(
+        () => {
+          MakeupArtistActions.albumsMark(albumId)
 
+        },
+        () => {
+          MakeupArtistActions.albumsUnMark(albumId)
+        }
+      )
     })
   }
 
+  getAlbumsMark(data) {
+    // console.log(data)
+  }
+
   render() {
-    console.log(this.props)
-    return <i className={`icon ${this.props.isMark ? 'mark_active' : 'mark'}`} />
+    // console.log(this.props)
+    albumId = this.props.albumId
+    return <i id="mark" className={`icon ${this.props.isMark ? 'mark_active' : 'mark'}`} />
   }
 }
 
+ReactMixin.onClass(Collection,Reflux.listenTo(MakeupArtistStore, 'getAlbumsMark'))
 export default Collection

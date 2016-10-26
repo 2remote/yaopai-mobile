@@ -11,6 +11,7 @@ class WorkDetailPage extends React.Component {
     super(props)
     this.state = {
       albumsDetail: {
+        id: '',
         title: '',
         description: '',
         cover: '',
@@ -32,10 +33,11 @@ class WorkDetailPage extends React.Component {
 
   getAlbumsDetail(data) {
     if(data.flag != 'onMoteGetAlbumsDetailSuccess') return
-    const {title, description, cover, markExist, tags, photos, mote} = data.albumsDetail
+    const {albumId, title, description, cover, markExist, tags, photos, mote} = data.albumsDetail
     const {id, nickName, avatar, signature} = mote
     this.setState({
       albumsDetail: {
+        albumId,
         title,
         description,
         cover,
