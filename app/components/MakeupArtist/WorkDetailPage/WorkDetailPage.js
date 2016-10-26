@@ -73,7 +73,7 @@ class WorkDetailPage extends React.Component {
   render() {
     return (
       <div>
-        <WorkDetailLayout data={this.state.albumsDetail} />
+        <WorkDetailLayout data={this.state.albumsDetail} userInfo={this.state.userInfo} />
       </div>
     )
   }
