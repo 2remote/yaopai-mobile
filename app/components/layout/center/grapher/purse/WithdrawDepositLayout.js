@@ -128,13 +128,13 @@ class WithdrawDepositLayout extends React.Component {
           </Alert>
         </form>
         <aside className="footer color_gray font_small text_center">
-          温馨提示：提现至您绑定的支付宝账号中，如您未绑定支付宝账号，请您先进行绑定再进行提现<br/>
+          <p className="text_left">温馨提示：提现至您绑定的支付宝账号中，提现申请后请在1-3个工作日内查看您绑定的支付宝账户，如您未绑定支付宝账号，请您先进行绑定再进行提现。</p>
           <a className="color_green font_medium" href="#/center/g/purse/bind">
             绑定支付宝<i className="icon youjiantou" />
           </a>
         </aside>
       </div>
-    );
+    )
   }
 }
 
