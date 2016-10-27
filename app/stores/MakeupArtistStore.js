@@ -16,6 +16,7 @@ const MakeupArtistStore = Reflux.createStore({
         avatar: '',
         tags: [],
       },
+      markState: undefined,
       hintMessage: '',
       flag: '',
     }
@@ -49,8 +50,20 @@ const MakeupArtistStore = Reflux.createStore({
     this.onFailed(res)
   },
 
+  onMarkState(res) {
+    this.data.markState = res
+    this.data.flag = 'onChangemarkState'
+    this.trigger(this.data)
+  },
+
   onAlbumsMarkCompleted(res){
-    console.log(res)
+    if(res.Success){
+      this.data.markState = true
+    }else{
+      this.data.hintMessage = res.ErrorMsg
+    }
+    this.data.flag = 'onChangemarkState'
+    this.trigger(this.data)
   },
 
   onAlbumsMarkFailed(res){
@@ -58,7 +71,13 @@ const MakeupArtistStore = Reflux.createStore({
   },
 
   onAlbumsUnMarkCompleted(res){
-    console.log(res)
+    if(res.Success){
+      this.data.markState = false
+    }else{
+      this.data.hintMessage = res.ErrorMsg
+    }
+    this.data.flag = 'onChangemarkState'
+    this.trigger(this.data)
   },
 
   onAlbumsUnMarkFailed(res){

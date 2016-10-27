@@ -6,6 +6,7 @@ const MakeupArtistActions = Reflux.createActions({
   getInfo: {asyncResult: true},
   albumsMark: {asyncResult: true},
   albumsUnMark: {asyncResult: true},
+  markState: {},
 })
 
 // 得到指定id的摄影师信息
