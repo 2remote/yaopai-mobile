@@ -12,7 +12,7 @@ class WorkDetailLayout extends React.Component {
       <section className="another-workdetail" style={{marginBottom: 50}}>
         <SidePage />
         <div className="cover" style={{backgroundImage:`url(${data.cover})`,backgroundSize:'cover'}}>
-          <Collection userInfo={userInfo} albumId={data.albumId} isMark={data.markExist} />
+          <Collection userInfo={userInfo} albumId={data.albumId} isMark={data.markExist} type={data.type} />
         </div>
         <div className="info">
           <p className="title">{data.title}</p>

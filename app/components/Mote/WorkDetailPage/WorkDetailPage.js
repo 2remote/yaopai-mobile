@@ -21,6 +21,7 @@ class WorkDetailPage extends React.Component {
         markExist: '',
         tags: [],
         photos: [],
+        type: 'mote',
         mote: {
           id: '',
           nickName: '',
@@ -52,6 +53,7 @@ class WorkDetailPage extends React.Component {
         markExist,
         tags,
         photos,
+        type: 'mote',
         mote: {
           id,
           nickName,

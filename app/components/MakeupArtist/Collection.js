@@ -6,6 +6,9 @@ import ReactMixin from 'react-mixin'
 import MakeupArtistActions from '../../actions/MakeupArtistActions'
 import MakeupArtistStore from '../../stores/MakeupArtistStore'
 
+import MoteActions from '../../actions/MoteActions'
+import MoteStore from '../../stores/MoteStore'
+
 class Collection extends React.Component {
   constructor(props) {
     super(props)
@@ -14,10 +17,29 @@ class Collection extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.albumId) MakeupArtistActions.markState(nextProps.isMark)
+    console.log(nextProps)
+    if(!nextProps.albumId) return
+    switch (nextProps.type)
+    {
+    case 'makeupArtist':
+      MakeupArtistActions.markState(nextProps.isMark)
+      break
+    case 'mote':
+      MoteActions.markState(nextProps.isMark)
+      break
+    default:
+      return
+    }
   }
 
-  getAlbumsMarkState(data){
+  getMakeupArtistAlbumsMarkState(data){
+    if(data.flag !== "onChangemarkState") return
+    this.setState({
+      markState: data.markState
+    })
+  }
+
+  getMoteAlbumsMarkState(data){
     if(data.flag !== "onChangemarkState") return
     this.setState({
       markState: data.markState
@@ -25,10 +47,20 @@ class Collection extends React.Component {
   }
 
   onChangeMark() {
-    this.state.markState ?
-      MakeupArtistActions.albumsUnMark(this.props.albumId)
-      :
-      MakeupArtistActions.albumsMark(this.props.albumId)
+    const {type, albumId} = this.props
+    if(type === 'makeupArtist') {
+      this.state.markState ?
+        MakeupArtistActions.albumsUnMark(albumId)
+        :
+        MakeupArtistActions.albumsMark(albumId)
+
+    } else if (type === 'mote') {
+      this.state.markState ?
+        MoteActions.albumsUnMark(albumId)
+        :
+        MoteActions.albumsMark(albumId)
+    }
+
   }
 
   render() {
@@ -36,5 +68,6 @@ class Collection extends React.Component {
   }
 }
 
-ReactMixin.onClass(Collection,Reflux.listenTo(MakeupArtistStore, 'getAlbumsMarkState'))
+ReactMixin.onClass(Collection,Reflux.listenTo(MakeupArtistStore, 'getMakeupArtistAlbumsMarkState'))
+ReactMixin.onClass(Collection,Reflux.listenTo(MoteStore, 'getMoteAlbumsMarkState'))
 export default Collection
