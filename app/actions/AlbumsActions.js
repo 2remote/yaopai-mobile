@@ -156,7 +156,7 @@ AlbumsActions.moteAlbumsSearch.listen(function(pageSize = 50, pageIndex = 1, use
 AlbumsActions.moteGetAlbumsDetail.listen(function(id) {
   let data = {
     id,
-    Fields: 'Title,Description,Cover,MarkExist,Tags.Name,Photos.Url,Mote.Id,Mote.NickName,Mote.Avatar,Mote.Signature'
+    Fields: 'Id,Title,Description,Cover,MarkExist,Tags.Name,Photos.Url,Mote.Id,Mote.NickName,Mote.Avatar,Mote.Signature'
   }
   HttpFactory.post(API.Mote.getAlbumsDetail,data,this.success,this.failed)
 })
@@ -187,7 +187,7 @@ AlbumsActions.makeupArtistAlbumsSearch.listen(function(pageSize = 50, pageIndex 
 AlbumsActions.makeupArtistGetAlbumsDetail.listen(function(id) {
   let data = {
     id,
-    Fields: 'Title,Description,Cover,MarkExist,Tags.Name,Photos.Url,MakeupArtist.Id,MakeupArtist.NickName,MakeupArtist.Avatar,MakeupArtist.Signature'
+    Fields: 'Id,Title,Description,Cover,MarkExist,Tags.Name,Photos.Url,MakeupArtist.Id,MakeupArtist.NickName,MakeupArtist.Avatar,MakeupArtist.Signature'
   }
   HttpFactory.post(API.MakeupArtist.getAlbumsDetail,data,this.success,this.failed)
 })
