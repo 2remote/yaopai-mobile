@@ -1,0 +1,28 @@
+.timeout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding-right: 10px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  background: rgba(251, 76, 0, .9);
+  color: #fff;
+
+  .close {
+    width: 30px;
+    text-align: center;
+    height: inherit;
+  }
+
+  a {
+    width: 75px;
+    color: inherit;
+  }
+
+  i {
+    font-size: 12px;
+  }
+}
