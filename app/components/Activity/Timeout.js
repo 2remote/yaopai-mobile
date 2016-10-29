@@ -45,7 +45,7 @@ class Timeout extends React.Component {
 
     // 用户关闭后半小时之内不会再次提醒
     let newTimestamp = Date.parse(new Date())
-    let oldTimestamp = + localStorage.timestamp
+    let oldTimestamp = + (localStorage.timestamp || 0)
     if((newTimestamp - oldTimestamp) / 1000 < 1800) return
 
     let time = data.waitingPayment[0].ExpiringTime // 倒计时最新的订单
