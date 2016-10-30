@@ -80,14 +80,14 @@ var BookPage = React.createClass({
         var orderID = data.order.Id
         const ua = navigator.userAgent.toLowerCase() //获取判断浏览器用的对象
         if (ua.match(/MicroMessenger/i) != "micromessenger") {
-          alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作')
-          return
+          // alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作')
+          // return
         }
         this.showMessage("预约成功！")
         const orderId = data.order.Id
         const Origin = location.origin
         const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`)
-        location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
+        // location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
       }else{
         this.showMessage(data.hintMessage)
       }
