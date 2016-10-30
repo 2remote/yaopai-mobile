@@ -88,10 +88,7 @@ var BookPage = React.createClass({
         const Origin = location.origin
         const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`)
         // location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
-<<<<<<< HEAD
         this.history.pushState(null,'/center/u/order/' + orderId)
-=======
->>>>>>> dev
       }else{
         this.showMessage(data.hintMessage)
       }

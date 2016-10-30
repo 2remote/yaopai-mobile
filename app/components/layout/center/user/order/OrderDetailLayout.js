@@ -81,12 +81,7 @@ class OrderDetailLayout extends React.Component{
     const orderId = this.props.params.id
     const Origin = location.origin
     const callBackUrl = `${Origin}/Payment/AlipayWebPay?id=${orderId}`
-    console.log(callBackUrl)
-<<<<<<< HEAD
     location.href = 'http://dev.m.aiyaopai.com/Payment/AlipayWebPay?id=' + orderId
-=======
-    location.href = callBackUrl
->>>>>>> dev
 
     // let self = this;
     // const Origin = location.origin;
