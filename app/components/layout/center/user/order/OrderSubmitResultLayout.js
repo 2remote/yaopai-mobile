@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import Reflux from 'reflux';
-import { Toast } from 'react-weui';
-import OrderActions from '../../../../../actions/OrderActions';
-import OrderStore from '../../../../../stores/OrderStore';
+import React from 'react'
+import {Link} from 'react-router'
+import ReactMixin from 'react-mixin'
+import Reflux from 'reflux'
+import { Toast } from 'react-weui'
+import OrderActions from '../../../../../actions/OrderActions'
+import OrderStore from '../../../../../stores/OrderStore'
 
-import CallActions from '../../../../../actions/CallActions';
+import CallActions from '../../../../../actions/CallActions'
 
 class OrderSubmitResultLayout extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       order:{
         AppointedTime: '',
@@ -21,10 +22,10 @@ class OrderSubmitResultLayout extends React.Component {
         DeliveryTime:'',
         CompleteTime:'',
       }
-    };
+    }
   }
   componentDidMount() {
-    OrderActions.get(this.props.params.id);
+    OrderActions.get(this.props.params.id)
   }
   onOrderLoad(data) {
     this.setState({
@@ -36,14 +37,14 @@ class OrderSubmitResultLayout extends React.Component {
   }
 
   handleCall() {
-    this.setState({ show: true });
+    this.setState({ show: true })
     setTimeout(() => {
-      this.setState({ show: false });
-    }, 3000);
+      this.setState({ show: false })
+    }, 3000)
   }
 
   render() {
-    const {order} = this.state;
+    const {order} = this.state
     return (
       <div>
 
@@ -51,7 +52,7 @@ class OrderSubmitResultLayout extends React.Component {
         <div className="weui_panel weui_panel_access">
           <div className="weui_panel_bd">
             <a className="weui_media_box weui_media_appmsg bg_green color_white"
-              href="javascript:void(0);" style={{ padding: "30px 15px" }}
+              href="javascript:void(0)" style={{ padding: "30px 15px" }}
             >
               <div className="weui_media_hd">
                 <i className="icon success_icon" style={{
@@ -135,16 +136,15 @@ class OrderSubmitResultLayout extends React.Component {
         </div>
 
         <div style={{ padding: '15px 5px 5px'}}>
-          <button onClick={ () => location.href='#/center/u' } className="weui_btn weui_btn_primary">
+          <Link to="/center/u" className="weui_btn weui_btn_primary">
             返&nbsp;&nbsp;回
-          </button>
+          </Link>
         </div>
       </div>
-    );
+    )
   }
 
 }
 
-ReactMixin.onClass(OrderSubmitResultLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'));
-
-export { OrderSubmitResultLayout as default };
+ReactMixin.onClass(OrderSubmitResultLayout, Reflux.listenTo(OrderStore, 'onOrderLoad'))
+export default OrderSubmitResultLayout
