@@ -192,12 +192,12 @@ class YPUIOrderCard extends React.Component {
           <Button type="disabled" size="small" className="weui_btn weui_btn_mini fl"
                   style={{padding: 0, backgroundColor: '#D3D3D3'}}
                   onClick={ e => this.closeOrder(e, order.Id) }>
-            &nbsp&nbsp取消订单&nbsp&nbsp
+            &nbsp;&nbsp;取消订单&nbsp;&nbsp;
           </Button>
           <Button type="primary" size="small" className="weui_btn weui_btn_mini fr"
                   style={{marginTop: 0}}
                   onClick={ e => this.payOrder(e, order.Id) }>
-            &nbsp&nbsp去支付&nbsp&nbsp
+            &nbsp;&nbsp;去支付&nbsp;&nbsp;
           </Button>
           <Confirm
             show={this.state.showCloseOrderConfirm}
@@ -221,7 +221,7 @@ class YPUIOrderCard extends React.Component {
                     onClick={ e => this.receiveOrder(e, order.Id, false) }>
               拒接
             </button>
-            <span>&nbsp&nbsp</span>
+            <span>&nbsp;&nbsp;</span>
             <button className="weui_btn weui_btn_mini weui_btn_primary"
                     onClick={ e => this.receiveOrder(e, order.Id, true) }>
               接单
@@ -262,7 +262,7 @@ class YPUIOrderCard extends React.Component {
               退款
             </Button>
             {/* This is a stupid hack so that no margin-top for adjacent buttons. */}
-            <span>&nbsp&nbsp</span>
+            <span>&nbsp;&nbsp;</span>
             {
               order.State === 'WaitingDelivery'?
                 <span className="color_gray">等待摄影师发片</span> :
@@ -342,13 +342,13 @@ class YPUIOrderCard extends React.Component {
                 {order.Albums.Title}
               </h4>
               <p className="weui_media_desc">
-                <i className="icon font_small book_icon ">&nbsp&nbsp</i>
+                <i className="icon font_small book_icon ">&nbsp;&nbsp;</i>
                 预约时间：{order.AppointedTime.substring(0,10)}
               </p>
               <p className="weui_media_desc">
-                <i className="icon font_small price_icon">&nbsp&nbsp</i>
+                <i className="icon font_small price_icon">&nbsp;&nbsp;</i>
                 价格：￥{order.Price}
-                &nbsp&nbsp&nbsp
+                &nbsp;&nbsp;&nbsp;
                 实付：
                 {
                   OrderStatus.parse(order.State) === OrderStatus.CLOSED ?
