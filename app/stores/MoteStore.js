@@ -31,14 +31,23 @@ const MoteStore = Reflux.createStore({
 
   onGetInfoCompleted(res){
     if(res.Success){
-      this.data.info.cityName = res.CityName
-      this.data.info.marks = res.Marks
-      this.data.info.nickName = res.NickName
-      this.data.info.signature = res.Signature
-      this.data.info.totalAlbums = res.TotalAlbums
-      this.data.info.views = res.Views
-      this.data.info.avatar = res.Avatar
-      this.data.info.tags = res.Tags
+      const{CityName, Marks, NickName, Signature, TotalAlbums, Views, Avatar, Tags} = res
+      // 我干嘛作死都换成小写。。。
+      this.data.info = {
+        cityName: CityName,
+        marks: Marks,
+        nickName: NickName,
+        signature: Signature,
+        totalAlbums: TotalAlbums,
+        views: Views,
+        avatar: Avatar,
+        tags: Tags,
+      }
+
+      // 如果不转换成小写，就更方便了，直接可以这么写：
+      // this.data.info = {
+      //   CityName, Marks, NickName, Signature, TotalAlbums, Views, Avatar, Tags
+      // }
     }else{
       this.data.hintMessage = res.ErrorMsg
     }
