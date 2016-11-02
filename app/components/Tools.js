@@ -223,7 +223,7 @@ export const GET_WORK_INTRO = API + listWorkDetail + workIntroFileds
 
 // 调取 预约作品 接口
 const bookWork = 'Order.Add'
-export const BOOK_A_WORK = API + bookWork
+export const BOOK_A_WORK = API + bookWork 
 
 // 页面标题
 export const TITLE = {
@@ -298,3 +298,18 @@ export function WhichFundsType(FundsType) {
   }
   return FundsTypes[FundsType]()
 }
+
+/*
+ * @WhichFundsType 方法代替switch语法
+ let fundsType = "";
+ switch (this.props.FundsType) {
+  case "Order" :
+    fundsType = "收入";
+    break;
+  case "Compensative" :
+    fundsType = "补偿";
+    break;
+  case "Withdrew" :
+    fundsType = "提现";
+    break;
+ }*/
