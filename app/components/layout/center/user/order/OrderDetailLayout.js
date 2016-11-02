@@ -74,8 +74,8 @@ class OrderDetailLayout extends React.Component{
     if(OrderStatus.UNPAYED === OrderStatus.parse(this.state.order.State)) {
       if(lock) {
         lock = false;
-        // OrderActions.wexinPayToken(this.props.params.id);
-        // OrderActions.wexinTicket();
+        OrderActions.wexinPayToken(this.props.params.id);
+        OrderActions.wexinTicket();
       }
     }
   }

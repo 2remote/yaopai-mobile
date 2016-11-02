@@ -91,6 +91,7 @@ const BookPage = React.createClass({
         } else {
           this.history.pushState(null,'/center/u/order/' + orderId)
         }
+        
       }else{
         this.showMessage(data.hintMessage)
       }
