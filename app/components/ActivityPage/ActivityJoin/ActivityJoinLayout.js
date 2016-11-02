@@ -51,10 +51,21 @@ class ActivityJoinLayout extends React.Component{
     })
   }
 
+  _verify(data){
+    if(data.name === ''){
+      alert('姓名不能为空')
+      return false
+    }else if(data.tel === ''){
+      alert('手机号不能为空')
+      return false
+    }
+    ActivityActions.add(data)
+  }
+
   _handleSubmit() {
     let data = this.state
     data.id = this.props.source.id
-    ActivityActions.add(data)
+    this._verify(data)
   }
 
   hide(e) {
@@ -78,8 +89,7 @@ class ActivityJoinLayout extends React.Component{
             <input name="gender" className="ac-radio" onClick={this._handleChangeW.bind(this)} type="radio" />&nbsp;&nbsp;女
           </div>
           <div className="ac-inputGroup">
-            <p>备注</p>
-            <input className="ac-input" rows="2" onChange={this._handleChangeRemark.bind(this)} cols="2" type="text-area" />
+            <textarea className="ac-input" rows="2" placeholder="备注" onChange={this._handleChangeRemark.bind(this)}></textarea>
           </div>
           <a className="ac-submit" onClick={this._handleSubmit.bind(this)}>提交报名</a>
         </div>

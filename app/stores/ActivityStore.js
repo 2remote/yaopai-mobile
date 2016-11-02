@@ -8,8 +8,8 @@ const ActivityStore = Reflux.createStore({
     this.data =  {
       list : [],
       detail : {
-        id : '',
-        content : ''
+        Id : '',
+        Content : ''
       },
       add : {
         isAdd : false
@@ -37,8 +37,8 @@ const ActivityStore = Reflux.createStore({
 
   onGetDetailSuccess(res){
     if(res.Success){
-      this.data.detail.id = res.Id
-      this.data.detail.content = res.Content
+      this.data.detail.Id = res.Id
+      this.data.detail.Content = res.Content
     }else{
       this.data.hintMessage = res.ErrorMsg
     }

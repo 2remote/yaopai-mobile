@@ -10,7 +10,6 @@ class ActivityJoin extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      display : false,
       id : this.props.source.Id,
       result : {}
     }

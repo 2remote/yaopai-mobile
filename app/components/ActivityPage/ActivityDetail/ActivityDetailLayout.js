@@ -11,11 +11,11 @@ class ActivityDetailLayout extends React.Component{
   }
 
   render() {
-    $("#ac-content").html(this.props.source.content)
+    $("#ac-content").html(this.props.source.Content)
     return (
       <div className="ac-container">
         <div id="ac-content"></div>
-        <a className="ac-enroll" onClick={ this.showJoinPage.bind(this) }>立即报名</a>
+        <a className="ac-enroll" onClick={ this.showJoinPage.bind(this) }>立刻报名</a>
       </div>
     )
   }

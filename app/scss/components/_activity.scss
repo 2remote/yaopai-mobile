@@ -3,7 +3,6 @@
   height: 250px;
   text-align: center;
   vertical-align: middle;
-  
   margin-bottom:5px;
   box-sizing: border-box;
 
@@ -18,7 +17,7 @@
   .ac-status {
     background: #F43703;
     height:18px;
-    font-size:9px;
+    font-size:12px;
     color:#fff;
     line-height:18px;
     padding:3px 10px;
@@ -28,13 +27,13 @@
   .ac-title{
     font-size: 16px;
     color:#fff;
-    margin-top:12px;
+    margin-top:8px;
   }
 
   .ac-des{
     margin-top:12px;
     color:#fff;
-    font-size:10px;
+    font-size:12px;
   }
 }
 
@@ -44,6 +43,7 @@
   #ac-content{
     background-color:#fff;
     padding-bottom:45px;
+    overflow: hidden;
     
     img{
       width:100%!important;
@@ -75,7 +75,7 @@
   z-index: 9999;
   background: rgba(0,0,0,0.5);
   box-sizing: border-box;
-  padding:120px 20px;
+  padding:60px 15px;
 
   .ac-close{
     border:1px solid #fff;
@@ -109,7 +109,7 @@
       padding: 0 5px;
 
       p{
-        font-size: 9px;
+        font-size: 12px;
         color: #999;
         margin: 5px 0;
       }
@@ -118,9 +118,10 @@
         box-sizing: border-box;
         display: block;
         width: 100%;
-        line-height:35px;
+        line-height:45px;
         width:100%;
         border: 0;
+        font-size: 12px;
       }
     }
 
