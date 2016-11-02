@@ -23,7 +23,6 @@ class ActivityJoin extends React.Component{
   // 回调报名状态
   getActivityJoin(data) {
     if(data.flag === 'join'){
-      console.log(data)
       if(data.add.isAdd){
         alert("报名成功！")
       }else{
