@@ -81,49 +81,6 @@ class OrderDetailLayout extends React.Component{
   }
 
   pay = e => {
-<<<<<<< HEAD
-    e.preventDefault();
-    let self = this;
-    const Origin = location.origin;
-    wx.config({
-      debug: false,
-      appId: self.state.wexinTicket.AppId, // 必填，公众号的唯一标识
-      timestamp: self.state.wexinTicket.TimeStamp, // 必填，生成签名的时间戳,后端注意返回string类型
-      nonceStr: self.state.wexinTicket.NonceStr, // 必填，生成签名的随机串,自己生成，最长32位。
-      signature: self.state.wexinTicket.Signature, // 必填，微信签名，这个签名，和下面的paySign,所需用到的随机字符串和时间戳，最好和生成paySgin的保持一致。不是同一个。生成方法参考 http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html，可在页面 http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign 进行校验。
-      jsApiList: [
-        'chooseWXPay'
-      ] // 必填，需要使用的JS接口列表，列表可选参数，参考 http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html 附录2.
-    });
-
-    // js-sdk配置验证成功
-    wx.ready(function(){// 调用支付函数
-      wx.chooseWXPay({
-        timestamp: self.state.wexinPayToken.TimeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-        nonceStr: self.state.wexinPayToken.NonceStr, // 支付签名随机串，不长于 32 位
-        package: self.state.wexinPayToken.Package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-        signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-        paySign: self.state.wexinPayToken.PaySign, // 支付签名
-        success: function (res) {// 支付成功后的回调函数
-          alert('支付成功！');
-          location.href = `${Origin}/#/center/u/order/submit/${self.props.params.id}/result`;
-        },
-        cencel:function(res){// 支付取消回调函数
-          alert('您已取消支付');
-          location.href = `${Origin}/#/center/u/order`;
-        },
-        fail: function(res){// 支付失败回调函数
-          alert('支付失败');
-          location.href = `${Origin}/#/center/u/order`;
-          console.error(JSON.stringify(res));
-        }
-      });
-    });
-    // js-sdk调用异常回调函数
-    wx.error(function(res){
-      console.log('js-sdk 调用异常');
-    });
-=======
     e.preventDefault()
     if(!Browser.versions.weixin){ // 支付宝支付
       const orderId = this.props.params.id
@@ -172,7 +129,6 @@ class OrderDetailLayout extends React.Component{
         console.log('js-sdk 调用异常');
       });
     }
->>>>>>> parent of 74d3043... Revert "解决支付平台冲突 (#628)"
   };
 
   render() {
