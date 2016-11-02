@@ -112,7 +112,7 @@ class SidePage extends Component {
                   <li className="pure-menu-item nav-list-bar">
                     <Link to="/discover/activity" activeClassName="active">
                       <i className="menu-icon icon camera" />
-                      <div className="menu-button"><span>活动&nbsp;&nbsp;Mote</span></div>
+                      <div className="menu-button"><span>活动&nbsp;&nbsp;Activity</span></div>
                     </Link>
                   </li>
                   <li className="pure-menu-item nav-list-bar">
