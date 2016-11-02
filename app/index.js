@@ -54,16 +54,20 @@ import makeupArtistRouter from './components/MakeupArtist'
 // 模特
 import moteRouter from './components/Mote'
 
+//活动
+import Timeout from './components/Activity/Timeout'
+
 
 main()
 
 function main(){
   const makeBackgroundDimBlack = () => $('#app').css('backgroundColor', '#282828')
   const removeBackgroundDimBlack = () => $('#app').css('backgroundColor', '#F2F2F2')
+  const App = ({children}) => <div> <Timeout />{children}</div>
 
   ReactDOM.render((
     <Router>
-      <Route path="/">
+      <Route path="/" component={App}>
         <IndexRedirect to="/work(/:tag)(/:tag)(/:tag)(/:tag)" />
         <Route path="/work(/:tag)(/:tag)(/:tag)(/:tag)" component={WorkPage} />
         <Route path="/workDetail/:Id" component={WorkDetailPage} />

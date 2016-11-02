@@ -19,6 +19,7 @@ const MakeupArtistAlbumsStore = Reflux.createStore({
     //   id: '',
     // },
     albumsDetail: {
+      albumId: '',
       title: '',
       description: '',
       cover: '',
@@ -86,6 +87,7 @@ const MakeupArtistAlbumsStore = Reflux.createStore({
   onMakeupArtistGetAlbumsDetailSuccess(data) {
     if(data.Success) {
       this.data.albumsDetail.title = data.Title
+      this.data.albumsDetail.albumId = data.Id
       this.data.albumsDetail.description = data.Description
       this.data.albumsDetail.cover = data.Cover
       this.data.albumsDetail.markExist = data.MarkExist
