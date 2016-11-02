@@ -87,11 +87,13 @@ const BookPage = React.createClass({
 
         // 如果是在微信内部，就微信授权获得微信支付所需的东西，否则就直接跳转到支付页面，让用户支付宝支付
         if(Browser.versions.weixin) {// 如果是微信内部
+          alert('微信内部')
+          // this.history.pushState(null,'/center/u/order/' + orderId)
           location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
         } else {
           this.history.pushState(null,'/center/u/order/' + orderId)
         }
-        
+
       }else{
         this.showMessage(data.hintMessage)
       }

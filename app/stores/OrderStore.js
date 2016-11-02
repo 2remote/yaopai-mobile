@@ -16,6 +16,8 @@ var OrderStore = Reflux.createStore({
     pageCount: '',
     total: '',
     waitingPayment: [],
+    getWexinTokenSuccess: false,
+    getWexinTicketSuccess: false,
   },
   init : function(){
     this.orders = []
@@ -212,7 +214,7 @@ var OrderStore = Reflux.createStore({
     if(data.Success) {
       this.data.wexinPayToken = data
       this.data.hintMessage = '拿到微信支付 Token'
-      this.data.success = true
+      this.data.getWexinTokenSuccess = true
     } else {
       this.data.success = false
       this.data.hintMessage = data.ErrorMsg
@@ -225,7 +227,7 @@ var OrderStore = Reflux.createStore({
     if(data.Success) {
       this.data.wexinTicket = data
       this.data.hintMessage = '拿到微信支付 Ticket'
-      this.data.success = true
+      this.data.getWexinTicketSuccess = true
     } else {
       this.data.success = false
       this.data.hintMessage = data.ErrorMsg
