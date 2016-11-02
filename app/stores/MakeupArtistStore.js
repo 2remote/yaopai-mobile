@@ -16,6 +16,7 @@ const MakeupArtistStore = Reflux.createStore({
         avatar: '',
         tags: [],
       },
+      markState: undefined,
       hintMessage: '',
       flag: '',
     }
@@ -26,10 +27,6 @@ const MakeupArtistStore = Reflux.createStore({
     this.data.hintMessage = '网络错误'
     this.data.flag = 'failed'
     this.trigger(this.data)
-  },
-
-  onGetInfoFailed(res){
-    this.onFailed(res)
   },
 
   onGetInfoCompleted(res){
@@ -48,6 +45,45 @@ const MakeupArtistStore = Reflux.createStore({
     this.data.flag = 'getInfo'
     this.trigger(this.data)
   },
+
+  onGetInfoFailed(res){
+    this.onFailed(res)
+  },
+
+  onMarkState(res) {
+    this.data.markState = res
+    this.data.flag = 'onChangemarkState'
+    this.trigger(this.data)
+  },
+
+  onAlbumsMarkCompleted(res){
+    if(res.Success){
+      this.data.markState = true
+    }else{
+      this.data.hintMessage = res.ErrorMsg
+    }
+    this.data.flag = 'onChangemarkState'
+    this.trigger(this.data)
+  },
+
+  onAlbumsMarkFailed(res){
+    this.onFailed(res)
+  },
+
+  onAlbumsUnMarkCompleted(res){
+    if(res.Success){
+      this.data.markState = false
+    }else{
+      this.data.hintMessage = res.ErrorMsg
+    }
+    this.data.flag = 'onChangemarkState'
+    this.trigger(this.data)
+  },
+
+  onAlbumsUnMarkFailed(res){
+    this.onFailed(res)
+  },
+
 })
 
 export default MakeupArtistStore
