@@ -15,7 +15,6 @@ var OrderStore = Reflux.createStore({
     pageIndex: '',
     pageCount: '',
     total: '',
-    waitingPayment: [],
   },
   init : function(){
     this.orders = []
@@ -52,10 +51,6 @@ var OrderStore = Reflux.createStore({
     /* 微信支付 Ticket*/
     this.listenTo(OrderActions.wexinTicket.success,this.onGetTicketSuccess)
     this.listenTo(OrderActions.wexinTicket.failed,this.onFailed)
-
-    /* 查询当前登录用户预约的订单*/
-    this.listenTo(OrderActions.orderOutSearch.success,this.onOrderOutSearchSuccess)
-    this.listenTo(OrderActions.orderOutSearch.failed,this.onFailed)
   },
   onListOrders : function(data){
     //从服务器api接口获得定单的列表
@@ -231,19 +226,6 @@ var OrderStore = Reflux.createStore({
       this.data.hintMessage = data.ErrorMsg
     }
     this.data.flag = 'getTicket'
-    this.trigger(this.data)
-  },
-
-  onOrderOutSearchSuccess(data) {
-    if(data.Success) {
-      this.data.waitingPayment = data.Result
-      this.data.hintMessage = '查询当前登录用户预约的订单'
-      this.data.success = true
-    } else {
-      this.data.success = false
-      this.data.hintMessage = data.ErrorMsg
-    }
-    this.data.flag = 'getUserOrderList'
     this.trigger(this.data)
   },
 })

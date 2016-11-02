@@ -63,7 +63,6 @@ class WorkDetailPage extends React.Component {
             title: data.workData.Title,
             price: data.workData.Price,
             cover: data.workData.Cover,
-            tags: data.workData.Tags,
             service: data.workData.Service,
             description: data.workData.Description,
             id: data.workData.Photographer.Id,

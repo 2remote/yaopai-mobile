@@ -65,19 +65,6 @@ class WorkTitle extends React.Component{
 
   render(){
     const {data} = this.props
-    const getArea = () => {
-      let tags = this.props.data.tags
-      let arr = ""
-      if(tags){
-        tags.map((item,i) => {
-          if(item.CategoryId == 2){
-            arr += item.Name+ " "
-          }
-        })
-      }
-      return arr
-    }
-    
     return (
       <section className="workTitlePanel">
         <div className="work-collect">
@@ -99,7 +86,6 @@ class WorkTitle extends React.Component{
           <span className="price">￥{data.price}</span>
         </p>
         <p className="sub-title">{ data.description}</p>
-        <p className="sub-area"><span className="area-icon">可拍摄服务地</span>{ getArea() }</p>
       </section>
     )
   }

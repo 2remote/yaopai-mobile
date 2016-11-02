@@ -17,9 +17,7 @@ import Toaster from '../../../../Toast'
 import BookIntro from './BookIntro'
 import BookForm from './BookForm'
 
-import Browser from '../../../../Browser'
-
-const BookPage = React.createClass({
+var BookPage = React.createClass({
   getInitialState : function () {
     return {
       albums : '',
@@ -79,18 +77,17 @@ const BookPage = React.createClass({
   _handleOrderStoreChange : function(data){
     if(data.flag == 'add'){
       if(data.success){
-        let orderID = data.order.Id
+        var orderID = data.order.Id
+        const ua = navigator.userAgent.toLowerCase() //获取判断浏览器用的对象
+        if (ua.match(/MicroMessenger/i) != "micromessenger") {
+          alert('预约成功！由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作')
+          return
+        }
         this.showMessage("预约成功！")
         const orderId = data.order.Id
         const Origin = location.origin
         const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`)
-
-        // 如果是在微信内部，就微信授权获得微信支付所需的东西，否则就直接跳转到支付页面，让用户支付宝支付
-        if(Browser.versions.weixin) {// 如果是微信内部
-          location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
-        } else {
-          this.history.pushState(null,'/center/u/order/' + orderId)
-        }
+        location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
       }else{
         this.showMessage(data.hintMessage)
       }

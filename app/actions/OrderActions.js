@@ -2,7 +2,7 @@ import Reflux from 'reflux'
 import HttpFactory from '../HttpFactory'
 import API from '../api'
 
-const OrderActions = Reflux.createActions({
+var OrderActions = Reflux.createActions({
   'list' : {children:['success','failed']} ,
   'get' : {children:['success','failed']} ,
   'add' : {children:['success','failed']} ,
@@ -15,19 +15,6 @@ const OrderActions = Reflux.createActions({
   'accept': {children:['success','failed']}, // 用户收片
   'wexinPayToken': {children:['success','failed']}, // 微信支付 Token
   'wexinTicket': {children:['success','failed']}, // 微信支付 Ticket
-
-  orderOutSearch: {children:['success','failed']},//查询当前登录用户预约的订单
-})
-
-
-OrderActions.orderOutSearch.listen(function(pageSize = 50, pageIndex = 1, state) {
-  let data = {
-    pageSize,
-    pageIndex,
-    state,
-    fields: 'ExpiringTime'
-  }
-  HttpFactory.post(API.ORDER.outSearch,data,this.success,this.failed)
 })
 
 /*
@@ -37,7 +24,7 @@ OrderActions.orderOutSearch.listen(function(pageSize = 50, pageIndex = 1, state)
   state : 订单状态，0：待确认，1：完成，2：关闭，为null表示不指定
 */
 OrderActions.list.listen(function(type,state,pageIndex = 1){
-  let s = null
+  var s = null
   if(state == 'pending'){
     s = 0
   }
@@ -47,7 +34,7 @@ OrderActions.list.listen(function(type,state,pageIndex = 1){
   if(state == 'closed'){
     s = 2
   }
-  let data = {
+  var data = {
     State : s,
     pageSize: 100,
     pageIndex,
@@ -60,7 +47,7 @@ OrderActions.list.listen(function(type,state,pageIndex = 1){
 })
 
 OrderActions.get.listen(function(id){
-  let data = {
+  var data = {
     Id : id,
     Fields : 'Amount,Id,UserId,BuyerName,BuyerTel,BuyerMemo,AppointedTime,PhotographerId,AlbumsId,CreationTime,State,Photographer.NickName,Photographer.Avatar,User.NickName,User.Avatar,User.Id,Albums.Title,Albums.Cover,Albums.Price,Albums.Service,Albums.Description,PaymentTime,Price,CompleteTime,HasRefund,Refund.CompletionTime,Refund.Compensation'
   }
@@ -84,7 +71,7 @@ Id  string  Y 订单Id
 AppointedTime datetime  Y 预约时间
 */
 OrderActions.confirm.listen(function(id,appointeTime){
-  let data={
+  var data={
     Id : id,
     AppointedTime : appointeTime
   }
@@ -95,7 +82,7 @@ OrderActions.confirm.listen(function(id,appointeTime){
   订单Id传入
 */
 OrderActions.close.listen(function(id){
-  let data = {
+  var data = {
     Id : id
   }
   HttpFactory.post(API.ORDER.close,data,this.success,this.failed)
@@ -104,7 +91,7 @@ OrderActions.close.listen(function(id){
  * 用户申请退款
  */
 OrderActions.refund.listen(function(id, reason, explain){
-  let data = {
+  var data = {
     Id: id,
     Reason: reason
   }
@@ -117,7 +104,7 @@ OrderActions.refund.listen(function(id, reason, explain){
  * 摄影师接单
  */
 OrderActions.receive.listen(function(id, approve){
-  let data = {
+  var data = {
     Id: id,
     Approved: approve
   }
@@ -127,7 +114,7 @@ OrderActions.receive.listen(function(id, approve){
  * 摄影师发片
  */
 OrderActions.deliver.listen(function(id){
-  let data = {
+  var data = {
     Id: id
   }
   HttpFactory.post(API.ORDER.deliver,data,data => this.success(data, id),this.failed)
@@ -136,7 +123,7 @@ OrderActions.deliver.listen(function(id){
  * 用户收片
  */
 OrderActions.accept.listen(function(id){
-  let data = {
+  var data = {
     Id: id
   }
   HttpFactory.post(API.ORDER.accept,data,data => this.success(data, id),this.failed)
@@ -146,7 +133,7 @@ OrderActions.accept.listen(function(id){
  * 微信支付 Token
  */
 OrderActions.wexinPayToken.listen(function(id){
-  let data = {
+  var data = {
     Id: id // 订单 ID
   }
   HttpFactory.post(API.ORDER.wexinPayToken,data,data => this.success(data, id),this.failed)
@@ -156,7 +143,7 @@ OrderActions.wexinPayToken.listen(function(id){
  * 微信支付 Ticket
  */
 OrderActions.wexinTicket.listen(function(){
-  let data = {}
+  var data = {}
   HttpFactory.post(API.ORDER.wexinTicket,data,data => this.success(data),this.failed)
 })
 export {OrderActions as default}
