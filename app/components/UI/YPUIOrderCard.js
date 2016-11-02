@@ -1,22 +1,20 @@
-import React from 'react'
-import Reflux from 'reflux'
-import {Dialog, Button} from 'react-weui'
-import { OrderStatus } from '../Tools'
-import ReactMixin from 'react-mixin'
-import { History } from 'react-router'
-import {Toast} from 'react-weui'
-import OrderActions from '../../actions/OrderActions'
-import CallActions from '../../actions/CallActions'
-import OrderStore from '../../stores/OrderStore'
-import API from '../../api'
+import React from 'react';
+import Reflux from 'reflux';
+import {Dialog, Button} from 'react-weui';
+import { OrderStatus } from '../Tools';
+import ReactMixin from 'react-mixin';
+import { History } from 'react-router';
+import {Toast} from 'react-weui';
+import OrderActions from '../../actions/OrderActions';
+import CallActions from '../../actions/CallActions';
+import OrderStore from '../../stores/OrderStore';
+import API from '../../api';
 
-const {Alert, Confirm} = Dialog
-
-import Browser from '../Browser'
+const {Alert, Confirm} = Dialog;
 
 class YPUIOrderCard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       showAlert: false,
       alert: {
@@ -36,17 +34,17 @@ class YPUIOrderCard extends React.Component {
             type: 'default',
             label: '取消',
             onClick: e => {
-              this.setState({ orderId: undefined })
-              this.hideConfirm(e)
+              this.setState({ orderId: undefined });
+              this.hideConfirm(e);
             }
           },
           {
             type: 'primary',
             label: '确认',
             onClick: e => {
-              this.acceptOrder(e, this.state.orderId)
-              this.setState({ orderId: undefined })
-              this.hideConfirm(e)
+              this.acceptOrder(e, this.state.orderId);
+              this.setState({ orderId: undefined });
+              this.hideConfirm(e);
             }
           }
         ]
@@ -59,27 +57,27 @@ class YPUIOrderCard extends React.Component {
             type: 'default',
             label: '取消',
             onClick: e => {
-              this.setState({ closeOrderId: undefined })
-              this.hideCloseOrderConfirm(e)
+              this.setState({ closeOrderId: undefined });
+              this.hideCloseOrderConfirm(e);
             }
           },
           {
             type: 'primary',
             label: '确认',
             onClick: e => {
-              OrderActions.close(this.state.closeOrderId)
-              this.setState({ closeOrderId: undefined })
-              this.hideCloseOrderConfirm(e)
+              OrderActions.close(this.state.closeOrderId);
+              this.setState({ closeOrderId: undefined });
+              this.hideCloseOrderConfirm(e);
             }
           }
         ]
       },
-    }
+    };
   }
 
   _onUserStoreChange(data) {
     if(data.flag == 'close' && data.success) {
-      this.setState({showAlert: true})
+      this.setState({showAlert: true});
     }
   }
 
@@ -89,16 +87,15 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   payOrder = (e, orderId) => {
-    const Origin = location.origin
-    const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`)
-
-    // 如果是在微信内部，就微信授权获得微信支付所需的东西，否则就直接跳转到支付页面，让用户支付宝支付
-    if(Browser.versions.weixin) {// 如果是微信内部
-      location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`
-    } else {
-      this.history.pushState(null,'/center/u/order/' + orderId)
+    const ua = navigator.userAgent.toLowerCase(); //获取判断浏览器用的对象
+    if (ua.match(/MicroMessenger/i) != "micromessenger") {
+      alert('由于微信限制，请在 Safari 浏览器里打开本网页，再进行支付操作');
+      return
     }
-  }
+    const Origin = location.origin;
+    const callBackUrl = encodeURIComponent(`${Origin}/#/center/u/order/${orderId}`);
+    location.href = `http:${API.ORDER.wexinRedirect}=${callBackUrl}`;
+  };
 
   /**
    * 用户：取消订单
@@ -106,12 +103,12 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   closeOrder = (e, closeOrderId) => {
-    this.setState({showCloseOrderConfirm: true})
-    this.setState({ closeOrderId })
-  }
+    this.setState({showCloseOrderConfirm: true});
+    this.setState({ closeOrderId });
+  };
 
   hideCloseOrderConfirm = (e) => {
-    this.setState({showCloseOrderConfirm: false})
+    this.setState({showCloseOrderConfirm: false});
   }
 
   /**
@@ -120,8 +117,8 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   refundOrder = (e, orderId) => {
-    this.history.pushState(null, `/center/u/order/${orderId}/refund`)
-  }
+    this.history.pushState(null, `/center/u/order/${orderId}/refund`);
+  };
 
   /**
    * 用户：收片
@@ -129,8 +126,8 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   acceptOrder = (e, orderId) => {
-    OrderActions.accept(orderId)
-  }
+    OrderActions.accept(orderId);
+  };
 
   /**
    * 摄影师：接受订单
@@ -141,16 +138,16 @@ class YPUIOrderCard extends React.Component {
   receiveOrder = (e, orderId, approve) => {
     // TODO 添加 alert 组件
     if(approve) {
-      alert('接单成功，请及时与客户沟通详细的拍摄需求！')
+      alert('接单成功，请及时与客户沟通详细的拍摄需求！');
     } else {
       if (confirm("确定拒绝接受该订单吗？")) {
-        alert('拒接成功')
+        alert('拒接成功');
       } else {
-        return
-      }
+        return;
+      };
     }
-    OrderActions.receive(orderId, approve)
-  }
+    OrderActions.receive(orderId, approve);
+  };
 
   /**
    * 摄影师：发片
@@ -158,33 +155,33 @@ class YPUIOrderCard extends React.Component {
    * @param orderId
    */
   deliverOrder = (e, orderId) => {
-    OrderActions.deliver(orderId)
-  }
+    OrderActions.deliver(orderId);
+  };
 
   showConfirm = (e, orderId) => {
-    this.setState({showConfirm: true})
-    this.setState({ orderId })
-  }
+    this.setState({showConfirm: true});
+    this.setState({ orderId });
+  };
 
   handleCall() {
-    this.setState({ show: true })
+    this.setState({ show: true });
     setTimeout(() => {
-      this.setState({ show: false })
-    }, 3000)
+      this.setState({ show: false });
+    }, 3000);
   }
 
   hideAlert() {
-    this.setState({showAlert: false})
-    location.reload()
+    this.setState({showAlert: false});
+    location.reload();
   }
 
   hideConfirm = (e) => {
-    this.setState({showConfirm: false})
-  }
+    this.setState({showConfirm: false});
+  };
   cardFooter = (order, status, utype) => {
-    let separator = <hr className="separator" />
-    let leftPortion = <div></div>
-    let rightPortion = <div></div>
+    let separator = <hr className="separator" />;
+    let leftPortion = <div></div>;
+    let rightPortion = <div></div>;
     /* 待付款：显然这是买家用户 */
     if(status === OrderStatus.UNPAYED) {
       rightPortion = (
@@ -210,7 +207,7 @@ class YPUIOrderCard extends React.Component {
             buttons={this.state.alert.buttons}>
           </Alert>
         </div>
-      )
+      );
     }
     /* 待确认 */
     if(status === OrderStatus.UNCONFIRMED) {
@@ -227,7 +224,7 @@ class YPUIOrderCard extends React.Component {
               接单
             </button>
           </div>
-        )
+        );
       } else {
         rightPortion = (
           <div>
@@ -236,7 +233,7 @@ class YPUIOrderCard extends React.Component {
               退款
             </button>
           </div>
-        )
+        );
       }
     }
     /* 进行中 */
@@ -253,7 +250,7 @@ class YPUIOrderCard extends React.Component {
                 <span className="color_gray">等待用户收片</span>
             }
           </div>
-        )
+        );
       } else {
         rightPortion = (
           <div>
@@ -278,7 +275,7 @@ class YPUIOrderCard extends React.Component {
               请您收到照片后再点击“确认”，点击“确认”后将把款打到摄影师的账户中！
             </Confirm>
           </div>
-        )
+        );
       }
     }
     /* 已完成 */
@@ -287,7 +284,7 @@ class YPUIOrderCard extends React.Component {
         <div>
           <span className="color_green">已完成</span>
         </div>
-      )
+      );
     }
     /* 已关闭 */
     if(status === OrderStatus.CLOSED) {
@@ -295,17 +292,17 @@ class YPUIOrderCard extends React.Component {
         <div>
           <span className="color_gray">已关闭</span>
         </div>
-      )
+      );
     }
     /* 调整footer左侧 */
     if(utype != 0 || status === OrderStatus.CLOSED) {
-      leftPortion = <div></div>
+      leftPortion = <div></div>;
     } else {
       leftPortion = (
         <div>
-
+        
         </div>
-      )
+      );
     }
     return (
       <div className="weui_panel_bd">
@@ -316,19 +313,19 @@ class YPUIOrderCard extends React.Component {
           {rightPortion}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
 
   handleCall() {
-    this.setState({ show: true })
+    this.setState({ show: true });
     setTimeout(() => {
-      this.setState({ show: false })
-    }, 3000)
+      this.setState({ show: false });
+    }, 3000);
   }
 
   render() {
-    const {order} = this.props
+    const {order} = this.props;
     return (
       <div className="weui_panel weui_panel_access">
         <div className="weui_panel_bd">
@@ -365,11 +362,11 @@ class YPUIOrderCard extends React.Component {
 
         {this.cardFooter(order, OrderStatus.parse(order.State), this.props.utype)}
       </div>
-    )
+    );
   }
 }
 
-ReactMixin.onClass(YPUIOrderCard, History)
-ReactMixin.onClass(YPUIOrderCard, Reflux.listenTo(OrderStore, '_onUserStoreChange'))
+ReactMixin.onClass(YPUIOrderCard, History);
+ReactMixin.onClass(YPUIOrderCard, Reflux.listenTo(OrderStore, '_onUserStoreChange'));
 
-export {YPUIOrderCard as default}
+export {YPUIOrderCard as default};
