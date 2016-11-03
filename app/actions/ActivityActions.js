@@ -11,7 +11,7 @@ const ActivityActions = Reflux.createActions({
 // 获取活动列表信息
 ActivityActions.search.listen(function(){
   let data = {
-    Fields : 'Id,Cover,Deadline,Title,ProvinceName,HomeRecommended,HomeSorting,IsExternal,Link',
+    Fields : 'Id,Cover,Deadline,Title,ProvinceName,HomeRecommended,HomeSorting,IsExternal,Link,EndDate',
   }
   HttpFactory.post(API.ACTIVITY.search, data, this.completed, this.failed)
 })
@@ -19,8 +19,13 @@ ActivityActions.search.listen(function(){
 // 获取活动列表信息
 ActivityActions.getDetail.listen(function(Id){
   let data = {
+<<<<<<< HEAD
     Id,
     Fields : 'Id,Cover,Title,SubTitle,Display,Content',
+=======
+    Id : id,
+    Fields : 'Id,Cover,Title,SubTitle,Display,Content,Deadline',
+>>>>>>> origin/feature/addActivityPage
   }
   HttpFactory.post(API.ACTIVITY.get, data, this.completed, this.failed)
 })

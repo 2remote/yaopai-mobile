@@ -24,8 +24,10 @@ class ActivityJoin extends React.Component{
     if(data.flag === 'join'){
       if(data.add.isAdd){
         alert("报名成功！")
+        this.hideJoinPage()
       }else{
         alert(data.hintMessage)
+        this.hideJoinPage()
         return
       }
     }

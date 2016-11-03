@@ -4,6 +4,7 @@ import ReactMixin from 'react-mixin'
 import DocumentTitle from 'react-document-title'
 
 import ActivityListLayout from './ActivityListLayout'
+import SidePage from '../../UI/SidePage'
 
 import { TITLE } from '../../Tools'
 
@@ -15,7 +16,6 @@ class ActivityList extends React.Component{
     super(props)
     this.state = {
       result : [],
-      shareFrom: this.props.location.query.sharefrom,
     }
     ActivityActions.search()
   }
@@ -28,14 +28,17 @@ class ActivityList extends React.Component{
         })
       }
     }
-    
   }
 
   render() {
     return (
-      <DocumentTitle title={TITLE.workPage}>
-        <ActivityListLayout source={this.state.result} />
-      </DocumentTitle>
+      <div>
+        <SidePage />
+        <DocumentTitle title={TITLE.workPage}>
+          <ActivityListLayout source={this.state.result} />
+        </DocumentTitle>
+      </div>
+      
     )
   }
 }

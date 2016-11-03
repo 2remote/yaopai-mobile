@@ -9,7 +9,8 @@ const ActivityStore = Reflux.createStore({
       list : [],
       detail : {
         Id : '',
-        Content : ''
+        Content : '',
+        Deadline : ''
       },
       add : {
         isAdd : false
@@ -39,6 +40,7 @@ const ActivityStore = Reflux.createStore({
     if(res.Success){
       this.data.detail.Id = res.Id
       this.data.detail.Content = res.Content
+      this.data.detail.Deadline = res.Deadline
     }else{
       this.data.hintMessage = res.ErrorMsg
     }
@@ -50,6 +52,7 @@ const ActivityStore = Reflux.createStore({
     if(res.Success){
       this.data.add.isAdd = res.Success
     }else{
+      this.data.add.isAdd = res.Success
       this.data.hintMessage = res.ErrorMsg
     }
     this.data.flag = 'join'
