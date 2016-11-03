@@ -11,6 +11,7 @@ import WorkDetailPage from './components/WorkDetailPage'
 import GrapherPage from './components/GrapherPage'
 import GrapherDetailPage from './components/GrapherDetailPage'
 
+
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/LoginPage/SignupPage'
 import EmailSignupPage from './components/LoginPage/EmailSignupPage'
@@ -53,9 +54,12 @@ import DiscoverLayout from './components/UI/DiscoverLayout'
 import makeupArtistRouter from './components/MakeupArtist'
 // 模特
 import moteRouter from './components/Mote'
+//活动
+import activityRouter from './components/ActivityPage'
 
 //活动
 import Timeout from './components/Activity/Timeout'
+
 
 
 main()
@@ -103,6 +107,8 @@ function main(){
           {makeupArtistRouter}
           { /* 模特 */ }
           {moteRouter}
+          { /* 活动 */ }
+          {activityRouter}
         </Route>
 
         <Route path="center">
