@@ -25,7 +25,7 @@ const ActivityStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
-  onSearchSuccess(res){
+  onSearchCompleted(res){
     if(res.Success){
       this.data.list = res.Result
     }else{
@@ -35,7 +35,7 @@ const ActivityStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
-  onGetDetailSuccess(res){
+  onGetDetailCompleted(res){
     if(res.Success){
       this.data.detail.Id = res.Id
       this.data.detail.Content = res.Content
@@ -46,7 +46,7 @@ const ActivityStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
-  onAddSuccess(res){
+  onAddCompleted(res){
     if(res.Success){
       this.data.add.isAdd = res.Success
     }else{
@@ -55,7 +55,6 @@ const ActivityStore = Reflux.createStore({
     this.data.flag = 'join'
     this.trigger(this.data)
   }
-  
 })
 
 export default ActivityStore
