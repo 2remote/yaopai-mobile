@@ -108,7 +108,8 @@ var API_CONST = {
 
   ACTIVITY: {
     search: API_URL + 'Activity.Search',
-    get: API_URL + 'Activity.Get'
+    get: API_URL + 'Activity.Get',
+    add: API_URL + 'ActivityJoin.Add'
   },
 
   AD: {

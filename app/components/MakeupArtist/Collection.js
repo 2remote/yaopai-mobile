@@ -17,7 +17,6 @@ class Collection extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     if(!nextProps.albumId) return
     switch (nextProps.type)
     {

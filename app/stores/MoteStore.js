@@ -31,7 +31,7 @@ const MoteStore = Reflux.createStore({
 
   onGetInfoCompleted(res){
     if(res.Success){
-      const{CityName, Marks, NickName, Signature, TotalAlbums, Views, Avatar, Tags} = res
+      const {CityName, Marks, NickName, Signature, TotalAlbums, Views, Avatar, Tags} = res
       // 我干嘛作死都换成小写。。。
       this.data.info = {
         cityName: CityName,

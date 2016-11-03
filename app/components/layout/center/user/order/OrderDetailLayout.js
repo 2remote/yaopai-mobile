@@ -33,13 +33,13 @@ class OrderDetailLayout extends React.Component{
         DeliveryTime:'',
         CompleteTime:'',
         BuyerMemo:'',
-        getWexinTicketSuccess: false,
-        getWexinTokenSuccess: false,
       },
       user: {},
       success: false,
       wexinPayToken: {},
       wexinTicket: {},
+      getWexinTicketSuccess: false,
+      getWexinTokenSuccess: false,
     };
   }
 
@@ -74,7 +74,6 @@ class OrderDetailLayout extends React.Component{
     }
 
     if(!Browser.versions.weixin) return //如果不是微信内部，直接返回
-    alert('微信内部2')
     if(OrderStatus.UNPAYED === OrderStatus.parse(this.state.order.State)) {
       if(lock) {
         lock = false;
@@ -87,7 +86,6 @@ class OrderDetailLayout extends React.Component{
   pay = e => {
     e.preventDefault()
     if(Browser.versions.weixin){ // 微信支付
-      alert('微信内部3');
       let self = this;
       const Origin = location.origin;
       wx.config({
@@ -142,7 +140,7 @@ class OrderDetailLayout extends React.Component{
     const {order} = this.state
     let toastShow = true
     if(Browser.versions.weixin) {
-      toastShow = order.getWexinTokenSuccess && order.getWexinTicketSuccess
+      toastShow = this.state.getWexinTokenSuccess && this.state.getWexinTicketSuccess
     }
     return (
       <div>
