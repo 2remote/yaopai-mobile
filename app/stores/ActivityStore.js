@@ -38,7 +38,7 @@ const ActivityStore = Reflux.createStore({
 
   onSearchFailed(res) {
     this.onFailed(res)
-  }
+  },
 
   onGetDetailCompleted(res){
     if(res.Success){
