@@ -1,10 +1,12 @@
 import React from 'react'
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
+import DocumentTitle from 'react-document-title'
 
 import ActivityDetailLayout from './ActivityDetailLayout'
 import ActivityJoin from '../ActivityJoin/ActivityJoin'
 import SidePage from '../../UI/SidePage'
+import WechatShare from '../../Weixin/WechatShare'
 
 import ActivityActions from '../../../actions/ActivityActions'
 import ActivityStore from '../../../stores/ActivityStore'
@@ -17,7 +19,10 @@ class ActivityDetail extends React.Component{
       item : {
         Id : '',
         Content : '',
-        Deadline : ''
+        Deadline : '',
+        Title : '',
+        SubTitle : '',
+        Cover : ''
       },
       isLogin : false,
       showJoinPage : false
@@ -69,14 +74,22 @@ class ActivityDetail extends React.Component{
   }
 
   render() {
+    // 设置微信分享的显示信息
+    const title = this.state.item.Title   
+    const subTitle = this.state.item.SubTitle
+    const cover = this.state.item.Cover
+
     return (
       <div>
         <SidePage />
+        <DocumentTitle title={title} />
+        <WechatShare title={title} desc={subTitle} imgUrl={cover} />
         <ActivityDetailLayout showPage={this.showJoinPage.bind(this)} isShowButton={this.showButton()} source={this.state.item} />
         {
           this.state.showJoinPage ? <ActivityJoin hideJoinPage={this.hideJoinPage.bind(this)} source={this.state.item}/> : null
         }
       </div>
+
     )
   }
 }
