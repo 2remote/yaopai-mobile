@@ -10,7 +10,10 @@ const ActivityStore = Reflux.createStore({
       detail : {
         Id : '',
         Content : '',
-        Deadline : ''
+        Deadline : '',
+        Title : '',
+        SubTitle : '',
+        Cover : ''
       },
       add : {
         isAdd : false
@@ -45,6 +48,9 @@ const ActivityStore = Reflux.createStore({
       this.data.detail.Id = res.Id
       this.data.detail.Content = res.Content
       this.data.detail.Deadline = res.Deadline
+      this.data.detail.SubTitle = res.SubTitle
+      this.data.detail.Title = res.Title
+      this.data.detail.Cover = res.Cover
     }else{
       this.data.hintMessage = res.ErrorMsg
     }

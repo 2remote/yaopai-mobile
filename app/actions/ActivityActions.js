@@ -16,7 +16,7 @@ ActivityActions.search.listen(function(){
   HttpFactory.post(API.ACTIVITY.search, data, this.completed, this.failed)
 })
 
-// 获取活动列表信息
+// 获取活动详情
 ActivityActions.getDetail.listen(function(Id){
   let data = {
     Id,
