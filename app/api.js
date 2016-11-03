@@ -33,11 +33,13 @@ function isProdHost(host) {
 if (hasHost(Local_Host) && isProdHost(Local_Host)) {
   DOMAIN = PRODUCTION_ENV
 }
+
 const API_URL = DOMAIN + '?api='
 
-var API_CONST = {
+const API_CONST = {
   isProd: DOMAIN === PRODUCTION_ENV,
-  API_URL: API_URL,
+  API_URL,
+  DOMAIN,
   USER: {
     login: API_URL + 'User.Login',// 手机号或者邮箱登录
     login_with_token: API_URL + 'User.LoginWithToken',
