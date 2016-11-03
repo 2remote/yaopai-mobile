@@ -15,7 +15,9 @@ class ActivityDetailLayout extends React.Component{
     return (
       <div className="ac-container">
         <div id="ac-content"></div>
-        <a className="ac-enroll" onClick={ this.showJoinPage.bind(this) }>立刻报名</a>
+        {
+          this.props.isShowButton ? <a className="ac-enroll" onClick={ this.showJoinPage.bind(this) }>立刻报名</a> : null
+        }
       </div>
     )
   }

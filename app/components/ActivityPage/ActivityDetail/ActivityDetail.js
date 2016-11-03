@@ -8,6 +8,7 @@ import SidePage from '../../UI/SidePage'
 
 import ActivityActions from '../../../actions/ActivityActions'
 import ActivityStore from '../../../stores/ActivityStore'
+import UserStore from '../../../stores/UserStore'
 
 class ActivityDetail extends React.Component{
   constructor(props){
@@ -15,8 +16,10 @@ class ActivityDetail extends React.Component{
     this.state = {
       item : {
         Id : '',
-        Content : ''
+        Content : '',
+        Deadline : ''
       },
+      isLogin : false,
       showJoinPage : false
     }
     ActivityActions.getDetail(this.props.params.Id)
@@ -30,11 +33,32 @@ class ActivityDetail extends React.Component{
     }
   }
 
+  getCurrentUser(userData) {
+    // 判断用户是否登录
+    if(userData.isLogin) {
+      this.setState({
+        isLogin : true
+      })
+    }
+  }
+
+  showButton() {
+    let date1 = new Date()
+    let date2 = this.state.item.Deadline
+    return Date.parse(new Date(date2))>Date.parse(date1)
+  }
+
   showJoinPage() {
-    this.setState({
-      showJoinPage : true
-    })
-    return
+    if(this.state.isLogin){
+      this.setState({
+        showJoinPage : true
+      })
+      return
+    }else{
+      if(confirm('限登录用户报名，是否登录？')){
+        this.props.history.pushState({nextPage : this.props.location.pathname},'/login_page')
+      }
+    }
   }
 
   hideJoinPage() {
@@ -48,7 +72,7 @@ class ActivityDetail extends React.Component{
     return (
       <div>
         <SidePage />
-        <ActivityDetailLayout showPage={this.showJoinPage.bind(this)} source={this.state.item} />
+        <ActivityDetailLayout showPage={this.showJoinPage.bind(this)} isShowButton={this.showButton()} source={this.state.item} />
         {
           this.state.showJoinPage ? <ActivityJoin hideJoinPage={this.hideJoinPage.bind(this)} source={this.state.item}/> : null
         }
@@ -57,5 +81,6 @@ class ActivityDetail extends React.Component{
   }
 }
 
+ReactMixin.onClass(ActivityDetail,Reflux.listenTo(UserStore, 'getCurrentUser'))
 ReactMixin.onClass(ActivityDetail,Reflux.listenTo(ActivityStore, 'getActivityDetail'))
 export default ActivityDetail
