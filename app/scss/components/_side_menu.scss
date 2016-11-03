@@ -3,7 +3,7 @@
 $menu-bg-color: $dim-black;
 $menu-width: 70%;
 $menu-icon-margin: 33px;
-$menu-margin-bottom: 42px;
+$menu-margin-bottom: 20px;
 
 //* 菜单头像 portrait
 $menu-avatar-width: 90px;
@@ -73,12 +73,11 @@ $menu-footer-lineheight: 25px;
 
   .link-box {
     line-height: 14px;
-    padding-bottom: 15px;
     display: block;
     text-align: center;
 
     img {
-      margin: 34px 0 19px;
+      margin: 25px 0 19px;
       font-size: 55px;
       width: 90px;
       border-radius: 50%;
@@ -98,10 +97,12 @@ $menu-footer-lineheight: 25px;
 
   .logout {
     position: absolute;
-    top: 58px;
-    right: 0;
+    top: 48px;
+    right: 10px;
     width: 40px;
     height: 40px;
+    text-align: center;
+    line-height: 40px;
 
     icon {
       float: right;
@@ -128,9 +129,12 @@ $menu-footer-lineheight: 25px;
       font-size     : $menu-icon-size;
     }
 
-    .home {
-      font-size:18px;
+    .menu-icon {
+      font-size: 18px;
     }
+
+    .home { font-size: 14px; }
+    .camera { font-size: 24px; }
 
     .settings {
       margin: 0 30px;
@@ -138,10 +142,6 @@ $menu-footer-lineheight: 25px;
 
     .camera {
       margin: 0 30px;
-    }
-
-    .app {
-      font-size: 18px;
     }
 
     .menu-button {
