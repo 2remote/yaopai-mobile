@@ -32,7 +32,9 @@ class OrderDetailLayout extends React.Component{
         RefundTime:'',
         DeliveryTime:'',
         CompleteTime:'',
-        BuyerMemo:''
+        BuyerMemo:'',
+        getWexinTicketSuccess: false,
+        getWexinTokenSuccess: false,
       },
       user: {},
       success: false,
@@ -64,13 +66,15 @@ class OrderDetailLayout extends React.Component{
         success: data.success,
         wexinPayToken: data.wexinPayToken,
         wexinTicket: data.wexinTicket,
+        getWexinTicketSuccess: data.getWexinTicketSuccess,
+        getWexinTokenSuccess: data.getWexinTokenSuccess,
       })
     } else {
       console.error(data.hintMessage)
     }
 
     if(!Browser.versions.weixin) return //如果不是微信内部，直接返回
-
+    alert('微信内部2')
     if(OrderStatus.UNPAYED === OrderStatus.parse(this.state.order.State)) {
       if(lock) {
         lock = false;
@@ -82,12 +86,8 @@ class OrderDetailLayout extends React.Component{
 
   pay = e => {
     e.preventDefault()
-    if(!Browser.versions.weixin){ // 支付宝支付
-      const orderId = this.props.params.id
-      const Origin = location.origin
-      const callBackUrl = `${Origin}/Payment/AlipayWebPay?id=${orderId}`
-      location.href = 'http://dev.api.aiyaopai.com/Payment/AlipayWebPay?id=' + orderId
-    } else {// 微信支付
+    if(Browser.versions.weixin){ // 微信支付
+      alert('微信内部3');
       let self = this;
       const Origin = location.origin;
       wx.config({
@@ -128,13 +128,25 @@ class OrderDetailLayout extends React.Component{
       wx.error(function(res){
         console.log('js-sdk 调用异常');
       });
+
+
+    } else {// 支付宝支付
+      const orderId = this.props.params.id
+      const Origin = location.origin
+      const callBackUrl = `${Origin}/Payment/AlipayWebPay?id=${orderId}`
+      location.href = 'http://dev.api.aiyaopai.com/Payment/AlipayWebPay?id=' + orderId
     }
-  };
+  }
 
   render() {
     const {order} = this.state
+    let toastShow = true
+    if(Browser.versions.weixin) {
+      toastShow = order.getWexinTokenSuccess && order.getWexinTicketSuccess
+    }
     return (
       <div>
+        <LoadingToast displayState={toastShow ? 'none' : 'block'} />
         <div className="OrderDetailLayout" >
           <CellsTitle>支付流程说明</CellsTitle>
           <section className="icon_box font_small color_gray">
@@ -211,7 +223,8 @@ class OrderDetailLayout extends React.Component{
             合计：<span className="font_super color_dark">￥{order.Price}</span>
           </div>
           {
-            OrderStatus.UNPAYED === OrderStatus.parse(order.State) ?
+            OrderStatus.UNPAYED === OrderStatus.parse(order.State) && toastShow
+              ?
               <footer className="footer">
                 <Button type="primary" onClick={this.pay}>
                 {Browser.versions.weixin ? '微信' : '支付宝'}
