@@ -27,12 +27,12 @@ ActivityActions.getDetail.listen(function(Id){
 
 // 获取活动报名信息
 ActivityActions.add.listen(function(item){
-  const { id, tel, name, gender, remark } = item
+  const { id, tel, name, gender, remarks } = item
   let data = {
     activityId: id,
     tel,
     name,
-    sex,
+    sex: gender,
     remarks,
   }
   HttpFactory.post(API.ACTIVITY.add, data, this.completed, this.failed)

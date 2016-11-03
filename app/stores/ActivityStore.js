@@ -36,6 +36,10 @@ const ActivityStore = Reflux.createStore({
     this.trigger(this.data)
   },
 
+  onSearchFailed(res) {
+    this.onFailed(res)
+  }
+
   onGetDetailCompleted(res){
     if(res.Success){
       this.data.detail.Id = res.Id
