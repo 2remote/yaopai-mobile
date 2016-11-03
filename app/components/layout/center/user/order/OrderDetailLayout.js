@@ -130,9 +130,7 @@ class OrderDetailLayout extends React.Component{
 
     } else {// 支付宝支付
       const orderId = this.props.params.id
-      const Origin = location.origin
-      const callBackUrl = `${Origin}/Payment/AlipayWebPay?id=${orderId}`
-      location.href = 'http://dev.api.aiyaopai.com/Payment/AlipayWebPay?id=' + orderId
+      location.href = `http://${API.DOMAIN}Payment/AlipayWebPay?id=${orderId}`
     }
   }
 
