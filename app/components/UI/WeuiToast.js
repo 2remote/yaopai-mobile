@@ -23,4 +23,4 @@ const LoadingToast = ({displayState}) => (
   </div>
 );
 
-export {LoadingToast};
+export  {LoadingToast};

@@ -2,26 +2,40 @@ import Reflux from 'reflux'
 import HttpFactory from '../HttpFactory'
 import API from '../api'
 
-var ActivityActions = Reflux.createActions({
-  'get' : {children:['success','failed']},
-  'search':{children : ['success','failed']}
+const ActivityActions = Reflux.createActions({
+  search: {asyncResult: true},
+  getDetail: {asyncResult: true},
+  add: {asyncResult: true},
 })
 
-ActivityActions.search.listen(function(pageIndex = 1 ,pageSize = 10){
-  var data = {
-    PageIndex:pageIndex,
-    PageSize:pageSize,
-    Fields : 'Id,Cover,Link'
+// 获取活动列表信息
+ActivityActions.search.listen(function(){
+  let data = {
+    Fields : 'Id,Cover,Deadline,Title,ProvinceName,HomeRecommended,HomeSorting,IsExternal,Link,EndDate',
   }
-  HttpFactory.post(API.ACTIVITY.search,data,this.success,this.failed)
+  HttpFactory.post(API.ACTIVITY.search, data, this.completed, this.failed)
 })
 
-ActivityActions.get.listen(function(Id){
-  var data ={
-    Id: Id,
-    Fields : 'Id,Title,Cover,Content'
+// 获取活动列表信息
+ActivityActions.getDetail.listen(function(Id){
+  let data = {
+    Id,
+    Fields : 'Id,Cover,Title,SubTitle,Display,Content,Deadline',
   }
-  HttpFactory.post(API.ACTIVITY.get,data,this.success,this.failed)
+  HttpFactory.post(API.ACTIVITY.get, data, this.completed, this.failed)
 })
 
-export {ActivityActions as default}
+// 获取活动报名信息
+ActivityActions.add.listen(function(item){
+  const { id, tel, name, gender, remarks } = item
+  let data = {
+    activityId: id,
+    tel,
+    name,
+    sex: gender,
+    remarks,
+  }
+  HttpFactory.post(API.ACTIVITY.add, data, this.completed, this.failed)
+})
+
+export default ActivityActions
