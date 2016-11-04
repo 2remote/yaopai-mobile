@@ -25,7 +25,6 @@ class OrderListLayout extends React.Component {
       orders: [],
       hintMessage: '订单加载中。。。',
       success: false,
-      componentName: 'OrderListLayout', // 请和组件的名字保持一致
     }
   }
 
@@ -66,6 +65,7 @@ class OrderListLayout extends React.Component {
 
   // AutoLoadPageMixin 回调函数，orderList 滚动到底部执行
   onChangePage(pageIndex) {
+    if(pageIndex === 1) return
     this.onShowToast('努力加载中...')
     OrderActions.list('out', '', pageIndex)
   }
@@ -93,7 +93,7 @@ class OrderListLayout extends React.Component {
 
     //列表不为空时渲染内容
     return (
-      <div className="weui_tab_bd" ref="orderListContainer">
+      <div className="weui_tab_bd">
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
         <section ref="orderList">{theRealList}</section>
         <aside className="footer color_gray text_center font_small">

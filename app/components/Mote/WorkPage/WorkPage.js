@@ -26,7 +26,6 @@ class WorkPage extends React.Component {
       // priceTag: 100,
       // selectedTags: [],
       // showNothingFound: false,
-      componentName: 'moteWorkPage',
     }
     AlbumsActions.moteAlbumsSearch()
     AlbumsActions.moteTagList()
@@ -51,6 +50,7 @@ class WorkPage extends React.Component {
   }
 
   onChangePage(pageIndex) {
+    if(pageIndex === 1) return
     this.onShowToast('努力加载中...')
     AlbumsActions.moteAlbumsSearch(50, pageIndex)
   }
@@ -58,7 +58,7 @@ class WorkPage extends React.Component {
   render() {
     return (
       // TODO: DocumentTitle
-      <div ref="workpage">
+      <div>
         <CharacterBar />
         <CharacterSelect data={this.state.tagListResult} character="模特 / Model"  />
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
