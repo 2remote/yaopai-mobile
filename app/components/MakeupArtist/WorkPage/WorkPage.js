@@ -51,6 +51,7 @@ class WorkPage extends React.Component {
   }
 
   onChangePage(pageIndex) {
+    if(pageIndex === 1) return
     this.onShowToast('努力加载中...')
     AlbumsActions.makeupArtistAlbumsSearch(50, pageIndex)
   }
@@ -58,7 +59,7 @@ class WorkPage extends React.Component {
   render() {
     return (
       // TODO: DocumentTitle
-      <div ref="workpage">
+      <div>
         <CharacterBar />
         <CharacterSelect data={this.state.tagListResult} character="化妆师 / MakeupArtist"  />
         <Toaster ref="toast" isWorkPage={true} bottom={true} duration="1000000"/>
