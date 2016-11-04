@@ -26,7 +26,6 @@ class WorkPage extends React.Component {
       // priceTag: 100,
       // selectedTags: [],
       // showNothingFound: false,
-      componentName: 'moteWorkPage',
     }
     AlbumsActions.moteAlbumsSearch()
     AlbumsActions.moteTagList()

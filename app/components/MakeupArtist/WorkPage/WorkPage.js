@@ -26,7 +26,6 @@ class WorkPage extends React.Component {
       // priceTag: 100,
       // selectedTags: [],
       // showNothingFound: false,
-      componentName: 'makeupArtistWorkPage' // 请和组件的名字保持一致
     }
     AlbumsActions.makeupArtistAlbumsSearch()
     AlbumsActions.makeupArtistTagList()
