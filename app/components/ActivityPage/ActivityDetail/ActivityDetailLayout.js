@@ -15,19 +15,11 @@ class ActivityDetailLayout extends React.Component{
   render() {
     $("#ac-content").html(this.props.source.Content)
     // 判断是否是webApp
-<<<<<<< HEAD
-    if(!browser.versions.webApp){
+    if(browser.versions.webApp){
       $("#ac-content a").attr("onclick",(n,v) => {
-        return v+";return false;"
+        return v.substr(0,v.indexOf(";"))
       })
     }
-=======
-    if(!browser.versions.webApp){ 
-      $("#ac-content a").attr("onclick",(n,v) => {
-        return v+";return false;"
-      })
-     }
->>>>>>> master
 
     return (
       <div className="ac-container">
