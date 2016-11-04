@@ -1,8 +1,11 @@
 var express = require('express')
 var session = require('express-session')
 var Weixin = require('./weixin')
+var compression = require('compression')
 var app = express()
 var router = express.Router()
+
+app.use(compression())
 
 app.use(express.static('build'))
 app.use('/imgs', express.static('app/imgs'))
