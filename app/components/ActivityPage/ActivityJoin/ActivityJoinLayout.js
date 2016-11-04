@@ -89,7 +89,7 @@ class ActivityJoinLayout extends React.Component{
             <input name="gender" className="ac-radio" onClick={this._handleChangeW.bind(this)} type="radio" />&nbsp;&nbsp;女
           </div>
           <div className="ac-inputGroup">
-            <textarea className="ac-input" rows="2" placeholder="备注" onChange={this._handleChangeRemark.bind(this)}></textarea>
+            <textarea className="ac-input" rows="2" placeholder="填写 微信号、所在城市" onChange={this._handleChangeRemark.bind(this)}></textarea>
           </div>
           <a className="ac-submit" onClick={this._handleSubmit.bind(this)}>提交报名</a>
         </div>
