@@ -159,23 +159,24 @@ class OrderRefundLayout extends React.Component {
         </form>
         {/* 6. 退款说明 */}
         <article className="weui_article">
-          <section>
+          <section className="font_small">
             <h2 className="title">退款说明：</h2>
             <p className="font_small color_gray">
-              <span className="color_dark">1.未拍摄前：</span><br/>
-              a.约定拍摄日期前7天以上，申请退款，均不扣款，平台保障，放心支付。<br />
-              b.3天&nbsp;&lt;&nbsp;约定拍摄日&nbsp;&lt;&nbsp;7天申请退款时，将扣去订单已付款的20%作为毁约补偿；<br/>
-                 约定拍摄日的前3天内，申请退款将扣去订单已付款的30%作为毁约补偿。<br/>
-               <span className="color_dark">2.拍摄完成后：</span><br />
-              a.如用户对拍摄作品不满意，如需申请退款，务必先联系客服人员，说明退款原因及上传凭证图片，经过YAOPAI 初步确认后，由工作人员为您办理退款或提供补救方案。
+              <span className="color_dark">A.摄影师未接单：</span><br/>
+              用户提交订单付款后，并且在摄影师未接单的情况下，如果此时申请退款，均不扣款，平台保障，放心支付。<br/>
+              <span className="color_dark">B.摄影师已接单但还未拍摄：</span><br />
+              1.约定拍摄日期前7天以上，申请退款，均不扣款，平台保障，放心支付。<br/>
+              2.距约定拍摄日7天以内申请退款时，YAOPAI 平台将根据实际情况扣去订单已付款的 0-30% 作为毁约补偿。<br/>
+              <span className="color_dark">C.拍摄完成后：</span><br/>
+             如用户对拍摄作品不满意，如需申请退款，务必先联系客服人员，说明退款原因及上传凭证图片，经过 YAOPAI 初步确认后，由工作人员为您办理退款或提供补救方案。
             </p>
           </section>
           <section>
             <h2 className="title">退款规则：</h2>
             <p className="font_small color_gray">
-              a.若办理退款，退款会优先使用您原订单的支付方式进行退回。<br />
-              b.如果所支付的订单中含有非现金部分(如优惠券)，在退款时，非现金部分不能折现。<br />
-              c.如有疑问，请拨打客服热线： <a className="color_green" href="tel:400-876-5981">400-876-5981</a>
+              1.若办理退款，退款会优先使用您原订单的支付方式进行退回。<br />
+              2.如果所支付的订单中含有非现金部分(如优惠券)，在退款时，非现金部分不能折现。<br />
+              3.如有疑问，请拨打客服热线： <a className="color_green" href="tel:400-876-5981">400-876-5981</a>
             </p>
           </section>
         </article>
