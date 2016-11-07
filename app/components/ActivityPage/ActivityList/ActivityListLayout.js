@@ -26,7 +26,7 @@ class ActivityListLayout extends React.Component{
                 </li>
               </Link>
               )
-            ) : '暂无数据'
+            ) : ''
           }
         </ul>
       </div>
