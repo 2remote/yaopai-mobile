@@ -99,7 +99,7 @@ class WorkTitle extends React.Component{
           <span className="price">￥{data.price}</span>
         </p>
         <p className="sub-title">{ data.description}</p>
-        <p className="sub-area"><span className="area-icon">可拍摄服务地</span>{ getArea() }</p>
+        <p className="sub-area"><span className="area-icon">可服务拍摄地</span>{ getArea() }</p>
       </section>
     )
   }
